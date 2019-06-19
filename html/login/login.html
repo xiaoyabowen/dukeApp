@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../../css/api.css">
+    <link rel="stylesheet" href="../../css/commonWindow.css">
+    <title>登录</title>
+    <style>
+        body {
+            background: url("../../image/bg.png") no-repeat;
+            background-position: center top;
+            background-size: cover;
+            color: #FFFFFF;
+            position: relative;
+        }
+        .login-title{
+            width: 100%;
+            margin: 52px 0 20px 0;
+            height:30px;
+            font-size:20px;
+            font-weight:500;
+            color:rgba(255,255,255,1);
+            line-height:30px;
+            text-align: center;
+        }
+        .login-unit {
+            width: 100%;
+            padding-left: 37px;
+            padding-right: 32px;
+            box-sizing: border-box;
+            position: absolute;
+        }
+
+        .return {
+            width: 100%;
+            height: 46px;
+            position: relative;
+        }
+
+        .return > img {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            bottom: 12px;
+            left: 15px;
+        }
+
+
+        .login-now > a {
+            width: 100%;
+            margin: 0 auto;
+            height: 43px;
+            background: rgba(94, 196, 224, 0.7);
+            border-radius: 100px;
+            text-align: center;
+            line-height: 43px;
+            font-size: 18px;
+            color: #FFFFFF;
+            display: block;
+        }
+
+
+
+        .visitor-login > a {
+            width: 100%;
+            height: 43px;
+            background: rgba(94, 196, 224, 0.70);
+            border-radius: 100px;
+            text-align: center;
+            line-height: 43px;
+            font-size: 18px;
+            color: #FFFFFF;
+            display: block;
+        }
+
+
+        .login-unit input {
+            width: 100%;
+            color: #FFFFFF;
+        }
+
+        .forget-password > a {
+            font-size: 14px;
+            color: #6AAAB7;
+            float: right;
+            line-height: 20px;
+            margin-top: 4px;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #FFFFFF;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #FFFFFF;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #FFFFFF;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #FFFFFF;
+        }
+
+        .input-phone {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ffffff;
+            margin-bottom: 20px;
+        }
+        span.phone-top {
+            display: inline-block;
+            margin-right: 26px;
+            position: relative;
+        }
+        span.phone-top::after{
+            display: block;
+            content: '';
+            position: absolute;
+            background: url("../../image/login/up.png") no-repeat;
+            background-size: 10px 6px;
+            width: 10px;
+            height: 6px;
+            left: 36px;
+            top: 26px;
+        }
+        .input-password {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ffffff;
+            margin-bottom: 44px;
+        }
+
+        button.yanzheng {
+            display: inline-block;
+            min-width: 100px;
+            padding: 0 20px;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(114,159,255,1);
+            background: #fff;
+            border-radius: 6px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 14px;
+        }
+
+
+        button.login-href {
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            background: rgba(255,255,255,1);
+            border-radius: 25px;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(116,160,255,1);
+            margin-bottom: 16px;
+        }
+        p.subLogin {
+            text-align: right;
+            text-decoration: underline;
+        }
+        .three-login{
+            margin-top: 130px;
+        }
+        .three-login>h4,.agreeLink{
+            height:20px;
+            font-size:14px;
+            font-weight:400;
+            color:rgba(99,139,255,1);
+            line-height:20px;
+            text-align: center;
+        }
+        .threeLi{
+            margin: 26px 0 34px;
+        }
+        .threeLi>li{
+            width: 33%;
+            text-align: center;
+        }
+        .threeLi>li>img{
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="wrap">
+        <div class="return">
+            <!--<img src="../../icon/return.png" alt="">-->
+        </div>
+        <div class="login-unit">
+            <p class="login-title">欢迎来到渡客</p>
+            <div class="login-input">
+                <div class="input-phone cssFlex">
+                    <span class="phone-top">+86</span>
+                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                </div>
+                <div class="input-password cssFlex">
+                    <input id="password" type="number" placeholder="请输入验证码">
+                    <button class="yanzheng">获取验证码</button>
+                </div>
+            </div>
+            <button class="login-href">进入渡客</button>
+            <p class="subLogin">账户密码登陆</p>
+            <div class="three-login">
+                <h4>使用第三方登录</h4>
+                <ul class="cssFlex threeLi">
+                    <li>
+                        <img src="../../image/login/wechat.png" alt="weixin">
+                    </li>
+                    <li>
+                        <img src="../../image/login/qq.png" alt="qq">
+                    </li>
+                    <li>
+                        <img src="../../image/login/weibo.png" alt="weibo">
+                    </li>
+                </ul>
+            </div>
+            <p class="agreeLink">点击“进入渡客”表示同意《渡客协议》</p>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/init.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
+<script>
+    apiready = function () {
+        //添加安卓退出按钮事件
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                closeApp();
+            } else {
+                api.toast({msg: '再按一次退出应用'});
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+
+        var Height = $(window).height();   //获取当前页面高度
+        $(window).resize(function () {
+            $('body').height(Height);
+        });
+    }
+
+    //参观
+
+
+
+</script>
+</body>
+</html>

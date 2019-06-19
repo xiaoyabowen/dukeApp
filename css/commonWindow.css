@@ -1,10 +1,19 @@
 html {
 	width: 100%;
 	height: 100%;
-	font-family:"黑体";
+    font-family:PingFangSC-Medium;
 }
+.commonBg{
+    /*background:linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);*/
+    /*background:red;*/
+    background:
+            linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+}
+
 body {
-	font-family:"黑体";
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
 	width: 100%;
 	height: 100%;
 }
@@ -21,6 +30,56 @@ input{
 }
 textarea{
 	-webkit-appearance: none;
+}
+.padding12{
+    padding: 0 12px;
+}
+
+/*文字行数限制*/
+.textOverflow{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    -o-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+}
+.ellipsis{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+/*内容盒子样式*/
+.contentBox{
+    padding: 20px 12px;
+}
+.subBox{
+    background: #fff;
+    min-height: calc(100vh - 40px);
+    overflow: hidden;
+
+    border-radius: 4px;
+}
+.subcontentBox{
+    background: #fff;
+    padding: 0 12px;
+    min-height: calc(100vh - 40px);
+    overflow: hidden;
+    border-radius: 4px;
+}
+/*flex 布局*/
+
+.cssFlex {
+    display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
 }
 .clearfix:before{
 	content: '';
@@ -49,11 +108,22 @@ textarea{
 	position: relative;
 	display: none;
 	color:#fff;
-    background: #5AC8E1;
+    /*background:linear-gradient(359deg,rgba(93,145,254,1) 0%, rgba(156,185,255,1)100%);*/
+    background:
+            linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
     height : 44px;
     line-height : 44px;
     font-size: 17px;
     text-align: center;
+}
+.leftImgTop{
+    width: 20px !important;
+    height: 22px !important;
+}
+.rightImgTop{
+    width: 20px !important;
+    height: 20px !important;
 }
 #leftButton,#topbar .right{
     position: absolute;
@@ -85,6 +155,9 @@ textarea{
 	width: 16px;
 	height: 16px;
 	vertical-align: 2px;
+}
+#leftButton{
+    left: 10px;
 }
 #leftButton img{
     /* margin-top: -2px; */
@@ -156,9 +229,9 @@ textarea{
     padding: 13px 10px 7px 5px ;
     line-height: 0;*/
     margin-top: 8px;
-    right: 0;
-    top: 0;
-    width: 45px;
+    left: 30px;
+    bottom: 10px;
+    width: 100%;
     height: 33px;
     z-index: 10;
 }
@@ -188,3 +261,68 @@ textarea{
 	background: #f4f4f4;
 }
 .rightInfo:active{background-color: #cc3333!important;}
+
+
+
+
+.rightImg{
+    display: inline-block;
+    width:22px;
+    height:22px;
+    position:absolute;
+    right:12px;
+    bottom:14px;
+    flex: 1;
+}
+/*搜索框*/
+.searchHome{
+    width: 550px;
+    margin: 0 auto;
+    flex: 3;
+}
+.searchInput{
+    display: inline-block;
+    width: 60%;
+    height:12px !important;
+    line-height: 12px !important;
+    background-size: 6px 8px;
+    background:url("../icon/search.png") no-repeat 24px center,rgba(255,255,255,1);
+    background-size: 16px 16px;
+    border-radius:14px;
+    padding: 8px 0 8px 66px;
+    vertical-align: center;
+    font-size: 14px;
+}
+/*.middleTopBar{*/
+    /*position: relative;*/
+/*}*/
+/*go 点击*/
+.searchClick{
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background:rgba(99,139,255,1);
+}
+
+/*首页banner 样式*/
+.subcontentBoxBanner{
+    margin-bottom: -12px;
+    height: calc(100vh - 28px);
+}
+.home-banner{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+

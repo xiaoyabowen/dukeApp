@@ -1,0 +1,372 @@
+.comTitle{
+    padding: 24px 12px 20px 12px;
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    justify-content: space-between;
+}
+h3.comInfoTitle {
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(51,51,51,1);
+    margin-bottom: 6px;
+}
+p.comInfoCon {
+    height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 16px;
+    margin-bottom: 12px;
+}
+p.timeInfo {
+    height: 14px;
+    font-size: 10px;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 14px;
+}
+img.ComTime,.dateCom{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+}
+.comLogo{
+    width: 50px;
+    height: 50px;
+    vertical-align: center;
+}
+.comLogo>img{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+span.marginR {
+    display: inline-block;
+    margin-right: 18px;
+}
+.F9Line {
+    height: 10px;
+    background: #F9F9F9;
+}
+.mui-control-content {
+    background-color: white;
+    min-height: 215px;
+}
+.mui-control-content .mui-loading {
+    margin-top: 50px;
+}
+.mui-control-item{
+    position: relative;
+}
+.mui-active:after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    background: #638BFF;
+    height: 1px;
+}
+
+.jobBox {
+    margin: 0 20px;
+    padding: 12px 0 16px;
+    border-bottom: 1px solid #EBEBEB;
+}
+h4.job-nameNm {
+    height: 22px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(51,51,51,1);
+    line-height: 22px;
+    margin-bottom: 6px;
+}
+p.job-name {
+    height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 16px;
+    margin-bottom: 6px;
+}
+p.adress-job {
+    height: 14px;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 14px;
+    margin-bottom: 12px;
+}
+img.hrImg {
+    display: inline-block;
+    width: 30px !important;
+    height: 30px;
+    margin-right: 10px;
+}
+p.job-img-content {
+    height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 30px;
+    align-items: center;
+}
+.job-right {
+    width: 76px;
+    flex: 1;
+    text-align: right;
+}
+p.moneyNum {
+    height: 24px;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(92,145,253,1);
+    line-height: 24px;
+    margin: 12px 0 10px;
+}
+
+
+p.date-job {
+    height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 16px;
+}
+
+.infoList {
+    flex-wrap: wrap;
+    padding: 0 30px;
+    margin-top: 10px;
+}
+.infoList>span {
+    display: inline-block;
+    height: 20PX;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(151,151,151,1);
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    font-size: 10px;
+    padding: 0 10px;
+    text-align: center;
+    margin: 0 14px 10px 0;
+}
+p.job-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 16px;
+    padding: 0 12px;
+}
+.mui-slider-group{
+    height: 100vh;
+}
+/*产品介绍*/
+h4.productName {
+    padding: 0 0 10px 12px;
+}
+.infoProduct {
+    padding: 0 12px;
+    margin-bottom: 10px;
+}
+img.pro-img {
+    display: inline-block;
+    width: 50px !important;
+    height: 50px;
+    flex: 1;
+    margin-right: 14px;
+}
+.infoProductContent>h5{
+    font-size: 14px;
+    color: #333;
+
+    line-height: 14px;
+}
+.infoProductContent>p{
+    color: #333;
+    font-size: 12px;
+    line-height: 14px;
+}
+.map-compony {
+    width: 100%;
+    height: 120px;
+    background: #ccc;
+}
+
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+    border-bottom: none !important;
+}
+.link-compony{
+    margin-bottom: 14px;
+    padding: 0 12px;
+}
+.link-compony>span{
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 20px;
+}
+span.right-next {
+    display: inline-block;
+    flex: 1;
+    text-align: right;
+    font-size: 20px !important;
+}
+.gong-info{
+    padding: 0 12px;
+}
+.gong-info>p {
+    color: #333;
+    font-size: 12px;
+    line-height: 16px;
+}
+.more-see {
+    width: 76px;
+    height: 22px;
+    border-radius: 4px;
+    border: 1px solid rgba(99,139,255,1);
+    line-height: 22px;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    font-size: 14px;
+    margin-left: 12px;
+}
+.swiper-slide{
+
+    width: 130px !important;
+    height: 76px;
+}
+.swiper-slide>img{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.swiper-container {
+
+    margin-bottom: 16px;
+}
+
+ul.componySize {
+    padding: 4px 12px 0;
+}
+.componySize>li{
+    padding: 10px 0;
+    border-bottom: 1px solid #EBEBEB;
+}
+h4.sizeTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(51,51,51,1);
+    line-height: 20px;
+}
+
+/*企业空间   模态框*/
+.modal-space{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 11;
+    top: 0;
+}
+
+.subspace{
+    width: 80%;
+    min-height: 200px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 20px 16px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+h5.spaceTitle {
+    color: #333333;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+}
+p.spaceSubTitle {
+    font-size: 14px;
+    color: #333;
+}
+p.spaceContent {
+    color: #333;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+}
+.delete-space{
+    display: inline-block;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+}
+
+/*聊一聊  投递简历*/
+.job-chatBox{
+    padding-bottom: 10px;
+}
+.chatJob,.workJob{
+    width:46%;
+    height:32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+
+    border-radius:4px;
+}
+.chatJob{
+    background:rgba(119,202,86,1);
+    margin-right: 20px;
+}
+.workJob{
+    background:rgba(99,139,255,1);
+}
+/*岗位职责*/
+.positionMain{
+    padding: 6px 20px 6px 0;
+}
+.posiText{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 19px;
+    margin-left: 16px;
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 6px;
+}
+.skillList{
+    flex-wrap: wrap;
+    padding-left: 16px;
+    margin-bottom: 16px;
+}
+.skillList>span{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    border: 1px solid rgba(151,151,151,1);
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    font-size: 10px;
+    padding: 0 10px;
+    text-align: center;
+    margin:0 10px 10px 0;
+
+}

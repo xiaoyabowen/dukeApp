@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>找回密码</title>
+    <link rel="stylesheet" href="../../css/api.css" />
+    <link rel="stylesheet" href="../../css/commonWindow.css" />
+    <style>
+        html,body{
+            background:rgba(249,249,249,1);
+        }
+
+        .login-unit{
+             background: #fff;
+             padding: 0 16px;
+         }
+        .login-unit input{
+            padding-left: 10px;
+        }
+        input::-webkit-input-placeholder {
+            color: #B8B8B8;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #B8B8B8;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #B8B8B8;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #B8B8B8;
+        }
+        p.login-title {
+            height: 86px;
+            line-height: 86px;
+            font-size: 18px;
+            color: rgba(102,102,102,1);
+            font-weight: 400;
+            padding-top: 20px;
+        }
+        .input-phone {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            margin-bottom: 20px;
+        }
+        span.phone-top {
+            display: inline-block;
+            margin-right: 26px;
+            position: relative;
+        }
+        span.phone-top::after{
+            display: block;
+            content: '';
+            position: absolute;
+
+        }
+        .phone-img::after{
+            background: url("../../image/login/phone.png") no-repeat;
+            background-size: 16px 24px;
+            width: 16px;
+            height: 24px;
+            left: 6px;
+            top: 14px;
+        }
+        .yanz-img::after{
+            background: url("../../image/login/yanz.png") no-repeat;
+            background-size: 18px 24px;
+            width: 18px;
+            height: 24px;
+            left: 6px;
+            top: 14px;
+        }
+        .pass-img::after{
+            background: url("../../image/login/password.png") no-repeat;
+            background-size: 16px 20px;
+            width: 16px;
+            height: 20px;
+            left: 6px;
+            top: 18px;
+        }
+        .input-password {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        button.yanzheng {
+            display: inline-block;
+            min-width: 100px;
+            padding: 0 20px;
+            font-weight: 400;
+            font-size: 12px;
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 14px;
+            background:rgba(93,146,254,1);
+            border-radius:4px;
+        }
+        .configBtn{
+            padding: 0 18px;
+        }
+        .subConfigBtn {
+            width: 100%;
+            height: 50px;
+            background: rgba(93,146,254,1);
+            border-radius: 6px;
+            line-height: 50px;
+            font-weight: 400;
+            color: rgba(255,255,255,1);
+            font-size: 18px;
+            margin: 26px auto 0;
+            text-align: center;
+
+        }
+
+        button.login-href {
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            background: rgba(255,255,255,1);
+            border-radius: 25px;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(116,160,255,1);
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="main" >
+
+    <div class="login-unit">
+        <p class="login-title">设置新密码</p>
+        <div class="login-input">
+            <div class="input-phone cssFlex">
+                <span class="phone-top phone-img"></span>
+                <input id="phone" type="number" placeholder="请输入您的手机号">
+            </div>
+            <div class="input-password cssFlex">
+                <span class="phone-top yanz-img"></span>
+                <input id="yanzheng" type="number" placeholder="请输入验证码">
+                <button class="yanzheng">获取验证码</button>
+            </div>
+        </div>
+    </div>
+    <div class="login-unit">
+        <div class="login-input">
+            <div class="input-phone cssFlex">
+                <span class="phone-top pass-img"></span>
+                <input id="password" type="password" placeholder="请输入您的手机号">
+            </div>
+            <div class="input-password cssFlex">
+                <span class="phone-top pass-img"></span>
+                <input id="newpassWord" type="password" placeholder="请输入验证码">
+            </div>
+        </div>
+
+    </div>
+    <div class="configBtn">
+        <div class="subConfigBtn">
+            确定
+        </div>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script>
+    apiready = function () {
+
+    };
+</script>
+</html>

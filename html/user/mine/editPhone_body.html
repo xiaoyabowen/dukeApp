@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>修改手机号</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <style>
+        .login-unit {
+            margin-top: 10px;
+        }
+        .login-unit{
+            background: #fff;
+        }
+        .login-unit input{
+            padding-left: 10px;
+            width: 100%;
+        }
+        input::-webkit-input-placeholder {
+            color: #B8B8B8;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #B8B8B8;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #B8B8B8;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #B8B8B8;
+        }
+
+        .input-phone {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            /*margin-bottom: 20px;*/
+            background: url("../../../image/login/phone.png") no-repeat left center;
+            background-size: 16px 24px;
+            padding-left: 26px;
+        }
+        .input-password{
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            margin-bottom: 40px;
+        }
+        #yanzheng{
+            width: 100%;
+        }
+        button.yanzheng {
+            display: inline-block;
+            min-width: 100px;
+            padding: 0 20px;
+            font-weight: 400;
+            font-size: 12px;
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 14px;
+            background:rgba(93,146,254,1);
+            border-radius:4px;
+        }
+        .configEdit {
+            width: 100%;
+            height: 36px;
+            background: rgba(99,139,255,1);
+            border-radius: 4px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+        p.nowPhone {
+            margin-top: 24px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #666666;
+            line-height: 18px;
+            height: 18px;
+        }
+        p.Explain {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666666;
+            line-height: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body class="commonBg">
+    <div class="contentBox">
+        <div class="subcontentBox">
+            <p class="nowPhone">当前手机号：<span class="nowPhoneEdit">133****3020</span></p>
+            <p class="Explain">修改成功后，简历与登录手机号将同步完成修改</p>
+            <div class="login-input">
+                <div class="input-phone cssFlex">
+                    <span class="phone-top phone-img"></span>
+                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                </div>
+                <div class="input-password cssFlex">
+                    <span class="phone-top yanz-img"></span>
+                    <input id="yanzheng" type="number" placeholder="请输入验证码">
+                    <button class="yanzheng">获取验证码</button>
+                </div>
+            </div>
+            <div class="configEdit">完成</div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/kv.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        apiready = function () {
+
+        };
+    </script>
+</body>
+</html>
