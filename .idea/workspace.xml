@@ -3,293 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b38ebfe8-52ca-420e-803e-b22fa293fb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/commonWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/commonWindow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/Group@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/Sendout.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/Shape@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/arrowup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/arrowup02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/bangzhu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/bbkq_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/bbs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/bicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/blackclock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/bx.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/calendar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/cbicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/ckzy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/cleartext.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/comment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/commented.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/cookbook.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/dateafter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/datebefore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/datenex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/datepre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/delet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon/delete.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/display.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/edit03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/equip.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/family_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/fix.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/fwsb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/gdzc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/ggtz.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/grayComment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/grayDelete.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/gray_msg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/gray_phone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/group.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/health.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/icon02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jcsj.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jcsj_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jiaxiaoTongHome.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jifen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jskt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jxzl_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/jzgkq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/kcb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/kgedit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/kgintro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/leaderLogin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_cal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_health.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_heart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_mc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/left_msg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/loadmore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/loginicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/lqsh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/menu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/more.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/moren.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/msg.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon/msg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/mzpy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/mzsp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/newcardcheck.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/next.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/paynotice.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/paynotice1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/phone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/photo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/quan.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon/quan.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/record.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/release.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/reply.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/return.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/scan.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/search.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon/search.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/search01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/search02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/selectarrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/selected-bbg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/selected-bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/share.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/share02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/shenhe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/shezhi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/sicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/splendid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/star.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/switch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/tchome.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/teacherWork.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/teacherinfo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/tel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/ticon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/transmit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/uncommented.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/voice01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/voice02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/warn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/wdkq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/whiteDelete.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/whiteTranslate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/whselect.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/wj.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/wondertime.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/xinxi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/xitong.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/xqlq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/xuexi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/xxjf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/yekq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/ysjieshao.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/yszy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/yzxx.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/zgkq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon/zhuye.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/Path.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/about.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_bt_md.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_bt_sm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_bt_white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_btm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_btm_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_lt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_rt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_rt2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_tp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_tp_md.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/arrow_tp_sm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/art.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/baby02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/baby03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/baby04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/babyAvatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/carmea.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/collect01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/collect02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/collect03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/collect04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/commentbg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/computer.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/cookfood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/del.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/delete.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/details.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dianzan01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dianzan02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dianzan03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dianzan04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dianzan2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/dsx.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/editIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/fangjia.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/fcoushead.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/flower_wt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/gt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/history.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/href.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/hsr.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/huodong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/index-banner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/jfbg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/jiaxiaoTongHome.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/jilu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/juan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/kginfo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/kindergarten.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/label.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/loading_more.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/lrbg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/lrbg02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mangeSearch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mebg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mebg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mifan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/milk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine010.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine011.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine07.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine/mine09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine01.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine02.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine03.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine04.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine05.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine06.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine07.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine07.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine08.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine09.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mine11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/more02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/myhome03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/myhome04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/myhome04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/myhome_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/mystudy07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan07.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ouryuan13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pe01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pe02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/person_a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pinglun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pinglun2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/play_ap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pyq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/qq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/qqkj.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/record.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/release.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/sc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/scgh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/sgk01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/sgk02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/sgk03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/sharebar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/shenhe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/teacherAvatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/teacherLi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/teacherLiu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/teacherWang.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/teacherbg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/tousunot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/tousuok.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wonderful07.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/wx.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/xin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yufang.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yyk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yyk01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yyk02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yyk03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/yzxx_ly.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -306,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/html/user/home/companyInfo.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -331,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/html/user/home/home_body.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -339,10 +52,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+            <state relative-caret-position="240">
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -376,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/html/user/mine/editPhone_body.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -386,15 +104,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="790">
               <caret line="293" column="19" selection-start-line="293" selection-start-column="19" selection-end-line="293" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/user/home/companyInfo_body.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="7" column="15" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -465,7 +174,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -491,26 +200,6 @@
               <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
               <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -555,12 +244,12 @@
       <updated>1560820454977</updated>
       <workItem from="1560820457745" duration="31106000" />
       <workItem from="1560859891464" duration="2114000" />
-      <workItem from="1560907947193" duration="14268000" />
+      <workItem from="1560907947193" duration="14667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47488000" />
+    <option name="totallyTimeSpent" value="47887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -755,7 +444,7 @@
     <entry file="file://$PROJECT_DIR$/html/user/mine/editPhone_body.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -793,7 +482,7 @@
     <entry file="file://$PROJECT_DIR$/html/user/home/companyInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -804,14 +493,17 @@
     <entry file="file://$PROJECT_DIR$/html/user/home/home_body.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        <state relative-caret-position="240">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
         </state>
       </provider>
     </entry>
