@@ -28,7 +28,20 @@
 <script>
 
     apiready = function () {
-        initFrameInWin(api.pageParam);
+        // initFrameInWin(api.pageParam);
+        var statusBarAppearance = api.statusBarAppearance;//是否支持沉浸式
+        var header = $api.dom('#topbar');
+        $api.fixStatusBar(header);
+        // if (statusBarAppearance) {
+        //
+        // }
+        header.style.display = 'block';
+        winHeadHeight = header.offsetHeight;
+        // if(height){
+        //     winHeadHeight += height;
+        // }
+
+        openFrameInWin('position_body', './position_body.html');
     };
 </script>
 </html>
