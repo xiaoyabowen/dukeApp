@@ -62,16 +62,16 @@ span.marginR {
 .mui-control-item{
     position: relative;
 }
-.mui-active:after{
-    content: '';
-    display: block;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    background: #638BFF;
-    height: 1px;
-}
+/*.mui-active:after{*/
+    /*content: '';*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    /*width: 20px;*/
+    /*background: #638BFF;*/
+    /*height: 1px;*/
+/*}*/
 
 .jobBox {
     margin: 0 20px;

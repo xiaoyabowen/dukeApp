@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b38ebfe8-52ca-420e-803e-b22fa293fb7c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/widget/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/widget/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/css/componyDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/widget/css/componyDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/home/companyInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/home/companyInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/docx@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/icon_baidulogo@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/pdf@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/下拉@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/关闭@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/分享@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/删除@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/地址@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/工作@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的关注@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/应聘优先@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/积分@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/简历刷新@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/简历提亮@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/简历直投@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/我的积分/简历置顶@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/收藏.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/编辑@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/编辑信息/照片@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/编辑信息/视频@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/编辑信息/链接@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/职位订阅@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/修改手机号@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/关于我们@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/切换身份@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/密码@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/屏蔽公司@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/意见反馈@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/设置/推送通知@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/评论@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/请输入手机号@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP/camera-b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP/icon_xie.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP/信用卡认证@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP/身份认证@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP/银行卡认证@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/金卡VIP@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/附件简历@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/隐私设置@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/地址@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/导航@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/时间@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/电话@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/聊天@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/职位@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/面试日程/联系人@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/我的 切图/默认头像@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/地图定位@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/地理位置@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/岗位@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/工作@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/消息@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/返回@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/image/首页切图/隐藏@2x.png" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/widget/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="8" column="32" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>searchInput</find>
+      <find>rightImg</find>
+      <find>searchHome</find>
+      <find>flex-grow: 1;</find>
+      <find>color</find>
+      <find>item2mobile</find>
+      <find>mui-loading</find>
+      <find>sliderProgressBar</find>
+      <find>pro</find>
+      <find>padding: 0 0 10px 20px;</find>
+      <find>baidu</find>
+      <find>swiper-slide</find>
+      <find>input</find>
+      <find>topbar</find>
+      <find>input-password</find>
+      <find>input-phone</find>
+      <find>sub</find>
+      <find>padding12</find>
+      <find>job-img-text</find>
+      <find>height</find>
+      <find>mine-img</find>
+      <find>statusBarAppearance</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="D:/jsEffect/quaqoo/APiCloud/gardens/css/commonWindow.css" />
+        <option value="$PROJECT_DIR$/html/user/home/position.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/mine.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/editPass.html" />
+        <option value="$PROJECT_DIR$/html/login/returnPass_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/editPhone.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/iconPush.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/setUp.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/README.md" />
+        <option value="$PROJECT_DIR$/html/user/home/README.md" />
+        <option value="$PROJECT_DIR$/css/componyDetail.css" />
+        <option value="$PROJECT_DIR$/html/user/home/position_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/editPass_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/editPhone_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/iconPush_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/mine_body.html" />
+        <option value="$PROJECT_DIR$/html/user/mine/setUp_body.html" />
+        <option value="$PROJECT_DIR$/html/user/home/companyInfo_body.html" />
+        <option value="$PROJECT_DIR$/css/commonWindow.css" />
+        <option value="$PROJECT_DIR$/html/user/home/home_body.html" />
+        <option value="$PROJECT_DIR$/widget/css/componyDetail.css" />
+        <option value="$PROJECT_DIR$/widget/config.xml" />
+        <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/html/user/home/home.html" />
+        <option value="$PROJECT_DIR$/html/user/home/companyInfo.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dukeUse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dukeUse" type="462c0819:PsiDirectoryNode" />
+              <item name="widget" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\yun\dukeUse\html\user\home" />
+      <recent name="D:\yun\dukeUse\html\user\mine" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b38ebfe8-52ca-420e-803e-b22fa293fb7c" name="Default Changelist" comment="" />
+      <created>1560820454977</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560820454977</updated>
+      <workItem from="1560820457745" duration="31106000" />
+      <workItem from="1560859891464" duration="2114000" />
+      <workItem from="1560907947193" duration="17409000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="50629000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/html/user/home/mine.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://D:/jsEffect/quaqoo/APiCloud/gardens/css/commonWindow.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/mui.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/swiper-3.3.1.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="14" column="1382" selection-start-line="14" selection-start-column="1382" selection-end-line="14" selection-end-column="1382" />
+          <folding>
+            <element signature="e#2954#3212#2" expanded="true" />
+            <element signature="e#3353#3611#2" expanded="true" />
+            <element signature="e#3731#3989#2" expanded="true" />
+            <element signature="e#4069#4327#2" expanded="true" />
+            <element signature="e#4468#4726#2" expanded="true" />
+            <element signature="e#4846#5104#2" expanded="true" />
+            <element signature="e#14561#16008#2" expanded="true" />
+            <element signature="e#16163#17607#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/company/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login/passLogin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1038">
+          <caret line="303" column="7" lean-forward="true" selection-start-line="303" selection-start-column="7" selection-end-line="303" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login/returnPass.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/mine.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/editPass.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7830">
+          <caret line="261" column="20" lean-forward="true" selection-start-line="261" selection-start-column="20" selection-end-line="261" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login/returnPass_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="147" column="40" lean-forward="true" selection-start-line="147" selection-start-column="40" selection-end-line="147" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/iconPush.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/setUp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="270">
+            <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/position.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/componyDetail.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/position_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1696">
+          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="22" />
+          <folding>
+            <element signature="e#875#1784#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/editPass_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/editPhone.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/iconPush_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/companyInfo_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/setUp_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/editPhone_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/mine/mine_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/commonWindow.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="790">
+          <caret line="293" column="19" selection-start-line="293" selection-start-column="19" selection-end-line="293" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/home_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/home/position_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="105" lean-forward="true" selection-start-line="4" selection-start-column="105" selection-end-line="4" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="104" selection-start-line="4" selection-start-column="104" selection-end-line="4" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/css/componyDetail.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="60" column="1" lean-forward="true" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/home/companyInfo_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/apiCloud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="818" column="21" selection-start-line="818" selection-start-column="9" selection-end-line="818" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="44" column="8" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="56" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user/home/companyInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,4 +1,4 @@
-<widget id="A6015280203534"  version="0.0.1">
+<widget id="A6015404524948"  version="0.0.1">
     <name>渡客</name>
     <description>
         API Example App.
@@ -6,7 +6,7 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <content src="html/login/login.html" />
+    <content src="html/user/home/home.html" />
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
     <permission name="call" />
