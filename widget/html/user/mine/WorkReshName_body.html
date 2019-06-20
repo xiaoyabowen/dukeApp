@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+
+</head>
+<body class="commonBg">
+    <div class="Box">
+        <div class="boxSub">
+            <div class='textarea-block'>
+                <textarea class="textarea-item" name="content" placeholder="请输入内容，不超过300字。" maxlength="50" spellcheck="false"></textarea>
+                <div class="textarea-count">
+                    <span class="textareaInput">0</span>/<span class="textareaTotal">50</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="line-border"></div>
+    </div>
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        apiready = function () {
+
+        };
+        $(document).ready(function(){
+
+            var lenInput = $('.textarea-item').val().length;
+
+            $(".textarea-item").keyup(function(){
+                lenInput = $(this).val().length;
+                if(lenInput>0 && lenInput<=50){
+                    $('.textareaInput').html(lenInput);
+                    $('.textarea-btn').attr('disabled',false);
+                }else{
+                    $('.textarea-btn').attr('disabled',true);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

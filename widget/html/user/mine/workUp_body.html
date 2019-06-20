@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>附件简历</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+
+    <link rel="stylesheet" href="../../../css/mui.min.css" />
+
+</head>
+<body class="commonBg">
+    <div class="Box posiBox">
+        <div class="">
+            <div class="moreWork cssFlex">
+                <span>最多上传3份附件简历</span>
+                <img src="../../../image/mine/workClose.png" alt="close" class="workClose">
+            </div>
+            <div class="jianliList">
+                <div class="jianliListLi cssFlex">
+                    <div class="liLeft">
+                        <div class="cssFlex">
+                            <img src="../../../image/mine/pdf.png" alt="pdf" class="pdfImg">
+                            <div class="resumeInfo">
+                                <p class="resumeInfoName">张敏的简历.pdf</p>
+                                <p class="resumeInfoSub">
+                                    <span  class="resumeInfoSize">2.3M</span>
+                                    <span class="resumeInfoDate">2019.05.28上传</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../../../image/mine/threedian.png" alt="edit" class="editJian">
+                </div>
+                <div class="jianliListLi cssFlex">
+                    <div class="liLeft">
+                        <div class="cssFlex">
+                            <img src="../../../image/mine/pdf.png" alt="pdf" class="pdfImg">
+                            <div class="resumeInfo">
+                                <p class="resumeInfoName">张敏的简历.pdf</p>
+                                <p class="resumeInfoSub">
+                                    <span  class="resumeInfoSize">2.3M</span>
+                                    <span class="resumeInfoDate">2019.05.28上传</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../../../image/mine/threedian.png" alt="edit" class="editJian">
+                </div>
+                <div class="jianliListLi cssFlex">
+                    <div class="liLeft">
+                        <div class="cssFlex">
+                            <img src="../../../image/mine/pdf.png" alt="pdf" class="pdfImg" id="pdfImg">
+                            <div class="resumeInfo">
+                                <p class="resumeInfoName">张敏的简历.pdf</p>
+                                <p class="resumeInfoSub">
+                                    <span  class="resumeInfoSize">2.3M</span>
+                                    <span class="resumeInfoDate">2019.05.28上传</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../../../image/mine/threedian.png" alt="edit" class="editJian">
+                </div>
+            </div>
+            <div class="updateRemoBtn">
+                手机上传附件简历
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/mui.picker.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        document.getElementById('pdfImg').addEventListener('tap', function() {
+                    alert(1)
+             　　　　if (mui.os.plus) {
+
+                 　　　　　　var a = [{
+
+                         　　　　　　　　title: "拍照"          //这些都是可以点击的选项的内容
+
+                        　　　　　　}, {
+
+                         　　　　　　　　title: "从手机相册选择"
+
+                         　　　　　　}];
+
+                 　　　　　　plus.nativeUI.actionSheet({
+
+                         　　　　　　　　title: "修改用户头像",           //这里就是这个弹窗的title
+
+                         　　　　　　　　cancel: "取消",                     //取消按钮
+
+                         　　　　　　　　buttons: a
+
+                         　　　　　　}, function(b) { /*actionSheet 按钮点击事件*/
+
+                     　　　　　　　　//这里面就是触发的事件，比如想做一个选择性别的弹窗，就可以通过a[b.index].title来获取当前点击了男还是女，注意，此处的b.index是从1开始的。要从0开始的话，要记得减1.
+
+                     　　　　　　})
+
+                 　　　　}
+
+             　　}, false);
+
+        apiready = function () {
+
+        };
+    </script>
+</body>
+</html>

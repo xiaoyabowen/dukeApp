@@ -58,14 +58,21 @@ textarea{
 .contentBox{
     padding: 20px 12px;
 }
-.subBox{
+.Box{
+    width: 7rem;
     background: #fff;
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 0.48rem);
     overflow: hidden;
-
+    margin: 0.24rem 0.24rem 0 0.24rem;
     border-radius: 4px;
 }
+.boxSub{
+    padding:0  0.34rem;
+}
+
+
 .subcontentBox{
+    width: 7rem;
     background: #fff;
     padding: 0 12px;
     min-height: calc(100vh - 40px);

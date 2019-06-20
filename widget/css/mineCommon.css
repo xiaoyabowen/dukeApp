@@ -1,0 +1,281 @@
+.remBox{
+    width: 7rem;
+}
+/*我的*/
+.mineInfo{
+    padding-top: 0.32rem;
+    width: 6.32rem;
+    margin-bottom: 0.24rem;
+}
+.mineInfoleft{
+    width: 4.9rem;
+}
+.m-name{
+    font-size: 0.4rem;
+    color: #333;
+    font-weight: bold;
+    line-height: 0.7rem;
+    height: 0.7rem;
+}
+.m-conpony-name{
+    width:100%;
+    height:0.3rem;
+    font-size:0.22rem;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:0.3rem;
+    margin-bottom: 0.08rem;
+}
+.timeInfo{
+    font-size: 0.24rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    align-items: center;
+    margin-bottom: 0.2rem;
+}
+.m-adressimg,.m-zhiweiimg,.m-vipimg{
+    display: inline-block;
+    margin-right: 0.1rem;
+}
+.m-adressimg{
+    width: 0.22rem;
+    height: 0.28rem;
+}
+.m-zhiweiimg{
+    width: 0.26rem;
+    height: 0.22rem;
+}
+.m-vipimg{
+    width: 0.36rem;
+    height: 0.4rem;
+}
+.m-adress,.m-zhiwei{
+    margin-right: 0.26rem;
+}
+.m-home{
+    width:100%;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size:0.28rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+}
+.mineInforight{
+    width: 1.4rem;
+}
+.m-right-id{
+    width: 1.4rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    text-align: center;
+    border-radius:0.04rem;
+    font-size: 0.22rem;
+    color:rgba(99,139,255,1);
+    border:1px solid rgba(98,149,254,1);
+    margin-bottom: 0.36rem;
+}
+.m-img-logo{
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+/*我的沟通记录*/
+.m-chat{
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.3rem;
+}
+.m-chat-text{
+    width: 20%;
+}
+.tong-num{
+    text-align: center;
+    font-size: 0.32rem;
+    color: #333333;
+    font-weight: bold;
+}
+.tong-text{
+    font-size: 0.24rem;
+    color: #333;
+    text-align: center;
+}
+.F9Line {
+    height: 0.2rem;
+    background: #F9F9F9;
+}
+.viewZhu{
+    height:0.4rem;
+    font-size:0.36rem;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    line-height:0.4rem;
+    margin: 0.3rem 0 0.54rem 0;
+}
+.m-person-list{
+    flex-wrap: wrap;
+    align-items: center;
+}
+.m-person-list>li{
+    width: 25%;
+    margin-bottom: 0.5rem;
+}
+.m-person-list>li>img{
+    display:block;
+    margin: 0 auto;
+    height: 0.42rem;
+}
+.m-person-list>li>p{
+
+    margin-top: 0.12rem;
+    font-size: 0.22rem;
+    color: #666666;
+    text-align: center;
+}
+.img-one{
+    width: 0.4rem;
+}
+.img-two{
+    width: 0.5rem;
+}
+.img-three{
+    width: 0.48rem;
+}
+.img-four{
+    width: 0.48rem;
+}
+.img-five{
+    width: 0.4rem;
+}
+
+    /*上传附件简历*/
+.update-one,.update-two,.update-three{
+    margin: 0.56rem auto 0.22rem;
+    width:2.3rem;
+    height:0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    border-radius:0.06rem;
+    border:2px solid rgba(99,139,255,1);
+    color:rgba(99,139,255,1);
+    font-size: 0.28rem;
+    font-weight: bold;
+}
+.update-one{
+    margin: 0.5rem auto 0.34rem !important;
+}
+.update-text{
+    text-align: center;
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height: 0.32rem;
+    margin-bottom: 0.1rem;
+}
+/*附件简历重命名*/
+
+.textarea-block{position:relative;    margin-top: 0.3rem;}
+.textarea-item{width:5.4rem;height:2rem;padding:0.16rem 0.4rem 0.16rem 0.5rem;
+    font-size:0.32rem;
+    resize:none;
+    color:#333;
+    border:none;
+    font-weight: bold;
+    outline:none
+}
+.textarea-count{position:absolute;bottom:0.1rem;right:0;color:#000;}
+.textarea-btn{margin-top:0.1rem;}
+.line-border{
+    width: 100%;
+    height: 1px;
+    background: #EBEBEB;
+}
+
+/*已经上传附件简历*/
+.moreWork{
+    height: 0.78rem;
+    line-height: 0.78rem;
+    background: rgba(0,0,0,0.5);
+
+    padding-left: 0.36rem;
+    padding-right: 0.3rem;
+    justify-content: space-between;
+}
+.moreWork>span{
+    font-size: 0.26rem;
+    color: #fff;
+}
+.workClose{
+    display: inline-block;
+    width: 0.22rem;
+    height: 0.22rem;
+    margin-top: 0.28rem;
+}
+.jianliList{
+
+    padding: 0 0.36rem;
+}
+.jianliList>.jianliListLi{
+    padding: 0.2rem 0;
+    justify-content: space-between;
+    border-bottom: 1px solid #EBEBEB;
+}
+.pdfImg{
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.64rem;
+    margin-right: 0.42rem;
+}
+.resumeInfo>p{
+    margin-bottom: 0 !important;
+    line-height: 1.4;
+}
+.resumeInfoName{
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+
+}
+.resumeInfoSub{
+    font-size:0.2rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+}
+.editJian{
+    width: 0.26rem;
+    height: 0.06rem;
+    margin-top: 0.26rem;
+}
+.posiBox{
+    position: relative;
+}
+.updateRemoBtn{
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0.9rem;
+    left: 50%;
+    transform: translate(-50%);
+    width:6.3rem;
+    height:0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    background:rgba(99,139,255,1);
+    border-radius:0.08rem;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
