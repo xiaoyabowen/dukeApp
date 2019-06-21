@@ -13,22 +13,22 @@
             background-position: center top;
             background-size: cover;
             color: #FFFFFF;
-            position: relative;
+            position: relative;height: 100%;
         }
         .login-title{
             width: 100%;
-            margin: 52px 0 20px 0;
-            height:30px;
-            font-size:20px;
+            margin: 1.04rem 0 0.4rem 0;
+            height:0.6rem;
+            font-size:0.42rem;
             font-weight:500;
             color:rgba(255,255,255,1);
-            line-height:30px;
+            line-height:0.6rem;
             text-align: center;
         }
         .login-unit {
             width: 100%;
-            padding-left: 37px;
-            padding-right: 32px;
+            padding-left: 0.74rem;
+            padding-right: 0.64rem;
             box-sizing: border-box;
             position: absolute;
         }
@@ -107,16 +107,16 @@
 
         .input-phone {
             width: 100%;
-            height: 56px;
-            line-height: 56px;
+            height: 1rem;
+            line-height: 1rem;
             color: #FFFFFF;
             box-sizing: border-box;
             border-bottom: 1px solid #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 0.4rem;
         }
         span.phone-top {
             display: inline-block;
-            margin-right: 26px;
+            margin-right: 0.32rem;
             position: relative;
         }
         span.phone-top::after{
@@ -124,74 +124,74 @@
             content: '';
             position: absolute;
             background: url("../../image/login/up.png") no-repeat;
-            background-size: 10px 6px;
-            width: 10px;
-            height: 6px;
-            left: 36px;
-            top: 26px;
+            background-size: 0.2rem 0.12rem;
+            width: 0.2rem;
+            height: 0.12rem;
+            left: 0.72rem;
+            top: 0.46rem;
         }
         .input-password {
             width: 100%;
-            height: 56px;
-            line-height: 56px;
+            height: 1rem;
+            line-height: 1rem;
             color: #FFFFFF;
             box-sizing: border-box;
             border-bottom: 1px solid #ffffff;
-            margin-bottom: 44px;
+            margin-bottom: 0.88rem;
             position: relative;
+        }
+
+        button.yanzheng {
+            display: inline-block;
+            min-width: 2.3rem;
+            padding: 0 0.4rem;
+            font-weight: 400;
+            font-size: 0.3rem;
+            color: rgba(114,159,255,1);
+            background: #fff;
+            border-radius: 0.1rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            margin-top: 0.24rem;
         }
         #passShow{
             display: inline-block;
             position: absolute;
-            width: 22px;
-            height: 16px;
+            width: 0.46rem;
+            height: 0.32rem;
             right: 0;
-            top: 24px;
+            top: 0.4rem;
         }
-        button.yanzheng {
-            display: inline-block;
-            min-width: 100px;
-            padding: 0 20px;
-            font-weight: 400;
-            font-size: 12px;
-            color: rgba(114,159,255,1);
-            background: #fff;
-            border-radius: 6px;
-            height: 30px;
-            line-height: 30px;
-            margin-top: 14px;
-        }
-
 
         button.login-href {
             display: inline-block;
             width: 100%;
-            height: 40px;
+            height: 0.8rem;
             background: rgba(255,255,255,1);
-            border-radius: 25px;
-            line-height: 40px;
-            font-size: 16px;
+            border-radius: 0.5rem;
+            line-height: 0.8rem;
+            font-size: 0.32rem;
             font-weight: 400;
             color: rgba(116,160,255,1);
-            margin-bottom: 16px;
+            margin-bottom: 0.32rem;
         }
         p.subLogin {
             text-align: right;
             text-decoration: underline;
         }
         .three-login{
-            margin-top: 130px;
+            margin-top: 2.9rem;
         }
         .three-login>h4,.agreeLink{
-            height:20px;
-            font-size:14px;
+            height:0.4rem;
+            font-size:0.28rem;
             font-weight:400;
             color:rgba(99,139,255,1);
-            line-height:20px;
+            line-height:0.4rem;
             text-align: center;
         }
         .threeLi{
-            margin: 26px 0 34px;
+            margin: 0.5rem 0 0.66rem;
         }
         .threeLi>li{
             width: 33%;
@@ -199,8 +199,8 @@
         }
         .threeLi>li>img{
             display: inline-block;
-            width: 46px;
-            height: 46px;
+            width: 0.94rem;
+            height: 0.94rem;
         }
 
     </style>
@@ -223,8 +223,8 @@
                     <img src="../../image/login/hide.png" alt="password show" id="passShow">
                 </div>
             </div>
-            <button class="login-href">进入渡客</button>
-            <p class="subLogin">忘记密码？</p>
+            <button class="login-href" onclick="passLogin()">进入渡客</button>
+            <p class="subLogin" onclick="returnPass()">忘记密码？</p>
             <div class="three-login">
                 <h4>使用第三方登录</h4>
                 <ul class="cssFlex threeLi">
@@ -250,7 +250,7 @@
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/user.js"></script>
 <script type="text/javascript" src="../../script/init.js"></script>
-<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
@@ -296,7 +296,12 @@
     }
 
     //参观
-
+    function passLogin() {
+        openNewWindow("passLogin", "passLogin.html")
+    }
+    function returnPass() {
+        openNewWindow("returnPass", "returnPass.html")
+    }
 
 
 </script>

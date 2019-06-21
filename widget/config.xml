@@ -6,9 +6,13 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <content src="html/user/home/companyInfo.html" />
+    <content src="html/login/login.html" />
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
     <permission name="call" />
-
+    <!--<feature name="wx">-->
+        <!--<param name="urlScheme" value="wxd0d84bbf23b4a0e4"/>-->
+        <!--<param name="apiKey" value="wxd0d84bbf23b4a0e4"/>-->
+        <!--<param name="apiSecret" value="a354f72aa1b4c2b8eaad137ac81434cd"/>-->
+    <!--</feature>-->
 </widget>
