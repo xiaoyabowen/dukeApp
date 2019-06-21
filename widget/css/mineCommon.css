@@ -265,6 +265,560 @@
 }
 
 
+/*信用卡申请功能开始*/
+/*信用卡列表页css*/
+.box {
+    max-width: 7.5rem;
+    height: 100%;
+    margin: 0 auto;
+    padding-bottom: 0.4rem;
+    background: linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);
+}
+
+.header {
+    width: 100%;
+    height: 0.1rem;
+}
+
+.main {
+    width: 6.96rem;
+    min-height: calc(100% - 2rem);
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_head {
+    width: 100%;
+    height: 0.96rem;
+    padding: 0.2rem;
+    line-height: 1.8;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+
+.main_head span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.28rem;
+}
+
+.main_head span:nth-child(2) {
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}
+
+.main_head > span:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 0.12rem solid #666666;
+    border-left: 0.12rem solid rgba(0,0,0,0);
+    border-right: 0.12rem solid rgba(0,0,0,0);
+    border-bottom: 0.12rem solid rgba(0,0,0,0);
+    transform: translateY(35%);
+}
+
+.main_head > span.active:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 0.12rem solid rgba(0,0,0,0);
+    border-left: 0.12rem solid rgba(0,0,0,0);
+    border-right: 0.12rem solid rgba(0,0,0,0);
+    border-bottom: 0.12rem solid #666666;
+    transform: translateY(-16%);
+}
+
+.total {
+    width: 100%;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    background: #F9F9F9;
+    padding-left: 0.30rem;
+    font-size: 0.24rem;
+    color: #999999;
+    box-sizing: border-box;
+}
+
+.item {
+    /*height: 3.12rem;*/
+    width: 100%;
+    /*padding: 0.2rem 0;*/
+    background: #ffffff;
+    box-sizing: border-box;
+    font-size: 0.24rem;
+}
+
+.item_title {
+    padding: 0.2rem 0.3rem;
+    /*padding-bottom: 0.2rem;*/
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.item_title > a {
+    color: #666666;
+}
+
+.item_title > a:after {
+    content: '';
+    display: inline-block;
+    width: 0.15rem;
+    height: 0.15rem;
+    border-right: 0.01rem solid #666666;
+    border-top: 0.01rem solid #666666;
+    transform: rotate(45deg);
+}
+
+.item_content {
+    width: 100%;
+    height: 2.59rem;
+    padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+}
+
+.item_content_top {
+    display: flex;
+}
+
+.item_content_top_left {
+    width: 2.04rem;
+    height: 1.28rem;
+}
+
+.item_content_top_left > img {
+    width: 100%;
+}
+
+.item_content_top_right {
+    flex: 1;
+    padding: 0.2rem 0 0 0.69rem;
+    box-sizing: border-box;
+}
+
+.item_content_top_right p span {
+    color: #999999;
+}
+
+.item_content_bottom {
+    height: 0.7rem;
+    line-height: 0.7rem;
+    text-align: center;
+    color: #ffffff;
+    background: #638BFF;
+    border-radius: 8px;
+    margin-top: 0.2rem;
+}
+
+.item_content_bottom a {
+    color: #ffffff;
+}
+
+/*蒙版*/
+.mask {
+    width: 100%;
+    height: calc(100% - 0.96rem);
+    background: rgba(0,0,0,0.7);
+    color: #666666;
+    font-size: 0.28rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+
+.mask ul li {
+    width: 100%;
+    height: 0.79rem;
+    line-height: 0.79rem;
+    border-top: 0.01rem solid #EBEBEB;
+    padding-left: 0.6rem;
+    background: #ffffff;
+}
+
+.mask ul li.active {
+    color: #638BFF;
+}
+
+.mask.active {
+    display: block;
+}
+
+.mask0, .mask1, .mask2 {
+    display: none;
+}
+
+.mask0.active, .mask1.active, .mask2.active {
+    display: block;
+}
+
+/*信用卡详情页面css*/
+.details_top {
+    text-align: center;
+    padding: 0.35rem 0 0.22rem;
+}
+
+.details_top img {
+    width: 5.44rem;
+    height: 3.40rem;
+}
+
+.details_conter {
+    border-top: 0.05rem solid #F9F9F9;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.08rem 0.35rem 0.2rem;
+}
+
+.details_conter_left {
+    font-size: 0.28rem;
+    color: #333333;
+}
+
+.details_conter_left > div {
+    color: #666666;
+    margin-top: 0.05rem;
+    display: flex;
+    align-items: center;
+}
+
+.details_conter_left > div span {
+    margin-right: 0.2rem;
+    margin-top: 0.1rem;
+    /*vertical-align: bottom;*/
+}
+
+.details_conter_left > div img {
+    width: 0.4rem;
+    margin: 0 0.05rem;
+}
+
+.details_conter_right {
+    width: 1.58rem;
+    height: 0.48rem;
+    line-height: 0.45rem;
+    text-align: center;
+    background: #638BFF;
+    margin-top: 0.2rem;
+}
+
+.details_conter_right a {
+    color: #ffffff;
+    font-size: 0.24rem;
+}
+
+.bf {
+    width: 100%;
+    height: 0.2rem;
+    background: #F9F9F9;
+}
+
+.details_bottom_top {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0.5rem;
+}
+
+.details_bottom_top span {
+    position: relative;
+}
+
+.details_bottom_top span.active:after {
+    content: '';
+    width: 50%;
+    height: 0.05rem;
+    background: #638BFF;
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: -55%;
+    transform: translateX(-50%);
+}
+
+.details_bottom_bottom {
+    font-size: 0.24rem;
+    color: #666666;
+    padding-bottom: 1rem;
+}
+
+.details_bottom_bottom li {
+    width: 100%;
+    border-top: 0.05rem solid #F9F9F9;
+    padding: 0.1rem 0.5rem;
+    list-style: initial;
+    white-space: initial;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.details_bottom_bottom li:before {
+    content: '';
+    display: inline-block;
+    width: 0.08rem;
+    height: 0.08rem;
+    border-radius: 50%;
+    background: #E6E6E6;
+    margin-right: 0.2rem;
+    margin-top: 0.12rem;
+}
+
+/*信用卡申请页面css*/
+.apply_top {
+    width: 2.2rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    margin: 0.38rem auto;
+    display: flex;
+    align-items: center;
+    color: #638BFF;
+    font-size: 0.28rem;
+}
+
+.apply_top_circular {
+    width: 0.49rem;
+    height: 0.49rem;
+    border: 0.01rem solid #638BFF;
+    border-radius: 50%;
+}
+
+.apply_top_circular.active {
+    background: #638BFF;
+    color: #ffffff;
+}
+
+.apply_top_line {
+    width: 0.3rem;
+    height: 0.02rem;
+    background: #638BFF;
+}
+
+.apply_center {
+    padding: 0 0.34rem;
+    color: #666666;
+    font-size: 0.28rem;
+    font-weight: 500;
+}
+
+.apply_center li {
+    padding: 0.26rem 0;
+    border-bottom: 0.01rem solid #EBEBEB;
+}
+
+.apply_center li label {
+    width: 1rem;
+}
+
+.apply_center li input {
+}
+
+.apply_center li input::placeholder {
+    color: #999999;
+}
+
+/*信用卡申请功能结束*/
+
+/*订阅页面开始*/
+.subscribed_main {
+    padding: 0 0.45rem;
+}
+
+.subscribed_main_item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.01rem solid #EBEBEB;
+    padding: 0.38rem 0;
+}
+
+.subscribed_item_position {
+    font-size: 0.3rem;
+    color: #333333;
+    font-weight: 500;
+}
+
+.subscribed_item_company > div:first-child {
+    color: #333333;
+    font-size: 0.22rem;
+}
+
+.subscribed_item_company > div:last-child {
+    color: #666666;
+    font-size: 0.2rem;
+}
+
+.subscribed_item_company > div {
+    line-height: 1;
+    margin: 0.15rem 0;
+}
+
+.subscribed_item_user {
+    display: flex;
+    align-items: center;
+    margin-top: 0.23rem;
+}
+
+.subscribed_item_user_img {
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    margin-right: 0.1rem;
+}
+
+.subscribed_item_user_img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.subscribed_item_user_name {
+    font-size: 0.24rem;
+    color: #333333;
+}
+
+.subscribed_item_range {
+    color: #5C91FD;
+    font-size: 0.36rem;font-weight: 500;
+    padding: 0.13rem 0;
+}
+
+.subscribed_item_date {
+    color: #333333;
+    font-size: 0.24rem;
+    text-align: right;
+}
+
+.subscribed_main > div:last-child {
+    border: 0.01rem solid #ffffff;
+}
+
+.subscribed_bottom {
+    padding: 0 0.32rem;
+}
+
+.subscribed_bottom_btn {
+    height: 0.78rem;
+    border: 0.01rem solid #5C91FD;
+    border-radius: 0.08rem;
+    display: flex;
+    color: #5C91FD;
+    font-size: 0.28rem;
+    margin-top: 0.5rem;
+}
+
+.subscribed_bottom_btn div {
+    flex: 50%;
+    text-align: center;
+    line-height: 0.78rem;
+}
+
+.subscribed_bottom_btn div:first-child {
+    background: #5C91FD;
+    color: #ffffff;
+}
+/*订阅页面结束*/
+
+/*我的关注页面开始*/
+.my_Concern_item {
+    padding: 0.4rem 0.45rem 0;
+}
+
+.concern_head_top {
+    display: flex;
+}
+
+.concern_head_img {
+    width: 1rem;
+    margin-right: 0.45rem;
+}
+
+.concern_head_img img {
+    width: 100%;
+}
+
+.concern_head_title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.concern_head_name {
+    flex: 100%;
+    font-size: 0.38rem;
+    font-weight: 500;
+}
+
+.concern_head_address {
+    font-size: 0.22rem;
+    color: #666666;
+}
+
+.concern_head_bottom {
+    font-size: 0.22rem;
+    color: #666666;
+    padding: 0.1rem;
+    border-bottom: 0.01rem solid #EBEBEB;
+}
+
+.my_Concern_item > .subscribed_main_item {
+    border: 0.02rem solid #ffffff;
+}
+/*我的关注页面结束*/
+
+/*设置页面开始*/
+.setting_main {
+    padding: 0 .35rem;
+}
+
+.setting_main ul > li {
+    padding: 0.34rem 0;
+    border-bottom: 0.02rem solid #EBEBEB;
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting_main ul > li div {
+    display: flex;
+    align-items: center;
+    color: #333333;
+    font-size: 0.28rem;
+}
+
+.setting_main ul > li div:first-child img {
+    width: 0.35rem;
+    margin-right: 0.2rem;
+}
+
+.setting_main ul > li div:last-child img {
+    width: 0.36rem;
+}
+
+.setting_wanted {
+    color: #999999;
+    margin-right: 0.1rem;
+}
+
+.setting_btn {
+    height: 0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    background: #638BFF;
+    border: 8px;
+    color: #ffffff;
+    font-size: 0.3rem;
+    overflow: hidden;
+    margin-top: 1.3rem;
+}
+/*设置页面结束*/
 
 
 

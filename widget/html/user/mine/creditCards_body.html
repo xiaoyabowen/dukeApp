@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--头部-->
+    <div class="header"></div>
+    <!--主体-->
+    <div class="main">
+        <div class="main_head">
+            <span data-action="0" id="card">浦发银行 <span></span></span>
+            <span data-action="1">卡分类 <span></span></span>
+            <span data-action="2">卡等级 <span></span></span>
+        </div>
+        <div class="total">
+            共找到27款可申请信用卡
+        </div>
+        <div class="items">
+            <div class="item">
+                <div class="item_title">
+                    <span>浦发VISA白金卡简约版</span>
+                    <!--<a href="creditCard_details_body.html">详情</a>-->
+                    <a>详情</a>
+                </div>
+                <div class="item_content">
+                    <div class="item_content_top">
+                        <div class="item_content_top_left">
+                            <img src="./../../../image/mine/card.png" alt="">
+                        </div>
+                        <div class="item_content_top_right">
+                            <p><span>取现额度：</span>信用额度的30%</p>
+                            <p><span>免息期：</span>最长50天</p>
+                            <p><span>发卡组织：</span>银联+VISA</p>
+                        </div>
+                    </div>
+                    <div class="item_content_bottom"><a href="creditCard_apply_body.html">立即申请</a></div>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="item_title">
+                    <span>浦发VISA白金卡简约版</span>
+                    <a>详情</a>
+                </div>
+                <div class="item_content">
+                    <div class="item_content_top">
+                        <div class="item_content_top_left">
+                            <img src="./../../../image/mine/card.png" alt="">
+                        </div>
+                        <div class="item_content_top_right">
+                            <p><span>取现额度：</span>信用额度的30%</p>
+                            <p><span>免息期：</span>最长50天</p>
+                            <p><span>发卡组织：</span>银联+VISA</p>
+                        </div>
+                    </div>
+                    <div class="item_content_bottom"><a href="creditCard_apply_body.html">立即申请</a></div>
+                </div>
+            </div>
+        </div>
+        <!--蒙版-->
+        <div class="mask">
+            <div class="mask0">
+                <ul>
+                    <li>不限</li>
+                    <li class="active">浦发银行</li>
+                    <li>中信银行</li>
+                    <li>华夏银行</li>
+                </ul>
+            </div>
+            <div class="mask1">
+                <ul>
+                    <li>不限</li>
+                    <li class="active">标准卡</li>
+                    <li>联名卡</li>
+                    <li>航空卡</li>
+                    <li>车主卡</li>
+                    <li>商旅卡</li>
+                    <li>商超卡</li>
+                </ul>
+            </div>
+            <div class="mask2">
+                <ul>
+                    <li>不限</li>
+                    <li class="active">普卡</li>
+                    <li>金卡</li>
+                    <li>钛金卡</li>
+                    <li>白金卡</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/kv.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        apiready = function () {
+            var main_head = document.querySelector('.main_head');
+            var link = document.querySelector('.item_title > a');
+            var mask = document.querySelector('.mask');
+            var nodeList = main_head.children;
+            var maskList = mask.children;
+
+            var num = 0;
+            var ele;
+
+            main_head.onclick = function (e) {
+                var node = e.target;
+                if (node.tagName === "SPAN") {
+                    var active = node.dataset.action;
+                    ele = node;
+                    // if (num === 1) {
+                    //     num = 0;
+                    //     reset();
+                    //     return;
+                    // }
+
+                    if (active == '0') {
+                        console.log('银行分类');
+                        masFun(active);
+                        mask.classList.add('active');
+                        node.classList.toggle('active');
+                        num++;
+                    } else if (active == '1') {
+                        console.log('卡分类');
+                        masFun(active);
+                        mask.classList.add('active');
+                        node.classList.add('active');
+                        num++;
+                    } else if (active === '2') {
+                        console.log('卡等级');
+                        masFun(active);
+                        mask.classList.add('active');
+                        node.classList.add('active');
+                        num++;
+                    }
+                }
+            }
+
+            mask.onclick = function(e) {
+                var li = e.target;
+                if (li.tagName === 'LI') {
+                    var arr = li.parentNode.children;
+                    for (var i = 0; i < arr.length; i++) {
+                        arr[i].className = '';
+                    }
+                    li.className = "active";
+
+                    if (li.parentNode.parentNode.classList.contains('mask0')) {
+                        document.getElementById('card').innerText = li.innerText;
+                    }
+
+                }
+                reset();
+            }
+
+            link.onclick = function () {
+                console.log(123)
+                console.log($api)
+                console.log(api)
+                openNewWindow("creditCard_details_body", "./creditCard_details_body.html")
+                // $api.openWin({
+                //     name: 'adm_login',
+                //     url: './creditCard_details_body.html',
+                // });
+            }
+
+            function masFun(active) {
+                for (var i = 0; i < maskList.length; i++) {
+                    maskList[i].className = 'mask'+active
+                }
+                Object.keys(nodeList).forEach(function (value) {
+                    nodeList[value].className = '';
+                });
+
+                maskList[active].classList.add('active');
+            }
+
+            function reset() {
+                Object.keys(nodeList).forEach(function (value) {
+                    nodeList[value].className = '';
+                });
+                for (var i = 0; i < maskList.length; i++) {
+                    maskList[i].className = 'mask'+i
+                }
+                mask.classList.remove('active');
+            }
+        };
+
+        // 此处手动调用了js
+        apiready()
+
+
+    </script>
+</body>
+</html>

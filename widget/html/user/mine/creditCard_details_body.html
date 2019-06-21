@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--头部-->
+    <div class="header"></div>
+    <!--主体-->
+    <div class="main">
+        <div class="details_top">
+            <img src="./../../../image/mine/card.png" alt="">
+        </div>
+        <div class="details_conter">
+            <div class="details_conter_left">
+                <p>浦发VISA白金卡简约版</p>
+                <div>
+                    <span>评级</span>
+                    <img src="./../../../image/mine/star.png" alt="">
+                    <img src="./../../../image/mine/star.png" alt="">
+                    <img src="./../../../image/mine/star.png" alt="">
+                    <img src="./../../../image/mine/star.png" alt="">
+                    <img src="./../../../image/mine/star.png" alt="">
+                </div>
+            </div>
+            <div class="details_conter_right">
+                <a href="creditCard_apply_body.html">立即申请</a>
+            </div>
+        </div>
+        <div class="bf"></div>
+        <div class="details_bottom">
+            <div class="details_bottom_top">
+                <div>
+                    <span class="active">关键信息</span>
+                </div>
+                <div>
+                    <span>积分信息</span>
+                </div>
+                <div>
+                    <span>分期信息</span>
+                </div>
+            </div>
+            <div class="details_bottom_bottom">
+                <ul>
+                    <li>主卡年费：360元</li>
+                    <li>附卡年费：180元</li>
+                    <li>免年费政策：2018年12月31日之前开卡可享受免两年 年费的优惠政策</li>
+                    <li>循环信用利息（日息）：0.05%</li>
+                    <li>消费验证方式：签名 签名+密码</li>
+                    <li>滞纳金：还款低于最低还款金额的部分需要缴纳5%的</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/kv.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        apiready = function () {
+            var details_bottom_top = document.querySelector('.details_bottom_top');
+            var details_bottom_bottom = document.querySelector('.details_bottom_bottom');
+            var nodeList = details_bottom_top.children;
+
+            details_bottom_top.onclick = function (e) {
+                var node = e.target;
+                if (node.tagName === 'SPAN') {
+                    // console.log(node.parentNode.parentNode.children);
+                    var list = node.parentNode.parentNode.children;
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].children[0].className = "";
+                    }
+                    node.className = "active";
+                }
+            }
+        };
+
+        // 此处手动调用了js
+        apiready()
+
+
+    </script>
+</body>
+</html>
