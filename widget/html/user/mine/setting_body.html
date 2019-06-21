@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--头部-->
+    <div class="header"></div>
+    <!--主体-->
+    <div class="setting_main">
+        <ul class="setting_ul">
+            <li>
+                <div>
+                    <img src="../../../icon/mine/Push.png" alt="">
+                    <span>推送通知设置</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/phone.png" alt="">
+                    <span>修改手机号</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/lock.png" alt="">
+                    <span>设置密码</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/Shield.png" alt="">
+                    <span>屏蔽公司</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/Opinion.png" alt="">
+                    <span>意见反馈</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/about.png" alt="">
+                    <span>关于我们</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+
+            </li>
+            <li>
+                <div>
+                    <img src="../../../icon/mine/user.png" alt="">
+                    <span>切换身份</span>
+                </div>
+                <div class="setting_active">
+                    <span class="setting_wanted">我要求职</span>
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+        </ul>
+
+        <div class="setting_btn">
+            退出登录
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+    apiready = function () {
+        var setting_ul = document.querySelector('.setting_ul');
+        console.log(setting_ul);
+        setting_ul.onclick = function (e) {
+            var node = e.target;
+            var li;
+            if (node.tagName === 'LI') {
+                li = node;
+            } else {
+                li = node.parentNode.parentNode;
+            }
+            console.log(li);
+        }
+
+
+        // 退出登录
+        document.querySelector('.setting_btn').onclick = function () {
+
+        }
+
+
+    };
+
+    // 此处手动调用了js
+    apiready()
+
+
+</script>
+</body>
+</html>
