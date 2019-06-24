@@ -336,17 +336,27 @@ p.spaceContent {
 }
 
 /*聊一聊  投递简历*/
+.positionBox{
+    padding-bottom: 1rem;
+}
 .job-chatBox{
-    padding-bottom: 10px;
+    width: 100%;
+    height: 1rem;
+    background: #fff;
+    position: fixed;
+    /*padding-bottom: 10px;*/
+    bottom: 0;
+    left: 0;
+    padding: 0.2rem 0 0.2rem 0.2rem;
 }
 .chatJob,.workJob{
     width:46%;
-    height:32px;
-    line-height: 32px;
+    height:0.64rem;
+    line-height: 0.64rem;
     text-align: center;
     color: #fff;
 
-    border-radius:4px;
+    border-radius:0.04rem;
 }
 .chatJob{
     background:rgba(119,202,86,1);

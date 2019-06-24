@@ -125,16 +125,17 @@ textarea{
             linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
     height : 44px;
     line-height : 44px;
-    font-size: 17px;
+    font-size: 18px;
     text-align: center;
 }
 .leftImgTop{
-    width: 20px !important;
-    height: 22px !important;
+    width: 0.4rem !important;
+    height: 0.4rem !important;
+
 }
 .rightImgTop{
-    width: 20px !important;
-    height: 20px !important;
+    width: 0.4rem !important;
+    height: 0.4rem !important;
 }
 #leftButton,#topbar .right{
     position: absolute;
@@ -160,7 +161,7 @@ textarea{
 #topbar .right{
 	width: auto;
 	bottom: 0;
-	right: 15px;
+	right: 0.38rem;
 }
 #topbar .right img{
 	width: 16px;
@@ -168,11 +169,11 @@ textarea{
 	vertical-align: 2px;
 }
 #leftButton{
-    left: 10px;
+    left: 0.4rem;
 }
 #leftButton img{
     /* margin-top: -2px; */
-    width: 30px;
+    width: 0.3rem;
     height: 30px;
     justify-content: center;
     display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;
@@ -293,16 +294,16 @@ textarea{
 }
 .searchInput{
     display: inline-block;
-    width: 60%;
-    height:12px !important;
-    line-height: 12px !important;
-    background-size: 6px 8px;
-    background:url("../icon/search.png") no-repeat 24px center,rgba(255,255,255,1);
-    background-size: 16px 16px;
-    border-radius:14px;
-    padding: 8px 0 8px 66px;
+    /*width: 60%;*/
+    height:0.24rem !important;
+    line-height: 0.24rem!important;
+
+    background:url("../icon/search.png") no-repeat 0.48rem center,rgba(255,255,255,1);
+    background-size: 0.26rem 0.26rem;
+    border-radius:0.28rem;
+    padding: 0.12rem 0 0.12rem 1rem;
     vertical-align: center;
-    font-size: 14px;
+    font-size: 0.24rem;
 }
 /*.middleTopBar{*/
     /*position: relative;*/
@@ -333,6 +334,57 @@ textarea{
     width: 100%;
     height: 100%;
 }
+
+/*发送邮箱*/
+.workCard{
+    height: 0.82rem;
+    background: rgba(255,255,255,1);
+    box-shadow: 0px 0px 0.15rem 0px rgba(0,0,0,0.27);
+    border-radius: 0.06rem;
+    padding: 0.34rem 0 0.34rem 0.3rem;
+}
+img.workImgChange {
+    display: inline-block;
+    width: 0.66rem;
+    margin-right: 0.2rem;
+}
+p.workname {
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    margin-bottom: 0.1rem;
+}
+p.send-main {
+    height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+    line-height: 0.32rem;
+}
+
+i.semd-size {
+    margin-right: 0.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
