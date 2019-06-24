@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
+    <!--主体-->
+
+    <div class="resume_level2_main">
+        <div class="resume_level2_head">
+            您的工作内容
+        </div>
+
+        <div class="resume_level2_content">
+            <textarea name="" id="text5" cols="30" rows="10" placeholder="一份优质的工作经历描述需要： &#10;&#10;简洁明了阐述你所做的事情，重点阐述你为团队带来的收益，或者你解决的复杂困难的问题，突出你的能力。 &#10;每段任务描述2-3个关键点，每个关键点阐述保持在2行之内。
+"></textarea>
+        </div>
+        <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/1500汉字</p>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+    var text = document.getElementById('text5')
+    var num = document.querySelector('.resume_level2_num');
+    var total = document.querySelector('.resume_level2_total');
+    apiready = function () {
+
+        text.oninput = function (e) {
+            num.innerText = e.target.value.length;
+        }
+
+    };
+
+    // 点击保存执行此方法
+    function preservation () {
+        var value = text.value;
+        alert(value);
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>

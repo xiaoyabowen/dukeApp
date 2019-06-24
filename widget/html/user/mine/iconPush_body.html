@@ -8,28 +8,74 @@
     <title>消息推送设置</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
 </head>
 <body class="commonBg">
-    <div class="contentBox">
-        <div class="subcontentBox">
-
+    <div class="Box">
+        <div class="iconPush">
+            <div data-type="0">
+                <span>开启声音与震动</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <div data-type="1">
+                <span>职位订阅通知</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <p>有职位订阅信息通知我</p>
+            <div data-type="2">
+                <span>有人发消息给我</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <div data-type="3">
+                <span>有人发面试邀请给我</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <div data-type="4">
+                <span>互动消息数字提醒</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <p>开启后，当产生互动通知时将进行数字提醒</p>
         </div>
-
     </div>
 
     <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../script/util.js"></script>
     <script type="text/javascript" src="../../../script/kv.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
     <script>
         apiready = function () {
-
+            var list = document.querySelector('.iconPush');
+            list.onclick = function (e) {
+                var node = e.target;
+                var el;
+                if (node.tagName === "SPAN" || node.classList.contains('mui-switch')) {
+                    el = node.parentNode;
+                } else if (node.classList.contains('mui-switch-handle')) {
+                    el = node.parentNode.parentNode;
+                } else {
+                    el = node;
+                }
+                console.log(el);
+                console.log(el.dataset.type);
+                var isActive = el.children[1].classList.contains("mui-active");
+                console.log(isActive)
+            }
         };
+        // apiready();
     </script>
 </body>
 </html>

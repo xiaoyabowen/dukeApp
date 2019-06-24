@@ -20,5 +20,22 @@
 ├── subscribed_positions             // 订阅的职位
 ├── my_Concern             // 我的关注
 ├── setting              // 设置
+├── create_resume              // 创建简历
+├── resume_level2              // 创建简历二级页面
+├── resume_Mailbox              // 输入邮箱号
+├── resume_Name              // 姓名
+├── resume_Company              // 您的公司名称
+├── resume_Department              // 您的所属部门
+├── resume_Position              // 您的职位名称
+├── resume_Work              // 您的工作内容
+├── resume_School              // 您的学校名称
+├── resume_Major         // 您的专业名称
+├── resume_Project           // 您的项目名称
+├── resume_ProjectDescription      // 项目描述
+├── resume_Achievement              // 您的成就
+├── resume_ProjectLinks            // 项目链接
+├── resume_SocialHomepage          // 您的社交主页
+├── resume_BindingPhone          // 绑定手机号
+├── resume_imgWorks          // 图片作品（0/50）
 
 ```

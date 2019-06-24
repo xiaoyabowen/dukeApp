@@ -820,8 +820,145 @@
 }
 /*设置页面结束*/
 
+/*消息推送设置开始*/
+.iconPush {
+    width: 100%;
+    min-height: calc(100vh - 0.68rem);
+    background: #F9F9F9;
+}
+
+.iconPush > div {
+    padding: 0.3rem 0.35rem;
+    font-size: 0.28rem;
+    color: #666666;
+    margin-bottom: 0.22rem;
+    background: #ffffff;
+}
+
+.iconPush > div div {
+    display: inline-block;
+    float: right;
+    transform: translateY(-16%);
+}
+
+.iconPush > p {
+    padding: 0 0.35rem;
+    font-size: 0.2rem;
+    color: #666666;
+}
+/*消息推送设置结束*/
+
+/*创建简历开始*/
+.resume_main {
+    padding: 0.35rem 0.28rem;
+}
+
+.resume_head {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0 auto;
+    border: 0.03rem solid #CACACA;
+    position: relative;
+}
+
+.resume_head:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 0.61rem;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.resume_head:after {
+    content: '';
+    display: block;
+    width: 0.61rem;
+    height: 1px;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.resume_main p {
+    text-align: center;
+    font-size: 0.28rem;
+    color: #666666;
+    margin-top: 0.13rem;
+}
+
+.resume_content {
+    margin-top: 0.7rem;
+}
+/*创建简历结束*/
+
+/*创建简历二级页面开始*/
+.resume_level2_main {
+    padding: 0.3rem 0.33rem;
+}
+
+.resume_level2_head {
+    font-size: 0.36rem;
+    color: #333333;
+    font-weight:500;
+}
+
+.resume_level2_content {
+    margin-top: 0.53rem;
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom: 0.2rem;
+    align-items: center;
+}
+
+.resume_level2_content .text {
+    border: none;
+    padding-left: 0.08rem;
+    margin: 0;
+}
+
+.resume_level2_main > p {
+    padding-left: 0.06rem;
+    font-size: 0.28rem;
+    color: #999999;
+}
+
+.resume_level2_main > p .resume_level2_num {
+    color: #638BFF;
+}
+
+#text5 {
+    padding: 0.3rem;
+    text-align: left;
+}
+
+#text9 {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.textAdd {
+    /*float: right;*/
+    font-size: 0.28rem;
+    color: #638BFF;
+    width: 0.76rem;
+}
 
 
+/*创建简历二级页面结束*/
 
 
 

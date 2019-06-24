@@ -6,21 +6,21 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
-    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/mineCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
 
 </head>
 <body class="commonBg">
 
 <div class="Box">
-    <!--头部-->
-    <div class="header"></div>
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
     <!--主体-->
     <div class="setting_main">
         <ul class="setting_ul">
-            <li>
+            <li data-type="iconPush">
                 <div>
                     <img src="../../../icon/mine/Push.png" alt="">
                     <span>推送通知设置</span>
@@ -30,7 +30,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li>
+            <li data-type="editPhone">
                 <div>
                     <img src="../../../icon/mine/phone.png" alt="">
                     <span>修改手机号</span>
@@ -40,7 +40,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li>
+            <li data-type="editPass">
                 <div>
                     <img src="../../../icon/mine/lock.png" alt="">
                     <span>设置密码</span>
@@ -50,7 +50,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li>
+            <li data-type="Shield">
                 <div>
                     <img src="../../../icon/mine/Shield.png" alt="">
                     <span>屏蔽公司</span>
@@ -60,7 +60,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li>
+            <li data-type="Opinion">
                 <div>
                     <img src="../../../icon/mine/Opinion.png" alt="">
                     <span>意见反馈</span>
@@ -70,7 +70,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li>
+            <li data-type="about">
                 <div>
                     <img src="../../../icon/mine/about.png" alt="">
                     <span>关于我们</span>
@@ -81,7 +81,7 @@
                 </div>
 
             </li>
-            <li>
+            <li data-type="user">
                 <div>
                     <img src="../../../icon/mine/user.png" alt="">
                     <span>切换身份</span>
@@ -120,7 +120,10 @@
             } else {
                 li = node.parentNode.parentNode;
             }
-            console.log(li);
+            console.log(li.dataset.type);
+            if (li.dataset.type) {
+                openNewWindow(li.dataset.type, "./"+ li.dataset.type +".html");
+            }
         }
 
 
@@ -133,7 +136,7 @@
     };
 
     // 此处手动调用了js
-    apiready()
+    // apiready()
 
 
 </script>

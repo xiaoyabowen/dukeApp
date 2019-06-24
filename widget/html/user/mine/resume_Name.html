@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>申请信用卡</title>
+    <title>我的</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
 </head>
@@ -15,7 +15,10 @@
     <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>申请信用卡</div>
+    <div>输入姓名</div>
+    <div class="right" onclick="save()">
+        保存
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -29,5 +32,13 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
+
+    //点击保存
+    function save(){
+        api.execScript({
+            frameName: "resume_Achievement_body",
+            script: 'preservation()'
+        })
+    }
 </script>
 </html>

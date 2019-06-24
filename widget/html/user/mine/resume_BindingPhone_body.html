@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>修改手机号</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <style>
+
+        .login-unit input{
+            padding-left:0.2rem;
+            width: 100%;
+        }
+        input::-webkit-input-placeholder {
+            color: #B8B8B8;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #B8B8B8;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #B8B8B8;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #B8B8B8;
+        }
+
+        .input-phone {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            /*margin-bottom: 20px;*/
+            /*background: url("../../../image/login/phone.png") no-repeat left center;*/
+            background-size: 0.32rem 0.48rem;
+            /*padding-left: 0.52rem;*/
+            position: relative;
+        }
+        .input-password{
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            margin-bottom: 0.8rem;
+        }
+
+        .phone_befor {
+            font-size: 0.28rem;
+            color: #333333;
+            margin-right: 0.14rem;
+        }
+
+        .phone_befor:after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 0.15rem solid #666666;
+            border-bottom: 0.1rem solid rgba(0,0,0,0);
+            border-left: 0.1rem solid rgba(0,0,0,0);
+            border-right: 0.1rem solid rgba(0,0,0,0);
+            -webkit-transform: translateY(28%);
+            -moz-transform: translateY(28%);
+            -ms-transform: translateY(28%);
+            -o-transform: translateY(28%);
+            transform: translateY(28%);
+            margin: 0 0.1rem;
+        }
+
+        .clearPhone {
+            width: 0.3rem;
+            height: 0.3rem;
+            background: rgba(153,153,153,1);
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -0.15rem;
+        }
+
+        .clearPhone:before {
+            content: '';
+            display: block;
+            width: 0.01rem;
+            height: 0.16rem;
+            background: #ffffff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .clearPhone:after {
+            content: '';
+            display: block;
+            width: 0.01rem;
+            height: 0.16rem;
+            background: #ffffff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        #yanzheng{
+            width: 100%;
+        }
+        button.yanzheng {
+            display: inline-block;
+            min-width: 2.3rem;
+            padding: 0 0.4rem;
+            font-weight: 400;
+            font-size: 0.24rem;
+            color: #fff;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            margin-top: 0.28rem;
+            background:rgba(93,146,254,1);
+            border-radius:0.08rem;
+        }
+        .configEdit {
+            width: 100%;
+            height: 0.72rem;
+            background: rgba(99,139,255,1);
+            border-radius: 0.08rem;
+            line-height: 0.72rem;
+            text-align: center;
+            color: #fff;
+            font-size: 0.32rem;
+        }
+        p.nowPhone {
+            font-size: 0.28rem;
+            font-weight: 400;
+            color: #999999;
+            line-height: 0.6rem;
+            height: 0.36rem;
+        }
+        p.Explain {
+            font-size: 0.36rem;
+            font-weight: 400;
+            color: #333333;
+            line-height: 0.36rem;
+            height: 0.36rem;
+            margin-top: 0.48rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+    <div class="Box">
+        <div class="boxSub">
+            <p class="Explain">绑定手机号</p>
+            <p class="nowPhone">当前手机号：<span class="nowPhoneEdit">133****3020</span></p>
+
+            <div class="login-input">
+                <div class="input-phone cssFlex">
+                    <span class="phone_befor">+86</span>
+                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                    <span class="clearPhone"></span>
+                </div>
+                <div class="input-password cssFlex">
+                    <span class="phone-top yanz-img"></span>
+                    <input id="yanzheng" type="number" placeholder="请输入验证码">
+                    <button class="yanzheng">获取验证码</button>
+                </div>
+            </div>
+            <div class="configEdit">立即绑定</div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        apiready = function () {
+            var phone = document.getElementById('phone');
+
+            document.querySelector('.phone_befor').onclick = function () {
+                console.log(123)
+            }
+
+            document.querySelector('.clearPhone').onclick = function () {
+                phone.value = '';
+            }
+        };
+
+        // apiready()
+    </script>
+</body>
+</html>
