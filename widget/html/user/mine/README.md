@@ -12,5 +12,9 @@
 ├── WorkReshName             // 附件简历重命名
 ├── workUp             // 附件简历已上传 
 ├── userCenter             // 个人中心 
+├── sendEmail             // 发送邮箱简历 
+├── editInfo             // 编辑信息 
+├── vipCard             // 金卡vip 
+├── authenCard             // 金卡vip认证 
 
 ```

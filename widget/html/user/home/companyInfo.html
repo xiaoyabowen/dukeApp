@@ -14,18 +14,19 @@
 
 </head>
 <body>
-<div id="topbar" >
+<div id="topbar" class="cssFlex">
     <div id="leftButton" tapmode="itemOn">
-        <img style="width: 20px;height: 20px;" src="../../../icon/mine.png">
+        <img class="leftImgTop" src="../../../icon/mine.png">
     </div>
-    <div class="">
+    <div class="home-middle">
         <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        <!--<span class="searchClick">GO</span>-->
+        <span class="searchClick">GO</span>
     </div>
-    <div class="rightImg">
-        <img style="width: 20px;height: 22px;" src="../../../icon/msg.png" alt="">
+    <div class="right" onclick="save()">
+        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
     </div>
 </div>
+
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>

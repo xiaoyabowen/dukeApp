@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <img src="../../../image/mine/threedian.png" alt="edit" class="editJian">
+                    <img src="../../../image/mine/threedian.png" alt="edit" class="editJian" onclick="editJian(this)">
                 </div>
                 <div class="jianliListLi cssFlex">
                     <div class="liLeft">
@@ -105,7 +105,29 @@
             // demo.actionSheetDialog(param,function(ret, err){
             //     alert(JSON.stringify(ret));
             // });
+
+
         };
+        function editJian(){
+            api.actionSheet({
+                // title: '底部弹出框测试',
+                buttons: ['重命名', '发送至邮箱'],
+                cancelTitle: '取消',
+                destructiveTitle: '删除',
+
+            }, function(ret, err) {
+                var index = ret.buttonIndex;
+                if (index == 1){
+                    api.confirm({
+                        // title: 'testtitle',
+                        msg: '确认要删除该附件简历吗',
+                        buttons: ['确定', '取消']
+                    }, function(ret, err) {
+                        var index = ret.buttonIndex;
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
