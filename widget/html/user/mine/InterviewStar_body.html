@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>面试评价</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css" />
+    <style>
+
+        /*ul{padding: 10px 0px;}*/
+        li{display: -webkit-box;width: 100%;margin-bottom: 0.26rem;height:0.4rem;line-height: 0.4rem;}
+        li a{-webkit-box-flex: 1;display: block;font-size: 0.28rem;color: #333;}
+        li div{-webkit-box-flex: 2;text-align: right;}
+        /*#info{padding: 20px 10px;}*/
+    </style>
+</head>
+<body class="commonBg">
+    <div class="Box">
+        <div class="boxSub inde-sub">
+            <div class="st-box cssFlex">
+                <img src="../../../image/mine/defalut.png" alt="de" class="st-logo">
+                <div class="st-main">
+                    <p class="st-main-name">赵东东</p>
+                    <p class="st-main-zhi">百度在线网络技术有限公司-人力资源部经理</p>
+                </div>
+            </div>
+            <div class="st-com">匿名评价公司</div>
+            <!--星级评价-->
+            <ul class="mui-table-view">
+                <li class="star-li">
+                    <a>公司工作环境</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+                <li class="star-li">
+                    <a>HR服务态度</a>
+                    <div class="icons">
+
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+                <li class="star-li">
+                    <a>面试官专业</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+                <li class="star-li">
+                    <a>面试反馈率</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+            </ul>
+            <!--<div id="info"></div>-->
+            <!--意见反馈  填写  textsrea-->
+            <div class='textarea-block'>
+                <textarea class="textarea-star" name="content" placeholder="（其他意见和建议的内容匿名，可放心填写）" maxlength="500" spellcheck="false"></textarea>
+                <div class="textarea-count textarea-count-in">
+                    <span class="textareaInput">0</span>/<span class="textareaTotal">500</span>
+                </div>
+            </div>
+            <div class="st-submit-btn">提交评价</div>
+            <div class="st-thanks">感谢您的评价</div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+
+        apiready = function () {
+
+        };
+
+        var lenInput = $('.textarea-item').val().length;
+        $(".textarea-item").keyup(function(){
+            lenInput = $(this).val().length;
+            if(lenInput>0 && lenInput<=500){
+                $('.textareaInput').html(lenInput);
+                $('.textarea-btn').attr('disabled',false);
+            }else{
+                $('.textarea-btn').attr('disabled',true);
+            }
+        });
+        // 星级评价
+        mui.init();
+        mui('.icons').on('click','i',function(){
+            var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
+            var parent = this.parentNode;//获取当前元素的父节点
+            var children = parent.children;//获取父节点下所有子元素
+            if(this.classList.contains("mui-icon-star")){//判断当前节点列表中是否含有.mui-icon-star元素
+                for(var i=0;i<index;i++){//亮星
+                    children[i].classList.remove('mui-icon-star');
+                    children[i].classList.add('mui-icon-star-filled');
+                }
+            }else{//重置已经亮星的元素
+                for (var i = index; i < 5; i++) {
+                    children[i].classList.add('mui-icon-star')
+                    children[i].classList.remove('mui-icon-star-filled')
+                }
+            }
+            document.getElementById("info").innerHTML = parent.previousElementSibling.innerText + "："+index+"星好评";
+        })
+    </script>
+</body>
+</html>

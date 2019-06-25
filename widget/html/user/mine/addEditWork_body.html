@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
+    <title>编辑工作经历</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
@@ -13,6 +13,14 @@
     <style>
         .info-choose-name{
             font-weight: bold;
+            color:rgba(102,102,102,1);
+            font-size:0.28rem;
+        }.resume_content {
+             margin-top:0;
+         }
+        .st-submit-btn{
+            margin-top: 0.32rem;
+            margin-bottom: 1.3rem;
         }
     </style>
 </head>
@@ -20,62 +28,83 @@
 
 <div class="Box">
     <div class="boxSub">
-        <div class="resume_main">
-            <div class="resume_head">
-
-            </div>
-            <p>上传头像</p>
-
-        </div>
         <div class="resume_content">
             <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">名字</span>
+                <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请填写您的姓名</span>
+                    <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">生日</span>
+                <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请填写您的生日</span>
+                    <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">性别</span>
+                <span class="info-choose-name">入职时间</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">手机号码</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请填写您的手机号码</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">联系邮箱</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请填写您的邮箱号码</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">所在城市</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">北京</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
-                <span class="info-choose-name">参加工作时间</span>
+                <span class="info-choose-name">离职时间</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">职位类型</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">职位名称</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">所属部门</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">选填</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose-name" style="margin-top: 0.3rem">工作内容</div>
+
+            <div class="info-choose cssFlex">
+                <span class="edit-topbot-content ellipsis">1.负责当当网B端、C端的运营策划运营策划…</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+
+            <div class="info-choose-name" style="margin-top: 0.3rem">技能标签</div>
+            <ul  class="info-edit-skill cssFlex">
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+                <li>运营策划</li>
+            </ul>
+            <div data-type="0" class="pingbi cssFlex">
+                <span class="info-choose-name">屏蔽该公司</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+            <div class="st-submit-btn">
+                删除此段工作经历
             </div>
         </div>
     </div>
