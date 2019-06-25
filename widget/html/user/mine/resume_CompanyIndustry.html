@@ -15,7 +15,7 @@
     <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>输入项目名称</div>
+    <div>选择公司行业</div>
     <div class="right" onclick="save()">
         保存
     </div>
@@ -36,9 +36,10 @@
     //点击保存
     function save(){
         api.execScript({
-            frameName: "resume_Project_body",
+            frameName: "resume_Achievement_body",
             script: 'preservation()'
         })
     }
+
 </script>
 </html>

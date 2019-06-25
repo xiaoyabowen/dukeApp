@@ -15,10 +15,7 @@
     <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>输入项目名称</div>
-    <div class="right" onclick="save()">
-        保存
-    </div>
+    <div>编辑求职期望</div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -36,7 +33,7 @@
     //点击保存
     function save(){
         api.execScript({
-            frameName: "resume_Project_body",
+            frameName: "resume_editExpectations_body",
             script: 'preservation()'
         })
     }

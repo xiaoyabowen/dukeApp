@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+        .resume_level2_content {
+            border: 0;
+        }
+
+        .resume_positionType_head {
+            padding: 0.3rem 0.33rem 0.1rem;
+            font-size: 0.36rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .resume_CompanyIndustry_content {
+            padding: 0.1rem 0.13rem 0.33rem 0.33rem;
+            flex-wrap: wrap;
+        }
+
+        .resume_CompanyIndustry_item {
+            padding: 0.06rem 0.26rem;
+            background: #EAEAEA;
+            font-size: 0.28rem;
+            color: #333333;
+            border-radius: 0.26rem;
+            margin: 0.2rem 0.2rem 0.2rem 0;
+        }
+
+        .resume_CompanyIndustry_item.active {
+            color: #ffffff;
+            background: #638BFF;
+        }
+
+        .resume_SkillLabel_main > p {
+            padding: 0.2rem 0.33rem 0;
+            font-size: 0.28rem;
+            color: #999999;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
+    <!--主体-->
+
+    <div class="resume_SkillLabel_main">
+        <div class="resume_positionType_head">
+            综合能力
+        </div>
+
+        <p>请选择5个最符合你能力的标签，标签会在简历中直观的展示给招聘官</p>
+
+        <div class="resume_CompanyIndustry_content cssFlex">
+
+            <div class="resume_CompanyIndustry_item">
+                个人能力
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+
+    apiready = function () {
+
+
+    };
+
+    var list = ['个人能力', '责任心', '演讲能力', '个人能力', '责任心', '演讲能力'];
+
+    var tagBox = document.querySelector('.resume_CompanyIndustry_content');
+    var arr = [];
+    var selectList = [];
+    for (var i = 0; i < list.length; i++) {
+        if (i === 0) {
+            arr.push('<div class="resume_CompanyIndustry_item active">');
+            selectList.push(list[i]);
+        } else {
+            arr.push('<div class="resume_CompanyIndustry_item">');
+        }
+        arr.push(list[i]);
+        arr.push('</div>');
+    }
+    var str = arr.join('');
+    tagBox.innerHTML = str;
+
+
+    tagBox.addEventListener('click', function (e) {
+        var node = e.target;
+        if (node.tagName === 'DIV' && node.classList.contains('resume_CompanyIndustry_item')) {
+            if (node.classList.contains('active')) {
+                node.className = 'resume_CompanyIndustry_item';
+                var index = selectList.indexOf(node.innerText);
+                selectList.splice(index, 1);
+                return;
+            }
+            if (selectList.length > 4) {
+                return;
+            }
+            selectList.push(node.innerText);
+            node.classList.add('active');
+        }
+    })
+
+    // 点击保存执行此方法
+    function preservation () {
+
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>

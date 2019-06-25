@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+        .resume_editResume_head {
+            padding: 0.5rem 0.28rem;
+            justify-content: space-between;
+        }
+
+        .editResume_name {
+            font-size: 0.48rem;
+            color: #333333;
+            font-weight: 500;
+            line-height: 1rem;
+        }
+
+        .editResume_information {
+            font-size: 0.24rem;
+            color: #638BFF;
+            padding: 0 0.3rem;
+            background: url("../../../icon/mine/edit.png") no-repeat left center;
+            background-size: 0.2rem;
+        }
+
+        .resume_editResume_head_right {
+            width: 1.44rem;
+            height: 1.44rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .resume_editResume_head_right img {
+            width: 100%;
+        }
+
+        .resume_editResume_item {
+            border-bottom: 1px solid #FFEBEBEB;
+            padding-bottom: 0.1rem;
+        }
+
+        .resume_editResume_content {
+            padding: 0 0.28rem;
+        }
+
+        .info-choose {
+            border: 0;
+            /*height: 1rem;*/
+        }
+
+        .info-choose-main-name {
+            color: #999999;
+            font-size: 0.24rem;
+        }
+
+        .info-choose-name {
+            font-size: 0.24rem;
+            color: #333333;
+        }
+
+        span.weight {
+            font-weight: 500;
+            font-size: 0.28rem;
+            color: #333333;
+        }
+
+        span.blue {
+            color: #638BFF;
+        }
+
+        div.heightAuto {
+            height: auto;
+        }
+
+        div.border0 {
+            border: 0;
+        }
+
+        p {
+            margin: 0.1rem 0;
+        }
+
+        .resume_editResume_btn {
+            padding: 0.27rem 0.27rem 1rem;
+        }
+
+        .resume_editResume_btn > span {
+            display: block;
+            height: .78rem;
+            line-height: .78rem;
+            text-align: center;
+            font-size: 0.3rem;
+            color: #ffffff;
+            background: #638BFF;
+            border-radius: 8px;
+        }
+
+        .commonBg {
+            padding-bottom: 0.2rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
+    <!--主体-->
+
+    <div class="resume_editResume_main">
+        <div class="resume_editResume_head cssFlex">
+            <div class="resume_editResume_head_left">
+                <div class="editResume_name">张敏</div>
+                <div class="editResume_information">编辑基本信息</div>
+            </div>
+            <div class="resume_editResume_head_right">
+                <img src="../../../image/pro.png" alt="">
+            </div>
+        </div>
+
+        <div class="resume_editResume_content">
+            <div class="resume_editResume_item">
+                <div class="info-choose cssFlex" onclick="introduce()">
+                    <span class="info-choose-name weight">自我描述</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name birth_option">已填写</span>
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">综合能力</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name birth_option">已填写</span>
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_editResume_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">求职状态</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name birth_option">离职-随时到岗</span>
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+
+                <div class="info-choose heightAuto cssFlex">
+                    <div>
+                        <span class="info-choose-name weight">求职期望</span>
+                        <p class="info-choose-name">
+                            <span>运营经理</span>
+                            <span>25k-150k</span>
+                        </p>
+                        <span class="info-choose-name">北京</span>
+                    </div>
+
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_editResume_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">工作经历</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name blue">添加</span>
+                    </div>
+                </div>
+
+                <div class="workExperience">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">北京A公司信息技术有限公司</span>
+                        <div class="info-choose-main cssFlex">
+                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                        </div>
+                    </div>
+
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">北京A公司信息技术有限公司</span>
+                        <div class="info-choose-main cssFlex">
+                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="resume_editResume_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">教育经历</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name blue">添加</span>
+                    </div>
+                </div>
+
+                <div class="workExperience">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">北京理工大学</span>
+                        <div class="info-choose-main cssFlex">
+                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_editResume_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">项目经历</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name blue">添加</span>
+                    </div>
+                </div>
+
+                <div class="workExperience">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">当当网B端后台和APP端</span>
+                        <div class="info-choose-main cssFlex">
+                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_editResume_item border0">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">社交主页</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name weight">图片作品</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_editResume_btn">
+                <span>预览简历</span>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+
+    apiready = function () {
+
+
+    };
+
+    // 自我描述
+    function introduce() {
+        openNewWindow("resume_Introduce", "./resume_Introduce.html");
+    }
+
+    // 薪资范围
+    function salaryRange(){
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "first",
+            text: "10k-15k"
+        }, {
+            value: "second",
+            text: "25k-150k"
+        }])
+        //picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('fourth', 2000);
+        picker.show(function(SelectedItem) {
+            console.log(SelectedItem);
+        })
+    }
+
+    // 点击保存执行此方法
+    function preservation () {
+
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>
