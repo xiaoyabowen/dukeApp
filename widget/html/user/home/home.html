@@ -18,7 +18,7 @@
 <body>
 <div id="topbar" class="cssFlex">
     <div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/mine.png">
+        <img class="leftImgTop" src="../../../icon/mine.png" onclick="mineGo()">
     </div>
     <div class="home-middle">
         <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
@@ -55,8 +55,9 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-
-
+    }
+    function mineGo() {
+        openNewWindow("mine", "../mine/mine.html")
     }
 </script>
 </html>
