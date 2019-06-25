@@ -6,17 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>职位信息</title>
+    <title>面试日程详情</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
 </head>
 <body>
 <div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">-->
-        <!--<img style="width: 30px;height: 30px;" src="../../icon/back.png">-->
-    <!--</div>-->
-    <div>首页</div>
-    <div>职位信息</div>
+    <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
+    </div>
+    <div>面试日程详情</div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -29,19 +28,6 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-        // var statusBarAppearance = api.statusBarAppearance;//是否支持沉浸式
-        // var header = $api.dom('#topbar');
-        // $api.fixStatusBar(header);
-        // // if (statusBarAppearance) {
-        // //
-        // // }
-        // header.style.display = 'block';
-        // winHeadHeight = header.offsetHeight;
-        // // if(height){
-        // //     winHeadHeight += height;
-        // // }
-        //
-        // openFrameInWin('position_body', './position_body.html');
     };
 </script>
 </html>

@@ -368,7 +368,12 @@ i.semd-size {
     margin-right: 0.1rem;
 }
 
-
+.au-title-sub,.au-band-info,.inter-title,.off-line,.comon-mine-title,.pingbi{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+}
 
 
 
