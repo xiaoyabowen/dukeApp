@@ -6,18 +6,38 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>添加工作经历</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
-    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/mineCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
     <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
-        .info-choose-name{
+
+        .boxSub {
+            padding-top: 0.2rem;
+        }
+
+        div.info-choose {
+            hright: 1.1rem;
+        }
+
+        .info-choose-name {
             font-weight: bold;
-        }.resume_content {
-             margin-top:0;
-         }
+        }
+
+        .resume_content {
+            margin-top: 0;
+        }
+
+        .heightAuto {
+            height: auto;
+            border: 0;
+        }
+
+        div.border0 {
+            border: 0;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -29,14 +49,14 @@
             <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option">北京A公司信息技术有限公司技术…</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option">不限</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -75,11 +95,29 @@
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="resume_Work()">
-                <span class="info-choose-name">工作内容</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+
+            <div class="info-choose heightAuto" onclick="resume_Work()">
+                <div class="info-choose-name" style="margin-top: 0.3rem">工作内容</div>
+
+                <div class="info-choose cssFlex">
+                    <span class="edit-topbot-content ellipsis">1.负责当当网B端、C端的运营策划运营策划…</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+
+            <div class="info-choose heightAuto" onclick="resume_SkillLabel()">
+                <div class="info-choose-name" style="margin-top: 0.3rem">技能标签</div>
+
+                <div class="info-choose border0 cssFlex">
+                    <span class="edit-topbot-content ellipsis">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+
+            <div class="info-choose border0 cssFlex">
+                <span class="info-choose-name">屏蔽该公司</span>
+                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                    <div class="mui-switch-handle"></div>
                 </div>
             </div>
         </div>

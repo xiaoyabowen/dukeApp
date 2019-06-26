@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>个人中心</title>
+    <title>添加工作经历</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
 </head>
@@ -15,11 +15,9 @@
     <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>个人中心</div>
-    <div class="right">
-        <img src="../../../image/mine/share.png" alt="share">
-        <img src="../../../image/mine/share.png" alt="share">
-        <img src="../../../image/mine/share.png" alt="share">
+    <div>添加工作经历</div>
+    <div class="right" onclick="save()">
+        保存
     </div>
 </div>
 </body>
@@ -28,7 +26,7 @@
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
     apiready = function () {

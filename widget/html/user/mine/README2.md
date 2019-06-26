@@ -47,5 +47,9 @@
 ├── resume_editResume          // 编辑简历
 ├── resume_editProject          // 编辑项目经历
 ├── resume_addProject          // 添加项目经历
+├── myDelivery            // 我的投递
+├── resume_addWork             // 添加工作经历
+├── resume_addEdution            // 添加教育经历
+├── resume_editEdution            // 编辑教育经历
 
 ```

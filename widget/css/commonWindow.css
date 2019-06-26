@@ -374,7 +374,11 @@ i.semd-size {
     color: rgba(51,51,51,1);
     line-height: 0.4rem;
 }
-
+.height10{
+    height: 0.2rem;
+    background: #F9F9F9;
+    width: 100%;
+}
 
 
 

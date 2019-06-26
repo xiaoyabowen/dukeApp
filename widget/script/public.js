@@ -1,18 +1,13 @@
 ﻿var version = "1.0.0";
 var isTest = false;
 var isCleanUser = false;
-// var uploadImageUrl="http://xiuqiang.ikid06.cn/storage/handle";
-var uploadImageUrl="http://39.107.247.82:50001/storage/handle";
-// var serverUrl = "http://192.168.1.41:50001"; //马文军
-// var serverUrl = "http://xiuqiang.ikid06.cn";
-var serverUrl = "http://39.107.247.82:50001";
-//isCleanUser = true;
+
+var serverUrl = "http://192.168.1.13:8000/SE4M/SE/";
+
 var rootWindowName = "root";
 simpleVersion = true;
-// var chatNativeUrl = '139.196.127.188';
-var chatNativeUrl = '39.107.247.82';
-var chatPointUrl = '22222';
-var imgServer = 'http://xiuqiang.ikid06.cn/storage/handle';
+
+
 //分享地址
 var shareNotice="http://39.107.247.82:99/html/classNotice_detail_body.html?nid=";
 
@@ -23,214 +18,10 @@ function al(data){
     }else{
     }
 }
-//isTest = true;
-var adminRegistUrl=serverUrl+"/backend/schoolRequest";//园长注册
-var adminLoginUrl=serverUrl+"/backend/login";//园长登录
-var createAuthCodeOnLoginUrl=serverUrl+"/backend/createAuthCodeOnLogin";//根据手机号发送验证码
-var updatePasswordAndLoginUrl=serverUrl+"/backend/updatePasswordAndLogin";//更改密码并且登录 phone code password
-var getAllSchoolUrl=serverUrl+"/school/getAllSchoolByProvince ";//获取园所
-var visitLogin = serverUrl + '/backend/customer';//游客参观
-
-// 首页
-var getIndexFunList = serverUrl + "/functionPort/list";//获取首页功能点列表
-var getIndexMsgList = serverUrl + "/message/pager";//获取首页下方消息列表
-var getBannerImg = serverUrl + "/banner/list";//获取轮播图片
-
-//园所主页
-var mainSchool = serverUrl + "/main/school";//获取园所主页信息
 
 
-
-// 宝宝食谱
-var getSchoolCookbooksInWeek = serverUrl + '/cookbook/getSchoolCookbooksInWeek'; //根据食谱类型和日期获取某校园的宝宝食谱
-var addCook = serverUrl + '/cookbook/add';//添加食谱模板
-var getFood = serverUrl + '/cookbook/searchFoodName'; //获取菜名 foodName 查询菜名
-
-var getAllTemplatesName = serverUrl + '/cookbook/getAllTemplatesName';//获取食谱模板名字 参数：name
-var getTemplatesDetail = serverUrl + '/cookbook/getTemplatesDetail';//根据食谱名字获取食谱详情 参数：id
-// var updateCook = serverUrl + '/cookbook/update';//修改食谱模板
-
-// 服务设备
-var getEquipmentList = serverUrl + '/equipment/getAllLists';//获取所有列表
-var addEquipment = serverUrl + '/equipment/addEquipment';//添加服务设备
-var deleteEquipment = serverUrl + '/equipment/deleteEquipment'; //删除设备                                                  //删除服务设备
-var getDistributions = serverUrl + '/equipment/getDistributions'; //获取分配列表
-var updateDistribution = serverUrl + '/equipment/updateDistribution' ; //分配设备
-var getAllClazzs = serverUrl +"/clazz/getAllClazzs" ;//获取所有班级
-
-// 固定资产
-var getLevelKinds = serverUrl + '/fixedasset/getLevelKinds'; //获取固定资产分类
-var getLevelKindsList = serverUrl + '/fixedasset/getAllItemInfoByKind'; //获取固定资产分类列表
-var getLevelKindsListIndex = serverUrl + '/fixedasset/getItemInfoReqItemLogPager'; //获取固定资产分类详情
-var getAuditWait = serverUrl + '/fixedasset/getReqSchoolFixedAssetItemLogPager'; //获取审核中
-var getAuditOk = serverUrl + '/fixedasset/getReqPassSchoolFixedAssetItemLogPager';//获取审核通过
-var getAuditNo = serverUrl + '/fixedasset/getReqNoPassSchoolFixedAssetItemLogPager'; //获取审核未通过
-var ratifyApply = serverUrl + '/fixedasset/passReqItemLog'; // 批准申请
-var NoRatifyPassApply = serverUrl + '/fixedasset/noPassReqItemLog'; // 驳回申请
-var getAllLocations = serverUrl + '/fixedasset/getAllLocations';//获取资产位置
-var FaddBackItemLog = serverUrl + '/fixedasset/addBackItemLog';//退库
-
-//仓库资源
-var getAllWarehouseName = serverUrl + '/warehouse/getAllWarehouses'; //获取所有仓库名称
-var getWarehouseWait = serverUrl + '/warehouse/getReqSchoolWarehouseItemLogPager'; //获取待审核 sid wid
-var getWarehouseOk = serverUrl + '/warehouse/getReqPassSchoolWarehouseItemLogPager'; //获取审核通过 sid wid
-var getWarehouseNo = serverUrl + '/warehouse/getReqNoPassSchoolWarehouseItemLogPager'; //获取不通过 sid wid
-var passReqItemLog = serverUrl + '/warehouse/passReqItemLog'; //批准申请 id
-var noPassReqItemLog = serverUrl + '/warehouse/noPassReqItemLog'; //批准申请 id
-var addBackItemLog = serverUrl + '/warehouse/addBackItemLog';//退库
-var getWarehouseClass = serverUrl + '/warehouse/getLevelKinds'; // 获取资源分类 sid pid
-var getWarehouseClassList = serverUrl + '/warehouse/getAllItemInfoByKind'; //获取资源分类列表 sid kid wid
-var getWarehouseClassIndex = serverUrl + '/warehouse/getItemInfoReqItemLogPager'; //获取资源分类详情 sid reqTime did reqUid
-var getAlldepartment = serverUrl + '/department/getAllList'; //获取所有部门 sid
-var getAllTeacher = serverUrl + '/backend/getAllTeachers'; //获取所有申请人 sid
-
-//缴费管理
-var getSchoolChargePagerUrl=serverUrl+"/charge/getSchoolChargePager";//缴费管理列表
-var getSchoolChargeHistoryPagerUrl=serverUrl+"/charge/getSchoolChargeHistoryPager";//历史缴费
-var loadSchoolChargeDetailUrl=serverUrl+"/charge/loadSchoolChargeDetail";//缴费详情
-var payWarn = serverUrl + "/charge/remindChargeParents";//缴费提醒 参数: 缴费itemid:cid  宝宝id:uid
-
-//预约报名
-var getUserByAssigned = serverUrl + '/userRequest/getUserByAssigned';//获取预约申请列表 assignedType《指派类型》 1 已指派，2未指派
-var updateAssignedTeacher = serverUrl + '/userRequest/updateAssignedTeacher';//指派 teacherId id
-var getAssignedDetail = serverUrl + '/userRequest/getAssignedDetail'; //预约详情 urid
-var getBookingNum = serverUrl + '/userRequest/getUserNum'; //获取预约人数 不传参
-
-
-//课程
-var teacherListUrl =serverUrl +"/backend/getAllTeachers";//获取教师id sid
-var classListUrl =serverUrl +"/clazz/getAllClazzs";//获取班级id  sid
-var addClassUrl=serverUrl +"/course/addCourse";//添加课表
-var getclassList=serverUrl + "/course/get";//获取课程列表  day cid pager
-
-//公告通知
-var addInform=serverUrl+"/notice/publicNotice";//添加通知
-var getNoticeList=serverUrl+"/notice/getSchoolNoticePager";//获取全部通知列表 sid cid
-var getMyNoticeList=serverUrl+"/notice/getPubulishNoticePager";//获取我发的通知
-var getNoticeDetail=serverUrl+"/notice/getOneNoticeDetail";//获取通知详情
-var getNoticeDetailName=serverUrl+"/notice/getTeacherNoticeDetail";//获取通知详情教师名字列表
-var remindNotice=serverUrl+"/notice/remindNoticeParents";//提醒公告通知 long nid, long uid, int userType
-var getNoticeLists=serverUrl+"/notice/getClazzNotice";//获取全部通知列表
-
-//添加通讯录
-var addddressList=serverUrl+"/external/addphone";//添加通讯录 sid  uid  用户id,name 联系人姓名, phone 手机号 work
-var getDepartmentList=serverUrl+"/department/getAllList";//获取部门 sid
-var getDepartmentEmployees=serverUrl+ "/external/getinnerphone";//获取部门下的  员工 did
-var getSotozonoList=serverUrl+ "/external/getoutterphone";//获取园外通讯录
-//宝宝评语
-var PublishedComments=serverUrl+"/weekcomment/add";//发布评语
-var getRemark=serverUrl+"/weekcomment/getMyChildComment";//获取评语    宝宝id
-var delCommentList=serverUrl+"/weekcomment/deletecomment";//删除评语   评语ID
-
-//评语
-var getCommentAllList=serverUrl+"/weekcomment/getall";  //全部评语  cid班级id  month日期
-var getAlreadyCommentList=serverUrl+"/weekcomment/getcomment";//未评语 已评语   cid班级id  month日期  commentStatus  0未评语  1已评语
-
-
-
-var systemInitUrl = serverUrl+"system/init";//初始化**/  初始化考试类型  学段等信息
-
-
-// zbw添加
-var customMsgUrl = serverUrl+"/message/getDetail";// 自定义消息详情接口
-
-
-
-//教学资料
-var pathGetUserAllList=serverUrl+"/path/getSchoolAllList";//家长：我的学习目录列表
-var pathGetTeacherAllList=serverUrl+"/path/getTeacherAllList";//教师：教学管理目录列表、园所文档目录列表
-var pathGetSchoolAllList=serverUrl+"/path/getSchoolAllList";//园长：教学管理目录列表、园所文档目录列表
-var documentGetDocList=serverUrl+"/document/getDocList";//获取目录下的文章列表 docType pathId
-var systemInitUrl = serverUrl+"system/init";//初始化**/  初始化考试类型  学段等信息
-var addDocument=serverUrl+"/document/add"; //添加
-
-// 精彩瞬间
-var issueBrilliant = serverUrl + "/timeline/add";//发布精彩瞬间
-var getMyissue = serverUrl + "/timeline/myTimeline";//获取我发布的
-var getClazzTimeline = serverUrl + "/timeline/clazzTimeline" ;//获取全班时间线
-var getloadTimeline = serverUrl +"/timeline/load";//获取精彩瞬间详情
-var getSchoolTimeline = serverUrl + "/timeline/schoolTimeline" ;//获取全员时间线
-var favoritepager = serverUrl + "/favorite/pager" ;//获取我的收藏
-var getTagTimeline = serverUrl + "/timeline/tagTimeline";//获取tag下的时间线
-var waiteExamineList = serverUrl + "/timeline/schoolWaitForCheckTimeline";//待审核列表
-var examineHandle = serverUrl + "/timeline/check";//审核操作
-var getHotTags = serverUrl + "/tag/getHotTags";//获取常用标签/comment/add
-var commentadd = serverUrl + "/comment/add";//发表评论 参数：type、typeId、content、images、voice
-var commentpager = serverUrl + "/comment/pager";//获取评论  参数：type=2  typeId
-var supportadd = serverUrl + "/support/add";//点赞  参数：type、typeId/complain/getComplaints
-var supportdelete = serverUrl + "/support/delete";//取消点赞  参数：type、typeId
-var favoriteadd = serverUrl + "/favorite/add";//收藏  参数：type、typeId
-var favoritedelete = serverUrl + "/favorite/delete";//取消收藏  参数：type、typeId  cid
-var complainadd = serverUrl + "/complain/add";//投诉  参数：type、typeId、complaintType、content
-var getComplaints = serverUrl + "/complain/getComplaints";//未审核投诉列表
-//1--点赞类型-评论；2--点赞类型-timeline 3--点赞类型-通知 4--点赞类型-宝宝评语 5--点赞类型-文档
-//投诉 1;//恶意攻击和谩骂  2;//营销广告  3;//淫秽色情  4;//政治反动  5;//其他
-
-var timelinedelete = serverUrl+"/timeline/delete";//删除动态，传tid
-//投诉审核
-var commentupdate = serverUrl + "/complain/update";//评论取消点赞  参数: id processUid  status
-
-
-//我们班
-var clazzgetAllTeacher = serverUrl + "/clazz/getAllTeacher";//班级下的老师列表  传cid
-var clazzgetAllchild = serverUrl + "/clazz/getAllChild";//班级下的宝宝列表
-var getClazzAllDayCheck = serverUrl + "/dayCheck/getClazzAllDayCheck";//晨检异常列表  传cid day
-var getClazzgetChildMonth = serverUrl + "/attendance/getClazzChildByDay";//考勤异常列表  clazzId day  yyyy-mm-dd
-var getDayCheck= serverUrl + "/dayCheck/getDayCheck";//修改晨检id
-var updateDayCheck = serverUrl + "/dayCheck/updateDayCheck";//修改晨检
-var mainuser = serverUrl + "/main/user";//宝宝详情
-var mainteacher = serverUrl + "/main/teacher";//老师详情
-var userupdatePersonUser = serverUrl + "/user/addPerformence";//宝宝表现
-var usergetInformations = serverUrl + "/user/getPerformences";//获取宝宝表现
-var DayCheckgetChildDayCheckList = serverUrl + "/dayCheck/getChildDayCheckList";//宝宝日常晨检 uid
-var DayCheckgetChildTimeCheckList = serverUrl + "/dayCheck/getChildTimeCheckList";//宝宝定期体检 uid
-var useraddDayCheck = serverUrl + "/dayCheck/addDayCheck";//记录宝宝晨检
-var getClazzAllDayCheckByDay =serverUrl +"/dayCheck/getClazzAllDayCheckByDay";
-
-
-var DayCheckgetaddClazzCheck = serverUrl + "/dayCheck/addClazzCheck";//全班合格 cid day
-var DayCheckgetaddSchoolCheck = serverUrl + "/dayCheck/addSchoolCheck";//全园合格
-
-var clazzgetAllclazzBystatus = serverUrl + "/clazz/getAllClazzsByStatus";//获取正常班、毕业班 sid status 0-正常班 1-删除 2-毕业班
-var clazzupdateStatus = serverUrl + "/clazz/updateStatus";//将正常班设为毕业班 cid
-var clazzget = serverUrl + "/clazz/get";//将正常班设为毕业班 id
-
-var departmentgetAllListAndPerson = serverUrl + "/department/getAllListAndPerson";//获取各部门人员列表 sid
-var backendgetAllTeachers = serverUrl + "/backend/getAllTeachers";//获取待审核老师列表 sid
-var backendgetInformations = serverUrl + "/backend/getInformations";//获取待审核老师个人信息 uid
-var backupdateBackendUser = serverUrl + "/backend/updateBackendUser";//审核状态 uid checkStatus 1-Y  2-N ext
-var schoolgetschool = serverUrl + "/school/getschool";//获取园所主页 id
-var scholupdateschool = serverUrl + "/school/updateschool";//修改园所主页 id
-var getSchoolAllDayCheckByDay = serverUrl + "/dayCheck/getSchoolAllDayCheckByDay";//一键设置晨检 day
-//获取所有幼儿园
-var getAllSchool = serverUrl + "/school/getSchoolList";//
-//我
-var getMyInformations = serverUrl +"/backend/getInformations";//我的信息
-var mainteacher = serverUrl +"/main/teacher";//我的主页
-var updatebacked = serverUrl +"/backend/updateBackendUser";//修改个人信息
-var createAuthCodeOnReg = serverUrl +"/backend/createAuthCodeOnReg";//获取验证码
-var updateUserPhoneUrl = serverUrl+"/backend/updatePhone";//修改手机号
-var  getquestionsUrl= serverUrl+"/helpcenter/questions";//常见问题
-var  getquestionUrl= serverUrl+"/helpcenter/question";//常见问题详情
-var  getdefaultUrl= serverUrl+"/default";//故障报告
-var  getsuggestionUrl= serverUrl+"/suggestion";//提改进意见
-var  getscorelogUrl= serverUrl+"/scoreLog/pager";//我的积分
-var  CommentRemindStatus=serverUrl+"/backend/updateRemind";//传 remindStatus   0开启，1关闭
-
-var searchUrl= serverUrl+"/document/search";//检索
-
-//园长端
-var clazzgetAllClazzs = serverUrl + "/clazz/getAllClazzs";//班级列表 sid
-
-//园长信箱
-var  presidentMailbox=serverUrl+ "/mailbox/getSchoolMailboxPager";//获取信箱列表
-var  getAcquireEMail=serverUrl+"/mailbox/getMailbox";//获取信箱内容
-
-//教学资料
-var getTeachAndDoc = serverUrl + "/path/getSchoolAllList";//获取园所教学资料与园所文档目录列表 pathType 1为园所文档 2为教学资料
-var getTeachChild = serverUrl + "/path/getSchoolAllListByPid";////获取园所教学资料与园所文档子目录列表 pathType 1为园所文档 2为教学资料
-var seekTeachingData = serverUrl + "/document/search";//搜索资料  pager DocType 所属类型:1为课程 2为食谱 3为照片 4为文档； name 资料标题  pathId:所属目录
-var getMyFavorite = serverUrl + "/document/pager";//获取我的收藏 type=5 写死
+var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
+var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆
 //==============常量（结束）========================
 
 
