@@ -85,21 +85,21 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
     apiready = function () {
-        api.ajax({
-            url: 'http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid',
-            method: 'get',
-        }, function(ret, err) {
-            if (ret) {
-                api.alert({ msg: JSON.stringify(ret) });
-            } else {
-                api.alert({ msg: JSON.stringify(err) });
-            }
-        });
+
+        ajaxGetWithProgress('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid',{
+            person_id: 1
+        }, function (res,err) {
+            api.alert({ msg: JSON.stringify(res) });
+        })
     };
 
+    // 获取教育信息
+    // $api.get('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid', function (res) {
+    //     alert.log(res);
+    // }, 'text');
 
     // 输入学校名称
     function resume_School() {
