@@ -130,7 +130,7 @@
             background-size: 0.2rem 0.12rem;
             width: 0.2rem;
             height: 0.12rem;
-            left: 0.42rem;
+            left: 0.72rem;
             top: 0.46rem;
         }
         .input-password {
@@ -199,6 +199,10 @@
         }
 
     </style>
+
+
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>-->
+    <!--<script>eruda.init();</script>-->
 </head>
 <body>
 <div id="main">
@@ -215,10 +219,10 @@
                 </div>
                 <div class="input-password cssFlex">
                     <input id="password" type="number" placeholder="请输入验证码">
-                    <button class="yanzheng">获取验证码</button>
+                    <button  id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
                 </div>
             </div>
-            <button class="login-href" onclick="goHome()">进入渡客</button>
+            <button class="login-href" onclick="login()">进入渡客</button>
             <p class="subLogin" onclick="passLogin()">账户密码登陆</p>
             <div class="three-login">
                 <h4>使用第三方登录</h4>
@@ -244,7 +248,7 @@
 <script type="text/javascript" src="../../script/kv.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/user.js"></script>
-<script type="text/javascript" src="../../script/init.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
@@ -276,7 +280,137 @@
         });
     }
 
-    //参观
+
+
+
+    /*************点击获取验证码***********/
+    var flag = true;//防止重复点击获取验证码
+    function getCode(){
+        if(!flag){
+            return;
+        }
+        tel = document.getElementById('phone').value;
+        if(!checkMobileNum(tel)){
+            toast("手机号码不正确");
+            return;
+        }
+        var obj = {
+            phone : tel
+        }
+        flag = false;
+        setTime();
+        ajaxGetUser(SendSmsCode,obj,function(ret,err) {
+            if (ret && ret.success ) {
+                toast("获取成功，请注意查收！");
+            }else if(ret && !ret.success){
+                if(ret){
+                    var msg = ret.msg || "网络连接错误，请稍后重试！";
+                    toast(msg);
+                }else{
+                    var msg = err.msg || "网络连接错误，请稍后重试！";
+                    toast(msg);
+                }
+            }
+        })
+    }
+
+    /*******************倒计时****************************/
+    function setTime(){
+        var time;
+        var sms = document.getElementById('sms');
+        time = time||3;
+        sms.innerHTML = time+"s";
+        var codeInterval = setInterval(function(){
+            if(time > 0){
+                time--;
+                sms.innerHTML = time+"s";
+            }else{
+                sms.innerHTML = "获取验证码";
+                clearInterval(codeInterval);
+                flag = true;
+            }
+        },1000)
+    }
+    /*******************倒计时****************************/
+
+
+    //无动画关闭此页面
+    function closeThisWin(){
+        api.closeWin({
+            name: api.winName,
+            animation:{type:"none"}
+        });
+    }
+
+    // 登陆
+    function login() {
+        api.showProgress();
+        // api.closeWin({
+        //     name: "setUp"//防止从推出登录过来的时候  设置页面没关闭
+        // })
+        var params = {};
+        params.password = $api.byId("password").value;
+        params.phone = $api.byId("phone").value;
+
+        if (isBlack(params.phone)) {
+            toast('请输入手机号');
+            api.hideProgress();
+            return;
+        }
+        if (isBlack(params.password)) {
+            toast('请输入密码');
+            api.hideProgress();
+            return;
+        }
+
+        ajaxGetUser(adminLoginUrl, params, function (data, err) {
+            if (data.success == false) {
+                api.hideProgress();
+                var errorMessage = data.msg || '获取信息失败';
+                api.toast({
+                    msg: errorMessage
+                });
+            } else {
+                setUserInfo(data.data);
+                var icon = '';
+                if (data.data.icon) {
+                    icon = data.data.icon;
+                } else {
+                    icon = '';
+                }
+                //原生聊天
+                api.accessNative({
+                    name: "userlogin",
+                    extra: {
+                        notice: "39.107.247.82",
+                        tzPoint: 30001,
+                        ipv4: chatNativeUrl,
+                        point: chatPointUrl,
+                        uid: data.data.chatId,
+                        icon: data.data.icon,
+                        imgServer: uploadImageUrl,
+                        token: data.data.token
+                    }
+
+                }, function (ret, err) {
+                });
+                api.sendEvent({
+                    name: 'ExportLogin',
+                    extra: getUserInfo()
+                });
+                api.execScript({
+                    name: rootWindowName,
+                    script: "apiready()"
+                })
+                api.hideProgress();
+                setTimeout(function () {
+                    closeWin()
+                }, 1500)
+            }
+        });
+    }
+
+
 
     function goHome() {
         openNewWindow("home", "../user/home/home.html")
