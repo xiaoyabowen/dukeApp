@@ -629,7 +629,7 @@ function getServerInfoUseCacheWithProgress(callBackOnNullData, callBackOnCacheDa
 function ajaxGetUser(url, getData, callBack) {
     api.ajax({
         url: url,
-        method: 'post',
+        method: 'get',
         timeout: 60,
         dataType: 'json',
         returnAll: false,
