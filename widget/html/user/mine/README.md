@@ -12,17 +12,20 @@
 ├── WorkReshName             // 附件简历重命名
 ├── workUp             // 附件简历已上传 
 ├── userCenter             // 个人中心 
+├── seeResume             // 我的在线简历 
 ├── sendEmail             // 发送邮箱简历 
 ├── editInfo             // 编辑信息 
 ├── vipCard             // 金卡vip 
 ├── authenCard             // 金卡vip认证 
 ├── Interview             // 面试日程 
-├── InterviewDetail             // 面试日程详情
+├── InterviewDetail             // 面试日程详情   
+├── myOffer             // myOffer  我的录用   
 ├── InterviewStar             // 面试评价
 ├── Offline             // 职位下线
 ├── addWork             // 添加工作经历
 ├── addEdution             // 添加教育经历
 ├── addProduct             // 添加项目经历
 ├── addEditWork             // 编辑工作经历
+├── personHome             // 我的个人主页
 
 ```

@@ -223,7 +223,7 @@
                     <img src="../../image/login/hide.png" alt="password show" id="passShow">
                 </div>
             </div>
-            <button class="login-href" onclick="passLogin()">进入渡客</button>
+            <button class="login-href" onclick="goHome()">进入渡客</button>
             <p class="subLogin" onclick="returnPass()">忘记密码？</p>
             <div class="three-login">
                 <h4>使用第三方登录</h4>
@@ -296,9 +296,12 @@
     }
 
     //参观
-    function passLogin() {
-        openNewWindow("passLogin", "passLogin.html")
+    function goHome() {
+        openNewWindow("home", "../user/home/home.html")
     }
+    // function passLogin() {
+    //     openNewWindow("passLogin", "passLogin.html")
+    // }
     function returnPass() {
         openNewWindow("returnPass", "returnPass.html")
     }

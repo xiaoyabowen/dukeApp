@@ -172,7 +172,7 @@
 
     </div>
     <div class="configBtn">
-        <div class="subConfigBtn">
+        <div class="subConfigBtn" onclick="goHome()">
             确定
         </div>
 
@@ -190,5 +190,8 @@
     apiready = function () {
 
     };
+    function goHome() {
+        openNewWindow("home", "../user/home/home.html")
+    }
 </script>
 </html>

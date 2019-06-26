@@ -119,7 +119,7 @@
         <div class="resume_editResume_head cssFlex">
             <div class="resume_editResume_head_left">
                 <div class="editResume_name">张敏</div>
-                <div class="editResume_information">编辑基本信息</div>
+                <div class="editResume_information" onclick="editInfo()">编辑基本信息</div>
             </div>
             <div class="resume_editResume_head_right">
                 <img src="../../../image/pro.png" alt="">
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="resume_Comprehensive()">
                     <span class="info-choose-name weight">综合能力</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name birth_option">已填写</span>
@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="info-choose heightAuto cssFlex">
-                    <div>
+                    <div  onclick="resume_editExpectations()">
                         <span class="info-choose-name weight">求职期望</span>
                         <p class="info-choose-name">
                             <span>运营经理</span>
@@ -171,7 +171,7 @@
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="addWork()">
                     <span class="info-choose-name weight">工作经历</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name blue">添加</span>
@@ -179,14 +179,14 @@
                 </div>
 
                 <div class="workExperience">
-                    <div class="info-choose cssFlex">
+                    <div class="info-choose cssFlex" onclick="addEditWork()">
                         <span class="info-choose-name">北京A公司信息技术有限公司</span>
                         <div class="info-choose-main cssFlex">
                             <img src="../../../icon/right.png" alt="right" class="info-img-right">
                         </div>
                     </div>
 
-                    <div class="info-choose cssFlex">
+                    <div class="info-choose cssFlex" onclick="addEditWork()">
                         <span class="info-choose-name">北京A公司信息技术有限公司</span>
                         <div class="info-choose-main cssFlex">
                             <img src="../../../icon/right.png" alt="right" class="info-img-right">
@@ -215,14 +215,14 @@
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="resume_addProject()">
                     <span class="info-choose-name weight">项目经历</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name blue">添加</span>
                     </div>
                 </div>
 
-                <div class="workExperience">
+                <div class="workExperience" onclick="resume_editProject()">
                     <div class="info-choose cssFlex">
                         <span class="info-choose-name">当当网B端后台和APP端</span>
                         <div class="info-choose-main cssFlex">
@@ -233,14 +233,14 @@
             </div>
 
             <div class="resume_editResume_item border0">
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="resume_SocialHomepage()">
                     <span class="info-choose-name weight">社交主页</span>
                     <div class="info-choose-main cssFlex">
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
 
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="resume_imgWorks()">
                     <span class="info-choose-name weight">图片作品</span>
                     <div class="info-choose-main cssFlex">
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
@@ -248,7 +248,7 @@
                 </div>
             </div>
 
-            <div class="resume_editResume_btn">
+            <div class="resume_editResume_btn" onclick="seeResume()">
                 <span>预览简历</span>
             </div>
 
@@ -277,7 +277,16 @@
     function introduce() {
         openNewWindow("resume_Introduce", "./resume_Introduce.html");
     }
-
+    // 综合能力
+    function resume_Comprehensive() {
+        openNewWindow("resume_Comprehensive", "./resume_Comprehensive.html");
+    }// 编辑  求职状态
+    function resume_editExpectations() {
+        openNewWindow("resume_editExpectations", "./resume_editExpectations.html");
+    }// 工作经历
+    function addWork() {
+        openNewWindow("addWork", "./addWork.html");
+    }
     // 薪资范围
     function salaryRange(){
         var picker = new mui.PopPicker();
@@ -295,9 +304,33 @@
         })
     }
 
-    // 点击保存执行此方法
-    function preservation () {
-
+    // 编辑个人基本信息
+    function editInfo () {
+        openNewWindow("editInfo", "editInfo.html")
+    }
+ //  预览  在线简历
+    function seeResume () {
+        openNewWindow("seeResume", "seeResume.html")
+    }
+// 社交主页
+    function resume_SocialHomepage () {
+        openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html")
+    }
+// 图片作品
+    function resume_imgWorks () {
+        openNewWindow("resume_imgWorks", "resume_imgWorks.html")
+    }
+// 编辑项目经验
+    function resume_editProject () {
+        openNewWindow("resume_editProject", "resume_editProject.html")
+    }
+    // 添加项目经历
+    function resume_addProject () {
+        openNewWindow("resume_addProject", "resume_addProject.html")
+    }
+    // 编辑工作经历
+    function addEditWork () {
+        openNewWindow("addEditWork", "addEditWork.html")
     }
 
     // 此处手动调用了js

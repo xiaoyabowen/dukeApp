@@ -33,7 +33,7 @@
                 <p class="authen-not">未认证</p>
             </li>
         </ul>
-        <div class="authen-btn">立即认证</div>
+        <div class="authen-btn" onclick="authenCard()">立即认证</div>
         <div  class="suc-authen">
             完成以下认证，赚取积分
         </div>
@@ -58,6 +58,9 @@
         apiready = function () {
 
         };
+        function authenCard() {
+            openNewWindow("authenCard", "authenCard.html")
+        }
     </script>
 </body>
 </html>

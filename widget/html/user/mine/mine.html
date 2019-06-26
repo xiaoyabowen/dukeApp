@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="topbar" >
-    <div id="leftButton" tapmode="itemOn">
+    <div id="leftButton" tapmode="itemOn" onclick="homeGo()">
         首页
     </div>
     <div>我的</div>
@@ -29,5 +29,8 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
+    function homeGo() {
+        openNewWindow("home", "../home/home.html")
+    }
 </script>
 </html>
