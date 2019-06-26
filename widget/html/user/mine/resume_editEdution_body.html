@@ -88,13 +88,18 @@
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     apiready = function () {
-
+        api.ajax({
+            url: 'http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid',
+            method: 'get',
+        }, function(ret, err) {
+            if (ret) {
+                api.alert({ msg: JSON.stringify(ret) });
+            } else {
+                api.alert({ msg: JSON.stringify(err) });
+            }
+        });
     };
 
-    // 获取教育信息
-    // $api.get('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid', function (res) {
-    //     alert.log(res);
-    // }, 'text');
 
     // 输入学校名称
     function resume_School() {
