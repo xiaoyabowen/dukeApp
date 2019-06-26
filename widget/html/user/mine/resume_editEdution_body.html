@@ -89,17 +89,24 @@
 <script>
     apiready = function () {
 
-        ajaxGetWithProgress('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid',{
+        var obj = {
             person_id: 1
-        }, function (res,err) {
-            api.alert({ msg: JSON.stringify(res) });
+        }
+        // 获取教育信息
+        ajaxGetWithProgress(Geteducation,obj,function(res,err) {
+            // api.alert({mas: JSON.stringify(res.education_his)});
+            if (res && res.education_his) {
+                var msg = res.education_his[0];
+                document.querySelector('.School').innerText = msg.univ_name;
+                document.querySelector('.major').innerText = msg.major;
+                document.querySelector('.education').innerText = msg.degree;
+                document.querySelector('.entry_date').innerText = msg.e_from;
+                document.querySelector('.quit_date').innerText = msg.e_to;
+            }
         })
+
     };
 
-    // 获取教育信息
-    // $api.get('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid', function (res) {
-    //     alert.log(res);
-    // }, 'text');
 
     // 输入学校名称
     function resume_School() {
