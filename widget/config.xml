@@ -6,12 +6,17 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <content src="html/login/homeChoose.html" />
+    <content src="html/login/login.html" />
     <!--<content src="html/user/mine/mine.html" />-->
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
     <permission name="call" />
     <preference name="statusBarAppearance" value="true" />     <!-- 沉浸式 -->
+    <preference name="autoLaunch" value="true" />    <!--启动页时间 -->
+    <preference name="iOS7StatusBarAppearance" value="true" />
+    <preference name="debug" value="false" /> <!--调试模式 -->
+    <preference name="launcher" value="true " />  <!--配置是否在桌面显示应用图标 -->
+
     <!--<feature name="wx">-->
         <!--<param name="urlScheme" value="wxd0d84bbf23b4a0e4"/>-->
         <!--<param name="apiKey" value="wxd0d84bbf23b4a0e4"/>-->

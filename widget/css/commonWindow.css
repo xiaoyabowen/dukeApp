@@ -10,11 +10,20 @@ html {
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
             linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
 }
-
+a,a:hover,a:active,a:visited,a:link,a:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    background: none;
+    text-decoration: none;
+}
 body {
     -webkit-tap-highlight-color: transparent;
     -webkit-overflow-scrolling: touch;
 	width: 100%;
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
 	/*height: 100%;*/
 }
 em,i{
