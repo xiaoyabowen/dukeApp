@@ -6,22 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>职位信息</title>
+    <title>设置密码</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
 </head>
 <body>
-<div id="topbar" class="cssFlex">
-    <div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/mine.png" onclick="mineGo()">
+<div id="topbar" >
+    <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        <span class="searchClick">GO</span>
-    </div>
-    <div class="right" onclick="save()">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
+    <div>设置密码</div>
+
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -29,15 +24,11 @@
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-
     };
-    function mineGo() {
-        openNewWindow("mine", "../mine/mine.html")
-    }
 </script>
 </html>

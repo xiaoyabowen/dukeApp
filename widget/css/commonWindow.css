@@ -326,13 +326,14 @@ textarea{
 
 /*首页banner 样式*/
 .subcontentBoxBanner{
-    margin-bottom: -12px;
-    height: calc(100vh - 28px);
+    /*padding: 0 0.34rem;*/
+    /*margin-bottom: -12px;*/
+    /*height: calc(100vh - 28px);*/
 }
 .home-banner{
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 7rem;
+    height: calc(100vh - 28px);
 }
 
 /*发送邮箱*/

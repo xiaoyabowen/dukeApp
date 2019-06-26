@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+        #editPass{
+            display: none;
+        }
+    </style>
 
 </head>
 <body class="commonBg">
@@ -40,10 +45,20 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li data-type="editPass">
+            <li data-type="editPass" id="editPassSet">
                 <div>
                     <img src="../../../icon/mine/lock.png" alt="">
                     <span>设置密码</span>
+                </div>
+
+                <div class="setting_active">
+                    <img src="../../../icon/right.png" alt="">
+                </div>
+            </li>
+            <li data-type="xiugaiPass" id="editPass">
+                <div>
+                    <img src="../../../icon/mine/lock.png" alt="">
+                    <span>修改密码</span>
                 </div>
 
                 <div class="setting_active">
@@ -128,13 +143,22 @@
         }
 
 
-        // 退出登录
-        document.querySelector('.setting_btn').onclick = function () {
-
-        }
 
 
     };
+    var passLocal = localStorage.getItem("passStatus")
+    if (passLocal == "pass"){
+        document.getElementById("editPassSet").style.display = "none"
+        document.getElementById("editPass").style.display = "block"
+    }else{
+        document.getElementById("editPassSet").style.display = "block"
+        document.getElementById("editPass").style.display = "none"
+    }
+
+    // 退出登录
+    document.querySelector('.setting_btn').onclick = function () {
+
+    }
 
     // 此处手动调用了js
     // apiready()
