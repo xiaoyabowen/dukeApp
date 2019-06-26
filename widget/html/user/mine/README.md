@@ -4,6 +4,7 @@
 ```pre
 
 ├── editPass   // 修改密码
+├── xiugaiPass   // 修改  设置的密码
 ├── editPhone           // 修改手机号
 ├── iconPush          // 消息推送设置
 ├── mine           // 我的

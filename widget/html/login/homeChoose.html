@@ -36,11 +36,28 @@
 
 
     apiready = function () {
-
+        var intro_ist = $api.getStorage('introt');
+        if (!intro_ist) {
+            api.openWin({
+                name: 'intro_index',
+                url: './intro_index.html',
+                pageParam: {
+                    name: 'test1'
+                }
+            });
+        }else {
+            api.openWin({
+                name: 'login',
+                url: './login.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+        } ;
     }
-    function user() {
-        openNewWindow("login", "./login.html", {role: 1})
-    }
+    // function user() {
+    //     openNewWindow("login", "./login.html", {role: 1})
+    // }
 
 
 </script>
