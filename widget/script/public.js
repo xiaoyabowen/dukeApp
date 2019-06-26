@@ -19,10 +19,25 @@ function al(data){
     }
 }
 
+// 接口    信息  列表
 
 var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
-var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆
-//==============常量（结束）========================
+
+var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
