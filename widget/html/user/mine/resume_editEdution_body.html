@@ -10,7 +10,17 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
+
+        .boxSub {
+            padding-top: 0.2rem;
+        }
+
+        div.info-choose {
+            height: 1.1rem;
+        }
         .info-choose-name{
             font-weight: bold;
         }.resume_content {
@@ -22,40 +32,40 @@
 
 <div class="Box">
     <div class="boxSub">
-        <div class="comon-mine-title">添加教育经历</div>
+        <!--<div class="comon-mine-title">添加教育经历</div>-->
         <div class="resume_content">
             <div class="info-choose cssFlex" onclick="resume_School()">
                 <span class="info-choose-name">学校名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option">北京理工大学</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Major()">
                 <span class="info-choose-name">专业名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option">艺术设计专业</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="showUserPicker()">
                 <span class="info-choose-name">学历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name birth_option">本科</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="entry_date()">
                 <span class="info-choose-name">入学年份</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name entry_date">请选择</span>
+                    <span class="info-choose-main-name entry_date">2002</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="quit_date()">
                 <span class="info-choose-name">毕业年份</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date">请选择</span>
+                    <span class="info-choose-main-name quit_date">2006</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -73,11 +83,18 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     apiready = function () {
 
     };
+
+    // 获取教育信息
+    // $api.get('http://192.168.1.13:8000/SE4M/SE/UserProfile/queryEducationByid', function (res) {
+    //     alert.log(res);
+    // }, 'text');
 
     // 输入学校名称
     function resume_School() {
