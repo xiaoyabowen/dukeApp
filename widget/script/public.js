@@ -26,8 +26,14 @@ var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
 var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
 
+// 获取简历全部信息
+var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
+
 // 查询教育信息
-var Geteducation = serverUrl + "/UserProfile/queryEducationByid";
+var GetEducation = serverUrl + "/UserProfile/queryEducationByid";
+
+// 添加教育信息
+var AddEducation = serverUrl + "/UserProfile/createEducation";
 
 
 

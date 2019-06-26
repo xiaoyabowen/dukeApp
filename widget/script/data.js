@@ -88,7 +88,7 @@ datalistModel.prototype = {
         if (loadMoreDiv) {
             document.body.removeChild(loadMoreDiv);
         }
-        
+
         this.getDataByDown(function (result,serverResult) {
             datalist.drawingData(result, false,serverResult);
             datalist.afterRefresh(result);
@@ -104,7 +104,7 @@ datalistModel.prototype = {
 
     },
     afterRefresh : function (result) {
-    		
+
     },
     loadMore: function () {
         this.beforeLoadMore();
@@ -439,7 +439,7 @@ datalistModel.prototype = {
                 callback({status: false, cached: false}, err);
                 return;
             }
-			
+
             var serverResult = ret;
             if (isBlack(serverResult.data)) {
                 serverResult.data = [];
@@ -502,15 +502,15 @@ function createCacheKey(url, getData) {
 
 function hasEmoji(str) {
 	str += "";
-	var patt=/[\ud800-\udbff][\udc00-\udfff]/g; 
+	var patt=/[\ud800-\udbff][\udc00-\udfff]/g;
 	str = str.replace(patt,function(char){
-		if (char.length===2) { 
+		if (char.length===2) {
 			return "*";
-		} else { 
-			return char; 
-		} 
+		} else {
+			return char;
+		}
 	});
-	return str; 
+	return str;
 }
 
 
@@ -549,7 +549,7 @@ url, getData,notAlertError,notHideProcess) {
             }
         }, function (ret, err) {
             if (ret) {
-            	
+
                 var data = ret;
                 if(data.success==false){
                     var errorMessage=data.errorMessage||'获取信息失败';
@@ -562,7 +562,7 @@ url, getData,notAlertError,notHideProcess) {
                 } else if (JSON.stringify(data) != storageStr) {
                     setItem(cacheKey, JSON.stringify(data));
                     callBackOnNewServerData(data, value);
-                } 
+                }
 //              else {
 //              		callBackOnServerDataError(err);
 //              }
@@ -600,7 +600,7 @@ function getServerInfoUseCacheWithProgressNoDisplay(callBackOnNullData, callBack
         url, getData,notAlertError,notHideProcess);
 }
 
-function getServerInfoUseCacheWithProgress(callBackOnNullData, callBackOnCacheData, callBackOnNewServerData, 
+function getServerInfoUseCacheWithProgress(callBackOnNullData, callBackOnCacheData, callBackOnNewServerData,
 	callBackOnServerDataError, url, getData,notAlertError,notHideProcess) {
     api.showProgress({});
     var isShowProgress = true;
@@ -656,6 +656,8 @@ function ajaxGet(url, params, callBack) {
     // var user = getUserInfo();
     // console.log(user)
     // params.token = user.token;
+    // 测试用
+    params.uid = '1';
     // console.log(params)
     api.ajax({
         url: url,
@@ -698,7 +700,7 @@ function ajaxGet(url, params, callBack) {
 					            script: 'apiready()'
 					        })
 						}
-					})	
+					})
 				});
     		},400)
     	}else{

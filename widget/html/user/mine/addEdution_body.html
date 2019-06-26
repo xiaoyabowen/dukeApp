@@ -170,6 +170,38 @@
 
     }
 
+    // 点击保存调用的方法
+    function preservation() {
+        var School = document.getElementById("School").innerText;
+        var major = document.getElementById("major").innerText;
+        var education = document.querySelector('.education').innerText;
+        var entry_date = document.querySelector('.entry_date').innerText;
+        var quit_date = document.querySelector('.quit_date').innerText;
+
+        var person_id = localStorage.getItem('person_id');
+        // alert(person_id)
+        // console.log(School,major,education,entry_date,quit_date);
+
+        var params = {
+            u_id: person_id,
+            univ_name: School,
+            Major: major,
+            degree: education,
+            e_from: entry_date,
+            e_to: quit_date
+        }
+
+        ajaxGetWithProgress(AddEducation, params, function (data, err) {
+            // alert(JSON.stringify(data));
+            if (data.return_info.status) {
+                api.toast({
+                    msg: '添加教育经历成功'
+                });
+            }
+
+        });
+    }
+
     // 此处手动调用了js
     // apiready()
 
