@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
         .info-choose-name{
             font-weight: bold;
@@ -24,56 +26,56 @@
     <div class="boxSub">
         <div class="comon-mine-title">添加工作经历</div>
         <div class="resume_content">
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="entry_date()">
                 <span class="info-choose-name">入职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name entry_date">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="quit_date()">
                 <span class="info-choose-name">离职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name quit_date">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Position()">
                 <span class="info-choose-name">职位名称</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Department()">
                 <span class="info-choose-name">所属部门</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">选填</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Work()">
                 <span class="info-choose-name">工作内容</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
@@ -93,34 +95,45 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     apiready = function () {
-        // 上传头像
-        var file = document.querySelector('.resume_head');
-        file.onclick = function () {
-            api.getPicture({
-                sourceType: 'library',
-                encodingType: 'jpg',
-                mediaValue: 'pic',
-                destinationType: 'url',
-                allowEdit: true,
-                quality: 50,
-                targetWidth: 100,
-                targetHeight: 100,
-                saveToPhotoAlbum: false
-            }, function(ret, err) {
-                if (ret) {
-                    console.log(JSON.stringify(ret));
-                } else {
-                    console.log(JSON.stringify(err));
-                }
-            });
-        }
 
     };
 
-    function ageChoose() {
+    // 公司名称
+    function resume_Company() {
+        openNewWindow("resume_Company", "./resume_Company.html");
+    }
+    // 公司行业
+    function resume_CompanyIndustry() {
+        openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html");
+    }
+    // 职位类型
+    function resume_positionType() {
+        openNewWindow("resume_positionType", "./resume_positionType.html");
+    }
+    // 职位名称
+    function resume_Position() {
+        openNewWindow("resume_Position", "./resume_Position.html");
+    }
+    // 所属部门
+    function resume_Department() {
+        openNewWindow("resume_Department", "./resume_Department.html");
+    }
+    // 工作内容
+    function resume_Work() {
+        openNewWindow("resume_Work", "./resume_Work.html");
+    }
+    // 技能标签
+    function resume_SkillLabel() {
+        openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html");
+    }
+
+    // 时间日期选择
+    function entry_date() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -129,9 +142,26 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            $(".birth_option").val(selectItems.text)
+            console.log(selectItems)
+            // $(".birth_option").val(selectItems.text)
+            document.querySelector('.entry_date').innerText = selectItems.text;
         })
 
+    }
+
+    function quit_date() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            console.log(selectItems)
+            // $(".birth_option").val(selectItems.text)
+            document.querySelector('.quit_date').innerText = selectItems.text;
+        })
 
     }
 

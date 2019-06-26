@@ -32,38 +32,38 @@
     <div class="boxSub">
         <!--<div class="comon-mine-title">添加教育经历</div>-->
         <div class="resume_content">
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_School()">
                 <span class="info-choose-name">学校名称</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Major()">
                 <span class="info-choose-name">专业名称</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="showUserPicker()">
                 <span class="info-choose-name">学历</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="entry_date()">
                 <span class="info-choose-name">入学年份</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name entry_date">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="quit_date()">
                 <span class="info-choose-name">毕业年份</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name quit_date">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -87,7 +87,18 @@
 
     };
 
-    function ageChoose() {
+    // 输入学校名称
+    function resume_School() {
+        openNewWindow("resume_School", "./resume_School.html");
+    }
+
+    // 输入专业名称
+    function resume_Major() {
+        openNewWindow("resume_Major", "./resume_Major.html");
+    }
+
+    // 时间日期选择
+    function entry_date() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -96,9 +107,53 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            $(".birth_option").val(selectItems.text)
+            console.log(selectItems)
+            // $(".birth_option").val(selectItems.text)
+            document.querySelector('.entry_date').innerText = selectItems.text;
         })
 
+    }
+
+    function quit_date() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            console.log(selectItems)
+            // $(".birth_option").val(selectItems.text)
+            document.querySelector('.quit_date').innerText = selectItems.text;
+        })
+
+    }
+
+    // 学历选择
+    function showUserPicker() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "first",
+            text: "博士"
+        }, {
+            value: "second",
+            text: "研究生"
+        }, {
+            value: "third",
+            text: "本科"
+        }, {
+            value: "fourth",
+            text: "大专"
+        }, {
+            value: "fifth",
+            text: "中专/高中及以下"
+        }])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('fourth', 2000);
+        picker.show(function(SelectedItem){
+            console.log(SelectedItem)
+        })
 
     }
 
