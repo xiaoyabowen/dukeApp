@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>渡客</title>
+    <title>今日</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -14,19 +14,42 @@
             width: 100%;
             height: 100%;
         }
-
     </style>
 </head>
 
 <body>
 
-<div>
-
-    我是 APiCloud
-</div>
-
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/user.js"></script>
+<script type="text/javascript" src="script/public.js"></script>
+<script type="text/javascript" src="script/init.js"></script>
+<script type="text/javascript" src="script/kv.js"></script>
+<script type="text/javascript" src="script/apiCloud.js"></script>
 <script>
     apiready = function () {
+        if($api.getStorage('loginInfo')){
+            api.openSlidLayout({
+                type: 'left',
+                leftEdge:  api.winWidth*0.2,
+                fixedPane: {
+                    name: 'fixed',
+                    url: 'html/fixed.html'
+                },
+                slidPane: {
+                    name: 'slide',
+                    url: 'html/slide.html'
+                }
+            }, function (ret) {
+
+            });
+
+        }else{
+            api.openWin({
+                name: 'login',
+                url: './html/login/login.html'
+            });
+
+        }
 
     }
 </script>
