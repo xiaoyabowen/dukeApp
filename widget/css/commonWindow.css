@@ -168,6 +168,10 @@ textarea{
 	height: 16px;
 	vertical-align: 2px;
 }
+.shareImg{
+    display: inline-block;
+    right: 0.38rem;
+}
 #leftButton{
     left: 0.4rem;
 }
