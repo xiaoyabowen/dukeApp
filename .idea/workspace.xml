@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b38ebfe8-52ca-420e-803e-b22fa293fb7c" name="Default Changelist" comment="" />
+    <list default="true" id="b38ebfe8-52ca-420e-803e-b22fa293fb7c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/editPass_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/editPass_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/html/user/mine/setting_body.html" beforeDir="false" afterPath="$PROJECT_DIR$/widget/html/user/mine/setting_body.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,8 +26,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/widget/html/user/mine/editPass_body.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="179">
-                  <caret line="90" column="19" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
+                <state relative-caret-position="433">
+                  <caret line="119" column="72" selection-start-line="119" selection-start-column="72" selection-end-line="119" selection-end-column="72" />
                   <folding>
                     <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                   </folding>
@@ -27,11 +35,42 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_Major.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="600">
-                  <caret line="38" column="41" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="41" />
+                <state relative-caret-position="420">
+                  <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2176">
+                  <caret line="38" column="78" selection-start-line="38" selection-start-column="78" selection-end-line="38" selection-end-column="78" />
+                  <folding>
+                    <element signature="e#4455#4922#0" />
+                    <element signature="e#4960#5426#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="660">
+                  <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/setting_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="324">
+                  <caret line="42" column="35" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -45,19 +84,69 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="548">
+                  <caret line="199" column="74" selection-start-line="199" selection-start-column="57" selection-end-line="199" selection-end-column="74" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="674">
+                  <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/widget/html/login/login.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="383" selection-start-line="383" selection-end-line="383" />
+                <state relative-caret-position="-240">
+                  <caret line="308" column="31" lean-forward="true" selection-start-line="308" selection-start-column="31" selection-end-line="308" selection-end-column="31" />
                   <folding>
                     <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/login/homeChoose.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="41" column="57" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="57" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-956">
+                  <caret line="52" column="71" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="71" />
+                  <folding>
+                    <element signature="e#5697#6164#0" />
+                    <element signature="e#6191#6657#0" />
+                    <element signature="e#6701#7399#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_addEdution.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -76,8 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>st-submit-btn</find>
-      <find>position</find>
       <find>goHome</find>
       <find>returnPass</find>
       <find>mineGo</find>
@@ -105,6 +192,8 @@
       <find>工作经历</find>
       <find>resume_addEdution</find>
       <find>resume_editEdution</find>
+      <find>退出</find>
+      <find>editresume_Major</find>
       <find>againPass</find>
     </findStrings>
     <replaceStrings>
@@ -117,8 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/widget/html/user/mine/Interview_body.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/InterviewDetail_body.html" />
         <option value="$PROJECT_DIR$/widget/html/user/mine/InterviewStar.html" />
         <option value="$PROJECT_DIR$/widget/css/mui.min.css" />
         <option value="$PROJECT_DIR$/widget/html/user/mine/InterviewStar_body.html" />
@@ -159,15 +246,17 @@
         <option value="$PROJECT_DIR$/widget/html/user/mine/setUp_body.html" />
         <option value="$PROJECT_DIR$/widget/html/user/mine/mine_body.html" />
         <option value="$PROJECT_DIR$/widget/html/user/mine/editPass.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html" />
         <option value="$PROJECT_DIR$/widget/script/user.js" />
         <option value="$PROJECT_DIR$/widget/script/data.js" />
         <option value="$PROJECT_DIR$/widget/html/login/login.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/editPass_body.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html" />
-        <option value="$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html" />
         <option value="$PROJECT_DIR$/widget/script/public.js" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/setting_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/editPass_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html" />
+        <option value="$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html" />
       </list>
     </option>
   </component>
@@ -277,12 +366,12 @@
       <workItem from="1561272079041" duration="1082000" />
       <workItem from="1561339448113" duration="24212000" />
       <workItem from="1561425293514" duration="27621000" />
-      <workItem from="1561511486237" duration="25940000" />
+      <workItem from="1561511486237" duration="28385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173575000" />
+    <option name="totallyTimeSpent" value="176020000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1913" y="-7" width="2062" height="1126" extended-state="6" />
@@ -311,23 +400,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/authenCard_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="53" column="29" lean-forward="true" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/myOffer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/widget/css/componyDetail.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
@@ -491,16 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/login/homeChoose.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="41" column="57" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/setting_body.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/widget/html/user/mine/editPhone.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -513,11 +575,6 @@
         <state relative-caret-position="382">
           <caret line="758" column="24" lean-forward="true" selection-start-line="758" selection-start-column="24" selection-end-line="758" selection-end-column="24" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3150" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_editEdution_body.html">
@@ -553,13 +610,6 @@
             <caret line="25" column="14" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="14" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1024">
-          <caret line="202" column="57" lean-forward="true" selection-start-line="202" selection-start-column="57" selection-end-line="202" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -604,20 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="97" column="48" selection-start-line="97" selection-start-column="48" selection-end-line="97" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/widget/script/public.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -632,17 +668,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="57" column="38" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/widget/html/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="383" selection-start-line="383" selection-end-line="383" />
+        <state relative-caret-position="-240">
+          <caret line="308" column="31" lean-forward="true" selection-start-line="308" selection-start-column="31" selection-end-line="308" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -650,20 +679,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/login/homeChoose.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="41" column="57" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/widget/html/user/mine/editPass_body.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="90" column="19" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
+        <state relative-caret-position="433">
+          <caret line="119" column="72" selection-start-line="119" selection-start-column="72" selection-end-line="119" selection-end-column="72" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../dukeUse - 副本 (2)/widget/html/user/mine/resume_addEdution_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3240" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_addEdution.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/setting_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="42" column="35" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_Major.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="41" />
+        <state relative-caret-position="420">
+          <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_editResume_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="199" column="74" selection-start-line="199" selection-start-column="57" selection-end-line="199" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_School_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_Major_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/resume_addEdution_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-956">
+          <caret line="52" column="71" selection-start-line="52" selection-start-column="66" selection-end-line="52" selection-end-column="71" />
+          <folding>
+            <element signature="e#5697#6164#0" />
+            <element signature="e#6191#6657#0" />
+            <element signature="e#6701#7399#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/html/user/mine/addEdution_body.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2176">
+          <caret line="38" column="78" selection-start-line="38" selection-start-column="78" selection-end-line="38" selection-end-column="78" />
+          <folding>
+            <element signature="e#4455#4922#0" />
+            <element signature="e#4960#5426#0" />
+          </folding>
         </state>
       </provider>
     </entry>

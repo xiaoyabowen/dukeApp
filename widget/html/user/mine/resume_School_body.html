@@ -40,8 +40,9 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
+    var url;
     apiready = function () {
-
+        url = api.pageParam.url
     };
 
 
@@ -53,9 +54,10 @@
             toast("请输入学校名称");
             return;
         }
+        var frameName = url + "_body";
         api.execScript({
-            name:"addEdution",
-            frameName:'addEdution_body',
+            name:url,
+            frameName:frameName,
             script: 'editresume_School('+JSON.stringify(text6)+')'
         })
         closeWin();

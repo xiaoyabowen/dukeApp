@@ -114,6 +114,16 @@
             }
             ajaxGetWithProgress(updatePwd, params, function (ret, err) {
                 console.log(ret)
+
+                if (ret && ret.status ) {
+
+                    openNewWindow("setting", "./setting.html", {role: 1})
+                }else if(ret && !ret.success){
+                    if(ret){
+                        var msg = ret.msg || "服务器错误！";
+                        toast(msg);
+                    }
+                }
             })
         }
     </script>
