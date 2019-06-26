@@ -19,8 +19,8 @@
             <!--<img src="../../icon/return.png" alt="">-->
         </div>
 
-        <div class="">我是伯乐</div>
-        <div class="">我是千里马</div>
+        <div class="" onclick="inter()">我是伯乐</div>
+        <div class="" onclick="user()">我是千里马</div>
     </div>
 </div>
 <script type="text/javascript" src="../../script/api.js"></script>
@@ -37,6 +37,9 @@
 
     apiready = function () {
 
+    }
+    function user() {
+        openNewWindow("login", "./login.html", {role: 1})
     }
 
 

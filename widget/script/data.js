@@ -652,12 +652,14 @@ function ajaxGetUser(url, getData, callBack) {
     });
 }
 
-function ajaxGet(url, getData, callBack) {
-    var user = getUserInfo();
-    getData.token = user.token;
+function ajaxGet(url, params, callBack) {
+    // var user = getUserInfo();
+    // console.log(user)
+    // params.token = user.token;
+    // console.log(params)
     api.ajax({
         url: url,
-        method: 'post',
+        method: 'get',
         timeout: 60,
         dataType: 'json',
         returnAll: false,
@@ -667,7 +669,7 @@ function ajaxGet(url, getData, callBack) {
 	        	"type" :   1
         	},
         data: {
-            values: getData
+            values: params
         }
     }, function (ret, err) {
 		if(ret&&ret.code == 400){

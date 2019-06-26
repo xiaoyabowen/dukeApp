@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>修改密码</title>
+    <title>设置密码</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <style>
@@ -64,6 +64,8 @@
             font-size: 0.32rem;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
     <div class="Box">
@@ -79,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="configEdit">确认修改</div>
+            <div class="configEdit" onclick="editPassBtn()">确认修改</div>
         </div>
 
     </div>
@@ -90,11 +92,30 @@
     <script type="text/javascript" src="../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script type="text/javascript" src="../../../script/user.js"></script>
     <script>
         apiready = function () {
 
         };
+        function editPassBtn() {
+            var params = {};
+            params.newPwd = $api.byId("againPass").value;
+            params.oldPwd = '';
+            var user = localStorage.getItem("user")
+            var userP = JSON.parse(user)
+
+            params.token = userP.token;
+
+            if (isBlack(params.newPwd)) {
+                toast('请输入密码');
+                api.hideProgress();
+                return;
+            }
+            ajaxGetWithProgress(updatePwd, params, function (ret, err) {
+                console.log(ret)
+            })
+        }
     </script>
 </body>
 </html>

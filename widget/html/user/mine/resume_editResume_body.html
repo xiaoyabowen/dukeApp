@@ -171,7 +171,7 @@
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex" onclick="addWork()">
+                <div class="info-choose cssFlex" onclick="resume_addWork()">
                     <span class="info-choose-name weight">工作经历</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name blue">添加</span>
@@ -197,7 +197,7 @@
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex"onclick="addEdution()">
                     <span class="info-choose-name weight">教育经历</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name blue">添加</span>
@@ -283,10 +283,16 @@
     }// 编辑  求职状态
     function resume_editExpectations() {
         openNewWindow("resume_editExpectations", "./resume_editExpectations.html");
-    }// 工作经历
-    function addWork() {
-        openNewWindow("addWork", "./addWork.html");
     }
+    // 工作经历
+    function resume_addWork() {
+        openNewWindow("resume_addWork", "./resume_addWork.html");
+    }
+    // 工作经历
+    function addEdution() {
+        openNewWindow("addEdution", "./addEdution.html");
+    }
+
     // 薪资范围
     function salaryRange(){
         var picker = new mui.PopPicker();

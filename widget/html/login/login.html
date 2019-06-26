@@ -201,8 +201,8 @@
     </style>
 
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>-->
-    <!--<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
 <div id="main">
@@ -210,15 +210,16 @@
         <div class="return">
             <!--<img src="../../icon/return.png" alt="">-->
         </div>
+        <div id="role" style="display: none"></div>
         <div class="login-unit">
             <p class="login-title">欢迎来到渡客</p>
             <div class="login-input">
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
-                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                    <input id="phone" type="number" value="15901420539" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="number" placeholder="请输入验证码">
+                    <input id="password" type="number" value="754322" placeholder="请输入验证码">
                     <button  id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
                 </div>
             </div>
@@ -255,33 +256,33 @@
 <script>
     apiready = function () {
         //添加安卓退出按钮事件
-        api.addEventListener({
-            name: 'keyback'
-        }, function (ret, err) {
-            closeOnKeyBack();
-        });
-        var backButtonPress = 0;
+        // api.addEventListener({
+        //     name: 'keyback'
+        // }, function (ret, err) {
+        //     closeOnKeyBack();
+        // });
+        // var backButtonPress = 0;
+        //
+        // function closeOnKeyBack() {
+        //     backButtonPress++;
+        //     if (backButtonPress > 1) {
+        //         closeApp();
+        //     } else {
+        //         api.toast({msg: '再按一次退出应用'});
+        //     }
+        //     setTimeout(function () {
+        //         backButtonPress = 0;
+        //     }, 1000);
+        // }
+        //
+        // var Height = $(window).height();   //获取当前页面高度
+        // $(window).resize(function () {
+        //     $('body').height(Height);
+        // });
+        var role = api.pageParam.role;
+        $api.byId("role").innerHTML = role
 
-        function closeOnKeyBack() {
-            backButtonPress++;
-            if (backButtonPress > 1) {
-                closeApp();
-            } else {
-                api.toast({msg: '再按一次退出应用'});
-            }
-            setTimeout(function () {
-                backButtonPress = 0;
-            }, 1000);
-        }
-
-        var Height = $(window).height();   //获取当前页面高度
-        $(window).resize(function () {
-            $('body').height(Height);
-        });
     }
-
-
-
 
     /*************点击获取验证码***********/
     var flag = true;//防止重复点击获取验证码
@@ -349,21 +350,24 @@
         //     name: "setUp"//防止从推出登录过来的时候  设置页面没关闭
         // })
         var params = {};
-        params.password = $api.byId("password").value;
+        params.code = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
+        params.role_type = $api.byId("role").innerHTML;
+        params.token_type = "1";
 
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
             return;
         }
-        if (isBlack(params.password)) {
-            toast('请输入密码');
+        if (isBlack(params.code)) {
+            toast('请输入验证码');
             api.hideProgress();
             return;
         }
 
-        ajaxGetUser(adminLoginUrl, params, function (data, err) {
+        ajaxGetUser(LoginAndRegist, params, function (data, err) {
+
             if (data.success == false) {
                 api.hideProgress();
                 var errorMessage = data.msg || '获取信息失败';
@@ -371,41 +375,18 @@
                     msg: errorMessage
                 });
             } else {
-                setUserInfo(data.data);
-                var icon = '';
-                if (data.data.icon) {
-                    icon = data.data.icon;
-                } else {
-                    icon = '';
-                }
-                //原生聊天
-                api.accessNative({
-                    name: "userlogin",
-                    extra: {
-                        notice: "39.107.247.82",
-                        tzPoint: 30001,
-                        ipv4: chatNativeUrl,
-                        point: chatPointUrl,
-                        uid: data.data.chatId,
-                        icon: data.data.icon,
-                        imgServer: uploadImageUrl,
-                        token: data.data.token
-                    }
+                console.log(data)
 
-                }, function (ret, err) {
-                });
-                api.sendEvent({
-                    name: 'ExportLogin',
-                    extra: getUserInfo()
-                });
-                api.execScript({
-                    name: rootWindowName,
-                    script: "apiready()"
-                })
+                localStorage.setItem("user",JSON.stringify(data))
+
+
+                openNewWindow("home", "../user/home/home.html")
+
                 api.hideProgress();
-                setTimeout(function () {
-                    closeWin()
-                }, 1500)
+
+                // setTimeout(function () {
+                //     closeWin()
+                // }, 1500)
             }
         });
     }

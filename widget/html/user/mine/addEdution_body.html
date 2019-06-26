@@ -27,14 +27,14 @@
             <div class="info-choose cssFlex" onclick="resume_School()">
                 <span class="info-choose-name">学校名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="birth_option">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Major()">
                 <span class="info-choose-name">专业名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="majorInput">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -83,7 +83,16 @@
     function resume_School() {
         openNewWindow("resume_School", "./resume_School.html");
     }
-
+    //修改学校名称
+    function editresume_School(wxName) {
+        weChat = wxName;
+        document.getElementById("birth_option").innerHTML = wxName;
+    }
+    //修改专业名称
+    function editresume_Major(wxName) {
+        weChat = wxName;
+        document.getElementById("majorInput").innerHTML = wxName;
+    }
     // 输入专业名称
     function resume_Major() {
         openNewWindow("resume_Major", "./resume_Major.html");
