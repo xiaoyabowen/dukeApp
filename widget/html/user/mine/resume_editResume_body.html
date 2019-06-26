@@ -107,6 +107,8 @@
             padding-bottom: 0.2rem;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -178,7 +180,7 @@
                     </div>
                 </div>
 
-                <div class="workExperience">
+                <div class="workExperience" id="workings">
                     <div class="info-choose cssFlex" onclick="addEditWork()">
                         <span class="info-choose-name">北京A公司信息技术有限公司</span>
                         <div class="info-choose-main cssFlex">
@@ -204,7 +206,7 @@
                     </div>
                 </div>
 
-                <div class="workExperience">
+                <div class="workExperience" id="educations">
                     <div class="info-choose cssFlex">
                         <span class="info-choose-name">北京理工大学</span>
                         <div class="info-choose-main cssFlex">
@@ -222,8 +224,8 @@
                     </div>
                 </div>
 
-                <div class="workExperience" onclick="resume_editProject()">
-                    <div class="info-choose cssFlex">
+                <div class="workExperience" id="project">
+                    <div class="info-choose cssFlex" onclick="resume_editProject()">
                         <span class="info-choose-name">当当网B端后台和APP端</span>
                         <div class="info-choose-main cssFlex">
                             <img src="../../../icon/right.png" alt="right" class="info-img-right">
@@ -265,11 +267,96 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
     apiready = function () {
+        // 获取用户简历全部信息
+        ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data) {
+                var person_summary = data.person_summary;
+                var projects = data.projects;
+                var education_his = data.education_his;
+                var working_his = data.working_his;
 
+                // 姓名
+                document.querySelector('.editResume_name').innerText = person_summary.p_name;
+                // 自我介绍
+                if (person_summary.p_tags) {
+                    document.querySelector('.info-choose-name').innerText = "已填写";
+                } else {
+                    document.querySelector('.info-choose-name').innerText = "未填写";
+                }
+                // 综合能力
+
+                // 工作经历
+                if (working_his.length > 0) {
+                    var workings = document.getElementById('workings');
+                    var arr=[];
+                    for (var i = 0; i < working_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork('+ working_his[i].sn +')">\n' +
+                            '                        <span class="info-choose-name">'+ working_his[i].com_name +'</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(workings)
+                    workings.innerHTML = dom;
+                }
+                // 教育经历
+                if (education_his.length > 0) {
+                    var educations = document.getElementById('educations');
+                    var arr=[];
+                    for (var i = 0; i < education_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="editEducation('+ education_his[i].sn +')">\n' +
+                            '                        <span class="info-choose-name">'+ education_his[i].univ_name +'</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(educations)
+                    educations.innerHTML = dom;
+                }
+                // 项目经历
+                if (projects.length > 0) {
+                    var project = document.getElementById('project');
+                    var arr=[];
+                    for (var i = 0; i < projects.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject('+ projects[i].sn +')">\n' +
+                            '                        <span class="info-choose-name">'+ projects[i].project_name +'</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(project)
+                    project.innerHTML = dom;
+                }
+
+            }
+            // if (data.return_info.status) {
+            //     api.toast({
+            //         msg: '编辑教育经历成功'
+            //     });
+            // }
+
+        });
 
     };
 
@@ -292,6 +379,10 @@
     // 教育
     function resume_addEdution() {
         openNewWindow("resume_addEdution", "./resume_addEdution.html");
+    }
+    //编辑教育
+    function editEducation() {
+
     }
 
     // 薪资范围
@@ -336,7 +427,7 @@
         openNewWindow("resume_addProject", "resume_addProject.html")
     }
     // 编辑工作经历
-    function addEditWork () {
+    function addEditWork (id) {
         openNewWindow("addEditWork", "addEditWork.html")
     }
 

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
-
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
     <div class="Box">
@@ -118,10 +119,25 @@
     <script type="text/javascript" src="../../../script/kv.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
     <script>
         apiready = function () {
+            // 获取用户信息
+            ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+                console.log(data);
+                if (data) {
+                    var person_summary = data.person_summary;
+                    console.log(person_summary);
+                    document.querySelector('.m-name').innerText = person_summary.p_name;
+                    localStorage.setItem('person_id', person_summary.person_id);
+                }
+                // if (data.return_info.status) {
+                //     api.toast({
+                //         msg: '编辑教育经历成功'
+                //     });
+                // }
 
+            });
         };
         // 我的个人主页
         function personHome() {
