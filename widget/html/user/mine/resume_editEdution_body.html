@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>添加教育经历</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+
+        .boxSub {
+            padding-top: 0.2rem;
+        }
+
+        div.info-choose {
+            height: 1.1rem;
+        }
+        .info-choose-name{
+            font-weight: bold;
+        }.resume_content {
+             margin-top:0;
+         }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <div class="boxSub">
+        <!--<div class="comon-mine-title">添加教育经历</div>-->
+        <div class="resume_content">
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">学校名称</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">北京理工大学</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">专业名称</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">艺术设计专业</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">学历</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">本科</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">入学年份</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">2002</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="ageChoose()">
+                <span class="info-choose-name">毕业年份</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option">2006</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+    apiready = function () {
+
+    };
+
+    function ageChoose() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            $(".birth_option").val(selectItems.text)
+        })
+
+
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>
