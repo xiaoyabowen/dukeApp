@@ -39,15 +39,15 @@
             <!--我的沟通记录-->
             <div class="m-chat cssFlex">
                 <div class="m-chat-text">
-                    <p class="tong-num">433</p>
+                    <p class="tong-num" id="communicate">433</p>
                     <p class="tong-text">沟通过</p>
                 </div>
                 <div class="m-chat-text">
-                    <p class="tong-num">0</p>
+                    <p class="tong-num" id="interview">0</p>
                     <p class="tong-text" onclick="Interview()">面试</p>
                 </div>
                 <div class="m-chat-text">
-                    <p class="tong-num">67</p>
+                    <p class="tong-num" id="statusNum">67</p>
                     <p class="tong-text" onclick="subscribed_positions()">已投递</p>
                 </div>
                 <div class="m-chat-text">
@@ -138,6 +138,35 @@
                 // }
 
             });
+
+            var person_id = localStorage.getItem('person_id');
+
+            var obj = {person_id: person_id};
+
+            // 查询沟通数量
+            ajaxGetWithProgress(GetCommunicate, obj, function (data, err) {
+                console.log(data);
+                if (data.count) {
+                    document.getElementById('communicate').innerText = data.count || 0;
+                }
+            });
+
+            // 获取面试机会
+            ajaxGetWithProgress(GetInterview, obj, function (data, err) {
+                console.log(data);
+                if (data.count) {
+                    document.getElementById('interview').innerText = data.count || 0;
+                }
+            });
+
+            // 查询投递简历的个数
+            ajaxGetWithProgress(GetStatusNum, obj, function (data, err) {
+                console.log(data);
+                if (data.count) {
+                    document.getElementById('statusNum').innerText = data.count || 0;
+                }
+            });
+
         };
         // 我的个人主页
         function userCenter() {

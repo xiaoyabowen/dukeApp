@@ -89,6 +89,7 @@
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
@@ -118,10 +119,11 @@
     };
 
 
-    // 输入学校名称
+    // set学校名称
     function resume_School() {
         openNewWindow("resume_School", "./resume_School.html", {
-            url: 'resume_editEdution'
+            url: 'resume_editEdution',
+            content: document.getElementById("School").innerText
         });
     }
 
@@ -131,10 +133,11 @@
         document.getElementById("School").innerHTML = wxName;
     }
 
-    // 输入专业名称
+    // set专业名称
     function resume_Major() {
         openNewWindow("resume_Major", "./resume_Major.html", {
-            url: 'resume_editEdution'
+            url: 'resume_editEdution',
+            content: document.getElementById("major").innerText
         });
 
     }

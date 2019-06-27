@@ -49,49 +49,49 @@
             <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">北京A公司信息技术有限公司技术…</span>
+                    <span class="info-choose-main-name birth_option" id="com_name">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">不限</span>
+                    <span class="info-choose-main-name birth_option" id="com_type">不限</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="entry_date()">
+            <div class="info-choose cssFlex" onclick="w_from()">
                 <span class="info-choose-name">入职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name entry_date">请选择</span>
+                    <span class="info-choose-main-name entry_date" id="w_from">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="quit_date()">
+            <div class="info-choose cssFlex" onclick="w_to()">
                 <span class="info-choose-name">离职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date">请选择</span>
+                    <span class="info-choose-main-name quit_date" id="w_to">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="position_type">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Position()">
                 <span class="info-choose-name">职位名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="role">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Department()">
                 <span class="info-choose-name">所属部门</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">选填</span>
+                    <span class="info-choose-main-name birth_option" id="position">选填</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <div class="info-choose-name" style="margin-top: 0.3rem">工作内容</div>
 
                 <div class="info-choose cssFlex">
-                    <span class="edit-topbot-content ellipsis">1.负责当当网B端、C端的运营策划运营策划…</span>
+                    <span class="edit-topbot-content ellipsis" id="c_note">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -109,14 +109,24 @@
                 <div class="info-choose-name" style="margin-top: 0.3rem">技能标签</div>
 
                 <div class="info-choose border0 cssFlex">
-                    <span class="edit-topbot-content ellipsis">请选择</span>
+                    <ul class="info-edit-skill cssFlex" id="info-edit-skill">
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                        <!--<li>运营策划</li>-->
+                    </ul>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
 
             <div class="info-choose border0 cssFlex">
                 <span class="info-choose-name">屏蔽该公司</span>
-                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                <div id="btn" class="mui-switch mui-switch-blue mui-switch-mini mui-active">
                     <div class="mui-switch-handle"></div>
                 </div>
             </div>
@@ -135,43 +145,100 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
+    var person_id = localStorage.getItem('person_id');
+
     apiready = function () {
 
     };
 
-    // 公司名称
+    // 编辑公司名称
     function resume_Company() {
-        openNewWindow("resume_Company", "./resume_Company.html");
+        openNewWindow("resume_Company", "./resume_Company.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("com_name").innerText
+        })
     }
-    // 公司行业
+    function com_name(value) {
+        document.getElementById("com_name").innerText = value;
+    }
+    // 编辑公司行业
     function resume_CompanyIndustry() {
-        openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html");
+        openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("com_type").innerText
+        })
     }
-    // 职位类型
+    function com_type(value) {
+        document.getElementById("com_type").innerText = value;
+    }
+    // 编辑职位类型
     function resume_positionType() {
-        openNewWindow("resume_positionType", "./resume_positionType.html");
+        openNewWindow("resume_positionType", "./resume_positionType.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("position_type").innerText
+        })
     }
-    // 职位名称
+    function position_type(value) {
+        document.getElementById("position_type").innerText = value;
+    }
+    // 编辑职位名称
     function resume_Position() {
-        openNewWindow("resume_Position", "./resume_Position.html");
+        openNewWindow("resume_Position", "./resume_Position.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("role").innerText
+        })
     }
-    // 所属部门
+    function role(value) {
+        document.getElementById("role").innerText = value;
+    }
+    // 编辑所属部门
     function resume_Department() {
-        openNewWindow("resume_Department", "./resume_Department.html");
+        openNewWindow("resume_Department", "./resume_Department.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("position").innerText
+        })
     }
-    // 工作内容
+    function position(value) {
+        document.getElementById("position").innerText = value;
+    }
+    // 编辑工作内容
     function resume_Work() {
-        openNewWindow("resume_Work", "./resume_Work.html");
+        openNewWindow("resume_Work", "./resume_Work.html", {
+            url: 'resume_addWork',
+            // content: document.getElementById("c_note").innerText
+        })
     }
-    // 技能标签
+    function c_note(value) {
+        document.getElementById("c_note").innerText = value;
+    }
+    // 编辑技能标签
     function resume_SkillLabel() {
-        openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html");
-    }
+        openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html", {
+            url: 'resume_addWork',
 
-    // 时间日期选择
-    function entry_date() {
+        })
+    }
+    function set_resume_SkillLabel(value) {
+        console.log(value);
+        var tag = document.querySelector('.info-edit-skill');
+        var tags = [];
+        var title = value.split(',');
+        console.log(title);
+        title.forEach(function (value) {
+            var str = '<li>'+ value +'</li>';
+            tags.push(str);
+        })
+        var dom = tags.join('');
+        tag.innerHTML = dom;
+        // document.getElementById("info-edit-skill").innerText = value;
+    }
+    // 开始时间
+    function w_from() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -180,14 +247,11 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
-            // $(".birth_option").val(selectItems.text)
-            document.querySelector('.entry_date').innerText = selectItems.text;
+            document.getElementById("w_from").innerText = selectItems.text
         })
-
     }
-
-    function quit_date() {
+    // 结束时间
+    function w_to() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -196,11 +260,75 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
-            // $(".birth_option").val(selectItems.text)
-            document.querySelector('.quit_date').innerText = selectItems.text;
+            document.getElementById("w_to").innerText = selectItems.text
         })
+    }
 
+
+    // 点击保存
+    function preservation() {
+        // console.log(w_id);
+        var com_name = document.getElementById("com_name").innerText;
+        var com_type = document.getElementById("com_type").innerText;
+        var w_from = document.getElementById("w_from").innerText;
+        var w_to = document.getElementById("w_to").innerText ;
+        var position_type = document.getElementById("position_type").innerText;
+        var role = document.getElementById("role").innerText;
+        var position = document.getElementById("position").innerText;
+        var c_note = document.getElementById("c_note").innerText;
+
+        var person_id = localStorage.getItem('person_id');
+
+        var list = document.querySelectorAll('.info-edit-skill > li');
+        // console.log(list);
+        var list2 = [];
+        for (var i = 0; i < list.length; i++) {
+            list2.push(list[i].innerText);
+        }
+        // console.log(list2);
+        var title = list2.join(',');
+
+        var is_open;
+
+        if (document.getElementById('btn').classList.contains('mui-active')) {
+            is_open = 0;
+        } else {
+            is_open = 1;
+        }
+
+        var params = {
+            com_name: com_name,
+            com_type: com_type,
+            w_from: w_from,
+            w_to: w_to,
+            position_type: position_type,
+            role: role,
+            title: title,
+            position: position,
+            c_note: c_note,
+            is_open: is_open,
+            u_id: person_id
+        }
+
+        console.log(params);
+
+
+        ajaxGetWithProgress(AddWork, params, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data.return_info.status) {
+                api.toast({
+                    msg: '编辑工作经历成功'
+                });
+                api.execScript({
+                    name: 'resume_editResume',
+                    frameName: "resume_editResume_body",
+                    script: 'reload()'
+                })
+                closeWin();
+            }
+
+        });
     }
 
     // 此处手动调用了js
