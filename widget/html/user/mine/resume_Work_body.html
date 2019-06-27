@@ -53,19 +53,37 @@
 <script>
     var text = document.getElementById('text5')
     var num = document.querySelector('.resume_level2_num');
-    var total = document.querySelector('.resume_level2_total');
+    var url, content;
     apiready = function () {
+        url = api.pageParam.url;
+        content = api.pageParam.content;
 
+        text.value = content;
+        num.innerText = content.length;
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
 
     };
 
+
     // 点击保存执行此方法
     function preservation () {
         var value = text.value;
-        alert(value);
+        // alert(value);
+        if(isBlack(value)){
+            toast("请输入工作内容");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            // frameName:url +"_body",
+            frameName: frameName,
+            script: 'c_note('+JSON.stringify(value)+')'
+        })
+        closeWin();
     }
 
     // 此处手动调用了js

@@ -199,7 +199,7 @@
         var params = {
             u_id: person_id,
             univ_name: School,
-            Major: major,
+            major: major,
             degree: education,
             e_from: entry_date,
             e_to: quit_date
@@ -211,6 +211,12 @@
                 api.toast({
                     msg: '添加教育经历成功'
                 });
+                api.execScript({
+                    name: 'resume_editResume',
+                    frameName: "resume_editResume_body",
+                    script: 'reload()'
+                })
+                closeWin();
             }
 
         });

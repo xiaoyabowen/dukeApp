@@ -31,12 +31,20 @@ var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
 
 // 查询教育信息
 var GetEducation = serverUrl + "/UserProfile/queryEducationByid";
-
 // 添加教育信息
 var AddEducation = serverUrl + "/UserProfile/createEducation";
+// 删除此段教育经历
+var DeleteEducation = serverUrl + "/UserProfile/removeEducation";
 
+// 查询工作经历
+var GetWork = serverUrl + "/UserProfile/queryWorkingExperienceById";
+// 删除工作经历
+var DeleteWork = serverUrl + "/WorkingExperienceProfile/removeWorkingExperience";
 
-
+// 查询项目经历
+var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjecExperiencetList";
+// 删除项目经历
+var DeleteProjec = serverUrl + "/ProjectExperienceProfile/removeProjectExperience";
 
 
 

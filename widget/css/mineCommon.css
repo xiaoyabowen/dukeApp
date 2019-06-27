@@ -995,7 +995,9 @@
     color: #333333;
 }
 
-
+div.isDisplay {
+    display: none;
+}
 /*创建简历二级页面结束*/
 /*=============编辑信息=-====================zbw*/
 .infoBoxSub{

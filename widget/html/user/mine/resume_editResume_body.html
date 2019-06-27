@@ -6,10 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
-    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/mineCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
         .resume_editResume_head {
             padding: 0.5rem 0.28rem;
@@ -106,6 +108,10 @@
         .commonBg {
             padding-bottom: 0.2rem;
         }
+
+        div.isDisplay {
+            display: none;
+        }
     </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -117,7 +123,7 @@
     <!--<div class="header"></div>-->
     <!--主体-->
 
-    <div class="resume_editResume_main">
+    <div class="resume_editResume_main isDisplay">
         <div class="resume_editResume_head cssFlex">
             <div class="resume_editResume_head_left">
                 <div class="editResume_name">张敏</div>
@@ -133,7 +139,7 @@
                 <div class="info-choose cssFlex" onclick="introduce()">
                     <span class="info-choose-name weight">自我描述</span>
                     <div class="info-choose-main cssFlex">
-                        <span class="info-choose-main-name birth_option">已填写</span>
+                        <span class="info-choose-main-name birth_option" id="p_tags">已填写</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
@@ -141,29 +147,29 @@
                 <div class="info-choose cssFlex" onclick="resume_Comprehensive()">
                     <span class="info-choose-name weight">综合能力</span>
                     <div class="info-choose-main cssFlex">
-                        <span class="info-choose-main-name birth_option">已填写</span>
+                        <span class="info-choose-main-name birth_option" id="p_title">已填写</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex">
+                <div class="info-choose cssFlex" onclick="jobHuntingStatus()">
                     <span class="info-choose-name weight">求职状态</span>
                     <div class="info-choose-main cssFlex">
-                        <span class="info-choose-main-name birth_option">离职-随时到岗</span>
+                        <span class="info-choose-main-name birth_option" id="jobHuntingStatus">离职-随时到岗</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
 
-                <div class="info-choose heightAuto cssFlex">
-                    <div  onclick="resume_editExpectations()">
+                <div class="info-choose heightAuto cssFlex" onclick="resume_editExpectations()">
+                    <div>
                         <span class="info-choose-name weight">求职期望</span>
                         <p class="info-choose-name">
-                            <span>运营经理</span>
-                            <span>25k-150k</span>
+                            <span class="work_name">运营经理</span>
+                            <span class="pay">25k-150k</span>
                         </p>
-                        <span class="info-choose-name">北京</span>
+                        <span class="info-choose-name int_city">北京</span>
                     </div>
 
                     <div class="info-choose-main cssFlex">
@@ -181,25 +187,25 @@
                 </div>
 
                 <div class="workExperience" id="workings">
-                    <div class="info-choose cssFlex" onclick="addEditWork()">
-                        <span class="info-choose-name">北京A公司信息技术有限公司</span>
-                        <div class="info-choose-main cssFlex">
-                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                        </div>
-                    </div>
+                    <!--<div class="info-choose cssFlex" onclick="addEditWork()">-->
+                        <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
+                        <!--<div class="info-choose-main cssFlex">-->
+                            <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="info-choose cssFlex" onclick="addEditWork()">
-                        <span class="info-choose-name">北京A公司信息技术有限公司</span>
-                        <div class="info-choose-main cssFlex">
-                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                        </div>
-                    </div>
+                    <!--<div class="info-choose cssFlex" onclick="addEditWork()">-->
+                        <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
+                        <!--<div class="info-choose-main cssFlex">-->
+                            <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
             </div>
 
             <div class="resume_editResume_item">
-                <div class="info-choose cssFlex"onclick="resume_addEdution()">
+                <div class="info-choose cssFlex" onclick="resume_addEdution()">
                     <span class="info-choose-name weight">教育经历</span>
                     <div class="info-choose-main cssFlex">
                         <span class="info-choose-main-name blue">添加</span>
@@ -262,11 +268,13 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
+<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
@@ -276,28 +284,56 @@
             // alert(JSON.stringify(data));
             console.log(data);
             if (data) {
+                document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
                 var projects = data.projects;
                 var education_his = data.education_his;
                 var working_his = data.working_his;
+                var Intention = data.Intention;
 
                 // 姓名
                 document.querySelector('.editResume_name').innerText = person_summary.p_name;
                 // 自我介绍
                 if (person_summary.p_tags) {
-                    document.querySelector('.info-choose-name').innerText = "已填写";
+                    document.getElementById('p_tags').innerText = "已填写";
                 } else {
-                    document.querySelector('.info-choose-name').innerText = "未填写";
+                    document.getElementById('p_tags').innerText = "未填写";
                 }
                 // 综合能力
-
+                if (person_summary.p_title) {
+                    document.getElementById('p_title').innerText = "已填写";
+                } else {
+                    document.getElementById('p_title').innerText = "未填写";
+                }
+                // 求职状态
+                if (Intention.length > 0) {
+                    var statusObj = {
+                        '1': '离职-随时到岗',
+                        '2': '在职-月内到岗',
+                        '3': '在职-考虑机会',
+                        '4': '在职-暂不考虑',
+                    }
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                }
+                // 求职期望
+                if (Intention.length > 0) {
+                    document.querySelector('.work_name').innerText = Intention[0].work_name;
+                    document.querySelector('.int_city').innerText = Intention[0].int_city;
+                    var pays = Intention[0].pay.split('.');
+                    var pays2 = []
+                    pays.forEach(function (value) {
+                        pays2.push(value + 'k')
+                    })
+                    // console.log(pays2);
+                    document.querySelector('.pay').innerText = pays2.join('-');
+                }
                 // 工作经历
                 if (working_his.length > 0) {
                     var workings = document.getElementById('workings');
-                    var arr=[];
+                    var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="addEditWork('+ working_his[i].sn +')">\n' +
-                            '                        <span class="info-choose-name">'+ working_his[i].com_name +'</span>\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
                             '                        </div>\n' +
@@ -313,10 +349,10 @@
                 // 教育经历
                 if (education_his.length > 0) {
                     var educations = document.getElementById('educations');
-                    var arr=[];
+                    var arr = [];
                     for (var i = 0; i < education_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="editEducation('+ education_his[i].sn +')">\n' +
-                            '                        <span class="info-choose-name">'+ education_his[i].univ_name +'</span>\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
                             '                        </div>\n' +
@@ -332,10 +368,10 @@
                 // 项目经历
                 if (projects.length > 0) {
                     var project = document.getElementById('project');
-                    var arr=[];
+                    var arr = [];
                     for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject('+ projects[i].sn +')">\n' +
-                            '                        <span class="info-choose-name">'+ projects[i].project_name +'</span>\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ')">\n' +
+                            '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
                             '                        </div>\n' +
@@ -364,13 +400,40 @@
     function introduce() {
         openNewWindow("resume_Introduce", "./resume_Introduce.html");
     }
+
     // 综合能力
     function resume_Comprehensive() {
         openNewWindow("resume_Comprehensive", "./resume_Comprehensive.html");
-    }// 编辑  求职状态
+    }
+    // 编辑  求职状态
     function resume_editExpectations() {
         openNewWindow("resume_editExpectations", "./resume_editExpectations.html");
     }
+
+    // 求职状态
+    function jobHuntingStatus() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "离职-随时到岗"
+        }, {
+            value: "2",
+            text: "在职-月内到岗"
+        }, {
+            value: "3",
+            text: "在职-考虑机会"
+        }, {
+            value: "4",
+            text: "在职-暂不考虑"
+        }])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            console.log(SelectedItem)
+            document.getElementById('jobHuntingStatus').innerText = SelectedItem[0].text;
+        })
+    }
+
     // 工作经历
     function resume_addWork() {
         openNewWindow("resume_addWork", "./resume_addWork.html");
@@ -380,13 +443,18 @@
     function resume_addEdution() {
         openNewWindow("resume_addEdution", "./resume_addEdution.html");
     }
-    //编辑教育
-    function editEducation() {
 
+    //编辑教育
+    function editEducation(sn, univ_id) {
+        console.log(sn, univ_id);
+        openNewWindow("resume_editEdution", "./resume_editEdution.html", {
+            sn: sn,
+            univ_id: univ_id
+        });
     }
 
     // 薪资范围
-    function salaryRange(){
+    function salaryRange() {
         var picker = new mui.PopPicker();
         picker.setData([{
             value: "first",
@@ -397,39 +465,141 @@
         }])
         //picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
-        picker.show(function(SelectedItem) {
+        picker.show(function (SelectedItem) {
             console.log(SelectedItem);
         })
     }
 
     // 编辑个人基本信息
-    function editInfo () {
+    function editInfo() {
         openNewWindow("editInfo", "editInfo.html")
     }
- //  预览  在线简历
-    function seeResume () {
+
+    //  预览  在线简历
+    function seeResume() {
         openNewWindow("seeResume", "seeResume.html")
     }
-// 社交主页
-    function resume_SocialHomepage () {
+
+    // 社交主页
+    function resume_SocialHomepage() {
         openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html")
     }
-// 图片作品
-    function resume_imgWorks () {
+
+    // 图片作品
+    function resume_imgWorks() {
         openNewWindow("resume_imgWorks", "resume_imgWorks.html")
     }
-// 编辑项目经验
-    function resume_editProject () {
+
+    // 编辑项目经验
+    function resume_editProject() {
         openNewWindow("resume_editProject", "resume_editProject.html")
     }
+
     // 添加项目经历
-    function resume_addProject () {
+    function resume_addProject() {
         openNewWindow("resume_addProject", "resume_addProject.html")
     }
+
     // 编辑工作经历
-    function addEditWork (id) {
-        openNewWindow("addEditWork", "addEditWork.html")
+    function addEditWork(sn, w_id) {
+        console.log(sn, w_id)
+        openNewWindow("addEditWork", "addEditWork.html", {
+            sn: sn,
+            w_id: w_id
+        })
     }
+
+    //刷新页面
+    function reload() {
+        // alert(123)
+        // window.location.reload();
+        ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data) {
+                document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
+                var person_summary = data.person_summary;
+                var projects = data.projects;
+                var education_his = data.education_his;
+                var working_his = data.working_his;
+
+                // 姓名
+                // document.querySelector('.editResume_name').innerText = person_summary.p_name;
+                // 自我介绍
+                if (person_summary.p_tags) {
+                    document.querySelector('.info-choose-name').innerText = "已填写";
+                } else {
+                    document.querySelector('.info-choose-name').innerText = "未填写";
+                }
+                // 综合能力
+
+                // 工作经历
+                if (working_his.length > 0) {
+                    var workings = document.getElementById('workings');
+                    var arr = [];
+                    for (var i = 0; i < working_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn + ')">\n' +
+                            '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(workings)
+                    workings.innerHTML = dom;
+                }
+                // 教育经历
+                if (education_his.length > 0) {
+                    var educations = document.getElementById('educations');
+                    var arr = [];
+                    for (var i = 0; i < education_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(educations)
+                    educations.innerHTML = dom;
+                }
+                // 项目经历
+                if (projects.length > 0) {
+                    var project = document.getElementById('project');
+                    var arr = [];
+                    for (var i = 0; i < projects.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ')">\n' +
+                            '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(project)
+                    project.innerHTML = dom;
+                }
+
+            }
+            // if (data.return_info.status) {
+            //     api.toast({
+            //         msg: '编辑教育经历成功'
+            //     });
+            // }
+
+        });
+    };
 
     // 此处手动调用了js
     // apiready()

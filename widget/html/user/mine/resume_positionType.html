@@ -30,5 +30,13 @@
         initFrameInWin(api.pageParam);
     };
 
+    //点击保存
+    function save(){
+        api.execScript({
+            frameName: "resume_Position_body",
+            script: 'preservation()'
+        })
+    }
+
 </script>
 </html>
