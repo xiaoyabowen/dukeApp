@@ -368,7 +368,7 @@
                     educations.innerHTML = dom;
                 }
                 // 项目经历
-                if (projects.length > 0) {
+                if (projects != null) {
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
@@ -386,7 +386,6 @@
                     // console.log(project)
                     project.innerHTML = dom;
                 }
-
             }
             // if (data.return_info.status) {
             //     api.toast({
