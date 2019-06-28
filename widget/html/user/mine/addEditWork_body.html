@@ -72,7 +72,7 @@
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="is_open">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="position_type">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -100,21 +100,21 @@
             <div onclick="resume_SkillLabel()">
                 <div class="info-choose-name" style="margin-top: 0.3rem">技能标签</div>
                 <ul class="info-edit-skill cssFlex">
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
-                    <li>运营策划</li>
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
+                    <!--<li>运营策划</li>-->
                 </ul>
             </div>
 
             <div data-type="0" class="pingbi cssFlex">
                 <span class="info-choose-name">屏蔽该公司</span>
-                <div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+                <div id="btn" class="mui-switch mui-switch-blue mui-switch-mini mui-active">
                     <div class="mui-switch-handle"></div>
                 </div>
             </div>
@@ -138,14 +138,17 @@
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
     var person_id = localStorage.getItem('person_id');
     var sn, w_id;
     apiready = function () {
-        var sn = api.pageParam.sn;
-        var w_id = api.pageParam.w_id;
+        sn = api.pageParam.sn;
+        w_id = api.pageParam.w_id;
+
+        // console.log(w_id);
 
         var obj = {
             person_id: person_id
@@ -155,16 +158,37 @@
             console.log(res);
             if (res && res.working_his) {
                 var msg = res.working_his[--sn];
-
-                console.log(msg)
+                // console.log(msg)
                 document.getElementById("com_name").innerText = msg.com_name || '请输入';
                 document.getElementById("com_type").innerText = msg.com_type || '请输入';
                 document.getElementById("w_from").innerText = msg.w_from || '请输入';
                 document.getElementById("w_to").innerText = msg.w_to || '请输入';
-                document.getElementById("is_open").innerText = msg.is_open || '请输入';
-                document.getElementById("role").innerText = msg.role || '请输入';
                 document.getElementById("position").innerText = msg.position || '请输入';
+                document.getElementById("role").innerText = msg.role || '请输入';
+                document.getElementById("position_type").innerText = msg.position_type || '请输入';
                 document.getElementById("c_note").innerText = msg.c_note || '请输入';
+
+                var tag = document.querySelector('.info-edit-skill');
+                var tags = [];
+                if ( msg.title){
+                    var title = msg.title.split(',');
+                    console.log(title);
+                    title.forEach(function (value) {
+                        var str = '<li>'+ value +'</li>';
+                        tags.push(str);
+                    })
+                    var dom = tags.join('');
+                    tag.innerHTML = dom;
+                }
+
+
+                if (msg.is_open == 'true') {
+                    // alert(456)
+                    document.getElementById('btn').classList.remove('mui-active');
+                } else {
+                    // alert(123)
+                    document.getElementById('btn').classList.add('mui-active');
+                }
 
             }
         })
@@ -195,11 +219,11 @@
     function resume_positionType() {
         openNewWindow("resume_positionType", "./resume_positionType.html", {
             url: 'addEditWork',
-            content: document.getElementById("is_open").innerText
+            content: document.getElementById("position_type").innerText
         })
     }
-    function is_open(value) {
-        document.getElementById("is_open").innerText = value;
+    function position_type(value) {
+        document.getElementById("position_type").innerText = value;
     }
     // 编辑职位名称
     function resume_Position() {
@@ -233,13 +257,33 @@
     }
     // 编辑技能标签
     function resume_SkillLabel() {
+        var list = document.querySelectorAll('.info-edit-skill > li');
+        // console.log(list);
+        var list2 = [];
+        for (var i = 0; i < list.length; i++) {
+            list2.push(list[i].innerText);
+        }
+        // console.log(list2);
+        var title = list2.join(',');
+
         openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html", {
             url: 'addEditWork',
-
+            content: title
         })
     }
     function set_resume_SkillLabel(value) {
-        document.getElementById("com_name").innerText = value;
+        console.log(value);
+        var tag = document.querySelector('.info-edit-skill');
+        var tags = [];
+        var title = value.split(',');
+        console.log(title);
+        title.forEach(function (value) {
+            var str = '<li>'+ value +'</li>';
+            tags.push(str);
+        })
+        var dom = tags.join('');
+        tag.innerHTML = dom;
+        // document.getElementById("info-edit-skill").innerText = value;
     }
     // 开始时间
     function w_from() {
@@ -276,7 +320,7 @@
                 var obj = {
                     w_id: w_id
                 }
-                ajaxGetWithProgress(DeleteEducation,obj,function(res,err) {
+                ajaxGetWithProgress(DeleteWork,obj,function(res,err) {
                     // api.alert({mas: JSON.stringify(res)});
                     console.log(res);
                     if (res && res.return.status) {
@@ -297,41 +341,58 @@
 
     // 点击保存
     function preservation() {
+        // console.log(w_id);
         var com_name = document.getElementById("com_name").innerText;
         var com_type = document.getElementById("com_type").innerText;
         var w_from = document.getElementById("w_from").innerText;
         var w_to = document.getElementById("w_to").innerText ;
-        var is_open = document.getElementById("is_open").innerText;
+        var position_type = document.getElementById("position_type").innerText;
         var role = document.getElementById("role").innerText;
         var position = document.getElementById("position").innerText;
         var c_note = document.getElementById("c_note").innerText;
 
         var person_id = localStorage.getItem('person_id');
-        // alert(person_id)
-        // console.log(School,major,education,entry_date,quit_date);
+
+        var list = document.querySelectorAll('.info-edit-skill > li');
+        // console.log(list);
+        var list2 = [];
+        for (var i = 0; i < list.length; i++) {
+            list2.push(list[i].innerText);
+        }
+        // console.log(list2);
+        var title = list2.join(',');
+
+        var is_open;
+
+        if (document.getElementById('btn').classList.contains('mui-active')) {
+            is_open = 0;
+        } else {
+            is_open = 1;
+        }
 
         var params = {
             com_name: com_name,
             com_type: com_type,
             w_from: w_from,
             w_to: w_to,
-            position_type: is_open,
+            position_type: position_type,
             role: role,
             title: title,
-            role: role,
             position: position,
             c_note: c_note,
-            c_id: person_id,
-            uid: w_id
-
+            is_open: is_open,
+            w_id: w_id
         }
 
+        console.log(params);
 
-        ajaxGetWithProgress(AddEducation, params, function (data, err) {
+
+        ajaxGetWithProgress(SetWork, params, function (data, err) {
             // alert(JSON.stringify(data));
-            if (data.return_info.status) {
+            console.log(data);
+            if (data.return.status) {
                 api.toast({
-                    msg: '编辑教育经历成功'
+                    msg: '编辑工作经历成功'
                 });
                 api.execScript({
                     name: 'resume_editResume',

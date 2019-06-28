@@ -314,10 +314,12 @@
                         '4': '在职-暂不考虑',
                     }
                     document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                    document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
                 }
                 // 求职期望
                 if (Intention.length > 0) {
                     document.querySelector('.work_name').innerText = Intention[0].work_name;
+                    document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
                     document.querySelector('.int_city').innerText = Intention[0].int_city;
                     var pays = Intention[0].pay.split('.');
                     var pays2 = []
@@ -407,7 +409,14 @@
     }
     // 编辑  求职状态
     function resume_editExpectations() {
-        openNewWindow("resume_editExpectations", "./resume_editExpectations.html");
+        var i_id = document.querySelector('.work_name').dataset['i_id'];
+        var status = document.getElementById('jobHuntingStatus').dataset['status'];
+        // console.log(status)
+        // console.log(document.getElementById('jobHuntingStatus'))
+        openNewWindow("resume_editExpectations", "./resume_editExpectations.html", {
+            i_id: i_id,
+            status: status
+        });
     }
 
     // 求职状态
@@ -429,8 +438,17 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('jobHuntingStatus').innerText = SelectedItem[0].text;
+            document.getElementById('jobHuntingStatus').dataset['status'] = SelectedItem[0].value;
+
+            ajaxGetWithProgress(EditStatus, {
+                status: SelectedItem[0].value,
+                i_id: document.querySelector('.work_name').dataset['i_id']
+            }, function (data, err) {
+                console.log(data)
+
+            });
         })
     }
 
@@ -490,10 +508,10 @@
         openNewWindow("resume_imgWorks", "resume_imgWorks.html")
     }
 
-    // 编辑项目经验
-    function resume_editProject() {
-        openNewWindow("resume_editProject", "resume_editProject.html")
-    }
+    // // 编辑项目经验
+    // function resume_editProject() {
+    //     openNewWindow("resume_editProject", "resume_editProject.html")
+    // }
 
     // 添加项目经历
     function resume_addProject() {
@@ -510,7 +528,10 @@
     }
     // 编辑项目经历
     function resume_editProject(sn, pro_id) {
+<<<<<<< HEAD
         console.log(sn, pro_id)
+=======
+>>>>>>> wenqiang
         openNewWindow("resume_editProject", "resume_editProject.html", {
             sn: sn,
             pro_id: pro_id
@@ -518,8 +539,7 @@
     }
     //刷新页面
     function reload() {
-        // alert(123)
-        // window.location.reload();
+
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);

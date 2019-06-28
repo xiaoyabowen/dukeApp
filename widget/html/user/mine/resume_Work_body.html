@@ -58,8 +58,14 @@
         url = api.pageParam.url;
         content = api.pageParam.content;
 
-        text.value = content;
-        num.innerText = content.length;
+        if (content) {
+            text.value = content || '';
+            num.innerText = content.length;
+        } else {
+
+        }
+
+
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }

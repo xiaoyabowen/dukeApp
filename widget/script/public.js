@@ -26,6 +26,15 @@ var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
 var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
 
+// 获取面试机会
+var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
+
+// // 查询沟通数量
+var GetCommunicate = serverUrl + "/UserProfile/queryPersonChatList";
+
+// 查询投递简历的个数
+var GetStatusNum = serverUrl + "/UserProfile/queryApplicationStatusNum";
+
 // 获取简历全部信息
 var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
 
@@ -38,8 +47,12 @@ var DeleteEducation = serverUrl + "/UserProfile/removeEducation";
 
 // 查询工作经历
 var GetWork = serverUrl + "/UserProfile/queryWorkingExperienceById";
+// 添加工作经历
+var AddWork = serverUrl + "/WorkingExperienceProfile/addWorkingExperience";
 // 删除工作经历
 var DeleteWork = serverUrl + "/WorkingExperienceProfile/removeWorkingExperience";
+// 修改工作经历
+var SetWork = serverUrl + "/WorkingExperienceProfile/updateWorkingExperience";
 
 // tianjia项目经历
 
@@ -49,6 +62,13 @@ var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjecExperiencetLis
 // 删除项目经历
 var DeleteProjec = serverUrl + "/ProjectExperienceProfile/removeProjectExperience";
 
+// 查询求职期望
+var GetStatus = serverUrl + "/UserProfile/queryIntention";
+// 修改求职期望
+var SetStatus = serverUrl + "/UserProfile/createIntention";
+
+// 修改求职状态
+var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 
 
 

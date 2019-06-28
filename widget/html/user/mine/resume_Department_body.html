@@ -25,7 +25,7 @@
         </div>
 
         <div class="resume_level2_content">
-            <input class="text" id="text3" type="text" maxlength=30 placeholder="姓名">
+            <input class="text" id="text3" type="text" maxlength=30 placeholder="部门">
         </div>
         <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/30字符</p>
     </div>
@@ -49,8 +49,11 @@
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
-        text.value = content;
-        num.innerText = content.length;
+        if (content) {
+            text.value = content || '';
+            num.innerText = content.length;
+        }
+
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
