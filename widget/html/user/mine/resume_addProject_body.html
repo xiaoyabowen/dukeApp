@@ -87,7 +87,7 @@
         <div class="resume_editResume_item top" onclick="resume_Project()">
             <div class="title">项目名称</div>
             <div class="info-choose minHeight cssFlex">
-                <span class="info-choose-name name" id="pro_name">当当网B端后台和APP端</span>
+                <span class="info-choose-name name" id="pro_name">请输入</span>
                 <div class="info-choose-main cssFlex">
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
@@ -98,8 +98,8 @@
             <div class="info-choose maxHeight cssFlex" onclick="resume_CompanyLi()">
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="c_id">不关联任何公司</span>
-                    <span id="c_name" style="display: none"></span>
+                    <span class="info-choose-main-name birth_option" id="c_name">不关联任何公司</span>
+                    <span id="c_id" style="display: none"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <p id="pro_note">项目首页活动策划，商城活动策划</p>
+            <p id="pro_note">请输入</p>
         </div>
 
         <div class="resume_editResume_item">
@@ -174,9 +174,7 @@
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-
     apiready = function () {
-
 
     };
 
@@ -199,8 +197,8 @@
         })
     }
     function c_id(value,c_id) {
-        document.getElementById("c_id").innerText = value;
-        document.getElementById("c_name").innerText = c_id;
+        document.getElementById("c_name").innerText = value;
+        document.getElementById("c_id").innerText = c_id;
     }
     // 编辑您的成就
     function resume_Achievement() {
@@ -210,7 +208,6 @@
         })
     }
     function pro_cheng(value) {
-        alert(value)
         document.getElementById("pro_cheng").innerText = value;
     }
     // 编辑您的项目描述
@@ -227,7 +224,7 @@
     function resume_ProjectLinks() {
         openNewWindow("resume_ProjectLinks", "./resume_ProjectLinks.html", {
             url: 'resume_addProject',
-            content: document.getElementById("pro_link").innerText
+            type: "1"
         })
     }
     function pro_link(value) {
@@ -235,11 +232,13 @@
     }
 
 
+
     // 入学开始
     function entry_date() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
+                // value:new Date(),
                 beginDate: new Date(1950, 04, 25), //设置开始日期
                 endDate: new Date() //设置开始日期
             }
@@ -257,6 +256,7 @@
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
+                // "value":"1950-03-03",
                 beginDate: new Date(1950, 04, 25), //设置开始日期
                 endDate: new Date() //设置开始日期
             }
@@ -272,18 +272,41 @@
     function preservation() {
         var project_name = document.getElementById("pro_name").innerText;
         var p_note = document.getElementById("pro_note").innerText;
-        var submmary = document.getElementById("pro_cheng").innerText;
+        var summary = document.getElementById("pro_cheng").innerText;
         var p_from = document.getElementById("pro_begin").innerText ;
         var p_to = document.getElementById("pro_up").innerText;
         var p_url = document.getElementById("pro_link").innerText;
-        var c_id = document.getElementById("c_name").innerText;
+        var c_id = document.getElementById("c_id").innerText;
         var pro_id = document.getElementById("proid").innerText;
-        alert(pro_id)
+
+        if (project_name == "请输入"){
+            api.toast({
+                msg: '请填写项目名称'
+            });
+            return
+        }else if(p_note == "请输入"){
+            api.toast({
+                msg: '请填写项目描述'
+            });
+            return
+        }else if(summary == "请输入"){
+            api.toast({
+                msg: '请填写你的成就'
+            });
+            return
+        }else if(p_url == "请输入"){
+            api.toast({
+                msg: '请填写你的项目链接'
+            });
+            return
+        }
+
+
         var person_id = localStorage.getItem('person_id');
         var params = {
             project_name: project_name,
             p_note: p_note,
-            submmary: submmary,
+            summary: summary,
             p_from: p_from,
             p_to: p_to,
             p_url: p_url,
@@ -291,21 +314,25 @@
             p_id: person_id,
             pro_id:''
         }
-
+        console.log(params)
 
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data)
             if (data.return_info.status) {
-                api.toast({
-                    msg: '添加项目经历成功'
-                });
+                // api.toast({
+                //     msg: '添加项目经历成功'
+                // });
                 api.execScript({
                     name: 'resume_editResume',
                     frameName: "resume_editResume_body",
                     script: 'reload()'
                 })
                 closeWin();
+            }else{
+                api.toast({
+                    msg: '请求失败'
+                });
             }
 
         });

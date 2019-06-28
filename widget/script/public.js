@@ -58,7 +58,7 @@ var SetWork = serverUrl + "/WorkingExperienceProfile/updateWorkingExperience";
 
 var createProjectExperience = serverUrl + "/ProjectExperienceProfile/createProjectExperience";
 // 查询项目经历
-var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjecExperiencetList";
+var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjectExperienceById";
 // 删除项目经历
 var DeleteProjec = serverUrl + "/ProjectExperienceProfile/removeProjectExperience";
 
@@ -110,7 +110,18 @@ var curLat = 'curLat';
 //购物车
 var cartsKey = 'carts';
 
-
+//获取最近多少天日期
+function getDay(day) {
+	var today = new Date();
+	var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;
+	today.setTime(targetday_milliseconds); //注意，这行是关键代码
+	var tYear = today.getFullYear();
+	var tMonth = today.getMonth();
+	var tDate = today.getDate();
+	tMonth = getzf(tMonth + 1);
+	tDate = getzf(tDate);
+	return tYear + "-" + tMonth + "-" + tDate;
+}
 
 var industryNum = 3;//商家最多选择三个行业
 

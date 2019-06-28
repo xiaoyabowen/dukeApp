@@ -107,8 +107,8 @@
             <div class="info-choose maxHeight cssFlex" onclick="resume_CompanyLi()">
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="c_id">不关联任何公司</span>
-                    <span id="c_name" style="display: none"></span>
+                    <span class="info-choose-main-name birth_option" id="c_name">不关联任何公司</span>
+                    <span id="c_id" style="display: none"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -165,7 +165,7 @@
             </div>
         </div>
         <div id="proid" style="display:none;"></div>
-        <div class="resume_editResume_btn">
+        <div class="resume_editResume_btn" onclick="deleteWork()">
             <span>删除此段项目经历</span>
         </div>
     </div>
@@ -187,27 +187,28 @@
     apiready = function () {
         var sn = api.pageParam.sn;
         var pro_id = api.pageParam.pro_id;
-
         document.getElementById("proid").innerText = pro_id
         var obj = {
-            person_id: person_id
+            pro_id: pro_id
         }
         ajaxGetWithProgress(GetProjec, obj, function (res, err) {
             // api.alert({mas: JSON.stringify(res)});
-            console.log(res);
-            if (res && res.projectlist) {
-                var msg = res.projectlist[--sn];
+            // console.log(sn)
+            // console.log(res)
+            // if (res && res.projectlist) {
 
+                var msg = res;
                 console.log(msg)
                 document.getElementById("pro_name").innerText = msg.project_name || '请输入';
-                // document.getElementById("com_type").innerText = msg.com_type || '请输入';
+                document.getElementById("c_name").innerText = msg.com_name || '不关联任何公司';
+                document.getElementById("c_id").innerText = msg.c_id;
                 document.getElementById("pro_note").innerText = msg.p_note || '请输入';
-                document.getElementById("pro_cheng").innerText = msg.submmary || '请输入';
-                document.getElementById("pro_begin").innerText = msg.from || '请输入';
-                document.getElementById("pro_up").innerText = msg.to || '请输入';
+                document.getElementById("pro_cheng").innerText = msg.summary || '请输入';
+                document.getElementById("pro_begin").innerText = msg.p_from || '请输入';
+                document.getElementById("pro_up").innerText = msg.p_to || '请输入';
                 document.getElementById("pro_link").innerText = msg.p_url || '请输入';
 
-            }
+            // }
         })
     };
 
@@ -232,8 +233,8 @@
         })
     }
     function c_id(value,c_id) {
-        document.getElementById("c_id").innerText = value;
-        document.getElementById("c_name").innerText = c_id;
+        document.getElementById("c_name").innerText = value;
+        document.getElementById("c_id").innerText = c_id;
     }
 
     // 编辑您的成就
@@ -271,44 +272,41 @@
     function deleteWork() {
         mui.confirm('是否删除此工作经历?', function (e) {
             console.log(e)
-            if (e.index === 1) {
-                var obj = {
-                    pro_id: pro_id
-                }
-                ajaxGetWithProgress(DeleteProjec,obj,function(res,err) {
-                    // api.alert({mas: JSON.stringify(res)});
-                    console.log(res);
-                    if (res && res.return.status) {
-                        api.toast({
-                            msg: '删除项目经历成功'
-                        });
-                        api.execScript({
-                            name: 'resume_editResume',
-                            frameName: "resume_editResume_body",
-                            script: 'reload()'
-                        })
-                        closeWin();
-                    }
-                })
+            var pro_id = document.getElementById("proid").innerText
+            var obj = {
+                pro_id: pro_id
             }
+            ajaxGetWithProgress(DeleteProjec,obj,function(res,err) {
+                // api.alert({mas: JSON.stringify(res)});
+                console.log(res);
+                if (res && res.return.status) {
+                    api.execScript({
+                        name: 'resume_editResume',
+                        frameName: "resume_editResume_body",
+                        script: 'reload()'
+                    })
+                    closeWin();
+                }
+            })
+
         })
     }
     // 点击保存
     function preservation() {
         var project_name = document.getElementById("pro_name").innerText;
         var p_note = document.getElementById("pro_note").innerText;
-        var submmary = document.getElementById("pro_cheng").innerText;
+        var summary = document.getElementById("pro_cheng").innerText;
         var p_from = document.getElementById("pro_begin").innerText ;
         var p_to = document.getElementById("pro_up").innerText;
         var p_url = document.getElementById("pro_link").innerText;
-        var c_id = document.getElementById("c_name").innerText;
+        var c_id = document.getElementById("c_id").innerText;
         var pro_id = document.getElementById("proid").innerText;
         alert(pro_id)
         var person_id = localStorage.getItem('person_id');
         var params = {
             project_name: project_name,
             p_note: p_note,
-            submmary: submmary,
+            summary: summary,
             p_from: p_from,
             p_to: p_to,
             p_url: p_url,
@@ -317,21 +315,25 @@
             pro_id:pro_id
 
         }
-
+        console.log(params)
 
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data)
             if (data.return_info.status) {
-                api.toast({
-                    msg: '编辑项目经历成功'
-                });
+                // api.toast({
+                //     msg: '编辑项目经历成功'
+                // });
                 api.execScript({
                     name: 'resume_editResume',
                     frameName: "resume_editResume_body",
                     script: 'reload()'
                 })
                 closeWin();
+            }else{
+                api.toast({
+                    msg: '编辑失败'
+                });
             }
 
         });

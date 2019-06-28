@@ -228,20 +228,20 @@
                 console.log(SelectedItem);
             })
         }
-        $(document).ready(function(){
-
-            var lenInput = $('.textarea-item').val().length;
-
-            $(".textarea-item").keyup(function(){
-                lenInput = $(this).val().length;
-                if(lenInput>0 && lenInput<=500){
-                    $('.textareaInput').html(lenInput);
-                    $('.textarea-btn').attr('disabled',false);
-                }else{
-                    $('.textarea-btn').attr('disabled',true);
-                }
-            });
-        });
+        // $(document).ready(function(){
+        //
+        //     // var lenInput = $('.textarea-item').val().length;
+        //     //
+        //     // $(".textarea-item").keyup(function(){
+        //     //     lenInput = $(this).val().length;
+        //     //     if(lenInput>0 && lenInput<=500){
+        //     //         $('.textareaInput').html(lenInput);
+        //     //         $('.textarea-btn').attr('disabled',false);
+        //     //     }else{
+        //     //         $('.textarea-btn').attr('disabled',true);
+        //     //     }
+        //     // });
+        // });
 
     </script>
 </body>
