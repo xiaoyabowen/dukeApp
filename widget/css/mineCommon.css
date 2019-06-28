@@ -1,3 +1,12 @@
+@font-face {
+    font-family: PingFangSC-Medium;
+    src: url("./PingFangSC-Medium.ttf");
+}
+
+body, div, p, span, a, input, ul, li {
+    font-family: PingFangSC-Medium;
+}
+
 .remBox{
     width: 7rem;
 }
@@ -11,9 +20,9 @@
     width: 4.9rem;
 }
 .m-name{
-    font-size: 0.4rem;
+    font-size: 0.36rem;
     color: #333;
-    font-weight: bold;
+    font-weight: 500;
     line-height: 0.7rem;
     height: 0.7rem;
 }
@@ -60,13 +69,24 @@
     font-weight:400;
     color:rgba(99,139,255,1);
 }
+.m-home-after {
+    width: 0.15rem;
+    height: 0.15rem;
+    border-right: 1px solid #6990FF;
+    border-bottom: 1px solid #6990FF;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
 .mineInforight{
     width: 1.4rem;
 }
 .m-right-id{
-    width: 1.4rem;
-    height: 0.4rem;
-    line-height: 0.4rem;
+    width: 1.41rem;
+    height: 0.41rem;
+    line-height: 0.43rem;
     text-align: center;
     border-radius:0.04rem;
     font-size: 0.22rem;
@@ -93,7 +113,7 @@
     text-align: center;
     font-size: 0.32rem;
     color: #333333;
-    font-weight: bold;
+    font-weight: 500;
 }
 .tong-text{
     font-size: 0.24rem;
@@ -101,13 +121,13 @@
     text-align: center;
 }
 .F9Line {
-    height: 0.02rem;
+    height: 0.2rem;
     background: #F9F9F9;
 }
 .viewZhu{
     height:0.4rem;
-    font-size:0.36rem;
-    font-weight:bold;
+    font-size:0.28rem;
+    font-weight: 500;
     color:rgba(51,51,51,1);
     line-height:0.4rem;
     margin: 0.3rem 0 0.54rem 0;
@@ -115,6 +135,7 @@
 .m-person-list{
     flex-wrap: wrap;
     align-items: center;
+    color: #333333;
 }
 .m-person-list>li{
     width: 25%;
@@ -159,7 +180,7 @@
     border:2px solid rgba(99,139,255,1);
     color:rgba(99,139,255,1);
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 .update-one{
     margin: 0.5rem auto 0.34rem !important;
@@ -180,7 +201,7 @@
     resize:none;
     color:#333;
     border:none;
-    font-weight: bold;
+    font-weight: 500;
     outline:none
 }
 .send-textarea{
@@ -1006,7 +1027,7 @@ div.isDisplay {
 p.info-label-title {
     height: 0.4rem;
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
     color: #333;
     line-height: 0.4rem;
     margin-top: 0.24rem;
@@ -1026,8 +1047,8 @@ span.info-label-name {
 }
 img.info-img-right {
     display: inline-block;
-    width: 0.34rem;
-    height: 0.34rem;
+    width: 0.32rem;
+    height: 0.32rem;
 }
 
 .info-label-choose{
@@ -1043,14 +1064,14 @@ img.info-img-right {
 .info-about {
     height: 0.4rem;
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.4rem;
     margin: 0.24rem 0;
 }
 .info-choose {
     justify-content: space-between;
-    height: 0.9rem;
+    height: 1.01rem;
     align-items: center;
     border-bottom: 1px solid #ebebeb;
     font-size:0.28rem;
@@ -1227,7 +1248,7 @@ span.authen-go {
 .au-title {
     height: 0.4rem;
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.4rem;
     margin: 0.3rem 0 0.16rem 0;
@@ -1271,7 +1292,7 @@ span.authen-go {
 
 .au-title-sub{
     margin: 0.18rem 0 0.1rem 0;
-    font-weight: bold;
+    font-weight: 500;
 }
 .au-band-info{
     color: #666666;
@@ -1317,7 +1338,7 @@ span.authen-go {
     padding-top: 0.2rem;
 }
 .inter-title{
-    font-weight: bold;
+    font-weight: 500;
     margin: 0.4rem 0 0 0;
 }
 .inter-status.cssFlex {
@@ -1388,7 +1409,7 @@ p.inter-com-money {
 .inter-com-moneyCo{
     color: #638BFF;
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
     margin-left: 0.2rem;
 }
 .inde-sub{
@@ -1466,7 +1487,7 @@ p.st-main-name {
     margin: 0 !important;
     color: #333;
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 p.st-main-zhi {
     font-size: 0.2rem;
@@ -1546,7 +1567,7 @@ p.st-main-zhi {
     margin: 0.2rem 0 0.3rem;
     font-size:0.3rem;
     color: #333333;
-    font-weight: bold;
+    font-weight: 500;
 }
 span.off-btn {
     display: inline-block;
@@ -1596,11 +1617,11 @@ img.off-com-img {
 .off-line{
     margin-top: 0.36rem;
     color: #333333;
-    font-weight: bold;
+    font-weight: 500;
 }
 /*添加工作  简历    头部标题  公共*/
 .comon-mine-title{
-    font-weight: bold;
+    font-weight: 500;
     margin: 0.34rem 0 0.05rem;
 }
 .info-edit-skill{
@@ -1649,7 +1670,7 @@ img.user-info-img {
 p.user-main-name {
     height: 0.5rem;
     font-size: 0.36rem;
-    font-weight: bold;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.5rem;
     margin-bottom: 0.1rem;
@@ -1695,7 +1716,7 @@ p.user-main-com {
     width: 4rem;
     margin-right: 0.1rem;
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 .label-list,.Interest-list{
     flex-wrap: wrap;
@@ -1728,7 +1749,7 @@ p.user-main-com {
 .info-name{
     width: 1.8rem;
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 .info-list>p{
     color: #333333;
@@ -1749,13 +1770,13 @@ p.user-main-com {
     margin-bottom: 0.08rem;
 }
 .life-title {
-    width: 2.2rem;
+    width: 1.9rem;
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
 }
 .dyname-name{
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
     height: 0.32rem;
     line-height: 0.32rem;
     margin: 0.2rem 0 0.1rem;
@@ -1763,7 +1784,7 @@ p.user-main-com {
 .dyname-main {
     line-height: 0.32rem;
     font-size: 0.24rem;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 0.12rem ;
 }
 .dyname-img{

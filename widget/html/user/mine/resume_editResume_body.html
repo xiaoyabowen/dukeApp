@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
     <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
+        body {
+            padding-bottom: 0.28rem;
+        }
+
         .resume_editResume_head {
             padding: 0.5rem 0.28rem;
             justify-content: space-between;
@@ -45,7 +49,7 @@
         }
 
         .resume_editResume_item {
-            border-bottom: 1px solid #FFEBEBEB;
+            border-bottom: 1px solid #EBEBEB;
             padding-bottom: 0.1rem;
         }
 
@@ -278,6 +282,7 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
+    var p_tags, p_title, home_page;
     apiready = function () {
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
@@ -296,17 +301,21 @@
                 // 自我介绍
                 if (person_summary.p_tags) {
                     document.getElementById('p_tags').innerText = "已填写";
+                    p_tags = person_summary.p_tags;
                 } else {
                     document.getElementById('p_tags').innerText = "未填写";
+                    p_tags = '';
                 }
                 // 综合能力
                 if (person_summary.p_title) {
                     document.getElementById('p_title').innerText = "已填写";
+                    p_title = person_summary.p_title;
                 } else {
                     document.getElementById('p_title').innerText = "未填写";
+                    p_title = '';
                 }
                 // 求职状态
-                if (Intention.length > 0) {
+                if (Intention) {
                     var statusObj = {
                         '1': '离职-随时到岗',
                         '2': '在职-月内到岗',
@@ -317,7 +326,7 @@
                     document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
                 }
                 // 求职期望
-                if (Intention.length > 0) {
+                if (Intention) {
                     document.querySelector('.work_name').innerText = Intention[0].work_name;
                     document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
                     document.querySelector('.int_city').innerText = Intention[0].int_city;
@@ -330,7 +339,7 @@
                     document.querySelector('.pay').innerText = pays2.join('-');
                 }
                 // 工作经历
-                if (working_his.length > 0) {
+                if (working_his) {
                     var workings = document.getElementById('workings');
                     var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
@@ -349,7 +358,7 @@
                     workings.innerHTML = dom;
                 }
                 // 教育经历
-                if (education_his.length > 0) {
+                if (education_his) {
                     var educations = document.getElementById('educations');
                     var arr = [];
                     for (var i = 0; i < education_his.length; i++) {
@@ -368,7 +377,7 @@
                     educations.innerHTML = dom;
                 }
                 // 项目经历
-                if (projects.length > 0) {
+                if (projects) {
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
@@ -386,13 +395,14 @@
                     // console.log(project)
                     project.innerHTML = dom;
                 }
+                // 社交主页
+                if (person_summary.home_page) {
+                    home_page = person_summary.home_page;
+                } else {
+                    home_page = ''
+                }
 
             }
-            // if (data.return_info.status) {
-            //     api.toast({
-            //         msg: '编辑教育经历成功'
-            //     });
-            // }
 
         });
 
@@ -400,12 +410,19 @@
 
     // 自我描述
     function introduce() {
-        openNewWindow("resume_Introduce", "./resume_Introduce.html");
+        // console.log(p_tags, p_title, home_page);
+        openNewWindow("resume_Introduce", "./resume_Introduce.html", {
+            url: 'resume_editResume',
+            content: p_tags
+        });
     }
 
     // 综合能力
     function resume_Comprehensive() {
-        openNewWindow("resume_Comprehensive", "./resume_Comprehensive.html");
+        openNewWindow("resume_Comprehensive", "./resume_Comprehensive.html", {
+            url: 'resume_editResume',
+            content: p_title
+        });
     }
     // 编辑  求职状态
     function resume_editExpectations() {
@@ -500,7 +517,10 @@
 
     // 社交主页
     function resume_SocialHomepage() {
-        openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html")
+        openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html", {
+            url: 'resume_editResume',
+            content: home_page
+        })
     }
 
     // 图片作品

@@ -40,7 +40,7 @@ var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
 
 // 查询教育信息
 var GetEducation = serverUrl + "/UserProfile/queryEducationByid";
-// 添加教育信息
+// 添加/修改教育信息
 var AddEducation = serverUrl + "/UserProfile/createEducation";
 // 删除此段教育经历
 var DeleteEducation = serverUrl + "/UserProfile/removeEducation";

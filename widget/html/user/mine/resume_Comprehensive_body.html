@@ -81,53 +81,79 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
-
+    var list = ['个人能力', '责任心', '演讲能力', '个人能力', '责任心', '演讲能力'];
+    var url, content;
+    var array = [];
+    var selectList = [];
     apiready = function () {
+        url = api.pageParam.url;
+        content = api.pageParam.content;
 
+        if (content) {
+            var arr1 = content.split(',');
+            console.log(arr1);
+            for (var i = 0; i < arr1.length; i++) {
+                if (list.indexOf(arr1[i]) != -1) {
+                    array.push(list.indexOf(arr1[i]));
+                    console.log(arr1[i])
+                }
+            }
+            console.log(123, array);
+        }
+
+        var tagBox = document.querySelector('.resume_CompanyIndustry_content');
+        var arr = [];
+        for (var i = 0; i < list.length; i++) {
+            console.log(array.indexOf(i))
+            if (array.indexOf(i) != '-1') {
+                arr.push('<div class="resume_CompanyIndustry_item active">');
+                selectList.push(list[i]);
+            } else {
+                arr.push('<div class="resume_CompanyIndustry_item">');
+            }
+            arr.push(list[i]);
+            arr.push('</div>');
+        }
+        var str = arr.join('');
+        tagBox.innerHTML = str;
+
+
+        tagBox.addEventListener('click', function (e) {
+            var node = e.target;
+            if (node.tagName === 'DIV' && node.classList.contains('resume_CompanyIndustry_item')) {
+                if (node.classList.contains('active')) {
+                    node.className = 'resume_CompanyIndustry_item';
+                    var index = selectList.indexOf(node.innerText);
+                    selectList.splice(index, 1);
+                    return;
+                }
+                if (selectList.length > 4) {
+                    return;
+                }
+                selectList.push(node.innerText);
+                node.classList.add('active');
+            }
+        })
 
     };
 
-    var list = ['个人能力', '责任心', '演讲能力', '个人能力', '责任心', '演讲能力'];
-
-    var tagBox = document.querySelector('.resume_CompanyIndustry_content');
-    var arr = [];
-    var selectList = [];
-    for (var i = 0; i < list.length; i++) {
-        if (i === 0) {
-            arr.push('<div class="resume_CompanyIndustry_item active">');
-            selectList.push(list[i]);
-        } else {
-            arr.push('<div class="resume_CompanyIndustry_item">');
-        }
-        arr.push(list[i]);
-        arr.push('</div>');
-    }
-    var str = arr.join('');
-    tagBox.innerHTML = str;
-
-
-    tagBox.addEventListener('click', function (e) {
-        var node = e.target;
-        if (node.tagName === 'DIV' && node.classList.contains('resume_CompanyIndustry_item')) {
-            if (node.classList.contains('active')) {
-                node.className = 'resume_CompanyIndustry_item';
-                var index = selectList.indexOf(node.innerText);
-                selectList.splice(index, 1);
-                return;
-            }
-            if (selectList.length > 4) {
-                return;
-            }
-            selectList.push(node.innerText);
-            node.classList.add('active');
-        }
-    })
 
     // 点击保存执行此方法
     function preservation () {
-
+        console.log(selectList);
+        var list = selectList.join(',')
+        var frameName = url + "_body";
+        // api.execScript({
+        //     name: url,
+        //     frameName: frameName,
+        //     script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
+        // })
+        // closeWin();
     }
 
     // 此处手动调用了js

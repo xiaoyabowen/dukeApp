@@ -26,7 +26,7 @@
 
         <div class="resume_level2_content cssFlex">
             <input class="text" id="text12" type="text" maxlength=30 placeholder="请在这里输入">
-            <span class="textAdd">添加</span>
+            <span class="textAdd" onclick="preservation()">添加</span>
         </div>
         <p>添加突出个人实力展示的主页</p>
     </div>
@@ -43,8 +43,14 @@
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     var text = document.getElementById('text12');
+    var url, content;
     apiready = function () {
+        url = api.pageParam.url;
+        content = api.pageParam.content;
 
+        if (content) {
+            text.value = content || '';
+        }
 
     };
 
