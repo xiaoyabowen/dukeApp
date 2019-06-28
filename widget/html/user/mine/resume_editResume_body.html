@@ -376,12 +376,9 @@
                     // console.log(educations)
                     educations.innerHTML = dom;
                 }
-                // 项目经历
-<<<<<<< HEAD
-                if (projects) {
-=======
+
                 if (projects != null) {
->>>>>>> master
+
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
@@ -399,16 +396,14 @@
                     // console.log(project)
                     project.innerHTML = dom;
                 }
-<<<<<<< HEAD
-                // 社交主页
+
                 if (person_summary.home_page) {
                     home_page = person_summary.home_page;
                 } else {
                     home_page = ''
                 }
 
-=======
->>>>>>> master
+
             }
 
         });
@@ -573,23 +568,56 @@
                 var projects = data.projects;
                 var education_his = data.education_his;
                 var working_his = data.working_his;
+                var Intention = data.Intention;
 
                 // 姓名
-                // document.querySelector('.editResume_name').innerText = person_summary.p_name;
+                document.querySelector('.editResume_name').innerText = person_summary.p_name;
                 // 自我介绍
                 if (person_summary.p_tags) {
-                    document.querySelector('.info-choose-name').innerText = "已填写";
+                    document.getElementById('p_tags').innerText = "已填写";
+                    p_tags = person_summary.p_tags;
                 } else {
-                    document.querySelector('.info-choose-name').innerText = "未填写";
+                    document.getElementById('p_tags').innerText = "未填写";
+                    p_tags = '';
                 }
                 // 综合能力
-
+                if (person_summary.p_title) {
+                    document.getElementById('p_title').innerText = "已填写";
+                    p_title = person_summary.p_title;
+                } else {
+                    document.getElementById('p_title').innerText = "未填写";
+                    p_title = '';
+                }
+                // 求职状态
+                if (Intention) {
+                    var statusObj = {
+                        '1': '离职-随时到岗',
+                        '2': '在职-月内到岗',
+                        '3': '在职-考虑机会',
+                        '4': '在职-暂不考虑',
+                    }
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                    document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
+                }
+                // 求职期望
+                if (Intention) {
+                    document.querySelector('.work_name').innerText = Intention[0].work_name;
+                    document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
+                    document.querySelector('.int_city').innerText = Intention[0].int_city;
+                    var pays = Intention[0].pay.split('.');
+                    var pays2 = []
+                    pays.forEach(function (value) {
+                        pays2.push(value + 'k')
+                    })
+                    // console.log(pays2);
+                    document.querySelector('.pay').innerText = pays2.join('-');
+                }
                 // 工作经历
-                if (working_his.length > 0) {
+                if (working_his) {
                     var workings = document.getElementById('workings');
                     var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn + ')">\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
                             '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -604,7 +632,7 @@
                     workings.innerHTML = dom;
                 }
                 // 教育经历
-                if (education_his.length > 0) {
+                if (education_his) {
                     var educations = document.getElementById('educations');
                     var arr = [];
                     for (var i = 0; i < education_his.length; i++) {
@@ -622,12 +650,13 @@
                     // console.log(educations)
                     educations.innerHTML = dom;
                 }
-                // 项目经历
-                if (projects.length > 0) {
+
+                if (projects != null) {
+
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ')">\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
                             '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -642,12 +671,14 @@
                     project.innerHTML = dom;
                 }
 
+                if (person_summary.home_page) {
+                    home_page = person_summary.home_page;
+                } else {
+                    home_page = ''
+                }
+
+
             }
-            // if (data.return_info.status) {
-            //     api.toast({
-            //         msg: '编辑教育经历成功'
-            //     });
-            // }
 
         });
     };

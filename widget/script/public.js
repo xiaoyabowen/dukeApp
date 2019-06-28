@@ -70,6 +70,13 @@ var SetStatus = serverUrl + "/UserProfile/createIntention";
 // 修改求职状态
 var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 
+// 修改自我描述
+var updateTags = serverUrl + "UserProfile/updateTags";
+// 修改综合能力
+var updateTitle = serverUrl + "UserProfile/updateTitle";
+// 修改主页
+var updateHomePage = serverUrl + "UserProfile/updateHomePage";
+
 
 
 
