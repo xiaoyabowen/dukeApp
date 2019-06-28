@@ -13,26 +13,28 @@
     <style>
         .contentBox{
             /*height: calc(100vh - 40px);*/
+            padding: 0;
         }
         .footerBar{
             position: fixed;
-            bottom: 0.5rem;
+            bottom: 0.65rem;
             left: 50%;
             -webkit-transform:translateX(-50%); /*为Chrome/Safari*/
             -moz-transform:translateX(-50%); /*为Firefox*/
             -ms-transform:translateX(-50%); /*为IE*/
             -o-transform:translateX(-50%); /*为Opera*/
             transform:translateX(-50%);
-            width:4.64rem;
-            height:0.78rem;
+            width: 5.20rem;
+            height: 0.78rem;
             background:rgba(255,255,255,1);
             border-radius:0.4rem;
             color: #638BFF;
             justify-content: space-between;
-            padding: 0 0.28rem;
+            /*padding: 0 0.28rem;*/
         }
         .barLeft,.barRight{
             align-items: center;
+            padding: 0 0.29rem;
         }
         .barLeft>img{
             width: 0.52rem;
@@ -53,9 +55,9 @@
             -ms-transform:translateX(-50%); /*为IE*/
             -o-transform:translateX(-50%); /*为Opera*/
             transform:translateX(-50%);
-            bottom: 0.3rem;
-            width:1.5rem;
-            height:1.5rem;
+            bottom: -0.3rem;
+            width: 1.5rem;
+            height: 1.5rem;
             /*line-height: 1.5rem;*/
             text-align: center;
             background:rgba(99,139,255,1);
@@ -82,6 +84,7 @@
         .subcontentBoxBanner {
             width: 7rem;
             min-height: calc(100vh - 0.28rem);
+            margin: 0.2rem auto 0;
         }
 
         .subcontentBoxBanner > img{
@@ -93,25 +96,28 @@
     <div class="contentBox">
         <div class="subcontentBoxBanner">
             <img src="../../../image/banner.png" alt="banner" class="home-banner">
+            <div class="footerBar cssFlex">
+                <div class="barLeft cssFlex">
+                    <img src="../../../icon/quan.png" alt="quan 26 20">
+                    <span>圈子</span>
+                </div>
+
+                <div class="barRight cssFlex">
+                    <span>巨划算</span>
+                    <img src="../../../icon/hua.png" alt="hua 20 16">
+
+                </div>
+                <div class="job-box" onclick="position()">
+                    <img src="../../../icon/mine.png" alt="" class="mine-job-img">
+                    <span class="mine-job-text">工作</span>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="footerBar cssFlex">
-        <div class="barLeft cssFlex">
-            <img src="../../../icon/quan.png" alt="quan 26 20">
-            <span>圈子</span>
-        </div>
 
-        <div class="barRight cssFlex">
-            <span>巨划算</span>
-            <img src="../../../icon/hua.png" alt="hua 20 16">
 
-        </div>
-    </div>
 
-    <div class="job-box" onclick="position()">
-        <img src="../../../icon/mine.png" alt="" class="mine-job-img">
-        <span class="mine-job-text">工作</span>
-    </div>
 
     <script type="text/javascript" src="../../../script/api.js"></script>
     <script type="text/javascript" src="../../../script/util.js"></script>
