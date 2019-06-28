@@ -370,7 +370,7 @@
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ')">\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
                             '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -508,7 +508,14 @@
             w_id: w_id
         })
     }
-
+    // 编辑项目经历
+    function resume_editProject(sn, pro_id) {
+        console.log(sn, pro_id)
+        openNewWindow("resume_editProject", "resume_editProject.html", {
+            sn: sn,
+            pro_id: pro_id
+        })
+    }
     //刷新页面
     function reload() {
         // alert(123)

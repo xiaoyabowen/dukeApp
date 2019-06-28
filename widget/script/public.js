@@ -41,6 +41,9 @@ var GetWork = serverUrl + "/UserProfile/queryWorkingExperienceById";
 // 删除工作经历
 var DeleteWork = serverUrl + "/WorkingExperienceProfile/removeWorkingExperience";
 
+// tianjia项目经历
+
+var createProjectExperience = serverUrl + "/ProjectExperienceProfile/createProjectExperience";
 // 查询项目经历
 var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjecExperiencetList";
 // 删除项目经历
