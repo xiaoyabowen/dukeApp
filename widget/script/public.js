@@ -2,6 +2,7 @@
 var isTest = false;
 var isCleanUser = false;
 
+// var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.13:8000/SE4M/SE/";
 
 var rootWindowName = "root";
