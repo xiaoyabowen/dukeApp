@@ -165,7 +165,7 @@
             </div>
         </div>
         <div id="proid" style="display:none;"></div>
-        <div class="resume_editResume_btn">
+        <div class="resume_editResume_btn" onclick="deleteWork()">
             <span>删除此段项目经历</span>
         </div>
     </div>
@@ -187,7 +187,7 @@
     apiready = function () {
         var sn = api.pageParam.sn;
         var pro_id = api.pageParam.pro_id;
-
+        alert(pro_id)
         document.getElementById("proid").innerText = pro_id
         var obj = {
             person_id: person_id
@@ -271,6 +271,8 @@
     function deleteWork() {
         mui.confirm('是否删除此工作经历?', function (e) {
             console.log(e)
+            var pro_id =document.getElementById("proid").innerText
+
             if (e.index === 1) {
                 var obj = {
                     pro_id: pro_id
@@ -279,15 +281,19 @@
                     // api.alert({mas: JSON.stringify(res)});
                     console.log(res);
                     if (res && res.return.status) {
-                        api.toast({
+                       /* api.toast({
                             msg: '删除项目经历成功'
-                        });
+                        });*/
                         api.execScript({
                             name: 'resume_editResume',
                             frameName: "resume_editResume_body",
                             script: 'reload()'
                         })
                         closeWin();
+                    }else{
+                        api.toast({
+                            msg: '请求出错'
+                        });
                     }
                 })
             }

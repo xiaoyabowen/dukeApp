@@ -508,10 +508,10 @@
         openNewWindow("resume_imgWorks", "resume_imgWorks.html")
     }
 
-    // 编辑项目经验
-    function resume_editProject() {
-        openNewWindow("resume_editProject", "resume_editProject.html")
-    }
+    // // 编辑项目经验
+    // function resume_editProject() {
+    //     openNewWindow("resume_editProject", "resume_editProject.html")
+    // }
 
     // 添加项目经历
     function resume_addProject() {
@@ -528,7 +528,6 @@
     }
     // 编辑项目经历
     function resume_editProject(sn, pro_id) {
-        console.log(sn, pro_id)
         openNewWindow("resume_editProject", "resume_editProject.html", {
             sn: sn,
             pro_id: pro_id
@@ -536,8 +535,7 @@
     }
     //刷新页面
     function reload() {
-        // alert(123)
-        // window.location.reload();
+
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);

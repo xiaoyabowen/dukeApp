@@ -158,7 +158,6 @@
             console.log(res);
             if (res && res.working_his) {
                 var msg = res.working_his[--sn];
-
                 // console.log(msg)
                 document.getElementById("com_name").innerText = msg.com_name || '请输入';
                 document.getElementById("com_type").innerText = msg.com_type || '请输入';
@@ -171,16 +170,18 @@
 
                 var tag = document.querySelector('.info-edit-skill');
                 var tags = [];
-                var title = msg.title.split(',');
-                console.log(title);
-                title.forEach(function (value) {
-                    var str = '<li>'+ value +'</li>';
-                    tags.push(str);
-                })
-                var dom = tags.join('');
-                tag.innerHTML = dom;
+                if ( msg.title){
+                    var title = msg.title.split(',');
+                    console.log(title);
+                    title.forEach(function (value) {
+                        var str = '<li>'+ value +'</li>';
+                        tags.push(str);
+                    })
+                    var dom = tags.join('');
+                    tag.innerHTML = dom;
+                }
 
-                console.log(msg)
+
                 if (msg.is_open == 'true') {
                     // alert(456)
                     document.getElementById('btn').classList.remove('mui-active');
