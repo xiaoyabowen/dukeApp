@@ -55,16 +55,16 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li data-type="xiugaiPass" id="editPass">
-                <div>
-                    <img src="../../../icon/mine/lock.png" alt="">
-                    <span>修改密码</span>
-                </div>
+            <!--<li data-type="xiugaiPass" id="editPass">-->
+                <!--<div>-->
+                    <!--<img src="../../../icon/mine/lock.png" alt="">-->
+                    <!--<span>修改密码</span>-->
+                <!--</div>-->
 
-                <div class="setting_active">
-                    <img src="../../../icon/right.png" alt="">
-                </div>
-            </li>
+                <!--<div class="setting_active">-->
+                    <!--<img src="../../../icon/right.png" alt="">-->
+                <!--</div>-->
+            <!--</li>-->
 
             <li data-type="Shield">
                 <div>
@@ -146,14 +146,14 @@
 
 
     };
-    var passLocal = localStorage.getItem("passStatus")
-    if (passLocal == "pass"){
-        document.getElementById("editPassSet").style.display = "none"
-        document.getElementById("editPass").style.display = "block"
-    }else{
-        document.getElementById("editPassSet").style.display = "block"
-        document.getElementById("editPass").style.display = "none"
-    }
+    // var passLocal = localStorage.getItem("passStatus")
+    // if (passLocal == "pass"){
+    //     document.getElementById("editPassSet").style.display = "none"
+    //     document.getElementById("editPass").style.display = "block"
+    // }else{
+    //     document.getElementById("editPassSet").style.display = "block"
+    //     document.getElementById("editPass").style.display = "none"
+    // }
 
     // 退出登录
     document.querySelector('.setting_btn').onclick = function () {

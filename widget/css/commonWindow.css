@@ -3,6 +3,10 @@ html {
 	height: 100%;
     font-family:PingFangSC-Medium;
 }
+
+html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;}
+
 .commonBg{
     /*background:linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);*/
     /*background:red;*/
@@ -17,8 +21,7 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
     text-decoration: none;
 }
 body {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-overflow-scrolling: touch;
+
 	width: 100%;
     -webkit-user-select: none;
     -moz-user-focus: none;
