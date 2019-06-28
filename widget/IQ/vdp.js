@@ -7,7 +7,7 @@
 // http://192.168.1.13:8000/SE4M/SE/JobProfile/jobListRandom       job_name
 // http://192.168.1.13:8000/SE4M/SE/OrgnizationProfile/orgnizationlistRandom
 console.log(11)
-var urlbase = "http://192.168.1.13:8000/SE4M/SE/JobProfile/jobListRandom";
+var urlbase = "http://192.168.1.13:8000/SE4M/SE//UserProfile/queryListRandom";
 
 var httpbase = "http://192.168.1.13:8000/SE4M/SE/OrgnizationProfile/orgnizationlistRandom"
 // var wsbase= "ws://" + window.WP4C.host + ":" + window.WP4C.port + window.WP4C.context;

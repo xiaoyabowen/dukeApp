@@ -54,6 +54,9 @@ var DeleteWork = serverUrl + "/WorkingExperienceProfile/removeWorkingExperience"
 // 修改工作经历
 var SetWork = serverUrl + "/WorkingExperienceProfile/updateWorkingExperience";
 
+// tianjia项目经历
+
+var createProjectExperience = serverUrl + "/ProjectExperienceProfile/createProjectExperience";
 // 查询项目经历
 var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjecExperiencetList";
 // 删除项目经历

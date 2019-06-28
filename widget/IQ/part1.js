@@ -302,7 +302,8 @@ function returnCate() {
 
     var tmp_obj = {"job_name": ""};
     var ret_job_obj = JSON.parse(callService("Position", "listJobs", tmp_obj));
-    var joblist = ret_job_obj.jobs;
+    console.log(ret_job_obj)
+    var joblist = ret_job_obj.job;
     console.log(joblist)
     // job_id,job_name,summary,open_time,status,c_id
 
@@ -310,37 +311,37 @@ function returnCate() {
         data_p[jbsn[i]].job_name = joblist[i].job_name;
         data_p[jbsn[i]].job_id = joblist[i].job_id;
         data_p[jbsn[i]].company_c_id = joblist[i].company_c_id;
-        data_p[jbsn[i]].type = 1;
+        // data_p[jbsn[i]].type = 1;
         data_p[jbsn[i]].endpoint = "/jsp/duke/one_job.jsp?job_id=" + joblist[i].job_id;
-        if (joblist[i].cat_icon) data_p[jbsn[i]].cat_icon = joblist[i].cat_icon;
-        if (joblist[i].mandatory) data_p[jbsn[i]].mandatory = joblist[i].mandatory;
-        else data_p[jbsn[i]].mandatory = 0;
+        // if (joblist[i].cat_icon) data_p[jbsn[i]].cat_icon = joblist[i].cat_icon;
+        // if (joblist[i].mandatory) data_p[jbsn[i]].mandatory = joblist[i].mandatory;
+        // else data_p[jbsn[i]].mandatory = 0;
     }
 
     var ret_org_obj = JSON.parse(callService("Position", "listOrgs", tmp_obj));
-    var orglist = ret_org_obj;
+    var orglist = ret_org_obj.company;
     console.log(orglist)
 
     // c_id,c_name,tel,summary,contactor,homepage,phone,email,logo_icon,open_acount
 
     for (var i = 0; i < orglist.length; i++) {
-        data_p[orgsn[i]].job_name = "" + orglist[i].open_acount + "个职位";
-        data_p[orgsn[i]].job_id = orglist[i].c_id;
+        data_p[orgsn[i]].c_name =  orglist[i].c_name;
         data_p[orgsn[i]].c_id = orglist[i].c_id;
-        data_p[orgsn[i]].type = 1;
+        data_p[orgsn[i]].logo_icon = orglist[i].logo_icon;
+        // data_p[orgsn[i]].type = 1;
         data_p[orgsn[i]].endpoint = "/jsp/duke/one_org.jsp?c_id=" + orglist[i].c_id;
-        if (orglist[i].logo_icon) data_p[orgsn[i]].cat_icon = orglist[i].logo_icon;
-        if (orglist[i].mandatory) data_p[orgsn[i]].mandatory = orglist[i].mandatory;
-        else data_p[orgsn[i]].mandatory = 0;
+        // if (orglist[i].logo_icon) data_p[orgsn[i]].cat_icon = orglist[i].logo_icon;
+        // if (orglist[i].mandatory) data_p[orgsn[i]].mandatory = orglist[i].mandatory;
+        // else data_p[orgsn[i]].mandatory = 0;
     }
 
     // console.info(data_p);
 
-
     d3.selectAll('g')
         .each(function (d, i) {
-            // console.log(d, i);
+            console.log(d);
             var showtext = d.job_name;
+            console.log(showtext)
             var line_1 = '', line_2 = '';
             if (showtext) {
                 if (showtext.length > 4) line_1 = showtext.substring(0, 4);
@@ -798,7 +799,7 @@ p_gs.transition().duration(10).attr(
                         '                                <!--岗位职责-->\n' +
                         '                                <div class="positionMain">\n' +
                         '                                    <h4 class="productName">岗位职责</h4>\n' +
-                        '                                    <p class="posiText">'+ret.description+'</p>\n' +
+                        '                                    <p class="posiText">'+ret.description+'</p><br />\n' +
                         '                                </div>\n' +
                         '                                <h4 class="productName">技能要求</h4>\n' +
                         '                                <div class="skillList cssFlex">\n'
@@ -812,7 +813,7 @@ p_gs.transition().duration(10).attr(
                         '                                    <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
                         '                                    <div class="infoProductContent">\n' +
                         '                                        <h5 class="posiName">'+ret.c_name+'</h5>\n' +
-                        '                                        <p class="textOverflow posiSize"><span>'+ret.description+'</span>\n' +
+                        '                                        <p class="textOverflow posiSize"><span>'+ret.financing+'</span>\n' +
                         '                                            <i>·</i><span>'+ret.scale+'</span><i>·</i><span>'+ret.org_type+'</span></p>\n' +
                         '                                    </div>\n' +
                         '                                </div>'

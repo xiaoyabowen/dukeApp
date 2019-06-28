@@ -29,5 +29,6 @@
 ├── addEditWork             // 编辑工作经历
 ├── personHome             // 我的个人主页
 ├── homeChoose             //  denglu  选择    千里马 还是   伯乐
+├── resume_CompanyLi             //  关联工作经历
 
 ```

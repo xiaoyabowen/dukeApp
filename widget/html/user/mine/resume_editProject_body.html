@@ -82,6 +82,8 @@
             border-radius: 8px;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -91,10 +93,10 @@
     <!--主体-->
 
     <div class="resume_editResume_main">
-        <div class="resume_editResume_item top">
+        <div class="resume_editResume_item top" onclick="resume_Project()">
             <div class="title">项目名称</div>
             <div class="info-choose minHeight cssFlex">
-                <span class="info-choose-name name">当当网B端后台和APP端</span>
+                <span class="info-choose-name name" id="pro_name">当当网B端后台和APP端</span>
                 <div class="info-choose-main cssFlex">
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
@@ -102,16 +104,17 @@
         </div>
 
         <div class="resume_editResume_item">
-            <div class="info-choose maxHeight cssFlex">
+            <div class="info-choose maxHeight cssFlex" onclick="resume_CompanyLi()">
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">不关联任何公司</span>
+                    <span class="info-choose-main-name birth_option" id="c_id">不关联任何公司</span>
+                    <span id="c_name" style="display: none"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
         </div>
 
-        <div class="resume_editResume_item describe">
+        <div class="resume_editResume_item describe" onclick="resume_ProjectDescription()">
             <div class="info-choose cssFlex">
                 <span class="info-choose-name">项目描述</span>
                 <div class="info-choose-main cssFlex">
@@ -119,14 +122,14 @@
                 </div>
             </div>
 
-            <p>项目首页活动策划，商城活动策划</p>
+            <p id="pro_note">项目首页活动策划，商城活动策划</p>
         </div>
 
         <div class="resume_editResume_item">
-            <div class="info-choose maxHeight cssFlex">
+            <div class="info-choose maxHeight cssFlex" onclick="resume_Achievement()">
                 <span class="info-choose-name">你的成就</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">运营经理</span>
+                    <span class="info-choose-main-name birth_option" id="pro_cheng">运营经理</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -136,7 +139,7 @@
             <div class="info-choose maxHeight cssFlex">
                 <span class="info-choose-name">项目起始时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">2017.02</span>
+                    <span class="info-choose-main-name birth_option" id="pro_begin">2017.02</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -146,22 +149,22 @@
             <div class="info-choose maxHeight cssFlex">
                 <span class="info-choose-name">项目结束时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">2017.02</span>
+                    <span class="info-choose-main-name birth_option" id="pro_up">2017.02</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
         </div>
 
-        <div class="resume_editResume_item top">
-            <div class="title link">项目名称</div>
+        <div class="resume_editResume_item top" onclick="resume_ProjectLinks()">
+            <div class="title link">项目链接</div>
             <div class="info-choose minHeight cssFlex">
-                <span class="info-choose-name">请输入</span>
+                <span class="info-choose-name" id="pro_link">请输入</span>
                 <div class="info-choose-main cssFlex">
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
         </div>
-
+        <div id="proid" style="display:none;"></div>
         <div class="resume_editResume_btn">
             <span>删除此段项目经历</span>
         </div>
@@ -177,29 +180,162 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-
+    var person_id = localStorage.getItem('person_id');
+    var sn, pro_id;
     apiready = function () {
+        var sn = api.pageParam.sn;
+        var pro_id = api.pageParam.pro_id;
 
+        document.getElementById("proid").innerText = pro_id
+        var obj = {
+            person_id: person_id
+        }
+        ajaxGetWithProgress(GetProjec, obj, function (res, err) {
+            // api.alert({mas: JSON.stringify(res)});
+            console.log(res);
+            if (res && res.projectlist) {
+                var msg = res.projectlist[--sn];
 
+                console.log(msg)
+                document.getElementById("pro_name").innerText = msg.project_name || '请输入';
+                // document.getElementById("com_type").innerText = msg.com_type || '请输入';
+                document.getElementById("pro_note").innerText = msg.p_note || '请输入';
+                document.getElementById("pro_cheng").innerText = msg.submmary || '请输入';
+                document.getElementById("pro_begin").innerText = msg.from || '请输入';
+                document.getElementById("pro_up").innerText = msg.to || '请输入';
+                document.getElementById("pro_link").innerText = msg.p_url || '请输入';
+
+            }
+        })
     };
 
-    // 自我描述
-    function introduce() {
-        openNewWindow("resume_Introduce", "./resume_Introduce.html");
+
+    // 编辑您的项目名称
+    function resume_Project() {
+        openNewWindow("resume_Project", "./resume_Project.html", {
+            url: 'resume_editProject',
+            content: document.getElementById("pro_name").innerText
+        })
+    }
+    function pro_name(value) {
+        document.getElementById("pro_name").innerText = value;
     }
 
 
-    // 点击保存执行此方法
-    function preservation () {
-
+    // 编辑是否关联工作经历
+    function resume_CompanyLi() {
+        openNewWindow("resume_CompanyLi", "./resume_CompanyLi.html", {
+            url: 'resume_editProject',
+            content: document.getElementById("c_id").innerText
+        })
+    }
+    function c_id(value,c_id) {
+        document.getElementById("c_id").innerText = value;
+        document.getElementById("c_name").innerText = c_id;
     }
 
-    // 此处手动调用了js
-    // apiready()
+    // 编辑您的成就
+    function resume_Achievement() {
+        openNewWindow("resume_Achievement", "./resume_Achievement.html", {
+            url: 'resume_editProject',
+            content: document.getElementById("pro_cheng").innerText
+        })
+    }
+    function pro_cheng(value) {
+        document.getElementById("pro_cheng").innerText = value;
+    }
+// 编辑您的项目描述
+    function resume_ProjectDescription() {
+        openNewWindow("resume_ProjectDescription", "./resume_ProjectDescription.html", {
+            url: 'resume_editProject',
+            content: document.getElementById("pro_note").innerText
+        })
+    }
+    function pro_note(value) {
+        document.getElementById("pro_note").innerText = value;
+    }
+
+    // 编辑您的项目地址
+    function resume_ProjectLinks() {
+        openNewWindow("resume_ProjectLinks", "./resume_ProjectLinks.html", {
+            url: 'resume_editProject',
+            content: document.getElementById("pro_link").innerText
+        })
+    }
+    function pro_link(value) {
+        document.getElementById("pro_link").innerText = value;
+    }
+    // 删除项目经历
+    function deleteWork() {
+        mui.confirm('是否删除此工作经历?', function (e) {
+            console.log(e)
+            if (e.index === 1) {
+                var obj = {
+                    pro_id: pro_id
+                }
+                ajaxGetWithProgress(DeleteProjec,obj,function(res,err) {
+                    // api.alert({mas: JSON.stringify(res)});
+                    console.log(res);
+                    if (res && res.return.status) {
+                        api.toast({
+                            msg: '删除项目经历成功'
+                        });
+                        api.execScript({
+                            name: 'resume_editResume',
+                            frameName: "resume_editResume_body",
+                            script: 'reload()'
+                        })
+                        closeWin();
+                    }
+                })
+            }
+        })
+    }
+    // 点击保存
+    function preservation() {
+        var project_name = document.getElementById("pro_name").innerText;
+        var p_note = document.getElementById("pro_note").innerText;
+        var submmary = document.getElementById("pro_cheng").innerText;
+        var p_from = document.getElementById("pro_begin").innerText ;
+        var p_to = document.getElementById("pro_up").innerText;
+        var p_url = document.getElementById("pro_link").innerText;
+        var c_id = document.getElementById("c_name").innerText;
+        var pro_id = document.getElementById("proid").innerText;
+        alert(pro_id)
+        var person_id = localStorage.getItem('person_id');
+        var params = {
+            project_name: project_name,
+            p_note: p_note,
+            submmary: submmary,
+            p_from: p_from,
+            p_to: p_to,
+            p_url: p_url,
+            c_id: c_id,
+            p_id: person_id,
+            pro_id:pro_id
+
+        }
 
 
+        ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data)
+            if (data.return_info.status) {
+                api.toast({
+                    msg: '编辑项目经历成功'
+                });
+                api.execScript({
+                    name: 'resume_editResume',
+                    frameName: "resume_editResume_body",
+                    script: 'reload()'
+                })
+                closeWin();
+            }
+
+        });
+    }
 </script>
 </body>
 </html>
