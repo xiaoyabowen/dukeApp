@@ -41,20 +41,28 @@
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     var text = document.getElementById('text0')
-    var num = document.querySelector('.resume_level2_num');
-    var total = document.querySelector('.resume_level2_total');
+    var url;
     apiready = function () {
 
-        text.oninput = function (e) {
-            num.innerText = e.target.value.length;
-        }
+        url = api.pageParam.url;
 
     };
 
     // 点击保存执行此方法
     function preservation () {
         var value = text.value;
-        alert(value);
+        if(isBlack(value)){
+            toast("请输入姓名");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script: 'edit_name('+JSON.stringify(value)+')'
+        })
+        closeWin();
     }
 
     // 此处手动调用了js

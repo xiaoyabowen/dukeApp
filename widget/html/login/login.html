@@ -204,8 +204,8 @@
 
 
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
 <div id="main">
@@ -213,7 +213,7 @@
         <div class="return">
             <!--<img src="../../icon/return.png" alt="">-->
         </div>
-        <div id="role" style="display: none"></div>
+        <!--<div id="role" style="display: none"></div>-->
         <div class="login-unit">
             <p class="login-title">欢迎来到渡客</p>
             <div class="login-input">
@@ -292,8 +292,8 @@
         $(window).resize(function () {
             $('body').height(Height);
         });
-        var role = api.pageParam.role;
-        $api.byId("role").innerHTML = role
+        // var role = api.pageParam.role;
+        // $api.byId("role").innerHTML = role
 
     }
 
@@ -365,7 +365,7 @@
         var params = {};
         params.code = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
-        params.role_type = $api.byId("role").innerHTML;
+        params.role_type = localStorage.getItem("role");
         params.token_type = "1";
 
         if (isBlack(params.phone)) {
@@ -389,17 +389,17 @@
                 });
             } else {
                 console.log(data)
+                if(data.success){
+                    localStorage.setItem("user",JSON.stringify(data))
+                    // openNewWindow("home", "../user/home/home.html")
 
-                localStorage.setItem("user",JSON.stringify(data))
+                    api.hideProgress();
+                }else{
+                    openNewWindow("create_resume", "../user/mine/create_resume.html")
+                }
 
 
-                openNewWindow("home", "../user/home/home.html")
 
-                api.hideProgress();
-
-                // setTimeout(function () {
-                //     closeWin()
-                // }, 1500)
             }
         });
     }

@@ -52,13 +52,19 @@
         } else{
             text.value = content;
         }
+        mode = api.pageParam.mode;
+        if (mode == undefined){
+            text.value = content || '';
+        } else{
+            text.value = '';
+        }
     };
     // 点击保存执行此方法
     function preservation () {
         var value = text.value;
         // alert(value);
         if(isBlack(value)){
-            toast("请输入公司名称");
+            toast("请输入项目链接");
             return;
         }
 
