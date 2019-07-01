@@ -298,7 +298,10 @@
                 var Intention = data.Intention;
 
                 // 姓名
-                document.querySelector('.editResume_name').innerText = person_summary.p_name;
+                if (person_summary.p_name || person_summary.p_name != 'undefined') {
+                    document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
+                }
+
                 // 自我介绍
                 if (person_summary.p_tags) {
                     document.getElementById('p_tags').innerText = "已填写";
@@ -377,10 +380,7 @@
                     // console.log(educations)
                     educations.innerHTML = dom;
                 }
-<<<<<<< HEAD
-=======
-                // 项目经历
->>>>>>> master
+
 
                 if (projects != null) {
 
@@ -402,10 +402,6 @@
                     project.innerHTML = dom;
                 }
 
-<<<<<<< HEAD
-=======
-                // 社交主页
->>>>>>> master
                 if (person_summary.home_page) {
                     home_page = person_summary.home_page;
                 } else {
@@ -659,10 +655,6 @@
                     // console.log(educations)
                     educations.innerHTML = dom;
                 }
-<<<<<<< HEAD
-=======
-                // 项目经历
->>>>>>> master
 
                 if (projects != null) {
 
@@ -684,11 +676,6 @@
                     project.innerHTML = dom;
                 }
 
-<<<<<<< HEAD
-
-=======
-                // 社交主页
->>>>>>> master
                 if (person_summary.home_page) {
                     home_page = person_summary.home_page;
                 } else {

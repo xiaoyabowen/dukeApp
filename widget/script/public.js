@@ -3,7 +3,7 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-var serverUrl = "http://192.168.1.12:8000/SE4M/SE/";
+var serverUrl = "http://192.168.1.10:8000/SE4M/SE/";
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -26,6 +26,9 @@ var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
 
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
 var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
+
+// 账号密码登录
+var PwdLogin = serverUrl + "/Login/pwdLogin";
 
 // 获取面试机会
 var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
@@ -70,6 +73,15 @@ var SetStatus = serverUrl + "/UserProfile/createIntention";
 
 // 修改求职状态
 var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
+
+// 获取个人中心数据
+// var QuerySummary = serverUrl + "/UserProfile/querySummary";
+var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
+// 编辑个人中心
+var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
+// 编辑个人地址
+var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
+
 
 
 

@@ -196,6 +196,33 @@
         // alert(person_id)
         // console.log(School,major,education,entry_date,quit_date);
 
+        if (School == "请输入"){
+            api.toast({
+                msg: '请填写公司名称'
+            });
+            return
+        }else if(major == "请输入"){
+            api.toast({
+                msg: '请填写公司行业'
+            });
+            return
+        }else if(education == "请选择"){
+            api.toast({
+                msg: '请选择学历'
+            });
+            return
+        }else if(entry_date == "请选择"){
+            api.toast({
+                msg: '请选择入职时间'
+            });
+            return
+        }else if(quit_date == "请选择"){
+            api.toast({
+                msg: '请选择离职时间'
+            });
+            return
+        }
+
         var params = {
             u_id: person_id,
             univ_name: School,

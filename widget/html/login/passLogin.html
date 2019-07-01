@@ -204,6 +204,9 @@
         }
 
     </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
 <div id="main">
@@ -216,7 +219,8 @@
             <div class="login-input">
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
-                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                    <!--<input id="phone" type="number" placeholder="请输入您的手机号">-->
+                    <input id="phone" type="input" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
                     <input id="password" type="password" placeholder="请输入密码">
@@ -253,6 +257,7 @@
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
 <script>
     // 点击是否查看密码
     var passId = document.getElementById('passShow');
@@ -297,7 +302,47 @@
 
     //参观
     function goHome() {
-        openNewWindow("home", "../user/home/home.html")
+        // openNewWindow("home", "../user/home/home.html")
+        api.showProgress();
+
+        var params = {};
+        params.pwd = $api.byId("password").value;
+        params.phone = $api.byId("phone").value;
+        // params.token_type = "1";
+
+        if (isBlack(params.phone)) {
+            toast('请输入手机号');
+            api.hideProgress();
+            return;
+        }
+        if (isBlack(params.pwd)) {
+            toast('请输入密码');
+            api.hideProgress();
+            return;
+        }
+        ajaxGetUser(LoginAndRegist, params, function (data, err) {
+
+            if (data.success == false) {
+                api.hideProgress();
+                var errorMessage = data.msg || '获取信息失败';
+                api.toast({
+                    msg: errorMessage
+                });
+            } else {
+                console.log(data)
+
+                localStorage.setItem("user",JSON.stringify(data))
+
+                console.log(localStorage.getItem('user'))
+                openNewWindow("home", "../user/home/home.html")
+
+                api.hideProgress();
+
+                // setTimeout(function () {
+                //     closeWin()
+                // }, 1500)
+            }
+        });
     }
     // function passLogin() {
     //     openNewWindow("passLogin", "passLogin.html")

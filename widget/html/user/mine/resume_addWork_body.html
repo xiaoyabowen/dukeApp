@@ -49,14 +49,14 @@
             <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_name">请选择</span>
+                    <span class="info-choose-main-name birth_option" id="com_name">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_type">不限</span>
+                    <span class="info-choose-main-name birth_option" id="com_type">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -77,7 +77,7 @@
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="position_type">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="position_type">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -294,6 +294,42 @@
             is_open = 0;
         } else {
             is_open = 1;
+        }
+
+        if (com_name == "请输入"){
+            api.toast({
+                msg: '请填写公司名称'
+            });
+            return
+        }else if(com_type == "请选择"){
+            api.toast({
+                msg: '请选择公司行业'
+            });
+            return
+        }else if(w_from == "请选择"){
+            api.toast({
+                msg: '请选择入职时间'
+            });
+            return
+        }else if(w_to == "请选择"){
+            api.toast({
+                msg: '请选择离职时间'
+            });
+            return
+        }else if(position_type == "请选择"){
+            api.toast({
+                msg: '请选择职位类型'
+            });
+            return
+        }else if(role == "请输入"){
+            api.toast({
+                msg: '请输入职位名称'
+            });
+            return
+        }
+
+        if (position == "选填"){
+            position = ''
         }
 
         var params = {
