@@ -46,8 +46,13 @@
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
+        mode = api.pageParam.mode;
+        if (mode == undefined){
+            text.value = content || '';
+        } else{
+            text.value = '';
+        }
 
-        text.value = content || '';
     };
 
     // 点击保存执行此方法

@@ -48,8 +48,11 @@
         url = api.pageParam.url;
         content = api.pageParam.content;
 
-        if (content) {
+        mode = api.pageParam.mode;
+        if (mode == undefined){
             text.value = content || '';
+        } else{
+            text.value = '';
         }
 
     };
@@ -57,7 +60,19 @@
     // 点击保存执行此方法
     function preservation () {
         var value = text.value;
-        alert(value);
+        if(isBlack(value)){
+            toast("请输入社交主页");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            // frameName:url +"_body",
+            frameName: frameName,
+            script: 'pro_page('+JSON.stringify(value)+')'
+        })
+        closeWin();
     }
 
     // 此处手动调用了js

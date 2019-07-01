@@ -1001,7 +1001,6 @@ function closeMaaC() {
 function showCardMain() {
 
     var dy_m_d = document.getElementById('a01');
-    console.log("dy_m_d  隐藏")
     dy_m_d.style.display = "none";
 
 }

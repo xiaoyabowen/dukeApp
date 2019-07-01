@@ -6,10 +6,34 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="../../css/api.css">
     <link rel="stylesheet" href="../../css/commonWindow.css">
-    <title>登录</title>
+    <title>选择角色</title>
     <style>
 
-
+        .chooseBox{
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+        }
+        .chosePerson{
+            margin-bottom: 2.2rem;
+        }
+        .choose-title{
+            font-size: 0.48rem;
+            color:rgba(48,74,179,1);
+            font-weight:400;
+            text-decoration: underline;
+        }
+        .choose-sub{
+            font-size: 0.28rem;
+            color:rgba(48,74,179,1);
+            font-weight:400;
+        }
     </style>
 </head>
 <body>
@@ -18,48 +42,36 @@
         <div class="return">
             <!--<img src="../../icon/return.png" alt="">-->
         </div>
+        <div class="chooseBox">
+            <div class="chosePerson">
+                <div class="choose-title">我是伯乐</div>
+                <div class="choose-sub">(招聘者)</div>
+            </div>
+            <div class="placePerson" onclick="user()">
+                <div class="choose-title">我是千里马</div>
+                <div class="choose-sub">(应聘者)</div>
+            </div>
 
-        <div class="" onclick="inter()">我是伯乐</div>
-        <div class="" onclick="user()">我是千里马</div>
+        </div>
+
     </div>
 </div>
 <script type="text/javascript" src="../../script/api.js"></script>
-<script type="text/javascript" src="../../script/util.js"></script>
-<script type="text/javascript" src="../../script/kv.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../script/user.js"></script>
-<script type="text/javascript" src="../../script/init.js"></script>
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
-<script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
 
 
     apiready = function () {
-        var intro_ist = $api.getStorage('introt');
-        if (!intro_ist) {
-            api.openWin({
-                name: 'intro_index',
-                url: './intro_index.html',
-                pageParam: {
-                    name: 'test1'
-                }
-            });
-        }else {
-            api.openWin({
-                name: 'login',
-                url: './login.html',
-                pageParam: {
-                    name: 'test'
-                }
-            });
-        } ;
+
+
     }
-    // function user() {
-    //     openNewWindow("login", "./login.html", {role: 1})
-    // }
 
-
+    function user() {
+        openNewWindow("home", "../user/home/home.html")
+        localStorage.setItem("role","1")
+    }
 </script>
 </body>
 </html>

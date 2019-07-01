@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
         .info-choose-name{
             font-weight: bold;
@@ -27,62 +29,63 @@
     <div class="boxSub">
         <div class="comon-mine-title">添加项目经历</div>
         <div class="resume_content">
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Project()">
                 <span class="info-choose-name">项目名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="pro_name">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_CompanyLi()">
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="c_name">请输入</span>
+                    <span id="c_id" style="display: none"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_ProjectDescription()">
                 <span class="info-choose-name">项目描述</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name birth_option" id="pro_note">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_Achievement()">
                 <span class="info-choose-name">你的成就</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请选择</span>
+                    <span class="info-choose-main-name birth_option" id="pro_cheng">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="proStart()">
                 <span class="info-choose-name">项目起始时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="pro_begin">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="proEnd()">
                 <span class="info-choose-name">项目结束时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option"id="pro_up">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_ProjectLinks()">
                 <span class="info-choose-name">项目链接</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">选填</span>
+                    <span class="info-choose-main-name birth_option" id="pro_link">选填</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex" onclick="resume_SocialHomepage()">
                 <span class="info-choose-name">社交主页</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name info-choose-add">添加</span>
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="ageChoose()">
+            <div class="info-choose cssFlex">
                 <span class="info-choose-name">图片作品</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name info-choose-add">添加</span>
@@ -97,39 +100,94 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
+<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
     apiready = function () {
-        // 上传头像
-        var file = document.querySelector('.resume_head');
-        file.onclick = function () {
-            api.getPicture({
-                sourceType: 'library',
-                encodingType: 'jpg',
-                mediaValue: 'pic',
-                destinationType: 'url',
-                allowEdit: true,
-                quality: 50,
-                targetWidth: 100,
-                targetHeight: 100,
-                saveToPhotoAlbum: false
-            }, function(ret, err) {
-                if (ret) {
-                    console.log(JSON.stringify(ret));
-                } else {
-                    console.log(JSON.stringify(err));
-                }
-            });
-        }
+
 
     };
+    // 添加项目名称
+    function resume_Project() {
+        openNewWindow("resume_Project", "./resume_Project.html", {
+            url: 'addProduct',
+            content: document.getElementById("pro_name").innerText,
+            mode:"1"
+        })
+    }
+    function pro_name(value) {
+        document.getElementById("pro_name").innerText = value;
+    }
 
-    function ageChoose() {
+    // 添加是否关联工作经历
+    function resume_CompanyLi() {
+        openNewWindow("resume_CompanyLi", "./resume_CompanyLi.html", {
+            url: 'addProduct',
+            content: document.getElementById("c_id").innerText
+        })
+    }
+    function c_id(value,c_id) {
+        document.getElementById("c_name").innerText = value;
+        document.getElementById("c_id").innerText = c_id;
+    }
+    // 您的项目描述
+    function resume_ProjectDescription() {
+        openNewWindow("resume_ProjectDescription", "./resume_ProjectDescription.html", {
+            url: 'addProduct',
+            content: document.getElementById("pro_note").innerText,
+            mode:"1"
+        })
+    }
+    function pro_note(value) {
+        document.getElementById("pro_note").innerText = value;
+    }
+    // 您的成就
+    function resume_Achievement() {
+        openNewWindow("resume_Achievement", "./resume_Achievement.html", {
+            url: 'addProduct',
+            content: document.getElementById("pro_cheng").innerText,
+            mode:"1"
+        })
+    }
+    function pro_cheng(value) {
+        document.getElementById("pro_cheng").innerText = value;
+    }
+
+    // 您的项目地址
+    function resume_ProjectLinks() {
+        openNewWindow("resume_ProjectLinks", "./resume_ProjectLinks.html", {
+            url: 'addProduct',
+            content: document.getElementById("pro_link").innerText,
+            mode:"1"
+        })
+    }
+    function pro_link(value) {
+        document.getElementById("pro_link").innerText = value;
+    }
+
+    // 社交主页
+    function resume_SocialHomepage() {
+        openNewWindow("resume_SocialHomepage", "./resume_SocialHomepage.html", {
+            url: 'addProduct',
+            content: document.getElementById("pro_page").innerText,
+            mode:"1"
+        })
+    }
+    function pro_page(value) {
+        document.getElementById("pro_page").innerText = value;
+    }
+
+
+
+
+
+    // 项目开始日期
+    function proStart() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -138,10 +196,30 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            $(".birth_option").val(selectItems.text)
+            // $(".birth_option").val(selectItems.text)
+            $api.byId("pro_begin").innerText = selectItems.text;
         })
 
+    }
+    // 项目结束日期
+    function proEnd() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            $api.byId("pro_up").innerText = selectItems.text;
+        })
 
+    }
+
+    // 下一步
+    function preservation() {
+        // openNewWindow("addProduct", "./addProduct.html")
     }
 
     // 此处手动调用了js

@@ -29,14 +29,14 @@
             <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="com_name">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="com_type">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -57,28 +57,28 @@
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="position_type">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Position()">
                 <span class="info-choose-name">职位名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="role">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Department()">
                 <span class="info-choose-name">所属部门</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">选填</span>
+                    <span class="info-choose-main-name birth_option" id="position">选填</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Work()">
                 <span class="info-choose-name">工作内容</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option">请输入</span>
+                    <span class="info-choose-main-name birth_option" id="c_note">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -105,31 +105,67 @@
 
     // 公司名称
     function resume_Company() {
-        openNewWindow("resume_Company", "./resume_Company.html");
+        openNewWindow("resume_Company", "./resume_Company.html", {
+            url: 'addWork',
+            content: document.getElementById("com_name").innerText,
+            mode:"1"
+        })
+    }
+    function com_name(value) {
+        document.getElementById("com_name").innerText = value;
     }
     // 公司行业
     function resume_CompanyIndustry() {
-        openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html");
+        openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html", {
+            url: 'addWork',
+            content: document.getElementById("com_type").innerText
+        })
+    }
+    function com_type(value) {
+        document.getElementById("com_type").innerText = value;
     }
     // 职位类型
     function resume_positionType() {
-        openNewWindow("resume_positionType", "./resume_positionType.html");
+        openNewWindow("resume_positionType", "./resume_positionType.html", {
+            url: 'addWork',
+            content: document.getElementById("position_type").innerText
+        })
+    }
+    function position_type(value) {
+        document.getElementById("position_type").innerText = value;
     }
     // 职位名称
     function resume_Position() {
-        openNewWindow("resume_Position", "./resume_Position.html");
+        openNewWindow("resume_Position", "./resume_Position.html", {
+            url: 'addWork',
+            content: document.getElementById("role").innerText,
+            mode:"1"
+        })
+    }
+    function role(value) {
+        document.getElementById("role").innerText = value;
     }
     // 所属部门
     function resume_Department() {
-        openNewWindow("resume_Department", "./resume_Department.html");
+        openNewWindow("resume_Department", "./resume_Department.html", {
+            url: 'addEditWork',
+            content: document.getElementById("position").innerText,
+            mode:"1"
+        })
+    }
+    function position(value) {
+        document.getElementById("position").innerText = value;
     }
     // 工作内容
     function resume_Work() {
-        openNewWindow("resume_Work", "./resume_Work.html");
+        openNewWindow("resume_Work", "./resume_Work.html", {
+            url: 'addEditWork',
+            content: document.getElementById("c_note").innerText,
+            mode:"1"
+        })
     }
-    // 技能标签
-    function resume_SkillLabel() {
-        openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html");
+    function c_note(value) {
+        document.getElementById("c_note").innerText = value;
     }
 
     // 时间日期选择
@@ -163,6 +199,11 @@
             document.querySelector('.quit_date').innerText = selectItems.text;
         })
 
+    }
+
+    // 下一步
+    function preservation() {
+        openNewWindow("addEdution", "./addEdution.html")
     }
 
     // 此处手动调用了js

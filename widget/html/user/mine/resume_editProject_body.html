@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <style>
 
         .resume_editResume_main {
@@ -136,7 +138,7 @@
         </div>
 
         <div class="resume_editResume_item">
-            <div class="info-choose maxHeight cssFlex">
+            <div class="info-choose maxHeight cssFlex" onclick="proStart()">
                 <span class="info-choose-name">项目起始时间</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option" id="pro_begin">2017.02</span>
@@ -145,7 +147,7 @@
             </div>
         </div>
 
-        <div class="resume_editResume_item">
+        <div class="resume_editResume_item" onclick="proEnd()">
             <div class="info-choose maxHeight cssFlex">
                 <span class="info-choose-name">项目结束时间</span>
                 <div class="info-choose-main cssFlex">
@@ -175,12 +177,14 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
+<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
     var person_id = localStorage.getItem('person_id');
     var sn, pro_id;
@@ -268,6 +272,37 @@
     function pro_link(value) {
         document.getElementById("pro_link").innerText = value;
     }
+    // 项目开始日期
+    function proStart() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            $api.byId("pro_begin").innerText = selectItems.text;
+        })
+
+    }
+    // 项目结束日期
+    function proEnd() {
+        var dtpicker = new mui.DtPicker(
+            {
+                type: "date", //设置日历初始视图模式
+                beginDate: new Date(1950, 04, 25), //设置开始日期
+                endDate: new Date() //设置开始日期
+            }
+        );
+        dtpicker.show(function (selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            $api.byId("pro_up").innerText = selectItems.text;
+        })
+
+    }
+
     // 删除项目经历
     function deleteWork() {
         mui.confirm('是否删除此工作经历?', function (e) {
