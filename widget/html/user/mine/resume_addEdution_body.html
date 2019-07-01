@@ -196,33 +196,6 @@
         // alert(person_id)
         // console.log(School,major,education,entry_date,quit_date);
 
-        if (School == "请输入"){
-            api.toast({
-                msg: '请填写学校名称'
-            });
-            return
-        }else if(major == "请输入"){
-            api.toast({
-                msg: '请填写专业名称'
-            });
-            return
-        }else if(education == "请选择"){
-            api.toast({
-                msg: '请选择你的学历'
-            });
-            return
-        }else if(entry_date == "请选择"){
-            api.toast({
-                msg: '请选择你的入学年份'
-            });
-            return
-        }else if(quit_date == "请选择"){
-            api.toast({
-                msg: '请选择你的毕业年份'
-            });
-            return
-        }
-
         var params = {
             u_id: person_id,
             univ_name: School,

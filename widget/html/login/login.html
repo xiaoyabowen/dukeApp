@@ -260,14 +260,14 @@
 
     apiready = function () {
 
-        // var guide = api.require('guide');
-        // guide.openGuidePage({
-        //     imgs: ['widget://image/guide/load_1.jpg', 'widget://image/guide/load_2.jpg', 'widget://image/guide/load_3.jpg'],
-        //     point_normal:'widget://image/guide/point_normal@2x.png',
-        //     point_select:'widget://image/guide/point_select@2x.png',
-        //     btnColor:'00FFFF',
-        //     time :'2'
-        // });
+        var guide = api.require('guide');
+        guide.openGuidePage({
+            imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
+            point_normal:'widget://image/guide/point_normal@2x.png',
+            point_select:'widget://image/guide/point_select@2x.png',
+            btnColor:'00FFFF',
+            time :'2'
+        });
         // 添加安卓退出按钮事件
         api.addEventListener({
             name: 'keyback'

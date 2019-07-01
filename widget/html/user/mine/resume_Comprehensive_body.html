@@ -147,25 +147,13 @@
     function preservation () {
         console.log(selectList);
         var list = selectList.join(',')
-        console.log(list);
-        var person_id = localStorage.getItem('person_id');
-        ajaxGetWithProgress(updateTitle, {
-            person_id: person_id,
-            p_title: list
-        }, function (data, err) {
-            // alert(JSON.stringify(data));
-            console.log(data)
-            if (data.return.status) {
-                console.log(123);
-                api.execScript({
-                    name: 'resume_editResume',
-                    frameName: "resume_editResume_body",
-                    script: 'reload()'
-                })
-                closeWin();
-            }
-
-        });
+        var frameName = url + "_body";
+        // api.execScript({
+        //     name: url,
+        //     frameName: frameName,
+        //     script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
+        // })
+        // closeWin();
     }
 
     // 此处手动调用了js
