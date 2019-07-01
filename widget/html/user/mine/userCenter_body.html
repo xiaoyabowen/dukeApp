@@ -6,147 +6,312 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
-    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/mineCommon.css"/>
 
+    <style>
+        body {
+            padding-bottom: 0.28rem;
+        }
+        .label-name {
+            width: 1.2rem;
+        }
+
+        .label-list, .Interest-list {
+            flex-wrap: wrap;
+            flex: 1;
+        }
+    </style>
 </head>
 <body class="commonBg">
-    <div class="Box">
-        <div class="boxSub">
-            <div class="user-info cssFlex">
-                <img src="../../../image/mine/defalut.png" alt="de" class="user-info-img">
-                <div class="user-main">
-                    <p class="user-main-name">张敏</p>
-                    <p class="user-main-com">北京达达世界网络技术有限公司</p>
-                    <div class="user-main-zhi cssFlex">
-                        <span>北京</span>
-                        <span>运营经理</span>
-                    </div>
+<div class="Box isDisplay">
+    <div class="boxSub">
+        <div class="user-info cssFlex">
+            <img id="p_icon" src="../../../image/mine/defalut.png" alt="de" class="user-info-img">
+            <div class="user-main">
+                <p class="user-main-name" id="p_name">张敏</p>
+                <p class="user-main-com" id="company">北京达达世界网络技术有限公司</p>
+                <div class="user-main-zhi cssFlex">
+                    <span id="city">北京</span>
+                    <span id="position">运营经理</span>
                 </div>
-                <div class="edit-btn">编辑</div>
             </div>
-            <div class="user-follow">
-                <span class="follow-sub">关注：<i>138</i></span>
-                <span class="see-sub">浏览：<i>130</i></span>
-            </div>
+            <div class="edit-btn" onclick="editInfo()">编辑</div>
+        </div>
+        <div class="user-follow">
+            <span class="follow-sub">关注：<i id="follow">138</i></span>
+            <span class="see-sub">浏览：<i id="browse">130</i></span>
+        </div>
 
-        </div>
-        <div class="height10"></div>
-        <div class="boxSub">
-            <div class="user-label cssFlex">
-                <div  class="label-name">我的标签</div>
-                <div class="label-list cssFlex">
-                    <span>随性</span>
-                    <span>敢爱敢恨的的</span>
-                    <span>喜欢简单</span>
-                    <span>随性</span>
-                    <span>敢爱恨</span>
-                    <span>随性</span>
-                    <span>敢爱敢恨</span>
-                </div>
+    </div>
+    <div class="height10"></div>
+    <div class="boxSub">
+        <div class="user-label cssFlex">
+            <div class="label-name">我的标签</div>
+            <div class="label-list cssFlex" id="p_title">
+                <span>随性</span>
+                <span>敢爱敢恨的的</span>
+                <span>喜欢简单</span>
+                <span>随性</span>
+                <span>敢爱恨</span>
+                <span>随性</span>
+                <span>敢爱敢恨</span>
             </div>
         </div>
-        <div class="height10"></div>
-        <div class="boxSub">
-            <div class="user-label cssFlex">
-                <div  class="label-name">我的兴趣</div>
-                <div class="Interest-list cssFlex">
-                    <span>随性</span>
-                    <span>敢爱敢恨</span>
-                    <span>喜欢简单</span>
-                    <span>随性</span>
-                    <span>敢爱恨</span>
-                    <span>随性</span>
-                    <span>敢爱敢恨</span>
-                </div>
+    </div>
+    <div class="height10"></div>
+    <div class="boxSub">
+        <div class="user-label cssFlex">
+            <div class="label-name">我的兴趣</div>
+            <div class="Interest-list cssFlex" id="p_hobby">
+                <span>随性</span>
+                <span>敢爱敢恨</span>
+                <span>喜欢简单</span>
+                <span>随性</span>
+                <span>敢爱恨</span>
+                <span>随性</span>
+                <span>敢爱敢恨</span>
             </div>
         </div>
-        <div class="height10"></div>
-        <div class="boxSub">
-            <div class="user-label cssFlex">
-                <div  class="info-name">基础信息</div>
-                <div class="info-list">
-                    <p>
-                        <span class="inter-list-title">年龄</span>
-                        <i>26</i>
-                    </p>
-                    <p>
-                        <span class="inter-list-title">星座</span>
-                        <i>26</i>
-                    </p>
-                    <p>
-                        <span class="inter-list-title">居住地</span>
-                        <i>26</i>
-                    </p>
-                    <p>
-                        <span class="inter-list-title">身高</span>
-                        <i>26</i>
-                    </p>
-                    <p>
-                        <span class="inter-list-title">体重</span>
-                        <i>26</i>
-                    </p>
-                    <p>
-                        <span class="inter-list-title">情感状况</span>
-                        <i>单身</i>
-                    </p>
-                </div>
+    </div>
+    <div class="height10"></div>
+    <div class="boxSub">
+        <div class="user-label cssFlex">
+            <div class="info-name">基础信息</div>
+            <div class="info-list">
+                <p>
+                    <span class="inter-list-title">年龄</span>
+                    <i id="user_age">26</i>
+                </p>
+                <p>
+                    <span class="inter-list-title">星座</span>
+                    <i id="user_constellation">26</i>
+                </p>
+                <p>
+                    <span class="inter-list-title">居住地</span>
+                    <i id="user_city">26</i>
+                </p>
+                <p>
+                    <span class="inter-list-title">身高</span>
+                    <i id="user_high">26</i>
+                </p>
+                <p>
+                    <span class="inter-list-title">体重</span>
+                    <i id="user_weight">26</i>
+                </p>
+                <p>
+                    <span class="inter-list-title">情感状况</span>
+                    <i id="user_emotion">单身</i>
+                </p>
             </div>
         </div>
-        <div class="height10"></div>
-        <div class="boxSub">
-            <div class="user-label cssFlex">
-                <div  class="life-title">人生观</div>
-                <div class="life-list">
-                    <div class="life-name">对爱情的看法</div>
-                    <div class="life-main">经历许多，现在只想简简单单，相爱到老。</div>
-                    <div class="life-name">对事业的看法</div>
-                    <div class="life-main">三十而立</div>
-                    <div class="life-name">对生活的看法</div>
-                    <div class="life-main">顺其自然</div>
-                </div>
+    </div>
+    <div class="height10"></div>
+    <div class="boxSub">
+        <div class="user-label cssFlex">
+            <div class="life-title">人生观</div>
+            <div class="life-list">
+                <div class="life-name">对爱情的看法</div>
+                <div class="life-main" id="love">经历许多，现在只想简简单单，相爱到老。</div>
+                <div class="life-name">对事业的看法</div>
+                <div class="life-main" id="cause">三十而立</div>
+                <div class="life-name">对生活的看法</div>
+                <div class="life-main" id="life">顺其自然</div>
             </div>
         </div>
-        <div class="height10"></div>
-        <div class="boxSub">
-            <div class="dyname">
-                <div  class="dyname-name">我的动态</div>
-                <div class="dyname-main">
-                    今天天气真好！
+    </div>
+    <div class="height10"></div>
+    <div class="boxSub">
+        <div class="dyname">
+            <div class="dyname-name">我的动态</div>
+            <div class="dyname-main">
+                今天天气真好！
+            </div>
+            <div class="dyname-img cssFlex">
+                <img src="../../../image/teacherLiu.png" alt="img">
+                <img src="../../../image/teacherWang.png" alt="img">
+                <img src="../../../image/teacherLiu.png" alt="img">
+                <img src="../../../image/teacherWang.png" alt="img">
+            </div>
+            <div class="dyname-edit cssFlex">
+                <div class="dyname-del cssFlex">
+                    <img src="../../../image/mine/deleIcon.png" alt="del" class="del-img-edit">
+                    删除
                 </div>
-                <div class="dyname-img cssFlex">
-                    <img src="../../../image/teacherLiu.png" alt="img">
-                    <img src="../../../image/teacherWang.png" alt="img">
-                    <img src="../../../image/teacherLiu.png" alt="img">
-                    <img src="../../../image/teacherWang.png" alt="img">
-                </div>
-                <div class="dyname-edit cssFlex">
-                    <div class="dyname-del cssFlex">
-                        <img src="../../../image/mine/deleIcon.png" alt="del" class="del-img-edit">
-                        删除
-                    </div>
-                    <div class="dyname-ping cssFlex">
-                        <img src="../../../image/mine/zan.png" alt="del" class="del-img-zan">
-                        赞
-                        <img src="../../../image/mine/ping.png" alt="del" class="del-img-ping">
-                        评论
-                    </div>
+                <div class="dyname-ping cssFlex">
+                    <img src="../../../image/mine/zan.png" alt="del" class="del-img-zan">
+                    赞
+                    <img src="../../../image/mine/ping.png" alt="del" class="del-img-ping">
+                    评论
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../script/kv.js"></script>
-    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
-    <script>
-        apiready = function () {
+</div>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 
-        };
-    </script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script>
+    var adr_id;
+    apiready = function () {
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        console.log(uid);
+        ajaxGetWithProgress(QuerySummary, {
+            uid: uid
+        }, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data.adr_id) {
+                adr_id = data.adr_id;
+            }
+
+            document.querySelector('.Box').classList.remove('isDisplay');
+            if (data.p_icon) {
+                // document.getElementById('p_icon').src = '';
+            }
+
+            if (data.p_name) {
+                document.getElementById('p_name').innerText = data.p_name || '未登录';
+            }
+
+            document.getElementById('company').innerText = data.com_name || '未填写';
+            document.getElementById('city').innerText = data.city || '未填写';
+            document.getElementById('user_city').innerText = data.city || '未填写';
+            document.getElementById('position').innerText = data.position_type || '未填写';
+            document.getElementById('follow').innerText = data.follow || 0;
+            document.getElementById('browse').innerText = data.browse || 0;
+            document.getElementById('user_high').innerText = data.height || '未填写';
+            document.getElementById('user_weight').innerText = data.weight || '未填写';
+            document.getElementById('user_emotion').innerText = data.emotion || '未填写';
+
+            // 我的标签
+            if (data.p_title) {
+                var arr = data.p_title.split(',');
+                var arr1 = [];
+                for (var i = 0; i < arr.length; i++) {
+                    arr1.push('<span>' + arr[i] + '</span>')
+                }
+                var dom = arr1.join('');
+                document.getElementById('p_title').innerHTML = dom;
+            }
+            // 我的兴趣标签
+            if (data.p_hobby) {
+                var arr = data.p_hobby.split(',');
+                var arr1 = [];
+                for (var i = 0; i < arr.length; i++) {
+                    arr1.push('<span>' + arr[i] + '</span>')
+                }
+                var dom = arr1.join('');
+                document.getElementById('p_hobby').innerHTML = dom;
+            }
+
+            // 我的年龄,星座
+            if (data.p_birthday) {
+                var list = data.p_birthday.split('-');
+                console.log(list);
+                var constellation1 = WhatIsYourConstellation(list[0], list[1], list[2]);
+                document.getElementById('user_age').innerText = ages(data.p_birthday);
+                document.getElementById('user_constellation').innerText = constellation1
+            } else {
+                document.getElementById('user_age').innerText = '未填写';
+                document.getElementById('user_constellation').innerText = '未填写';
+            }
+            // 计算年龄
+            function ages(str) {
+                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+                if (r == null) return false;
+                var d = new Date(r[1], r[3] - 1, r[4]);
+                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
+                    var Y = new Date().getFullYear();
+                    // return ("年龄   =   " + (Y - r[1]) + "   周岁");
+                    return (Y - r[1]);
+                }
+                return ("输入的日期格式错误！");
+            }
+            //星座定义
+            function WhatIsYourConstellation(y, m, d) {
+                /*
+                判断日期有效性
+                1,3,5,7,8,10,12为31天
+                2月润年29，非润年28
+                4,6,9,11为30天
+                */
+                var daysInMonth = [31, 99, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                //检测年份
+                if (y < 1970 || y > 2099) return "年份不对";
+
+                //检测月份
+                if (m < 1 || m > 12) return "月份不对";
+
+                //检测日期
+                var mDays = daysInMonth[m - 1];
+                //如果是二月，要根据年份计算天数，不是二月时略过此计算
+                if (m == 2) {
+                    mDays = GetSpecialDays(y)
+                }
+
+                //判断日数据是不是在月份的有效天范围
+                if (d < 0 || d > mDays) return "月份不对";
+
+                var constellations = [
+                    {"Start": 121, "End": 220, "Name": "水平座"}, {"Start": 221, "End": 320, "Name": "双鱼座"},
+                    {"Start": 321, "End": 420, "Name": "白羊座"}, {"Start": 421, "End": 520, "Name": "金牛座"},
+                    {"Start": 521, "End": 620, "Name": "双子座"}, {"Start": 621, "End": 720, "Name": "巨蟹座"},
+                    {"Start": 721, "End": 820, "Name": "狮子座"}, {"Start": 821, "End": 920, "Name": "处女座"},
+                    {"Start": 921, "End": 1020, "Name": "天秤座"}, {"Start": 1021, "End": 1120, "Name": "天蝎座"},
+                    {"Start": 1121, "End": 1220, "Name": "射手座"}];
+                //好了，走到这一步，说明上面的验证都TM过了。
+                //这才判断是哪一个星座
+                //星座座标等于m*100 + d
+                var pos = m * 100 + Number(d);
+                // console.log(pos);
+                // for (var i in constellations) {
+                //     if (pos >= constellations[i].Start && pos <= constellations[i].End) {
+                //         console.log(123)
+                //         return constellations[i].Name;
+                //     }
+                // }
+                // console.log(constellations)
+                for (var i = 0; i < constellations.length; i++) {
+                    if (pos >= constellations[i].Start && pos <= constellations[i].End) {
+                        console.log(123)
+                        return constellations[i].Name;
+                    }
+                }
+            }
+            //根据年份计算二月天数
+            function GetSpecialDays(y) {
+                if (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) return 29;
+                return 28;
+            }
+
+            // 人生关
+            if (data.p_vol) {
+                var list = data.p_vol.split('||');
+                document.getElementById('love').innerText = list[0] || '未填写';
+                document.getElementById('cause').innerText = list[1] || '未填写';
+                document.getElementById('life').innerText = list[2] || '未填写';
+            }
+
+
+
+        });
+    };
+
+    function editInfo() {
+        openNewWindow("editInfo", "./editInfo.html", {
+            adr_id: adr_id
+        });
+    }
+</script>
 </body>
 </html>

@@ -657,8 +657,11 @@ function ajaxGet(url, params, callBack) {
     // console.log(user)
     // params.token = user.token;
     // 测试用
-    params.uid = '1';
-    // console.log(params)
+    var user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    // params.uid = '1';
+    params.uid = user.user_uid;
+    console.log('token', params)
     api.ajax({
         url: url,
         method: 'get',
