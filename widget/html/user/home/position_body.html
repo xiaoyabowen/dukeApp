@@ -213,14 +213,29 @@
 <script type="text/javascript" src="../../../IQ/part1.js"></script>
 <script type="text/javascript" src="../../../IQ/vdp.js"></script>
 
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
 <script>
     var card_el=document.getElementById("card_main");
     card_el.style.height=csreen_height-80+"px";
     console.log("card", card_el);
     console.log("card height: "+card_el.style.height);
 
+    var job_id;
     apiready = function () {
+        job_id = api.pageParam.job_id;
+        var obj = {
+            job_id: job_id
+        }
+        ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data) {
 
+            }
+
+        });
     };
 
 </script>

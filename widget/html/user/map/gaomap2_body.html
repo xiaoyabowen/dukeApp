@@ -57,6 +57,9 @@
             display: block;
         }
     </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -74,17 +77,21 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <!-- UI组件库 1.0 -->
 <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <script>
 
-    var url,adr_id,province;
+    var url,adr_id,list;
 
     //创建地图
 
     apiready = function () {
+        url = api.pageParam.url;
+        adr_id = api.pageParam.adr_id;
+        console.log(123, adr_id);
         api.showProgress({
             style: 'default',
             animationType: 'fade',
@@ -131,11 +138,13 @@
 
                 positionPicker.on('success', function(positionResult) {
                     console.log(positionResult)
+                    list = positionResult;
                     var allData = positionResult.regeocode
                     var province = allData.addressComponent.province   //省
                     var city = allData.addressComponent.city   //shi
                     var district = allData.addressComponent.district   //区
-                    var township = allData.addressComponent.township   //jiedao
+                    var township = allData.addressComponent.township   //镇
+                    var street = allData.addressComponent.street   //街道
                     var adressStr = {
                         country:"中国",
                         province:province,
@@ -143,7 +152,7 @@
                         street:district,
                         shortname:township,
                     }
-                    localStorage.setItem("adressStr",JSON.stringify(adressStr))
+                    // localStorage.setItem("adressStr",JSON.stringify(adressStr))
                     var allAdress;
                     if (city == ''){
                         allAdress = province+district+township
@@ -182,7 +191,7 @@
                 }))
             });
         }
-        url = api.pageParam.url;
+
 
     };
 
@@ -208,11 +217,28 @@
             }
 
         }
-        // document.getElementById("activeImg"+i).classList.remove("noneADr")
-        // var activeI = "activeImg"+i
-        // console.log(document.getElementById(activeI))
-        // console.log(noneImg)
-        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+
+        console.log(list);
+        var allData = list.regeocode;
+        var province = allData.addressComponent.province   // 省
+        var city = allData.addressComponent.city   // 市
+        var district = allData.addressComponent.district   // 区/县
+        var street = allData.addressComponent.street   // 路/镇
+        var township = allData.addressComponent.township   // 街道
+        var name = allData.pois[index].name   // 镇/
+
+        var shortname = street + township + name
+        var adressStr = {
+            country:"中国",
+            province:province,
+            city:city,
+            street: district,
+            shortname:shortname,
+            address: street
+        }
+
+        localStorage.setItem("adressStr",JSON.stringify(adressStr))
+
 
 
     }
@@ -220,33 +246,37 @@
 
     // 点击保存执行此方法
     function preservation () {
-        // api.showProgress();
-        var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
-        console.log(adressStrData)
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
-        var data= {
-            country: adressStrData.country,
-            province: adressStrData.province,
-            city: adressStrData.city,
-            street: adressStrData.street,
-            shortname: adressStrData.shortname,
-            person_id : uid
+        var adressStrData = JSON.parse(localStorage.getItem("adressStr"));
+
+        var country = adressStrData.country;
+        var province = adressStrData.province;
+        var city = adressStrData.city;
+        var street = adressStrData.street;
+        var shortname = adressStrData.shortname;
+        var address = adressStrData.address;
+        console.log(adr_id);
+
+        var obj = {
+            country:country,
+            province:province,
+            city:city,
+            street:street,
+            shortname:shortname,
+            adr_id: adr_id
         }
+        console.log(obj);
+        api.showProgress();
+        Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/updateAddress', obj, function(data){
 
-
-        Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson', data, function(data){
+            var msg = JSON.parse(data);
             console.log(data);
-            var data = JSON.parse(data)
-
-            adr_id = data.adr_id
-            province = adressStrData.province
-            if (data.return_info.status){
-                // api.hideProgress();
+            if (msg.return.status){
+                api.hideProgress();
                 var frameName = url + "_body";
                 api.execScript({
                     name:url,
                     frameName: frameName,
-                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+                    script: 'int_city('+JSON.stringify(province)+','+JSON.stringify(city)+','+JSON.stringify(street)+','+JSON.stringify(address)+')'
                 })
                 api.closeWin({
                     name: api.winName
@@ -318,39 +348,6 @@
             }
         }
 
-
-
-        /*api.ajax({
-            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
-            method: 'get',
-            timeout: 60,
-            dataType: 'json',
-            returnAll: false,
-            headers: {
-                "Accept-Encoding": "gzip",
-                "type" :   1
-            },
-            data: JSON.stringify(data)
-        }, function (ret, err) {
-            adr_id = ret.adr_id
-            province = adressStrData.province
-            if (ret.return_info.status){
-
-                /!*var frameName = url + "_body";
-                api.execScript({
-                    name:url,
-                    frameName: frameName,
-                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
-                })
-                api.closeWin({
-                    name: api.winName
-                });*!/
-            } else{
-                api.toast({
-                    msg: '请求出错'
-                });
-            }
-        })*/
 
     }
 
