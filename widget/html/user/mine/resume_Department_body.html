@@ -49,9 +49,11 @@
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
-        if (content) {
+        mode = api.pageParam.mode;
+        if (mode == undefined){
             text.value = content || '';
-            num.innerText = content.length;
+        } else{
+            text.value = '';
         }
 
         text.oninput = function (e) {

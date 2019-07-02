@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <base href="//webapi.amap.com/ui/1.0/ui/misc/PositionPicker/examples/" />
+    <title>高德地图</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <style>
+        #container{
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <div class="boxSub">
+        <div id="container" class="map" tabindex="0"></div>
+        <div></div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
+<!-- UI组件库 1.0 -->
+<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+<script>
+    /*apiready = function () {
+
+        var aMap, curlon, curlat;
+            //引入模块
+            aMap = api.require('aMap');
+            api.showProgress({
+                style: 'default',
+                animationType: 'fade',
+                title: '我在定位中...',
+                text: '请稍候...',
+                modal: false
+            });
+            //打开地图
+            openMap();
+            //定位getLocation();
+            //setInterval("getLocation()", 8000);
+
+            //打开地图
+            function openMap(){
+                var frameWidth = document.querySelector('.boxSub').offsetWidth || '';
+                var allWidth = api.frameWidth || '';
+                aMap.setMapAttr({
+                    type: 'standard',
+                    trafficOn: true,
+                    building: true,
+                    scrollEnable:true
+                });
+                aMap.open({
+                    rect: {
+                        x: (allWidth-frameWidth)/2,
+                        y: 0,
+                        w: frameWidth,
+                        h: 300
+                    },
+                    showUserLocation: true,
+                    zoomLevel: 16,
+                    fixedOn: api.frameName,
+                    fixed: true
+                }, function(ret, err) {
+                    alert(JSON.stringify(ret))
+                    if (ret.status) {
+                        getLocation()
+                    } else {
+
+                    }
+                });
+            }
+        //获取用户当前经纬度。
+                function getLocation() {
+                    aMap.getLocation({
+                        autoStop: true,
+                    }, function(ret, err) {
+                        api.hideProgress();
+                        if (ret.status) {
+                            if ((curlon != ret.lon) || (curlat != ret.lat)) {
+                                curlon = ret.lon;
+                                curlat = ret.lat;
+
+                                //设置地图中心
+                                aMap.setCenter({
+                                    coords: {
+                                        lon: curlon,
+                                        lat: curlat
+                                    },
+                                    animation: true
+                                });
+                                aMap.addAnnotations({
+                                    annotations: [{
+                                        id: 1,
+                                        lon: curlon,
+                                        lat: curlat
+                                    }],
+                                    icons: ['widget://icon/dukelogo.png'],
+                                    draggable: true,
+                                    timeInterval: 2.0
+                                }, function(ret) {
+                                    if (ret.eventType == 'click') {
+                                        alert(ret.id);
+                                    }
+                                });
+                                aMap.showUserLocation({
+                                    isShow: true
+                                }); //显示用户位置
+                                aMap.setTrackingMode({
+                                    animation: true,
+                                    trackingMode: 'follow'
+                                });
+                                aMap.stopLocation();//停止定位
+                            }
+                        } else {
+                            console.log(err.code);
+                        }
+                    });
+                }
+        };*/
+    //创建地图
+
+
+
+
+    AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
+        var map = new AMap.Map('container', {
+            zoom: 16,
+            scrollWheel: false
+        })
+        var positionPicker = new PositionPicker({
+            mode: 'dragMap',
+            map: map
+        });
+
+        positionPicker.on('success', function(positionResult) {
+            alert(JSON.stringify(positionResult))
+            document.getElementById('lnglat').innerHTML = positionResult.position;
+            document.getElementById('address').innerHTML = positionResult.address;
+            document.getElementById('nearestJunction').innerHTML = positionResult.nearestJunction;
+            document.getElementById('nearestRoad').innerHTML = positionResult.nearestRoad;
+            document.getElementById('nearestPOI').innerHTML = positionResult.nearestPOI;
+        });
+
+        var onModeChange = function(e) {
+            positionPicker.setMode(e.target.value)
+        }
+
+        var dragMapMode = document.getElementsByName('mode')[0];
+        var dragMarkerMode = document.getElementsByName('mode')[1];
+
+
+        AMap.event.addDomListener(dragMapMode, 'change', onModeChange)
+        AMap.event.addDomListener(dragMarkerMode, 'change', onModeChange);
+        positionPicker.start();
+        map.panBy(0, 1);
+
+        map.addControl(new AMap.ToolBar({
+            liteStyle: true
+        }))
+    });
+    function aMapSearchNearBy(centerPoint, city) {
+        AMap.service(["AMap.PlaceSearch"], function() {
+            var placeSearch = new AMap.PlaceSearch({
+                pageSize: 10,    // 每页10条
+                pageIndex: 1,    // 获取第一页
+                city: city       // 指定城市名(如果你获取不到城市名称，这个参数也可以不传，注释掉)
+            });
+
+            // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
+            // 第二个参数是经纬度，数组类型
+            // 第三个参数是半径，周边的范围
+            // 第四个参数为回调函数
+            placeSearch.searchNearBy('', centerPoint, 1000, function(status, result) {
+                if(result.info === 'OK') {
+                    var locationList = result.poiList.pois; // 周边地标建筑列表
+
+                    // 生成地址列表html
+                    createLocationHtml(locationList);
+                } else {
+                    console.log('获取位置信息失败!');
+                }
+            });
+        });
+    }
+    aMapSearchNearBy([114.30, 30.60], '武汉');
+
+
+
+
+
+
+
+    // 点击保存执行此方法
+    function preservation () {
+        var value = text.value;
+        if(isBlack(value)){
+            toast("请输入社交主页");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            // frameName:url +"_body",
+            frameName: frameName,
+            script: 'pro_page('+JSON.stringify(value)+')'
+        })
+        closeWin();
+    }
+
+
+</script>
+</body>
+</html>

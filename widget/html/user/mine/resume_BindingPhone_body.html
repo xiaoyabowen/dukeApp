@@ -178,7 +178,7 @@
                     <button class="yanzheng">获取验证码</button>
                 </div>
             </div>
-            <div class="configEdit">立即绑定</div>
+            <div class="configEdit" onclick="configEdit()">立即绑定</div>
             <p class="tipPhone">变更新手机号后，将自动同步新手机号为登录账号</p>
         </div>
 
@@ -202,6 +202,15 @@
                 phone.value = '';
             }
         };
+        function configEdit() {
+
+            api.execScript({
+                name:url,
+                frameName: frameName,
+                script: 'edit_name('+JSON.stringify(value)+')'
+            })
+            closeWin();
+        }
 
         // apiready()
     </script>

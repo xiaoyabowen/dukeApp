@@ -58,8 +58,8 @@
             line-height: 20px !important;
         }
     </style>
-    <!--<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->-->
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>-->
 </head>
 <body class="commonBg">
 
@@ -74,7 +74,7 @@
         <img src="../../../image/duke-2.png" width="70" onclick="returnCate();">
     </div>
 </div>
-<div id="app">
+<div id="app" onclick="showCardMain();">
 
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main safe-areas">
@@ -83,7 +83,7 @@
             <!-- Scrollable page content-->
             <div class="page-content">
 
-                <div class="card" id='div_card' onclick="showCardMain();">
+                <div class="card" id='div_card'>
                     <div class="card-content">
                         <div class="Box"  id="card_main">
                             <div class="positionBox">
@@ -210,8 +210,8 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../../IQ/d3.js"></script>
-<script type="text/javascript" src="../../../IQ/vdp.js"></script>
 <script type="text/javascript" src="../../../IQ/part1.js"></script>
+<script type="text/javascript" src="../../../IQ/vdp.js"></script>
 
 <script>
     var card_el=document.getElementById("card_main");
