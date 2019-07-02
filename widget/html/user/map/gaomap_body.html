@@ -14,6 +14,47 @@
         #container{
             width: 100%;
             height: 300px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99999999999999;
+        }
+        #pois{
+            margin-top: 300px;
+            height: calc(100% - 300px);
+            overflow: hidden;
+        }
+        .mapBox{
+            padding: 0 20px;
+            border-bottom: 1px solid #cccccc;
+            position: relative;
+        }
+        .imgAdress{
+            display: none;
+            width: 18px;
+            height: 20px;
+            position: absolute;
+            right: 20px;
+            top: 30px;
+        }
+        .township{
+            width: 90%;
+            /*height: 24px;*/
+            line-height: 20px;
+            color: #3333;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .allAdress{
+            width: 90%;
+            /*height: 20px;*/
+            line-height:  18px;
+            color: #666666;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        .blockADr{
+            display: block;
         }
     </style>
 
@@ -22,207 +63,207 @@
 </head>
 <body class="commonBg">
 
-<div class="Box">
-    <div class="boxSub">
-        <div id="container" class="map" tabindex="0"></div>
-        <div></div>
-    </div>
 
+<div id="container" class="map" tabindex="0"></div>
+
+<div id="pois">
+    <!--<div id="adr_id" class="noneADr"></div>-->
 
 </div>
+</div>
+
+
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <!-- UI组件库 1.0 -->
 <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <script>
-    /*apiready = function () {
 
-        var aMap, curlon, curlat;
-            //引入模块
-            aMap = api.require('aMap');
-            api.showProgress({
-                style: 'default',
-                animationType: 'fade',
-                title: '我在定位中...',
-                text: '请稍候...',
-                modal: false
-            });
-            //打开地图
-            openMap();
-            //定位getLocation();
-            //setInterval("getLocation()", 8000);
+    var url,adr_id,province;
 
-            //打开地图
-            function openMap(){
-                var frameWidth = document.querySelector('.boxSub').offsetWidth || '';
-                var allWidth = api.frameWidth || '';
-                aMap.setMapAttr({
-                    type: 'standard',
-                    trafficOn: true,
-                    building: true,
-                    scrollEnable:true
-                });
-                aMap.open({
-                    rect: {
-                        x: (allWidth-frameWidth)/2,
-                        y: 0,
-                        w: frameWidth,
-                        h: 300
-                    },
-                    showUserLocation: true,
-                    zoomLevel: 16,
-                    fixedOn: api.frameName,
-                    fixed: true
-                }, function(ret, err) {
-                    alert(JSON.stringify(ret))
-                    if (ret.status) {
-                        getLocation()
-                    } else {
-
-                    }
-                });
-            }
-        //获取用户当前经纬度。
-                function getLocation() {
-                    aMap.getLocation({
-                        autoStop: true,
-                    }, function(ret, err) {
-                        api.hideProgress();
-                        if (ret.status) {
-                            if ((curlon != ret.lon) || (curlat != ret.lat)) {
-                                curlon = ret.lon;
-                                curlat = ret.lat;
-
-                                //设置地图中心
-                                aMap.setCenter({
-                                    coords: {
-                                        lon: curlon,
-                                        lat: curlat
-                                    },
-                                    animation: true
-                                });
-                                aMap.addAnnotations({
-                                    annotations: [{
-                                        id: 1,
-                                        lon: curlon,
-                                        lat: curlat
-                                    }],
-                                    icons: ['widget://icon/dukelogo.png'],
-                                    draggable: true,
-                                    timeInterval: 2.0
-                                }, function(ret) {
-                                    if (ret.eventType == 'click') {
-                                        alert(ret.id);
-                                    }
-                                });
-                                aMap.showUserLocation({
-                                    isShow: true
-                                }); //显示用户位置
-                                aMap.setTrackingMode({
-                                    animation: true,
-                                    trackingMode: 'follow'
-                                });
-                                aMap.stopLocation();//停止定位
-                            }
-                        } else {
-                            console.log(err.code);
-                        }
-                    });
-                }
-        };*/
     //创建地图
 
-
-
-
-    AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
-        var map = new AMap.Map('container', {
-            zoom: 16,
-            scrollWheel: false
-        })
-        var positionPicker = new PositionPicker({
-            mode: 'dragMap',
-            map: map
+    apiready = function () {
+        api.showProgress({
+            style: 'default',
+            animationType: 'fade',
+            title: '我在定位中...',
+            text: '请稍候...',
+            modal: false
         });
+        //打开地图
+        openMap();
+        var map;
+        function openMap(){
+            AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
+                api.hideProgress();
+                /*this.opts = utils.extend({
+                    url:require.toUrl("../../../icon/adress.png"),
+                    size:[32,32],
+                    ancher:[16.32]
+                })*/
+                map= new AMap.Map('container', {
+                    zoom: 16,
+                    scrollWheel: false,
 
-        positionPicker.on('success', function(positionResult) {
-            alert(JSON.stringify(positionResult))
-            document.getElementById('lnglat').innerHTML = positionResult.position;
-            document.getElementById('address').innerHTML = positionResult.address;
-            document.getElementById('nearestJunction').innerHTML = positionResult.nearestJunction;
-            document.getElementById('nearestRoad').innerHTML = positionResult.nearestRoad;
-            document.getElementById('nearestPOI').innerHTML = positionResult.nearestPOI;
-        });
+                })
+                var positionPicker = new PositionPicker({
+                    mode: 'dragMap',
+                    map: map
+                });
+                //获取定位标记
 
-        var onModeChange = function(e) {
-            positionPicker.setMode(e.target.value)
+                map.plugin('AMap.Geolocation', function() {
+                    geolocation = new AMap.Geolocation({
+                        enableHighAccuracy : true, //是否使用高精度定位，默认:true
+                        timeout : 10000, //超过10秒后停止定位，默认：无穷大
+                        buttonOffset : new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                        buttonPosition : 'RB'
+                    });
+                    map.addControl(geolocation);
+                    geolocation.getCurrentPosition();
+                    AMap.event.addListener(geolocation, 'complete', onComplete);
+                    //返回定位信息
+                    AMap.event.addListener(geolocation, 'error', onError);
+                    //返回定位出错信息
+                });
+
+                positionPicker.on('success', function(positionResult) {
+                    console.log(positionResult)
+                    var allData = positionResult.regeocode
+                    var province = allData.addressComponent.province   //省
+                    var city = allData.addressComponent.city   //shi
+                    var district = allData.addressComponent.district   //区
+                    var township = allData.addressComponent.township   //jiedao
+                    var adressStr = {
+                        country:"中国",
+                        province:province,
+                        city:city,
+                        street:district,
+                        shortname:township,
+                    }
+                    localStorage.setItem("adressStr",JSON.stringify(adressStr))
+                    var allAdress;
+                    if (city == ''){
+                        allAdress = province+district+township
+                    } else{
+                        allAdress = province+city+district+township
+                    }
+
+                    var poisAdress = allData.pois
+                    var poisAdressData = ''
+                    for (var i=0;i<poisAdress.length;i++){
+                        var lat = poisAdress[i].location.lat
+                        var ing = poisAdress[i].location.lng
+
+                        poisAdressData+='<div class="mapBox" onclick="mapclick('+lat+','+ing+','+i+')"><p class="township ellipsis">'+poisAdress[i].address+'</p>'
+                        if (city == '') {
+                            poisAdressData+='<p class="allAdress ellipsis">'+allAdress+poisAdress[i].address+poisAdress[i].name+'</p>'
+                        }else{
+                            poisAdressData+='<p class="allAdress ellipsis">'+allAdress+poisAdress[i].address+poisAdress[i].name+'</p>'
+                        }
+
+
+                        poisAdressData+='<img src="../../../icon/adress.png" alt="ad" id="activeImg'+i+'" class="imgAdress"></div>'
+                    }
+
+                    document.getElementById("pois").innerHTML = poisAdressData
+                });
+                positionPicker.on('fail', function(positionResult) {
+
+                });
+
+                positionPicker.start();
+                map.panBy(0, 1);
+
+                map.addControl(new AMap.ToolBar({
+                    liteStyle: true
+                }))
+            });
         }
+        url = api.pageParam.url;
 
-        var dragMapMode = document.getElementsByName('mode')[0];
-        var dragMarkerMode = document.getElementsByName('mode')[1];
+    };
 
+    // function mapclick(lat,ing,country,province,city,district,township) {
+    function mapclick(lat,ing,index) {
+        console.log(index)
 
-        AMap.event.addDomListener(dragMapMode, 'change', onModeChange)
-        AMap.event.addDomListener(dragMarkerMode, 'change', onModeChange);
-        positionPicker.start();
-        map.panBy(0, 1);
-
-        map.addControl(new AMap.ToolBar({
-            liteStyle: true
-        }))
-    });
-    function aMapSearchNearBy(centerPoint, city) {
-        AMap.service(["AMap.PlaceSearch"], function() {
-            var placeSearch = new AMap.PlaceSearch({
-                pageSize: 10,    // 每页10条
-                pageIndex: 1,    // 获取第一页
-                city: city       // 指定城市名(如果你获取不到城市名称，这个参数也可以不传，注释掉)
-            });
-
-            // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
-            // 第二个参数是经纬度，数组类型
-            // 第三个参数是半径，周边的范围
-            // 第四个参数为回调函数
-            placeSearch.searchNearBy('', centerPoint, 1000, function(status, result) {
-                if(result.info === 'OK') {
-                    var locationList = result.poiList.pois; // 周边地标建筑列表
-
-                    // 生成地址列表html
-                    createLocationHtml(locationList);
-                } else {
-                    console.log('获取位置信息失败!');
-                }
-            });
+        map = new AMap.Map('container', {
+            resizeEnable : true,
+            zoom : 14,
+            center : [ ing,lat],
         });
+
+
+
+        var noneImg = document.querySelectorAll(".imgAdress")
+        // console.log(noneImg.length)
+        for (var i=0;i<noneImg.length;i++){
+            if (i == index){
+                noneImg[i].classList.add("blockADr")
+            }else{
+                noneImg[i].classList.remove("blockADr")
+            }
+
+        }
+        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+        // var activeI = "activeImg"+i
+        // console.log(document.getElementById(activeI))
+        // console.log(noneImg)
+        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+
+
     }
-    aMapSearchNearBy([114.30, 30.60], '武汉');
-
-
-
-
-
 
 
     // 点击保存执行此方法
     function preservation () {
-        var value = text.value;
-        if(isBlack(value)){
-            toast("请输入社交主页");
-            return;
-        }
+        var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
 
-        var frameName = url + "_body";
-        api.execScript({
-            name:url,
-            // frameName:url +"_body",
-            frameName: frameName,
-            script: 'pro_page('+JSON.stringify(value)+')'
+        api.ajax({
+            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
+            method: 'get',
+            timeout: 60,
+            dataType: 'json',
+            returnAll: false,
+            headers: {
+                "Accept-Encoding": "gzip",
+                "type" :   1
+            },
+            data: {
+                country: adressStrData.country,
+                province: adressStrData.province,
+                city: adressStrData.city,
+                street: adressStrData.street,
+                shortname: adressStrData.shortname
+            }
+        }, function (ret, err) {
+            adr_id = ret.adr_id
+            province = adressStrData.province
+            if (ret.return_info.status){
+
+                var frameName = url + "_body";
+                api.execScript({
+                    name:url,
+                    frameName: frameName,
+                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+                })
+                api.closeWin({
+                    name: api.winName
+                });
+            } else{
+                api.toast({
+                    msg: '请求出错'
+                });
+            }
         })
-        closeWin();
+
     }
 
 

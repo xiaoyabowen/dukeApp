@@ -30,6 +30,7 @@ var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
 
+
 // 获取面试数量
 var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
 // 获取面试列表
@@ -90,6 +91,23 @@ var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
 var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
+
+
+// 创建简历  地图
+var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";
+
+// 创建简历   第一步
+var CreatePerson = serverUrl + "/UserProfile/CreatePerson";
+
+// 创建简历   第er步
+var addWorkingExperience = serverUrl + "/WorkingExperienceProfile/addWorkingExperience";
+
+// 创建简历   第三步
+var createEducation = serverUrl + "/UserProfile/createEducation";
+
+// 创建简历   第四步
+var createProjectExperience = serverUrl + "/ProjectExperienceProfile/createProjectExperience";
+
 
 
 
