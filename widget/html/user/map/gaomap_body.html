@@ -14,6 +14,7 @@
         #container{
             width: 100%;
             height: 300px;
+<<<<<<< HEAD
         }
     </style>
 </head>
@@ -27,15 +28,81 @@
 
 
 </div>
+=======
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99999999999999;
+        }
+        #pois{
+            margin-top: 300px;
+            height: calc(100% - 300px);
+            overflow: hidden;
+        }
+        .mapBox{
+            padding: 0 20px;
+            border-bottom: 1px solid #cccccc;
+            position: relative;
+        }
+        .imgAdress{
+            display: none;
+            width: 18px;
+            height: 20px;
+            position: absolute;
+            right: 20px;
+            top: 30px;
+        }
+        .township{
+            width: 90%;
+            /*height: 24px;*/
+            line-height: 20px;
+            color: #3333;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .allAdress{
+            width: 90%;
+            /*height: 20px;*/
+            line-height:  18px;
+            color: #666666;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        .blockADr{
+            display: block;
+        }
+    </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+        <script>eruda.init();</script>
+</head>
+<body class="commonBg">
+
+
+    <div id="container" class="map" tabindex="0"></div>
+
+        <div id="pois">
+            <!--<div id="adr_id" class="noneADr"></div>-->
+
+        </div>
+        </div>
+
+
+>>>>>>> master
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="../../../script/data.js"></script>
+>>>>>>> master
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <!-- UI组件库 1.0 -->
 <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <script>
+<<<<<<< HEAD
     /*apiready = function () {
 
         var aMap, curlon, curlat;
@@ -202,10 +269,150 @@
 
 
 
+=======
+
+    var url,adr_id,province;
+
+    //创建地图
+
+    apiready = function () {
+        api.showProgress({
+            style: 'default',
+            animationType: 'fade',
+            title: '我在定位中...',
+            text: '请稍候...',
+            modal: false
+        });
+        //打开地图
+        openMap();
+            var map;
+            function openMap(){
+            AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
+                api.hideProgress();
+                /*this.opts = utils.extend({
+                    url:require.toUrl("../../../icon/adress.png"),
+                    size:[32,32],
+                    ancher:[16.32]
+                })*/
+                map= new AMap.Map('container', {
+                    zoom: 16,
+                    scrollWheel: false,
+
+                })
+                var positionPicker = new PositionPicker({
+                    mode: 'dragMap',
+                    map: map
+                });
+                //获取定位标记
+
+                map.plugin('AMap.Geolocation', function() {
+                    geolocation = new AMap.Geolocation({
+                        enableHighAccuracy : true, //是否使用高精度定位，默认:true
+                        timeout : 10000, //超过10秒后停止定位，默认：无穷大
+                        buttonOffset : new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                        buttonPosition : 'RB'
+                    });
+                    map.addControl(geolocation);
+                    geolocation.getCurrentPosition();
+                    AMap.event.addListener(geolocation, 'complete', onComplete);
+                    //返回定位信息
+                    AMap.event.addListener(geolocation, 'error', onError);
+                    //返回定位出错信息
+                });
+
+                positionPicker.on('success', function(positionResult) {
+                    console.log(positionResult)
+                    var allData = positionResult.regeocode
+                    var province = allData.addressComponent.province   //省
+                    var city = allData.addressComponent.city   //shi
+                    var district = allData.addressComponent.district   //区
+                    var township = allData.addressComponent.township   //jiedao
+                    var adressStr = {
+                        country:"中国",
+                        province:province,
+                        city:city,
+                        street:district,
+                        shortname:township,
+                    }
+                    localStorage.setItem("adressStr",JSON.stringify(adressStr))
+                    var allAdress;
+                    if (city == ''){
+                        allAdress = province+district+township
+                    } else{
+                        allAdress = province+city+district+township
+                    }
+
+                    var poisAdress = allData.pois
+                    var poisAdressData = ''
+                    for (var i=0;i<poisAdress.length;i++){
+                        var lat = poisAdress[i].location.lat
+                        var ing = poisAdress[i].location.lng
+
+                        poisAdressData+='<div class="mapBox" onclick="mapclick('+lat+','+ing+','+i+')"><p class="township ellipsis">'+poisAdress[i].address+'</p>'
+                        if (city == '') {
+                            poisAdressData+='<p class="allAdress ellipsis">'+allAdress+poisAdress[i].address+poisAdress[i].name+'</p>'
+                        }else{
+                            poisAdressData+='<p class="allAdress ellipsis">'+allAdress+poisAdress[i].address+poisAdress[i].name+'</p>'
+                        }
+
+
+                        poisAdressData+='<img src="../../../icon/adress.png" alt="ad" id="activeImg'+i+'" class="imgAdress"></div>'
+                    }
+
+                    document.getElementById("pois").innerHTML = poisAdressData
+                });
+                positionPicker.on('fail', function(positionResult) {
+
+                });
+
+                positionPicker.start();
+                map.panBy(0, 1);
+
+                map.addControl(new AMap.ToolBar({
+                    liteStyle: true
+                }))
+            });
+        }
+        url = api.pageParam.url;
+
+    };
+
+    // function mapclick(lat,ing,country,province,city,district,township) {
+    function mapclick(lat,ing,index) {
+        console.log(index)
+
+        map = new AMap.Map('container', {
+            resizeEnable : true,
+            zoom : 14,
+            center : [ ing,lat],
+        });
+
+
+
+        var noneImg = document.querySelectorAll(".imgAdress")
+        // console.log(noneImg.length)
+        for (var i=0;i<noneImg.length;i++){
+            if (i == index){
+                noneImg[i].classList.add("blockADr")
+            }else{
+                noneImg[i].classList.remove("blockADr")
+            }
+
+        }
+        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+        // var activeI = "activeImg"+i
+        // console.log(document.getElementById(activeI))
+        // console.log(noneImg)
+        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+
+
+    }
+>>>>>>> master
 
 
     // 点击保存执行此方法
     function preservation () {
+<<<<<<< HEAD
         var value = text.value;
         if(isBlack(value)){
             toast("请输入社交主页");
@@ -220,6 +427,48 @@
             script: 'pro_page('+JSON.stringify(value)+')'
         })
         closeWin();
+=======
+        var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
+
+        api.ajax({
+            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
+            method: 'get',
+            timeout: 60,
+            dataType: 'json',
+            returnAll: false,
+            headers: {
+                "Accept-Encoding": "gzip",
+                "type" :   1
+            },
+            data: {
+                country: adressStrData.country,
+                province: adressStrData.province,
+                city: adressStrData.city,
+                street: adressStrData.street,
+                shortname: adressStrData.shortname
+            }
+        }, function (ret, err) {
+            adr_id = ret.adr_id
+            province = adressStrData.province
+            if (ret.return_info.status){
+
+                var frameName = url + "_body";
+                api.execScript({
+                    name:url,
+                    frameName: frameName,
+                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+                })
+                api.closeWin({
+                    name: api.winName
+                });
+            } else{
+                api.toast({
+                    msg: '请求出错'
+                });
+            }
+        })
+
+>>>>>>> master
     }
 
 

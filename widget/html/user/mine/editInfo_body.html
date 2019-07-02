@@ -222,7 +222,10 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
+
         var adr_id, p_birthday;
+
+
         apiready = function () {
             var adr_id = api.pageParam.adr_id;
             console.log(adr_id);
@@ -234,6 +237,8 @@
                 // alert(JSON.stringify(data));
                 console.log(data);
                 document.querySelector('.Box').classList.remove('isDisplay');
+
+
 
                 if (data.province && data.city && data.street) {
                     document.getElementById('int_city').innerText = data.province +  '-' + data.city + '-' + data.street;
@@ -546,6 +551,7 @@
             var p_hobby = document.getElementById('text2').value;
             var p_vol = love + '||' + cause + '||' + life;
 
+
             var obj = {
                 height: height,
                 weight: weight,
@@ -553,16 +559,22 @@
                 p_title: p_title,
                 p_hobby: p_hobby,
                 p_vol: p_vol,
+
                 p_birthday: p_birthday,
                 person_id: person_id
             }
-            console.log(obj);
 
+            console.log(obj);
             ajaxGetWithProgress(UpdatePerson, obj, function (data, err) {
+
+                person_id: person_id
+            }, function (data, err) {
+
                 // alert(JSON.stringify(data));
                 console.log(data);
                 if (data.return_info.status) {
                     toast('修改个人信息成功');
+
                     api.execScript({
                         name: 'userCenter',
                         // frameName:url +"_body",
@@ -571,6 +583,9 @@
                     })
                     closeWin();
                 }
+
+
+
             });
         }
         // $(document).ready(function(){
