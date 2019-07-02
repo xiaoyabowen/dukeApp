@@ -74,7 +74,6 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <!-- UI组件库 1.0 -->
@@ -221,30 +220,23 @@
 
     // 点击保存执行此方法
     function preservation () {
+        // api.showProgress();
         var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
-
-        api.ajax({
-            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
-            method: 'get',
-            timeout: 60,
-            dataType: 'json',
-            returnAll: false,
-            headers: {
-                "Accept-Encoding": "gzip",
-                "type" :   1
-            },
-            data: {
-                country: adressStrData.country,
+        console.log(adressStrData)
+        var data= {
+            country: adressStrData.country,
                 province: adressStrData.province,
                 city: adressStrData.city,
                 street: adressStrData.street,
                 shortname: adressStrData.shortname
-            }
-        }, function (ret, err) {
-            adr_id = ret.adr_id
+        }
+        Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson', data, function(data){
+            console.log(data);
+            var data = JSON.parse(data)
+            adr_id = data.adr_id
             province = adressStrData.province
-            if (ret.return_info.status){
-
+            if (data.return_info.status){
+                // api.hideProgress();
                 var frameName = url + "_body";
                 api.execScript({
                     name:url,
@@ -259,7 +251,101 @@
                     msg: '请求出错'
                 });
             }
-        })
+        }, function(error){
+            console.log(error);
+        });
+
+
+        function Ajax(type, url, data, success, failed){
+            // 创建ajax对象
+            var xhr = null;
+            if(window.XMLHttpRequest){//非IE浏览器
+                xhr = new XMLHttpRequest();
+            } else{
+                alert("该浏览器不支持Ajax！");
+            }
+
+            // 用于清除缓存
+            var random = Math.random();
+
+            if(typeof data == 'object'){
+                var str = '';
+                for(var key in data){
+                    str += key+'='+data[key]+'&';
+                }
+                data = str.replace(/&$/, '');
+            }
+
+            if(type.toUpperCase() == 'GET'){
+                if(data){
+                    xhr.open('GET', url + '?' + data, true);
+                } else {
+                    xhr.open('GET', url + '?t=' + random, true);
+                }
+                xhr.send();
+
+            } else if(type.toUpperCase() == 'POST'){
+                xhr.open('POST', url, true);
+                // 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(data);
+            }
+
+            // 处理返回数据
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    /*
+                    ** Http状态码
+                    ** 1xx ：信息展示
+                    ** 2xx ：成功
+                    ** 3xx ：重定向
+                    ** 4xx : 客户端错误
+                    ** 5xx ：服务器端错误
+                    */
+                    if(xhr.status == 200){
+                        success(xhr.responseText);
+                    } else {
+                        if(failed){
+                            failed(xhr.status);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        /*api.ajax({
+            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
+            method: 'get',
+            timeout: 60,
+            dataType: 'json',
+            returnAll: false,
+            headers: {
+                "Accept-Encoding": "gzip",
+                "type" :   1
+            },
+            data: JSON.stringify(data)
+        }, function (ret, err) {
+            adr_id = ret.adr_id
+            province = adressStrData.province
+            if (ret.return_info.status){
+
+                /!*var frameName = url + "_body";
+                api.execScript({
+                    name:url,
+                    frameName: frameName,
+                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+                })
+                api.closeWin({
+                    name: api.winName
+                });*!/
+            } else{
+                api.toast({
+                    msg: '请求出错'
+                });
+            }
+        })*/
 
     }
 
