@@ -248,8 +248,14 @@
 
 
     // 编辑手机
+    // function phoneChoose() {
+    //     openNewWindow("resume_BindingPhone", "./resume_BindingPhone.html", {
+    //         url: 'create_resume'
+    //     })
+    // }
+    // 填写手机号
     function phoneChoose() {
-        openNewWindow("resume_BindingPhone", "./resume_BindingPhone.html", {
+        openNewWindow("createPhone", "./createPhone.html", {
             url: 'create_resume'
         })
     }
@@ -299,18 +305,19 @@
     function preservation() {
 
         var params = {}
-        params.person_id = localStorage.getItem('person_id')
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        params.person_id = uid
         params.p_name = document.getElementById("editName").innerText
         params.p_sex = document.getElementById("birthId").innerText
         params.p_birthday = document.getElementById("birth").innerText
         params.phone_m = document.getElementById("editPhone").innerText
         params.email = document.getElementById("editEmail").innerText
         params.job_from_time = document.getElementById("job").innerText
+        params.adr_id = document.getElementById("adr_id").innerText
         params.p_icon = "1"
         ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
             console.log(ret)
             if (ret.return && ret.return.status ) {
-
                 openNewWindow("addWork", "./addWork.html")
             } else if(ret.return && !ret.return.status){
                 if(ret){
