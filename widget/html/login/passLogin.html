@@ -325,8 +325,8 @@
             localStorage.setItem('user',JSON.stringify(data))
             api.hideProgress();
             if (data.success == false) {
-
-                openNewWindow("create_resume", "../user/mine/create_resume.html")
+                openNewWindow("home", "../user/home/home.html")
+                // openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
                 openNewWindow("home", "../user/home/home.html")
 

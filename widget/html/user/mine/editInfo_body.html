@@ -228,17 +228,18 @@
 
 
     apiready = function () {
-        var adr_id = api.pageParam.adr_id;
-        console.log(adr_id);
+
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         // console.log(uid);
         ajaxGetWithProgress(QuerySummary, {
             uid: uid
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            console.log(7777,data);
             document.querySelector('.Box').classList.remove('isDisplay');
 
+            adr_id = data.adr_id;
+            console.log(adr_id);
 
             if (data.province && data.city && data.street) {
                 document.getElementById('int_city').innerText = data.province + '-' + data.city + '-' + data.street;
@@ -409,15 +410,22 @@
 
     // 居住地选择
     function int_city1() {
+        console.log(adr_id);
         openNewWindow("gaomap2", "../map/gaomap2.html", {
             url: 'editInfo',
             adr_id: adr_id
         });
     }
-    function int_city(province, city, street) {
+    function int_city(province, city, street, address) {
         console.log(province);
         console.log(city);
         console.log(street);
+        if (city) {
+            document.getElementById('int_city').innerText = province + '-' + city + '-' + street;
+        } else {
+            document.getElementById('int_city').innerText = province + '-' + street + '-' + address;
+        }
+
     }
 
     // 身高选择

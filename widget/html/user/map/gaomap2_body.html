@@ -84,11 +84,14 @@
 <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <script>
 
-    var url,adr_id,province;
+    var url,adr_id,list;
 
     //创建地图
 
     apiready = function () {
+        url = api.pageParam.url;
+        adr_id = api.pageParam.adr_id;
+        console.log(123, adr_id);
         api.showProgress({
             style: 'default',
             animationType: 'fade',
@@ -135,11 +138,13 @@
 
                 positionPicker.on('success', function(positionResult) {
                     console.log(positionResult)
+                    list = positionResult;
                     var allData = positionResult.regeocode
                     var province = allData.addressComponent.province   //省
                     var city = allData.addressComponent.city   //shi
                     var district = allData.addressComponent.district   //区
-                    var township = allData.addressComponent.township   //jiedao
+                    var township = allData.addressComponent.township   //镇
+                    var street = allData.addressComponent.street   //街道
                     var adressStr = {
                         country:"中国",
                         province:province,
@@ -147,7 +152,7 @@
                         street:district,
                         shortname:township,
                     }
-                    localStorage.setItem("adressStr",JSON.stringify(adressStr))
+                    // localStorage.setItem("adressStr",JSON.stringify(adressStr))
                     var allAdress;
                     if (city == ''){
                         allAdress = province+district+township
@@ -186,8 +191,7 @@
                 }))
             });
         }
-        url = api.pageParam.url;
-        adr_id = api.pageParam.adr_id;
+
 
     };
 
@@ -213,11 +217,28 @@
             }
 
         }
-        // document.getElementById("activeImg"+i).classList.remove("noneADr")
-        // var activeI = "activeImg"+i
-        // console.log(document.getElementById(activeI))
-        // console.log(noneImg)
-        // document.getElementById("activeImg"+i).classList.remove("noneADr")
+
+        console.log(list);
+        var allData = list.regeocode;
+        var province = allData.addressComponent.province   // 省
+        var city = allData.addressComponent.city   // 市
+        var district = allData.addressComponent.district   // 区/县
+        var street = allData.addressComponent.street   // 路/镇
+        var township = allData.addressComponent.township   // 街道
+        var name = allData.pois[index].name   // 镇/
+
+        var shortname = street + township + name
+        var adressStr = {
+            country:"中国",
+            province:province,
+            city:city,
+            street: district,
+            shortname:shortname,
+            address: street
+        }
+
+        localStorage.setItem("adressStr",JSON.stringify(adressStr))
+
 
 
     }
@@ -232,84 +253,101 @@
         var city = adressStrData.city;
         var street = adressStrData.street;
         var shortname = adressStrData.shortname;
+        var address = adressStrData.address;
+        console.log(adr_id);
 
-        console.log(UpdateAddress);
+        var obj = {
+            country:country,
+            province:province,
+            city:city,
+            street:street,
+            shortname:shortname,
+            adr_id: adr_id
+        }
+        console.log(obj);
+        api.showProgress();
+        Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/updateAddress', obj, function(data){
 
-        api.ajax({
-            url: UpdateAddress,
-            method: 'get',
-            timeout: 60,
-            dataType: 'json',
-            returnAll: false,
-            headers: {
-                "Accept-Encoding": "gzip",
-                "type" :   1
-            },
-            data: {
-                country: adressStrData.country,
-                province: adressStrData.province,
-                city: adressStrData.city,
-                street: adressStrData.street,
-                shortname: adressStrData.shortname,
-                adr_id: adr_id
-            }
-        }, function (ret, err) {
-            console.log(ret);
-            if (ret.return_info.status){
+            var msg = JSON.parse(data);
+            console.log(data);
+            if (msg.return.status){
+                api.hideProgress();
                 var frameName = url + "_body";
                 api.execScript({
                     name:url,
                     frameName: frameName,
-                    script: 'int_city('+JSON.stringify(province)+','+JSON.stringify(city)+','+JSON.stringify(street)+')'
+                    script: 'int_city('+JSON.stringify(province)+','+JSON.stringify(city)+','+JSON.stringify(street)+','+JSON.stringify(address)+')'
                 })
-
-                // api.closeWin({
-                //     name: api.winName
-                // });
+                api.closeWin({
+                    name: api.winName
+                });
             } else{
                 api.toast({
                     msg: '请求出错'
                 });
             }
-        })
+        }, function(error){
+            console.log(error);
+        });
 
-        // api.ajax({
-        //     url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
-        //     method: 'get',
-        //     timeout: 60,
-        //     dataType: 'json',
-        //     returnAll: false,
-        //     headers: {
-        //         "Accept-Encoding": "gzip",
-        //         "type" :   1
-        //     },
-        //     data: {
-        //         country: adressStrData.country,
-        //         province: adressStrData.province,
-        //         city: adressStrData.city,
-        //         street: adressStrData.street,
-        //         shortname: adressStrData.shortname
-        //     }
-        // }, function (ret, err) {
-        //     adr_id = ret.adr_id
-        //     province = adressStrData.province
-        //     if (ret.return_info.status){
-        //
-        //         var frameName = url + "_body";
-        //         api.execScript({
-        //             name:url,
-        //             frameName: frameName,
-        //             script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
-        //         })
-        //         api.closeWin({
-        //             name: api.winName
-        //         });
-        //     } else{
-        //         api.toast({
-        //             msg: '请求出错'
-        //         });
-        //     }
-        // })
+
+        function Ajax(type, url, data, success, failed){
+            // 创建ajax对象
+            var xhr = null;
+            if(window.XMLHttpRequest){//非IE浏览器
+                xhr = new XMLHttpRequest();
+            } else{
+                alert("该浏览器不支持Ajax！");
+            }
+
+            // 用于清除缓存
+            var random = Math.random();
+
+            if(typeof data == 'object'){
+                var str = '';
+                for(var key in data){
+                    str += key+'='+data[key]+'&';
+                }
+                data = str.replace(/&$/, '');
+            }
+
+            if(type.toUpperCase() == 'GET'){
+                if(data){
+                    xhr.open('GET', url + '?' + data, true);
+                } else {
+                    xhr.open('GET', url + '?t=' + random, true);
+                }
+                xhr.send();
+
+            } else if(type.toUpperCase() == 'POST'){
+                xhr.open('POST', url, true);
+                // 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(data);
+            }
+
+            // 处理返回数据
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    /*
+                    ** Http状态码
+                    ** 1xx ：信息展示
+                    ** 2xx ：成功
+                    ** 3xx ：重定向
+                    ** 4xx : 客户端错误
+                    ** 5xx ：服务器端错误
+                    */
+                    if(xhr.status == 200){
+                        success(xhr.responseText);
+                    } else {
+                        if(failed){
+                            failed(xhr.status);
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 
