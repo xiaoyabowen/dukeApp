@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <style>
+        body {
+            padding-bottom: 0.28rem;
+        }
 
         .inter-recall{
             background: #638BFF;
@@ -17,8 +20,8 @@
     </style>
 </head>
 <body class="commonBg">
-    <div class="Box">
-        <div class="boxSub inde-sub">
+    <div class="Box" id='list'>
+        <div class="boxSub inde-sub isDisplay">
             <div class="inter-box inter-box-no">
 
                 <div class="inter-com cssFlex">
@@ -76,7 +79,7 @@
                     </span>
                 </p>
             </div>
-            <div class="inter-ping">面试评价</div>
+            <!--<div class="inter-ping">面试评价</div>-->
         </div>
     </div>
 
@@ -86,11 +89,107 @@
     <script type="text/javascript" src="../../../script/kv.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
         apiready = function () {
+            var uid = localStorage.getItem('person_id');
+            var obj = {
+                token: uid
+            }
+            ajaxGetWithProgress(QueryApplicationStatus4List, obj, function (data, err) {
+                // alert(JSON.stringify(data));
+                console.log(data);
+                if (data.queryApplicationStatus4List) {
+                    document.querySelector('.boxSub').classList.remove('isDisplay');
+                    var list = data.queryApplicationStatus4List;
+                    var myOffer = document.getElementById('list');
+                    var arr = [];
+                    for (var i = 0; i < list.length; i++) {
+                        var str = '<div class="boxSub inde-sub">\n' +
+                            '            <div class="inter-box inter-box-no">\n' +
+                            '\n' +
+                            '                <div class="inter-com cssFlex">\n' +
+                            '                    <div class="cssFlex">\n' +
+                            '                        <img src="'+ list[i].logo_icon +'" alt="com" class="inter-logo">\n' +
+                            '                        <div class="inter-com-name">\n' +
+                            '                            <p class="inter-com-nameN">'+ list[i].c_name +'</p>\n' +
+                            '                            <p class="inter-com-money">'+ list[i].job_name +' <i class="inter-com-moneyCo">'+ list[i].ratio +'k</i></p>\n' +
+                            '                        </div>\n' +
+                            '                    </div>\n' +
+                            '                    <div class="inter-recall">'+ list[i].summary +'</div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '            <!--职位  导航  聊天 -->\n' +
+                            '            <ul class="inde-btn cssFlex">\n' +
+                            '                <li onclick="position_type('+ list[i].job_id +')">\n' +
+                            '                    <img src="../../../image/mine/zhiwei.png" alt="zhiwei" class="inde-img">\n' +
+                            '                    <p>职位</p>\n' +
+                            '                </li>\n' +
+                            '                <li onclick="navigation('+ list[i].c_name +')">\n' +
+                            '                    <img src="../../../image/mine/daohang.png" alt="zhiwei" class="inde-img">\n' +
+                            '                    <p>导航</p>\n' +
+                            '                </li>\n' +
+                            '                <li onclick="chatRecord()">\n' +
+                            '                    <img src="../../../image/mine/vchat.png" alt="zhiwei" class="inde-img">\n' +
+                            '                    <p>聊天</p>\n' +
+                            '                </li>\n' +
+                            '            </ul>\n' +
+                            '            <div class="inde-info">\n' +
+                            '                <p>\n' +
+                            '                    <img src="../../../image/mine/shijian.png" alt="shijian"class="inde-info-img">\n' +
+                            '                    <span>\n' +
+                            '                        面试时间：\n' +
+                            '                        <i>'+ list[i].status_time +'</i>\n' +
+                            '                    </span>\n' +
+                            '                </p>\n' +
+                            '                <p>\n' +
+                            '                    <img src="../../../image/mine/userlist.png" alt="shijian"class="inde-info-img">\n' +
+                            '                    <span>\n' +
+                            '                        联系人：\n' +
+                            '                        <i>赵东东 · 人力资源部经理</i>\n' +
+                            '                    </span>\n' +
+                            '                </p>\n' +
+                            '                <p>\n' +
+                            '                    <img src="../../../image/mine/phone.png" alt="shijian"class="inde-info-img">\n' +
+                            '                    <span>\n' +
+                            '                        电话：\n' +
+                            '                        <i>13310101010</i>\n' +
+                            '                    </span>\n' +
+                            '                </p>\n' +
+                            '                <p>\n' +
+                            '                    <img src="../../../image/mine/adress.png" alt="shijian"class="inde-info-img">\n' +
+                            '                    <span>\n' +
+                            '                       北京朝阳区美立方1号楼2-4-1008\n' +
+                            '                    </span>\n' +
+                            '                </p>\n' +
+                            '            </div>\n' +
+                            '            <!--<div class="inter-ping">面试评价</div>-->\n' +
+                            '        </div>';
+                        arr.push(str);
+                    }
+                    myOffer.innerHTML = arr.join('');
+                }
 
+            });
         };
+
+        // 录用的职位类型 --- 详情
+        function position_type(job_id) {
+            console.log(job_id)
+        }
+
+        // 导航
+        function navigation(value) {
+            console.log(value);
+        }
+
+        // 聊天
+        function chatRecord(id) {
+            console.log(id);
+        }
     </script>
 </body>
 </html>

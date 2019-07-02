@@ -20,12 +20,15 @@
             <div class="mineInfo cssFlex">
                 <div class="mineInfoleft">
                     <h3 class="m-name" style="font-weight: 500" onclick="resume_editResume()">未登录</h3>
-                    <p class="m-conpony-name ellipsis">北京达达世界网络技术有限公司</p>
+                    <!--<p class="m-conpony-name ellipsis" id="com_name">北京达达世界网络技术有限公司</p>-->
+                    <p class="m-conpony-name ellipsis" id="com_name">未填写</p>
                     <p class="timeInfo cssFlex">
                         <img src="../../../image/mine/adress.png" alt="time" class="m-adressimg">
-                        <span class="m-adress">北京</span>
+                        <!--<span class="m-adress" id="province">北京</span>-->
+                        <span class="m-adress" id="province">未定位</span>
                         <img src="../../../image/mine/work.png" alt="date" class="m-zhiweiimg">
-                        <span class="m-zhiwei">运营经理</span>
+                        <!--<span class="m-zhiwei" id="position_type">运营经理</span>-->
+                        <span class="m-zhiwei" id="position_type">未填写</span>
                         <img src="../../../image/mine/vipicon.png" alt="date" class="m-vipimg">
                         <span class="m-vip">金卡会员</span>
                     </p>
@@ -43,17 +46,17 @@
                     <p class="tong-num" id="communicate">0</p>
                     <p class="tong-text">沟通过</p>
                 </div>
-                <div class="m-chat-text">
+                <div class="m-chat-text" onclick="Interview()">
                     <p class="tong-num" id="interview">0</p>
-                    <p class="tong-text" onclick="Interview()">面试</p>
+                    <p class="tong-text">面试</p>
                 </div>
-                <div class="m-chat-text">
+                <div class="m-chat-text" onclick="myDelivery()">
                     <p class="tong-num" id="statusNum">0</p>
-                    <p class="tong-text" onclick="subscribed_positions()">已投递</p>
+                    <p class="tong-text">已投递</p>
                 </div>
-                <div class="m-chat-text">
-                    <p class="tong-num">0</p>
-                    <p class="tong-text" onclick="myOffer()">录用</p>
+                <div class="m-chat-text" onclick="myOffer()">
+                    <p class="tong-num" id="myOfferTotal">0</p>
+                    <p class="tong-text">录用</p>
                 </div>
                 <div class="m-chat-text">
                     <p class="tong-num">0</p>
@@ -124,21 +127,21 @@
     <script>
         apiready = function () {
             // 获取用户信息
-            ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+            var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+            // console.log(uid);
+            ajaxGetWithProgress(QuerySummary, {
+                uid: uid
+            }, function (data, err) {
+                // alert(JSON.stringify(data));
                 console.log(data);
-                if (data) {
-                    var person_summary = data.person_summary;
-                    console.log(person_summary);
-                    document.querySelector('.m-name').innerText = person_summary.p_name;
-                    localStorage.setItem('person_id', person_summary.person_id);
-                }
-                // if (data.return_info.status) {
-                //     api.toast({
-                //         msg: '编辑教育经历成功'
-                //     });
-                // }
+                document.querySelector('.m-name').innerText = data.p_name || '未登录';
+                document.getElementById('com_name').innerText = data.com_name || '未填写';
+                document.getElementById('province').innerText = data.province || '未定位';
+                document.getElementById('position_type').innerText = data.position_type || '未填写';
 
+                localStorage.setItem('person_id', uid);
             });
+
 
             var person_id = localStorage.getItem('person_id');
 
@@ -168,6 +171,17 @@
                 }
             });
 
+            // 录用个数
+            ajaxGetWithProgress(QueryApplicationStatus4List, {
+                token: person_id
+            }, function (data, err) {
+                // alert(JSON.stringify(data));
+                console.log(data);
+                if (data.queryApplicationStatus4List) {
+                    document.getElementById('myOfferTotal').innerText = data.queryApplicationStatus4List.length;
+                }
+            });
+
         };
         // 我的个人主页
         function userCenter() {
@@ -177,8 +191,8 @@
         function Interview() {
             openNewWindow("Interview", "Interview.html")
         }// 已投递
-        function subscribed_positions() {
-            openNewWindow("subscribed_positions", "subscribed_positions.html")
+        function myDelivery() {
+            openNewWindow("myDelivery", "myDelivery.html")
         }// 录用
         function myOffer() {
             openNewWindow("myOffer", "myOffer.html")

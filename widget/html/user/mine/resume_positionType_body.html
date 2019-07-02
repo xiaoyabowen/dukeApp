@@ -48,9 +48,10 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            left: 0;
+            right: -100%;
             top: 0;
             background: rgba(0,0,0,.7);
+            transition: all 0.1s;
         }
 
         .positionType_mask_con {
@@ -59,7 +60,7 @@
             position: absolute;
             top: 0;
             left: 20%;
-            background: #ffffff;
+            background: #eeeeee;
             z-index: 100;
             overflow: auto;
             border-right: 1px solid #ebebeb;
@@ -74,6 +75,14 @@
             background: #ffffff;
             z-index: 1000;
             overflow: auto;
+        }
+
+        .resume_positionType_mask .info-choose {
+            border: 0;
+        }
+
+        .trans {
+            right: 0;
         }
     </style>
 </head>
@@ -173,7 +182,7 @@
 
         </div>
 
-        <div class="resume_positionType_mask isDisplay">
+        <div class="resume_positionType_mask">
             <div class="positionType_mask_con">
                 <div class="resume_expectations_item">
                     <div class="info-choose cssFlex">
@@ -182,18 +191,29 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="resume_positionType_mask2 isDisplay">
-            <div class="resume_expectations_item">
-                <div class="info-choose cssFlex">
-                    <span class="info-choose-name">技术</span>
-                    <div class="info-choose-main cssFlex">
+            <div class="resume_positionType_mask2">
+                <div class="resume_expectations_item">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">技术</span>
+                        <div class="info-choose-main cssFlex">
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--<div class="resume_positionType_mask2 isDisplay">-->
+            <!--<div class="resume_expectations_item">-->
+                <!--<div class="info-choose cssFlex">-->
+                    <!--<span class="info-choose-name">技术</span>-->
+                    <!--<div class="info-choose-main cssFlex">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
 
@@ -207,25 +227,28 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/position.data.min.js"></script>
+<!--<script type="text/javascript" src="../../../script/position.data.min.js"></script>-->
+<script type="text/javascript" src="../../../script/position.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
 
     var url, content;
-    console.log(positiondata);
-    var arr = positiondata.positionlist
+    // console.log(positiondata);
+    console.log(position)
+    // var arr = positiondata.positionlist;
+    var arr = position.zpData;
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
-
         var box = document.querySelector('.resume_expectations_content');
         var list = [];
+
         for (var i = 0; i < arr.length; i++) {
             var str = '<div class="resume_expectations_item">\n' +
                 '                <div class="info-choose cssFlex" onclick="selection('+ i +')">\n' +
-                '                    <span class="info-choose-name">'+ arr[i].p +'</span>\n' +
+                '                    <span class="info-choose-name">'+ arr[i].name +'</span>\n' +
                 '                    <div class="info-choose-main cssFlex">\n' +
                 '                        <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
                 '                    </div>\n' +
@@ -244,15 +267,17 @@
     // 选择职位类型
     function selection(index) {
         // console.log(arr[index]);
-        var list = arr[index].c;
-        var list0 = list[0].a;
+        // var list = arr[index].c;
+        var list = arr[index].subLevelModelList;
+        var list0 = list[0].subLevelModelList;
 
         var list1 = [];
-        var list2 = [];i
+        var list2 = [];
+
         for (var i = 0; i < list.length; i++) {
             var str = '<div class="resume_expectations_item" onclick="selection1('+ index +','+ i +')">\n' +
                 '                    <div class="info-choose cssFlex">\n' +
-                '                        <span class="info-choose-name">'+ list[i].n +'</span>\n' +
+                '                        <span class="info-choose-name">'+ list[i].name +'</span>\n' +
                 '                        \n' +
                 '                    </div>\n' +
                 '                </div>';
@@ -260,11 +285,11 @@
         }
         // console.log(list0);
         for (var i = 0; i < list0.length; i++) {
-            // console.log(list0[i].s);
-            var s = list0[i].s.trim();
+            console.log(list0[i].name);
+            var s = list0[i].name.trim();
             var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
                 '                <div class="info-choose cssFlex">\n' +
-                '                    <span class="info-choose-name">'+ list0[i].s +'</span>\n' +
+                '                    <span class="info-choose-name">'+ list0[i].name +'</span>\n' +
                 '                    <div class="info-choose-main cssFlex">\n' +
                 '\n' +
                 '                    </div>\n' +
@@ -277,21 +302,23 @@
         var dom2 = list2.join('');
         mask1.innerHTML = dom1;
         mask2.innerHTML = dom2;
-        mask.classList.remove('isDisplay');
-        mask2.classList.remove('isDisplay');
+        // mask.classList.remove('isDisplay');
+        // mask2.classList.remove('isDisplay');
+
+        mask.classList.add('trans');
     }
 
     function selection1(index, index2) {
         console.log(index, index2);
-        var list = arr[index].c;
-        var list0 = list[index2].a;
+        var list = arr[index].subLevelModelList;
+        var list0 = list[index2].subLevelModelList;
         var list2 = [];
         for (var i = 0; i < list0.length; i++) {
             // console.log(list0[i].s);
-            var s = list0[i].s.trim();
+            var s = list0[i].name.trim();
             var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
                 '                <div class="info-choose cssFlex">\n' +
-                '                    <span class="info-choose-name">'+ list0[i].s +'</span>\n' +
+                '                    <span class="info-choose-name">'+ list0[i].name +'</span>\n' +
                 '                    <div class="info-choose-main cssFlex">\n' +
                 '\n' +
                 '                    </div>\n' +
@@ -315,8 +342,9 @@
         var node = e.target;
         // console.dir(node);
         if (node.classList.contains('resume_positionType_mask')) {
-            mask.classList.add('isDisplay');
-            mask2.classList.add('isDisplay');
+            // mask.classList.add('isDisplay');
+            // mask2.classList.add('isDisplay');
+            mask.classList.remove('trans');
         }
     })
 

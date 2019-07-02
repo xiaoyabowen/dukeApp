@@ -30,17 +30,27 @@ var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
 
-// 获取面试机会
+// 获取面试数量
 var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
+// 获取面试列表
+var QueryApplicationStatusList = serverUrl + "/EvaluateProfile/queryApplicationStatusList";
 
-// // 查询沟通数量
+// 查询沟通数量
 var GetCommunicate = serverUrl + "/UserProfile/queryPersonChatList";
 
 // 查询投递简历的个数
 var GetStatusNum = serverUrl + "/UserProfile/queryApplicationStatusNum";
+// 获取投递简历列表数据
+var QueryjobsList = serverUrl + "/UserProfile/queryjobsList";
 
 // 获取简历全部信息
 var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
+
+
+// 查询录用数量
+
+// 获取录用列表数据
+var QueryApplicationStatus4List = serverUrl + "/EvaluateProfile/queryApplicationStatus4List";
 
 // 查询教育信息
 var GetEducation = serverUrl + "/UserProfile/queryEducationByid";

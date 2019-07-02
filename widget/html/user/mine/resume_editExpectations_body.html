@@ -154,7 +154,7 @@
             content: document.getElementById("work_name").innerText
         })
     }
-    function is_open(value) {
+    function position_type(value) {
         document.getElementById("work_name").innerText = value;
     }
     // 期望公司行业
@@ -187,29 +187,23 @@
         var picker = new mui.PopPicker();
         picker.setData([{
             value: "1",
-            text: "2-4k"
+            text: "10-15k"
         }, {
             value: "2",
-            text: "4-8k"
+            text: "15-20k"
         }, {
             value: "3",
-            text: "8-10k"
+            text: "20-30k"
         }, {
             value: "4",
-            text: "10-12k"
+            text: "30-50k"
         }, {
             value: "5",
-            text: "12-18k"
+            text: "50-100k"
         }, {
             value: "6",
-            text: "18-25k"
-        }, {
-            value: "7",
-            text: "25-35k"
-        }, {
-            value: "8",
-            text: "35-45k"
-        }
+            text: "100k以上"
+        },
         ])
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);

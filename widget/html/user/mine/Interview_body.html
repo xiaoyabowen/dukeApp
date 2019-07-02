@@ -99,10 +99,30 @@
     <script type="text/javascript" src="../../../script/kv.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
         apiready = function () {
+            var uid = localStorage.getItem('person_id');
+            var obj = {
+                token: uid
+            }
+            ajaxGetWithProgress(QueryApplicationStatusList, obj, function (data, err) {
+                // alert(JSON.stringify(data));
+                console.log(data);
+                if (data.queryApplicationStatusList) {
+                    console.log(data.queryApplicationStatusList);
+                    var list = data.queryApplicationStatusList;
+                    var list1 = [];
+                    var list2 = [];
 
+                    for (var i = 0; i < list.length; i++) {
+                        console.log(list[i].status_time);
+                    }
+                }
+            });
         };
     </script>
 </body>

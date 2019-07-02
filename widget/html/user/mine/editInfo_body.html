@@ -52,7 +52,7 @@
     </style>
 </head>
 <body class="commonBg">
-    <div class="Box">
+    <div class="Box isDisplay">
         <div class="infoBoxSub">
             <div class="info-label">
                 <a href="#popover">
@@ -222,7 +222,7 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
-        var adr_id;
+        var adr_id, p_birthday;
         apiready = function () {
             var adr_id = api.pageParam.adr_id;
             console.log(adr_id);
@@ -233,6 +233,7 @@
             }, function (data, err) {
                 // alert(JSON.stringify(data));
                 console.log(data);
+                document.querySelector('.Box').classList.remove('isDisplay');
 
                 if (data.province && data.city && data.street) {
                     document.getElementById('int_city').innerText = data.province +  '-' + data.city + '-' + data.street;
@@ -260,6 +261,7 @@
 
                 // 我的年龄,星座
                 if (data.p_birthday) {
+                    p_birthday = data.p_birthday;
                     var list = data.p_birthday.split('-');
                     console.log(list);
                     var constellation1 = WhatIsYourConstellation(list[0], list[1], list[2]);
@@ -544,21 +546,31 @@
             var p_hobby = document.getElementById('text2').value;
             var p_vol = love + '||' + cause + '||' + life;
 
-            ajaxGetWithProgress(UpdatePerson, {
+            var obj = {
                 height: height,
                 weight: weight,
                 emotion: emotion,
                 p_title: p_title,
                 p_hobby: p_hobby,
                 p_vol: p_vol,
+                p_birthday: p_birthday,
                 person_id: person_id
-            }, function (data, err) {
+            }
+            console.log(obj);
+
+            ajaxGetWithProgress(UpdatePerson, obj, function (data, err) {
                 // alert(JSON.stringify(data));
                 console.log(data);
                 if (data.return_info.status) {
                     toast('修改个人信息成功');
+                    api.execScript({
+                        name: 'userCenter',
+                        // frameName:url +"_body",
+                        frameName: 'userCenter_body',
+                        script: 'reload()'
+                    })
+                    closeWin();
                 }
-
             });
         }
         // $(document).ready(function(){
