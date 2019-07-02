@@ -321,26 +321,12 @@
             return;
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-
+            console.log(data)
             if (data.success == false) {
-                api.hideProgress();
-                var errorMessage = data.msg || '获取信息失败';
-                api.toast({
-                    msg: errorMessage
-                });
+
+                openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
-                console.log(data)
-
-                localStorage.setItem("user",JSON.stringify(data))
-
-                console.log(localStorage.getItem('user'))
                 openNewWindow("home", "../user/home/home.html")
-
-                api.hideProgress();
-
-                // setTimeout(function () {
-                //     closeWin()
-                // }, 1500)
             }
         });
     }

@@ -304,7 +304,11 @@
             return;
         }
         tel = document.getElementById('phone').value;
-        if(!checkMobileNum(tel)){
+        if (isBlack(tel)) {
+            toast('请输入手机号');
+            api.hideProgress();
+            return;
+        }else if(!checkMobileNum(tel)){
             toast("手机号码不正确");
             return;
         }
@@ -367,10 +371,13 @@
         params.phone = $api.byId("phone").value;
         params.role_type = localStorage.getItem("role");
         params.token_type = "1";
-
+        console.log(params)
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
+            return;
+        }else if(!checkMobileNum(params.phone)){
+            toast("手机号码不正确");
             return;
         }
         if (isBlack(params.code)) {
@@ -380,26 +387,12 @@
         }
 
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-
+            console.log(data)
             if (data.success == false) {
-                api.hideProgress();
-                var errorMessage = data.msg || '获取信息失败';
-                api.toast({
-                    msg: errorMessage
-                });
+
+                openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
-                console.log(data)
-                if(data.success){
-                    localStorage.setItem("user",JSON.stringify(data))
-                    // openNewWindow("home", "../user/home/home.html")
-
-                    api.hideProgress();
-                }else{
-                    openNewWindow("create_resume", "../user/mine/create_resume.html")
-                }
-
-
-
+                openNewWindow("home", "../user/home/home.html")
             }
         });
     }

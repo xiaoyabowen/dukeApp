@@ -17,6 +17,8 @@
             font-weight: bold;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -33,49 +35,52 @@
             <div class="info-choose cssFlex" onclick="editName()">
                 <span class="info-choose-name">名字</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="editName">请填写您的姓名</span>
+                    <span class="info-choose-main-name birth_option" id="editName">ss</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="ageChoose()">
                 <span class="info-choose-name">生日</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="birth">请填写您的生日</span>
+                    <span class="info-choose-main-name birth_option" id="birth">2019-08-09</span>
+
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="sexChoose()">
                 <span class="info-choose-name">性别</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="sex">请选择</span>
+                    <span class="info-choose-main-name birth_option" id="sex">男</span>
+                    <span  id="birthId" style="display: none;">1</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="phoneChoose()">
                 <span class="info-choose-name">手机号码</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="editPhone">请填写您的手机号码</span>
+                    <span class="info-choose-main-name birth_option" id="editPhone">15901420539</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="emailChoose()">
                 <span class="info-choose-name">联系邮箱</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="editEmail">请填写您的邮箱号码</span>
+                    <span class="info-choose-main-name birth_option" id="editEmail">bowen@163.com</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="cityChoose()">
                 <span class="info-choose-name">所在城市</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="int_city">北京</span>
+                    <span class="info-choose-main-name birth_option" id="int_city">北京市</span>
+                    <span class="info-choose-main-name birth_option" id="adr_id" style="display: none">8</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="jobChoose()">
                 <span class="info-choose-name">参加工作时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="job">请选择</span>
+                    <span class="info-choose-main-name birth_option" id="job">2018-09-08</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -91,6 +96,7 @@
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
@@ -161,6 +167,7 @@
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
             document.getElementById('sex').innerText = SelectedItem[0].text;
+            document.getElementById('birthId').innerText = SelectedItem[0].value;
         })
 
     }
@@ -205,16 +212,39 @@
     function cityChoose() {
         openNewWindow("gaomap", "../map/gaomap.html", {
             url: 'create_resume',
-            content: document.getElementById("int_city").innerText
+            // content: document.getElementById("int_city").innerText
         })
     }
-    function int_city(value) {
-        document.getElementById("int_city").innerText = value;
+    function int_city(value,province) {
+
+        document.getElementById("int_city").innerText = province;
+        document.getElementById("adr_id").innerText = value;
     }
 
     // 下一步
     function preservation() {
-        openNewWindow("addWork", "./addWork.html")
+
+        var params = {}
+        params.person_id = localStorage.getItem('person_id')
+        params.p_name = document.getElementById("editName").innerText
+        params.p_sex = document.getElementById("birthId").innerText
+        params.p_birthday = document.getElementById("birth").innerText
+        params.phone_m = document.getElementById("editPhone").innerText
+        params.email = document.getElementById("editEmail").innerText
+        params.job_from_time = document.getElementById("job").innerText
+        params.p_icon = "1"
+        ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
+            console.log(ret)
+            if (ret.return && ret.return.status ) {
+
+                openNewWindow("addWork", "./addWork.html")
+            } else if(ret.return && !ret.return.status){
+                if(ret){
+                    var msg = ret.msg || "服务器错误！";
+                    toast(msg);
+                }
+            }
+        })
     }
     // 此处手动调用了js
     // apiready()
