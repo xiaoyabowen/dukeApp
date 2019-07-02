@@ -85,7 +85,6 @@ var SetStatus = serverUrl + "/UserProfile/createIntention";
 var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 
 // 获取个人中心数据
-// var QuerySummary = serverUrl + "/UserProfile/querySummary";
 var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
 // 编辑个人中心
 var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
