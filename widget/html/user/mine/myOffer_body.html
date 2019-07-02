@@ -108,6 +108,8 @@
                     var myOffer = document.getElementById('list');
                     var arr = [];
                     for (var i = 0; i < list.length; i++) {
+                        var city = list[i].province + list[i].city + list[i].street;
+                        console.log(city);
                         var str = '<div class="boxSub inde-sub">\n' +
                             '            <div class="inter-box inter-box-no">\n' +
                             '\n' +
@@ -128,11 +130,11 @@
                             '                    <img src="../../../image/mine/zhiwei.png" alt="zhiwei" class="inde-img">\n' +
                             '                    <p>职位</p>\n' +
                             '                </li>\n' +
-                            '                <li onclick="navigation('+ list[i].c_name +')">\n' +
+                            '                <li onclick="navigation('+ city +')">\n' +
                             '                    <img src="../../../image/mine/daohang.png" alt="zhiwei" class="inde-img">\n' +
                             '                    <p>导航</p>\n' +
                             '                </li>\n' +
-                            '                <li onclick="chatRecord()">\n' +
+                            '                <li onclick="chatRecord('+ list[i].uid +')">\n' +
                             '                    <img src="../../../image/mine/vchat.png" alt="zhiwei" class="inde-img">\n' +
                             '                    <p>聊天</p>\n' +
                             '                </li>\n' +
@@ -149,14 +151,14 @@
                             '                    <img src="../../../image/mine/userlist.png" alt="shijian"class="inde-info-img">\n' +
                             '                    <span>\n' +
                             '                        联系人：\n' +
-                            '                        <i>赵东东 · 人力资源部经理</i>\n' +
+                            '                        <i><span>'+ list[i].p_name +'</span> · <span>'+ list[i].z_user_job +'</span></i>\n' +
                             '                    </span>\n' +
                             '                </p>\n' +
                             '                <p>\n' +
                             '                    <img src="../../../image/mine/phone.png" alt="shijian"class="inde-info-img">\n' +
                             '                    <span>\n' +
                             '                        电话：\n' +
-                            '                        <i>13310101010</i>\n' +
+                            '                        <i>'+ list[i].phone_m +'</i>\n' +
                             '                    </span>\n' +
                             '                </p>\n' +
                             '                <p>\n' +
@@ -178,12 +180,15 @@
 
         // 录用的职位类型 --- 详情
         function position_type(job_id) {
-            console.log(job_id)
+            console.log(job_id);
+            openNewWindow("position", "../home/position.html", {
+                job_id: job_id
+            });
         }
 
         // 导航
-        function navigation(value) {
-            console.log(value);
+        function navigation(city) {
+            console.log(city);
         }
 
         // 聊天

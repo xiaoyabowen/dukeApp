@@ -57,6 +57,9 @@
             display: block;
         }
     </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -184,6 +187,7 @@
             });
         }
         url = api.pageParam.url;
+        adr_id = api.pageParam.adr_id;
 
     };
 
@@ -221,10 +225,18 @@
 
     // 点击保存执行此方法
     function preservation () {
-        var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
+        var adressStrData = JSON.parse(localStorage.getItem("adressStr"));
+
+        var country = adressStrData.country;
+        var province = adressStrData.province;
+        var city = adressStrData.city;
+        var street = adressStrData.street;
+        var shortname = adressStrData.shortname;
+
+        console.log(UpdateAddress);
 
         api.ajax({
-            url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
+            url: UpdateAddress,
             method: 'get',
             timeout: 60,
             dataType: 'json',
@@ -238,28 +250,66 @@
                 province: adressStrData.province,
                 city: adressStrData.city,
                 street: adressStrData.street,
-                shortname: adressStrData.shortname
+                shortname: adressStrData.shortname,
+                adr_id: adr_id
             }
         }, function (ret, err) {
-            adr_id = ret.adr_id
-            province = adressStrData.province
+            console.log(ret);
             if (ret.return_info.status){
-
                 var frameName = url + "_body";
                 api.execScript({
                     name:url,
                     frameName: frameName,
-                    script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+                    script: 'int_city('+JSON.stringify(province)+','+JSON.stringify(city)+','+JSON.stringify(street)+')'
                 })
-                api.closeWin({
-                    name: api.winName
-                });
+
+                // api.closeWin({
+                //     name: api.winName
+                // });
             } else{
                 api.toast({
                     msg: '请求出错'
                 });
             }
         })
+
+        // api.ajax({
+        //     url: "http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson",
+        //     method: 'get',
+        //     timeout: 60,
+        //     dataType: 'json',
+        //     returnAll: false,
+        //     headers: {
+        //         "Accept-Encoding": "gzip",
+        //         "type" :   1
+        //     },
+        //     data: {
+        //         country: adressStrData.country,
+        //         province: adressStrData.province,
+        //         city: adressStrData.city,
+        //         street: adressStrData.street,
+        //         shortname: adressStrData.shortname
+        //     }
+        // }, function (ret, err) {
+        //     adr_id = ret.adr_id
+        //     province = adressStrData.province
+        //     if (ret.return_info.status){
+        //
+        //         var frameName = url + "_body";
+        //         api.execScript({
+        //             name:url,
+        //             frameName: frameName,
+        //             script: 'int_city('+JSON.stringify(adr_id)+','+JSON.stringify(province)+')'
+        //         })
+        //         api.closeWin({
+        //             name: api.winName
+        //         });
+        //     } else{
+        //         api.toast({
+        //             msg: '请求出错'
+        //         });
+        //     }
+        // })
 
     }
 

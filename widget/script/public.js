@@ -92,6 +92,9 @@ var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
+// 职位详情
+var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
+
 
 // 创建简历  地图
 var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";
