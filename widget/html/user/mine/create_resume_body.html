@@ -315,7 +315,8 @@
         params.job_from_time = document.getElementById("job").innerText
         params.adr_id = document.getElementById("adr_id").innerText
         params.p_icon = "1"
-        ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
+        console.log(adr_id)
+        /*ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
             console.log(ret)
             if (ret.return && ret.return.status ) {
                 openNewWindow("addWork", "./addWork.html")
@@ -325,7 +326,7 @@
                     toast(msg);
                 }
             }
-        })
+        })*/
 
     }
     // 此处手动调用了js

@@ -670,6 +670,7 @@ body, div, p, span, a, input, ul, li {
     font-size: 0.3rem;
     color: #333333;
     font-weight: 500;
+    width: 4.6rem;
 }
 
 .subscribed_item_company > div:first-child {

@@ -35,6 +35,8 @@
             padding: 0 0.1rem;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -43,7 +45,7 @@
     <!--<div class="header"></div>-->
     <!--主体-->
     <div class="subscribed_main">
-        <div class="subscribed_main_con">
+        <!--<div class="subscribed_main_con">
             <div class="subscribed_main_item">
                 <div class="subscribed_item_left">
                     <div class="subscribed_item_position">运营经理</div>
@@ -153,7 +155,7 @@
             <div class="subscribed_con_tip">
                 <span>2019年 4月27日 15:34</span>投递了简历
             </div>
-        </div>
+        </div>-->
     </div>
 
 </div>
@@ -164,16 +166,74 @@
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     apiready = function () {
 
+        var params = {}
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        params.person_id = uid
+        ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
 
+            console.log(res);
+            var jobHtml = ''
+            var data = res.jobs
+            if (res) {
+                for (var i=0;i<data.length;i++){
+                    jobHtml += '<div class="subscribed_main_con" onclick="jobPosi('+data[i].job_id+')">\n' +
+                        '            <div class="subscribed_main_item">\n' +
+                        '                <div class="subscribed_item_left">\n' +
+                        '                    <div class="subscribed_item_position ellipsis">'+data[i].job_name+'</div>\n' +
+                        '                    <div class="subscribed_item_company">\n' +
+                        '                        <div>\n' +
+                        '                            <span>'+data[i].c_name+' </span>\n' +
+                        '                            <span>'+data[i].financing+'</span>\n' +
+                        '                        </div>\n' +
+                        '\n' +
+                        '                        <div>\n' +
+                        '                            <span>'+data[i].addr+'</span>\n' +
+                        '                            <span>'+data[i].work_ex+' </span>\n' +
+                        '                            <span>'+data[i].edu_ex+'</span>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="subscribed_item_user">\n' +
+                        '                        <div class="subscribed_item_user_img">\n' +
+                        '                            <img src="../../../image/pro.png" alt="">\n' +
+                        '                        </div>\n' +
+                        '                        <div class="subscribed_item_user_name">\n' +
+                        '                            '+data[i].user_name+'·'+data[i].z_user_job+'\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '                <div class="subscribed_item_right">\n' +
+                        '                    <div class="subscribed_item_range">\n' +
+                        '                        '+data[i].ratio+'k\n' +
+                        '                    </div>\n' +
+                        '                    <div class="subscribed_item_date">'+data[i].open_time+'</div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '            <div class="subscribed_con_tip">\n' +
+                        '                <span>'+data[i].status_time+'</span>投递了简历\n' +
+                        '            </div>\n' +
+                        '        </div>';
+                }
+                document.querySelector(".subscribed_main").innerHTML = jobHtml
+            }else {
+                api.toast({
+                    msg: '请求失败'
+                });
+            }
+        })
     };
-
-    // 此处手动调用了js
-    // apiready()
+    function jobPosi(job_id) {
+        console.log(job_id)
+        openNewWindow("position", "../home/position.html", {
+            url: 'myDelivery',
+            job_id:job_id
+        })
+    }
 
 
 </script>
