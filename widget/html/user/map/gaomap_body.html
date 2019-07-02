@@ -226,7 +226,6 @@
         // api.showProgress();
         var adressStrData = JSON.parse(localStorage.getItem("adressStr"))
         console.log(adressStrData)
-<<<<<<< HEAD
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         var data= {
             country: adressStrData.country,
@@ -236,22 +235,12 @@
             shortname: adressStrData.shortname,
             person_id : uid
         }
-        Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson', data, function(data){
 
-            var data = JSON.parse(data)
-            console.log(data);
-=======
-        var data= {
-            country: adressStrData.country,
-                province: adressStrData.province,
-                city: adressStrData.city,
-                street: adressStrData.street,
-                shortname: adressStrData.shortname
-        }
+
         Ajax('get', 'http://192.168.1.10:8000/SE4M/SE/UserProfile/addAddressByPerson', data, function(data){
             console.log(data);
             var data = JSON.parse(data)
->>>>>>> wenqiang
+
             adr_id = data.adr_id
             province = adressStrData.province
             if (data.return_info.status){
