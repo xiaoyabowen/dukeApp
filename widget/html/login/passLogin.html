@@ -220,10 +220,10 @@
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
                     <!--<input id="phone" type="number" placeholder="请输入您的手机号">-->
-                    <input id="phone" type="input" placeholder="请输入您的手机号">
+                    <input id="phone" type="input" value="bowen" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="password" placeholder="请输入密码">
+                    <input id="password" type="password" value="123" placeholder="请输入密码">
                     <img src="../../image/login/hide.png" alt="password show" id="passShow">
                 </div>
             </div>
@@ -321,8 +321,9 @@
             return;
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-
-
+            console.log(data)
+            localStorage.setItem('user',JSON.stringify(data))
+            api.hideProgress();
             if (data.success == false) {
 
                 openNewWindow("create_resume", "../user/mine/create_resume.html")

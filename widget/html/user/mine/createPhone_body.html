@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+
+    <style>
+        .resume_level2_main {
+            padding: 0rem 0.33rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
+    <!--主体-->
+
+    <div class="resume_level2_main">
+        <div class="resume_level2_content">
+            <input class="text" id="text6" type="text" maxlength=11 placeholder="请在这里输入">
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script>
+
+    var url;
+    apiready = function () {
+        url = api.pageParam.url;
+
+    };
+
+    // 点击保存执行此方法
+    function preservation(){
+        var text6 = $api.byId("text6").value
+        // alert(url)
+        if(isBlack(text6)){
+            toast("请输入手机号");
+            return;
+        }else if(!checkMobileNum(text6)){
+            toast("手机号码不正确");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            // frameName:url +"_body",
+            frameName: frameName,
+            script: 'edit_phone('+JSON.stringify(text6)+')'
+        })
+        closeWin();
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>
