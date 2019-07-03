@@ -66,6 +66,9 @@
         if(isBlack(value)){
             toast("请输入项目链接");
             return;
+        }else if (checkUrl(value)){
+            toast("请输入正确的项目链接");
+            return;
         }
 
         var frameName = url + "_body";

@@ -43,7 +43,7 @@
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option" id="c_name">请输入</span>
-                    <span id="c_id" style="display: none">1</span>
+                    <span id="c_id" style="display: none"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -269,16 +269,63 @@
 
     // 下一步
     function preservation() {
-        // openNewWindow("addProduct", "./addProduct.html")
+
+        var project_name = document.getElementById("pro_name").innerText;
+        var p_note = document.getElementById("pro_note").innerText;
+        var summary = document.getElementById("pro_cheng").innerText;
+        var p_from = document.getElementById("pro_begin").innerText ;
+        var p_to = document.getElementById("pro_up").innerText;
+        var p_url = document.getElementById("pro_link").innerText;
+        var c_id = document.getElementById("c_id").innerText;
+
+        if (project_name == "请输入"){
+            api.toast({
+                msg: '请填写项目名称'
+            });
+            return
+        }else if(p_note == "请输入"){
+            api.toast({
+                msg: '请填写项目描述'
+            });
+            return
+        }else if(summary == "请输入"){
+            api.toast({
+                msg: '请填写你的成就'
+            });
+            return
+        }else if(p_url == "请输入"){
+            api.toast({
+                msg: '请填写你的项目链接'
+            });
+            return
+        }
+        var person_id = localStorage.getItem('person_id');
+        var params = {
+            project_name: project_name,
+            p_note: p_note,
+            summary: summary,
+            p_from: p_from,
+            p_to: p_to,
+            p_url: p_url,
+            c_id: c_id,
+            p_id: person_id,
+            pro_id:''
+        }
+        console.log(params)
+
+        ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data)
+            if (data.return_info.status) {
+                openNewWindow("home", "../home/home.html")
+            }else{
+                api.toast({
+                    msg: '请求失败'
+                });
+            }
+        });
+
     }
-
-
-
-
-    // 此处手动调用了js
-    // apiready()
-
-
 </script>
 </body>
 </html>

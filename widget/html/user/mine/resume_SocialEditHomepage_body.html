@@ -68,7 +68,11 @@
         if(isBlack(value)){
             toast("请输入社交主页");
             return;
+        }else if (checkUrl(value)){
+            toast("请输入正确的社交主页");
+            return;
         }
+
         var  params = {}
 
         params.id = home_id

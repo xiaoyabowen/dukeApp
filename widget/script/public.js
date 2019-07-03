@@ -125,6 +125,8 @@ var updateHomePage = serverUrl + "/UserProfile/updateHomePage";
 // 个人社交主页 删除
 var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 
+// 隐私设置 修改手机号
+var updatePhone = serverUrl + "/UserProfile/updatePhone";
 
 
 
@@ -136,6 +138,26 @@ var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 
 
 
+function checkUrl(urlString){
+	if(urlString!=""){
+		var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
+		if(!reg.test(urlString)){
+			return false;
+		}else{
+			return true;
+		}
+
+	}
+}
+
+function checkTelFour(urlString){
+	if(urlString!=""){
+		tel = "" + urlString
+		var reg=/(\d{3})\d{4}(\d{4})/;
+		return tel.replace(reg, "$1****$2")
+
+	}
+}
 
 
 //头部高度
