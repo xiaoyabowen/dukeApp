@@ -113,6 +113,18 @@ var createEducation = serverUrl + "/UserProfile/createEducation";
 // 创建简历   第四步
 var createProjectExperience = serverUrl + "/ProjectExperienceProfile/createProjectExperience";
 
+// 个人社交主页 查询
+var queryHomePage = serverUrl + "/UserProfile/queryHomePage";
+
+// 个人社交主页 添加
+var addHomePage = serverUrl + "/UserProfile/addHomePage";
+
+// 个人社交主页 编辑
+var updateHomePage = serverUrl + "/UserProfile/updateHomePage";
+
+// 个人社交主页 删除
+var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
+
 
 
 

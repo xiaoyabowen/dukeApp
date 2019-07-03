@@ -22,6 +22,8 @@
             color: #638BFF;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -32,7 +34,8 @@
             <div class="info-choose cssFlex" onclick="resume_Project()">
                 <span class="info-choose-name">项目名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_name">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="pro_name">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="pro_name">mingcheg</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -40,55 +43,71 @@
                 <span class="info-choose-name">是否关联工作经历</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option" id="c_name">请输入</span>
-                    <span id="c_id" style="display: none"></span>
+                    <span id="c_id" style="display: none">1</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_ProjectDescription()">
                 <span class="info-choose-name">项目描述</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_note">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="pro_note">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="pro_note">miaoshu</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Achievement()">
                 <span class="info-choose-name">你的成就</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_cheng">请选择</span>
+                    <!--<span class="info-choose-main-name birth_option" id="pro_cheng">请选择</span>-->
+                    <span class="info-choose-main-name birth_option" id="pro_cheng">chengjiu</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="proStart()">
                 <span class="info-choose-name">项目起始时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_begin">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="pro_begin">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="pro_begin">2018-09-08</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="proEnd()">
                 <span class="info-choose-name">项目结束时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option"id="pro_up">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option"id="pro_up">请输入</span>-->
+                    <span class="info-choose-main-name birth_option"id="pro_up">2016-08-07</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_ProjectLinks()">
                 <span class="info-choose-name">项目链接</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_link">选填</span>
+                    <!--<span class="info-choose-main-name birth_option" id="pro_link">选填</span>-->
+                    <span class="info-choose-main-name birth_option" id="pro_link">www.baidu.com</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="resume_SocialHomepage()">
+            <div class="info-choose cssFlex" onclick="resume_SocialHomepage()" style="border-bottom: none">
                 <span class="info-choose-name">社交主页</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name info-choose-add">添加</span>
                 </div>
             </div>
+
+           <div class="HomepageBox">
+               <!--<div class="info-choose cssFlex" onclick="resume_SocialHomepage()">
+                   <span class="info-choose-name" id="pro_page">当当网B端后台和APP端</span>
+                   <div class="info-choose-main cssFlex">
+                       <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                   </div>
+               </div>-->
+           </div>
+
             <div class="info-choose cssFlex">
                 <span class="info-choose-name">图片作品</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name info-choose-add">添加</span>
+                    <span class="info-choose-main-name info-choose-add">已添加14张</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
         </div>
@@ -104,13 +123,38 @@
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
+    function setTime(){
+        setInterval(apiready(),1000);
+    }
     apiready = function () {
-
-
+        var proPageHtml = ''
+        var  params = {}
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        params.person_id = uid
+        ajaxGetWithProgress(queryHomePage, params, function (data, err) {
+            console.log(data)
+            var proPageArr = data.queryHomePage
+            if (data) {
+                for (var i=0;i<proPageArr.length;i++){
+                    proPageHtml += '<div class="info-choose cssFlex" id="homePage'+i+'" data-page="'+proPageArr[i].home_page+'" data-id="'+proPageArr[i].id+'" onclick="resume_SocialEditHomepage(homePage'+i+')">\n' +
+                        '                   <span class="info-choose-name" id="pro_page">'+proPageArr[i].home_page+'</span>\n' +
+                        '                   <div class="info-choose-main cssFlex">\n' +
+                        '                       <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                        '                   </div>\n' +
+                        '               </div>'
+                }
+                document.querySelector(".HomepageBox").innerHTML = proPageHtml
+            }else{
+                api.toast({
+                    msg: '请求失败'
+                });
+            }
+        });
     };
     // 添加项目名称
     function resume_Project() {
@@ -178,13 +222,19 @@
             mode:"1"
         })
     }
-    function pro_page(value) {
-        document.getElementById("pro_page").innerText = value;
+    // 社交  编辑 主页
+    function resume_SocialEditHomepage(home) {
+
+        var home_id = home.dataset.id
+        var home_page = home.dataset.page
+        openNewWindow("resume_SocialEditHomepage", "./resume_SocialEditHomepage.html", {
+            url: 'addProduct',
+            // content: document.getElementById("pro_page").innerText,
+            mode:"1",
+            home_id:home_id,
+            home_page:home_page
+        })
     }
-
-
-
-
 
     // 项目开始日期
     function proStart() {
@@ -221,6 +271,9 @@
     function preservation() {
         // openNewWindow("addProduct", "./addProduct.html")
     }
+
+
+
 
     // 此处手动调用了js
     // apiready()

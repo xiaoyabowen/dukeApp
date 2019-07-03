@@ -45,7 +45,8 @@
             <div class="info-choose cssFlex" onclick="ageChoose()">
                 <span class="info-choose-name">生日</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="birth">请填写您的生日</span>
+                    <!--<span class="info-choose-main-name birth_option" id="birth">请填写您的生日</span>-->
+                    <span class="info-choose-main-name birth_option" id="birth">2019-08-09</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -78,14 +79,15 @@
                 <span class="info-choose-name">所在城市</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option" id="int_city">请选择</span>
-                    <span class="info-choose-main-name birth_option" id="adr_id" style="display: none"></span>
+                    <span id="adr_id" style="display: none">74</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="jobChoose()">
                 <span class="info-choose-name">参加工作时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="job">请选择</span>
+                    <!--<span class="info-choose-main-name birth_option" id="job">请选择</span>-->
+                    <span class="info-choose-main-name birth_option" id="job">2019-08-07</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -223,7 +225,6 @@
 
 
 
-
     // 性别
     function sexChoose() {
         var picker = new mui.PopPicker();
@@ -293,12 +294,7 @@
             // content: document.getElementById("int_city").innerText
         })
     }
-    function int_city(value,province) {
-
-        document.getElementById("int_city").innerText = province;
-        document.getElementById("adr_id").innerText = value;
-    }
-    function int_city(province, city, street, address) {
+    function int_city(value,province, city, street, address) {
         console.log(province);
         console.log(city);
         console.log(street);
@@ -309,10 +305,12 @@
         } else {
             document.getElementById('int_city').innerText = province + '-' + street + '-' + address;
         }
-
     }
+
     // 下一步
     function preservation() {
+
+
 
         var params = {}
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
@@ -325,18 +323,16 @@
         params.job_from_time = document.getElementById("job").innerText
         params.adr_id = document.getElementById("adr_id").innerText
         params.p_icon = "1"
-        console.log(adr_id)
-        /*ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
+        ajaxGetWithProgress(CreatePerson, params, function (ret, err) {
             console.log(ret)
-            if (ret.return && ret.return.status ) {
+            if (ret.updatePerson.return && ret.updatePerson.return.status ) {
                 openNewWindow("addWork", "./addWork.html")
-            } else if(ret.return && !ret.return.status){
-                if(ret){
-                    var msg = ret.msg || "服务器错误！";
-                    toast(msg);
-                }
+            } else{
+                var msg = ret.msg || "服务器错误！";
+                toast(msg);
+
             }
-        })*/
+        })
 
     }
     // 此处手动调用了js

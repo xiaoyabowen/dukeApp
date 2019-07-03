@@ -35,6 +35,7 @@
 ├── resume_Achievement              // 您的成就
 ├── resume_ProjectLinks            // 项目链接
 ├── resume_SocialHomepage          // 您的社交主页
+├── resume_SocialEditHomepage          // 您的社交主页 编辑
 ├── resume_BindingPhone          // 绑定手机号
 ├── resume_imgWorks          // 图片作品（0/50）
 ├── resume_expectations          // 求职期望
@@ -44,7 +45,7 @@
 ├── resume_Introduce          // 自我描述
 ├── resume_Comprehensive          // 综合能力
 ├── resume_editExpectations          // 编辑求职期望
-├── resume_editResume          // 编辑简历
+├── resume_editResume          // 编辑在线简历
 ├── resume_editProject          // 编辑项目经历
 ├── resume_addProject          // 添加项目经历
 ├── myDelivery            // 我的投递

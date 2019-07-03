@@ -160,6 +160,7 @@
                             shortname:shortname,
                             lat: lat,
                             lng: lng
+
                         }
                     } else {
                         adressStr = {
@@ -169,7 +170,7 @@
                             street: street,
                             shortname:shortname,
                             lat: lat,
-                            lng: lng
+                            lng: lngr
                         }
                     }
 
@@ -288,8 +289,10 @@
         var city = adressStrData.city;
         var street = adressStrData.street;
         var shortname = adressStrData.shortname;
+
         var lat = adressStrData.lat;
         var lng = adressStrData.lng;
+
         console.log(adr_id);
 
         var obj = {
