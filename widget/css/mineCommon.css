@@ -1835,24 +1835,26 @@ img.del-img-zan{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*删除本条*/
+.dele-btn{
+    width:6.3rem;
+    height:0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    background:rgba(228,8,8,1);
+    border-radius:0.08rem;
+    color: #ffffff;
+    font-weight:500;
+    font-size: 0.28rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,50%);
+    -ms-transform: translate(-50%,50%);
+    -moz-transform: translate(-50%,50%);
+    -webkit-transform: translate(-50%,50%);
+    -o-transform: translate(-50%,50%);
+}
 
 
 /*    ----------------------   zbw     --------      */
-
-
-
-
-

@@ -59,17 +59,21 @@
         content = api.pageParam.content;
 
 
+        type = api.pageParam.type;
+        if (type == 1){
+            text.value = '';
+        } else{
+            text.value = content;
+        }
         mode = api.pageParam.mode;
         if (mode == undefined){
             text.value = content || '';
         } else{
             text.value = '';
         }
-
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
-
     };
 
 

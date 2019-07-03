@@ -21,6 +21,8 @@
             margin-top: 0;
         }
     </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -31,56 +33,64 @@
             <div class="info-choose cssFlex" onclick="resume_Company()">
                 <span class="info-choose-name">公司名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_name">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="com_name">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="com_name">qnaksd</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
                 <span class="info-choose-name">公司行业</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_type">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="com_type">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="com_type">af </span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="entry_date()">
                 <span class="info-choose-name">入职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name entry_date">请选择</span>
+                    <!--<span class="info-choose-main-name entry_date">请选择</span>-->
+                    <span class="info-choose-main-name entry_date" id="w_from">2019-09-08</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="quit_date()">
                 <span class="info-choose-name">离职时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date">请选择</span>
+                    <!--<span class="info-choose-main-name quit_date">请选择</span>-->
+                    <span class="info-choose-main-name quit_date" id="w_to">2019-09-08</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="position_type">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="position_type">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="position_type">qwada </span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Position()">
                 <span class="info-choose-name">职位名称</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="role">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="role">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="role">24242512</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Department()">
                 <span class="info-choose-name">所属部门</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="position">选填</span>
+                    <!--<span class="info-choose-main-name birth_option" id="position">选填</span>-->
+                    <span class="info-choose-main-name birth_option" id="position">24242515</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="resume_Work()">
                 <span class="info-choose-name">工作内容</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="c_note">请输入</span>
+                    <!--<span class="info-choose-main-name birth_option" id="c_note">请输入</span>-->
+                    <span class="info-choose-main-name birth_option" id="c_note">131311</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -100,7 +110,6 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     apiready = function () {
 
@@ -111,20 +120,13 @@
         openNewWindow("resume_Company", "./resume_Company.html", {
             url: 'addWork',
             content: document.getElementById("com_name").innerText,
-<<<<<<< HEAD
+
             mode:"1"
         })
     }
     function com_name(value) {
         document.getElementById("com_name").innerText = value;
-=======
-            mode: "1"
-        })
->>>>>>> master
-    }
 
-    function com_name(value) {
-        document.getElementById("com_name").innerText = value;
     }
 
     // 公司行业
@@ -134,10 +136,10 @@
             content: document.getElementById("com_type").innerText
         })
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
+
+
+
     function com_type(value) {
         document.getElementById("com_type").innerText = value;
     }
@@ -149,10 +151,7 @@
             content: document.getElementById("position_type").innerText
         })
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     function position_type(value) {
         document.getElementById("position_type").innerText = value;
     }
@@ -162,16 +161,12 @@
         openNewWindow("resume_Position", "./resume_Position.html", {
             url: 'addWork',
             content: document.getElementById("role").innerText,
-<<<<<<< HEAD
+
             mode:"1"
         })
     }
     function role(value) {
         document.getElementById("role").innerText = value;
-=======
-            mode: "1"
-        })
->>>>>>> master
     }
 
     function role(value) {
@@ -181,39 +176,27 @@
     // 所属部门
     function resume_Department() {
         openNewWindow("resume_Department", "./resume_Department.html", {
-            url: 'addEditWork',
+            url: 'addWork',
             content: document.getElementById("position").innerText,
-<<<<<<< HEAD
             mode:"1"
         })
     }
     function position(value) {
         document.getElementById("position").innerText = value;
-=======
-            mode: "1"
-        })
->>>>>>> master
-    }
 
-    function position(value) {
-        document.getElementById("position").innerText = value;
     }
 
     // 工作内容
     function resume_Work() {
         openNewWindow("resume_Work", "./resume_Work.html", {
-            url: 'addEditWork',
+            url: 'addWork',
             content: document.getElementById("c_note").innerText,
-<<<<<<< HEAD
+
             mode:"1"
         })
     }
-=======
-            mode: "1"
-        })
-    }
 
->>>>>>> master
+
     function c_note(value) {
         document.getElementById("c_note").innerText = value;
     }
@@ -228,9 +211,8 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
-            document.querySelector('.entry_date').innerText = selectItems.text;
+            $api.byId("w_from").innerText = selectItems.text;
         })
 
     }
@@ -244,20 +226,14 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
-            document.querySelector('.quit_date').innerText = selectItems.text;
+            $api.byId("w_to").innerText = selectItems.text;
         })
 
     }
 
     // 下一步
     function preservation() {
-
-
-
-
-
         var com_name = document.getElementById("com_name").innerText;
         var com_type = document.getElementById("com_type").innerText;
         var w_from = document.getElementById("w_from").innerText;
@@ -266,7 +242,9 @@
         var role = document.getElementById("role").innerText;
         var position = document.getElementById("position").innerText;
         var c_note = document.getElementById("c_note").innerText;
-        var person_id = localStorage.getItem('person_id');
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var person_id = uid;
+
         if (com_name == "请输入") {
             api.toast({
                 msg: '请填写公司名称'
@@ -303,6 +281,8 @@
             position = ''
         }
 
+        var title,is_open
+
         var params = {
             com_name: com_name,
             com_type: com_type,
@@ -310,27 +290,21 @@
             w_to: w_to,
             position_type: position_type,
             role: role,
-            title: title,
+            title: title || '',
             position: position,
             c_note: c_note,
-            is_open: is_open,
+            is_open: is_open || '1',
             u_id: person_id
         }
-
-
         ajaxGetWithProgress(addWorkingExperience, params, function (ret, err) {
             console.log(ret)
-
-            /*if (ret.return && ret.return.status ) {
+            if (ret.return_info && ret.return_info.status ) {
                 openNewWindow("addEdution", "./addEdution.html")
             } else if(ret.return && !ret.return.status){
-                if(ret){
-                    var msg = ret.msg || "服务器错误！";
-                    toast(msg);
-                }
-            }*/
+                var msg = ret.msg || "服务器错误！";
+                toast(msg);
+            }
         })
-
 
 
     }
