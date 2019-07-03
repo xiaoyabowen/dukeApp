@@ -8,6 +8,8 @@
     </author>
     <!--<content src="html/login/homeChoose.html" />-->
     <content src="html/login/passLogin.html" />
+    <!--<content src="html/login/login.html" />-->
+
     <!--<content src="html/user/mine/mine.html" />-->
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
