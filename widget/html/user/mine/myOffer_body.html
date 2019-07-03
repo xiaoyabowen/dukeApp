@@ -95,9 +95,9 @@
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-            var uid = localStorage.getItem('person_id');
+            var person_id = localStorage.getItem('person_id');
             var obj = {
-                token: uid
+                person_id: person_id
             }
             ajaxGetWithProgress(QueryApplicationStatus4List, obj, function (data, err) {
                 // alert(JSON.stringify(data));
