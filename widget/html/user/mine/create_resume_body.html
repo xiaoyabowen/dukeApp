@@ -220,9 +220,7 @@
             content: document.getElementById("int_city").innerText
         })
     }
-    function int_city(value) {
-        document.getElementById("int_city").innerText = value;
-    }
+
 
 
 
@@ -300,7 +298,19 @@
         document.getElementById("int_city").innerText = province;
         document.getElementById("adr_id").innerText = value;
     }
+    function int_city(province, city, street, address) {
+        console.log(province);
+        console.log(city);
+        console.log(street);
+        document.getElementById("int_city").innerText = province;
+        document.getElementById("adr_id").innerText = value;
+        if (city) {
+            document.getElementById('int_city').innerText = province + '-' + city + '-' + street;
+        } else {
+            document.getElementById('int_city').innerText = province + '-' + street + '-' + address;
+        }
 
+    }
     // 下一步
     function preservation() {
 

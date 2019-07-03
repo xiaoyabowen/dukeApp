@@ -132,25 +132,23 @@
                 positionPicker.on('success', function(positionResult) {
                     console.log(positionResult)
                     var allData = positionResult.regeocode
-                    var province = allData.addressComponent.province   //省
-                    var city = allData.addressComponent.city   //shi
-                    var district = allData.addressComponent.district   //区
-                    var township = allData.addressComponent.township   //jiedao
+                    var province = allData.addressComponent.province   // 省
+                    var city = allData.addressComponent.city   // 市
+                    var district = allData.addressComponent.district   // 区/县
+                    var street = allData.addressComponent.street   // 路/镇
+                    var township = allData.addressComponent.township   // 街道
+                    var name = allData.pois[index].name   // 镇/
                     var adressStr = {
                         country:"中国",
                         province:province,
                         city:city,
-                        street:district,
-                        shortname:township,
+                        street: district,
+                        shortname:shortname,
+                        address: street
                     }
                     localStorage.setItem("adressStr",JSON.stringify(adressStr))
                     var allAdress;
-                    if (city == ''){
-                        allAdress = province+district+township
-                    } else{
-                        allAdress = province+city+district+township
-                    }
-
+                    
                     var poisAdress = allData.pois
                     var poisAdressData = ''
                     for (var i=0;i<poisAdress.length;i++){
