@@ -1134,6 +1134,14 @@ span.my-dynamic-send {
     margin-right: 0.1rem;
 }
 
+/*没有数据时显示*/
+.clear {
+    text-align: center;
+    font-size: 0.26rem;
+    color: #638BFF;
+    margin: 0.618rem;
+}
+
 
 /*金卡vip*/
 .vip-authen{

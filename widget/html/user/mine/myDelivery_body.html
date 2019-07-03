@@ -176,7 +176,6 @@
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         params.person_id = uid
         ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
-
             console.log(res);
             var jobHtml = ''
             var data = res.jobs
@@ -224,7 +223,9 @@
                 api.toast({
                     msg: '请求失败'
                 });
+
             }
+            api.hideProgress();
         })
     };
     function jobPosi(job_id) {

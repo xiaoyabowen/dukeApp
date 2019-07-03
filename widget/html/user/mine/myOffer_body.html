@@ -22,10 +22,12 @@
             display: flex;
             align-items: center;
         }
+
     </style>
 </head>
 <body class="commonBg">
 <div class="Box" id='list'>
+    <div class="clear">暂无offer</div>
     <div class="boxSub inde-sub isDisplay">
         <div class="inter-box inter-box-no">
 
@@ -109,6 +111,7 @@
             console.log(data);
             if (data.queryApplicationStatus4List) {
                 document.querySelector('.boxSub').classList.remove('isDisplay');
+                document.querySelector('.clear').classList.add('isDisplay');
                 var list = data.queryApplicationStatus4List;
                 var myOffer = document.getElementById('list');
                 var arr = [];

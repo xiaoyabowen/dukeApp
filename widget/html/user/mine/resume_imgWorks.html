@@ -9,15 +9,21 @@
     <title>申请信用卡</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <style>
+        .isDisplay {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="topbar" >
     <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>图片作品（<span class="imgNum">0</span>/50）</div>
-    <div class="right" onclick="save()">
-        删除
+    <div>图片作品（<span id="imgNum">0</span>/50）</div>
+    <div class="right">
+        <span id='delete1' onclick="save()">删除</span>
+        <span id='delete2' class="isDisplay" onclick="save2()">确认删除</span>
     </div>
 </div>
 </body>
@@ -33,11 +39,29 @@
         initFrameInWin(api.pageParam);
     };
 
+    // 获取上传图片的数量
+    function totalImg(num) {
+        alert(num);
+        document.getElementById('imgNum').innerText = num || 0;
+    }
+
     //点击编辑
     function save(){
+        document.getElementById('delete1').classList.add('isDisplay');
+        document.getElementById('delete2').classList.remove('isDisplay');
         api.execScript({
             frameName: "resume_imgWorks_body",
-            script: 'preservation()'
+            script: 'deleteImg1()'
+        })
+    }
+
+    // 确认删除
+    function save2() {
+        document.getElementById('delete2').classList.add('isDisplay');
+        document.getElementById('delete1').classList.remove('isDisplay');
+        api.execScript({
+            frameName: "resume_imgWorks_body",
+            script: 'deleteImg2()'
         })
     }
 </script>
