@@ -13,6 +13,7 @@
 </head>
 <body class="commonBg">
     <div class="Box">
+        <div class="clear">今日暂无面试</div>
         <div class="boxSub inter-sub isDisplay">
             <div class="inter-title">未完成</div>
             <div id="complete">
@@ -123,6 +124,7 @@
                 console.log(data);
                 if (data.queryApplicationStatusList) {
                     document.querySelector('.boxSub').classList.remove('isDisplay');
+                    document.querySelector('.clear').classList.add('isDisplay');
                     // console.log(data.queryApplicationStatusList);
                     var list = data.queryApplicationStatusList;
                     var list1 = [];

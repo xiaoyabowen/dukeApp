@@ -418,7 +418,7 @@
                     home_page = HomePage;
                     var arr = [];
                     for (var i = 0; i < HomePage.length; i++) {
-                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialHomepage(home'+ i +')">\n' +
+                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
                             '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -547,14 +547,26 @@
 
     // 社交主页
     function resume_SocialHomepage(e) {
+        openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html", {
+            url: 'resume_editResume',
+        })
+    }
+    function resume_SocialEditHomepage(e) {
         console.log(e);
         console.log(e.dataset.home);
         console.log(e.dataset.id);
-        // openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html", {
-        //     url: 'resume_editResume',
-        //     content: home_page
-        // })
+        openNewWindow("resume_SocialEditHomepage", "resume_SocialEditHomepage.html", {
+            url: 'resume_editResume',
+            home_page: e.dataset.home,
+            home_id: e.dataset.id,
+            mode: 1
+        })
     }
+    // 刷新
+    function setTime() {
+        reload();
+    }
+
 
     // 图片作品
     function resume_imgWorks() {
@@ -600,9 +612,13 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
+                var HomePage = data.HomePage;
 
                 // 姓名
-                document.querySelector('.editResume_name').innerText = person_summary.p_name;
+                if (person_summary.p_name || person_summary.p_name != 'undefined') {
+                    document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
+                }
+
                 // 自我介绍
                 if (person_summary.p_tags) {
                     document.getElementById('p_tags').innerText = "已填写";
@@ -682,6 +698,7 @@
                     educations.innerHTML = dom;
                 }
 
+
                 if (projects != null) {
 
                     var project = document.getElementById('project');
@@ -702,10 +719,21 @@
                     project.innerHTML = dom;
                 }
 
-                if (person_summary.home_page) {
-                    home_page = person_summary.home_page;
+                if (HomePage) {
+                    home_page = HomePage;
+                    var arr = [];
+                    for (var i = 0; i < HomePage.length; i++) {
+                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
+                            '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+                    document.getElementById('home_page').innerHTML = arr.join('');
                 } else {
-                    home_page = ''
+                    document.getElementById('home_page').innerHTML = '';
                 }
 
 
