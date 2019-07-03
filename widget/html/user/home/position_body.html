@@ -57,9 +57,12 @@
         p.posiSize {
             line-height: 20px !important;
         }
+
+        div.isDisplay {
+            display: none;
+        }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+
 </head>
 <body class="commonBg">
 
@@ -77,7 +80,7 @@
 <div id="app" onclick="showCardMain();">
 
     <!-- Your main view, should have "view-main" class -->
-    <div class="view view-main safe-areas">
+    <div class="view view-main safe-areas isDisplay">
         <!-- Page, data-name contains page name which can be used in callbacks -->
 
             <!-- Scrollable page content-->
@@ -111,28 +114,28 @@
                                 </div>-->
                                 <div class="jobBox cssFlex">
                                     <div class="job-left">
-                                        <h4 class="job-nameNm">运营经理</h4>
+                                        <h4 class="job-nameNm" id="job_name">运营经理</h4>
                                         <p class="adress-job">
-                                            <span class="adressInfo">北京-朝阳-望京</span>
-                                            <span class="job-year"><i>10</i>年</span>
-                                            <span>本科</span>
+                                            <span class="adressInfo" id="city">北京-朝阳-望京</span>
+                                            <span class="job-year"><i id="work_ex">10</i></span>
+                                            <span id="edu_ex">本科</span>
                                         </p>
                                     </div>
                                     <!--薪资 日期-->
                                     <div class="job-right ">
-                                        <p class="moneyNum">20k-30K</p>
+                                        <p class="moneyNum"><span id="ratio">20k-30K</span>k</p>
                                     </div>
                                 </div>
                                 <div class="F9Line"></div>
                                 <div class="positionName padding12">
-                                    <div class="job-img-content cssFlex">
-                                        <img src="../../../image/hr.png" alt="hr" class="hrImg">
+                                    <div class="job-img-content cssFlex" onclick="homePage()">
+                                        <img id="" src="../../../image/hr.png" alt="hr" class="hrImg">
                                         <div class="job-img-text">
-                                            <p class="posiName">赵东东</p>
+                                            <p class="posiName" id="user_name">赵东东</p>
                                             <p class="job-name">
-                                                <span>北京天久共享控股集团</span>
+                                                <span id="c_name">北京天久共享控股集团</span>
                                                 <i>·</i>
-                                                <span>人力资源部经理</span>
+                                                <span id="z_user_job">人力资源部经理</span>
                                             </p>
 
                                         </div>
@@ -148,7 +151,7 @@
                                 <!--岗位职责-->
                                 <div class="positionMain">
                                     <h4 class="productName">岗位职责</h4>
-                                    <p class="posiText">
+                                    <p class="posiText" id="description">
                                         1、对接泛娱乐社区的整体规划、内容建设及调性的把控，去中心化营销内容和达人，把适合的内容推荐给感兴趣的用户；<br/>
                                         2、 针对优质、有价值的内容和KOL进行包装，负责内容 架构、组织热点话题等相关策划，激励社区达人持续生产泛娱乐内容，持续为平台培养和提供优秀的内容和达人；
                                         3、深度挖掘用户需求，利用活动和品牌营销提高整体平台的活跃度，提升产品在行业内的影响力； 4、建立有效的数据跟踪机制，及时发现并处理运营问题；
@@ -165,7 +168,7 @@
                                     </p>
                                 </div>
                                 <h4 class="productName">技能要求</h4>
-                                <div class="skillList cssFlex">
+                                <div class="skillList cssFlex" id="skills">
                                     <span>餐补</span>
                                     <span>五险一金</span>
                                     <span>五险</span>
@@ -175,12 +178,12 @@
                                     <span>五险一金</span>
                                     <span>五险一金</span>
                                 </div>
-                                <div class="infoProduct cssFlex">
+                                <div class="infoProduct cssFlex" id="company" onclick="company()">
                                     <img src="../../../image/pro.png" alt="pro" class="pro-img">
                                     <div class="infoProductContent">
-                                        <h5 class="posiName">云闪信(北京)信息科技有限公司</h5>
-                                        <p class="textOverflow posiSize"><span>不需要融资</span>
-                                            <i>·</i><span>100-499人</span><i>·</i><span>互联网</span></p>
+                                        <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
+                                        <p class="textOverflow posiSize"><span id="financing">不需要融资</span>
+                                            <i>·</i><span id="scale">100-499人</span><i>·</i><span id="org_type">互联网</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -210,19 +213,19 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../../IQ/d3.js"></script>
-<script type="text/javascript" src="../../../IQ/part1.js"></script>
+<!--<script type="text/javascript" src="../../../IQ/part1.js"></script>-->
 <script type="text/javascript" src="../../../IQ/vdp.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 
 <script>
-    var card_el=document.getElementById("card_main");
-    card_el.style.height=csreen_height-80+"px";
-    console.log("card", card_el);
-    console.log("card height: "+card_el.style.height);
+    // var card_el=document.getElementById("card_main");
+    // card_el.style.height=csreen_height-80+"px";
+    // console.log("card", card_el);
+    // console.log("card height: "+card_el.style.height);
 
-    var job_id;
+    var job_id, cid, uid;
     apiready = function () {
         job_id = api.pageParam.job_id;
         var obj = {
@@ -232,11 +235,55 @@
             // alert(JSON.stringify(data));
             console.log(data);
             if (data) {
+                document.querySelector('.view').classList.remove('isDisplay');
+
+                cid = data.c_id;
+                uid = data.uid;
+
+                document.getElementById('job_name').innerText = data.job_name || '未填写';
+                document.getElementById('work_ex').innerText = data.work_ex || '未填写';
+                document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                document.getElementById('ratio').innerText = data.ratio || '未填写';
+                document.getElementById('user_name').innerText = data.user_name || '未填写';
+                document.getElementById('c_name').innerText = data.c_name || '未填写';
+                document.getElementById('c_name1').innerText = data.c_name || '未填写';
+                document.getElementById('financing').innerText = data.financing || '未填写';
+                document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
+                document.getElementById('description').innerHTML = data.description || '未填写';
+                document.getElementById('scale').innerText = data.scale || '未填写';
+                document.getElementById('org_type').innerText = data.org_type || '未填写';
+                document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
+
+                if (data.skills) {
+                    var skills = data.skills.split(',');
+                    var doms = []
+                    for (var i = 0; i < skills.length; i++) {
+                        var str = '<span>'+ skills[i] +'</span>';
+                        doms.push(str);
+                    }
+                    document.getElementById('skills').innerHTML = doms.join('');
+                } else {
+                    document.getElementById('skills').innerHTML = '';
+                }
 
             }
 
         });
     };
+
+    // 点击进入公司详情页面
+    function company() {
+        openNewWindow("companyInfo", "../home/companyInfo.html", {
+            cid: cid
+        });
+    }
+
+    // 点击进入发布人主页
+    function homePage() {
+        // openNewWindow("companyInfo", "../home/companyInfo.html", {
+        //     uid: uid
+        // });
+    }
 
 </script>
 </body>

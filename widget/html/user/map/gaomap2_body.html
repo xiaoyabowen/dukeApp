@@ -139,6 +139,8 @@
                 positionPicker.on('success', function(positionResult) {
                     console.log(positionResult)
                     list = positionResult;
+                    var lat = positionResult.position.lat;
+                    var lng = positionResult.position.lng;
                     var allData = positionResult.regeocode
                     var province = allData.addressComponent.province   // 省
                     var city = allData.addressComponent.city   // 市
@@ -155,7 +157,9 @@
                             province:province,
                             city:city,
                             street: district,
-                            shortname:shortname
+                            shortname:shortname,
+                            lat: lat,
+                            lng: lng
                         }
                     } else {
                         adressStr = {
@@ -164,6 +168,8 @@
                             city:district,
                             street: street,
                             shortname:shortname,
+                            lat: lat,
+                            lng: lng
                         }
                     }
 
@@ -235,6 +241,8 @@
 
         console.log(list);
         var allData = list.regeocode;
+        var lat = list.position.lat;
+        var lng = list.position.lng;
         var province = allData.addressComponent.province   // 省
         var city = allData.addressComponent.city   // 市
         var district = allData.addressComponent.district   // 区/县
@@ -250,7 +258,9 @@
                 province:province,
                 city:city,
                 street: district,
-                shortname:shortname
+                shortname:shortname,
+                lat: lat,
+                lng: lng
             }
         } else {
             adressStr = {
@@ -259,6 +269,8 @@
                 city:district,
                 street: street,
                 shortname:shortname,
+                lat: lat,
+                lng: lng
             }
         }
 
@@ -276,9 +288,13 @@
         var city = adressStrData.city;
         var street = adressStrData.street;
         var shortname = adressStrData.shortname;
+        var lat = adressStrData.lat;
+        var lng = adressStrData.lng;
         console.log(adr_id);
 
         var obj = {
+            latitude: lat,
+            longitude: lng,
             country:country,
             province:province,
             city:city,

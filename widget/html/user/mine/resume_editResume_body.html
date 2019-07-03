@@ -245,14 +245,25 @@
                 </div>
             </div>
 
-            <div class="resume_editResume_item border0">
+            <div class="resume_editResume_item">
                 <div class="info-choose cssFlex" onclick="resume_SocialHomepage()">
                     <span class="info-choose-name weight">社交主页</span>
                     <div class="info-choose-main cssFlex">
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
+                <div class="workExperience" id="home_page">
+                    <div class="info-choose cssFlex" onclick="resume_editProject()">
+                        <span class="info-choose-name">个人主页</span>
+                        <div class="info-choose-main cssFlex">
+                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+
+            <div class="resume_editResume_item border0">
                 <div class="info-choose cssFlex" onclick="resume_imgWorks()">
                     <span class="info-choose-name weight">图片作品</span>
                     <div class="info-choose-main cssFlex">
@@ -296,6 +307,7 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
+                var HomePage = data.HomePage;
 
                 // 姓名
                 if (person_summary.p_name || person_summary.p_name != 'undefined') {
@@ -402,10 +414,21 @@
                     project.innerHTML = dom;
                 }
 
-                if (person_summary.home_page) {
-                    home_page = person_summary.home_page;
+                if (HomePage) {
+                    home_page = HomePage;
+                    var arr = [];
+                    for (var i = 0; i < HomePage.length; i++) {
+                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialHomepage(home'+ i +')">\n' +
+                            '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+                    document.getElementById('home_page').innerHTML = arr.join('');
                 } else {
-                    home_page = ''
+                    document.getElementById('home_page').innerHTML = '';
                 }
 
 
@@ -523,11 +546,14 @@
     }
 
     // 社交主页
-    function resume_SocialHomepage() {
-        openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html", {
-            url: 'resume_editResume',
-            content: home_page
-        })
+    function resume_SocialHomepage(e) {
+        console.log(e);
+        console.log(e.dataset.home);
+        console.log(e.dataset.id);
+        // openNewWindow("resume_SocialHomepage", "resume_SocialHomepage.html", {
+        //     url: 'resume_editResume',
+        //     content: home_page
+        // })
     }
 
     // 图片作品

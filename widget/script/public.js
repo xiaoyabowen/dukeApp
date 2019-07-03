@@ -94,6 +94,8 @@ var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
 // 职位详情
 var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
+// 公司详情
+var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgnizationSummary";
 
 
 // 创建简历  地图

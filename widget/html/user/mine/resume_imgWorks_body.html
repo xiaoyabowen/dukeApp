@@ -26,7 +26,9 @@
             background: pink;
             margin-right: 0.08rem;
             margin-bottom: 0.1rem;
+            border-radius: 6px;
             overflow: hidden;
+            position: relative;
         }
 
         .resume_imgWorks_main li:nth-last-child(3n),
@@ -41,18 +43,17 @@
         .resume_imgWorks_main li.action {
             width: 2rem;
             height: 2rem;
-            border: 0.03rem solid #999999;
             position: relative;
             box-sizing: border-box;
-            background: #ffffff;
+            background: #F6F6F6;
         }
 
         .resume_imgWorks_main li.action:before {
             content: '';
             display: block;
-            width: 1px;
-            height: 1rem;
-            background: #999999;
+            width: 0.1rem;
+            height: 0.88rem;
+            background: #D8D8D8;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -66,9 +67,9 @@
         .resume_imgWorks_main li.action:after {
             content: '';
             display: block;
-            width: 1rem;
-            height: 1px;
-            background: #999999;
+            width: 0.88rem;
+            height: 0.1rem;
+            background: #D8D8D8;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -78,18 +79,46 @@
             -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
+
+        .resume_imgWorks_main li > span.active {
+            width: 0.28rem;
+            height: 0.28rem;
+            border-radius: 50%;
+            border: 0.02rem solid #ffffff;
+            background: #564B42;
+            position: absolute;
+            top: 5%;
+            right: 5%;
+        }
+
+        .resume_imgWorks_main li > span > i.active {
+            display: block;
+            width: 0.15rem;
+            height: 0.08rem;
+            border-left: 0.02rem solid #ffffff;
+            border-bottom: 0.02rem solid #ffffff;
+            background: #564B42;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -60%) rotate(-45deg);
+            -moz-transform: translate(-50%, -60%) rotate(-45deg);
+            -ms-transform: translate(-50%, -60%) rotate(-45deg);
+            -o-transform: translate(-50%, -60%) rotate(-45deg);
+            transform: translate(-50%, -60%) rotate(-45deg);
+        }
     </style>
 </head>
 <body class="commonBg">
 
 <div class="Box">
     <div class="resume_imgWorks_main">
-        <ul>
-            <li><img src="../../../image/login/weibo.png" alt=""></li>
-            <li><img src="../../../image/login/weibo.png" alt=""></li>
-            <li><img src="../../../image/login/weibo.png" alt=""></li>
-            <li><img src="../../../image/login/weibo.png" alt=""></li>
+        <ul id="ul_box">
             <li class="action"></li>
+            <li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>
+            <li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>
+            <li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>
+            <li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>
         </ul>
     </div>
 
@@ -103,7 +132,18 @@
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/template-native.js"></script>
     <script>
+
+
         apiready = function () {
+
+            var list = [
+                '../../../image/login/weibo.png',
+                '../../../image/login/weibo.png',
+                '../../../image/login/weibo.png'
+            ];
+            var ulBox = document.getElementById('ul_box');
+            var arr
+
             var action = document.querySelector('.action');
 
             action.onclick = function () {
@@ -127,8 +167,15 @@
             }
         };
 
-        // 此处手动调用了js
-        // apiready()
+        // 点击添加图片
+        function addImg() {
+
+        }
+
+        // 点击编辑
+        function preservation() {
+
+        }
 
 
     </script>

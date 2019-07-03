@@ -240,8 +240,11 @@
     <script type="text/javascript" src="../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
     <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
         // swiper  轮播
         var mySwiper = new Swiper ('.swiper-container',{
@@ -257,8 +260,22 @@
         }
 
 
+        var cid;
         apiready = function () {
+            cid = api.pageParam.cid;
+            var obj = {
+                cid: cid
+            }
+            ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
+                // alert(JSON.stringify(data));
+                console.log(data);
+                if (data) {
+                    // document.querySelector('.view').classList.remove('isDisplay');
 
+
+                }
+
+            });
         };
         mui.init({
             swipeBack: false

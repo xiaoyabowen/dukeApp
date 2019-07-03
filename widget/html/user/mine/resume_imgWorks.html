@@ -16,6 +16,9 @@
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
     <div>图片作品（<span class="imgNum">0</span>/50）</div>
+    <div class="right" onclick="save()">
+        删除
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -29,5 +32,13 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
+
+    //点击编辑
+    function save(){
+        api.execScript({
+            frameName: "resume_imgWorks_body",
+            script: 'preservation()'
+        })
+    }
 </script>
 </html>
