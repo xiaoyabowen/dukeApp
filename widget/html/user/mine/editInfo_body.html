@@ -244,7 +244,7 @@
             if (data.province && data.city && data.street) {
                 document.getElementById('int_city').innerText = data.province + '-' + data.city + '-' + data.street;
             } else {
-                document.getElementById('int_city').innerText = data.city || '未填写';
+                document.getElementById('int_city').innerText = data.province + '-' + data.street
             }
 
             document.getElementById('Occupation').innerText = data.position_type || '未填写';
@@ -416,15 +416,12 @@
             adr_id: adr_id
         });
     }
-    function int_city(province, city, street, address) {
+    function int_city(province, city, street) {
         console.log(province);
         console.log(city);
         console.log(street);
-        if (city) {
-            document.getElementById('int_city').innerText = province + '-' + city + '-' + street;
-        } else {
-            document.getElementById('int_city').innerText = province + '-' + street + '-' + address;
-        }
+        document.getElementById('int_city').innerText = province + '-' + city + '-' + street;
+
 
     }
 
