@@ -1126,7 +1126,9 @@ img.info-img-right {
     height: 0.32rem;
 }
 
-.info-label-choose {
+
+
+.info-label-choose{
     justify-content: space-between;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #EBEBEB;
@@ -1228,6 +1230,7 @@ span.my-dynamic-send {
     color: #638BFF;
     margin: 0.618rem;
 }
+
 
 /*金卡vip*/
 .vip-authen {
