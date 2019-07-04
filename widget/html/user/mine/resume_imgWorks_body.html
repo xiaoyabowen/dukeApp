@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
     <style>
         .resume_imgWorks_main {
-            padding: 0.38rem 0.30rem 0.38rem 0.31rem;
+            /*padding: 0.38rem 0.30rem 0.38rem 0.31rem;*/
+            padding: 0.38rem 0rem 0.38rem 0.19rem;
         }
 
         .resume_imgWorks_main ul {
@@ -24,17 +26,18 @@
             width: 2rem;
             height: 2rem;
             background: pink;
-            margin-right: 0.19rem;
+            /*margin-right: 0.19rem;*/
+            margin: 0 0.10rem;
             margin-bottom: 0.1rem;
             border-radius: 6px;
             overflow: hidden;
             position: relative;
         }
 
-        .resume_imgWorks_main li:nth-child(3n),
-        .resume_imgWorks_main li:nth-child(3n) {
-            margin-right: 0;
-        }
+        /*.resume_imgWorks_main li:nth-child(3n),*/
+        /*.resume_imgWorks_main li:nth-child(3n) {*/
+            /*margin-right: 0;*/
+        /*}*/
 
         .resume_imgWorks_main li img {
             width: 100%;
@@ -107,6 +110,27 @@
             -o-transform: translate(-50%, -60%) rotate(-45deg);
             transform: translate(-50%, -60%) rotate(-45deg);
         }
+
+        .Box {
+            position: relative;
+        }
+
+        .maskImg {
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .isDisplay {
+            display: none;
+        }
+
+        li.isDisplay {
+            display: none;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -122,6 +146,10 @@
         </ul>
     </div>
 
+    <div class="maskImg isDisplay">
+
+    </div>
+
 </div>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -129,6 +157,7 @@
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/kv.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 
@@ -282,7 +311,7 @@
     var arr1 = [];
     // 点击编辑
     function deleteImg1() {
-
+        document.querySelector('.action').classList.add('isDisplay');
         for (var i = 1; i < doms.length; i++) {
             doms[i].classList.add('active');
             doms[i].dataset.index = i;
@@ -305,27 +334,43 @@
 
     // 确认删除
     function deleteImg2() {
-        for (var i = 1; i < doms.length; i++) {
-            doms[i].classList.remove('active');
-            doms[i].children[1].classList.remove('active');
-            doms[i].dataset.index = i;
-            doms[i].onclick = null;
-        }
+        document.querySelector('.maskImg').classList.remove('isDisplay');
 
-        var arr2 = sort(arr1);
-        console.log(arr2);
-        for (var i = 0; i < arr2.length; i++) {
-            console.log(arr2[i] - 1);
-            list.splice(arr2[i] - 1, 1);
-        }
-        var arr = ['<li class="action"></li>'];
-        for (var i = 0; i < list.length; i++) {
-            var str = '<li><img src="' + list[i] + '" alt=""><span><i></i></span></li>';
-            arr.push(str);
-        }
-        ulBox.innerHTML = arr.join('');
-        arr1 = [];
+        mui.confirm('删除图片不可恢复，是否继续？', function (e) {
+            if (e.index) {
+                for (var i = 1; i < doms.length; i++) {
+                    doms[i].classList.remove('active');
+                    doms[i].children[1].classList.remove('active');
+                    doms[i].dataset.index = i;
+                    doms[i].onclick = null;
+                }
 
+                var arr2 = sort(arr1);
+                console.log(arr2);
+                for (var i = 0; i < arr2.length; i++) {
+                    console.log(arr2[i] - 1);
+                    list.splice(arr2[i] - 1, 1);
+                }
+                var arr = ['<li class="action"></li>'];
+                for (var i = 0; i < list.length; i++) {
+                    var str = '<li><img src="' + list[i] + '" alt=""><span><i></i></span></li>';
+                    arr.push(str);
+                }
+                ulBox.innerHTML = arr.join('');
+                arr1 = [];
+
+                document.querySelector('.maskImg').classList.add('isDisplay');
+            }
+            // api.execScript({
+            //     name:url,
+            //     // frameName:url +"_body",
+            //     frameName: frameName,
+            //     script: 'setTime()'
+            // })
+            // closeWin();
+        })
+
+        // document.querySelector('action').classList.remove('isDisplay');
     }
 
     // 排序

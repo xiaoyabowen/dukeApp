@@ -3,7 +3,7 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-var serverUrl = "http://192.168.1.10:8000/SE4M/SE/";
+var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -97,6 +97,15 @@ var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
 // 公司详情
 var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgnizationSummary";
 
+// 获取订阅列表数据
+var QuerySubscriptionById = serverUrl + "/UserProfile/querySubscriptionById";
+// 删除订阅
+var DeleteSubscriptionById = serverUrl + "/UserProfile/deleteSubscriptionById";
+// 修改订阅
+var UpdateSubscriptionById = serverUrl + "/UserProfile/updateSubscriptionById";
+// 添加订阅
+var AddSubscription = serverUrl + "/UserProfile/addSubscription";
+
 
 // 创建简历  地图
 var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";
@@ -128,6 +137,14 @@ var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 // 隐私设置 修改手机号
 var updatePhone = serverUrl + "/UserProfile/updatePhone";
 
+// 圈子活动列表
+var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
+// 圈子添加活动
+var createCircle = serverUrl + "/CircleProfile/createCircle";
+// 圈子添加活动地址
+var addAddress = serverUrl + "/CircleProfile/addAddress";
+// 圈子活动详情
+var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
 
 
 

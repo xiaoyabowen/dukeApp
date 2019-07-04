@@ -126,8 +126,16 @@
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script>
         apiready = function () {
+            var user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+                api.hideProgress();
+                localStorage.clear();
+                openNewWindow('login', "../../login/login.html");
+                return;
+            }
             // 获取用户信息
-            var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+            var uid = user.user_uid;
+
             // console.log(uid);
             ajaxGetWithProgress(QuerySummary, {
                 uid: uid

@@ -97,7 +97,7 @@
         <div class="subcontentBoxBanner">
             <img src="../../../image/banner.png" alt="banner" class="home-banner">
             <div class="footerBar cssFlex">
-                <div class="barLeft cssFlex">
+                <div class="barLeft cssFlex" onclick="circle()">
                     <img src="../../../icon/quan.png" alt="quan 26 20">
                     <span>圈子</span>
                 </div>
@@ -129,6 +129,12 @@
         apiready = function () {
 
         };
+
+        // 圈子
+        function circle() {
+            openNewWindow("index", "../circle/index.html")
+        }
+
         function position() {
             openNewWindow("position", "./position.html")
         }

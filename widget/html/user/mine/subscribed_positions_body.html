@@ -99,9 +99,22 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     apiready = function () {
+
+        var person_id = localStorage.getItem('person_id');
+        ajaxGetWithProgress(QuerySubscriptionById, {
+            person_id: person_id
+        }, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+
+        });
+
         // 点击订阅
         var subscribed_main = document.querySelectorAll('.subscribed_main');
         for (var i = 0; i < subscribed_main.length; i++) {
@@ -113,7 +126,9 @@
 
         // 修改订阅
         document.querySelector('.subscribed_bottom_left').onclick = function () {
-            openNewWindow("creditCard_details_body", "./creditCard_details_body.html")
+            openNewWindow("edit_Subscription", "./edit_Subscription.html", {
+                url: 'subscribed_positions'
+            })
         }
         // 删除订阅
         document.querySelector('.subscribed_bottom_right').onclick = function () {
@@ -123,8 +138,10 @@
         }
     };
 
-    // 此处手动调用了js
-    // apiready()
+    // 重新获取数据
+    function reset() {
+
+    }
 
 
 </script>

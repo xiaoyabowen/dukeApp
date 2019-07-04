@@ -48,7 +48,7 @@
             <li data-type="editPass" id="editPassSet">
                 <div>
                     <img src="../../../icon/mine/lock.png" alt="">
-                    <span>设置密码</span>
+                    <span id="updataPassword">设置密码</span>
                 </div>
 
                 <div class="setting_active">
@@ -109,7 +109,7 @@
             </li>
         </ul>
 
-        <div class="setting_btn">
+        <div class="setting_btn" id="setting_btn">
             退出登录
         </div>
     </div>
@@ -124,10 +124,16 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     apiready = function () {
+        var user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
+
         var setting_ul = document.querySelector('.setting_ul');
-        console.log(setting_ul);
+        // console.log(setting_ul);
         setting_ul.onclick = function (e) {
             var node = e.target;
             var li;
@@ -142,8 +148,28 @@
             }
         }
 
+        document.getElementById('setting_btn').onclick = function () {
+            mui.confirm('确定退出登录?', function (e) {
+                console.log(e)
 
+                if (e.index) {
+                    console.log(123)
+                    localStorage.clear();
+                    gotoLogin();
+                }
+            })
+        }
 
+        function gotoLogin(){
+            api.closeToWin({
+                name: 'login',
+                animation: {
+                    type: 'flip',
+                    subType: 'from_bottom',
+                    duration: 500
+                }
+            });
+        }
 
     };
     // var passLocal = localStorage.getItem("passStatus")

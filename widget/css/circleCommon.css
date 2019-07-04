@@ -1,0 +1,336 @@
+.isDisplay {
+    display: none;
+}
+
+/*活动===========================开始*/
+#circle {
+    padding: 0.22rem 0.13rem;
+    width: 100%;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.circle_item {
+    margin-bottom: 0.35rem;
+    border-radius: 0.08rem;
+}
+
+.header_img {
+    width: 100%;
+    height: 3.44rem;
+}
+
+.header_img img {
+    width: 100%;
+}
+
+.circle_footer {
+    width: 100%;
+    height: 2.38rem;
+    padding: 0 0.26rem;
+}
+
+.circle_title {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.9rem;
+}
+
+.circle_tiem, .circle_city {
+    padding-left: 0.3rem;
+    font-size: 0.26rem;
+    color: #666666;
+    line-height: 0.4rem;
+    /*align-items: center;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.circle_tiem span, .circle_city span {
+    color: #333333;
+}
+
+.circle_tiem {
+    background: url("../image/circle/tiem2x.png") no-repeat left 0.05rem;
+    background-size: 0.26rem 0.26rem;
+}
+
+.circle_city {
+    background: url("../image/circle/city2x.png") no-repeat left 0.05rem;
+    background-size: 0.2rem 0.23rem;
+}
+
+.circle_bottom {
+    width: 100%;
+    align-items: center;
+}
+
+.circle_sign {
+    flex: 1;
+    text-align: right;
+    margin-right: 0.1rem;
+    padding-right: 0.15rem;
+    border-right: 1px solid #EBEBEB;
+    line-height: 1;
+    color: #666666;
+}
+
+.circle_sign span {
+    color: #FF9B28;
+}
+
+.circle_collection {
+    width: 0.3rem;
+}
+
+/*活动===========================结束*/
+
+/*发布活动========================开始*/
+.add_activities {
+
+}
+
+.add_activities_header {
+    width: 100%;
+    height: 0.92rem;
+    line-height: 0.92rem;
+    background: #ffffff;
+    font-size: 0.28rem;
+    color: #333333;
+}
+
+.add_activities_header div {
+    flex: 50%;
+    text-align: center;
+}
+
+.add_activities_header div span {
+    position: relative;
+}
+
+.add_activities_header div span.active {
+    color: #638BFF;
+}
+
+.add_activities_header div span.active:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.04rem;
+    background: #638BFF;
+}
+
+#informationInit {
+    width: 100%;
+    height: 100%;
+}
+
+.information_head {
+    width: 100%;
+    height: 100%;
+    height: 4.36rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.information_head_add {
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 0.08rem;
+    border: 0.03rem solid rgba(202, 202, 202, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.information_head > img {
+    width: 100%;
+    border-radius: 0.08rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: no-repeat;
+}
+
+.information_head_add:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 0.61rem;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_head_add:after {
+    content: '';
+    display: block;
+    width: 0.61rem;
+    height: 1px;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_content {
+    padding: 0 0.6rem 1.1rem;
+    background: #ffffff;
+}
+
+.information_content > .information_item {
+    height: 0.99rem;
+    line-height: 0.99rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    position: relative;
+}
+
+.information_content > .information_item label {
+    width: 4rem;
+}
+
+.information_content > .information_item input {
+    /*width: 4rem;*/
+    border: 0;
+    position: relative;
+    top: 0.16rem;
+    padding-left: 0;
+}
+
+.information_item .code {
+    display: block;
+    width: 2rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #ffffff;
+    background: #5D92FE;
+    border-radius: 0.08rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.information_btn {
+    height: 0.78rem;
+    line-height: 0.75rem;
+    text-align: center;
+    border-radius: 0.06rem;
+    background: #638BFF;
+    font-size: 0.3rem;
+    color: #ffffff;
+    margin: 0.66rem 0;
+}
+
+/*富文本用的css*/
+#article-body{
+    width: 100%;
+    min-height: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #444;
+}
+
+/*发布活动========================结束*/
+
+/*活动详情========================开始*/
+.details_header_top {
+    width: 7.5rem;
+    height: 6.33rem;
+    margin-bottom: 0.2rem;
+}
+
+.details_header_img {
+    width: 7.5rem;
+    height: 4.36rem;
+}
+
+.details_header_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.details_header_title {
+    width: 100%;
+    height: 1.97rem;
+    line-height: 0.5rem;
+    font-size: 0.36rem;
+    background: #ffffff;
+    padding: 0.33rem;
+}
+
+.details_title_con {
+    height: 1rem;
+}
+
+.details_sign {
+    font-size: 0.28rem;
+    color: #666666;
+}
+
+.details_sign span {
+    color: #FF9A26;
+}
+
+.details_header_content {
+    padding: 0 0.38rem;
+    background: #ffffff;
+}
+
+.details_header_content .circle_tiem, .details_header_content .circle_city {
+    height: 0.86rem;
+    line-height: 0.86rem;
+    color: #666666;
+    padding-right: 0.6rem;
+    border-bottom: 1px solid #EBEBEB;
+    background-position: left center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.details_header_content .circle_city.phone {
+    background: url("../image/circle/contacts2x.png") no-repeat left center;
+    background-size: 0.23rem 0.26rem;
+}
+
+.details_header_content .circle_city > img {
+    width: 0.38rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/*.details_header_item > .circle_tiem, .details_header_item > .circle_city {*/
+/*height: 100%;*/
+/*}*/
+
+/*活动详情========================结束*/

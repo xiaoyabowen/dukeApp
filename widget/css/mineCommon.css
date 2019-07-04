@@ -7,68 +7,84 @@ body, div, p, span, a, input, ul, li {
     font-family: PingFangSC-Medium;
 }
 
-.remBox{
+.remBox {
     width: 7rem;
 }
+
 /*我的*/
-.mineInfo{
+.mineInfo {
     padding-top: 0.32rem;
     width: 6.32rem;
     margin-bottom: 0.24rem;
 }
-.mineInfoleft{
+
+.mineInfoleft {
     width: 4.9rem;
 }
-.m-name{
+
+.m-name {
     font-size: 0.36rem;
     color: #333;
     font-weight: 500;
     line-height: 0.7rem;
     height: 0.7rem;
 }
-.m-conpony-name{
-    width:100%;
-    height:0.3rem;
-    font-size:0.22rem;
-    font-weight:400;
-    color:rgba(51,51,51,1);
-    line-height:0.3rem;
+
+.m-conpony-name {
+    width: 100%;
+    height: 0.3rem;
+    font-size: 0.22rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.3rem;
     margin-bottom: 0.08rem;
 }
-.timeInfo{
+
+.timeInfo {
     font-size: 0.24rem;
     height: 0.4rem;
     line-height: 0.4rem;
     align-items: center;
     margin-bottom: 0.2rem;
 }
-.m-adressimg,.m-zhiweiimg,.m-vipimg{
+
+.m-adressimg, .m-zhiweiimg, .m-vipimg {
     display: inline-block;
     margin-right: 0.1rem;
 }
-.m-adressimg{
+
+.m-adressimg {
     width: 0.22rem;
     height: 0.28rem;
 }
-.m-zhiweiimg{
+
+.m-zhiweiimg {
     width: 0.26rem;
     height: 0.22rem;
 }
-.m-vipimg{
+
+.m-vipimg {
     width: 0.36rem;
     height: 0.4rem;
 }
-.m-adress,.m-zhiwei{
+
+.m-adress, .m-zhiwei {
     margin-right: 0.26rem;
+    width: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
-.m-home{
-    width:100%;
+
+.m-home {
+    width: 100%;
     height: 0.4rem;
     line-height: 0.4rem;
-    font-size:0.28rem;
-    font-weight:400;
-    color:rgba(99,139,255,1);
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(99, 139, 255, 1);
 }
+
 .m-home-after {
     width: 0.15rem;
     height: 0.15rem;
@@ -80,217 +96,265 @@ body, div, p, span, a, input, ul, li {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-.mineInforight{
+
+.mineInforight {
     width: 1.4rem;
 }
-.m-right-id{
+
+.m-right-id {
     width: 1.41rem;
     height: 0.41rem;
     line-height: 0.43rem;
     text-align: center;
-    border-radius:0.04rem;
+    border-radius: 0.04rem;
     font-size: 0.22rem;
-    color:rgba(99,139,255,1);
-    border:1px solid rgba(98,149,254,1);
+    color: rgba(99, 139, 255, 1);
+    border: 1px solid rgba(98, 149, 254, 1);
     margin-bottom: 0.36rem;
 }
-.m-img-logo{
+
+.m-img-logo {
     display: inline-block;
     width: 1.3rem;
     height: 1.3rem;
 }
 
 /*我的沟通记录*/
-.m-chat{
+.m-chat {
     justify-content: center;
     align-items: center;
     padding-bottom: 0.3rem;
 }
-.m-chat-text{
+
+.m-chat-text {
     width: 20%;
 }
-.tong-num{
+
+.tong-num {
     text-align: center;
     font-size: 0.32rem;
     color: #333333;
     font-weight: 500;
 }
-.tong-text{
+
+.tong-text {
     font-size: 0.24rem;
     color: #333;
     text-align: center;
 }
+
 .F9Line {
     height: 0.2rem;
     background: #F9F9F9;
 }
-.viewZhu{
-    height:0.4rem;
-    font-size:0.28rem;
+
+.viewZhu {
+    height: 0.4rem;
+    font-size: 0.28rem;
     font-weight: 500;
-    color:rgba(51,51,51,1);
-    line-height:0.4rem;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.4rem;
     margin: 0.3rem 0 0.54rem 0;
 }
-.m-person-list{
+
+.m-person-list {
     flex-wrap: wrap;
     align-items: center;
     color: #333333;
 }
-.m-person-list>li{
+
+.m-person-list > li {
     width: 25%;
     margin-bottom: 0.5rem;
 }
-.m-person-list>li>img{
-    display:block;
+
+.m-person-list > li > img {
+    display: block;
     margin: 0 auto;
     height: 0.42rem;
 }
-.m-person-list>li>p{
+
+.m-person-list > li > p {
 
     margin-top: 0.12rem;
     font-size: 0.22rem;
     color: #666666;
     text-align: center;
 }
-.img-one{
-    width: 0.4rem;
-}
-.img-two{
-    width: 0.5rem;
-}
-.img-three{
-    width: 0.48rem;
-}
-.img-four{
-    width: 0.48rem;
-}
-.img-five{
+
+.img-one {
     width: 0.4rem;
 }
 
-    /*上传附件简历*/
-.update-one,.update-two,.update-three{
+.img-two {
+    width: 0.5rem;
+}
+
+.img-three {
+    width: 0.48rem;
+}
+
+.img-four {
+    width: 0.48rem;
+}
+
+.img-five {
+    width: 0.4rem;
+}
+
+/*上传附件简历*/
+.update-one, .update-two, .update-three {
     margin: 0.56rem auto 0.22rem;
-    width:2.3rem;
-    height:0.78rem;
+    width: 2.3rem;
+    height: 0.78rem;
     line-height: 0.78rem;
     text-align: center;
-    border-radius:0.06rem;
-    border:2px solid rgba(99,139,255,1);
-    color:rgba(99,139,255,1);
+    border-radius: 0.06rem;
+    border: 2px solid rgba(99, 139, 255, 1);
+    color: rgba(99, 139, 255, 1);
     font-size: 0.28rem;
     font-weight: 500;
 }
-.update-one{
+
+.update-one {
     margin: 0.5rem auto 0.34rem !important;
 }
-.update-text{
+
+.update-text {
     text-align: center;
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
     margin-bottom: 0.1rem;
 }
+
 /*附件简历重命名*/
 
-.textarea-block{position:relative;    margin-top: 0.3rem;}
-.textarea-item{width:5.4rem;height:2rem;padding:0.16rem 0.4rem 0.16rem 0.5rem;
-    font-size:0.32rem;
-    resize:none;
-    color:#333;
-    border:none;
+.textarea-block {
+    position: relative;
+    margin-top: 0.3rem;
+}
+
+.textarea-item {
+    width: 5.4rem;
+    height: 2rem;
+    padding: 0.16rem 0.4rem 0.16rem 0.5rem;
+    font-size: 0.32rem;
+    resize: none;
+    color: #333;
+    border: none;
     font-weight: 500;
-    outline:none
+    outline: none
 }
-.send-textarea{
-    height:1rem !important;
-    font-size:0.28rem !important;
-    color:#666666 !important;
-    padding:0.16rem 0.4rem 0.16rem 0rem;
+
+.send-textarea {
+    height: 1rem !important;
+    font-size: 0.28rem !important;
+    color: #666666 !important;
+    padding: 0.16rem 0.4rem 0.16rem 0rem;
 }
-.textarea-count{position:absolute;bottom:0.1rem;right:0;color:#000;}
-.textarea-btn{margin-top:0.1rem;}
-.line-border{
+
+.textarea-count {
+    position: absolute;
+    bottom: 0.1rem;
+    right: 0;
+    color: #000;
+}
+
+.textarea-btn {
+    margin-top: 0.1rem;
+}
+
+.line-border {
     width: 100%;
     height: 1px;
     background: #EBEBEB;
 }
 
 /*已经上传附件简历*/
-.moreWork{
+.moreWork {
     height: 0.78rem;
     line-height: 0.78rem;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
 
     padding-left: 0.36rem;
     padding-right: 0.3rem;
     justify-content: space-between;
 }
-.moreWork>span{
+
+.moreWork > span {
     font-size: 0.26rem;
     color: #fff;
 }
-.workClose{
+
+.workClose {
     display: inline-block;
     width: 0.22rem;
     height: 0.22rem;
     margin-top: 0.28rem;
 }
-.jianliList{
+
+.jianliList {
 
     padding: 0 0.36rem;
 }
-.jianliList>.jianliListLi{
+
+.jianliList > .jianliListLi {
     padding: 0.2rem 0;
     justify-content: space-between;
     border-bottom: 1px solid #EBEBEB;
 }
-.pdfImg{
+
+.pdfImg {
     display: inline-block;
     width: 0.5rem;
     height: 0.64rem;
     margin-right: 0.42rem;
 }
-.resumeInfo>p{
+
+.resumeInfo > p {
     margin-bottom: 0 !important;
     line-height: 1.4;
 }
-.resumeInfoName{
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+
+.resumeInfoName {
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
 
 }
-.resumeInfoSub{
-    font-size:0.2rem;
-    font-weight:400;
-    color:rgba(153,153,153,1);
+
+.resumeInfoSub {
+    font-size: 0.2rem;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
 }
-.editJian{
+
+.editJian {
     width: 0.26rem;
     height: 0.06rem;
     margin-top: 0.26rem;
 }
-.posiBox{
+
+.posiBox {
     position: relative;
 }
-.updateRemoBtn{
+
+.updateRemoBtn {
     margin: 0 auto;
     position: absolute;
     bottom: 0.9rem;
     left: 50%;
     transform: translate(-50%);
-    width:6.3rem;
-    height:0.78rem;
+    width: 6.3rem;
+    height: 0.78rem;
     line-height: 0.78rem;
     text-align: center;
-    background:rgba(99,139,255,1);
-    border-radius:0.08rem;
+    background: rgba(99, 139, 255, 1);
+    border-radius: 0.08rem;
     color: #fff;
 }
-
 
 /*信用卡申请功能开始*/
 /*信用卡列表页css*/
@@ -299,7 +363,7 @@ body, div, p, span, a, input, ul, li {
     height: 100%;
     margin: 0 auto;
     padding-bottom: 0.4rem;
-    background: linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);
+    background: linear-gradient(359deg, rgba(156, 185, 255, 1) 0%, rgba(93, 145, 254, 1) 100%);
 }
 
 .header {
@@ -345,9 +409,9 @@ body, div, p, span, a, input, ul, li {
     width: 0;
     height: 0;
     border-top: 0.12rem solid #666666;
-    border-left: 0.12rem solid rgba(0,0,0,0);
-    border-right: 0.12rem solid rgba(0,0,0,0);
-    border-bottom: 0.12rem solid rgba(0,0,0,0);
+    border-left: 0.12rem solid rgba(0, 0, 0, 0);
+    border-right: 0.12rem solid rgba(0, 0, 0, 0);
+    border-bottom: 0.12rem solid rgba(0, 0, 0, 0);
     transform: translateY(35%);
 }
 
@@ -356,9 +420,9 @@ body, div, p, span, a, input, ul, li {
     display: inline-block;
     width: 0;
     height: 0;
-    border-top: 0.12rem solid rgba(0,0,0,0);
-    border-left: 0.12rem solid rgba(0,0,0,0);
-    border-right: 0.12rem solid rgba(0,0,0,0);
+    border-top: 0.12rem solid rgba(0, 0, 0, 0);
+    border-left: 0.12rem solid rgba(0, 0, 0, 0);
+    border-right: 0.12rem solid rgba(0, 0, 0, 0);
     border-bottom: 0.12rem solid #666666;
     transform: translateY(-16%);
 }
@@ -454,7 +518,7 @@ body, div, p, span, a, input, ul, li {
 .mask {
     width: 100%;
     height: calc(100% - 0.96rem);
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     color: #666666;
     font-size: 0.28rem;
     position: absolute;
@@ -713,7 +777,8 @@ body, div, p, span, a, input, ul, li {
 
 .subscribed_item_range {
     color: #5C91FD;
-    font-size: 0.36rem;font-weight: 500;
+    font-size: 0.36rem;
+    font-weight: 500;
     padding: 0.13rem 0;
 }
 
@@ -751,6 +816,7 @@ body, div, p, span, a, input, ul, li {
     background: #5C91FD;
     color: #ffffff;
 }
+
 /*订阅页面结束*/
 
 /*我的关注页面开始*/
@@ -798,6 +864,7 @@ body, div, p, span, a, input, ul, li {
 .my_Concern_item > .subscribed_main_item {
     border: 0.02rem solid #ffffff;
 }
+
 /*我的关注页面结束*/
 
 /*设置页面开始*/
@@ -846,6 +913,7 @@ body, div, p, span, a, input, ul, li {
     overflow: hidden;
     margin-top: 1.3rem;
 }
+
 /*设置页面结束*/
 
 /*消息推送设置开始*/
@@ -874,6 +942,7 @@ body, div, p, span, a, input, ul, li {
     font-size: 0.2rem;
     color: #666666;
 }
+
 /*消息推送设置结束*/
 
 /*创建简历开始*/
@@ -931,6 +1000,7 @@ body, div, p, span, a, input, ul, li {
 .resume_content {
     margin-top: 0.7rem;
 }
+
 /*创建简历结束*/
 
 /*创建简历二级页面开始*/
@@ -941,7 +1011,7 @@ body, div, p, span, a, input, ul, li {
 .resume_level2_head {
     font-size: 0.36rem;
     color: #333333;
-    font-weight:500;
+    font-weight: 500;
 }
 
 .resume_level2_content {
@@ -986,7 +1056,6 @@ body, div, p, span, a, input, ul, li {
     width: 0.76rem;
 }
 
-
 .resume_expectations_head {
     width: 100%;
     height: 0.78rem;
@@ -994,7 +1063,7 @@ body, div, p, span, a, input, ul, li {
     font-size: 0.28rem;
     text-align: center;
     color: #ffffff;
-    background: rgba(197,0,0,0.8);
+    background: rgba(197, 0, 0, 0.8);
 }
 
 .resume_expectations_content {
@@ -1007,7 +1076,7 @@ body, div, p, span, a, input, ul, li {
 
 .resume_expectations_item > p {
     font-size: 0.28rem;
-    color:rgba(153,153,153,1);
+    color: rgba(153, 153, 153, 1);
     margin: 0;
 }
 
@@ -1020,11 +1089,13 @@ body, div, p, span, a, input, ul, li {
 div.isDisplay {
     display: none;
 }
+
 /*创建简历二级页面结束*/
 /*=============编辑信息=-====================zbw*/
-.infoBoxSub{
+.infoBoxSub {
     padding: 0.1rem 0.34rem 0rem 0.34rem;
 }
+
 p.info-label-title {
     height: 0.4rem;
     font-size: 0.28rem;
@@ -1033,101 +1104,117 @@ p.info-label-title {
     line-height: 0.4rem;
     margin-top: 0.24rem;
 }
+
 i.label-remake {
     color: #666;
     font-size: 0.24rem;
 }
+
 span.info-label-name {
     width: 5.1rem;
     display: inline-block;
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
 }
+
 img.info-img-right {
     display: inline-block;
     width: 0.32rem;
     height: 0.32rem;
 }
 
-.info-label-choose{
+.info-label-choose {
     justify-content: space-between;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #EBEBEB;
 }
-.F9LineEdit{
+
+.F9LineEdit {
     width: 100%;
     height: 1px;
     background: #EBEBEB;
 }
+
 .info-about {
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 500;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
     margin: 0.24rem 0;
 }
+
 .info-choose {
     justify-content: space-between;
     height: 1.01rem;
     align-items: center;
     border-bottom: 1px solid #ebebeb;
-    font-size:0.28rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
 }
-.info-choose-main{
+
+.info-choose-main {
     align-items: center;
 }
+
 .info-about-sub {
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
     margin-bottom: 0.1rem;
     margin-top: 0.16rem;
 }
-.info-label-cho{
+
+.info-label-cho {
     padding-bottom: 0.16rem !important;
 }
+
 .my-dynamic.cssFlex {
     justify-content: space-between;
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
     margin: 0.44rem 0 0.14rem;
 }
+
 span.my-dynamic-send {
     color: #638BFF;
 }
-.my-dynamic-block{
+
+.my-dynamic-block {
     width: 6.3rem !important;
     margin-bottom: 0.2rem;
 }
-.my-dynamic-textarea{
+
+.my-dynamic-textarea {
     width: 6rem !important;
-    border:2px solid rgba(235,235,235,1);
+    border: 2px solid rgba(235, 235, 235, 1);
     height: 3.3rem !important;
     padding: 0.16rem !important;
-    font-size:0.24rem !important;
+    font-size: 0.24rem !important;
 }
-.dynamic-link{
+
+.dynamic-link {
     justify-content: space-between;
     padding-bottom: 0.6rem;
 }
-.dynamic-img{
+
+.dynamic-img {
     align-items: center;
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
 }
-.dynamic-photo{
+
+.dynamic-photo {
     display: inline-block;
     width: 0.4rem;
     height: 0.4rem;
@@ -1142,64 +1229,71 @@ span.my-dynamic-send {
     margin: 0.618rem;
 }
 
-
 /*金卡vip*/
-.vip-authen{
+.vip-authen {
     align-items: center;
     justify-content: center;
     margin-bottom: 0.4rem;
     padding: 0.7rem 0.62rem 0 0.62rem;
 }
-.vip-authen>li{
+
+.vip-authen > li {
     width: 33.33%;
     text-align: center;
 }
 
-.vip-authen>li>p{
+.vip-authen > li > p {
     font-size: 0.22rem;
     color: #666666;
     text-align: center;
 }
-.img-authen{
+
+.img-authen {
     width: 0.74rem;
     height: 0.5rem;
     margin: 0 auto;
     display: block;
     margin-bottom: 0.08rem;
 }
-.authen-card{
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(51,51,51,1);
-}
-.authen-become{
 
-    font-size:0.2rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+.authen-card {
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+.authen-become {
+
+    font-size: 0.2rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
     margin-bottom: 0.08rem;
 }
-.authen-not,.authen-yes{
-    width:0.8rem;
-    height:0.28rem;
+
+.authen-not, .authen-yes {
+    width: 0.8rem;
+    height: 0.28rem;
     line-height: 0.28rem;
     text-align: center;
 
-    font-size:0.2rem;
-    font-weight:400;
-    color:#fff !important;
+    font-size: 0.2rem;
+    font-weight: 400;
+    color: #fff !important;
     margin: 0 auto;
 }
-.authen-not{
-    background:rgba(254,145,20,1);
+
+.authen-not {
+    background: rgba(254, 145, 20, 1);
 }
-.authen-yes{
-    background:rgba(99,139,255,1);
+
+.authen-yes {
+    background: rgba(99, 139, 255, 1);
 }
+
 .authen-btn {
     width: 6.3rem;
     height: 0.78rem;
-    background: rgba(99,139,255,1);
+    background: rgba(99, 139, 255, 1);
     border-radius: 0.08rem;
     line-height: 0.78rem;
     color: #fff;
@@ -1207,14 +1301,16 @@ span.my-dynamic-send {
     text-align: center;
     margin: 0 0.35rem;
 }
-.suc-authen{
+
+.suc-authen {
     margin: 0.5rem auto 0.2rem;
     color: #666;
     font-size: 0.2rem;
     text-align: center;
     position: relative;
 }
-.suc-authen:before{
+
+.suc-authen:before {
     content: '';
     display: block;
     position: absolute;
@@ -1224,7 +1320,8 @@ span.my-dynamic-send {
     left: 1rem;
     top: 0.16rem;
 }
-.suc-authen:after{
+
+.suc-authen:after {
     content: '';
     display: block;
     position: absolute;
@@ -1234,7 +1331,8 @@ span.my-dynamic-send {
     right: 1rem;
     top: 0.16rem;
 }
-.authen-info{
+
+.authen-info {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ebebeb;
@@ -1242,11 +1340,13 @@ span.my-dynamic-send {
     line-height: 0.78rem;
     font-size: 0.24rem;
 }
+
 span.authen-info-name {
     display: inline-block;
     padding-left: 0.36rem;
     color: #666666;
 }
+
 span.authen-go {
     display: inline-block;
     padding-right: 0.36rem;
@@ -1258,108 +1358,122 @@ span.authen-go {
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 500;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
     margin: 0.3rem 0 0.16rem 0;
 }
-.au-name-input{
+
+.au-name-input {
     height: 0.72rem;
     line-height: 0.72rem;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #EBEBEB;
 }
-.au-name-input-id{
+
+.au-name-input-id {
     height: 0.4rem !important;
     line-height: 0.4rem !important;
     justify-content: space-between;
     align-items: center;
     margin: 0.26rem 0 0.32rem 0;
 }
-.au-name-input>span,.au-name-input-id>span{
+
+.au-name-input > span, .au-name-input-id > span {
     display: inline-block;
     width: 1.2rem;
-    font-size:0.28rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
 }
-.au-icon-xie{
+
+.au-icon-xie {
     display: inline-block;
     width: 0.3rem;
     height: 0.3rem;
 }
 
-.au-ID-info{
+.au-ID-info {
     height: 0.56rem;
     background: #F9F9F9;
-    padding:0.2rem 0.34rem;
-    font-size:0.22rem;
-    font-weight:400;
-    color:rgba(153,153,153,1);
-    line-height:0.3rem;
+    padding: 0.2rem 0.34rem;
+    font-size: 0.22rem;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.3rem;
 }
 
-.au-title-sub{
+.au-title-sub {
     margin: 0.18rem 0 0.1rem 0;
     font-weight: 500;
 }
-.au-band-info{
+
+.au-band-info {
     color: #666666;
 }
-.au-icon-camera{
+
+.au-icon-camera {
     width: 0.4rem;
     height: 0.3rem;
 }
+
 .au-apply-card {
     height: 0.3rem;
     font-size: 0.22rem;
     font-weight: 400;
-    color: rgba(99,139,255,1);
+    color: rgba(99, 139, 255, 1);
     line-height: 0.3rem;
     text-align: right;
     margin: 0.16rem 0 0.5rem 0;
 }
-.au-admin-btn ,.st-submit-btn{
+
+.au-admin-btn, .st-submit-btn {
     width: 100%;
     height: 0.78rem;
-    background: rgba(99,139,255,1);
+    background: rgba(99, 139, 255, 1);
     border-radius: 0.08rem;
     line-height: 0.78rem;
     text-align: center;
     color: #fff;
 }
+
 .duku-creed {
     height: 0.3rem;
     font-size: 0.22rem;
     font-weight: 400;
-    color: rgba(99,139,255,1);
+    color: rgba(99, 139, 255, 1);
     line-height: 0.3rem;
     text-align: center;
     margin: 0.32rem 0 0.6rem 0;
 }
+
 /*面试  日程*/
 .inter-box {
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #ebebeb;
     padding-top: 0.3rem;
 }
-.inter-sub{
+
+.inter-sub {
     padding-top: 0.2rem;
 }
-.inter-title{
+
+.inter-title {
     font-weight: 500;
     margin: 0.4rem 0 0 0;
 }
+
 .inter-status.cssFlex {
     height: 0.4rem;
     line-height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.36rem;
 }
+
 .inter-state {
     width: 1.2rem;
     height: 0.46rem;
@@ -1371,106 +1485,122 @@ span.authen-go {
     font-weight: 400;
 
 }
-.inter-state-no{
-    color: rgba(99,139,255,1);
-    border: 1px solid rgba(99,139,255,1);
+
+.inter-state-no {
+    color: rgba(99, 139, 255, 1);
+    border: 1px solid rgba(99, 139, 255, 1);
 }
-.inter-state-yes{
-    border:1px solid rgba(254,145,20,1);
-    color:rgba(254,145,20,1);
+
+.inter-state-yes {
+    border: 1px solid rgba(254, 145, 20, 1);
+    color: rgba(254, 145, 20, 1);
 }
+
 img.inter-logo {
     display: inline-block;
     width: 0.8rem;
     height: 0.8rem;
     margin-right: 0.36rem;
 }
+
 p.inter-com-nameN {
     height: 0.44rem;
     font-size: 0.32rem;
     font-weight: 400;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.44rem;
     margin-bottom: 0.1rem;
 }
+
 p.inter-com-money {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
 }
+
 .inter-com {
     align-items: center;
     justify-content: space-between;
 }
+
 .inter-recall {
     width: 0.8rem;
     height: 0.8rem;
-    background: rgba(153,153,153,1);
+    background: rgba(153, 153, 153, 1);
     border-radius: 50%;
     color: #fff;
     font-size: 0.2rem;
     text-align: center;
     line-height: 0.8rem;
 }
+
 /*面试详情*/
-.inter-com-moneyCo{
+.inter-com-moneyCo {
     color: #638BFF;
     font-size: 0.28rem;
     font-weight: 500;
     margin-left: 0.2rem;
 }
-.inde-sub{
+
+.inde-sub {
     padding-top: 0.3rem;
 }
-ul.inde-btn{
+
+ul.inde-btn {
     align-items: center;
     padding: 0.3rem 0;
     border-bottom: 1px solid #ebebeb;
 }
-.inde-btn>li  {
-    width:1rem;
+
+.inde-btn > li {
+    width: 1rem;
     margin-right: 0.3rem;
 
 }
+
 img.inde-img {
     display: inline-block;
     width: 0.46rem;
 }
-.inde-btn>li>p{
+
+.inde-btn > li > p {
     width: 100%;
-    height:0.32rem;
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(99,139,255,1);
-    line-height:0.32rem;
+    height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(99, 139, 255, 1);
+    line-height: 0.32rem;
 }
+
 /*详情信息*/
-.inde-info{
+.inde-info {
     padding: 0.26rem 0 0.3rem 0.22rem;
     border-bottom: 1px solid #ebebeb;
 }
-.inde-info-img{
+
+.inde-info-img {
     display: inline-block;
     width: 0.28rem;
     height: 0.28rem;
     margin-right: 0.2rem;
 
-
 }
-.inde-info>p{
-    height:0.32rem;
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
-    line-height:0.32rem;
+
+.inde-info > p {
+    height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.32rem;
     margin-bottom: 0.22rem;
 }
+
 .inter-ping {
     width: 1.4rem;
     height: 0.5rem;
-    background: rgba(99,139,255,1);
+    background: rgba(99, 139, 255, 1);
     border-radius: 0.04rem;
     line-height: 0.5rem;
     text-align: center;
@@ -1484,12 +1614,14 @@ img.inde-img {
     margin-top: 0.2rem;
     margin-bottom: 0.34rem;
 }
+
 img.st-logo {
     display: inline-block;
     width: 0.96rem;
     height: 0.96rem;
     margin-right: 0.32rem;
 }
+
 p.st-main-name {
     height: 0.6rem;
     line-height: 0.6rem;
@@ -1498,22 +1630,25 @@ p.st-main-name {
     font-size: 0.24rem;
     font-weight: 500;
 }
+
 p.st-main-zhi {
     font-size: 0.2rem;
     color: #666;
     margin: 0;
 }
+
 .st-com {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
     text-align: center;
     position: relative;
     margin-bottom: 0.5rem;
 }
-.st-com:before,.st-com:after{
+
+.st-com:before, .st-com:after {
     content: '';
     display: block;
     height: 1px;
@@ -1522,44 +1657,56 @@ p.st-main-zhi {
     width: 2.04rem;
     top: 0.14rem;
 }
-.st-com:before{
+
+.st-com:before {
     left: 0rem;
 }
-.st-com:after{
+
+.st-com:after {
     right: 0rem;
 }
+
 /*星级*/
-.mui-table-view:after{
+.mui-table-view:after {
     display: none !important;
 }
-.mui-icon-star{
+
+.mui-icon-star {
     display: inline-block;
     background: url("../image/mine/starry.png") no-repeat;
     width: 0.4rem;
     height: 0.4rem;
     background-size: 0.4rem 0.4rem;
 }
-.mui-icon-star-filled{
+
+.mui-icon-star-filled {
     display: inline-block;
     background: url("../image/mine/star.png") no-repeat;
     width: 0.4rem;
     height: 0.4rem;
     background-size: 0.4rem 0.4rem;
 }
-.textarea-star{width:100%;height:2.16rem;padding:0.16rem;
-    font-size:0.24rem;
-    resize:none;
-    color:#333;
-    border:1px solid rgba(235,235,235,1);
-    outline:none;
+
+.textarea-star {
+    width: 100%;
+    height: 2.16rem;
+    padding: 0.16rem;
+    font-size: 0.24rem;
+    resize: none;
+    color: #333;
+    border: 1px solid rgba(235, 235, 235, 1);
+    outline: none;
 }
-.st-submit-btn{
+
+.st-submit-btn {
     margin-top: 1.44rem;
 }
-.textarea-count-in{
+
+.textarea-count-in {
     bottom: 0.4rem;
     right: 0.1rem;
 }
+
 .st-thanks {
     font-size: 0.28rem;
     color: #666;
@@ -1567,55 +1714,61 @@ p.st-main-zhi {
     text-align: center;
 }
 
-
 /*职位下线*/
-.off-title{
+.off-title {
     justify-content: space-between;
     height: 0.5rem;
     line-height: 0.5rem;
     margin: 0.2rem 0 0.3rem;
-    font-size:0.3rem;
+    font-size: 0.3rem;
     color: #333333;
     font-weight: 500;
 }
+
 span.off-btn {
     display: inline-block;
     width: 1.5rem;
     height: 0.5rem;
-    background: rgba(232,232,232,1);
+    background: rgba(232, 232, 232, 1);
     line-height: 0.5rem;
     text-align: center;
     font-weight: 400;
 }
+
 .off-job {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
     align-items: center;
     margin-bottom: 0.4rem;
 }
-.off-adre{
+
+.off-adre {
     width: 0.2rem;
     height: 0.24rem;
     margin-right: 0.1rem;
 }
-.off-year{
+
+.off-year {
     width: 0.24rem;
     height: 0.22rem;
     margin: 0 0.08rem 0 0.4rem;
 }
-.off-xue{
+
+.off-xue {
     width: 0.28rem;
     margin: 0 0.08rem 0 0.2rem;
 }
+
 img.off-com-img {
     margin-right: 0.32rem;
     display: inline-block;
     width: 0.96rem;
     height: 0.96rem;
 }
+
 .off-com-info.cssFlex {
     justify-content: space-between;
     align-items: center;
@@ -1623,114 +1776,130 @@ img.off-com-img {
     border-top: 1px solid #ebebeb;
     border-bottom: 1px solid #ebebeb;
 }
-.off-line{
+
+.off-line {
     margin-top: 0.36rem;
     color: #333333;
     font-weight: 500;
 }
+
 /*添加工作  简历    头部标题  公共*/
-.comon-mine-title{
+.comon-mine-title {
     font-weight: 500;
     margin: 0.34rem 0 0.05rem;
 }
-.info-edit-skill{
+
+.info-edit-skill {
     flex-wrap: wrap;
 }
-.info-edit-skill>li{
-    width:1.38rem;
-    height:0.34rem;
+
+.info-edit-skill > li {
+    width: 1.38rem;
+    height: 0.34rem;
     line-height: 0.34rem;
-    background:rgba(234,234,234,1);
+    background: rgba(234, 234, 234, 1);
     margin-right: 0.2rem;
     margin-bottom: 0.2rem;
     text-align: center;
     color: #666;
     font-size: 0.24rem;
 }
-.pingbi{
+
+.pingbi {
     justify-content: space-between;
     align-items: center;
 
 }
+
 /*个人中心*/
 .user-info {
     margin: 0.5rem 0 0.2rem;
     position: relative;
 }
-.edit-btn{
+
+.edit-btn {
     position: absolute;
     right: 0;
     top: -0.2rem;
-    width:0.88rem;
+    width: 0.88rem;
     height: 0.34rem;
     border-radius: 0.06rem;
-    border:1px solid rgba(99,139,255,1);
+    border: 1px solid rgba(99, 139, 255, 1);
     line-height: 0.34rem;
     text-align: center;
     font-size: 0.22rem;
-    color:rgba(99,139,255,1);
+    color: rgba(99, 139, 255, 1);
 }
+
 img.user-info-img {
     display: inline-block;
     width: 1.44rem;
     height: 1.44rem;
     margin-right: 0.58rem;
 }
+
 p.user-main-name {
     height: 0.5rem;
     font-size: 0.36rem;
     font-weight: 500;
-    color: rgba(51,51,51,1);
+    color: rgba(51, 51, 51, 1);
     line-height: 0.5rem;
     margin-bottom: 0.1rem;
 }
+
 p.user-main-com {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.32rem;
     margin-bottom: 0.1rem;
 }
-.user-main-zhi>span{
+
+.user-main-zhi > span {
     display: inline-block;
     padding: 0 0.2rem;
     height: 0.34rem;
     border-radius: 0.06rem;
-    border: 1px solid rgba(204,158,38,1);
+    border: 1px solid rgba(204, 158, 38, 1);
     line-height: 0.34rem;
     text-align: center;
     font-size: 0.24rem;
-    color: rgba(204,158,38,1);
+    color: rgba(204, 158, 38, 1);
     margin-right: 0.14rem
 }
-.user-follow{
+
+.user-follow {
     text-align: right;
     padding-right: 0.3rem;
-    height:0.32rem;
-    font-size:0.24rem;
-    font-weight:400;
-    color:rgba(102,102,102,1);
-    line-height:0.32rem;
+    height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.32rem;
     margin-bottom: 0.14rem;
 }
-.follow-sub{
+
+.follow-sub {
     margin-right: 0.34rem;
 }
+
 .user-label {
     padding: 0.16rem 0 0.2rem;
 }
 
-.label-name{
+.label-name {
     width: 4rem;
     margin-right: 0.1rem;
     font-size: 0.24rem;
     font-weight: 500;
 }
-.label-list,.Interest-list{
+
+.label-list, .Interest-list {
     flex-wrap: wrap;
 }
-.label-list>span,.Interest-list>span{
+
+.label-list > span, .Interest-list > span {
     width: 1.3rem;
     height: 0.34rem;
     border-radius: 0.08rem;
@@ -1741,86 +1910,100 @@ p.user-main-com {
 
     margin: 0 0.2rem 0.2rem 0;
     overflow: hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.label-list>span{
-    border: 1px solid rgba(99,139,255,1);
-    color: rgba(99,139,255,1);
+
+.label-list > span {
+    border: 1px solid rgba(99, 139, 255, 1);
+    color: rgba(99, 139, 255, 1);
 }
-.Interest-list>span{
-    border:1px solid rgba(254,145,20,1);
-    color: rgba(254,145,20,1);
+
+.Interest-list > span {
+    border: 1px solid rgba(254, 145, 20, 1);
+    color: rgba(254, 145, 20, 1);
 }
-.label-list>span:nth-of-type(3n),.Interest-list>span:nth-of-type(3n){
+
+.label-list > span:nth-of-type(3n), .Interest-list > span:nth-of-type(3n) {
     margin-right: 0 !important;
 }
-.info-name{
+
+.info-name {
     width: 1.8rem;
     font-size: 0.24rem;
     font-weight: 500;
 }
-.info-list>p{
+
+.info-list > p {
     color: #333333;
     height: 0.4rem;
     line-height: 0.4rem;
 }
-.info-list>p>span{
+
+.info-list > p > span {
     display: inline-block;
     width: 2rem;
     color: #999999;
 }
+
 .life-name {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(153,153,153,1);
+    color: rgba(153, 153, 153, 1);
     line-height: 0.32rem;
     margin-bottom: 0.08rem;
 }
+
 .life-title {
     width: 1.9rem;
     font-size: 0.24rem;
     font-weight: 500;
 }
-.dyname-name{
+
+.dyname-name {
     font-size: 0.24rem;
     font-weight: 500;
     height: 0.32rem;
     line-height: 0.32rem;
     margin: 0.2rem 0 0.1rem;
 }
+
 .dyname-main {
     line-height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 500;
-    margin-bottom: 0.12rem ;
+    margin-bottom: 0.12rem;
 }
-.dyname-img{
+
+.dyname-img {
     flex-wrap: wrap;
 
-
-
 }
-.dyname-img>img{
+
+.dyname-img > img {
     display: block;
     width: 1.88rem;
     height: 1.88rem;
     margin: 0 0.28rem 0.28rem 0;
     border-radius: 0.08rem;
 }
-.dyname-img>img:nth-of-type(3n){
+
+.dyname-img > img:nth-of-type(3n) {
     margin-right: 0;
 }
+
 .dyname-edit {
     justify-content: space-between;
     margin: 0.14rem 0 0.6rem;
 }
-.dyname-del ,.dyname-ping{
+
+.dyname-del, .dyname-ping {
     align-items: center;
-    color:rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     font-size: 0.24rem;
 }
+
 img.del-img-edit {
     display: inline-block;
     width: 0.32rem;
@@ -1828,41 +2011,39 @@ img.del-img-edit {
     margin-right: 0.14rem;
 }
 
-img.del-img-zan,.del-img-ping{
+img.del-img-zan, .del-img-ping {
     display: inline-block;
     width: 0.36rem;
     height: 0.32rem;
 }
-img.del-img-zan{
+
+img.del-img-zan {
     margin-right: 0.12rem;
 }
-.del-img-ping{
-    margin:0 0.1rem 0 0.3rem;
+
+.del-img-ping {
+    margin: 0 0.1rem 0 0.3rem;
 }
 
-
-
-
 /*删除本条*/
-.dele-btn{
-    width:6.3rem;
-    height:0.78rem;
+.dele-btn {
+    width: 6.3rem;
+    height: 0.78rem;
     line-height: 0.78rem;
     text-align: center;
-    background:rgba(228,8,8,1);
-    border-radius:0.08rem;
+    background: rgba(228, 8, 8, 1);
+    border-radius: 0.08rem;
     color: #ffffff;
-    font-weight:500;
+    font-weight: 500;
     font-size: 0.28rem;
     position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,50%);
-    -ms-transform: translate(-50%,50%);
-    -moz-transform: translate(-50%,50%);
-    -webkit-transform: translate(-50%,50%);
-    -o-transform: translate(-50%,50%);
+    transform: translate(-50%, 50%);
+    -ms-transform: translate(-50%, 50%);
+    -moz-transform: translate(-50%, 50%);
+    -webkit-transform: translate(-50%, 50%);
+    -o-transform: translate(-50%, 50%);
 }
-
 
 /*    ----------------------   zbw     --------      */

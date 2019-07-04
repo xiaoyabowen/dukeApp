@@ -659,8 +659,18 @@ function ajaxGet(url, params, callBack) {
     // 测试用
     var user = JSON.parse(localStorage.getItem('user'));
     console.log(user);
+    // alert(user);
+    if (!user) {
+        api.hideProgress();
+        localStorage.clear();
+        openNewWindow('login', "../../login/login.html");
+        return;
+    }
     // params.uid = '1';
-    params.uid = user.user_uid;
+    if (user) {
+        params.uid = user.user_uid;
+    }
+
     console.log('token', params)
     api.ajax({
         url: url,
