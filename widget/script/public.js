@@ -95,8 +95,12 @@ var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 // 职位详情
 var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
 // 公司详情
-var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgnizationSummary";
+var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgProfileAllinOne";
+// d动态详情
+var queryDynamicSummaryById = serverUrl + "/OrgnizationProfile/queryDynamicSummaryById";
 
+// 关注
+var attentionCompanyByCid = serverUrl + "/OrgnizationProfile/attentionCompanyByCid";
 
 // 创建简历  地图
 var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";

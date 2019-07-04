@@ -220,10 +220,10 @@
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
                     <!--<input id="phone" type="number" placeholder="请输入您的手机号">-->
-                    <input id="phone" type="input" value="15901420539" placeholder="请输入您的手机号">
+                    <input id="phone" type="input" value="admin" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="password" value="123" placeholder="请输入密码">
+                    <input id="password" type="password" value="admin" placeholder="请输入密码">
                     <img src="../../image/login/hide.png" alt="password show" id="passShow">
                 </div>
             </div>
@@ -326,9 +326,10 @@
             api.hideProgress();
             if (data.success == false) {
                 openNewWindow("create_resume", "../user/mine/create_resume.html")
+
             } else {
-                openNewWindow("home", "../user/home/home.html")
-// openNewWindow("addProduct", "../user/mine/addProduct.html")
+                // openNewWindow("home", "../user/home/home.html")
+                openNewWindow("Interview", "../user/mine/Interview.html")
             }
         });
     }

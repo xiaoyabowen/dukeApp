@@ -1,8 +1,48 @@
+.follow{
+    justify-content: flex-end;
+    align-items: center;
+}
+img.followshare {
+    display: inline-block;
+    width: 0.3rem;
+    height: 0.3rem;
+}
+.follow-btn {
+    width: 0.6rem;
+    height: 0.42rem;
+    border-radius: 0.04rem;
+    border: 1px solid rgba(99,139,255,1);
+    line-height: 0.42rem;
+    font-size: 0.2rem;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    background: url("../icon/jia.png") no-repeat 0.12rem center;
+    background-size: 0.16rem 0.16rem;
+    padding-left: 0.4rem;
+    margin-right: 0.3rem;
+}
+.follow-btnbg{
+    width: 0.6rem;
+    height: 0.42rem;
+    border-radius: 0.04rem;
+    border: 1px solid rgba(99,139,255,1);
+    line-height: 0.42rem;
+    font-size: 0.2rem;
+    font-weight: 400;
+    color: #fff;
+    background: url("../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1);
+    background-size: 0.16rem 0.16rem;
+    padding-left: 0.4rem;
+    margin-right: 0.3rem;
+}
 .comTitle{
     padding: 0.48rem 0.4rem 0.12rem 0.4rem;
     background: #fff;
     border-top-left-radius: 0.08rem;
     border-top-right-radius: 0.08rem;
+
+}
+.comintobox{
     justify-content: space-between;
 }
 .comInfoTitleMar{
@@ -34,6 +74,7 @@ p.timeInfo {
     font-weight: 400;
     color: rgba(102,102,102,1);
     line-height: 0.28rem;
+    /*align-items: center;*/
 }
 img.ComTime,.dateCom{
     display: inline-block;
@@ -43,7 +84,7 @@ img.ComTime,.dateCom{
 .comLogo{
     width: 1rem;
     height: 1rem;
-    vertical-align: center;
+    margin-top: 0.2rem;
 }
 .comLogoSee{
     width: 1.44rem;
@@ -85,6 +126,54 @@ span.marginR {
     /*background: #638BFF;*/
     /*height: 1px;*/
 /*}*/
+
+/*选项卡  切换样式*/
+ul#tabs {
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    height: 0.6rem;
+}
+ul#tabs>li{
+    position: relative;
+    font-size: 0.24rem;
+    font-weight: 400;
+}
+ul#tabs>li>a{
+    color: #333333;
+}
+div#content {
+    background: #fff;
+
+
+}
+.infobox{
+    padding: 0.2rem 0.42rem ;
+}
+.activeTab:after{
+    content: "";
+    display: block;
+    width: 0.42rem;
+    height: 2px;
+    background: rgba(99,139,255,1);
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transition: all .5s;
+    transform: translateX(-50%);
+    font-weight: 500;
+}
+
+.tabBorder{
+    width: 100%;
+    height: 1px;
+    background:#EAEAEA;
+}
+
+#tab3,#tab2,#tab1{
+    min-height: calc(100vh - 4.2rem);
+}
+
 
 .jobBox {
     margin: 0 0.4rem 0 0.32rem;
@@ -154,7 +243,6 @@ p.date-job {
 
 .infoList {
     flex-wrap: wrap;
-    padding: 0 0.6rem;
     margin-top: 0.2rem;
 }
 .infoList>span {
@@ -175,24 +263,29 @@ p.job-text {
     font-weight: 400;
     color: rgba(51,51,51,1);
     line-height: 0.32rem;
-    padding: 0 0.24rem;
 }
 .mui-slider-group{
     height: 100vh;
 }
 /*产品介绍*/
 h4.productName {
-    padding: 0 0 0.2rem 0.24rem;
+    padding: 0 0 0.2rem 0;
 }
 .infoProduct {
-    padding: 0 0.24rem;
     margin-bottom: 0.2rem;
 }
 img.pro-img {
     display: inline-block;
     width: 1rem !important;
     height: 1rem;
-    flex: 1;
+    /*flex: 1;*/
+    margin-right: 0.28rem;
+}
+.seniorimg{
+    display: inline-block;
+    width: 1rem !important;
+    height: 1rem;
+    /*flex: 1;*/
     margin-right: 0.28rem;
 }
 .infoProductContent>h5{
@@ -208,7 +301,8 @@ img.pro-img {
 }
 .map-compony {
     width: 100%;
-    height: 2.4rem;
+    height: 4rem;
+
     background: #ccc;
     margin-bottom: 0.28rem;
 }
@@ -218,7 +312,7 @@ img.pro-img {
 }
 .link-compony{
     margin-bottom: 0.28rem;
-    padding: 0 0.24rem;
+    justify-content: space-between;
 }
 .link-compony>span{
     height: 0.4rem;
@@ -234,7 +328,6 @@ span.right-next {
     font-size: 0.4rem !important;
 }
 .gong-info{
-    padding: 0 0.24rem;
 }
 .gong-info>p {
     color: #333;
@@ -250,8 +343,8 @@ span.right-next {
     font-weight: 400;
     color: rgba(99,139,255,1);
     font-size: 0.28rem;
-    margin-left: 0.24rem;
     margin-bottom: 0.24rem;
+    margin-top: 0.24rem;
     -webkit-border-radius: 0.04rem;
     -moz-border-radius: 0.04rem;
     border-radius: 0.04rem;
@@ -298,44 +391,116 @@ h4.sizeTitle {
 }
 
 .subspace{
-    width: 80%;
-    min-height: 200px;
+    width: 6rem;
+    max-height: calc(100vh - 2rem);
     position: relative;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background: #fff;
-    padding: 20px 16px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    padding: 0.38rem 0.3rem;
+    -webkit-border-radius: 0.08rem;
+    -moz-border-radius: 0.08rem;
+    border-radius: 0.08rem;
+    overflow: auto;
+    overflow-x: hidden;
 }
 h5.spaceTitle {
     color: #333333;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: bold;
+    font-size: 0.28rem;
+    line-height: 0.4rem;
+    font-weight:500;
 }
 p.spaceSubTitle {
-    font-size: 14px;
+    font-size: 0.24rem;
     color: #333;
 }
 p.spaceContent {
     color: #333;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
     font-weight: 300;
 }
 .delete-space{
     display: inline-block;
     position: absolute;
-    right: 2px;
-    top: 2px;
-    width: 30px;
-    height: 30px;
+    right: -0.2rem;
+    top: -0.2rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    z-index: 9999999999;
 }
 
-/*聊一聊  投递简历*/
+/*公司  模态框*/
+.subspaceCom {
+    padding: 0.3rem 0.44rem 0.44rem 0.44rem;
+}
+.com-logo {
+    width: 1.74rem;
+    margin: 0 auto 0.24rem;
+    height: 0.76rem;
+}
+img.baidulogo {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.com-title {
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+    text-align: center;
+    margin-bottom: 0.1rem;
+}
+
+.com-link {
+    height: 0.36rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    line-height: 0.36rem;
+    text-align: center;
+    margin-bottom: 0.46rem;
+}
+span.main-left {
+    display: inline-block;
+    width: 1.8rem;
+    height: 0.4rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+    line-height: 0.4rem;
+}
+span.main-right {
+    width: 3.4rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    display: inline-block;
+}
+.laiyuan {
+    margin: 1.1rem auto 0.2rem;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    font-size: 0.24rem;
+}
+.laiyuan>i{
+    color:rgba(99,139,255,1);
+}
+
+
+
+
+
+
+
+
+
+    /*聊一聊  投递简历*/
 .positionBox{
     padding-bottom: 1rem;
 }
@@ -531,10 +696,61 @@ img.edcution-img {
     margin: 0 0.2rem 0.2rem 0;
 }
 
+/*面试评价*/
+.starAsse.cssFlex {
+    justify-content: space-between;
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+}
+.star_left,.star_right{
+    align-items: center;
+}
+img.info-img-right {
+    display: inline-block;
+    width: 0.24rem;
+    height: 0.3rem;
+}
+span.star_num,.star_all {
+    font-size: 0.22rem;
+    font-weight: 400;
+    margin-right: 0.2rem;
+    color: rgba(153,153,153,1);
+}
 
-
-
-
+/*星级*/
+.mui-table-view:after{
+    display: none !important;
+}
+.mui-icon-star{
+    display: inline-block;
+    background: url("../image/mine/starry.png") no-repeat;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-size: 0.4rem 0.4rem;
+}
+.mui-icon-star-filled{
+    display: inline-block;
+    background: url("../image/mine/star.png") no-repeat;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-size: 0.4rem 0.4rem;
+}
+.star-li{
+    justify-content: space-between;
+    width: 100%;margin-bottom: 0.26rem;height:0.4rem;line-height: 0.4rem;
+}
+.star-li>a{
+    display: block;font-size: 0.28rem;color: #333;
+}
+.star-li div{
+    text-align: right;
+}
+/*li{display: -webkit-box;width: 100%;margin-bottom: 0.26rem;height:0.4rem;line-height: 0.4rem;}
+        li a{-webkit-box-flex: 1;display: block;font-size: 0.28rem;color: #333;}
+        li div{-webkit-box-flex: 2;text-align: right;}*/
 
 
 
