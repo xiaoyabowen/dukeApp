@@ -4,6 +4,7 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.10:8000'
 
 var rootWindowName = "root";
 simpleVersion = true;

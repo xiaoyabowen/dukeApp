@@ -321,6 +321,7 @@
             api.hideProgress();
             return;
         }
+
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(data)
             localStorage.setItem('user',JSON.stringify(data))
@@ -329,8 +330,8 @@
                 openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
 
-                // openNewWindow("home", "../user/home/home.html")
-                openNewWindow("index", "../user/circle/index.html")
+                openNewWindow("home", "../user/home/home.html")
+                // openNewWindow("index", "../user/circle/index.html")
 
                 // openNewWindow("Interview", "../user/mine/Interview.html")
             }

@@ -11,6 +11,37 @@
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
 
+    <style>
+        .clearBox {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.28rem;
+        }
+
+        .clearBox img {
+            width: 2rem;
+            display: block;
+            text-align: center;
+            margin-top: 0.618rem;
+            margin: 1.68rem auto 0.93rem;
+        }
+
+        .clearBox_title {
+            color: #666666;
+            margin-bottom: 0.34rem;
+        }
+
+        .clearBox_btn {
+            width: 6.3rem;
+            height: 0.78rem;
+            line-height: 0.78rem;
+            background:rgba(99,139,255,1);
+            border-radius: 0.08rem;
+            color: #ffffff;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -18,7 +49,7 @@
     <!--&lt;!&ndash;头部&ndash;&gt;-->
     <!--<div class="header"></div>-->
     <!--主体-->
-    <div class="subscribed_main">
+    <div class="subscribed_main isDisplay">
         <div class="subscribed_main_item">
             <div class="subscribed_item_left">
                 <div class="subscribed_item_position">运营经理</div>
@@ -84,11 +115,20 @@
         </div>
     </div>
 
-    <div class="subscribed_bottom">
+    <div class="subscribed_bottom isDisplay">
         <div class="subscribed_bottom_btn">
             <div class="subscribed_bottom_left">修改订阅</div>
             <div class="subscribed_bottom_right">删除订阅</div>
         </div>
+    </div>
+
+    <div class="clearBox isDisplay">
+        <img src="../../../image/mine/subscribed.png" alt="">
+        <div class="clearBox_title">
+            添加订阅</br>
+            随时掌握职位最新动态
+        </div>
+        <div class="clearBox_btn" onclick="addSubscribed()">添加订阅</div>
     </div>
 </div>
 
@@ -104,6 +144,7 @@
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
+    var sub_id;
     apiready = function () {
 
         var person_id = localStorage.getItem('person_id');
@@ -112,7 +153,15 @@
         }, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
-
+            if (data.querySubscription) {
+                sub_id = data.querySubscription[0].sub_id;
+                document.querySelector('.subscribed_main').classList.remove('isDisplay');
+                document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
+                document.querySelector('.clearBox').classList.add('isDisplay');
+            } else {
+                document.querySelector('.clearBox').classList.remove('isDisplay');
+            }
+            console.log(sub_id);
         });
 
         // 点击订阅
@@ -130,17 +179,44 @@
                 url: 'subscribed_positions'
             })
         }
-        // 删除订阅
-        document.querySelector('.subscribed_bottom_right').onclick = function () {
-            mui.confirm('确定要删除此订阅吗?', function (e) {
-                console.log(e)
-            })
-        }
+
     };
+
+    // 添加订阅
+    function addSubscribed() {
+        openNewWindow("add_Subscription", "./add_Subscription.html", {
+            url: 'subscribed_positions'
+        })
+    }
+
+    // 删除订阅
+    document.querySelector('.subscribed_bottom_right').onclick = function () {
+        mui.confirm('确定要删除此订阅吗?', function (e) {
+            console.log(e)
+            // console.log(sub_id)
+            if (e.index) {
+                ajaxGetWithProgress(DeleteSubscriptionById, {
+                    sub_id: sub_id
+                }, function (data, err) {
+                    // alert(JSON.stringify(data));
+                    console.log(data);
+                    if (data.return.status) {
+                        document.querySelector('.subscribed_main').classList.add('isDisplay');
+                        document.querySelector('.subscribed_bottom').classList.add('isDisplay');
+                        document.querySelector('.clearBox').classList.remove('isDisplay');
+                    }
+
+                });
+            }
+        })
+    }
 
     // 重新获取数据
     function reset() {
-
+        console.log(1233)
+        document.querySelector('.subscribed_main').classList.remove('isDisplay');
+        document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
+        document.querySelector('.clearBox').classList.add('isDisplay');
     }
 
 

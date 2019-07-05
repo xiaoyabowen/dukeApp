@@ -157,36 +157,13 @@
 <script>eruda.init();</script>
 <script>
 
-    var url, sub_id;
+    var url, sub_id, person_id;
     apiready = function () {
 
         url = api.pageParam.url;
 
-        var person_id = localStorage.getItem('person_id');
-        ajaxGetWithProgress(QuerySubscriptionById, {
-            person_id: person_id
-        }, function (data, err) {
-            // alert(JSON.stringify(data));
-            console.log(data);
-            var arr = data.querySubscription;
-            if (arr) {
-                var item = arr[0];
+        person_id = localStorage.getItem('person_id');
 
-                sub_id = item.sub_id;
-                document.getElementById("text").value = item.sub_name || '请输入';
-                document.getElementById("com_name").innerText = item.c_name || '请输入';
-                document.getElementById("int_city").innerText = item.job_adr || '请选择';
-                document.getElementById("position_type").innerText = item.job_type || '请选择';
-                document.getElementById("com_type").innerText = item.com_type || '请选择';
-                document.getElementById("company_size").innerText = item.com_scale || '请选择';
-                document.getElementById("team_size").innerText = item.com_financing || '请选择';
-                document.getElementById("pay").innerText = item.job_ratio || '请选择';
-                document.getElementById("entry_date").innerText = item.issue_time || '请选择';
-                document.getElementById("education").innerText = item.edu_ex || '请选择';
-            }
-
-
-        });
     };
 
     // 编辑公司名称
@@ -196,7 +173,7 @@
             name = '';
         }
         openNewWindow("resume_Company", "./resume_Company.html", {
-            url: 'edit_Subscription',
+            url: 'add_Subscription',
             content: name
         })
     }
@@ -221,7 +198,7 @@
     // 编辑职位类型
     function resume_positionType() {
         openNewWindow("resume_positionType", "./resume_positionType.html", {
-            url: 'edit_Subscription',
+            url: 'add_Subscription',
             content: document.getElementById("position_type").innerText
         })
     }
@@ -232,7 +209,7 @@
     // 编辑公司行业
     function resume_CompanyIndustry() {
         openNewWindow("resume_CompanyIndustry", "./resume_CompanyIndustry.html", {
-            url: 'edit_Subscription',
+            url: 'add_Subscription',
             content: document.getElementById("com_type").innerText
         })
     }
@@ -458,7 +435,7 @@
 
 
         var params = {
-            sub_id: sub_id,
+            person_id: person_id,
             sub_name: sub_name ,
             c_name: c_name ,
             job_adr: job_adr ,
@@ -472,11 +449,11 @@
         }
         console.log(params);
 
-        ajaxGetWithProgress(UpdateSubscriptionById, params, function (data, err) {
+        ajaxGetWithProgress(AddSubscription, params, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
-            if (data.return.status) {
-                toast('修改成功')
+            if (data.return_info.status) {
+                toast('添加成功')
                 var frameName = url +"_body";
                 api.execScript({
                     name:url,
@@ -487,7 +464,7 @@
                 closeWin();
                 return;
             }
-            toast('修改失败')
+            toast('添加失败')
 
         });
     }

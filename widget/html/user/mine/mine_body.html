@@ -36,7 +36,7 @@
                 </div>
                 <div class="mineInforight">
                     <div class="m-right-id">我是千里马</div>
-                    <img src="../../../image/mine/defalut.png" alt="" class="m-img-logo">
+                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo">
                 </div>
             </div>
 
@@ -135,17 +135,19 @@
             }
             // 获取用户信息
             var uid = user.user_uid;
-
             // console.log(uid);
             ajaxGetWithProgress(QuerySummary, {
                 uid: uid
             }, function (data, err) {
                 // alert(JSON.stringify(data));
-                console.log(data);
+                console.log(123, data);
                 document.querySelector('.m-name').innerText = data.p_name || '未登录';
                 document.getElementById('com_name').innerText = data.com_name || '未填写';
                 document.getElementById('province').innerText = data.province || '未定位';
                 document.getElementById('position_type').innerText = data.position_type || '未填写';
+                // document.getElementById('p_icon').src = localhostHref + data.p_icon;
+
+                console.log(document.getElementById('p_icon'))
 
                 localStorage.setItem('person_id', uid);
             });

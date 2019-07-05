@@ -25,7 +25,7 @@
                     <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
                     <div class="circle_city">活动地点: <span> {{item.province}}{{item.city}}{{item.street}}</span></div>
                     <div class="circle_bottom cssFlex">
-                        <span class="circle_sign">已报名 <span>{{item.number}}</span></span>
+                        <span class="circle_sign">已报名 <span>{{item.count}}</span></span>
                         <span @click="collection(index)"><img class="circle_collection" :src="item.collection ? '../../../image/circle/collection2.png' : '../../../image/circle/collection1.png'" alt=""></span>
                     </div>
                 </div>

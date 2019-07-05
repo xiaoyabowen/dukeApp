@@ -54,5 +54,6 @@
 ├── resume_editEdution            // 编辑教育经历
 ├── user_addLink            // 添加链接
 ├── edit_Subscription            // 修改订阅
+├── add_Subscription            // 添加订阅
 
 ```
