@@ -2,16 +2,7 @@
 function activitiesInit(Vue) {
 
 
-    var str = '<div>\n' +
-        '    <form method="post">\n' +
-        '        <textarea id="mytextarea">Hello, World!</textarea>\n' +
-        '    </form>\n' +
-        '    <form method="post">\n' +
-        '        <textarea name="editor1"></textarea>\n' +
-        '        \n' +
-        '        </form> \n' +
-        '        </div>';
-
+    var str = dataValue('user/circle/comment/activities.html')
 
     return {
         template: str,

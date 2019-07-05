@@ -36,10 +36,9 @@
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
 
-    <!--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+    <script type="text/javascript" src="../../../script/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="../../../script/ckeditor/lang/zh-cn.js"></script>
 
-    <script src="../../../script/ckeditor.js"></script>
-    <script src="../../../script/zh-cn.js"></script>
     <script src="./comment/information.js"></script>
     <script src="comment/activities.js"></script>
 
@@ -47,8 +46,7 @@
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-
-
+            // var ckeditor = CKEDITOR.replace('textarea');
 
 
             var information = informationInit(Vue);
