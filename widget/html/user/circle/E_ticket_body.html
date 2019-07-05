@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <style>
+        .Box {
+            /*margin: 0 auto;*/
+        }
+    </style>
+</head>
+<body class="commonBg">
+    <div class="Box" id="E_ticket">
+        <div class="boxSub">
+            <div class="isDisplay" id="box">
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/kv.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script src="../../../script/vue.min.js"></script>
+    <script src="../../../script/vuex.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <script>
+        apiready = function () {
+
+            new Vue({
+                el: '#E_ticket',
+                data: {
+                    isDisplay: false,
+                    person_id: ''
+                },
+                created: function () {
+                    this.person_id = localStorage.getItem('person_id');
+                    this.queryCircleList();
+                },
+                mounted: function () {
+                    document.getElementById('box').className = '';
+                    this.isDisplay = true;
+                },
+                methods: {
+                    // 获取数据
+                    queryCircleList: function () {
+                        var that = this;
+                        console.log(123)
+                        ajaxGetWithProgress(queryCircleList, {
+                            person_id: that.person_id
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.Circlelist) {
+                                that.list = data.Circlelist;
+                            }
+
+                        });
+                    },
+
+                    // 点击跳转到活动详情页
+                    linkHandle: function (circle_id) {
+                        console.log(circle_id)
+                        openNewWindow("details_activities", "./details_activities.html", {
+                            circle_id: circle_id
+                        })
+                    },
+
+                    // 收藏
+                    collection: function (index) {
+                        this.list[index].collection = !this.list[index].collection;
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

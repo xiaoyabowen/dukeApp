@@ -256,6 +256,14 @@
 /*发布活动========================结束*/
 
 /*活动详情========================开始*/
+.details {
+    padding-bottom: 0.2rem;
+}
+
+.details_header {
+    margin-bottom: 0.2rem;
+}
+
 .details_header_top {
     width: 7.5rem;
     height: 6.33rem;
@@ -328,6 +336,234 @@
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+.details_comment_enrolled {
+    /*min-height: 2.64rem;*/
+    background: #ffffff;
+    margin: 0.2rem 0;
+    padding: 0 0.36rem;
+}
+
+.details_enrolled_top {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.28rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.details_enrolled_top > span:last-child {
+    color: #FF9A26;
+    font-weight: 500;
+    font-size: 0.28rem;
+    float: right;
+}
+
+.details_enrolled_content {
+    padding: 0.3rem 0;
+    justify-content: space-between;
+}
+
+.details_enrolled_item {
+    width: 0.98rem;
+    text-align: center;
+    color: #666666;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
+}
+
+.details_enrolled_item > img {
+    width: 0.98rem;
+    border-radius: 50%;
+}
+
+.details_comment {
+    /*padding: 0 0.36rem;*/
+    background: #ffffff;
+}
+
+.details_comment_title {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.28rem;
+    padding: 0 0.36rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.details_comment_top {
+    padding: 0.3rem 0.36rem;
+}
+
+.details_comment_top img {
+    width: 0.98rem;
+    border-radius: 50%;
+    margin-right: 0.15rem;
+    vertical-align: middle;
+}
+
+.details_comment_top > input[type="text"] {
+    width: 5.5rem;
+    height: 0.64rem;
+    font-size: 0.28rem;
+}
+
+.details_item_top {
+    padding: 0rem 0.36rem 0;
+    color: #666666;
+    font-size: 0.28rem;
+}
+
+.details_item_top img {
+    width: 0.98rem;
+    border-radius: 50%;
+    margin-right: 0.15rem;
+    vertical-align: middle;
+}
+
+.details_item_con {
+    padding-left: 1.55rem;
+    padding-right: 0.5rem;
+}
+
+.details_item_con p {
+    font-size: 0.28rem;
+    color: #666666;
+    margin: 0;
+}
+
+.details_item_bottom {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    color: #666666;
+}
+
+.details_item_bottom > div {
+    float: right;
+}
+
+.details_item_bottom > div span {
+    padding-left: 0.4rem;
+}
+
+.details_item_bottom > div span:first-child {
+    background: url("../image/circle/commit2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+}
+
+.details_item_bottom > div span:last-child {
+    background: url("../image/circle/fabulous2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+    margin-left: 0.4rem;
+}
+
+.details_item_children {
+    padding: 0 0.4rem 0 1.55rem;
+    background: #F9F9F9;
+}
+
+.details_item_children_top {
+    padding: 0.23rem 0 0.1rem;
+}
+
+.details_item_children_top img {
+    width: 0.5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 0.2rem;
+    color: #666666;
+}
+
+.details_item_children_con {
+    padding-left: .75rem;
+}
+
+.details_item_children_con div {
+    line-height: 0.4rem;
+    color: #333333;
+}
+
+.details_item_children_con div > span {
+    color: #666666;
+}
+
+.details_item_children_bottom {
+    width: 5.5rem;
+    height: 0.52rem;
+    background: rgba(231,231,231,1);
+    /*margin-bottom: 0.2rem;*/
+    box-sizing: border-box;
+    padding: 0.07rem 0.2rem;
+    font-size: 0.22rem;
+    color: #999999;
+}
+
+.details_item_children_bottom span:last-child {
+    color: #638BFF;
+    margin-left: 0.45rem;
+}
+
+.details_item_children_footer {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #999999;
+    padding-left: .75rem;
+}
+
+.details_item_children_footer span:last-child {
+    float: right;
+}
+
+.details_item_children_footer img {
+    width: 0.2rem;
+}
+
+.details_comment_footer {
+    padding: 0.4rem 0.6rem 0.6rem;
+}
+
+.details_comment_footer_btn {
+    width: 6.3rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight: 500;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+}
+
+.details_comment_box {
+    width: 100%;
+    height: 3.27rem;
+    padding: 0.2rem 0.24rem 0;
+    background: #F9F9F9;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.details_comment_box textarea {
+    height: 2rem;
+    margin: 0;
+}
+
+.num_total {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 1.2rem;
+}
+
+.num_total span {
+    color: #638BFF;
+}
+
+.details_comment_box div {
+    text-align: right;
+    color: #999999;
+    font-size: 0.28rem;
+    margin-top: 0.2rem;
+}
+
 /*zbw   活动详情  样式*/
 .notData{
     position: fixed;

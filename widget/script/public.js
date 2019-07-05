@@ -4,7 +4,7 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.10:8000'
+var localhostHref = 'http://192.168.1.10:8000/'
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -154,7 +154,10 @@ var createCircle = serverUrl + "/CircleProfile/createCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
 // 圈子活动详情
-var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
+// var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
+var CircleProfileAllinOne = serverUrl + "/CircleProfile/CircleProfileAllinOne";
+// 圈子报名
+var joinCircle = serverUrl + "/CircleProfile/joinCircle";
 
 
 function checkUrl(urlString) {

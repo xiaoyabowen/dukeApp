@@ -6,107 +6,240 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>活动详情</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
 <body>
-    <div id="details">
-        <div class="isDisplay" id="box">
-            <div class="details_header">
-                <div class="details_header_top">
-                    <div class="details_header_img">
-                        <img src="../../../image/circle/circle01.png" alt="">
-                    </div>
-                    <div class="details_header_title">
-                        <div class="details_title_con textOverflow">
-                            {{item.title}}
-                        </div>
-                        <div class="details_sign">已报名 <span>{{item.count}}</span></div>
-                    </div>
+<div id="details">
+    <div class="isDisplay" id="box">
+        <!--活动基本信息-->
+        <div class="details_header">
+            <div class="details_header_top">
+                <div class="details_header_img">
+                    <img src="../../../image/circle/circle01.png" alt="">
                 </div>
-
-                <div class="details_header_content">
-                    <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
-                    <div class="circle_city">
-                        活动地点: <span> {{item.province}}{{item.city}}{{item.street}}</span>
-
-                        <img src="../../../image/circle/locationx.png" alt="">
+                <div class="details_header_title">
+                    <div class="details_title_con textOverflow">
+                        {{item.title}}
                     </div>
-                    <div class="circle_city phone">
-                        联系人: <span> {{item.phone}}</span>
+                    <div class="details_sign">已报名 <span>{{item.count}}</span></div>
+                </div>
+            </div>
 
-                        <img src="../../../image/circle/phone2x.png" alt="">
-                    </div>
+            <div class="details_header_content">
+                <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
+                <div class="circle_city">
+                    活动地点: <span>
+                        <!--{{item.province}}{{item.city}}{{item.street}}-->
+                    {{item.shortname}}
+                    </span>
+
+                    <img src="../../../image/circle/locationx.png" alt="">
+                </div>
+                <div class="circle_city phone">
+                    联系人: <span> {{item.phone}}</span>
+
+                    <img src="../../../image/circle/phone2x.png" alt="">
                 </div>
             </div>
         </div>
+        <!--活动介绍-->
+        <div class="details_content"></div>
+        <!--活动参加人数-->
+        <div class="details_comment_enrolled">
+            <div class="details_enrolled_top">
+                <span>已报名</span>
+                <span>{{item.count || 0}}</span>
+            </div>
+
+            <div class="details_enrolled_content cssFlex">
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+                <div class="details_enrolled_item">
+                    <img src="../../../image/pro.png" alt="">
+                    <span>云闪信</span>
+                </div>
+            </div>
+        </div>
+        <!--活动评论-->
+        <div class="details_comment">
+            <div class="details_comment_title"><span>评论</span></div>
+            <div class="details_comment_content">
+                <div class="details_comment_top">
+                    <img src="../../../image/pro.png" alt="">
+                    <input type="text" @focus="focusHandle()" placeholder="我来说点什么...">
+                </div>
+
+                <div class="details_comment_item">
+                    <div class="details_item_top">
+                        <img src="../../../image/pro.png" alt="">
+                        <span>微光</span>
+                    </div>
+                    <div class="details_item_con">
+                        <p>据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！</p>
+
+                        <div class="details_item_bottom">
+                            <span>2019/04/27</span>
+                            <div>
+                                <span>1234</span>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details_item_children">
+                        <div class="details_item_children_top">
+                            <img src="../../../image/pro.png" alt="">
+                            <span>微光</span>
+                        </div>
+
+                        <div class="details_item_children_con">
+                            <div>回复: <span>这活动蛮好的！</span></div>
+                        </div>
+
+                        <div class="details_item_children_bottom">
+                            <span>田喜碧等人</span>
+                            <span @click="repliesHandle()">共34条回复</span>
+                        </div>
+
+                        <div class="details_item_children_footer">
+                            <span>6-18 23:13</span>
+                            <span><img src="../../../image/circle/reply2x.png" alt=""></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details_comment_footer">
+                <div class="details_comment_footer_btn" @click="linkHandle()">我要报名</div>
+            </div>
+        </div>
+
+
+        <div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">
+            <textarea v-model="textarea" name="" id="" cols="30" rows="10" placeholder="写评论"></textarea>
+            <div class="num_total"><span>{{num}}</span>/300</div>
+            <div><span @click="sendHandle()">发送</span></div>
+        </div>
     </div>
+</div>
 
-    <script type="text/javascript" src="../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../script/kv.js"></script>
-    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/mui.min.js"></script>
-    <script type="text/javascript" src="../../../script/data.js"></script>
-    <script src="../../../script/vue.min.js"></script>
-    <script src="../../../script/vuex.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
-    <script>
-        apiready = function () {
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script>
+    apiready = function () {
 
-            new Vue({
-                el: '#details',
-                data: {
-                    isDisplay: false,
-                    item: {},
-                    circle_id: ''
+        new Vue({
+            el: '#details',
+            data: {
+                isDisplay: false,
+                comment_box: false,
+                item: {},
+                circle_id: '',
+                num: 0,
+                textarea: '',
+            },
+            created: function () {
+                this.circle_id = api.pageParam.circle_id;
+                this.CircleProfileAllinOne();
+            },
+            mounted: function () {
+
+                this.isDisplay = true;
+            },
+            methods: {
+                // 获取数据
+                CircleProfileAllinOne: function () {
+                    var that = this;
+                    console.log(123)
+                    ajaxGetWithProgress(CircleProfileAllinOne, {
+                        circle_id: that.circle_id
+                    }, function (data, err) {
+                        document.getElementById('box').className = '';
+                        console.log(data);
+                        if (data.circle_summary) {
+                            that.item = data.circle_summary[0];
+
+                        }
+
+                    });
                 },
-                created: function () {
-                    this.circle_id = api.pageParam.circle_id;
-                    this.queryCircleByPersonId();
+
+                // 聚焦事件
+                focusHandle: function () {
+                    // alert(123)
+                    this.comment_box = true;
                 },
-                mounted: function () {
 
-                    this.isDisplay = true;
+                // 发送
+                sendHandle: function () {
+                    console.log(this.textarea);
+                    this.comment_box = false;
                 },
-                methods: {
-                    // 获取数据
-                    queryCircleByPersonId: function () {
-                        var that = this;
-                        console.log(123)
-                        ajaxGetWithProgress(queryCircleByPersonId, {
-                            circle_id: that.circle_id
-                        }, function (data, err) {
-                            document.getElementById('box').className = '';
-                            console.log(data);
-                            if (data.CircleByPersonId) {
-                                that.item = data.CircleByPersonId[0];
-                            }
 
-                        });
-                    },
+                // 点击查看更多回复
+                repliesHandle: function () {
 
-                    // 点击跳转到活动详情页
-                    linkHandle: function (circle_id) {
-                        console.log(circle_id)
-                        openNewWindow("publishing_activities", "./publishing_activities.html", {
-                            circle_id: circle_id
-                        })
-                    },
+                },
 
-                    // 收藏
-                    collection: function (index) {
-                        this.list[index].collection = !this.list[index].collection;
-                    }
-                }
-            })
-        }
-    </script>
+                // 点击报名
+                linkHandle: function () {
+                    console.log(this.item.person_id)
+
+                    // ajaxGetWithProgress(CircleProfileAllinOne, {
+                    //     circle_id: that.circle_id
+                    // }, function (data, err) {
+                    //     document.getElementById('box').className = '';
+                    //     console.log(data);
+                    //     if (data.circle_summary) {
+                    //         that.item = data.circle_summary[0];
+                    //
+                    //     }
+                    //
+                    // });
+                    // openNewWindow("E_ticket", "./E_ticket.html", {
+                    //     circle_id: circle_id
+                    // })
+                },
+
+                // // 收藏
+                // collection: function (index) {
+                //     this.list[index].collection = !this.list[index].collection;
+                // }
+            }
+        })
+    }
+</script>
 </body>
 </html>
