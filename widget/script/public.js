@@ -99,7 +99,7 @@ var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgProfileAl
 // d动态详情
 var queryDynamicSummaryById = serverUrl + "/OrgnizationProfile/queryDynamicSummaryById";
 
-<<<<<<< HEAD
+
 // 获取订阅列表数据
 var QuerySubscriptionById = serverUrl + "/UserProfile/querySubscriptionById";
 // 删除订阅
@@ -109,10 +109,9 @@ var UpdateSubscriptionById = serverUrl + "/UserProfile/updateSubscriptionById";
 // 添加订阅
 var AddSubscription = serverUrl + "/UserProfile/addSubscription";
 
-=======
+
 // 关注
 var attentionCompanyByCid = serverUrl + "/OrgnizationProfile/attentionCompanyByCid";
->>>>>>> master
 
 // 创建简历  地图
 var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";
@@ -143,7 +142,7 @@ var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 
 // 隐私设置 修改手机号
 var updatePhone = serverUrl + "/UserProfile/updatePhone";
-<<<<<<< HEAD
+
 
 // 圈子活动列表
 var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
@@ -154,8 +153,7 @@ var addAddress = serverUrl + "/CircleProfile/addAddress";
 // 圈子活动详情
 var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
 
-=======
->>>>>>> master
+
 
 
 
@@ -183,8 +181,7 @@ function checkTelFour(urlString){
 		var reg=/(\d{3})\d{4}(\d{4})/;
 		return tel.replace(reg, "$1****$2")
 
-<<<<<<< HEAD
-=======
+
 function checkUrl(urlString){
 	if(urlString!=""){
 		var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
@@ -203,7 +200,7 @@ function checkTelFour(urlString){
 		var reg=/(\d{3})\d{4}(\d{4})/;
 		return tel.replace(reg, "$1****$2")
 
->>>>>>> master
+
 	}
 }
 
