@@ -1583,7 +1583,6 @@ function reload() {
 }
 
 
-
 function setFrameGroup(name,urls){
 	var strDM = api.systemType;//系统
     var strSV = parseFloat(api.systemVersion,10);//版本
