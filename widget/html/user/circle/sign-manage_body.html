@@ -15,8 +15,8 @@
     <div id="add_activities">
         <div class="isDisplay" id="box">
             <div class="add_activities_header cssFlex" @click="componentHandle()">
-                <div><span :class="isActive ? 'active' : ''">基本信息</span></div>
-                <div><span :class="isActive ? '' : 'active'">活动详情</span></div>
+                <div><span :class="isActive ? 'active' : ''">已报名</span></div>
+                <div><span :class="isActive ? '' : 'active'">已取消</span></div>
             </div>
 
             <!--<component :is="isCom"></component>-->
@@ -35,40 +35,36 @@
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
-    <script src="./comment/information.js"></script>
-    <script src="comment/activities.js"></script>
+
+    <script src="./comment/sign_suc.js"></script>
+    <script src="comment/sign_erro.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-            // var ckeditor = CKEDITOR.replace('textarea');
+            var sign_suc = sign_suc(Vue);
+            var sign_erro = sign_erro(Vue);
 
-
-            var information = informationInit(Vue);
-            var activities = activitiesInit(Vue);
-            console.log(activities)
-
-            Vue.component('information', information);
-            Vue.component('activities', activities);
+            Vue.component('sign_suc', sign_suc);
+            Vue.component('sign_erro', sign_erro);
 
             new Vue({
                 el: '#add_activities',
                 components: {
-                    information: information,
-                    activities: activities
+                    sign_suc: sign_suc,
+                    sign_erro: sign_erro
                 },
                 data: {
                     isActive: true,
-                    isCom: 'information',
+                    isCom: 'sign_suc',
                     person_id: '',
                 },
                 created: function () {
                     console.log()
                 },
                 mounted: function () {
-                    document.getElementById('box').className = '';
-                    this.isDisplay = true;
+
                 },
                 methods: {
 
@@ -77,9 +73,9 @@
                     componentHandle: function () {
                         this.isActive = !this.isActive;
                         if (this.isActive) {
-                            this.isCom = 'information';
+                            this.isCom = 'sign_suc';
                         } else {
-                            this.isCom = 'details';
+                            this.isCom = 'sign_erro';
                         }
                     }
                 }

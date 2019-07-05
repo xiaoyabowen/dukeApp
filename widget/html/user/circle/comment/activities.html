@@ -1,20 +1,33 @@
-<div class="notData">
-    <img src="../../../../image/circle/mask2x.png" alt="set" class="maskImg">
-    <div class="addMask">立即添加</div>
+
+<div class="notDataBox">
+    <div class="notData" v-if="dataDiv.length==0 ? 'activeAddImg' : ''">
+        <img :src="imgUrl" alt="set" class="maskImg">
+        <div class="addMask" @click="mask()">立即添加</div>
+    </div>
+
+
+    <div class="textBox" v-for="(v,i) in dataDiv" v-if="dataDiv.length!=0 ? '' : 'activeAddImg'">
+        <div class="addText" v-text="dataDiv[i].textActive"></div>
+        <img :src="imgAdd" alt="imgAdd" class="imgAdd">
+        <img :src="imgDel" alt="imgDel" class="imgDel">
+    </div>
+
+    <div class="bottom-medal">
+        <p class="medalTitle">添加模块</p>
+        <div class="modulList cssFlex">
+            <div class="modulListBox" @click="textFrame()">
+                <img :src="imgText" alt="icon" class="modulListImg">
+                <span>纯文本</span>
+            </div>
+            <div class="modulListBox">
+                <img :src="imgImg" alt="icon" class="modulListImg">
+                <span>单图</span>
+            </div>
+        </div>
+        <div class="cancle" @click="cancel()">取消</div>
+    </div>
 </div>
 
-<div class="bottom-medal">
-    <p class="medalTitle">添加模块</p>
-    <div class="modulList cssFlex">
-        <div class="modulListBox">
-            纯文本
-        </div>
-        <div class="modulListBox">
-            单图
-        </div>
-    </div>
-    <div class="cancle">取消</div>
-</div>
 
 
 <script>

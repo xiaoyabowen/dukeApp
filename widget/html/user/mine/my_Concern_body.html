@@ -20,7 +20,7 @@
     <!--主体-->
     <div class="my_Concern_main">
         <div class="my_Concern_item">
-            <div class="concern_head">
+            <!--<div class="concern_head">
                 <div class="concern_head_top">
                     <div class="concern_head_img">
                         <img src="../../../image/mine/icon_baidulogo.png" alt="">
@@ -34,9 +34,9 @@
                 <div class="concern_head_bottom">
                     以上市·10000人以上·互联网
                 </div>
-            </div>
-
-            <div class="subscribed_main_item">
+            </div>-->
+            <div class="PosiCompanBox"></div>
+            <!--<div class="subscribed_main_item">
                 <div class="subscribed_item_left">
                     <div class="subscribed_item_position">运营经理</div>
                     <div class="subscribed_item_company">
@@ -66,93 +66,15 @@
                     </div>
                     <div class="subscribed_item_date">4月17日</div>
                 </div>
-            </div>
-            <div class="subscribed_main_item">
-                <div class="subscribed_item_left">
-                    <div class="subscribed_item_position">运营经理</div>
-                    <div class="subscribed_item_company">
-                        <div>
-                            <span>北京天九共享控股集团 </span>
-                            <span>不需要融资</span>
-                        </div>
-
-                        <div>
-                            <span>北京-朝阳区-望京 </span>
-                            <span>10年 </span>
-                            <span>本科</span>
-                        </div>
-                    </div>
-                    <div class="subscribed_item_user">
-                        <div class="subscribed_item_user_img">
-                            <img src="../../../image/pro.png" alt="">
-                        </div>
-                        <div class="subscribed_item_user_name">
-                            赵东东·人力资源经理
-                        </div>
-                    </div>
-                </div>
-                <div class="subscribed_item_right">
-                    <div class="subscribed_item_range">
-                        20k-30k
-                    </div>
-                    <div class="subscribed_item_date">4月17日</div>
-                </div>
-            </div>
+            </div>-->
         </div>
 
-        <div class="my_Concern_item">
-            <div class="concern_head">
-                <div class="concern_head_top">
-                    <div class="concern_head_img">
-                        <img src="../../../image/mine/icon_baidulogo.png" alt="">
-                    </div>
 
-                    <div class="concern_head_title">
-                        <div class="concern_head_name">百度科技</div>
-                        <div class="concern_head_address">北京市 海淀区 西北旺</div>
-                    </div>
-                </div>
-                <div class="concern_head_bottom">
-                    以上市·10000人以上·互联网
-                </div>
-            </div>
-
-            <div class="subscribed_main_item">
-                <div class="subscribed_item_left">
-                    <div class="subscribed_item_position">运营经理</div>
-                    <div class="subscribed_item_company">
-                        <div>
-                            <span>北京天九共享控股集团 </span>
-                            <span>不需要融资</span>
-                        </div>
-
-                        <div>
-                            <span>北京-朝阳区-望京 </span>
-                            <span>10年 </span>
-                            <span>本科</span>
-                        </div>
-                    </div>
-                    <div class="subscribed_item_user">
-                        <div class="subscribed_item_user_img">
-                            <img src="../../../image/pro.png" alt="">
-                        </div>
-                        <div class="subscribed_item_user_name">
-                            赵东东·人力资源经理
-                        </div>
-                    </div>
-                </div>
-                <div class="subscribed_item_right">
-                    <div class="subscribed_item_range">
-                        20k-30k
-                    </div>
-                    <div class="subscribed_item_date">4月17日</div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>
-
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -160,10 +82,79 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
     apiready = function () {
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var obj = {
+            person_id:uid
+        }
+        var my_ConcernHtml= ''
+        ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
+            console.log(data)
+            var conData = data.AttentionCompany
+            if (data){
+                for ( var i=0;i<conData.length;i++){
+                    my_ConcernHtml += '<div class="concern_head">\n' +
+                        '                <div class="concern_head_top" onclick="companyDetail('+conData[i].c_id+')">\n' +
+                        '                    <div class="concern_head_img">\n' +
+                        '                        <img src="../../../image/mine/icon_baidulogo.png" alt="">\n' +
+                        '                    </div>\n' +
+                        '\n' +
+                        '                    <div class="concern_head_title">\n' +
+                        '                        <div class="concern_head_name">'+conData[i].c_name+'</div>\n' +
+                        '                        <div class="concern_head_address">'+conData[i].province+' '+conData[i].city+'  '+conData[i].street+'</div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '                <div class="concern_head_bottom">\n' +
+                        '                    '+conData[i].financing+'·'+conData[i].scale+'·'+conData[i].org_type+'\n' +
+                        '                </div>\n' +
+                        '            </div>'
+                    for (var j=0;j<conData[i].JobsLike.length;j++){
+                        var conDataPoi = conData[i].JobsLike[j]
+                        my_ConcernHtml += '<div class="subscribed_main_item" onclick="companPoi('+conDataPoi.company_c_id+')">\n' +
+                            '                <div class="subscribed_item_left">\n' +
+                            '                    <div class="subscribed_item_position">'+conDataPoi.job_type+'</div>\n' +
+                            '                    <div class="subscribed_item_company">\n' +
+                            '                        <div>\n' +
+                            '                            <span>'+conDataPoi.c_name+' </span>\n' +
+                            '                            <span>'+conDataPoi.c_name+'</span>\n' +
+                            '                        </div>\n' +
+                            '\n' +
+                            '                        <div>\n' +
+                            '                            <span>'+conDataPoi.address+' </span>\n' +
+                            '                            <span>'+conDataPoi.work_ex+' </span>\n' +
+                            '                            <span>'+conDataPoi.edu_ex+'</span>\n' +
+                            '                        </div>\n' +
+                            '                    </div>\n' +
+                            '                    <div class="subscribed_item_user">\n' +
+                            '                        <div class="subscribed_item_user_img">\n' +
+                            '                            <img src="../../../image/pro.png" alt="">\n' +
+                            '                        </div>\n' +
+                            '                        <div class="subscribed_item_user_name">\n' +
+                            '                            '+conDataPoi.job_name+'\n' +
+                            '                        </div>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                <div class="subscribed_item_right">\n' +
+                            '                    <div class="subscribed_item_range">\n' +
+                            '                        '+conDataPoi.ratio+'k\n' +
+                            '                    </div>\n' +
+                            '                    <div class="subscribed_item_date">'+conDataPoi.open_time+'</div>\n' +
+                            '                </div>\n' +
+                            '            </div>'
 
+
+                    }
+                }
+
+                document.querySelector(".my_Concern_item").innerHTML = my_ConcernHtml
+                /*api.toast({
+                    msg: '编辑成功'
+                });
+                reload();*/
+            }
+        })
     };
 
     // 此处手动调用了js
