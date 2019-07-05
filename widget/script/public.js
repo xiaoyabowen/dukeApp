@@ -189,6 +189,19 @@ function checkUrl(urlString) {
     }
 }
 
+
+function dataValue(name) {
+
+    //同步返回结果：
+    var data = api.readFile({
+        sync: true,
+        path: 'widget://html/'+name
+    });
+    return data
+}
+
+
+
 //头部高度
 var headHeight = 44;
 //底部高度
