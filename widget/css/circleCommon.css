@@ -328,9 +328,62 @@
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+/*zbw   活动详情  样式*/
+.notData{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+}
+.maskImg{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+}
+.addMask{
+    margin: 0.3rem auto 0;
+    width:2.9rem;
+    height:0.68rem;
+    line-height: 0.68rem;
+    background:rgba(99,139,255,1);
+    border-radius:0.06rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight: 500;
+}
+
+/*底部弹框*/
+.bottom-medal{
+    width: 100%;
+    background: #ffffff;
+}
+.medalTitle{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #333333;
+    font-size: 0.26rem;
+    text-align: center;
+}
+.modulList{
+    align-items: center;
+}
+.modulListBox{
+    width: 1rem;
+}
 
 /*.details_header_item > .circle_tiem, .details_header_item > .circle_city {*/
 /*height: 100%;*/
 /*}*/
 
 /*活动详情========================结束*/
+
+
+
+
