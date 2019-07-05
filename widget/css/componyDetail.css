@@ -8,7 +8,7 @@ img.followshare {
     height: 0.3rem;
 }
 .follow-btn {
-    width: 0.6rem;
+    padding: 0 0.2rem;
     height: 0.42rem;
     border-radius: 0.04rem;
     border: 1px solid rgba(99,139,255,1);
@@ -22,7 +22,7 @@ img.followshare {
     margin-right: 0.3rem;
 }
 .follow-btnbg{
-    width: 0.6rem;
+    padding: 0 0.2rem;
     height: 0.42rem;
     border-radius: 0.04rem;
     border: 1px solid rgba(99,139,255,1);

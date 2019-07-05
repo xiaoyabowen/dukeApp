@@ -420,17 +420,16 @@
 
             if (data) {
                 // 公司头部
-                document.querySelector(".comTitle").innerHTML = '<div class="comInfo">\n' +
-                    '<div class="follow cssFlex">\n'
 
                     if(attentionCompany.att_status == 0){
-                        document.querySelector(".comTitle").innerHTML = '<div class="follow-btnbg " onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'
+                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
+                        '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
                     }else if (attentionCompany.att_status == 1){
-                        document.querySelector(".comTitle").innerHTML ='<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'
+                        document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
+                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
                     }
 
-                document.querySelector(".comTitle").innerHTML ='                <img src="../../../icon/share.png" alt="share" class="followshare">\n'+
-                    '            </div>' +
+                document.querySelector(".comTitle").innerHTML +=
                     '<div class="comintobox cssFlex">' +
                     '<div class="comInfo">' +
                     '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
@@ -586,21 +585,33 @@
             });
         });
     };
+
     var flag = true;//
-    function flowGuan(stauts) {
+    function flowGuan(id,stauts) {
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         var obj = {
             person_id:uid,
             cid:cid,
-            att_stutas:stauts
+            att_stutas:stauts,
+            id:id
         }
         ajaxGetWithProgress(attentionCompanyByCid, obj, function (data, err) {
             console.log(data)
             if (data){
-                if(data.return_info.status){
 
-                    // document.querySelector(".follow-btn").classList.add("follow-btnbg")
-                }
+                /*if(attentionCompany.att_status == 0){
+                    api.toast({
+                        msg: '编辑教育经历成功'
+                    });
+                }else if(attentionCompany.att_status == 0){
+                    api.toast({
+                        msg: '编辑教育经历成功'
+                    });
+                }*/
+                api.toast({
+                    msg: '编辑成功'
+                });
+                reload();
             }
         })
     }
