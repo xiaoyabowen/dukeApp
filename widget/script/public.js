@@ -115,6 +115,9 @@ var AddSubscription = serverUrl + "/UserProfile/addSubscription";
 // 关注
 var attentionCompanyByCid = serverUrl + "/OrgnizationProfile/attentionCompanyByCid";
 
+// 我的关注
+var queryAttentionCompany = serverUrl + "/OrgnizationProfile/queryAttentionCompany";
+
 
 // 创建简历  地图
 var addAddressByPerson = serverUrl + "/UserProfile/addAddressByPerson";
