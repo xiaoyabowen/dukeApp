@@ -10,6 +10,27 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <style>
+        #popover {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .popover_content {
+            /*width: 70%;*/
+            /*height: 3rem;*/
+            /*background: #ffffff;*/
+            border-radius: 0.08rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
 <div id="details">
@@ -24,13 +45,13 @@
                     <div class="details_title_con textOverflow">
                         {{item.title}}
                     </div>
-                    <div class="details_sign">已报名 <span>{{item.count}}</span></div>
+                    <div class="details_sign">已报名 <span>{{item.count || 0}}</span></div>
                 </div>
             </div>
 
             <div class="details_header_content">
                 <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
-                <div class="circle_city">
+                <div class="circle_city" @click="cityHandle(item.latitude, item.longitude, item.shortname)">
                     活动地点: <span>
                         <!--{{item.province}}{{item.city}}{{item.street}}-->
                     {{item.shortname}}
@@ -82,7 +103,7 @@
             </div>
         </div>
         <!--活动评论-->
-        <div class="details_comment">
+        <div class="details_comment" v-if="!edit">
             <div class="details_comment_title"><span>评论</span></div>
             <div class="details_comment_content">
                 <div class="details_comment_top">
@@ -131,15 +152,40 @@
             </div>
 
             <div class="details_comment_footer">
-                <div class="details_comment_footer_btn" @click="linkHandle()">我要报名</div>
+                <div class="details_comment_footer_btn" @click="linkHandle()">{{signStatus}}</div>
             </div>
+        </div>
+        <!--取消和编辑活动-->
+        <div class="details_edit cssFlex" v-if="!edit">
+            <div @click="clearActivities()">取消活动</div>
+            <div @click="editActivities()">编辑活动</div>
         </div>
 
 
         <div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">
-            <textarea v-model="textarea" name="" id="" cols="30" rows="10" placeholder="写评论"></textarea>
+            <textarea v-model="textarea" @input="textInput()" maxlength=300 name="" id="" cols="30" rows="10"
+                      placeholder="写评论"></textarea>
             <div class="num_total"><span>{{num}}</span>/300</div>
             <div><span @click="sendHandle()">发送</span></div>
+        </div>
+
+        <div id="popover" v-if="popover" @touchmove.prevent>
+            <div class="popover_content">
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>用户名:</label>
+                        <input type="text" v-model="u_name" class="mui-input-clear" placeholder="请输入姓名">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>手机号:</label>
+                        <input type="number" v-model="phone" class="mui-input-clear" placeholder="请输入手机号">
+                    </div>
+                    <div class="mui-button-row">
+                        <button type="button" class="mui-btn mui-btn-primary" @click="confirmHand()">确认</button>
+                        <button type="button" class="mui-btn mui-btn-danger" @click="cancel()">取消</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -166,12 +212,21 @@
                 isDisplay: false,
                 comment_box: false,
                 item: {},
+                status: 0,
+                person_id: '',
                 circle_id: '',
+                edit: false,
+                signStatus: '我要报名',
                 num: 0,
                 textarea: '',
+                u_name: '',
+                phone: '',
+                popover: false
             },
             created: function () {
+                this.person_id = localStorage.getItem('person_id');
                 this.circle_id = api.pageParam.circle_id;
+                this.edit = api.pageParam.edit;
                 this.CircleProfileAllinOne();
             },
             mounted: function () {
@@ -182,24 +237,182 @@
                 // 获取数据
                 CircleProfileAllinOne: function () {
                     var that = this;
-                    console.log(123)
+                    // console.log(123)
                     ajaxGetWithProgress(CircleProfileAllinOne, {
-                        circle_id: that.circle_id
+                        person_id: that.person_id,
+                        circle_id: that.circle_id,
                     }, function (data, err) {
                         document.getElementById('box').className = '';
                         console.log(data);
                         if (data.circle_summary) {
-                            that.item = data.circle_summary[0];
+                            that.item = data.circle_summary;
+                            that.status = data.status;
+                        }
 
+                        if (that.status) {
+                            that.signStatus = '已报名'
                         }
 
                     });
+                },
+
+                // 点击打开地图
+                cityHandle: function (lat, lon, address) {
+                    console.log(lat);
+                    console.log(lon);
+                    console.log(address);
+                    this.baiduditu(lat, lon, address);
+                },
+                // 唤起地图导航
+                baiduditu: function (lat, lon, address) {
+                    var systemType = api.systemType;
+                    var buttons = new Array();
+                    var amap_installed = false;
+                    var bmap_installed = false;
+                    if (systemType == 'ios') {
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'iosamap://'
+                        });
+                        if (installed) {
+                            amap_installed = true;
+                            buttons.push('高德地图');
+                        }
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'baidumap://'
+                        });
+                        if (installed) {
+                            bmap_installed = true;
+                            buttons.push('百度地图');
+                        }
+                    } else {
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'com.autonavi.minimap'
+                        });
+                        if (installed) {
+                            amap_installed = true;
+                            buttons.push('高德地图');
+                        }
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'com.baidu.BaiduMap'
+                        });
+                        if (installed) {
+                            bmap_installed = true;
+                            buttons.push('百度地图');
+                        }
+                    }
+                    if (bmap_installed == false && amap_installed == false) {
+                        api.toast({
+                            msg: '您没有安装任何地图软件'
+                        });
+                        return false;
+                    }
+
+                    var address = address;
+                    var latbaidu = lat;
+                    var lngbaidu = lon;
+                    var latgaode = lat;
+                    var lnggaode = lon;
+                    api.actionSheet({
+                        cancelTitle: '取消',
+                        buttons: buttons
+                    }, function (ret, err) {
+                        var index = ret.buttonIndex;
+
+                        switch (index) {
+                            case 1:
+                                if (amap_installed && bmap_installed) {
+                                    if (systemType == 'ios') {
+                                        api.openApp({
+                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                        }, function (ret, err) {
+
+                                        });
+                                    } else {
+                                        api.openApp({
+                                            androidPkg: 'android.intent.action.VIEW',
+                                            uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                        }, function (ret, err) {
+
+                                        });
+                                    }
+                                } else {
+                                    if (amap_installed) {
+                                        if (systemType == 'ios') {
+                                            api.openApp({
+                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                            }, function (ret, err) {
+
+                                            });
+                                        } else {
+                                            api.openApp({
+                                                androidPkg: 'android.intent.action.VIEW',
+                                                uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                            }, function (ret, err) {
+
+                                            });
+                                        }
+
+                                    }
+                                    if (bmap_installed) {
+                                        if (systemType == 'ios') {
+                                            api.openApp({
+                                                iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                            }, function (ret, err) {
+                                                if (err) {
+
+                                                    //alert(JSON.stringify(err));
+                                                }
+                                            });
+                                        } else {
+                                            api.openApp({
+                                                androidPkg: 'android.intent.action.VIEW',
+                                                uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                            }, function (ret, err) {
+
+                                            });
+                                        }
+                                    }
+                                    break;
+                                }
+
+                            case 2:
+                                if (systemType == 'ios') {
+                                    api.openApp({
+                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                    }, function (ret, err) {
+                                        if (err) {
+                                            //alert(JSON.stringify(err));
+
+                                        }
+                                    });
+                                } else {
+                                    api.openApp({
+                                        androidPkg: 'android.intent.action.VIEW',
+                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                    }, function (ret, err) {
+                                        if (err) {
+                                            //alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                                break;
+                        }
+                    })
                 },
 
                 // 聚焦事件
                 focusHandle: function () {
                     // alert(123)
                     this.comment_box = true;
+                },
+
+                // 评论文本框input事件
+                textInput: function () {
+                    this.num = this.textarea.length;
                 },
 
                 // 发送
@@ -215,28 +428,81 @@
 
                 // 点击报名
                 linkHandle: function () {
-                    console.log(this.item.person_id)
-
-                    // ajaxGetWithProgress(CircleProfileAllinOne, {
-                    //     circle_id: that.circle_id
-                    // }, function (data, err) {
-                    //     document.getElementById('box').className = '';
-                    //     console.log(data);
-                    //     if (data.circle_summary) {
-                    //         that.item = data.circle_summary[0];
-                    //
-                    //     }
-                    //
-                    // });
-                    // openNewWindow("E_ticket", "./E_ticket.html", {
-                    //     circle_id: circle_id
-                    // })
+                    if (this.signStatus == '已报名') {
+                        var that = this;
+                        openNewWindow("E_ticket", "./E_ticket.html", {
+                            circle_id: that.circle_id,
+                            person_id: that.item.person_id
+                        })
+                        return;
+                    }
+                    this.popover = true;
                 },
 
-                // // 收藏
-                // collection: function (index) {
-                //     this.list[index].collection = !this.list[index].collection;
-                // }
+                // 确认
+                confirmHand: function () {
+                    var that = this;
+
+                    if (!that.u_name) {
+                        mui.toast('请填写姓名');
+                        return;
+                    }
+
+                    if (!checkMobileNum(that.phone)) {
+                        mui.toast('请填写正确的手机号');
+                        return;
+                    }
+                    ajaxGetWithProgress(joinCircle, {
+                        circle_id: that.circle_id,
+                        person_id: that.item.person_id,
+                        u_name: that.u_name,
+                        phone: that.phone,
+                    }, function (data, err) {
+
+                        console.log(data);
+                        if (data.return_info.status) {
+                            that.popover = false;
+                            that.signStatus = '已报名'
+                            openNewWindow("E_ticket", "./E_ticket.html", {
+                                circle_id: that.circle_id,
+                                person_id: that.item.person_id
+                            })
+                        }
+
+                    });
+                },
+
+                // 取消
+                cancel: function () {
+                    this.popover = false;
+                },
+
+                // 取消活动
+                clearActivities: function () {
+                    var that = this;
+                    mui.confirm('您确定要取消此活动吗?', function (e) {
+                        if (e.index) {
+                            ajaxGetWithProgress(updateCircle, {
+                                cir_status: 0,
+                                circle_id: that.circle_id,
+                            }, function (data, err) {
+
+                                console.log(data);
+                                if (data.return.status) {
+                                    mui.toast('活动以取消');
+                                    closeWin();
+                                }
+
+                            });
+                        }
+                    })
+
+                },
+
+                // 编辑活动
+                editActivities: function () {
+
+                }
             }
         })
     }

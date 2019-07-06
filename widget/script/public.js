@@ -161,6 +161,12 @@ var addAddress = serverUrl + "/CircleProfile/addAddress";
 var CircleProfileAllinOne = serverUrl + "/CircleProfile/CircleProfileAllinOne";
 // 圈子报名
 var joinCircle = serverUrl + "/CircleProfile/joinCircle";
+// 圈子查询电子票
+var queryInvoice = serverUrl + "/CircleProfile/queryInvoice";
+// 圈子活动签到
+var editCircleStatus = serverUrl + "/CircleProfile/editCircleStatus";
+// 圈子取消活动
+var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 
 
 function checkUrl(urlString) {

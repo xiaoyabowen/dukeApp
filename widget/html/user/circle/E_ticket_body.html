@@ -11,16 +11,54 @@
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
     <style>
-        .Box {
-            /*margin: 0 auto;*/
+        #qrcode {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .status1 {
+            background: #FFEBC8;
+            color: #FFA300;
+        }
+
+        .status2 {
+            background: #E8E8E8;
+            color: #666666;
+        }
+
+        .E_ticket_bottom_btn.status2 {
+            background: #D6D6D6;
         }
     </style>
 </head>
 <body class="commonBg">
     <div class="Box" id="E_ticket">
-        <div class="boxSub">
+        <div class="boxSub E_ticket">
             <div class="isDisplay" id="box">
+                <div class="E_ticket_head">
+                    <div class="E_ticket_head_title">免费参加</div>
+                    <p>{{obj.u_name}}  ({{obj.phone}})</p>
+                </div>
 
+                <div class="E_ticket_QR_code">
+                    <p>{{obj.invoice}}</p>
+                    <div id="qrcode"></div>
+                    <div class="E_ticket_status" v-if="obj.status == 0">待参加</div>
+                    <div class="E_ticket_status status1" v-if="obj.status == 1">已签到</div>
+                    <div class="E_ticket_status status2" v-if="obj.status == 2">已取消</div>
+                </div>
+
+                <div class="E_ticket_bottom cssFlex" @click="linkHandle()">
+                    <span><img src="../../../image/pro.png" alt=""></span>
+                    <div>
+                        <div class="E_ticket_bottom_title textOverflow">{{obj.title}}</div>
+                        <div class="E_ticket_bottom_time">活动时间: {{obj.c_from}}</div>
+                        <div class="E_ticket_bottom_city">活动地点: {{obj.address}}</div>
+                    </div>
+                </div>
+                <div class="E_ticket_bottom_btn" @click="signHandle()" v-if="obj.status == 0">活动签到</div>
+                <div class="E_ticket_bottom_btn status2" v-if="obj.status == 2">活动签到</div>
             </div>
         </div>
     </div>
@@ -35,57 +73,102 @@
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
+    <script src="../../../script/qrcode.min.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-
             new Vue({
                 el: '#E_ticket',
                 data: {
                     isDisplay: false,
-                    person_id: ''
+                    person_id: '',
+                    circle_id: '',
+                    qrcode: '',
+                    obj: {},
+
+                    name: '董明明',
+                    phone: '13316161717',
+                    code: 335270039506,
+                    status: 2,
+                    title: '标题',
+                    time: '2019年6月14日 18:30',
+                    city: '北极'
                 },
                 created: function () {
-                    this.person_id = localStorage.getItem('person_id');
-                    this.queryCircleList();
+                    this.person_id = api.pageParam.person_id;
+                    this.circle_id = api.pageParam.circle_id;
+
+                    // alert(this.person_id);
+                    // alert(this.circle_id);
+
+                    this.queryInvoice();
+
                 },
                 mounted: function () {
-                    document.getElementById('box').className = '';
                     this.isDisplay = true;
+                    this.qrcode = new QRCode(document.getElementById("qrcode"), {
+                        text: name,
+                        width: 150,
+                        height: 150,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                    // this.qrcode.makeCode("335270039506");
                 },
                 methods: {
                     // 获取数据
-                    queryCircleList: function () {
+                    queryInvoice: function () {
                         var that = this;
                         console.log(123)
-                        ajaxGetWithProgress(queryCircleList, {
-                            person_id: that.person_id
+                        ajaxGetWithProgress(queryInvoice, {
+                            person_id: that.person_id,
+                            circle_id: that.circle_id,
                         }, function (data, err) {
                             console.log(data);
-                            if (data.Circlelist) {
-                                that.list = data.Circlelist;
+                            if (data.queryInvoice) {
+                                that.obj = data.queryInvoice[0];
+                                that.qrcode.clear();
+                                that.qrcode.makeCode(that.obj.invoice);
+                                document.getElementById('box').className = '';
+                            }
+
+                        });
+                    },
+
+                    // 活动签到
+                    signHandle: function () {
+                        var that = this;
+                        console.log(that.obj.id);
+                        ajaxGetWithProgress(editCircleStatus, {
+                            status: 1,
+                            id: that.obj.id,
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.return.status) {
+                                that.obj.status = 1;
+                                mui.toast('签到成功');
                             }
 
                         });
                     },
 
                     // 点击跳转到活动详情页
-                    linkHandle: function (circle_id) {
-                        console.log(circle_id)
+                    linkHandle: function () {
+                        var that = this;
+                        console.log(that.circle_id)
                         openNewWindow("details_activities", "./details_activities.html", {
-                            circle_id: circle_id
+                            person_id: that.person_id,
+                            circle_id: that.circle_id,
                         })
                     },
 
-                    // 收藏
-                    collection: function (index) {
-                        this.list[index].collection = !this.list[index].collection;
-                    }
                 }
             })
         }
+
     </script>
 </body>
 </html>

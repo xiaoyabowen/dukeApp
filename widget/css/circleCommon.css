@@ -340,7 +340,7 @@
 .details_comment_enrolled {
     /*min-height: 2.64rem;*/
     background: #ffffff;
-    margin: 0.2rem 0;
+    margin: 0.2rem 0 0;
     padding: 0 0.36rem;
 }
 
@@ -379,6 +379,7 @@
 .details_comment {
     /*padding: 0 0.36rem;*/
     background: #ffffff;
+    margin-top: 0.2rem;
 }
 
 .details_comment_title {
@@ -434,6 +435,7 @@
     height: 0.88rem;
     line-height: 0.88rem;
     color: #666666;
+    font-size: 0.28rem;
 }
 
 .details_item_bottom > div {
@@ -473,7 +475,8 @@
 }
 
 .details_item_children_con {
-    padding-left: .75rem;
+    padding-left: .8rem;
+    font-size: 0.22rem;
 }
 
 .details_item_children_con div {
@@ -521,6 +524,7 @@
 }
 
 .details_comment_footer_btn {
+    display: block;
     width: 6.3rem;
     height: 0.78rem;
     line-height: 0.78rem;
@@ -621,7 +625,7 @@
 }
 .cancle{
     margin: 0 0.3rem;
-    width:100%;
+    width: 100%;
     height: 0.4rem;
     line-height: 0.4rem;
     color: #666666;
@@ -665,12 +669,108 @@
     height: 0.2rem;
 }
 
+.details_edit {
+    height: 1.10rem;
+    line-height: 1.10rem;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
 
-/*.details_header_item > .circle_tiem, .details_header_item > .circle_city {*/
-/*height: 100%;*/
-/*}*/
+.details_edit > div:first-child {
+    flex: 50%;
+    height: 100%;
+    background: #FFA300;
+}
+
+.details_edit > div:last-child {
+    flex: 50%;
+    height: 100%;
+    background: #638BFF;
+}
+
 
 /*活动详情========================结束*/
+
+/*电子票==========================开始*/
+.E_ticket {
+    padding: 0.39rem 0.34rem 1rem;
+}
+
+.E_ticket_head {
+    padding-left: 0.04rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.E_ticket_head p {
+    color: #666666;
+    font-size: 0.28rem;
+}
+
+.E_ticket_head_title {
+    color: #666666;
+    font-size: 0.36rem;
+}
+
+.E_ticket_head_title p {
+    line-height: 1rem;
+}
+
+.E_ticket_QR_code {
+    padding-top: 0.6rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.E_ticket_QR_code p {
+    text-align: center;
+}
+
+.E_ticket_status {
+    width: 1.02rem;
+    height: 0.42rem;
+    line-height: 0.42rem;
+    text-align: center;
+    background: rgba(217,227,255,1);
+    border-radius: 0.04rem;
+    color: #638BFF;
+    font-size: 0.24rem;
+    margin: 0.24rem auto 0.3rem;
+}
+
+.E_ticket_bottom {
+    padding: 0.31rem 0.04rem;
+}
+
+.E_ticket_bottom img {
+    width: 1.48rem;
+    height: 1.48rem;
+    margin-right: 0.2rem;
+}
+
+.E_ticket_bottom_title {
+    height: 50%;
+    font-size: 0.28rem;
+    color: #333333;
+}
+
+.E_ticket_bottom_time, .E_ticket_bottom_city {
+    font-size: 0.24rem;
+    color: #666666;
+}
+
+.E_ticket_bottom_btn {
+    width: 6.30rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    margin: 0.75rem auto;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    color: #ffffff;
+    font-size: 0.3rem;
+    font-weight: 500;
+}
+/*电子票==========================结束*/
 
 
 

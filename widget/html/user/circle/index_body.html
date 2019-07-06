@@ -84,7 +84,7 @@
                     this.queryCircleList();
                 },
                 mounted: function () {
-                    document.getElementById('box').className = '';
+
                     this.isDisplay = true;
                 },
                 methods: {
@@ -98,6 +98,7 @@
                             console.log(data);
                             if (data.Circlelist) {
                                 that.list = data.Circlelist;
+                                document.getElementById('box').className = '';
                             }
 
                         });
