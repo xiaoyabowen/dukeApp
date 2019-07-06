@@ -100,7 +100,8 @@ var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
 var QueryOrgnizationSummary = serverUrl + "/OrgnizationProfile/queryOrgProfileAllinOne";
 // d动态详情
 var queryDynamicSummaryById = serverUrl + "/OrgnizationProfile/queryDynamicSummaryById";
-
+// 魔方
+var queryListRandom = serverUrl + "/UserProfile/queryListRandom";
 
 // 获取订阅列表数据
 var QuerySubscriptionById = serverUrl + "/UserProfile/querySubscriptionById";

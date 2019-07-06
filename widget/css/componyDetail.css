@@ -269,9 +269,10 @@ p.job-text {
 }
 /*产品介绍*/
 h4.productName {
-    padding: 0 0 0.2rem 0;
+    padding: 0 0 0.2rem 0.34rem;
 }
 .infoProduct {
+    padding: 0 0 0 0.34rem;
     margin-bottom: 0.2rem;
 }
 img.pro-img {

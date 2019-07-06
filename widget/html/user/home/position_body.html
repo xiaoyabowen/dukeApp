@@ -61,6 +61,187 @@
         div.isDisplay {
             display: none;
         }
+
+        @keyframes zoomOutLeft {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform:rotateY(360deg);
+            }
+
+        }
+
+
+        .demobiox{
+            position: fixed;
+            right: 0;
+            bottom: 1rem;
+            background: cadetblue;
+        }
+        .subBox {
+            width: 6.30rem;
+            height: 6.20rem;
+            background: linear-gradient(to left top, rgba(0,0,0,.3) 50%, transparent 50%);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .person {
+            display: inline-block;
+            position: absolute;
+            bottom: 0.12rem;
+            right: 0.12rem;
+            width: 1.10rem;
+            height: 1.10rem;
+            z-index: 1111;
+        }
+
+        .animation {
+            animation: zoomOutLeft 2s;
+        }
+        .borderBoxRote{
+            border: 0 !important;
+
+        }
+        .xuanbox{
+            width: 1.2rem;
+            height: 1.2rem;
+            position: absolute;
+            transform: rotate(-45deg);
+            border: 1px solid #cccccc;
+            border-radius: 0.1rem;
+            background: #e9f0ff;
+        }
+
+        .xuanbox.active {
+            background: #638BFF;
+        }
+        .daobox{
+            transform: rotate(45deg);
+            width: 1.00rem;
+            height: 1.00rem;
+
+        }
+        /* 菱形方块  样式 */
+        .positionCom {
+            width: 1.00rem;
+            height: 1.00rem;
+            position: absolute;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 0.10rem;
+        }
+
+        .position0 {
+            right: 0.50rem;
+            bottom: 3.50rem;
+            /*transform: rotate(45deg)*/
+        }
+
+        .position1 {
+            right: 1.40rem;
+            bottom: 2.60rem;
+            /*transform: rotate(45deg);*/
+        }
+
+        .position2 {
+            right: 2.30rem;
+            bottom: 1.70rem;
+            /*transform: rotate(45deg);*/
+        }
+
+        .position3 {
+            right: 3.20rem;
+            bottom: 0.80rem;
+            /*transform: rotate(45deg);*/
+        }
+
+        .position10 {
+            right: 0.54rem;
+            bottom: 1.72rem;
+            /*transform: rotate(45deg);*/
+        }
+
+        .position11 {
+            right: 1.40rem;
+            bottom: 0.80rem;
+            /*transform: rotate(45deg);*/
+        }
+
+        .positionCom>img {
+            display: block;
+            padding: 0.00rem 0.28rem 0 0.05rem;
+            transform: rotate(-45deg)
+        }
+
+        .positionCom>div{
+            display: block;
+            width: 1.00rem;
+            height: 1.00rem;
+            text-align: center;
+            color: #333;
+            position: absolute;
+            margin: 0 auto;
+            transform: rotate(-45deg);
+            font-size: 0.12rem;
+        }
+
+        /* 圆形  样式 */
+        .positionCir {
+            width: 0.70rem;
+            height: 0.70rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 1);
+            opacity: 0.7;
+            position: absolute;
+        }
+
+        .positionCir>img {
+            display: block;
+            width: 0.28rem;
+            height: 0.30rem;
+            padding: 0.10rem 0.28rem 0 0.10rem;
+            transform: rotate(-45deg)
+        }
+
+        .positionCir>span {
+            display: block;
+            width: 0.92rem;
+            margin-top: -0.04rem;
+            text-align: center;
+            transform: rotate(-45deg);
+            color: #333;
+        }
+
+        .cir_mine {
+            right: 4.30rem;
+            bottom: 0.14rem;
+            transform: rotate(45deg);
+        }
+
+        .cir_return {
+            right: 0.10rem;
+            bottom: 2.80rem;
+            transform: rotate(45deg);
+        }
+
+        .cir_hide {
+            right: 2.40rem;
+            bottom: 0.14rem;
+            transform: rotate(45deg);
+        }
+
+        .iconImg {
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 50%;
+        }
+
+        .appMask {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
 </head>
@@ -68,136 +249,172 @@
 
 
 <!--智能魔方菜单-->
-<div class="block" style="position: fixed;bottom:0px;right:0px; z-index:50000;
-        margin-top: 10px; margin-bottom: 0px; padding:0;">
-    <div id="a01" style="transition: transform 3s ease-in-out; display: block;"></div>
-    <div id="icon_du"
-         style="position: absolute;
-                bottom:10px;right:10px; z-index:50001;">
-        <img src="../../../image/duke-2.png" width="70" onclick="returnCate();">
+<div id="app1" class="demobiox isDisplay">
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <div class="subBox" id="subBox" v-bind:class="{ active: isHide}">
+        <div class="appMask" @click="hideHandle()">
+
+        </div>
+        <div class="borderBoxRote positionCom"
+             @click="detailClick(index)"
+             v-bind:class="['position'+index, active ? 'animation' : '']"
+             v-for="(item, index) in list" :key="index">
+            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
+                <div class="daobox">
+                    <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
+                    <div>{{ item.job_name }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="borderBoxRote positionCom"
+             @click="detailClick2(index)"
+             v-bind:class="['position1'+index, active ? 'animation' : '']"
+             v-for="(item, index) in list1" :key="index">
+            <div class="xuanbox" :class="index2== index ? 'active' : ''">
+                <div class="daobox">
+                    <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
+                    <div>{{ item.c_name }}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div class="cir_mine positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>我的</span>
+        </div>
+        <div class="cir_return positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>返回</span>
+        </div>
+        <div class="cir_hide positionCir" @click="togleHide">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>隐藏</span>
+        </div>-->
+
     </div>
 </div>
-<div id="app" onclick="showCardMain();">
+
+<div id="app">
 
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main safe-areas isDisplay">
         <!-- Page, data-name contains page name which can be used in callbacks -->
 
-            <!-- Scrollable page content-->
-            <div class="page-content">
+        <!-- Scrollable page content-->
+        <div class="page-content">
 
-                <div class="card" id='div_card'>
-                    <div class="card-content">
-                        <div class="Box"  id="">
-                            <div class="positionBox">
-                                <!--<div class="comTitle cssFlex">
-                                    <div class="comInfo">
-                                        <h3 class="comInfoTitle">百度科技</h3>
-                                        <p class="comInfoCon">
-                                            <span>已上市</span><i>·</i>
-                                            <span>10000人以上</span><i>·</i>
-                                            <span>互联网</span>
-                                        </p>
-                                        <p class="timeInfo">
-                                            <img src="../../../icon/time.png" alt="time" class="ComTime">
-                                            <span>上午10:00</span>
-                                            <i>-</i>
-                                            <span class="marginR">下午18:00</span>
-                                            <img src="../../../icon/date.png" alt="date" class="dateCom">
-                                            <span class="marginR">双休</span>
-                                            <span>弹性工作</span>
-                                        </p>
-                                    </div>
-                                    <div class="comLogo">
-                                        <img src="../../../image/comLogo.png" alt="comLogo">
-                                    </div>
-                                </div>-->
-                                <div class="jobBox cssFlex">
-                                    <div class="job-left">
-                                        <h4 class="job-nameNm" id="job_name">运营经理</h4>
-                                        <p class="adress-job">
-                                            <span class="adressInfo" id="city">北京-朝阳-望京</span>
-                                            <span class="job-year"><i id="work_ex">10</i></span>
-                                            <span id="edu_ex">本科</span>
-                                        </p>
-                                    </div>
-                                    <!--薪资 日期-->
-                                    <div class="job-right ">
-                                        <p class="moneyNum"><span id="ratio">20k-30K</span>k</p>
-                                    </div>
-                                </div>
-                                <div class="F9Line"></div>
-                                <div class="positionName padding12">
-                                    <div class="job-img-content cssFlex" onclick="homePage()">
-                                        <img id="" src="../../../image/hr.png" alt="hr" class="hrImg">
-                                        <div class="job-img-text">
-                                            <p class="posiName" id="user_name">赵东东</p>
-                                            <p class="job-name">
-                                                <span id="c_name">北京天久共享控股集团</span>
-                                                <i>·</i>
-                                                <span id="z_user_job">人力资源部经理</span>
-                                            </p>
-
-                                        </div>
-                                        <img src="../../../icon/right.png" alt="right" class="link-right">
-                                    </div>
-
-                                    <div class="job-chatBox cssFlex">
-                                        <div class="chatJob">聊一聊</div>
-                                        <div class="workJob">投递简历</div>
-                                    </div>
-                                </div>
-                                <div class="F9Line"></div>
-                                <!--岗位职责-->
-                                <div class="positionMain">
-                                    <h4 class="productName">岗位职责</h4>
-                                    <p class="posiText" id="description">
-                                        1、对接泛娱乐社区的整体规划、内容建设及调性的把控，去中心化营销内容和达人，把适合的内容推荐给感兴趣的用户；<br/>
-                                        2、 针对优质、有价值的内容和KOL进行包装，负责内容 架构、组织热点话题等相关策划，激励社区达人持续生产泛娱乐内容，持续为平台培养和提供优秀的内容和达人；
-                                        3、深度挖掘用户需求，利用活动和品牌营销提高整体平台的活跃度，提升产品在行业内的影响力； 4、建立有效的数据跟踪机制，及时发现并处理运营问题；
-                                        5、协助考核团队成员工作，有效激励团队。 任职要求：
-                                        1、5年以上运营经验，运营过千万以上的UGC产品，熟悉运营各岗位工作，能够对各岗位工作进行把控和指导，不断帮助团队提升运营能力；
-                                        2、关注行业动态，具较强的全局统筹和把控能力，能够进行独立决策；<br/>
-                                        3、对数据敏感，具备很好的数据分析能力，能够根据运营数据及时优化各项工作；<br/>
-                                        4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
-                                        任职要求：<br/>
-                                        1、5年以上运营经验，运营过千万以上的UGC产品，熟悉运营各岗位工作，能够对各岗位工作进行把控和指导，不断帮助团队提升运营能力；<br/>
-                                        2、关注行业动态，具较强的全局统筹和把控能力，能够进行独立决策；<br/>
-                                        3、对数据敏感，具备很好的数据分析能力，能够根据运营数据及时优化各项工作；<br/>
-                                        4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
+            <div class="card" id='div_card'>
+                <div class="card-content">
+                    <div class="Box" >
+                        <div class="positionBox">
+                            <!--<div class="comTitle cssFlex">
+                                <div class="comInfo">
+                                    <h3 class="comInfoTitle">百度科技</h3>
+                                    <p class="comInfoCon">
+                                        <span>已上市</span><i>·</i>
+                                        <span>10000人以上</span><i>·</i>
+                                        <span>互联网</span>
+                                    </p>
+                                    <p class="timeInfo">
+                                        <img src="../../../icon/time.png" alt="time" class="ComTime">
+                                        <span>上午10:00</span>
+                                        <i>-</i>
+                                        <span class="marginR">下午18:00</span>
+                                        <img src="../../../icon/date.png" alt="date" class="dateCom">
+                                        <span class="marginR">双休</span>
+                                        <span>弹性工作</span>
                                     </p>
                                 </div>
-                                <h4 class="productName">技能要求</h4>
-                                <div class="skillList cssFlex" id="skills">
-                                    <span>餐补</span>
-                                    <span>五险一金</span>
-                                    <span>五险</span>
-                                    <span>五险一金</span>
-                                    <span>五险一金</span>
-                                    <span>五险一金</span>
-                                    <span>五险一金</span>
-                                    <span>五险一金</span>
+                                <div class="comLogo">
+                                    <img src="../../../image/comLogo.png" alt="comLogo">
                                 </div>
-                                <div class="infoProduct cssFlex" id="company" onclick="company()">
-                                    <img src="../../../image/pro.png" alt="pro" class="pro-img">
-                                    <div class="infoProductContent">
-                                        <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
-                                        <p class="textOverflow posiSize"><span id="financing">不需要融资</span>
-                                            <i>·</i><span id="scale">100-499人</span><i>·</i><span id="org_type">互联网</span></p>
-                                    </div>
+                            </div>-->
+                            <div class="jobBox cssFlex">
+                                <div class="job-left">
+                                    <h4 class="job-nameNm" id="job_name">运营经理</h4>
+                                    <p class="adress-job">
+                                        <span class="adressInfo" id="city">北京-朝阳-望京</span>
+                                        <span class="job-year"><i id="work_ex">10</i></span>
+                                        <span id="edu_ex">本科</span>
+                                    </p>
+                                </div>
+                                <!--薪资 日期-->
+                                <div class="job-right ">
+                                    <p class="moneyNum"><span id="ratio">20k-30K</span>k</p>
                                 </div>
                             </div>
+                            <div class="F9Line"></div>
+                            <div class="positionName padding12">
+                                <div class="job-img-content cssFlex" onclick="homePage()">
+                                    <img id="" src="../../../image/hr.png" alt="hr" class="hrImg">
+                                    <div class="job-img-text">
+                                        <p class="posiName" id="user_name">赵东东</p>
+                                        <p class="job-name">
+                                            <span id="c_name">北京天久共享控股集团</span>
+                                            <i>·</i>
+                                            <span id="z_user_job">人力资源部经理</span>
+                                        </p>
 
+                                    </div>
+                                    <img src="../../../icon/right.png" alt="right" class="link-right">
+                                </div>
 
+                                <div class="job-chatBox cssFlex">
+                                    <div class="chatJob">聊一聊</div>
+                                    <div class="workJob">投递简历</div>
+                                </div>
+                            </div>
+                            <div class="F9Line"></div>
+                            <!--岗位职责-->
+                            <div class="positionMain">
+                                <h4 class="productName">岗位职责</h4>
+                                <p class="posiText" id="description">
+                                    1、对接泛娱乐社区的整体规划、内容建设及调性的把控，去中心化营销内容和达人，把适合的内容推荐给感兴趣的用户；<br/>
+                                    2、 针对优质、有价值的内容和KOL进行包装，负责内容 架构、组织热点话题等相关策划，激励社区达人持续生产泛娱乐内容，持续为平台培养和提供优秀的内容和达人；
+                                    3、深度挖掘用户需求，利用活动和品牌营销提高整体平台的活跃度，提升产品在行业内的影响力； 4、建立有效的数据跟踪机制，及时发现并处理运营问题；
+                                    5、协助考核团队成员工作，有效激励团队。 任职要求：
+                                    1、5年以上运营经验，运营过千万以上的UGC产品，熟悉运营各岗位工作，能够对各岗位工作进行把控和指导，不断帮助团队提升运营能力；
+                                    2、关注行业动态，具较强的全局统筹和把控能力，能够进行独立决策；<br/>
+                                    3、对数据敏感，具备很好的数据分析能力，能够根据运营数据及时优化各项工作；<br/>
+                                    4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
+                                    任职要求：<br/>
+                                    1、5年以上运营经验，运营过千万以上的UGC产品，熟悉运营各岗位工作，能够对各岗位工作进行把控和指导，不断帮助团队提升运营能力；<br/>
+                                    2、关注行业动态，具较强的全局统筹和把控能力，能够进行独立决策；<br/>
+                                    3、对数据敏感，具备很好的数据分析能力，能够根据运营数据及时优化各项工作；<br/>
+                                    4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
+                                </p>
+                            </div>
+                            <h4 class="productName">技能要求</h4>
+                            <div class="skillList cssFlex" id="skills">
+                                <span>餐补</span>
+                                <span>五险一金</span>
+                                <span>五险</span>
+                                <span>五险一金</span>
+                                <span>五险一金</span>
+                                <span>五险一金</span>
+                                <span>五险一金</span>
+                                <span>五险一金</span>
+                            </div>
+                            <div class="infoProduct cssFlex" id="company" onclick="company()">
+                                <img src="../../../image/pro.png" alt="pro" class="pro-img">
+                                <div class="infoProductContent">
+                                    <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
+                                    <p class="textOverflow posiSize"><span id="financing">不需要融资</span>
+                                        <i>·</i><span id="scale">100-499人</span><i>·</i><span id="org_type">互联网</span></p>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
     </div>
-</div>
 
 
 </div>
@@ -212,9 +429,7 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
-<script type="text/javascript" src="../../../IQ/d3.js"></script>
-<script type="text/javascript" src="../../../IQ/part1.js"></script>
-<script type="text/javascript" src="../../../IQ/vdp.js"></script>
+<script src="../../../script/vue.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
@@ -229,7 +444,7 @@
     apiready = function () {
         job_id = api.pageParam.job_id;
         var obj = {
-            job_id: job_id
+            job_id: "1"
         }
         ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
             // alert(JSON.stringify(data));
@@ -269,6 +484,57 @@
             }
 
         });
+
+        new Vue({
+            el: '#app1',
+            data: {
+                list: [],
+                list1: [],
+                isHide: true,
+                active: false,
+                index1: -1,
+                index2: -1
+            },
+            created: function () {
+                this.queryListRandom()
+            },
+            methods: {
+                queryListRandom: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
+                        console.log(data);
+
+                        that.list = data.job;
+                        that.list1 = data.company;
+                        // console.log(that.list)
+                        document.getElementById('app1').classList.remove('isDisplay');
+                    });
+                },
+                togle: function () {
+                    document.getElementById('subBox').classList.remove('isDisplay');
+                    console.log(123)
+                    this.active = true;
+                    var that = this;
+                    this.queryListRandom();
+                    setTimeout(function () {
+                        that.active = false;
+                    }, 1500)
+                },
+                detailClick: function (index) {
+                    this.index1 = index;
+                    this.index2 = -1;
+                    console.log(index)
+                },
+                detailClick2: function (index) {
+                    this.index2 = index;
+                    this.index1 = -1;
+                },
+                hideHandle: function () {
+                    document.getElementById('subBox').classList.add('isDisplay');
+                }
+
+            }
+        })
     };
 
     // 点击进入公司详情页面
