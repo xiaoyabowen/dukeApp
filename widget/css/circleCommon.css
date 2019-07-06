@@ -100,6 +100,7 @@
     background: #ffffff;
     font-size: 0.28rem;
     color: #333333;
+    border-bottom: 1px solid #EAEAEA;
 }
 
 .add_activities_header div {
@@ -665,13 +666,320 @@
     height: 0.2rem;
 }
 
-
 /*.details_header_item > .circle_tiem, .details_header_item > .circle_city {*/
 /*height: 100%;*/
 /*}*/
 
 /*活动详情========================结束*/
+/*报名管理   zbw========================开始*/
+.signBox{
+
+    background: #ffffff;
+    padding: 0 0.4rem;
+}
+.signBoxInfo{
+    padding:0.32rem 0;
+    background: #ffffff;
+}
+
+.sign-list{
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EBEBEB;
+    padding:0.32rem 0;
+}
+.sign-list-person,.sign-status{
+    align-items: center;
+}
+.sign-per-img{
+    display: inline-block;
+    width: 0.96rem;
+    height: 0.96rem;
+    margin-right: 0.26rem;
+
+}
+.sign-per-name{
+    font-size: 0.28rem;
+    color: #666;
+    font-weight: 400;
+}
+.sign-yes{
+    width: 1.2rem;
+    height: 0.42rem;
+    line-height: 0.42rem;
+    background:rgba(222,230,253,1);
+    border:0.02rem solid rgba(99,139,255,1);
+    border-radius:0.04rem;
+    font-size: 0.24rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    text-align: center;
+    margin-right: 0.28rem;
+}
+.person-infoup{
+    display: inline-block;
+    width: 0.22rem;
+    height: 0.14rem;
+
+}
+.sign-per-coontact{
+    padding: 0.2rem 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.sign-phone{
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.sign-note,.sign-call{
+    width: 1.4rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+    border:1px solid rgba(99,139,255,1);
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    padding-left: 0.5rem;
+}
+.sign-note{
+    background: url("../image/circle/commit2x.png") no-repeat 0.2rem center;
+    background-size: 0.28rem 0.24rem;
+    margin-right: 0.4rem;
+}
+.sign-call{
+    background: url("../image/circle/phone2x.png") no-repeat 0.2rem center;
+    background-size: 0.22rem 0.24rem;
+}
+.info-edit-btn{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    width: 100%;
+}
+.group-note,.group-email{
+    width: 50%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight:500;
+    background:rgba(255,163,0,1);
+}
+.group-email{
+    background:rgba(99,139,255,1) !important;
+}
 
 
+/*报名管理   zbw========================结束*/
+/*我的活动   zbw========================开始*/
+/*我的发布====*/
+.subsignBoxInfo{
+    background: #ffffff;
+    padding: 0.34rem 0;
+}
+.rel-box{
+    position: relative;
+    background:rgba(255,255,255,1);
+    box-shadow:0 0 0.08rem 0 rgba(0,0,0,0.28);
+    border-radius:0.08rem;
+    margin:0 0.34rem;
+    width: 6.8rem;
+    margin-bottom: 0.34rem;
+    padding-bottom: 0.2rem;
+}
+.rel-info{
+    padding: 0.12rem 0.2rem;
+    align-items: center;
+}
+.rel-info-img{
+    display: block;
+    width: 0.76rem;
+    height: 0.76rem;
+    margin-right: 0.24rem;
+}
+.rel-infoname,.fel-infotime{
+    height: 0.3rem;
+    line-height: 0.3rem;
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.06rem;
+}
+.fel-infotime{
+    color:rgba(153,153,153,1);
+    margin-bottom: 0 !important;
+}
+.rel-title-h2  {
+    padding-left: 0.2rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.2rem;
+}
+.rel-imgbig{
+    width: 100%;
+
+}
+.rel-imgbig>img{
+    display: block;
+    width: 100%;
+    height: 3.4rem;
+}
+.rel-comment{
+    margin: 0.18rem 0 0.2rem 0.2rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.commmentBox{
+    margin-right: 0.24rem;
+}
+.commentNum{
+    color:rgba(255,154,38,1);
+}
+.notSignActive{
+    position: absolute;
+    height:0.34rem;
+    line-height: 0.34rem;
+    text-align: center;
+    padding: 0 0.14rem;
+    background:rgba(238,238,238,1);
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    right: 0.14rem;
+    top: 0.22rem;
+}
+
+/*我参加的* --====*/
+.join-rel-box{
+    /*padding: 0 0.2rem;*/
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+.join-rel-info{
+    position: relative;
+    margin-bottom: 0.2rem;
+    /*padding: 0 !important;*/
+}
+.join-active-status{
+    position: absolute;
+    right: 0.3rem;
+    top: 0.2rem;
+    height:0.42rem;
+    line-height: 0.42rem;
+    background:rgba(242,186,186,1);
+    border-radius:0.04rem;
+    text-align: center;
+    font-size: 0.24rem;
+    font-weight:500;
+    color:rgba(255,29,29,1);
+    padding: 0 0.14rem;
+}
+.join-active{
+    padding: 0 0.2rem 0.26rem 0.2rem;
+}
+.join-img{
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.2rem;
+
+}
+.join-main-title{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.5rem;
+}
+.join-main-active{
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.line20{
+    height: 0.2rem;
+    width: 100%;
+    background:rgba(249,249,249,1);
+}
+.join-actde{
+    padding: 0 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.join-check{
+    justify-content: space-between;
+    align-items: center;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    margin: 0.2rem 0;
+}
+.join-seedian{
+    font-size: 0.28rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    width: 1.4rem;
+    text-decoration: underline;
+}
+.join-status{
+    font-size: 0.24rem;
+    font-weight:500;
+    padding: 0 0.14rem;
+}
+.join-status-dai{
+    color:rgba(99,139,255,1);
+    background:rgba(217,227,255,1);
+}
+.join-status-yes{
+    background:rgba(255,235,200,1);
+    color:rgba(255,163,0,1);
+}
+.join-status-not{
+    background:rgba(232,232,232,1);
+    color:rgba(102,102,102,1);
+}
+.join-free,.join-conct{
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-size: 0.24rem;
+
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.join-confirm-btn{
+    padding: 0 0.2rem;
+}
+.join-not-sign,.join-sign-active{
+    width: 48%;
+    height:0.66rem;
+    line-height: 0.66rem;
+    border-radius:0.04rem;
+    text-align: center;
+    font-size: 0.28rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    border:1px solid rgba(153,153,153,1);
+}
+.join-sign-active{
+    border:1px solid rgba(99,139,255,1);
+    color:rgba(99,139,255,1);
+    margin-left: 0.2rem;
+}
+
+
+
+/*我的活动   zbw========================结束*/
 
 

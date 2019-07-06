@@ -1,8 +1,8 @@
 
-function sign_sucInit(Vue) {
+function myreleaseInit(Vue) {
 
 
-    var str = dataValue('user/circle/comment/sign_suc.html')
+    var str = dataValue('user/circle/comment/myrelease.html')
     return {
         template: str,
         data: function() {

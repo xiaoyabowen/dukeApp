@@ -1,13 +1,18 @@
 
-function sign_sucInit(Vue) {
+function myjoinInit(Vue) {
 
 
-    var str = dataValue('user/circle/comment/sign_suc.html')
+    var str = dataValue('user/circle/comment/myjoin.html')
     return {
         template: str,
         data: function() {
             return {
-                showInfo:false
+                showInfo:false,
+                statusText: {
+                    0: ['join-status-dai', '待参加'],
+                    1: ['join-status-yes', '已签到'],
+                    2: ['join-status-not', '已取消'],
+                },//显示状态
             }
         },
         created: function() {

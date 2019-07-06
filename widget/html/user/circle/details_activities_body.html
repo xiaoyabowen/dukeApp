@@ -48,7 +48,7 @@
         <!--活动介绍-->
         <div class="details_content"></div>
         <!--活动参加人数-->
-        <div class="details_comment_enrolled">
+        <div class="details_comment_enrolled" @click="signManage()">
             <div class="details_enrolled_top">
                 <span>已报名</span>
                 <span>{{item.count || 0}}</span>
@@ -195,7 +195,12 @@
 
                     });
                 },
+                // 点击报名  进入报名管理
+                signManage:function (){
+                    openNewWindow("sign-manage", "./sign-manage.html", {
 
+                    })
+                },
                 // 聚焦事件
                 focusHandle: function () {
                     // alert(123)

@@ -1,19 +1,29 @@
-<div class="notData">
-    <img src="../../../../image/circle/mask2x.png" alt="set" class="maskImg">
-    <div class="addMask">立即添加</div>
-</div>
+<div class="signBox">
+    <div class="signBoxInfo">
+        <div class="sign-list cssFlex">
+            <div class="sign-list-person cssFlex">
+                <img src="../../../image/hr.png" alt="per" class="sign-per-img">
+                <span class="sign-per-name">董明珠</span>
+            </div>
+            <div class="sign-status cssFlex">
 
-<div class="bottom-medal">
-    <p class="medalTitle">添加模块</p>
-    <div class="modulList cssFlex">
-        <div class="modulListBox">
-            纯文本
+                <img src="../../../icon/time.png" alt="jian" class="person-infoup" @click="showCont()">
+            </div>
         </div>
-        <div class="modulListBox">
-            单图
+        <div class="sign-per-coontact cssFlex" v-if="showInfo">
+            <div class="sign-phone">
+                手机号：<i>1334567899</i>
+            </div>
+            <div class="sign-per-edit cssFlex">
+                <div class="sign-note">发短信</div>
+                <div class="sign-call">打电话</div>
+            </div>
         </div>
     </div>
-    <div class="cancle">取消</div>
+    <div class="info-edit-btn cssFlex">
+        <div class="group-note">群发短信</div>
+        <div class="group-email">群发名单至邮箱</div>
+    </div>
 </div>
 
 
