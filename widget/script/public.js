@@ -168,6 +168,14 @@ var editCircleStatus = serverUrl + "/CircleProfile/editCircleStatus";
 // 圈子取消活动
 var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 
+// 圈子报名管理
+var queryApplyList = serverUrl + "/CircleProfile/queryApplyList";
+
+// 圈子 我的活动   我参加的
+var queryMyJoinCirCle = serverUrl + "/CircleProfile/queryMyJoinCirCle";
+// 圈子 我的活动   我发布的
+var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPersonId";
+
 
 function checkUrl(urlString) {
     if (urlString != "") {

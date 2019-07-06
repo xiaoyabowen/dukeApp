@@ -69,7 +69,7 @@
         <!--活动介绍-->
         <div class="details_content"></div>
         <!--活动参加人数-->
-        <div class="details_comment_enrolled">
+        <div class="details_comment_enrolled" @click="signManage()">
             <div class="details_enrolled_top">
                 <span>已报名</span>
                 <span>{{item.count || 0}}</span>
@@ -255,116 +255,142 @@
 
                     });
                 },
+                // 点击报名  进入报名管理
+                signManage: function () {
+                    openNewWindow("sign-manage", "./sign-manage.html", {
 
-                // 点击打开地图
-                cityHandle: function (lat, lon, address) {
-                    console.log(lat);
-                    console.log(lon);
-                    console.log(address);
-                    this.baiduditu(lat, lon, address);
-                },
-                // 唤起地图导航
-                baiduditu: function (lat, lon, address) {
-                    var systemType = api.systemType;
-                    var buttons = new Array();
-                    var amap_installed = false;
-                    var bmap_installed = false;
-                    if (systemType == 'ios') {
-                        var installed = api.appInstalled({
-                            sync: true,
-                            appBundle: 'iosamap://'
-                        });
-                        if (installed) {
-                            amap_installed = true;
-                            buttons.push('高德地图');
-                        }
-                        var installed = api.appInstalled({
-                            sync: true,
-                            appBundle: 'baidumap://'
-                        });
-                        if (installed) {
-                            bmap_installed = true;
-                            buttons.push('百度地图');
-                        }
-                    } else {
-                        var installed = api.appInstalled({
-                            sync: true,
-                            appBundle: 'com.autonavi.minimap'
-                        });
-                        if (installed) {
-                            amap_installed = true;
-                            buttons.push('高德地图');
-                        }
-                        var installed = api.appInstalled({
-                            sync: true,
-                            appBundle: 'com.baidu.BaiduMap'
-                        });
-                        if (installed) {
-                            bmap_installed = true;
-                            buttons.push('百度地图');
-                        }
-                    }
-                    if (bmap_installed == false && amap_installed == false) {
-                        api.toast({
-                            msg: '您没有安装任何地图软件'
-                        });
-                        return false;
-                    }
 
-                    var address = address;
-                    var latbaidu = lat;
-                    var lngbaidu = lon;
-                    var latgaode = lat;
-                    var lnggaode = lon;
-                    api.actionSheet({
-                        cancelTitle: '取消',
-                        buttons: buttons
-                    }, function (ret, err) {
-                        var index = ret.buttonIndex;
+                        // 点击打开地图
+                        cityHandle: function (lat, lon, address) {
+                            console.log(lat);
+                            console.log(lon);
+                            console.log(address);
+                            this.baiduditu(lat, lon, address);
+                        },
+                        // 唤起地图导航
+                        baiduditu: function (lat, lon, address) {
+                            var systemType = api.systemType;
+                            var buttons = new Array();
+                            var amap_installed = false;
+                            var bmap_installed = false;
+                            if (systemType == 'ios') {
+                                var installed = api.appInstalled({
+                                    sync: true,
+                                    appBundle: 'iosamap://'
+                                });
+                                if (installed) {
+                                    amap_installed = true;
+                                    buttons.push('高德地图');
+                                }
+                                var installed = api.appInstalled({
+                                    sync: true,
+                                    appBundle: 'baidumap://'
+                                });
+                                if (installed) {
+                                    bmap_installed = true;
+                                    buttons.push('百度地图');
+                                }
+                            } else {
+                                var installed = api.appInstalled({
+                                    sync: true,
+                                    appBundle: 'com.autonavi.minimap'
+                                });
+                                if (installed) {
+                                    amap_installed = true;
+                                    buttons.push('高德地图');
+                                }
+                                var installed = api.appInstalled({
+                                    sync: true,
+                                    appBundle: 'com.baidu.BaiduMap'
+                                });
+                                if (installed) {
+                                    bmap_installed = true;
+                                    buttons.push('百度地图');
+                                }
+                            }
+                            if (bmap_installed == false && amap_installed == false) {
+                                api.toast({
+                                    msg: '您没有安装任何地图软件'
+                                });
+                                return false;
+                            }
 
-                        switch (index) {
-                            case 1:
-                                if (amap_installed && bmap_installed) {
-                                    if (systemType == 'ios') {
-                                        api.openApp({
-                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
-                                        }, function (ret, err) {
+                            var address = address;
+                            var latbaidu = lat;
+                            var lngbaidu = lon;
+                            var latgaode = lat;
+                            var lnggaode = lon;
+                            api.actionSheet({
+                                cancelTitle: '取消',
+                                buttons: buttons
+                            }, function (ret, err) {
+                                var index = ret.buttonIndex;
 
-                                        });
-                                    } else {
-                                        api.openApp({
-                                            androidPkg: 'android.intent.action.VIEW',
-                                            uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
-                                        }, function (ret, err) {
+                                switch (index) {
+                                    case 1:
+                                        if (amap_installed && bmap_installed) {
+                                            if (systemType == 'ios') {
+                                                api.openApp({
+                                                    iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                                }, function (ret, err) {
 
-                                        });
-                                    }
-                                } else {
-                                    if (amap_installed) {
-                                        if (systemType == 'ios') {
-                                            api.openApp({
-                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
-                                            }, function (ret, err) {
+                                                });
+                                            } else {
+                                                api.openApp({
+                                                    androidPkg: 'android.intent.action.VIEW',
+                                                    uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                                }, function (ret, err) {
 
-                                            });
+                                                });
+                                            }
                                         } else {
-                                            api.openApp({
-                                                androidPkg: 'android.intent.action.VIEW',
-                                                uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
-                                            }, function (ret, err) {
+                                            if (amap_installed) {
+                                                if (systemType == 'ios') {
+                                                    api.openApp({
+                                                        iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                                    }, function (ret, err) {
 
-                                            });
+                                                    });
+                                                } else {
+                                                    api.openApp({
+                                                        androidPkg: 'android.intent.action.VIEW',
+                                                        uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                                    }, function (ret, err) {
+
+                                                    });
+                                                }
+
+                                            }
+                                            if (bmap_installed) {
+                                                if (systemType == 'ios') {
+                                                    api.openApp({
+                                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                                    }, function (ret, err) {
+                                                        if (err) {
+
+                                                            //alert(JSON.stringify(err));
+                                                        }
+                                                    });
+                                                } else {
+                                                    api.openApp({
+                                                        androidPkg: 'android.intent.action.VIEW',
+                                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                                    }, function (ret, err) {
+
+                                                    });
+                                                }
+                                            }
+                                            break;
                                         }
 
-                                    }
-                                    if (bmap_installed) {
+                                    case 2:
                                         if (systemType == 'ios') {
                                             api.openApp({
                                                 iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
                                             }, function (ret, err) {
                                                 if (err) {
-
                                                     //alert(JSON.stringify(err));
+
                                                 }
                                             });
                                         } else {
@@ -372,35 +398,17 @@
                                                 androidPkg: 'android.intent.action.VIEW',
                                                 uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
                                             }, function (ret, err) {
-
+                                                if (err) {
+                                                    //alert(JSON.stringify(err));
+                                                }
                                             });
                                         }
-                                    }
-                                    break;
+                                        break;
                                 }
+                            })
+                        },
 
-                            case 2:
-                                if (systemType == 'ios') {
-                                    api.openApp({
-                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
-                                    }, function (ret, err) {
-                                        if (err) {
-                                            //alert(JSON.stringify(err));
 
-                                        }
-                                    });
-                                } else {
-                                    api.openApp({
-                                        androidPkg: 'android.intent.action.VIEW',
-                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
-                                    }, function (ret, err) {
-                                        if (err) {
-                                            //alert(JSON.stringify(err));
-                                        }
-                                    });
-                                }
-                                break;
-                        }
                     })
                 },
 

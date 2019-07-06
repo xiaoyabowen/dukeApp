@@ -12,6 +12,7 @@
    // 活动详情
 
 ├── sign-manage   // 报名管理
+├── myActives // 我的活动
 
 
 ```

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>职位信息</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/componyDetail.css">
+    <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
+    <!--<link rel="stylesheet" href="../../../IQ/framework7.bundle.min.css">-->
+    <!--<link rel="stylesheet" href="../../../IQ/framework7-icons.css">-->
+    <link rel="stylesheet" href="../../../IQ/app.css">
+
+    <style>
+        .subBox {
+            width: 630px;
+            height: 620px;
+            background: linear-gradient(to left top, #5D92FE 50%, transparent 50%);
+        }
+
+        .person {
+            display: inline-block;
+            position: absolute;
+            bottom: 0.22rem;
+            right: 0.14rem;
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        /* 菱形方块  样式 */
+        .positionCom {
+            width: 1.2rem;
+            height: 1.2rem;
+            position: absolute;
+
+            border: 1px solid #cccccc;
+            border-radius: 0.1rem;
+        }
+
+        .position_one {
+            right: 50px;
+            bottom: 350px;
+            transform: rotate(45deg)
+        }
+
+        .position_two {
+            right: 140px;
+            bottom: 260px;
+            transform: rotate(45deg);
+        }
+
+        .position_three {
+            right: 230px;
+            bottom: 170px;
+            transform: rotate(45deg);
+        }
+
+        .position_four {
+            right: 320px;
+            bottom: 80px;
+            transform: rotate(45deg);
+        }
+
+        .position_five {
+            right: 54px;
+            bottom: 172px;
+            transform: rotate(45deg);
+        }
+
+        .position_six {
+            right: 140px;
+            bottom: 80px;
+            transform: rotate(45deg);
+        }
+
+        .positionCom>img {
+            display: block;
+            padding: 10px 28px 0 10px;
+            transform: rotate(-45deg)
+        }
+
+        .positionCom>span {
+            display: block;
+            width: 124px;
+            margin-top: -4px;
+            text-align: center;
+            transform: rotate(-45deg);
+            color: #333;
+        }
+
+        /* 圆形  样式 */
+        .positionCir {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 1);
+            opacity: 0.7;
+            position: absolute;
+        }
+
+        .positionCir>img {
+            display: block;
+            width: 28px;
+            height: 30px;
+            padding: 10px 28px 0 10px;
+            transform: rotate(-45deg)
+        }
+
+        .positionCir>span {
+            display: block;
+            width: 92px;
+            margin-top: -4px;
+            text-align: center;
+            transform: rotate(-45deg);
+            color: #333;
+        }
+
+        .cir_mine {
+            right: 430px;
+            bottom: 14px;
+            transform: rotate(45deg);
+        }
+
+        .cir_return {
+            right: 10px;
+            bottom: 280px;
+            transform: rotate(45deg);
+        }
+
+        .cir_hide {
+            right: 240px;
+            bottom: 14px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="box">
+    <img src="image/duke-2.png" class="person" alt="person" @click="togle">
+    <div class="subBox" v-bind:class="{ active: isHide}">
+
+        <div v-bind:class="item.class" v-for="(item, index) in list">
+            <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
+            <span>{{ item.name }}</span>
+        </div>
+
+        <div class="cir_mine positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>我的</span>
+        </div>
+        <div class="cir_return positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>返回</span>
+        </div>
+        <div class="cir_hide positionCir" @click="togleHide">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>隐藏</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script>
+    var app = new Vue({
+        el: '.box',
+        data: {
+            isHide: true,
+            list: [{
+                class: "position_one positionCom",
+                imgIcon: "image/mine/attclight.png",
+                name: "Web前端工程师"
+            },
+                {
+                    class: "position_two positionCom",
+                    imgIcon: "image/mine/attclight.png",
+                    name: "Java开发"
+                },
+                {
+                    class: "position_three positionCom",
+                    imgIcon: "image/mine/attclight.png",
+                    name: "运营经理"
+                },
+                {
+                    class: "position_four positionCom",
+                    imgIcon: "image/mine/attclight.png",
+                    name: "UI设计师"
+                },
+
+
+                {
+                    class: "position_five positionCom",
+                    imgIcon: "image/mine/attclight.png",
+                    name: "美团外卖"
+                },
+                {
+                    class: "position_six positionCom",
+                    imgIcon: "image/mine/attclight.png",
+                    name: "云闪信"
+                }
+
+            ]
+        },
+        methods: {
+            togle: function (event) {
+                this.isHide = false;
+            },
+            togleHide: function (event) {
+                this.isHide = true;
+            }
+        }
+
+    })
+
+</script>
+</body>
+</html>

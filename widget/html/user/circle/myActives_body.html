@@ -15,13 +15,13 @@
     <div id="add_activities">
         <div id="box">
             <div class="add_activities_header cssFlex" @click="componentHandle()">
-                <div><span :class="isActive ? 'active' : ''">已报名</span></div>
-                <div><span :class="isActive ? '' : 'active'">已取消</span></div>
+                <div><span :class="isActive ? 'active' : ''">我的发布</span></div>
+                <div><span :class="isActive ? '' : 'active'">我参加的</span></div>
             </div>
 
             <!--<component :is="isCom"></component>-->
-            <sign_suc v-if="isActive"></sign_suc>
-            <sign_erro v-if="!isActive"></sign_erro>
+            <myrelease v-if="isActive"></myrelease>
+            <myjoin v-if="!isActive"></myjoin>
         </div>
     </div>
 
@@ -36,28 +36,28 @@
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
 
-    <script src="./comment/sign_suc.js"></script>
-    <script src="comment/sign_erro.js"></script>
+    <script src="./comment/myrelease.js"></script>
+    <script src="comment/myjoin.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-            var sign_suc = sign_sucInit(Vue);
-            var sign_erro = sign_erroInit(Vue);
-            console.log(sign_suc)
-            Vue.component('sign_suc', sign_suc);
-            Vue.component('sign_erro', sign_erro);
+            var myrelease = myreleaseInit(Vue);
+            console.log(myrelease)
+            var myjoin = myjoinInit(Vue);
+            Vue.component('myrelease', myrelease);
+            Vue.component('myjoin', myjoin);
 
             new Vue({
                 el: '#add_activities',
                 components: {
-                    sign_suc: sign_suc,
-                    sign_erro: sign_erro
+                    myrelease: myrelease,
+                    myjoin: myjoin
                 },
                 data: {
                     isActive: true,
-                    isCom: 'sign_suc',
+                    isCom: 'myrelease',
                     person_id: '',
                 },
                 created: function () {
