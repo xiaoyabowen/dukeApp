@@ -39,13 +39,14 @@
         <div class="details_header">
             <div class="details_header_top">
                 <div class="details_header_img">
-                    <img src="../../../image/circle/circle01.png" alt="">
+                    <!--<img :src="item.poster" alt="">-->
+                    <img src="http://192.168.1.10:8000/SE4M/ShowAvatar?person_id=1" alt="">
                 </div>
                 <div class="details_header_title">
                     <div class="details_title_con textOverflow">
                         {{item.title}}
                     </div>
-                    <div class="details_sign">已报名 <span>{{item.count || 0}}</span></div>
+                    <div class="details_sign">已报名 <span>{{count || 0}}</span></div>
                 </div>
             </div>
 
@@ -59,7 +60,7 @@
 
                     <img src="../../../image/circle/locationx.png" alt="">
                 </div>
-                <div class="circle_city phone">
+                <div class="circle_city phone" @click="callHandle(item.phone)">
                     联系人: <span> {{item.phone}}</span>
 
                     <img src="../../../image/circle/phone2x.png" alt="">
@@ -69,35 +70,29 @@
         <!--活动介绍-->
         <div class="details_content"></div>
         <!--活动参加人数-->
-        <div class="details_comment_enrolled" @click="signManage()">
+        <div class="details_comment_enrolled" v-if="!edit && list.length > 1">
             <div class="details_enrolled_top">
                 <span>已报名</span>
-                <span>{{item.count || 0}}</span>
+                <span>{{count || 0}}</span>
             </div>
 
             <div class="details_enrolled_content cssFlex">
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
+                <div class="details_enrolled_item" v-for="(user, u) in list" :key="u">
+                    <img :src="user.p_icon" alt="">
                     <span>云闪信</span>
                 </div>
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
-                    <span>云闪信</span>
-                </div>
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
-                    <span>云闪信</span>
-                </div>
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
-                    <span>云闪信</span>
-                </div>
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
-                    <span>云闪信</span>
-                </div>
-                <div class="details_enrolled_item">
-                    <img src="../../../image/pro.png" alt="">
+            </div>
+        </div>
+
+        <div class="details_comment_enrolled" v-if="edit && list.length > 1" @click="signManage(item.circle_id)">
+            <div class="details_enrolled_top">
+                <span>已报名</span>
+                <span>{{count || 0}}</span>
+            </div>
+
+            <div class="details_enrolled_content cssFlex">
+                <div class="details_enrolled_item" v-for="(user, u) in list" :key="u">
+                    <img :src="user.p_icon" alt="">
                     <span>云闪信</span>
                 </div>
             </div>
@@ -111,41 +106,47 @@
                     <input type="text" @focus="focusHandle()" placeholder="我来说点什么...">
                 </div>
 
-                <div class="details_comment_item">
+                <div class="details_comment_item" v-for="(details, index) in list1" :key="index">
                     <div class="details_item_top">
                         <img src="../../../image/pro.png" alt="">
-                        <span>微光</span>
+                        <!--<img :src="details.p_icon" alt="">-->
+                        <span>{{details.p_name}}</span>
                     </div>
                     <div class="details_item_con">
-                        <p>据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！</p>
+                        <p>{{details.content}}</p>
 
                         <div class="details_item_bottom">
-                            <span>2019/04/27</span>
+                            <span>{{details.time.split(' ')[0]}}</span>
                             <div>
-                                <span>1234</span>
-                                <span>12</span>
+                                <span @click="comments2(details.comment_id, index)">{{details.commentByid ? details.commentByid.length : 0}}</span>
+                                <span @click="giveZan()" v-if="details.status == 0">{{details.CommentZan}}</span>
+                                <span class="active" @click="giveZan()" v-if="details.status == 1">{{details.CommentZan}}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="details_item_children">
-                        <div class="details_item_children_top">
-                            <img src="../../../image/pro.png" alt="">
-                            <span>微光</span>
+                        <div v-for="(child, c) in details.commentByid" :key="c" v-if="details.commentByid && c < details.total">
+                            <div class="details_item_children_top">
+                                <img src="../../../image/pro.png" alt="">
+                                <!--<img :src="child.p_icon" alt="">-->
+                                <span>{{child.p_name}}</span>
+                            </div>
+
+                            <div class="details_item_children_con">
+                                <div>回复: <span>{{child.content}}</span></div>
+                            </div>
                         </div>
 
-                        <div class="details_item_children_con">
-                            <div>回复: <span>这活动蛮好的！</span></div>
+                        <div class="details_item_children_bottom" v-if="details.commentByid && details.commentByid.length > 1">
+                            <span>{{details.commentByid[1].p_name}}等人</span>
+                            <span @click="repliesHandle(index)">共{{details.commentByid.length}}条回复</span>
                         </div>
 
-                        <div class="details_item_children_bottom">
-                            <span>田喜碧等人</span>
-                            <span @click="repliesHandle()">共34条回复</span>
-                        </div>
-
-                        <div class="details_item_children_footer">
-                            <span>6-18 23:13</span>
-                            <span><img src="../../../image/circle/reply2x.png" alt=""></span>
+                        <div class="details_item_children_footer" v-if="details.commentByid && details.commentByid.length > 1">
+                            <!--<span>6-18 23:13</span>-->
+                            <span>{{details.commentByid[details.commentByid.length-1].time}}</span>
+                            <span @click="comments2(details.comment_id, index)"><img src="../../../image/circle/reply2x.png" alt=""></span>
                         </div>
                     </div>
                 </div>
@@ -156,19 +157,19 @@
             </div>
         </div>
         <!--取消和编辑活动-->
-        <div class="details_edit cssFlex" v-if="!edit">
+        <div class="details_edit cssFlex" v-if="edit">
             <div @click="clearActivities()">取消活动</div>
             <div @click="editActivities()">编辑活动</div>
         </div>
 
-
+        <!--评论输入框-->
         <div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">
-            <textarea v-model="textarea" @input="textInput()" maxlength=300 name="" id="" cols="30" rows="10"
+            <textarea v-model="textarea" @input="textInput()" autofocus="autofocus" maxlength=300 name="" id="" cols="30" rows="10"
                       placeholder="写评论"></textarea>
             <div class="num_total"><span>{{num}}</span>/300</div>
             <div><span @click="sendHandle()">发送</span></div>
         </div>
-
+        <!--报名输入框-->
         <div id="popover" v-if="popover" @touchmove.prevent>
             <div class="popover_content">
                 <form class="mui-input-group">
@@ -215,13 +216,18 @@
                 status: 0,
                 person_id: '',
                 circle_id: '',
+                bac_id: null,
                 edit: false,
+                list: [],
+                list1: [],
+                index: 0,
                 signStatus: '我要报名',
                 num: 0,
+                count: 0,
                 textarea: '',
                 u_name: '',
                 phone: '',
-                popover: false
+                popover: false,
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
@@ -230,7 +236,7 @@
                 this.CircleProfileAllinOne();
             },
             mounted: function () {
-
+                this.watchKeybord();
                 this.isDisplay = true;
             },
             methods: {
@@ -243,10 +249,13 @@
                         circle_id: that.circle_id,
                     }, function (data, err) {
                         document.getElementById('box').className = '';
-                        console.log(data);
+                        // console.log(data);
                         if (data.circle_summary) {
                             that.item = data.circle_summary;
                             that.status = data.status;
+                            that.count = data.Count;
+                            that.queryApplyList();
+                            that.queryCommentSummary();
                         }
 
                         if (that.status) {
@@ -255,142 +264,121 @@
 
                     });
                 },
-                // 点击报名  进入报名管理
-                signManage: function () {
+                // 进入报名管理
+                signManage: function (circle_id) {
                     openNewWindow("sign-manage", "./sign-manage.html", {
+                        circle_id: circle_id
+                    })
+                },
+                // 点击打开地图
+                cityHandle: function (lat, lon, address) {
+                    // console.log(lat);
+                    // console.log(lon);
+                    // console.log(address);
+                    this.baiduditu(lat, lon, address);
+                },
+                // 唤起地图导航
+                baiduditu: function (lat, lon, address) {
+                    var systemType = api.systemType;
+                    var buttons = new Array();
+                    var amap_installed = false;
+                    var bmap_installed = false;
+                    if (systemType == 'ios') {
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'iosamap://'
+                        });
+                        if (installed) {
+                            amap_installed = true;
+                            buttons.push('高德地图');
+                        }
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'baidumap://'
+                        });
+                        if (installed) {
+                            bmap_installed = true;
+                            buttons.push('百度地图');
+                        }
+                    } else {
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'com.autonavi.minimap'
+                        });
+                        if (installed) {
+                            amap_installed = true;
+                            buttons.push('高德地图');
+                        }
+                        var installed = api.appInstalled({
+                            sync: true,
+                            appBundle: 'com.baidu.BaiduMap'
+                        });
+                        if (installed) {
+                            bmap_installed = true;
+                            buttons.push('百度地图');
+                        }
+                    }
+                    if (bmap_installed == false && amap_installed == false) {
+                        api.toast({
+                            msg: '您没有安装任何地图软件'
+                        });
+                        return false;
+                    }
 
+                    var address = address;
+                    var latbaidu = lat;
+                    var lngbaidu = lon;
+                    var latgaode = lat;
+                    var lnggaode = lon;
+                    api.actionSheet({
+                        cancelTitle: '取消',
+                        buttons: buttons
+                    }, function (ret, err) {
+                        var index = ret.buttonIndex;
 
-                        // 点击打开地图
-                        cityHandle: function (lat, lon, address) {
-                            console.log(lat);
-                            console.log(lon);
-                            console.log(address);
-                            this.baiduditu(lat, lon, address);
-                        },
-                        // 唤起地图导航
-                        baiduditu: function (lat, lon, address) {
-                            var systemType = api.systemType;
-                            var buttons = new Array();
-                            var amap_installed = false;
-                            var bmap_installed = false;
-                            if (systemType == 'ios') {
-                                var installed = api.appInstalled({
-                                    sync: true,
-                                    appBundle: 'iosamap://'
-                                });
-                                if (installed) {
-                                    amap_installed = true;
-                                    buttons.push('高德地图');
-                                }
-                                var installed = api.appInstalled({
-                                    sync: true,
-                                    appBundle: 'baidumap://'
-                                });
-                                if (installed) {
-                                    bmap_installed = true;
-                                    buttons.push('百度地图');
-                                }
-                            } else {
-                                var installed = api.appInstalled({
-                                    sync: true,
-                                    appBundle: 'com.autonavi.minimap'
-                                });
-                                if (installed) {
-                                    amap_installed = true;
-                                    buttons.push('高德地图');
-                                }
-                                var installed = api.appInstalled({
-                                    sync: true,
-                                    appBundle: 'com.baidu.BaiduMap'
-                                });
-                                if (installed) {
-                                    bmap_installed = true;
-                                    buttons.push('百度地图');
-                                }
-                            }
-                            if (bmap_installed == false && amap_installed == false) {
-                                api.toast({
-                                    msg: '您没有安装任何地图软件'
-                                });
-                                return false;
-                            }
+                        switch (index) {
+                            case 1:
+                                if (amap_installed && bmap_installed) {
+                                    if (systemType == 'ios') {
+                                        api.openApp({
+                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                        }, function (ret, err) {
 
-                            var address = address;
-                            var latbaidu = lat;
-                            var lngbaidu = lon;
-                            var latgaode = lat;
-                            var lnggaode = lon;
-                            api.actionSheet({
-                                cancelTitle: '取消',
-                                buttons: buttons
-                            }, function (ret, err) {
-                                var index = ret.buttonIndex;
+                                        });
+                                    } else {
+                                        api.openApp({
+                                            androidPkg: 'android.intent.action.VIEW',
+                                            uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                        }, function (ret, err) {
 
-                                switch (index) {
-                                    case 1:
-                                        if (amap_installed && bmap_installed) {
-                                            if (systemType == 'ios') {
-                                                api.openApp({
-                                                    iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
-                                                }, function (ret, err) {
+                                        });
+                                    }
+                                } else {
+                                    if (amap_installed) {
+                                        if (systemType == 'ios') {
+                                            api.openApp({
+                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                            }, function (ret, err) {
 
-                                                });
-                                            } else {
-                                                api.openApp({
-                                                    androidPkg: 'android.intent.action.VIEW',
-                                                    uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
-                                                }, function (ret, err) {
-
-                                                });
-                                            }
+                                            });
                                         } else {
-                                            if (amap_installed) {
-                                                if (systemType == 'ios') {
-                                                    api.openApp({
-                                                        iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
-                                                    }, function (ret, err) {
+                                            api.openApp({
+                                                androidPkg: 'android.intent.action.VIEW',
+                                                uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                            }, function (ret, err) {
 
-                                                    });
-                                                } else {
-                                                    api.openApp({
-                                                        androidPkg: 'android.intent.action.VIEW',
-                                                        uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
-                                                    }, function (ret, err) {
-
-                                                    });
-                                                }
-
-                                            }
-                                            if (bmap_installed) {
-                                                if (systemType == 'ios') {
-                                                    api.openApp({
-                                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
-                                                    }, function (ret, err) {
-                                                        if (err) {
-
-                                                            //alert(JSON.stringify(err));
-                                                        }
-                                                    });
-                                                } else {
-                                                    api.openApp({
-                                                        androidPkg: 'android.intent.action.VIEW',
-                                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
-                                                    }, function (ret, err) {
-
-                                                    });
-                                                }
-                                            }
-                                            break;
+                                            });
                                         }
 
-                                    case 2:
+                                    }
+                                    if (bmap_installed) {
                                         if (systemType == 'ios') {
                                             api.openApp({
                                                 iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
                                             }, function (ret, err) {
                                                 if (err) {
-                                                    //alert(JSON.stringify(err));
 
+                                                    //alert(JSON.stringify(err));
                                                 }
                                             });
                                         } else {
@@ -398,42 +386,175 @@
                                                 androidPkg: 'android.intent.action.VIEW',
                                                 uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
                                             }, function (ret, err) {
-                                                if (err) {
-                                                    //alert(JSON.stringify(err));
-                                                }
+
                                             });
                                         }
-                                        break;
+                                    }
+                                    break;
                                 }
-                            })
-                        },
 
+                            case 2:
+                                if (systemType == 'ios') {
+                                    api.openApp({
+                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                    }, function (ret, err) {
+                                        if (err) {
+                                            //alert(JSON.stringify(err));
 
+                                        }
+                                    });
+                                } else {
+                                    api.openApp({
+                                        androidPkg: 'android.intent.action.VIEW',
+                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                    }, function (ret, err) {
+                                        if (err) {
+                                            //alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                                break;
+                        }
                     })
                 },
-
+                // 唤起手机拨号功能
+                callHandle: function (number) {
+                    api.call({
+                        type: 'tel_prompt',
+                        number: number
+                    });
+                },
                 // 聚焦事件
                 focusHandle: function () {
                     // alert(123)
                     this.comment_box = true;
                 },
-
                 // 评论文本框input事件
                 textInput: function () {
                     this.num = this.textarea.length;
                 },
+                // 失焦事件
+                // blurHandle: function () {
+                //     // alert(123)
+                //     this.comment_box = false;
+                // },
+                // 监听resize隐藏评论输入框
+                watchKeybord: function () {
+                    var that = this
+                    var oriWinHeight = window.innerHeight
+                    window.onresize = function() {
+                        // that.isKeybordAvail = true
+                        let newHeight = window.innerHeight
 
+                        // 阀值大于140判断为键盘收起
+                        if (newHeight - oriWinHeight > 140) {
+                            that.comment_box = false;
+                            // alert(123)
+                        }
+                        oriWinHeight = newHeight
+                    }
+                },
                 // 发送
                 sendHandle: function () {
+                    // alert(123)
                     console.log(this.textarea);
-                    this.comment_box = false;
+                    if (!this.textarea) {
+                        mui.toast('评论不能为空');
+                        return;
+                    }
+                    var that = this;
+
+                    ajaxGetWithProgress(addComment, {
+                        person_id: that.person_id,
+                        circle_id: that.item.circle_id,
+                        content: that.textarea,
+                        bac_id: that.bac_id,
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.return_info.status) {
+                            mui.toast('评论成功');
+                            api.ajax({
+                                url: queryCommentSummary,
+                                method: 'get',
+                                data: {
+                                    values: {
+                                        circle_id: that.item.circle_id,
+                                    },
+                                }
+                            }, function(data, err) {
+                                // alert(456)
+                                // console.log(456)
+                                // console.log(data)
+                                if (data.comment) {
+                                    var arr = data.comment;
+                                    for (var i = 0; i < arr.length; i++) {
+                                        arr[i]['total'] = 1
+                                    }
+                                    that.list1 = arr;
+                                }
+                            });
+                        } else {
+                            mui.toast('评论失败');
+                        }
+                        that.bac_id = null;
+                        this.comment_box = false;
+                        this.textarea = '';
+                    });
                 },
 
+                // 获取报名的数据列表
+                queryApplyList: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryApplyList, {
+                        circle_id: that.item.circle_id,
+                    }, function (data, err) {
+                        // console.log(data);
+                        if (data.ApplyList) {
+                            var arr = data.ApplyList;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i]['active'] = false;
+                                if (i >= 7) {
+                                    return;
+                                }
+                                if (arr[i].status < 2 && i < 7) {
+                                    that.list.push(arr[i])
+                                }
+                            }
+
+                        }
+
+                    });
+                },
+                // 获取评论数据
+                queryCommentSummary: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryCommentSummary, {
+                        circle_id: that.item.circle_id,
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.comment) {
+                            var arr = data.comment;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i]['total'] = 1
+                            }
+                            that.list1 = arr;
+                        }
+                    });
+                },
                 // 点击查看更多回复
-                repliesHandle: function () {
+                repliesHandle: function (index) {
+                    this.list1[index]['total'] = this.list1[index].commentByid.length;
+                },
+                // 二级评论
+                comments2: function (bac_id, index) {
+                    this.comment_box = true;
+                    this.bac_id = bac_id;
+                    console.log(bac_id)
+                },
+                // 点赞
+                giveZan: function () {
 
                 },
-
                 // 点击报名
                 linkHandle: function () {
                     if (this.signStatus == '已报名') {
@@ -446,7 +567,6 @@
                     }
                     this.popover = true;
                 },
-
                 // 确认
                 confirmHand: function () {
                     var that = this;
@@ -479,12 +599,10 @@
 
                     });
                 },
-
                 // 取消
                 cancel: function () {
                     this.popover = false;
                 },
-
                 // 取消活动
                 clearActivities: function () {
                     var that = this;
@@ -506,7 +624,6 @@
                     })
 
                 },
-
                 // 编辑活动
                 editActivities: function () {
 

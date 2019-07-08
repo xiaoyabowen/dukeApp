@@ -361,7 +361,7 @@
 
 .details_enrolled_content {
     padding: 0.3rem 0;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
 }
 
 .details_enrolled_item {
@@ -373,7 +373,7 @@
 }
 
 .details_enrolled_item > img {
-    width: 0.98rem;
+    width: 0.76rem;
     border-radius: 50%;
 }
 
@@ -396,7 +396,7 @@
 }
 
 .details_comment_top img {
-    width: 0.98rem;
+    width: 0.76rem;
     border-radius: 50%;
     margin-right: 0.15rem;
     vertical-align: middle;
@@ -409,13 +409,13 @@
 }
 
 .details_item_top {
-    padding: 0rem 0.36rem 0;
+    padding: 0.2rem 0.36rem 0;
     color: #666666;
     font-size: 0.28rem;
 }
 
 .details_item_top img {
-    width: 0.98rem;
+    width: 0.76rem;
     border-radius: 50%;
     margin-right: 0.15rem;
     vertical-align: middle;
@@ -458,6 +458,12 @@
     margin-left: 0.4rem;
 }
 
+.details_item_bottom > div span.active:last-child {
+    background: url("../image/circle/fabulous2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+    margin-left: 0.4rem;
+}
+
 .details_item_children {
     padding: 0 0.4rem 0 1.55rem;
     background: #F9F9F9;
@@ -472,6 +478,11 @@
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 0.2rem;
+    color: #666666;
+}
+
+.details_item_children_top span {
+    font-size: 0.28rem;
     color: #666666;
 }
 
@@ -610,6 +621,7 @@
     left: 0;
     bottom: -3rem;
     z-index: 10;
+
 }
 .textMedal{
     display: none;
@@ -625,6 +637,23 @@
     z-index: 10;
     border-radius: 0.08rem;
 }
+
+
+.textMedal{
+    display: none;
+    position: relative;
+    width: 7rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    z-index: 10;
+    border-radius: 0.08rem;
+}
+
 .meng{
     position: absolute;
     left: 0;
@@ -728,10 +757,9 @@
 .signBox{
 
     background: #ffffff;
-    padding: 0 0.4rem;
+    padding: 0.32rem 0.4rem;
 }
 .signBoxInfo{
-    padding:0.32rem 0;
     background: #ffffff;
 }
 
@@ -743,6 +771,27 @@
 }
 .sign-list-person,.sign-status{
     align-items: center;
+    position: relative;
+    padding-right: 0.3rem;
+}
+
+.sign-status > span {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: 0.12rem solid rgba(0,0,0,0);
+    border-top: 0.12rem solid #638BFF;
+    border-left: 0.12rem solid rgba(0,0,0,0);
+    border-right: 0.12rem solid rgba(0,0,0,0);
+    position: absolute;
+    top: 40%;
+    right: 0;
+}
+
+.sign-status > span.active {
+    border-bottom: 0.12rem solid #638BFF;
+    border-top: 0.12rem solid rgba(0,0,0,0);
+    top: 10%;
 }
 .sign-per-img{
     display: inline-block;
@@ -1031,6 +1080,16 @@
     margin-left: 0.2rem;
 }
 
+.status1 {
+    background: #FFEBC8;
+    color: #FFA300;
+}
+
+.status2 {
+    background: #F2BABA;
+    color: #FF1D1D;
+}
+
 
 /*电子票==========================开始*/
 .E_ticket {
@@ -1079,6 +1138,7 @@
 
 .E_ticket_bottom {
     padding: 0.31rem 0.04rem;
+    align-items: center;
 }
 
 .E_ticket_bottom img {

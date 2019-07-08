@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="E_ticket_bottom cssFlex" @click="linkHandle()">
-                    <span><img src="../../../image/pro.png" alt=""></span>
+                    <span><img :src="obj.poster" alt=""></span>
                     <div>
                         <div class="E_ticket_bottom_title textOverflow">{{obj.title}}</div>
                         <div class="E_ticket_bottom_time">活动时间: {{obj.c_from}}</div>
