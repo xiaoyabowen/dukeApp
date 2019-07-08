@@ -1,58 +1,32 @@
 <div class="subsignBoxInfo">
-    <div class="rel-box">
+    <div class="rel-box" @click="linkHandle(item.circle_id)" v-for="(item, index) in list" :key="index">
         <div class="rel-info cssFlex">
-            <img src="../../../image/hr.png" alt="hr" class="rel-info-img">
+            <img :src="item.p_icon" alt="hr" class="rel-info-img">
             <div class="rel-info-info">
-                <div class="rel-infoname">燕子</div>
+                <div class="rel-infoname">{{item.p_name}}</div>
                 <div class="fel-infotime">
-                    2019年6月12日发布
+                    {{item.time}}发布
                 </div>
             </div>
         </div>
         <div class="rel-title-h2">
-            迪卡侬五一免费欢乐泡泡泡
+            {{item.title}}
         </div>
         <div class="rel-imgbig">
-            <img src="../../../image/circle/circle01.png" alt="circle">
+            <img :src="item.poster" alt="circle">
         </div>
         <div class="rel-comment">
             <span class="commmentBox">
-                <i class="commentNum">2</i>评论
+                <i class="commentNum">{{item.CommentNum}}</i>评论
             </span>
             <span class="signYesBox">
-                <i class="signYesNum">124</i>
+                <i class="signYesNum">{{item.PersonNum}}</i>
                 已报名
             </span>
         </div>
-        <div class="notSignActive" v-if="showInfo">活动已取消</div>
+        <div class="notSignActive" v-if="item.cir_status == 0">活动已取消</div>
     </div>
-    <div class="rel-box">
-        <div class="rel-info cssFlex">
-            <img src="../../../image/hr.png" alt="hr" class="rel-info-img">
-            <div class="rel-info-info">
-                <div class="rel-infoname">燕子</div>
-                <div class="fel-infotime">
-                    2019年6月12日发布
-                </div>
-            </div>
-        </div>
-        <div class="rel-title-h2">
-            迪卡侬五一免费欢乐泡泡泡
-        </div>
-        <div class="rel-imgbig">
-            <img src="../../../image/circle/circle01.png" alt="circle">
-        </div>
-        <div class="rel-comment">
-            <span class="commmentBox">
-                <i class="commentNum">2</i>评论
-            </span>
-            <span class="signYesBox">
-                <i class="signYesNum">124</i>
-                已报名
-            </span>
-        </div>
-        <div class="notSignActive">活动已取消</div>
-    </div>
+
 </div>
 
 

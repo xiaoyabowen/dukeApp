@@ -4,7 +4,7 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.10:8000/'
+var localhostHref = 'http://192.168.1.10:8000/SE4M'
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -171,11 +171,18 @@ var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 
 // 圈子报名管理
 var queryApplyList = serverUrl + "/CircleProfile/queryApplyList";
+// 群发短信
+var MassTexting = localhostHref + "/MassTexting";
 
 // 圈子 我的活动   我参加的
 var queryMyJoinCirCle = serverUrl + "/CircleProfile/queryMyJoinCirCle";
 // 圈子 我的活动   我发布的
 var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPersonId";
+
+// 获取评论数据
+var queryCommentSummary = serverUrl + "/CircleProfile/queryCommentSummary";
+// 评论活动
+var addComment = serverUrl + "/CircleProfile/addComment";
 
 
 function checkUrl(urlString) {
@@ -213,15 +220,16 @@ function checkUrl(urlString) {
 
 
 function dataValue(name) {
-
+    var path = 'widget://html/' + name;
+    // console.log(path)
     //同步返回结果：
     var data = api.readFile({
         sync: true,
-        path: 'widget://html/'+name
+        path: path
     });
+    // console.log(data)
     return data
 }
-
 
 
 //头部高度

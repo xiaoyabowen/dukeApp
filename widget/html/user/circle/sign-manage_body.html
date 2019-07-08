@@ -20,8 +20,8 @@
             </div>
 
             <!--<component :is="isCom"></component>-->
-            <sign_suc v-if="isActive"></sign_suc>
-            <sign_erro v-if="!isActive"></sign_erro>
+            <sign_suc :list="list1" v-if="isActive"></sign_suc>
+            <sign_erro :list="list2" v-if="!isActive"></sign_erro>
         </div>
     </div>
 
@@ -59,15 +59,40 @@
                     isActive: true,
                     isCom: 'sign_suc',
                     person_id: '',
+                    list1: [],
+                    list2: [],
                 },
                 created: function () {
-                    console.log()
+                    this.circle_id = api.pageParam.circle_id;
+                    this.queryApplyList();
                 },
                 mounted: function () {
 
                 },
                 methods: {
+                    // 获取数据
+                    queryApplyList: function () {
+                        var that = this;
+                        // console.log(123)
+                        ajaxGetWithProgress(queryApplyList, {
+                            circle_id: that.circle_id,
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.ApplyList) {
+                                var arr = data.ApplyList;
+                                for (var i = 0; i < arr.length; i++) {
+                                    arr[i]['active'] = false;
+                                    if (arr[i].status == 2) {
+                                        that.list2.push(arr[i])
+                                    } else {
+                                        that.list1.push(arr[i])
+                                    }
+                                }
 
+                            }
+
+                        });
+                    },
 
                     // 切换组件
                     componentHandle: function () {

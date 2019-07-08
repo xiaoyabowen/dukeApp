@@ -1,83 +1,49 @@
 <div class="subsignBoxInfo">
-    <div class="rel-box join-rel-box">
+    <div class="rel-box join-rel-box" v-for="(item, index) in list" :key="index">
         <div class="rel-info join-rel-info cssFlex">
-            <img src="../../../image/hr.png" alt="hr" class="rel-info-img">
+            <img :src="item.p_icon" alt="hr" class="rel-info-img">
             <div class="rel-info-info">
-                <div class="rel-infoname">燕子</div>
+                <div class="rel-infoname">{{item.cir_name}}</div>
                 <div class="fel-infotime">
-                    2019年6月12日发布
+                    {{item.c_from}}发布
                 </div>
             </div>
-            <div class="join-active-status">已取消</div>
+            <div class="join-active-status" v-if="item.cir_status == 0">已取消</div>
         </div>
-        <div class="join-active cssFlex">
-            <img src="../../../image/teacherLiu.png" alt="circle" class="join-img">
+        <div class="join-active cssFlex" @click="linkHandle(item.circle_id)">
+            <img :src="item.poster" alt="circle" class="join-img">
             <div  class="join-main">
-                <div class="join-main-title">迪卡侬五一免费欢乐泡泡泡</div>
+                <div class="join-main-title">{{item.title}}</div>
                 <div class="join-main-active">
-                    活动时间：<i>2019年6月14日  11:00</i>
+                    活动时间：<i>{{item.c_from}}</i>
                 </div>
                 <div class="join-main-active">
-                    活动地点：<i>青年路社区</i>
+                    活动地点：<i>{{item.address}}</i>
                 </div>
             </div>
         </div>
         <div class="line20"></div>
         <div class="join-actde">
             <div class="join-check cssFlex">
-                <span class="join-seedian">查看电子票</span>
-                <span class="join-status join-status-dai">待参加</span>
+                <span class="join-seedian" @click="checkETickets(item.circle_id)">查看电子票</span>
+                <span class="join-status join-status-dai" v-if="item.status == 0">待参加</span>
+                <span class="join-status join-status-dai status1" v-if="item.status == 1">已签到</span>
+                <span class="join-status join-status-dai status2" v-if="item.status == 2">已取消</span>
             </div>
-            <div class="join-free">免费参加</div>
+            <div class="join-free">{{item.cost}}参加</div>
             <div class="join-conct">
-                董明明   <i class="join-phone">13316161717</i>
+                {{item.p_name}}   <i class="join-phone">{{item.phone}}</i>
             </div>
         </div>
 
-        <div class="join-confirm-btn cssFlex">
-            <div class="join-not-sign">取消报名</div>
-            <div class="join-sign-active">活动签到</div>
-        </div>
-    </div>
-
-    <div class="rel-box join-rel-box">
-        <div class="rel-info join-rel-info cssFlex">
-            <img src="../../../image/hr.png" alt="hr" class="rel-info-img">
-            <div class="rel-info-info">
-                <div class="rel-infoname">燕子</div>
-                <div class="fel-infotime">
-                    2019年6月12日发布
-                </div>
-            </div>
-            <div class="join-active-status">已取消</div>
-        </div>
-        <div class="join-active cssFlex">
-            <img src="../../../image/teacherLiu.png" alt="circle" class="join-img">
-            <div  class="join-main">
-                <div class="join-main-title">迪卡侬五一免费欢乐泡泡泡</div>
-                <div class="join-main-active">
-                    活动时间：<i>2019年6月14日  11:00</i>
-                </div>
-                <div class="join-main-active">
-                    活动地点：<i>青年路社区</i>
-                </div>
-            </div>
-        </div>
-        <div class="line20"></div>
-        <div class="join-actde">
-            <div class="join-check cssFlex">
-                <span class="join-seedian">查看电子票</span>
-                <span class="join-status join-status-dai">待参加</span>
-            </div>
-            <div class="join-free">免费参加</div>
-            <div class="join-conct">
-                董明明   <i class="join-phone">13316161717</i>
-            </div>
+        <div class="join-confirm-btn cssFlex" v-if="item.status == 0 && item.cir_status != 0">
+            <div class="join-not-sign" @click="cancellation(item.id, index)">取消报名</div>
+            <div class="join-sign-active" @click="signHandle(item.id)">活动签到</div>
         </div>
 
-        <div class="join-confirm-btn cssFlex" v-if="showInfo">
-            <div class="join-not-sign">取消报名</div>
-            <div class="join-sign-active">活动签到</div>
+        <div class="join-confirm-btn cssFlex" v-if="item.cir_status == 0">
+            <div class="join-not-sign" @click="cancellation(item.id, index)">取消报名</div>
+            <div class="join-sign-active" style="border: 1px solid #D6D6D6;background: #D6D6D6;color: #FFFFFF;">活动签到</div>
         </div>
     </div>
 

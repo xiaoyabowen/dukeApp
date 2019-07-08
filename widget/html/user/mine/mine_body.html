@@ -108,6 +108,10 @@
                     <img src="../../../image/mine/guanzhu.png" alt="jianli" class="img-four">
                     <p>我的关注</p>
                 </li>
+                <li onclick="my_circle()">
+                    <img src="../../../image/mine/circle.png" alt="jianli" class="img-four">
+                    <p>我的活动</p>
+                </li>
                 <li onclick="setting()">
                     <img src="../../../image/mine/yinsi.png" alt="jianli" class="img-five">
                     <p>隐私设置</p>
@@ -223,7 +227,11 @@
         function my_Concern() {
             openNewWindow("my_Concern", "my_Concern.html")
         }
-        // 我的关注
+        // 我的活动
+        function my_circle() {
+            openNewWindow("myActives", "../circle/myActives.html")
+        }
+        // 隐私设置
         function setting() {
             openNewWindow("setting", "setting.html")
         }
