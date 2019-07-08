@@ -321,7 +321,6 @@
             api.hideProgress();
             return;
         }
-
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(data)
             localStorage.setItem('user',JSON.stringify(data))
@@ -329,9 +328,8 @@
             if (data.success == false) {
                 openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
-
                 openNewWindow("home", "../user/home/home.html")
-                // openNewWindow("myActives", "../user/circle/myActives.html")
+                // openNewWindow("publishing_activities", "../user/circle/publishing_activities.html")
             }
         });
     }

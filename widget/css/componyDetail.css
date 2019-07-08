@@ -16,7 +16,7 @@ img.followshare {
     font-size: 0.2rem;
     font-weight: 400;
     color: rgba(99,139,255,1);
-    background: url("../icon/jia.png") no-repeat 0.12rem center;
+    background: url("../icon/jiaGuan.png") no-repeat 0.12rem center;
     background-size: 0.16rem 0.16rem;
     padding-left: 0.4rem;
     margin-right: 0.3rem;
@@ -148,7 +148,7 @@ div#content {
 
 }
 .infobox{
-    padding: 0.2rem 0.42rem ;
+    padding: 0.2rem 0.34rem ;
 }
 .activeTab:after{
     content: "";
@@ -271,15 +271,22 @@ p.job-text {
 h4.productName {
     padding: 0 0 0.2rem 0.34rem;
 }
+.productNamePad{
+    padding: 0 0 0.2rem 0 !important;
+}
 .infoProduct {
     padding: 0 0 0 0.34rem;
     margin-bottom: 0.2rem;
+}
+.infoProductPad{
+    padding: 0 !important;
 }
 img.pro-img {
     display: inline-block;
     width: 1rem !important;
     height: 1rem;
     /*flex: 1;*/
+    float: left;
     margin-right: 0.28rem;
 }
 .seniorimg{
@@ -287,6 +294,7 @@ img.pro-img {
     width: 1rem !important;
     height: 1rem;
     /*flex: 1;*/
+    float: left;
     margin-right: 0.28rem;
 }
 .infoProductContent>h5{
@@ -514,6 +522,7 @@ span.main-right {
     bottom: 0;
     left: 0;
     padding: 0.2rem 0 0.2rem 0.2rem;
+    z-index: 999;
 }
 .chatJob,.workJob{
     width:46%;
