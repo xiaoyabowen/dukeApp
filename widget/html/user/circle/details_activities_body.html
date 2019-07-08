@@ -119,8 +119,8 @@
                             <span>{{details.time.split(' ')[0]}}</span>
                             <div>
                                 <span @click="comments2(details.comment_id, index)">{{details.commentByid ? details.commentByid.length : 0}}</span>
-                                <span @click="giveZan()" v-if="details.status == 0">{{details.CommentZan}}</span>
-                                <span class="active" @click="giveZan()" v-if="details.status == 1">{{details.CommentZan}}</span>
+                                <span @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 0">{{details.CommentZan}}</span>
+                                <span class="active" @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 1">{{details.CommentZan}}</span>
                             </div>
                         </div>
                     </div>
@@ -552,7 +552,48 @@
                     console.log(bac_id)
                 },
                 // 点赞
-                giveZan: function () {
+                giveZan: function (status, comment_id, index) {
+                    // console.log(comment_id);
+                    var that = this;
+                    if (this.list1[index].status == 0) {
+                        api.ajax({
+                            url: addLike,
+                            method: 'get',
+                            data: {
+                                values: {
+                                    comment_id: comment_id,
+                                    uid: that.person_id
+                                },
+                            }
+                        }, function(data, err) {
+                            console.log(444,data)
+                            if (data.return_info.status) {
+                                that.list1[index].status = 1;
+                                that.list1[index].CommentZan++
+                                mui.toast('点赞成功');
+                            }
+                        });
+
+                    } else {
+                        api.ajax({
+                            url: removeLike,
+                            method: 'get',
+                            data: {
+                                values: {
+                                    comment_id: comment_id,
+                                    uid: that.person_id
+                                },
+                            }
+                        }, function(data, err) {
+                            console.log(data)
+                            if (data.return.status) {
+                                that.list1[index].status = 0;
+                                that.list1[index].CommentZan--
+                                mui.toast('取消点赞');
+                            }
+                        });
+
+                    }
 
                 },
                 // 点击报名
