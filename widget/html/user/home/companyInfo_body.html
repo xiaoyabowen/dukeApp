@@ -44,9 +44,67 @@
             font-weight:400;
             color:rgba(153,153,153,1) !important;
         }
+        .demobiox{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            background: cadetblue;
+            z-index: 99;
+        }
     </style>
 </head>
 <body class="commonBg">
+
+
+<!--智能魔方菜单-->
+<div id="app1" class="demobiox isDisplay">
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
+        <div class="appMask" @click="hideHandle()">
+
+        </div>
+        <div class="borderBoxRote positionCom"
+             @click="detailClick(index)"
+             v-bind:class="['position'+index, active ? 'animation' : '']"
+             v-for="(item, index) in list" :key="index">
+            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
+                <div class="daobox">
+                    <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
+                    <div>{{ item.job_name }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="borderBoxRote positionCom"
+             @click="detailClick2(index)"
+             v-bind:class="['position1'+index, active ? 'animation' : '']"
+             v-for="(item, index) in list1" :key="index">
+            <div class="xuanbox" :class="index2== index ? 'active' : ''">
+                <div class="daobox">
+                    <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
+                    <div>{{ item.c_name }}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div class="cir_mine positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>我的</span>
+        </div>
+        <div class="cir_return positionCir">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>返回</span>
+        </div>
+        <div class="cir_hide positionCir" @click="togleHide">
+            <img src="images/icon/person.png" class="iconImg" alt="person">
+            <span>隐藏</span>
+        </div>-->
+
+    </div>
+</div>
+
+
 <div class="contentBox">
     <div class="subBox">
 
@@ -104,16 +162,16 @@
                         百度，全球最大的中文搜索引擎、最大的中文网站。百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。<br/>
                         “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。
                     </p>
-                    <h4 class="productName">产品介绍</h4>
+                    <h4 class="productName productNamePad">产品介绍</h4>
                     <div class="product_hisbox">
-                        <div class="infoProduct cssFlex">
+                        <div class="infoProduct infoProductPad clearfix">
                             <img src="../../../image/pro.png" alt="pro" class="pro-img">
                             <div class="infoProductContent">
                                 <h5>百度本地广告直通车</h5>
                                 <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
                             </div>
                         </div>
-                        <div class="infoProduct cssFlex">
+                        <div class="infoProduct infoProductPad clearfix">
                             <img src="../../../image/pro.png" alt="pro" class="pro-img">
                             <div class="infoProductContent">
                                 <h5>百度本地广告直通车</h5>
@@ -122,16 +180,16 @@
                         </div>
                     </div>
 
-                    <h4 class="productName">高管介绍</h4>
-                    <div class="infoProduct cssFlex">
+                    <h4 class="productName productNamePad">高管介绍</h4>
+                    <div class="infoProduct infoProductPad clearfix">
                         <img src="../../../image/pro.png" alt="pro" class="seniorimg">
                         <div class="infoProductContent">
                             <h5 class="seniorname">李彦宏</h5>
                             <p class="textOverflow seniorinfo">1968年11月生，山西阳泉人，无党派，研究生学历。现任全国政协委员、全国工商<i>详情</i></p>
                         </div>
                     </div>
-                    <h4 class="productName">公司照片</h4>
-                    <div class="swiper-container">
+                    <h4 class="productName productNamePad">公司照片</h4>
+                    <div class="swiper-container infoProductPad">
                         <div class="swiper-wrapper PIClistBox">
                             <div class="swiper-slide">
                                 <img src="../../../image/babyShow01.png" alt="img">
@@ -146,9 +204,8 @@
                                 <img src="../../../image/babyShow02.png" alt="img">
                             </div>
                         </div>
-
                     </div>
-                    <h4 class="productName">公司地址</h4>
+                    <h4 class="productName productNamePad">公司地址</h4>
 
                 </div>
 
@@ -159,12 +216,12 @@
                     <!--点击地图上的点标记，打开所添加的自定义信息窗体-->
                 </div>
                 <div class="infobox">
-                    <h4 class="productName">公司官网</h4>
+                    <h4 class="productName productNamePad">公司官网</h4>
                     <div class="link-compony cssFlex">
                         <span class="homepage">http://www.baidu.com</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
-                    <h4 class="productName">工商信息</h4>
+                    <h4 class="productName productNamePad">工商信息</h4>
                     <div class="gong-info">
                         <p>
                             公司全称：<span class="Name">百度在线网络技术（北京）有限公司</span>
@@ -348,6 +405,7 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
+<script src="../../../script/vue.min.js"></script>
 
 <script>
     // swiper  轮播
@@ -398,7 +456,7 @@
         cid = api.pageParam.cid;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         var obj = {
-            cid: "1",
+            cid: cid,
             person_id: uid
         }
 
@@ -414,10 +472,13 @@
             var JobList = data.JobList    //  zaizhao 职位
             var DynamicList = data.DynamicList    //  公司动态
             var attentionCompany = data.attentionCompany    //  关注状态
-            var welData = welfare.split(",")
+            if (welData){
+                var welData = welfare.split(",")
+
+            }else {
+                welData = ''
+            }
             var adressData = data.address
-
-
             if (data) {
                 // 公司头部
 
@@ -440,9 +501,9 @@
                     '                    </p>\n' +
                     '                    <p class="timeInfo cssFlex">\n' +
                     '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                    '                        <span>上午' + dataSummary.s_time + '</span>\n' +
+                    '                        <span>' + dataSummary.s_time + '</span>\n' +
                     '                        <i>-</i>\n' +
-                    '                        <span class="marginR">下午' + dataSummary.x_time + '</span>\n' +
+                    '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
                     '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
                     '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
                     '                        <span>' + dataSummary.work_overtime + '</span>\n' +
@@ -584,6 +645,58 @@
 
             });
         });
+
+
+        new Vue({
+            el: '#app1',
+            data: {
+                list: [],
+                list1: [],
+                isHide: true,
+                active: false,
+                index1: -1,
+                index2: -1
+            },
+            created: function () {
+                this.queryListRandom()
+            },
+            methods: {
+                queryListRandom: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
+                        console.log(data);
+
+                        that.list = data.job;
+                        that.list1 = data.company;
+                        // console.log(that.list)
+                        document.getElementById('app1').classList.remove('isDisplay');
+                    });
+                },
+                togle: function () {
+                    document.getElementById('subBox').classList.remove('isDisplay');
+                    console.log(123)
+                    this.active = true;
+                    var that = this;
+                    this.queryListRandom();
+                    setTimeout(function () {
+                        that.active = false;
+                    }, 1500)
+                },
+                detailClick: function (index) {
+                    this.index1 = index;
+                    this.index2 = -1;
+                    console.log(index)
+                },
+                detailClick2: function (index) {
+                    this.index2 = index;
+                    this.index1 = -1;
+                },
+                hideHandle: function () {
+                    document.getElementById('subBox').classList.add('isDisplay');
+                }
+
+            }
+        })
     };
 
     var flag = true;//

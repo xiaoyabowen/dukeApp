@@ -1,15 +1,18 @@
 
 <div class="notDataBox">
-    <div class="notData" v-if="dataDiv.length==0 ? 'activeAddImg' : ''">
+    <!--<div class="notData" v-if="dataDiv.length==0 ? 'activeAddImg' : ''">-->
+    <div class="notData" style="display: none">
         <img :src="imgUrl" alt="set" class="maskImg">
         <div class="addMask" @click="mask()">立即添加</div>
     </div>
 
 
-    <div class="textBox" v-for="(v,i) in dataDiv" v-if="dataDiv.length!=0 ? '' : 'activeAddImg'">
-        <div class="addText" v-text="dataDiv[i].textActive"></div>
-        <img :src="imgAdd" alt="imgAdd" class="imgAdd">
-        <img :src="imgDel" alt="imgDel" class="imgDel">
+    <!--<div class="textBox" v-for="(v,i) in dataDiv" v-if="dataDiv.length!=0 ? '' : 'activeAddImg'">-->
+    <div class="textBox" v-for="(item,index) in dataDiv">
+        <!--<div class="addText" v-text="dataDiv[i].textActive"></div>-->
+        <div class="addText" v-html="item.textActive"></div>
+        <img :src="imgAdd" alt="imgAdd" class="imgAdd" @click="mask(index)">
+        <img :src="imgDel" alt="imgDel" class="imgDel" @click="deleteText(index)">
     </div>
 
     <div class="bottom-medal">
@@ -26,6 +29,26 @@
         </div>
         <div class="cancle" @click="cancel()">取消</div>
     </div>
+    <div class="meng"></div>
+    <div class="textMedal">
+        <div class="resume_level2_main">
+            <div class="resume_level2_head">
+                文字模板
+            </div>
+
+            <div class="resume_level2_content">
+                <textarea name="" id="text10" cols="30" maxlength=1500 rows="10" v-model="contentText" placeholder=""></textarea>
+            </div>
+            <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/1500汉字</p>
+        </div>
+        <div class="btn-confrm cssFlex">
+            <div class="conform-yes" @click="saveText()">保存</div>
+            <div class="conform-no" @click="cancelText()">取消</div>
+        </div>
+    </div>
+
+
+
 </div>
 
 

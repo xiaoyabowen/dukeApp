@@ -42,12 +42,13 @@
     <script>eruda.init();</script>
     <script>
         apiready = function () {
-            // var ckeditor = CKEDITOR.replace('textarea');
 
+
+            // var ckeditor = CKEDITOR.replace('textarea');
 
             var information = informationInit(Vue);
             var activities = activitiesInit(Vue);
-            console.log(activities)
+
 
             Vue.component('information', information);
             Vue.component('activities', activities);
@@ -64,7 +65,7 @@
                     person_id: '',
                 },
                 created: function () {
-                    console.log()
+
                 },
                 mounted: function () {
                     document.getElementById('box').className = '';
@@ -85,6 +86,9 @@
                 }
             })
         }
+
+
+
     </script>
 </body>
 </html>
