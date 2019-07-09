@@ -20,7 +20,7 @@
                     <img :src="item.poster" />
                 </div>
                 <!--内容区-->
-                <div class="mui-card-content circle_footer">
+                <div class="mui-card-content circle_footer" @click="linkHandle(item.circle_id)">
                     <div class="circle_title">{{item.title}}</div>
                     <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
                     <div class="circle_city">活动地点: <span> {{item.province}}{{item.city}}{{item.street}}</span></div>
