@@ -14,9 +14,9 @@
 <body>
     <div id="circle">
         <div class="isDisplay" id="box">
-            <div class="mui-card circle_item" @click="linkHandle(item.circle_id)" v-for="(item, index) in list" :key="item.circle_id">
+            <div class="mui-card circle_item"  v-for="(item, index) in list" :key="item.circle_id">
                 <!--页眉，放置标题-->
-                <div class="header_img">
+                <div class="header_img" @click="linkHandle(item.circle_id)">
                     <img :src="item.poster" />
                 </div>
                 <!--内容区-->
@@ -26,7 +26,7 @@
                     <div class="circle_city">活动地点: <span> {{item.province}}{{item.city}}{{item.street}}</span></div>
                     <div class="circle_bottom cssFlex">
                         <span class="circle_sign">已报名 <span>{{item.count}}</span></span>
-                        <span @click="collection(index)"><img class="circle_collection" :src="item.collection ? '../../../image/circle/collection2.png' : '../../../image/circle/collection1.png'" alt=""></span>
+                        <span @click="collection(item.Att_status, item.circle_id, index)"><img class="circle_collection" :src="item.Att_status ? '../../../image/circle/collection2.png' : '../../../image/circle/collection1.png'" alt=""></span>
                     </div>
                 </div>
                 <!--页脚，放置补充信息或支持的操作-->
@@ -113,8 +113,46 @@
                     },
 
                     // 收藏
-                    collection: function (index) {
-                        this.list[index].collection = !this.list[index].collection;
+                    collection: function (status, circle_id, index) {
+                        var that = this;
+                        if (status == 0) {
+                            api.ajax({
+                                url: addAttentionCircle,
+                                method: 'get',
+                                data: {
+                                    values: {
+                                        circle_id: circle_id,
+                                        uid: that.person_id
+                                    },
+                                }
+                            }, function(data, err) {
+                                console.log(444,data)
+                                if (data.return_info.status) {
+                                    that.list[index].Att_status = 1
+                                    mui.toast('收藏成功');
+                                }
+                            });
+
+                        } else {
+                            api.ajax({
+                                url: removeAttentionCircle,
+                                method: 'get',
+                                data: {
+                                    values: {
+                                        circle_id: circle_id,
+                                        uid: that.person_id
+                                    },
+                                }
+                            }, function(data, err) {
+                                console.log(444,data)
+                                if (data.return.status) {
+                                    that.list[index].Att_status = 0
+                                    mui.toast('取消收藏');
+                                }
+                            });
+
+                        }
+
                     }
                 }
             })

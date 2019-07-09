@@ -185,6 +185,15 @@ var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPer
 var queryCommentSummary = serverUrl + "/CircleProfile/queryCommentSummary";
 // 评论活动
 var addComment = serverUrl + "/CircleProfile/addComment";
+// 评论点赞
+var addLike = serverUrl + "/CircleProfile/addLike";
+// 取消评论点赞
+var removeLike = serverUrl + "/CircleProfile/removeLike";
+
+// 活动收藏
+var addAttentionCircle = serverUrl + "/CircleProfile/addAttentionCircle";
+// 取消活动收藏
+var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 
 
 function checkUrl(urlString) {
