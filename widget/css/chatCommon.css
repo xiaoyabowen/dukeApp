@@ -1,0 +1,328 @@
+
+
+/*聊天首页====================开始*/
+.chat_header {
+    height: 1.04rem;
+    line-height: 1.04rem;
+    color: #333333;
+    font-size: 0.28rem;
+    text-align: center;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.chat_header div {
+    flex: 1;
+}
+
+.chat_header div span {
+    position: relative;
+}
+
+.chat_header div span.active:after {
+    content: '';
+    display: block;
+    width: 0.9rem;
+    height: 3px;
+    background: #638BFF;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.basics {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.basics img {
+    width: 2rem;
+}
+
+.basics div {
+    width: 4.09rem;
+    margin: 0.58rem auto;
+    font-size: 0.28rem;
+    color: #666666;
+}
+
+.contacts_main, .interested_main, .resume_main {
+    padding: 0 0.34rem;
+}
+
+.contacts_main_item {
+    /*height: 1.22rem;*/
+    padding: 0.21rem 0;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.contacts_item_left img{
+    width: 0.8rem;
+    border-radius: 50%;
+    margin-right: 0.24rem;
+}
+
+.contacts_item_con {
+    width: 4.08rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 0.4rem;
+}
+
+.contacts_item_con > div {
+    font-size: 0.22rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.contacts_item_con div span {
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(102,102,102,1);
+    margin-right: 0.16rem;
+}
+
+.contacts_item_con > span {
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+}
+
+.contacts_item_right {
+    flex: 1;
+    text-align: right;
+    line-height: 0.8rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+}
+
+.interested_item_con {
+    width: 2.97rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 0.3rem;
+}
+
+.interested_item_con div span {
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(102,102,102,1);
+}
+
+.interested_item_con span, .interested_item_con > div {
+    font-size: 0.22rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+}
+
+.interested_item_right {
+    flex: 1;
+    position: relative;
+}
+
+.interested_btn {
+    display: inline-block;
+    width: 1.49rem;
+    height: 0.50rem;
+    border-radius: 0.04rem;
+    border: 0.02rem solid rgba(99,139,255,1);
+    font-size: 0.22rem;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    line-height: 0.50rem;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#interested {
+    position: relative;
+}
+
+.interested_mask {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.interested_mask .contacts_main_item {
+    padding: 0.3rem 0.34rem;
+}
+
+.border0 {
+    border: 0;
+}
+
+.interested_mask_ta {
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 0.40rem;
+    padding-left: 0.36rem;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.interested_mask_con {
+    padding: 0.3rem 0.38rem;
+}
+
+.interested_mask_item {
+    margin-bottom: 0.2rem;
+}
+
+.interested_mask_item_top {
+    font-size: 0.30rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height:0.42rem;
+}
+
+.interested_mask_item_bottom {
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.33rem;
+}
+
+.interested_mask_item_right {
+    flex: 1;
+    text-align: right;
+    font-size: 0.36rem;
+    font-weight: 500;
+    color: rgba(92,145,253,1);
+    line-height: 0.8rem;
+}
+
+
+
+.subscribed_main_item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.01rem solid #EBEBEB;
+    border-top: 0.01rem solid #EBEBEB;
+    padding: 0.3rem 0 0.2rem;
+}
+
+.subscribed_item_position {
+    font-size: 0.3rem;
+    color: #333333;
+    font-weight: 500;
+    width: 4.6rem;
+}
+
+.subscribed_item_company > div:first-child {
+    color: #333333;
+    font-size: 0.22rem;
+}
+
+.subscribed_item_company > div:last-child {
+    color: #666666;
+    font-size: 0.2rem;
+}
+
+.subscribed_item_company > div {
+    line-height: 1;
+    margin: 0.15rem 0;
+}
+
+.subscribed_item_user {
+    display: flex;
+    align-items: center;
+    margin-top: 0.23rem;
+}
+
+.subscribed_item_user_img {
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    margin-right: 0.1rem;
+}
+
+.subscribed_item_user_img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.subscribed_item_user_name {
+    font-size: 0.24rem;
+    color: #333333;
+}
+
+.subscribed_item_range {
+    color: #5C91FD;
+    font-size: 0.36rem;
+    font-weight: 500;
+    padding: 0.15rem 0;
+}
+
+.subscribed_item_date {
+    color: #333333;
+    font-size: 0.24rem;
+    text-align: right;
+}
+
+.subscribed_main > div:last-child {
+    border: 0.01rem solid #ffffff;
+}
+
+.subscribed_bottom {
+    padding: 0 0.32rem;
+}
+
+.subscribed_bottom_btn {
+    height: 0.78rem;
+    border: 0.01rem solid #5C91FD;
+    border-radius: 0.08rem;
+    display: flex;
+    color: #5C91FD;
+    font-size: 0.28rem;
+    margin-top: 0.5rem;
+}
+
+.subscribed_bottom_btn div {
+    flex: 50%;
+    text-align: center;
+    line-height: 0.78rem;
+}
+
+.subscribed_bottom_btn div:first-child {
+    background: #5C91FD;
+    color: #ffffff;
+}
+
+.resume_main_item_bottom {
+    font-size: 0.24rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+    line-height:0.5rem;
+    /*border-bottom: 1px solid #EBEBEB;*/
+}
+
+/*聊天首页====================结束*/
+.isDisplay {
+    display: none;
+}
+
+.borderTop0 {
+    border-top: 0;
+}

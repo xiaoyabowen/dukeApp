@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>圈子</title>
+    <title>聊天</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/chatCommon.css">
 </head>
-<body>
-    <div id="chat">
+<body class="commonBg">
 
+    <div class="Box">
+        <div id="chat">
+            <div class="chat_header cssFlex">
+                <div><span @click="tabHandle('contacts')" :class="active === 'contacts' ? 'active' : ''">联系人</span></div>
+                <div><span @click="tabHandle('interested')" :class="active === 'interested' ? 'active' : ''">对我感兴趣</span></div>
+                <div><span @click="tabHandle('resume')" :class="active === 'resume' ? 'active' : ''">看过我</span></div>
+            </div>
+            <button id="start_connect" onclick="connect_server()">连接</button>
+            <button id="stop_connect" onclick="dis_connect()">断开连接</button>
+            <br>
+            <input type="text" id="msg_input">
+            <button id="send_btn" onclick="send_msg()">发送</button>
+            <br>
+            <div id="ws_log"><p>日志</p><br></div>
+
+            <component :is="active"></component>
+        </div>
     </div>
 
     <script type="text/javascript" src="../../../script/api.js"></script>
@@ -23,42 +40,98 @@
     <script type="text/javascript" src="../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../script/mui.min.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
+
+    <script src="https://cdn.bootcss.com/paho-mqtt/1.1.0/paho-mqtt.js"></script>
+    <!--<script src="../../../script/mqtt.min.js"></script>-->
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
+    <script src="./comment/contacts.js"></script>
+    <script src="./comment/interested.js"></script>
+    <script src="./comment/resume.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
+        // console.log(mqtt);
+        // 连接选项
+        // const options = {
+        //     connectTimeout: 4000, // 超时时间
+        //     // 认证信息
+        //     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+        //
+        // }
+        //
+        // const client = mqtt.connect('mqtt://192.168.1.10:1883', options)
+        //
+        // console.log(client)
+        // client.on('connect', function () {
+        //
+        //     client.subscribe('presence', function (err) {
+        //         if (!err) {
+        //             console.log('订阅成功')
+        //             client.publish('presence', 'Hello mqtt')
+        //         }
+        //     })
+        // })
+        //
+        // client.on('message', function (topic, message) {
+        //     // message is Buffer
+        //     console.log(123, topic)
+        //     console.log(message.toString())
+        //     client.end()
+        // })
+        // Create a client instance
+        console.log(Paho)
+        var client = new Paho.Client('192.168.1.10', Number(61614), "clientId");
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+        client.connect({onSuccess:onConnect});
+
+        function onConnect() {
+            // Once a connection has been made, make a subscription and send a message.
+            console.log("onConnect");
+            client.subscribe("/World");
+            var message = new Paho.Message("Hello");
+            message.destinationName = "/World";
+            client.send(message);
+        };
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0)
+                console.log("onConnectionLost:"+responseObject.errorMessage);
+        };
+        function onMessageArrived(message) {
+            console.log(message)
+            console.log("onMessageArrived:"+message.payloadString);
+            client.disconnect();
+        };
+
+
+
+
+    </script>
+
+    <script>
+
         apiready = function () {
-            var list = [
-                {
-                    img: '../../../image/circle/circle01.png',
-                    title: '迪卡侬五一免费欢乐泡泡泡',
-                    from: '2019-04-16 11:00',
-                    to: '2019-05-16 11:00',
-                    city: '北京市少年宫',
-                    sign: '123',
-                    collection: false
-                },{
-                    img: '../../../image/circle/circle01.png',
-                    title: '迪卡侬五一免费欢乐泡泡泡',
-                    from: '2019-04-16 11:00',
-                    to: '2019-05-16 11:00',
-                    city: '北京市少年宫',
-                    sign: '123',
-                    collection: true
-                },
-            ]
+            var contacts = contactsInit(Vue);
+            var interested = interestedInit(Vue);
+            var resume = resumeInit(Vue);
+
+            Vue.component('contacts', contacts);
+            Vue.component('interested', interested);
+            Vue.component('resume', resume);
 
             new Vue({
                 el: '#chat',
                 data: {
                     isDisplay: false,
-                    list: list,
+                    active: 'contacts',
+                    list: [],
                     person_id: ''
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
+
 
                 },
                 mounted: function () {
@@ -66,10 +139,15 @@
                     this.isDisplay = true;
                 },
                 methods: {
-
+                    // tab切换
+                    tabHandle: function (name) {
+                        this.active = name;
+                    }
                 }
             })
         }
+
+        // apiready();
     </script>
 </body>
 </html>
