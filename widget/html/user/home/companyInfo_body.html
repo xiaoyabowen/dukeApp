@@ -322,7 +322,7 @@
 
 </div>
 <!--   企业空间 模态框   -->
-<div class="modal-space modal-news">
+<div class="modal-space modal-news" onclick="closeMotal()">
     <!--<div class="subspace subspaceNew">-->
         <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
         <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
@@ -340,9 +340,9 @@
     <!--</div>-->
 </div>
 <!--公司详细信息-->
-<div class="modal-space model-com">
+<div class="modal-space model-com" onclick="closeMotalCom()">
     <div class="subspace subspaceCom">
-        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotalCom()">
+        <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotalCom()">-->
         <div class="com-logo">
             <img src="../../../image/mine/icon_baidulogo.png" alt="icon" class="baidulogo">
         </div>
@@ -419,6 +419,7 @@
     });
     // 公司模态框
     $(document).on("click", ".more-see", function () {
+        alert(1)
         $(".model-com").show()
     })
 
