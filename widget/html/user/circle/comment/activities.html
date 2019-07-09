@@ -10,7 +10,7 @@
     <!--<div class="textBox" v-for="(v,i) in dataDiv" v-if="dataDiv.length!=0 ? '' : 'activeAddImg'">-->
     <div class="textBox" v-for="(item,index) in dataDiv">
         <!--<div class="addText" v-text="dataDiv[i].textActive"></div>-->
-        <div class="addText" v-html="item.textActive"></div>
+        <p class="addText" v-html="item.textActive"></p>
         <img :src="imgAdd" alt="imgAdd" class="imgAdd" @click="mask(index)">
         <img :src="imgDel" alt="imgDel" class="imgDel" @click="deleteText(index)">
     </div>
