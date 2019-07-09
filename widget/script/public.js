@@ -195,6 +195,14 @@ var addAttentionCircle = serverUrl + "/CircleProfile/addAttentionCircle";
 // 取消活动收藏
 var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 
+// 查询屏蔽公司列表
+var queryShieldCompany = serverUrl + "/OrgnizationProfile/queryShieldCompany";
+// 添加屏蔽公司
+var addShieldCompany = serverUrl + "/OrgnizationProfile/addShieldCompany";
+// 模糊查询公司
+var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
+
+
 
 function checkUrl(urlString) {
     if (urlString != "") {

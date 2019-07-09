@@ -482,7 +482,7 @@
                                     },
                                 }
                             }, function(data, err) {
-                                // alert(456)
+
                                 // console.log(456)
                                 // console.log(data)
                                 if (data.comment) {
@@ -492,13 +492,16 @@
                                     }
                                     that.list1 = arr;
                                 }
+                                that.bac_id = null;
+                                that.comment_box = false;
+                                that.textarea = '';
                             });
                         } else {
                             mui.toast('评论失败');
                         }
                         that.bac_id = null;
-                        this.comment_box = false;
-                        this.textarea = '';
+                        that.comment_box = false;
+                        that.textarea = '';
                     });
                 },
 

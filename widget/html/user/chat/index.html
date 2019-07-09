@@ -6,26 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>首页</title>
+    <title>聊天</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWindow.css" />
     <style>
-
+        #leftButton {
+            left: 0.2rem;
+        }
+        .home-middle {
+            width: 4.34rem;
+            margin-left: 1rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .searchInput {
+            width: 100%;
+            padding-left: 0.97rem;
+            padding-right: 0.5rem;
+            background:url("../../../icon/search.png") no-repeat 0.38rem center,rgba(255,255,255,1);
+            background-size: 0.23rem;
+        }
+        ::-webkit-input-placeholder{
+            font-size: 0.24rem;
+        }
+        .searchClick {
+            display: block;
+            font-size: 0.16rem;
+            background: #638BFF;
+            position: absolute;
+            right: -30%;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>-->
-    <!--<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
 <div id="topbar" class="cssFlex">
     <div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/mine.png" onclick="mineGo()">
+        <img class="leftImgTop" src="../../../icon/back.png" onclick="closeWin()">
     </div>
     <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
+        <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
         <span class="searchClick">GO</span>
-    </div>
-    <div class="right">
-        <img class="rightImgTop" src="../../../icon/msg.png" onclick="linkChat()" alt="chat">
     </div>
 </div>
 
@@ -56,13 +84,7 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     }
-    function mineGo() {
-        openNewWindow("mine", "../mine/mine.html")
-    }
 
-    // 跳转到聊天页面
-    function linkChat() {
-        openNewWindow("index", "../chat/index.html")
-    }
+
 </script>
 </html>

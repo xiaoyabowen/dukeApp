@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+</head>
+<body>
+    <div id="chat">
+
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/kv.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script src="../../../script/vue.min.js"></script>
+    <script src="../../../script/vuex.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <script>
+        apiready = function () {
+            var list = [
+                {
+                    img: '../../../image/circle/circle01.png',
+                    title: '迪卡侬五一免费欢乐泡泡泡',
+                    from: '2019-04-16 11:00',
+                    to: '2019-05-16 11:00',
+                    city: '北京市少年宫',
+                    sign: '123',
+                    collection: false
+                },{
+                    img: '../../../image/circle/circle01.png',
+                    title: '迪卡侬五一免费欢乐泡泡泡',
+                    from: '2019-04-16 11:00',
+                    to: '2019-05-16 11:00',
+                    city: '北京市少年宫',
+                    sign: '123',
+                    collection: true
+                },
+            ]
+
+            new Vue({
+                el: '#chat',
+                data: {
+                    isDisplay: false,
+                    list: list,
+                    person_id: ''
+                },
+                created: function () {
+                    this.person_id = localStorage.getItem('person_id');
+
+                },
+                mounted: function () {
+
+                    this.isDisplay = true;
+                },
+                methods: {
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>

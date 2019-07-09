@@ -53,10 +53,10 @@ function sign_sucInit(Vue) {
                 mui.prompt('群发短信','','请编辑要发送的短信内容',['确认','取消'],function (e) {
                     if (!e.index) {
                         var arr = []
-                        arr.push('17600963908');
-                        // for (var i = 0; i < that.list.length; i++) {
-                        //     arr.push(that.list[i].phone);
-                        // }
+                        // arr.push('17600963908');
+                        for (var i = 0; i < that.list.length; i++) {
+                            arr.push(that.list[i].phone);
+                        }
                         console.log(arr);
                         console.log(e.value);
                         if (!e.value) {

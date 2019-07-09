@@ -12,11 +12,10 @@
 </head>
 <body>
 <div id="topbar" >
-    <div id="leftButton" tapmode="itemOn" onclick="homeGo()">
-        首页
+    <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>我的</div>
-    <div class="right" onclick="settingGo()">设置</div>
+    <div>隐私设置</div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -30,6 +29,7 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
+
     function settingGo() {
         openNewWindow("setting", "setting.html")
     }

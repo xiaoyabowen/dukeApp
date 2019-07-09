@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"  class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css"/>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <style>
+        .addShieldCompany {
+            padding-top: 0.3rem;
+        }
+        .addShieldCompany_title1 {
+            font-size:0.36rem;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:0.50rem;
+        }
+        .addShieldCompany_title2 {
+            font-size:0.28rem;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(153,153,153,1);
+            line-height:0.40rem;
+        }
+        .resume_expectations_item {
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="commonBg">
+<div class="Box">
+    <div class="boxSub">
+        <div class="addShieldCompany">
+            <div class="addShieldCompany_title1">通过以下方式搜索公司</div>
+            <div class="addShieldCompany_title2">
+                公司全称：如“北京真诚信息网络技术有限公司”
+                企业邮箱后缀：如“@zhencheng.com”
+            </div>
+            <div class="addShieldCompany_content">
+
+                <!--<div class="resume_expectations_item">-->
+                    <!--<div class="info-choose cssFlex">-->
+                        <!--<span class="info-choose-name">技术</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script>
+    var box = document.querySelector('.addShieldCompany_content');
+    apiready = function () {
+
+    };
+
+    function inputhandle(value) {
+        console.log(value);
+        ajaxGetWithProgress(orgnizationList, {
+            c_name: value
+        }, function (data, err) {
+            console.log(data);
+            if (data.orgnizationList) {
+                var list = data.orgnizationList;
+                var arr = [];
+                for (var i = 0; i < list.length; i++) {
+                    var str = '<div class="resume_expectations_item" onclick="handleClick('+ list[i].c_id +')">\n' +
+                        '                    <div class="info-choose cssFlex">\n' +
+                        '                        <span class="info-choose-name">'+ list[i].c_name +'</span>\n' +
+                        '                    </div>\n' +
+                        '                </div>';
+                    arr.push(str);
+                }
+                box.innerHTML = arr.join(' ');
+            }
+        });
+    }
+
+    // 点击屏蔽公司
+    function handleClick(c_id) {
+        ajaxGetWithProgress(addShieldCompany, {
+            cid: c_id
+        }, function (data, err) {
+            console.log(data);
+            if (data.return_info.status) {
+                api.execScript({
+                    name: 'shielding',
+                    frameName: 'shielding_body',
+                    script: 'reload()'
+                })
+                closeWin();
+            }
+        });
+    }
+
+    // 清空页面
+    function clearBox() {
+        box.innerHTML = '';
+    }
+
+</script>
+</body>
+</html>
