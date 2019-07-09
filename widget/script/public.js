@@ -195,6 +195,9 @@ var addAttentionCircle = serverUrl + "/CircleProfile/addAttentionCircle";
 // 取消活动收藏
 var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 
+// 圈子发布活动
+var ActivecreateCircle = localhostHref + "/createCircle";
+
 
 function checkUrl(urlString) {
     if (urlString != "") {

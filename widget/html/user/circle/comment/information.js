@@ -12,20 +12,36 @@ function informationInit(Vue) {
                     background: '',
                     backgroundSize: 'cover'
                 },
-                img: '',
-                title: '',
-                name: '',
-                phone: '',
-                code: '',
-                city: '',
-                time_from: '',
-                time_to: '',
-                num: '',
-                end: '',
+                img: '1',
+                title: '1',
+                name: '1',
+                phone: '1',
+                code: '1',
+                city: '1',
+                time_from: '2017-09-09',
+                time_to: '2018-09-09',
+                num: '24',
+                end: '2019-09-09',
             }
         },
+        created : function (){
+            this.person_id = JSON.parse(localStorage.getItem('user')).user_uid;
+        },
         mounted: function () {
+            var that = this
+            ajaxGetWithProgress(queryInvoice, {
+                person_id: that.person_id,
+                circle_id: that.circle_id,
+            }, function (data, err) {
+                console.log(data);
+                if (data.queryInvoice) {
+                    that.obj = data.queryInvoice[0];
+                    that.qrcode.clear();
+                    that.qrcode.makeCode(that.obj.invoice);
+                    document.getElementById('box').className = '';
+                }
 
+            });
         },
         methods: {
             // 上传图片
@@ -83,9 +99,9 @@ function informationInit(Vue) {
 
                         //将图片转换为base64,再将base64转换成file对象
                         getImgToBase64(ret.data, function (data) {
-                            console.log(data);
+                            // console.log(data);
                             var myFile = dataURLtoFile(data, 'testimgtestimgtestimg');
-                            console.log(myFile);
+                            // console.log(myFile);
 
                             // ajaxGetWithProgress('http://192.168.1.10:8000/SE4M/SE/UserProfile/UplodeTest',{
                             //     person_id: person_id,
@@ -137,6 +153,25 @@ function informationInit(Vue) {
                         console.log(JSON.stringify(err));
                     }
                 })
+            },
+            nextActive:function () {
+                var that = this
+                var obj = {
+                    person_id: that.person_id,
+                    cir_name: that.name,
+                    title: that.title,
+                    poster: that.poster,
+                    code: that.code,
+                    phone: that.phone,
+                    c_from: that.time_from,
+                    c_to: that.time_to,
+                    number: that.num,
+                    endtime: that.end,
+                }
+                console.log(obj)
+                sessionStorage.setItem("informationObj",JSON.stringify(obj))
+
+
             }
         }
     }
