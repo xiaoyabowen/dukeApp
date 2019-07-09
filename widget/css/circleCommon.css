@@ -622,6 +622,7 @@
     left: 0;
     bottom: -3rem;
     z-index: 10;
+
 }
 .textMedal{
     display: none;
@@ -637,6 +638,23 @@
     z-index: 10;
     border-radius: 0.08rem;
 }
+
+
+.textMedal{
+    display: none;
+    position: relative;
+    width: 7rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    z-index: 10;
+    border-radius: 0.08rem;
+}
+
 .meng{
     position: absolute;
     left: 0;
