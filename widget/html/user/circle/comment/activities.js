@@ -1,7 +1,7 @@
 
 function activitiesInit(Vue) {
     var str = dataValue('user/circle/comment/activities.html')
-    
+
 
     return {
         template: str,
@@ -19,14 +19,17 @@ function activitiesInit(Vue) {
         },
         created: function() {
             this.saveText()
+
+        },
+        mounted :function (){
+
         },
         methods: {
 
             mask : function (index) {
-                // console.log(index)
                 $(".bottom-medal").animate({bottom:"0rem"},100);
                 $(".bottom-medal").attr("index",index)
-                // $(".meng").fadeIn("1000")
+
             },
             deleteText:function(index){
 
@@ -37,17 +40,11 @@ function activitiesInit(Vue) {
             cancel : function () {
                 $(".bottom-medal").animate({bottom:"-3rem"},10);
             },
-            /*saveText : function(){
-                $(".textMedal").fadeOut("1000")
-            },*/
             cancelText : function(){
-                $(".textMedal").fadeOut("1000")
-                // $(".meng").fadeOut("1000")
+                $(".textMedal").hide()
             },
             saveText:function(index){
-                $(".textMedal").fadeOut("1000")
-                // $(".meng").fadeOut("1000")
-                // dataDiv.splice(2, 0, "three");
+                $(".textMedal").show()
                 var indexPush = $(".bottom-medal").attr("index")*1
                 var evalIndex = Number(indexPush+1)
                 console.log(evalIndex)
@@ -60,20 +57,26 @@ function activitiesInit(Vue) {
             textFrame : function () {
                 $(".bottom-medal").animate({bottom:"-3rem"},10);
                 $(".textMedal").fadeIn("1000")
-                // $(".meng").fadeIn("1000")
-
-                /*openNewWindow("textSign", "./textSign.html", {
-                    url: 'activities',
-                    mode:"1"
-
-                })*/
             },
             addNode:function () {
                 this.dataDiv.push({
                     textActive : node
                 })
+            },
+            nextactiveties:function () {
+                var that = this;
+                var objInfo = sessionStorage.getItem("informationObj")
+                objInfoData = JSON.parse(objInfo)
+                var containBox = document.querySelector(".containBox").outerHTML
+                var details=containBox
+                /*objInfoData.push({details:containBox})
+                console.log(objInfoData)*/
+                ajaxGetWithProgress(ActivecreateCircle,
+                    objInfoData+"&details"+details
+                , function (ret, err) {
+                    console.log(ret);
+                });
             }
-
         }
     }
 }

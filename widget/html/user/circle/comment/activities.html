@@ -8,45 +8,51 @@
 
 
     <!--<div class="textBox" v-for="(v,i) in dataDiv" v-if="dataDiv.length!=0 ? '' : 'activeAddImg'">-->
-    <div class="textBox" v-for="(item,index) in dataDiv">
-        <!--<div class="addText" v-text="dataDiv[i].textActive"></div>-->
-        <p class="addText" v-html="item.textActive"></p>
-        <img :src="imgAdd" alt="imgAdd" class="imgAdd" @click="mask(index)">
-        <img :src="imgDel" alt="imgDel" class="imgDel" @click="deleteText(index)">
+
+    <div class="containBox">
+        <div class="textBox" v-for="(item,index) in dataDiv">
+            <!--<div class="addText" v-text="dataDiv[i].textActive"></div>-->
+            <p class="addText" v-html="item.textActive"></p>
+            <img :src="imgAdd" alt="imgAdd" class="imgAdd" @click="mask(index)">
+            <img :src="imgDel" alt="imgDel" class="imgDel" @click="deleteText(index)">
+        </div>
+
     </div>
 
     <div class="bottom-medal">
-        <p class="medalTitle">添加模块</p>
-        <div class="modulList cssFlex">
-            <div class="modulListBox" @click="textFrame()">
-                <img :src="imgText" alt="icon" class="modulListImg">
-                <span>纯文本</span>
+        <div class="Mybottom-medal">
+            <p class="medalTitle">添加模块</p>
+            <div class="modulList cssFlex">
+                <div class="modulListBox" @click="textFrame()">
+                    <img :src="imgText" alt="icon" class="modulListImg">
+                    <span>纯文本</span>
+                </div>
+                <div class="modulListBox">
+                    <img :src="imgImg" alt="icon" class="modulListImg">
+                    <span>单图</span>
+                </div>
             </div>
-            <div class="modulListBox">
-                <img :src="imgImg" alt="icon" class="modulListImg">
-                <span>单图</span>
-            </div>
-        </div>
-        <div class="cancle" @click="cancel()">取消</div>
-    </div>
-    <div class="meng"></div>
-    <div class="textMedal">
-        <div class="resume_level2_main">
-            <div class="resume_level2_head">
-                文字模板
-            </div>
-
-            <div class="resume_level2_content">
-                <textarea name="" id="text10" cols="30" maxlength=1500 rows="10" v-model="contentText" placeholder=""></textarea>
-            </div>
-            <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/1500汉字</p>
-        </div>
-        <div class="btn-confrm cssFlex">
-            <div class="conform-yes" @click="saveText()">保存</div>
-            <div class="conform-no" @click="cancelText()">取消</div>
+            <div class="cancle" @click="cancel()">取消</div>
         </div>
     </div>
-
+    <div class="textMedal" @click="cancelText()">
+        <div class="myModel">
+            <div class="resume_level2_main">
+                <div class="resume_level2_head">
+                    文字模板
+                </div>
+                <div class="resume_level2_content">
+                    <textarea name="" id="text10" cols="30" maxlength=1500 rows="10" v-model="contentText" placeholder=""></textarea>
+                </div>
+                <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/1500汉字</p>
+            </div>
+            <div class="btn-confrm cssFlex">
+                <div class="conform-yes" @click="saveText()">保存</div>
+                <div class="conform-no" @click="cancelText()">取消</div>
+            </div>
+        </div>
+    </div>
+    <div class="information_btn activeties_btn" @click="nextactiveties()">发布</div>
 
 
 </div>
