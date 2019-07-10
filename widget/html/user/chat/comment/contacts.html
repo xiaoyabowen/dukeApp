@@ -1,11 +1,13 @@
 <div id="contacts">
     <div class="contacts_main">
-        <div class="contacts_main_item cssFlex">
-            <div class="contacts_item_left"><img src="../../../image/pro.png" alt=""></div>
+        <div class="contacts_main_item cssFlex"
+             v-for="(item, index) in list" :key="index"
+             @click="linkHandle(item.pid_accept, item.pid_send, item.t_key)">
+            <div class="contacts_item_left"><img :src="item.p_icon" alt=""></div>
             <div class="contacts_item_con">
                 <div>
-                    <span>赵女士 </span>
-                    北京天久共享控股集团·人力资源hr主管经理
+                    <span>{{item.p_name}} </span>
+                    {{item.c_name}}·{{item.z_user_job}}
                 </div>
                 <span>您好，我想应聘贵公司的运营经理,我有丰富的工作经验</span>
             </div>
@@ -13,7 +15,7 @@
         </div>
     </div>
 
-    <div class="basics">
+    <div class="basics" v-if="list.length <= 0">
         <img src="../../../image/chat/contacts.png" alt="">
         <div>还没有和你联系的伯乐，快去主动联系TA吧！</div>
     </div>

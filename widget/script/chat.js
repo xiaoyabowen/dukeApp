@@ -1,4 +1,4 @@
-let canSend = false;
+var canSend = false;
 $(function() {
     $('#footer').on('keyup', 'input', function() {
         if ($(this).val().length > 0) {

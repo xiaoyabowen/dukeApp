@@ -260,7 +260,7 @@
     // console.log("card", card_el);
     // console.log("card height: "+card_el.style.height);
 
-    var job_id, cid, uid;
+    var job_id, cid, uid, ptoken;
     apiready = function () {
         job_id = api.pageParam.job_id;
         urlPosition = api.pageParam.url;
@@ -294,7 +294,7 @@
 
                     cid = data.c_id;
                     uid = data.uid;
-
+                    ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
                     document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
@@ -398,7 +398,11 @@
 
     // 点击进入聊一聊
     function chatJob() {
-        openNewWindow("chat_Room", "../chat/chat_Room.html");
+        var token = localStorage.getItem('person_id');
+        openNewWindow("chat_Room", "../chat/chat_Room.html", {
+            token: token,
+            ptoken: ptoken,
+        });
     }
 
     // 点击进入发布人主页

@@ -213,6 +213,12 @@ var addFeedback = localhostHref + "/addFeedback";
 // var addFeedBackPic = localhostHref + "/addFeedBackPic";
 var addFeedBackPic = localhostHref + "/Pic";
 
+
+// 聊天-获取订阅号
+var addTopic = serverUrl + "/ChatProFile/addTopic";
+
+// 聊天-联系人列表
+var queryChatList = serverUrl + "/ChatProFile/queryChatList";
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
