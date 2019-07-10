@@ -31,5 +31,6 @@
 ├── homeChoose             //  denglu  选择    千里马 还是   伯乐
 ├── resume_CompanyLi             //  关联工作经历
 ├── createPhone             // 创建简历 第一步 绑定手机号
+├── Feedback             // 意见反馈
 
 ```

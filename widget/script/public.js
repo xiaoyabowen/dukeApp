@@ -206,6 +206,12 @@ var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
 
 // 圈子发布活动
 var ActivecreateCircle = localhostHref + "/createCircle";
+// 意见反馈
+var addFeedback = localhostHref + "/addFeedback";
+
+// 意见反馈  图片
+// var addFeedBackPic = localhostHref + "/addFeedBackPic";
+var addFeedBackPic = localhostHref + "/Pic";
 
 
 

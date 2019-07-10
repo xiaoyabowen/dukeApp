@@ -2049,4 +2049,80 @@ img.del-img-zan {
     -o-transform: translate(-50%, 50%);
 }
 
+
+/*意见反馈*/
+.ques-title,.update-box-title,.ques-contact-info{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    margin-bottom: 0.14rem;
+}
+i.ques-star {
+    display: inline-block;
+    margin-right: 0.16rem;
+    font-weight: 400;
+    color: rgba(255,163,0,1);
+    font-size: 0.28rem;
+}
+.ques-list.cssFlex {
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+}
+.ques-list-main {
+    display: inline-block;
+    height: 0.52rem;
+    border-radius: 0.26rem;
+    border: 1px solid rgba(151,151,151,1);
+    line-height: 0.52rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    width: 1.34rem;
+    text-align: center;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    font-size: 0.24rem;
+}
+.ques-list-main:nth-of-type(4n){
+    margin-right: 0;
+}
+.ques-textarea{
+    height: 1.6rem;
+    line-height: 0.28rem !important;
+    width: 100%;
+}
+.describeQues,.update-box{
+    border-radius: 0.04rem;
+    border: 0.02rem solid rgba(153,153,153,1);
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.ques-contact-fang{
+    width: 1.2rem;
+    margin-right: 0.6rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+}
+.ques-contact{
+
+    margin-top: 0.4rem;
+}
+.ques-contact-phone,.ques-contact-name{
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.ques-submit {
+    width: 6.3rem;
+    height: 0.78rem;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    line-height: 0.78rem;
+    text-align: center;
+    color: #fff;
+}
+.ques-active{
+    color:rgba(99,139,255,1);
+    border:1px solid rgba(99,139,255,1);
+}
 /*    ----------------------   zbw     --------      */

@@ -272,6 +272,14 @@
                     positionDe(data.job_id)
                 }
             })
+        }else{
+            var uid = job_id;
+            ajaxGetWithProgress(JobId, {person_id : uid}, function (data, err) {
+                console.log(data)
+                if (data){
+                    positionDe(data.job_id)
+                }
+            })
         }
         function positionDe(jobId) {
 
