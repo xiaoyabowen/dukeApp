@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="job-chatBox cssFlex">
-                                    <div class="chatJob">聊一聊</div>
+                                    <div class="chatJob" onclick="chatJob()">聊一聊</div>
                                     <div class="workJob">投递简历</div>
                                 </div>
                             </div>
@@ -386,6 +386,11 @@
         openNewWindow("companyInfo", "../home/companyInfo.html", {
             cid: cid
         });
+    }
+
+    // 点击进入聊一聊
+    function chatJob() {
+        openNewWindow("chat_Room", "../chat/chat_Room.html");
     }
 
     // 点击进入发布人主页
