@@ -8,11 +8,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>职位信息</title>
     <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
 </head>
 <body>
 <div id="topbar" class="cssFlex">
-    <div id="leftButton" tapmode="itemOn">
+    <!--<div id="leftButton" tapmode="itemOn">
         <img class="leftImgTop" src="../../../icon/mine.png" onclick="mineGo()">
     </div>
     <div class="home-middle">
@@ -21,12 +21,24 @@
     </div>
     <div class="right" onclick="save()">
         <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
+    </div>-->
+    <div class="headerBox cssFlex">
+        <div class="leftImgClose">
+            <img src="../../../icon/mine.png" onclick="mineGo()" style="margin-top: 25px">
+        </div>
+        <div class="middleMain">
+            <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
+            <span class="searchClick">GO</span>
+        </div>
+        <div class="rightImgEdite">
+            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat" style="margin-top: 5px">
+        </div>
     </div>
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/kv.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>

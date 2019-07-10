@@ -82,7 +82,7 @@ textarea{
     background: #fff;
     min-height: calc(100vh - 0.48rem);
     overflow: hidden;
-    margin: 0.24rem 0.24rem 0 0.24rem;
+    margin: 0.1rem 0.24rem 0 0.24rem;
     border-radius: 0.08rem;
 }
 .boxSub{
@@ -130,6 +130,12 @@ textarea{
     -webkit-flex-flow: column;
     flex-flow: column;
 }
+
+
+
+
+
+
 #topbar{
 	position: relative;
 	display: none;
@@ -157,6 +163,7 @@ textarea{
 /*返回图片*/
 .imgBack{
     margin-top: 20px;
+    margin-left: -10px;
 }
 .rightImgEdite{
 
@@ -179,7 +186,54 @@ textarea{
     height :56px;
     line-height: 56px;
     margin: 0 auto;
+    position: relative;
 }
+.ChatmiddleMain{
+    width: 5.4rem;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1;
+}
+.ChatmiddleMainnam{
+    font-size: 0.36rem;
+}
+.ChatmiddleMainPos{
+    font-size: 0.24rem;
+    line-height: 0.32rem;
+    height: 0.32rem;
+}
+.searchInput{
+    width: 4.4rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    padding: 0.12rem 0.12rem 0.12rem 1rem;
+    border-radius:0.28rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    font-size: 0.24rem;
+    background:url("../icon/search.png") no-repeat 0.48rem center,rgba(255,255,255,1);
+    background-size: 0.26rem 0.26rem;
+}
+.searchClick{
+    display: block;
+    position: absolute;
+    right: 0rem;
+    top: 0.4rem;
+    width: 0.46rem;
+    height: 0.46rem;
+    line-height: 0.46rem;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background:rgba(99,139,255,1);
+    color: #ffffff;
+    font-size: 0.22rem;
+}
+
+
+
+
 
 
 

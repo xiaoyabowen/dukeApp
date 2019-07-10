@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
     <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
 
     </style>
@@ -17,7 +17,7 @@
 </head>
 <body>
 <div id="topbar" class="cssFlex">
-    <div id="leftButton" tapmode="itemOn">
+    <!--<div id="leftButton" tapmode="itemOn">
         <img class="leftImgTop" src="../../../icon/back.png" onclick="mineGo()">
     </div>
     <div class="home-middle">
@@ -25,6 +25,17 @@
     </div>
     <div class="right" onclick="clearHandle()">
         取消
+    </div>-->
+    <div class="headerBox cssFlex">
+        <div class="leftImgClose" onclick="closeWin()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+        </div>
+        <div class="middleMain">
+            <input type="text" id="text" class="searchInput" placeholder="输入要屏蔽的公司">
+        </div>
+        <div class="rightImgEdite"onclick="clearHandle()">
+            取消
+        </div>
     </div>
 </div>
 

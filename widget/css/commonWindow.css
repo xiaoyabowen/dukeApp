@@ -82,7 +82,7 @@ textarea{
     background: #fff;
     min-height: calc(100vh - 0.48rem);
     overflow: hidden;
-    margin: 0 0.24rem 0 0.24rem;
+    margin: 0.24rem 0.24rem 0 0.24rem;
     border-radius: 0.08rem;
 }
 .boxSub{
