@@ -8,14 +8,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>查看简历</title>
     <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWindow.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
 
 
     
 </head>
 <body>
 <div id="topbar" >
-    <div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+
+    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
         <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
     <div>
@@ -23,6 +24,16 @@
     </div>
     <div class="rightImg">
         <img style="width: 20px;height: 22px;" src="../../../icon/mine/share2x.png" alt="">
+    </div>-->
+    <div class="headerBox cssFlex"><div class="leftImgClose" onclick="closeWin()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+        </div>
+        <div class="middleMain">
+            查看简历
+        </div>
+        <div class="rightImgEdite">
+            <img src="../../../icon/mine/share2x.png" class="OneImgRight" onclick="linkChat()" alt="chat">
+        </div>
     </div>
 </div>
 </body>

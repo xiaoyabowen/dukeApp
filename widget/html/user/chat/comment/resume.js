@@ -20,6 +20,7 @@ function resumeInit(Vue) {
             // 获取谁看过我数据列表
             lookmeList: function () {
                 var that = this;
+
                 var list = localStorage.getItem('seens');
                 if (list) {
                     that.list = JSON.parse(list);
@@ -32,11 +33,17 @@ function resumeInit(Vue) {
                     });
                     return;
                 }
+
                 ajaxGetWithProgress(lookmeList, {}, function (data, err) {
                     console.log(data);
                     if (data.lookmeList) {
                         that.list = data.lookmeList;
+
                         localStorage.setItem('seens', JSON.stringify(that.list));
+
+                        that.listDB = data.lookmeList;
+
+
                     }
                 })
                 // this.setIndexedDB(this);
