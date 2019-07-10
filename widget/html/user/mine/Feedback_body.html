@@ -133,14 +133,13 @@
         <div class="describeQues">
             <div class="ques-title"><i class="ques-star">*</i>请描述您遇到的问题</div>
             <div class="ques-list cssFlex">
-                <span class="ques-list-main ques-active">系统闪退</span>
+                <!--<span class="ques-list-main ques-active">系统闪退</span>
                 <span class="ques-list-main">系统bug</span>
                 <span class="ques-list-main">举报企业</span>
                 <span class="ques-list-main">发布信息</span>
                 <span class="ques-list-main">兑换服务</span>
-                <span class="ques-list-main">支付问题</span>
+                <span class="ques-list-main">支付问题</span>-->
             </div>
-
             <div class="resume_level2_content">
                 <input class="text ques-textarea" id="text0" type="text" maxlength=200 placeholder="描述您的问题">
             </div>
@@ -175,6 +174,7 @@
         <div class="ques-submit" onclick="quesSubmit()">提交申请</div>
     </div>
     <div class="picPath" style="display: none;"></div>
+    <div class="titleText" style="display: none;"></div>
 
 </div>
 
@@ -193,15 +193,51 @@
     apiready = function () {
         
     };
-    var list = ["系统闪退","系统bug","支付问题"]
+    var list = ["系统闪退","系统bug","支付问题","举报企业","发布信息","兑换服务"]
+
+    var title,titleHtml
+    selectList = [];
+    var tagBox = document.querySelector('.ques-list');
+    var arr = [];
+    for (var i = 0; i < list.length; i++) {
+        arr.push('<span class="ques-list-main">');
+        arr.push(list[i]);
+        arr.push('</span>');
+    }
+    console.log(arr)
+    var str = arr.join('');
+    tagBox.innerHTML = str;
+
+    tagBox.addEventListener('click', function (e) {
+        var node = e.target;
+        if (node.tagName === 'SPAN' && node.classList.contains('ques-list-main')) {
+
+            if (node.classList.contains('ques-active')) {
+                // node.className = 'resume_CompanyIndustry_item';
+                node.classList.remove('ques-active');
+                var index = selectList.indexOf(node.innerText);
+                selectList.splice(index, 1);
+                title = selectList.toString()
+                return
+            }
+            selectList.push(node.innerText);
+            node.classList.add('ques-active');
+        }
+        title = selectList.toString()
+        // document.querySelector(".titleText").innerText = title
+
+
+    })
+
+
+
     var picture = []
-    var title = list.toString()
-    console.log(title)
     function genID(length){
         return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
     }
 
-
+    // var titleHtml = document.querySelector(".titleText").innerText;
+    console.log(titleHtml)
     var action = document.querySelector('.action');
     var ulBox = document.getElementById('ul_box');
     action.onclick = function () {

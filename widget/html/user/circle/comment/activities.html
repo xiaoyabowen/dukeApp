@@ -35,14 +35,15 @@
             <div class="cancle" @click="cancel()">取消</div>
         </div>
     </div>
-    <div class="textMedal" @click="cancelText()">
-        <div class="myModel">
+    <div class="textMedal" @click="cancelText()" v-on:click.stop="cancelText">
+        <div class="myModel"v-on:click.stop="cancelText">
             <div class="resume_level2_main">
                 <div class="resume_level2_head">
                     文字模板
                 </div>
+
                 <div class="resume_level2_content">
-                    <textarea name="" id="text10" cols="30" maxlength=1500 rows="10" v-model="contentText" placeholder=""></textarea>
+                    <textarea name="" id="text10" cols="30" maxlength=1500 rows="10"  v-model="contentText" placeholder=""></textarea>
                 </div>
                 <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/1500汉字</p>
             </div>
@@ -50,6 +51,7 @@
                 <div class="conform-yes" @click="saveText()">保存</div>
                 <div class="conform-no" @click="cancelText()">取消</div>
             </div>
+            <div class="meng"></div>
         </div>
     </div>
     <div class="information_btn activeties_btn" @click="nextactiveties()">发布</div>
