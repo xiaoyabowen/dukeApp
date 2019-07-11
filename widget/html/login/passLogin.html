@@ -330,7 +330,6 @@
                 openNewWindow("create_resume", "../user/mine/create_resume.html")
             } else {
                 openNewWindow("home", "../user/home/home.html")
-                // openNewWindow("chat_Room", "../user/chat/chat_Room.html")
                 // openNewWindow("publishing_activities", "../user/circle/publishing_activities.html")
             }
         });
@@ -339,32 +338,7 @@
     //     openNewWindow("passLogin", "passLogin.html")
     // }
     function returnPass() {
-        var obj = {
-            topic:1,
-            message:2
-        }
-
-        alert(11)
-        api.ajax({
-            // report : false,
-            url:"http://192.168.1.10:8000/SE4M/mqtt",
-            //这里是我们约定好的后台上传图片的 位置 ，你可以根据你的需求来改
-            method: 'get',
-            cache: 'false',
-            timeout: 30,
-            dataTpye: 'json',
-            data: {
-
-                /*files: {
-                    file: ret.data
-                },*/
-                values: obj
-
-            }
-        }, function (ret, err) {
-            console.log(ret)
-        });
-        // openNewWindow("returnPass", "returnPass.html")
+        openNewWindow("returnPass", "returnPass.html")
     }
 
 
