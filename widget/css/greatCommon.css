@@ -1,3 +1,4 @@
+
 /*巨划算面膜==================开始*/
 #great {
     background: #F9F9F9;
@@ -684,3 +685,394 @@ button.yanzheng {
 }
 
 /*添加银行卡======================结束*/
+
+/* ===============================================收货地址*/
+/*新增地址====*/
+
+.isDisplay{
+    display: none;
+}
+
+.defaultImg{
+    text-align: center;
+}
+img.adressNot {
+    display: block;
+    width: 2.35rem;
+    height: 1.75rem;
+    margin: 3.3rem auto 0.3rem;
+}
+.subTitle {
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(153,153,153,1);
+    line-height: 0.4rem;
+}
+
+.addAdressbtn {
+    width: 6.3rem;
+    height: 0.78rem;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    line-height: 0.78rem;
+    color: #fff;
+    margin: 0.9rem auto 0;
+    text-align: center;
+    font-size:0.28rem;
+}
+.adressBox{
+    padding-bottom: 0.3rem;
+}
+.adress-info {
+    margin: 0.28rem 0;
+}
+.adinfo-title.cssFlex {
+    height: 0.45rem;
+    justify-content: space-between;
+    line-height: 0.45rem;
+    margin-bottom: 0.2rem;
+}
+span.adinfo-name {
+    display: inline-block;
+    color: rgba(51,51,51,1);
+    font-size: 0.32rem;
+    margin-right: 0.28rem;
+    font-weight: 500;
+}
+
+img.adinfo-dele {
+    display: block;
+    width: 0.2rem;
+    height: 0.2rem;
+}
+.adre-adress {
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #EBEBEB;
+    height: 0.38rem;
+    line-height: 0.38rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    font-size: 0.24rem;
+}
+
+span.adinfo-defult {
+    display: inline-block;
+    height: 0.38rem;
+    line-height: 0.38rem;
+    padding: 0 0.2rem;
+    background: rgba(255,231,231,1);
+    border-radius: 0.06rem;
+    font-weight: 400;
+    color: rgba(248,61,61,1);
+    margin-right: 0.18rem;
+}
+.adres-edit.cssFlex {
+    height: 0.32rem;
+    line-height: 0.32rem;
+    margin-top: 0.18rem;
+    justify-content: space-between;
+}
+.ad-defult.cssFlex {
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    font-size: 0.24rem;
+}
+
+/*单选框自定义  样式*/
+
+.ad-defult input{
+    display: none
+}
+.ad-defult label{
+    display: inline-block;
+    border: 1px solid #638BFF;
+    width: 0.26rem;
+    height: 0.26rem;
+    border-radius: 50%;
+    margin-right: 0.14rem;
+}
+.ad-defult input:checked + label{
+    /*border: 0.13rem solid #638BFF;*/
+    width: 0.26rem;
+    height: 0.26rem;
+    background: url("../image/great/dui.png") center center no-repeat, #638BFF;
+    background-size: 0.16rem 0.1rem;
+}
+.ad-defultActive input:checked + label{
+    /*border: 0.13rem solid #638BFF;*/
+    width: 0.26rem;
+    height: 0.26rem;
+    background: url("../image/great/dui.png") center center no-repeat, #638BFF;
+    background-size: 0.16rem 0.1rem;
+}
+
+/*单选框自定义  样式   结束*/
+.ad-editBtn ,.ad-topBtn{
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    font-size: 0.24rem;
+}
+.ad-topBtn{
+    margin-left: 0.4rem;
+}
+
+.information_content {
+    padding: 0.2rem 0 1rem;
+    background: #ffffff;
+}
+
+.information_content > .information_item {
+    height: 1.16rem;
+    line-height: 0.99rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    position: relative;
+}
+
+.information_content > .information_item label {
+    width: 3rem;
+}
+
+.information_content > .information_item input {
+    /*width: 4rem;*/
+    border: 0;
+    position: relative;
+    padding-left: 0;
+    top: 0.16rem;
+}
+
+.information_btn {
+    height: 0.78rem;
+    line-height: 0.75rem;
+    text-align: center;
+    border-radius: 0.06rem;
+    background: #638BFF;
+    font-size: 0.3rem;
+    color: #ffffff;
+    margin: 0.66rem 0;
+}
+img.rightImgAdr {
+    position: absolute;
+    display: inline-block;
+    width: 0.32rem;
+    height: 0.32rem;
+    right: 0;
+    top: 0.4rem;
+}
+img.info-img-right ,.info-adr-right{
+    display: inline-block;
+    width: 0.32rem;
+    height: 0.32rem;
+}
+
+/*==================================================确认订单*/
+.con-adr{
+    position: relative;
+}
+.con-adr-not {
+    justify-content: space-between;
+    height: 0.5rem;
+    align-items: center;
+    padding:  0.6rem 0 0.5rem;
+}
+.con-adr-not-left.cssFlex {
+    align-items: center;
+    color: rgba(102,102,102,1);
+    font-size: 0.28rem;
+}
+img.adr-not-img {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.3rem;
+}
+img.lineBot {
+    position: absolute;
+    left: -0.14rem;
+    bottom: 0;
+    display: block;
+    height: 0.08rem;
+}
+
+.line20{
+    height: 0.2rem;
+    width: 100%;
+    background:rgba(249,249,249,1);
+}
+
+.con-adr-yes {
+    padding: 0.38rem 0 0.26rem;
+    position: relative;
+}
+.adr-yes-info.cssFlex {
+    height: 0.45rem;
+    align-items: center;
+    margin-bottom: 0.2rem;
+}
+img.adr-yes-user {
+    display: block;
+    width: 0.24rem;
+    height: 0.26rem;
+    margin-right: 0.1rem;
+}
+span.adr-yes-name {
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    font-size: 0.32rem;
+    display: block;
+}
+span.adr-yes-phone {
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    font-size: 0.28rem;
+    display: block;
+}
+
+.adr-yes-adr.cssFlex {
+    align-items: center;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+}
+img.adr-yes-adr {
+    display: block;
+    width: 0.2rem;
+    height: 0.26rem;
+    margin-right: 0.14rem;
+}
+img.info-adr-right {
+    position: absolute;
+    right: 0;
+    top: 0.7rem;
+}
+.con-main {
+    padding: 0.4rem 0 1.6rem;
+}
+img.con-title-img {
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 0.3rem;
+}
+.con-title.cssFlex {
+    margin-bottom: 0.2rem;
+}
+.con-title-text.textOverflow {
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+    margin-bottom: 0.05rem;
+}
+.conmain-price {
+    height: 0.5rem;
+    font-size: 0.36rem;
+    font-weight: 500;
+    color: rgba(222,41,41,1);
+    line-height: 0.5rem;
+}
+.conmain-subTitle,.gong-name,.con-pay-bank-name{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    margin-bottom: 0.3rem;
+}
+i.conmain-subtitle-price {
+    color: #DE2929;
+}
+.conmain-num.cssFlex {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.36rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+span.conmain-h {
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    font-size: 0.28rem;
+}
+.con-pay {
+    margin: 0.18rem 0 0.22rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    font-size: 0.28rem;
+}
+.con-pay-main.cssFlex {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+img.pay-gong {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.22rem;
+}
+.gong-name,.con-pay-bank-name{
+    margin-bottom: 0 !important;
+}
+.gong-hui{
+    height: 0.3rem;
+    font-size:0.22rem;
+    font-weight:400;
+    color:rgba(222,41,41,1);
+    line-height:0.3rem;
+}
+.con-pay-main-left{
+    align-items: center;
+}
+/*单选框自定义  样式*/
+
+.con-pay-main-right input{
+    display: none
+}
+.con-pay-main-right label{
+    display: inline-block;
+    border: 1px solid #638BFF;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 50%;
+}
+.con-pay-main-right input:checked + label{
+    /*border: 0.1rem solid #638BFF;*/
+    width: 0.36rem;
+    height: 0.36rem;
+    background: url("../image/great/dui.png") center center no-repeat, #638BFF;
+    background-size: 0.2rem 0.16rem;
+}
+
+/*单选框自定义  样式   结束*/
+
+.con-main-bottom.cssFlex {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    align-items: center;
+}
+
+.con-flex-left,.con-flex-right {
+    width: 50%;
+    text-align: center;
+    color: #ffffff;
+    background:rgba(99,139,255,1);
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+.con-flex-left>div{
+    line-height: 0.5rem;
+}
+.con-margintop{
+    margin-top: 0.2rem;
+}
+.con-flex-right{
+    background:rgba(255,163,0,1);
+}
+
+
+
+
+>>>>>>> master

@@ -238,6 +238,42 @@ var AddIdYhCard = Domain + "/idDocument/AddIdYhCard";
 // 巨划算-添加银行卡-添加支付密码
 var SetPayPwd = Domain + "/idDocument/SetPayPwd";
 
+// =======================================聚划算
+//  添加地址
+var addDeliveryAdr = Domain + "/delivery/addDeliveryAdr";
+//  编编辑地址
+var deliveryUpdate = Domain + "/delivery/update";
+//  查询地址
+var deliveryShow = Domain + "/delivery/show";
+
+//  删除地址
+var deliveryDelete = Domain + "/delivery/delete";
+
+//  删除地址
+var deliverySetAddr = Domain + "/delivery/setAddr";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 过滤时间转成 - 4月5日
 function filterTime1(time) {
     var arr = time.split('-');
