@@ -4,7 +4,8 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.10:8000/SE4M'
+var localhostHref = 'http://192.168.1.10:8000/SE4M';
+var Domain = 'http://192.168.1.10:8080';
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -224,6 +225,18 @@ var queryChatList = serverUrl + "/ChatProFile/queryChatList";
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
+// 巨划算-面膜详情
+var summary = Domain + "/Mask/summary";
+// 巨划算-商品收藏
+var collectComm = Domain + "/CommodityProFile/collectComm";
+// 巨划算-添加银行卡-验证银行卡
+var YhCard = Domain + "/idDocument/YhCard";
+// 巨划算-添加银行卡-验证手机号
+var SendSms = Domain + "/idDocument/SendSms";
+// 巨划算-添加银行卡-绑定银行卡
+var AddIdYhCard = Domain + "/idDocument/AddIdYhCard";
+// 巨划算-添加银行卡-添加支付密码
+var SetPayPwd = Domain + "/idDocument/SetPayPwd";
 
 // 过滤时间转成 - 4月5日
 function filterTime1(time) {

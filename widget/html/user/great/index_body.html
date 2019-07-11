@@ -5,24 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>聊天</title>
+    <title>巨划算</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
-    <link rel="stylesheet" href="../../../css/chatCommon.css">
+    <link rel="stylesheet" href="../../../css/greatCommon.css">
 </head>
 <body class="commonBg">
 
 
     <div class="Box">
-        <div id="chat">
-            <div class="chat_header cssFlex">
-                <div><span @click="tabHandle('contacts')" :class="active === 'contacts' ? 'active' : ''">联系人</span></div>
-                <div><span @click="tabHandle('interested')" :class="active === 'interested' ? 'active' : ''">对我感兴趣</span></div>
-                <div><span @click="tabHandle('resume')" :class="active === 'resume' ? 'active' : ''">看过我</span></div>
+        <div id="great" class="isDisplay">
+            <div class="great_header">
+                <div class="great_header_banner">
+                    <img :src="item.placard" alt="">
+                </div>
+
+                <div class="great_Price_List cssFlex">
+                    <span class="great_Price">¥{{item.price}}</span>
+                    <span class="great_Member">会员专享价: <span>{{item.priceh}}</span></span>
+                    <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                </div>
+
+                <div class="great_title">
+                    {{item.summary}}
+                </div>
             </div>
 
-            <component :is="active"></component>
+
+            <div class="great_comments">
+                <div class="great_comments_title">
+                    <span>商品评价</span>
+                    <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
+                    <span @click="totalComment()">全部评价</span>
+                </div>
+
+                <div class="great_comments_content">
+                    <div class="great_comments_top">
+                        <span :class="active == 1 ? 'active' : ''" @click="commentsHandle(evalist1, 1)">好评</span>
+                        <span :class="active == 2 ? 'active' : ''" @click="commentsHandle(evalist2, 2)">中评</span>
+                        <span :class="active == 3 ? 'active' : ''" @click="commentsHandle(evalist3, 3)">差评</span>
+                    </div>
+
+                    <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
+                        <div class="great_comments_item_top cssFlex">
+                            <div><img :src="item.picon" alt=""></div>
+                            <div>
+                                <span>{{item.pname}}</span>
+                                <div>{{item.createTime}}</div>
+                            </div>
+                        </div>
+                        <div class="great_comments_item_con">
+                            {{item.content}}
+                        </div>
+                        <div class="great_comments_item_img">
+                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
+                                 :class="i%3 === 0 ? 'right0' : ''"
+                                 :src="imgObj.pic" alt="">
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img class="right0" src="../../../image/pro.png" alt="">-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="great_details">
+                <img v-for="(imgSrc, i) in imgs" :key="i"
+                     :src="imgSrc" alt="">
+            </div>
+
+            <div class="great_immediately">
+                <div class="great_immediately_comtent cssFlex">
+                    <div class="commodity_collection" @click="collectionHandle()">
+                        <img :src="att ? '../../../image/great/Collection2x.png' : '../../../image/great/Collection22x.png'" alt="">
+                        <span>收藏</span>
+                    </div>
+                    <div class="commodity_purchase" @click="purchaseHandle()">
+                        <div>¥299</div>
+                        <span>立即购买</span>
+                    </div>
+                </div>
+            </div>
+
+            <component is="magicCube"></component>
         </div>
     </div>
 
@@ -37,147 +104,118 @@
     <script type="text/javascript" src="../../../script/mui.min.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
 
-    <script src="../../../script/paho-mqtt.min.js"></script>
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
-    <script src="./comment/contacts.js"></script>
-    <script src="./comment/interested.js"></script>
-    <script src="./comment/resume.js"></script>
+    <script src="./common/magicCube.js"></script>
+
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
 
-        // //所有主题
-        // var allTopics = [
-        //     { "Topic": "/data/alarm", "Describe": "报警" },
-        //     { "Topic": "/data/message", "Describe": "消息" },
-        //     { "Topic": "/data/notify", "Describe": "通知" }
-        // ];
-        //
-        // //选中订阅主题
-        // var selectedTopics = [];
-        //
-        // //选中发布主题
-        // var currentTopic;
-        //
-        // //客户端选项
-        // var option = {
-        //     "ServerUri": "192.168.1.10",
-        //     "ServerPort": 61614,
-        //     "UserName": "admin",
-        //     "Password": "password",
-        //     "ClientId": "",
-        //     "TimeOut": 5,
-        //     "KeepAlive": 100,
-        //     "CleanSession": false,
-        //     "SSL":false
-        // }
-        //
-        // //客户端
-        // var client;
-        //
-        // //设置客户端标识
-        // option.ClientId = guid();
-        //
-        // console.log(Paho)
-        // client = new Paho.Client(option.ServerUri, option.ServerPort, option.ClientId);
-        // client.onConnectionLost = onConnectionLost; //绑定连接断开事件
-        // client.onMessageArrived = onMessageArrived; //绑定接收消息事件
-        // //连接服务端
-        // client.connect({
-        //     invocationContext: {
-        //         host: option.ServerUri,//IP地址
-        //         port: option.ServerPort,//端口号
-        //         path: client.path,
-        //         clientId: option.ClientId//标识
-        //     },
-        //     timeout: option.TimeOut,//连接超时时间
-        //     keepAliveInterval: option.KeepAlive,//心跳间隔
-        //     cleanSession: option.CleanSession,//是否清理Session
-        //     useSSL: option.SSL,//是否启用SSL
-        //     userName: option.UserName,  //用户名
-        //     password: option.Password,  //密码
-        //     onSuccess: onConnect,//连接成功回调事件
-        //     onFailure: onError//连接失败回调事件
-        // });
-        //
-        // //连接成功回调事件
-        // function onConnect() {
-        //     // Once a connection has been made, make a subscription and send a message.
-        //     console.log("连接成功了");
-        //     client.subscribe("yang");
-        //     var message = new Paho.Message("Hello");
-        //     message.destinationName = "/World";
-        //     client.send(message);
-        // };
-        // //连接失败回调事件
-        // function onError(e) {
-        //     console.log("连接失败：" + e)
-        // }
-        // //连接断开事件
-        // function onConnectionLost(responseObject) {
-        //     if (responseObject.errorCode !== 0)
-        //         console.log("onConnectionLost:"+responseObject.errorMessage);
-        // };
-        // //接收消息事件
-        // function onMessageArrived(message) {
-        //     console.log(message)
-        //     console.log("onMessageArrived:"+message.payloadString);
-        //     // client.disconnect();
-        // };
-        //
-        // //生成GUID
-        // function guid() {
-        //     function S4() {
-        //         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        //     }
-        //     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-        // }
     </script>
 
     <script>
 
         apiready = function () {
-            var contacts = contactsInit(Vue);
-            var interested = interestedInit(Vue);
-            var resume = resumeInit(Vue);
-
-            Vue.component('contacts', contacts);
-            Vue.component('interested', interested);
-            Vue.component('resume', resume);
-
+            var magicCube = magicCubeInit(Vue);
+            Vue.component('magicCube', magicCube);
 
             new Vue({
-                el: '#chat',
+                el: '#great',
                 data: {
-                    isDisplay: false,
-                    active: 'contacts',
+                    active: 1,
+                    item: {},
                     list: [],
-                    person_id: ''
+                    len: 1,
+                    total: 0,
+                    evalist: [],
+                    evalist1: [],
+                    evalist2: [],
+                    evalist3: [],
+                    imgs: [],
+                    att: false,
+                    att_id: '',
+                    person_id: '',
+                    cid: '1'
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
-
-
+                    this.summary();
                 },
                 mounted: function () {
 
                     this.isDisplay = true;
                 },
                 methods: {
-                    // tab切换
-                    tabHandle: function (name) {
-                        this.active = name;
-                    },
+                    // 获取数据
+                    summary: function () {
+                        var that = this;
+                        ajaxGetWithProgress(summary, {
+                            cid: that.cid,
+                            pid: that.person_id
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.Commodity) {
+                                that.item = data.Commodity;
+                                that.imgs = data.Commodity.intpic.split(',');
+                                that.total = data.total;
+                                that.att = data.att;
+                                that.att_id = data.att_id;
+                                document.getElementById('great').classList.remove('isDisplay');
+                            }
 
+                            if (data.commEvaluateAndPic) {
+                                var list = data.commEvaluateAndPic;
+                                that.list = list;
+                                for (var i = 0; i < list.length; i++) {
+                                    var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
+                                    if (num > 10) {
+                                        that.evalist1.push(list[i]);
+                                    } else if (num > 5) {
+                                        that.evalist2.push(list[i]);
+                                    } else if (num < 5) {
+                                        that.evalist3.push(list[i]);
+                                    }
+                                }
+                                that.evalist = that.evalist1;
+                            }
+                        });
+                    },
+                    // 评论
+                    commentsHandle: function (evalist, i) {
+                        this.evalist = evalist;
+                        this.active = i;
+                    },
+                    // 显示全部评论
+                    totalComment: function () {
+                        console.log(this.list);
+                        this.evalist = this.list;
+                        this.len = this.list.length;
+                    },
+                    // 收藏
+                    collectionHandle: function () {
+                        var that = this;
+                        ajaxGet(collectComm, {
+                            id: that.att_id,
+                            ccStatus: 1,
+                            pid: that.person_id,
+                            commId: that.item.cId
+                        }, function(data,err){
+                            console.log(data);
+                            if (data.commcollect) {
+
+                            }
+                        });
+                        that.att = !that.att;
+                    },
+                    // 立即购买
+                    purchaseHandle: function () {
+                        openNewWindow("addCards", "./addCards.html");
+                    }
                 }
             })
         }
-
-        // apiready();
-
-
 
     </script>
 </body>

@@ -1,0 +1,686 @@
+/*巨划算面膜==================开始*/
+#great {
+    background: #F9F9F9;
+    height: calc(100vh - 0.28rem);
+    position: relative;
+}
+
+.great_header {
+    margin-bottom: 0.2rem;
+    background: #ffffff;
+}
+
+.great_header_banner {
+    height: 4.08rem;
+}
+
+.great_header_banner img {
+    height: 100%;
+}
+
+.great_Price_List {
+    padding: 0rem 0.28rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.great_Price {
+    font-size: 0.36rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(222, 41, 41, 1);
+    line-height: 0.50rem;
+}
+
+.great_Member {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.40rem;
+    /*margin: 0 0.4rem 0 0.3rem;*/
+}
+
+.great_Member span {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #DE2929;
+}
+
+.great_Stock {
+    font-size: 0.24rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.40rem;
+    /*float: right;*/
+}
+
+.great_Stock span {
+    color: #DE2929;
+}
+
+.great_title {
+    padding: 0.1rem 0.3rem 0.2rem;
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.37rem;
+}
+
+.great_comments {
+    padding: 0 0.3rem;
+    background: #ffffff;
+}
+
+.great_comments_title {
+    padding: 0.14rem 0.04rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.great_comments_title span:first-child {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.40rem;
+}
+
+.great_comments_title span:nth-child(2) {
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.37rem;
+}
+
+.great_comments_title span:last-child {
+    float: right;
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.45rem;
+}
+
+.great_comments_top {
+    padding: 0.18rem 0.07rem;
+}
+
+.great_comments_top span {
+    display: inline-block;
+    width: 0.87rem;
+    height: 0.37rem;
+    background: rgba(230, 230, 230, 1);
+    border-radius: 0.06rem;
+    border: 0.02rem solid rgba(230, 230, 230, 1);
+    font-size: 0.24rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.33rem;
+    text-align: center;
+}
+
+.great_comments_top span.active {
+    width: 0.87rem;
+    height: 0.37rem;
+    color: #F83D3D;
+    background: rgba(255, 231, 231, 1);
+    border: 0.02rem solid rgba(248, 61, 61, 1);
+}
+
+.great_comments_item {
+    margin-bottom: 0.2rem;
+}
+
+.great_comments_item_top > div img {
+    width: 0.76rem;
+    border-radius: 50%;
+    margin: 0 0.15rem 0 0.04rem;
+}
+
+.great_comments_item_top > div {
+    font-size: 0.22rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.30rem;
+}
+
+.great_comments_item_top > div span {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.4rem;
+    margin-top: 0.15rem;
+}
+
+.great_comments_item_con {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 0.40rem;
+    padding: 0.1rem 0rem 0.2rem;
+}
+
+.great_comments_item_img img {
+    width: 1.46rem;
+    height: 1.46rem;
+    margin-right: 0.06rem;
+}
+
+.right0 {
+    margin-right: 0;
+}
+
+.great_details {
+    width: 100%;
+}
+
+.great_details img {
+    width: 100%;
+}
+
+/*收藏和立即支付*/
+.great_immediately {
+    width: 100%;
+    height: 1.5rem;
+}
+
+.great_immediately_comtent {
+    width: 100%;
+    height: 1.5rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.commodity_collection {
+    width: 40%;
+    height: 100%;
+    background: #638BFF;
+    font-size: 0.36rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 0.50rem;
+    text-align: center;
+}
+
+.commodity_collection img {
+    width: 0.44rem;
+    display: block;
+    margin: 0.3rem auto 0.1rem;
+}
+
+.commodity_purchase {
+    flex: 1;
+    height: 100%;
+    background: #FFA300;
+    font-size: 0.36rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 0.50rem;
+    text-align: center;
+}
+
+.commodity_purchase div {
+    margin-top: 0.32rem;
+}
+
+/*巨划算面膜==================结束*/
+
+/*魔方开始*/
+div.isDisplay {
+    display: none;
+}
+
+@keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-moz-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+}
+
+@-webkit-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-o-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+.demobiox {
+    position: fixed;
+    right: 0;
+    bottom: 0rem;
+    background: cadetblue;
+}
+
+.subBoxMO {
+    width: 6.30rem;
+    height: 6.20rem;
+    background: linear-gradient(to left top, rgba(183, 206, 255, 0.5) 50%, transparent 50%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+}
+
+.person {
+    display: inline-block;
+    position: absolute;
+    bottom: 0.12rem;
+    right: 0.12rem;
+    width: 1.10rem;
+    height: 1.10rem;
+    z-index: 1111;
+}
+
+.animation {
+    animation: zoomOutLeft 2s;
+    -ms-animation: zoomOutLeft 2s;
+    -moz-animation: zoomOutLeft 2s;
+    -webkit-animation: zoomOutLeft 2s;
+    -o-animation: zoomOutLeft 2s;
+}
+
+.borderBoxRote {
+    border: 0 !important;
+
+}
+
+.xuanbox {
+    width: 1.2rem;
+    height: 1.2rem;
+    position: absolute;
+    transform: rotate(-45deg);
+    border: 1px solid #5D92FE;
+    border-radius: 0.1rem;
+    background: #e9f0ff;
+}
+
+.xuanbox.active {
+    background: #638BFF;
+}
+
+.daobox {
+    transform: rotate(45deg);
+    width: 1.00rem;
+    height: 1.00rem;
+
+}
+
+/* 菱形方块  样式 */
+.positionCom {
+    width: 1.00rem;
+    height: 1.00rem;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid #5D92FE;
+    border-radius: 0.10rem;
+}
+
+.position0 {
+    right: 0.50rem;
+    bottom: 3.50rem;
+    /*transform: rotate(45deg)*/
+}
+
+.position1 {
+    right: 1.40rem;
+    bottom: 2.60rem;
+    /*transform: rotate(45deg);*/
+}
+
+.position2 {
+    right: 2.30rem;
+    bottom: 1.70rem;
+    /*transform: rotate(45deg);*/
+}
+
+.position3 {
+    right: 3.20rem;
+    bottom: 0.80rem;
+    /*transform: rotate(45deg);*/
+}
+
+.position10 {
+    right: 0.54rem;
+    bottom: 1.72rem;
+    /*transform: rotate(45deg);*/
+}
+
+.position11 {
+    right: 1.40rem;
+    bottom: 0.80rem;
+    /*transform: rotate(45deg);*/
+}
+
+.positionCom > img {
+    display: block;
+    padding: 0.00rem 0.28rem 0 0.05rem;
+    transform: rotate(-45deg)
+}
+
+.positionCom > div {
+    display: block;
+    width: 1.00rem;
+    height: 1.00rem;
+    text-align: center;
+    color: #333;
+    position: absolute;
+    margin: 0 auto;
+    transform: rotate(-45deg);
+    font-size: 0.16rem;
+}
+
+/* 圆形  样式 */
+.positionCir {
+    width: 0.70rem;
+    height: 0.70rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 1);
+    opacity: 0.7;
+    position: absolute;
+}
+
+.positionCir > img {
+    display: block;
+    width: 0.28rem;
+    height: 0.30rem;
+    padding: 0.10rem 0.28rem 0 0.10rem;
+    transform: rotate(-45deg)
+}
+
+.positionCir > span {
+    display: block;
+    width: 0.92rem;
+    margin-top: -0.04rem;
+    text-align: center;
+    transform: rotate(-45deg);
+    color: #333;
+}
+
+.cir_mine {
+    right: 4.30rem;
+    bottom: 0.14rem;
+    transform: rotate(45deg);
+}
+
+.cir_return {
+    right: 0.10rem;
+    bottom: 2.65rem;
+    transform: rotate(45deg);
+}
+
+.cir_hide {
+    right: 2.45rem;
+    bottom: 0.22rem;
+    transform: rotate(45deg);
+}
+
+.iconImg {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+}
+
+.appMask {
+    width: 100%;
+    height: 100%;
+}
+
+.cir_return span, .cir_hide span {
+    font-size: 0.12rem;
+    color: #666666;
+}
+
+/*魔方结束*/
+
+/*添加银行卡======================开始*/
+.addCards_hander {
+    width: 100%;
+    height: 3.35rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.addCards_hander img {
+    display: block;
+    width: 1.44rem;
+    height: 1.44rem;
+    margin: 0.69rem auto;
+    text-align: center;
+    background: #ffffff;
+}
+
+.addCards_content {
+    padding: 0 0.24rem;
+    background: #ffffff;
+}
+
+.addCards_content > div input {
+
+}
+
+.addCards_content > .information_item {
+    padding: 0 0.1rem;
+    height: 0.99rem;
+    line-height: 0.99rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    position: relative;
+}
+
+.addCards_content > .information_item span {
+    width: 1rem;
+    display: block;
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    margin-right: 0.35rem;
+}
+
+.addCards_content > .information_item input {
+    border: 0;
+    position: relative;
+    top: 0.16rem;
+    padding-left: 0;
+    flex: 1;
+    border: 0;
+    vertical-align: middle;
+    font-size: 0.28rem;
+}
+
+.information_item input::placeholder {
+    color: #B8B8B8;
+}
+
+.addCards_btn {
+    width: 6.30rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    background: rgba(99, 139, 255, 1);
+    border-radius: 0.08rem;
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin: 0.63rem auto;
+}
+
+.addCards_tip {
+    color: #DE2929;
+    text-align: center;
+    font-size: 0.24rem;
+}
+
+button.yanzheng {
+    display: inline-block;
+    min-width: 2.3rem;
+    padding: 0 0.4rem;
+    font-weight: 400;
+    font-size: 0.24rem;
+    color: #fff;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    /*margin-top: 0.28rem;*/
+    background: rgba(93, 146, 254, 1);
+    border-radius: 0.08rem;
+}
+
+#payment {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.payment_content {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.payment_content_title {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.40rem;
+    text-align: center;
+    padding: 0.66rem 0 0.4rem;
+}
+
+.payment_main {
+    width: 6.12rem;
+    margin: 0 auto;
+}
+
+.payment_main > span {
+    display: inline-block;
+    width: 1.02rem;
+    height: 0.9rem;
+    padding-left: 0.46rem;
+    padding-top: 0.12rem;
+    border: 1px solid #979797;
+    border-right: 0;
+    box-sizing: border-box;
+}
+
+.payment_main > span:last-child {
+    border-right: 1px solid #979797;
+}
+
+.payment_main > span input {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+.zfinput {
+    opacity: 0;
+    z-index: 2;
+    position: relative;
+    top: -50px;
+}
+
+.table {
+    display: inline-block;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.table>div {
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(187, 187, 187, .99);
+    border-right: none;
+}
+
+.table>div:last-child {
+    border-right: 1px solid rgba(187, 187, 187, .99);
+}
+
+.blackpwd {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+/*添加银行卡======================结束*/

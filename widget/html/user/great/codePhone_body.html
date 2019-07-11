@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>添加银行卡</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/greatCommon.css">
+</head>
+<body class="commonBg">
+
+
+<div class="Box">
+    <div id="great" class="isDisplay">
+
+        <div class="addCards_content">
+            <div class="information_item cssFlex">
+                <span>手机号</span>
+                <input type="number" v-model="phone" placeholder="请输入银行预留手机号">
+            </div>
+
+            <div class="information_item cssFlex" style="border-bottom: 0;">
+                <span>验证码</span>
+                <input type="number" v-model="code" placeholder="填写校验码">
+                <button id="sms" class="yanzheng" @click="getCode()">获取验证码</button>
+            </div>
+
+        </div>
+
+        <div class="addCards_btn" @click="nextHandle()">下一步</div>
+        <div class="addCards_tip">{{tip}}</div>
+
+        <conponent :is="payment"></conponent>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+<script src="./common/payment.js"></script>
+
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script>
+
+</script>
+
+<script>
+
+    apiready = function () {
+
+        var payment = paymentInit(Vue);
+        // console.log(payment);
+
+        Vue.component('payment', payment)
+
+        new Vue({
+            el: '#great',
+            data: {
+                phone: '',
+                code: '',
+                tip: '验证码错误，请重新输入',
+                flag: true,
+                payment: '',
+                personId: '',
+                pname: '',
+                idcard: '',
+                issureBy: '',
+                idType: '',
+            },
+            created: function () {
+                this.personId = localStorage.getItem('person_id');
+                console.log(this.personId)
+                this.pname = api.pageParam.pname;
+                this.idcard = api.pageParam.idcard;
+                this.issureBy = api.pageParam.issureBy;
+                this.idType = api.pageParam.idType;
+            },
+            mounted: function () {
+
+                document.getElementById('great').classList.remove('isDisplay');
+            },
+            methods: {
+                // 获取验证码
+                SendSms: function () {
+                    var that = this;
+                    ajaxGetWithProgress(SendSms, {
+                        phone: that.phone
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.Code == 'OK') {
+                            mui.toast("发送成功 请注意查收!");
+                        } else {
+                            mui.toast(data.Message);
+                        }
+                    });
+                },
+                // 绑定银行卡
+                AddIdYhCard: function () {
+                    var that = this;
+                    ajaxGetWithProgress(AddIdYhCard, {
+                        phone: that.phone,
+                        personId: that.personId,
+                        pname: that.pname,
+                        idcard: that.idcard,
+                        issureBy: that.issureBy,
+                        idType: that.idType,
+                        code: that.code
+                    }, function (data, err) {
+                        console.log(data);
+                        that.payment = 'payment'
+
+                    });
+                },
+                // 点击下一步
+                nextHandle: function () {
+                    console.log(this.text, this.number);
+                    if (!this.code) {
+                        mui.toast('请填写验证码')
+                        return;
+                    }
+                    this.AddIdYhCard();
+
+                },
+                // 验证手机号
+                getCode: function (){
+                    if(!this.flag){
+                        return;
+                    }
+                    tel = this.phone;
+                    if (isBlack(tel)) {
+                        toast('请输入手机号');
+                        api.hideProgress();
+                        return;
+                    }else if(!checkMobileNum(tel)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    var obj = {
+                        phone : tel
+                    }
+                    this.flag = false;
+                    this.setTime();
+                    this.SendSms();
+
+                },
+                // 倒计时
+                setTime: function (){
+                    var time;
+                    var sms = document.getElementById('sms');
+                    time = time||59;
+                    sms.innerHTML = time+"s";
+                    var codeInterval = setInterval(function(){
+                        if(time > 0){
+                            time--;
+                            sms.innerHTML = time+"s";
+                        }else{
+                            sms.innerHTML = "获取验证码";
+                            clearInterval(codeInterval);
+                            flag = true;
+                        }
+                    },1000)
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
