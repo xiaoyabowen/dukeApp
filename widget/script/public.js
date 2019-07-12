@@ -238,6 +238,9 @@ var AddIdYhCard = Domain + "/idDocument/AddIdYhCard";
 // 巨划算-添加银行卡-添加支付密码
 var SetPayPwd = Domain + "/idDocument/SetPayPwd";
 
+// 巨划算-旅游-以色列详情
+var showTravel = Domain + "/travel/showTravel";
+
 // =======================================聚划算
 //  添加地址
 var addDeliveryAdr = Domain + "/delivery/addDeliveryAdr";

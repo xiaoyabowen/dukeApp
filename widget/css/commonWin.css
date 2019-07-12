@@ -5,6 +5,16 @@ html {
 
 }
 
+@font-face {
+    font-family: STHeitiSC-Light;
+    src: url("./STHeiti-Light.ttc");
+}
+
+@font-face {
+    font-family: PingFangSC-Medium;
+    src: url("./PingFangSC-Medium.ttf");
+}
+
 html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparent;
     -webkit-overflow-scrolling: touch;
     -ms-touch-action: manipulation;

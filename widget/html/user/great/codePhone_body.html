@@ -74,7 +74,7 @@
             data: {
                 phone: '',
                 code: '',
-                tip: '验证码错误，请重新输入',
+                tip: '',
                 flag: true,
                 payment: '',
                 personId: '',
@@ -104,7 +104,7 @@
                     }, function (data, err) {
                         console.log(data);
                         if (data.Code == 'OK') {
-                            mui.toast("发送成功 请注意查收!");
+                            mui.toast("发送成功请注意查收!");
                         } else {
                             mui.toast(data.Message);
                         }
@@ -123,8 +123,9 @@
                         code: that.code
                     }, function (data, err) {
                         console.log(data);
-                        that.payment = 'payment'
-
+                        if (data.date) {
+                            that.payment = 'payment'
+                        }
                     });
                 },
                 // 点击下一步

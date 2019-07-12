@@ -27,7 +27,10 @@ function paymentInit(Vue) {
                 }, function (data, err) {
                     console.log(data);
                     if (data.date) {
-
+                        console.log(123)
+                        api.closeToWin({
+                            name: 'confirmOrder'
+                        });
                     }
                     // this.payment = 'payment'
                     that.number = '';

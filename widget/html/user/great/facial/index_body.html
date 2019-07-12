@@ -79,11 +79,11 @@
             <div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
                     <div class="commodity_collection" @click="collectionHandle()">
-                        <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../image/great/Collection22x.png'" alt="">
+                        <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
                         <span>收藏</span>
                     </div>
                     <div class="commodity_purchase" @click="purchaseHandle()">
-                        <div>¥299</div>
+                        <div>¥{{item.priceh}}</div>
                         <span>立即购买</span>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                     this.summary();
                 },
                 mounted: function () {
-                    document.getElementById('great').classList.remove('isDisplay');
+                    // document.getElementById('great').classList.remove('isDisplay');
                     this.isDisplay = true;
                 },
                 methods: {

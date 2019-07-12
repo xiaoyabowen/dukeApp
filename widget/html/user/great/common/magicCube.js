@@ -5,7 +5,7 @@ function magicCubeInit(Vue) {
         {
             job_name: '面膜',
             imgIcon: '123.png',
-            company_c_id: 'great',
+            company_c_id: 'facial',
         },{
             job_name: '旅游',
             imgIcon: '123.png',
@@ -58,11 +58,12 @@ function magicCubeInit(Vue) {
                 this.index1 = index;
                 this.index2 = -1;
                 console.log(job_id)
-                if (job_id == 'great') {
-                    openNewWindow("index", "widget://html/user/great/index.html");
-                } else {
-                    openNewWindow("index", "widget://html/user/great/"+ job_id +"/index.html");
-                }
+                openNewWindow("index", "widget://html/user/great/"+ job_id +"/index.html");
+                // if (job_id == 'great') {
+                //     openNewWindow("index", "widget://html/user/great/index.html");
+                // } else {
+                //     openNewWindow("index", "widget://html/user/great/"+ job_id +"/index.html");
+                // }
 
             },
             detailClick2: function (index,c_id) {
