@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>选择套餐/日期/人数</title>
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../../css/dataRili.css"/>
+</head>
+<body class="commonBg">
+
+
+<div class="Box" id="app">
+    <div class="boxSub">
+        <div class="tr-title">
+            出行日期
+        </div>
+        <ul id="tabs" class="cssFlex">
+            <li class="activeTab"><a href="javascript:;" title="tab1">
+                <p>12月份</p>
+                <p>¥12999起</p>
+            </a></li>
+        </ul>
+        <div id="content">
+            <div id="tab1">
+                <div class="signincalendar">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/vue.min.js"></script>
+<script src="../../../../script/mycanledar.js"></script>
+<!--
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+-->
+
+<script>
+    apiready = function () {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isDefult: false,
+                person_id:"",
+
+            },
+            created :function () {
+                this.person_id = localStorage.getItem('person_id');
+
+            },
+            mounted:function () {
+
+            },
+            methods:{
+
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
