@@ -67,6 +67,7 @@
                 el: '#great',
                 data: {
                     card: '请输入工商银行卡号',
+                    bankname: '招商',
                     id: '',
                     text: '',
                     number: '',
@@ -86,7 +87,7 @@
                         ajaxGetWithProgress(YhCard, {
                             pname: that.text,
                             idcard: that.number,
-                            bankname:"招商"
+                            bankname: that.bankname
                         }, function (data, err) {
                             console.log(data);
 
@@ -107,13 +108,13 @@
                     // 点击下一步
                     nextHandle: function () {
                         console.log(this.text, this.number);
-
-                        /*openNewWindow("codePhone", "./codePhone.html", {
-                            pname: data.name,
-                            idcard: data.accountNo,
-                            issureBy: data.bank,
-                            idType: data.cardType
-                        });*/
+                        // var that = this;
+                        // openNewWindow("codePhone", "./codePhone.html", {
+                        //     pname: that.name,
+                        //     idcard: that.accountNo,
+                        //     issureBy: that.bank,
+                        //     idType: that.cardType
+                        // });
 
                         if (!this.text) {
                             mui.toast('姓名不能为空');
@@ -125,7 +126,7 @@
                             return;
                         }
 
-                        // this.YhCard();
+                        this.YhCard();
 
                     }
                 }
