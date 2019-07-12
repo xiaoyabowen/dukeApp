@@ -324,8 +324,8 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(data)
-            localStorage.setItem('user',JSON.stringify(data))
-            localStorage.setItem('person_id',data.user_uid)
+            localStorage.setItem('user',JSON.stringify(data));
+            localStorage.setItem('person_id',data.user_uid);
             api.hideProgress();
             if (data.success == false) {
                 openNewWindow("create_resume", "../user/mine/create_resume.html")

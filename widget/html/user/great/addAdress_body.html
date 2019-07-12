@@ -76,7 +76,7 @@
                     detailed:"15号楼28单元",
                     person_id:"",
                     adrId:"",
-                    adrStatus:''
+                    adrStatus:'',
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
@@ -128,12 +128,24 @@
                             addr_details: that.detailed
                         }
                         var adrStatus = that.adrStatus
+                        console.log(456)
                         if (adrStatus == 1){
                             ajaxGetWithProgress(addDeliveryAdr, str, function (data, err) {
                                 console.log(data);
                                 var url = api.pageParam.url
                                 if (data.status){
                                     var frameName = url + "_body";
+                                    if (url == 'confirmOrder') {
+                                        console.log(123)
+                                        api.execScript({
+                                            name:url,
+                                            frameName: frameName,
+                                            script:'address('+ JSON.stringify(that.name) +','+JSON.stringify(that.phone)+','+JSON.stringify(that.adress + that.detailed)+')'
+                                        })
+
+                                        closeWin();
+                                        return;
+                                    }
                                     api.execScript({
                                         name:url,
                                         frameName: frameName,

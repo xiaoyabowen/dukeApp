@@ -17,7 +17,7 @@
     <div class="Box">
         <div id="great" class="isDisplay">
             <div class="addCards_hander">
-                <img src="../../../image/great/688070006056155799.png" alt="">
+                <img :src="imgsrc" alt="">
             </div>
 
             <div class="addCards_content">
@@ -66,6 +66,7 @@
             new Vue({
                 el: '#great',
                 data: {
+                    imgsrc: '../../../image/great/688070006056155799.png',
                     card: '请输入工商银行卡号',
                     bankname: '招商',
                     id: '',
@@ -74,6 +75,13 @@
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
+                    this.bankname = api.pageParam.bank;
+                    this.card = '请输入'+ this.bankname +'银行卡号';
+                    if (this.bankname == '工商') {
+                        this.imgsrc = '../../../image/great/688070006056155799.png';
+                    } else if (this.bankname == '农业') {
+                        this.imgsrc = '../../../image/great/nong.png';
+                    }
                     // this.summary();
                 },
                 mounted: function () {
@@ -99,7 +107,7 @@
                                     idType: data.cardType
                                 });
                             }else if(data.status == false){
-                                mui.toast("该卡号不属于工商!");
+                                mui.toast("该卡号不属于"+ that.bankname +"!");
                             } else {
                                 mui.toast(data.msg);
                             }
@@ -114,13 +122,13 @@
                     // 点击下一步
                     nextHandle: function () {
                         console.log(this.text, this.number);
-                        var that = this;
-                        openNewWindow("codePhone", "./codePhone.html", {
-                            pname: that.name,
-                            idcard: that.accountNo,
-                            issureBy: that.bank,
-                            idType: that.cardType
-                        });
+                        // var that = this;
+                        // openNewWindow("codePhone", "./codePhone.html", {
+                        //     pname: that.name,
+                        //     idcard: that.accountNo,
+                        //     issureBy: that.bank,
+                        //     idType: that.cardType
+                        // });
 
                         if (!this.text) {
                             mui.toast('姓名不能为空');

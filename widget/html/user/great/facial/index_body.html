@@ -212,7 +212,20 @@
                     },
                     // 立即购买
                     purchaseHandle: function () {
-                        openNewWindow("addCards", "../addCards.html");
+                        var that = this;
+                        ajaxGetWithProgress(createOrder, {
+                            pId: that.person_id,
+                            cId: that.cid
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.date) {
+                                openNewWindow("confirmOrder", "../confirmOrder.html", {
+                                    item: that.item,
+                                    order: data
+                                });
+                            }
+                        });
+
                     }
                 }
             })

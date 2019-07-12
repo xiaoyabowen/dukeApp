@@ -139,7 +139,8 @@
                     att: false,
                     att_id: '',
                     person_id: '',
-                    cid: '2'
+                    cid: '2',
+                    data: ''
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
@@ -172,6 +173,7 @@
                                 that.att = data.att;
                                 that.att_id = data.att_id;
                                 that.total = data.total;
+                                that.data = data;
                                 if (that.item.int_pic) {
                                     that.picList = that.item.int_pic.split(',')
                                 }
@@ -204,7 +206,10 @@
                     },
                     // 立即购买
                     purchaseHandle: function () {
-                        openNewWindow("addCards", "./addCards.html");
+                        var that = this;
+                        openNewWindow("tripDate", "./tripDate.html", {
+                            data: that.data
+                        });
                     }
                 }
             })

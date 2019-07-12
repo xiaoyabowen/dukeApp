@@ -24,7 +24,9 @@
 
 
         <div class="adressBox isDisplay">
-            <div class="adress-info" v-for="(item, index) in adressList" :key="index">
+            <div class="adress-info"
+                 @click="linkHandle(item.name,item.phone,item.address,item.addrDetails)"
+                 v-for="(item, index) in adressList" :key="index">
                 <div class="adinfo-title cssFlex">
                     <div class="adinfo-con">
                         <span class="adinfo-name">{{item.name}}</span>
@@ -118,6 +120,22 @@
 
             },
             methods:{
+                // 选择收货地址
+                linkHandle: function (name, phone, address, addrDetails) {
+                    var url = api.pageParam.url
+                    var frameName = url + "_body";
+                    if (url == 'confirmOrder') {
+                        console.log(123)
+                        api.execScript({
+                            name:url,
+                            frameName: frameName,
+                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+')'
+                        })
+                        closeWin();
+                        return;
+                    }
+
+                },
                 addAdress: function () {
                     openNewWindow("addAdress", "./addAdress.html", {
                         url: 'Adress',
