@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>巨划算</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/greatCommon.css">
+</head>
+<body class="commonBg">
+
+
+    <div class="Box">
+        <div id="great" class="isDisplay">
+            <div class="great_header">
+                <div class="great_header_banner">
+                    <img :src="item.placard" alt="">
+                </div>
+
+                <div class="great_Price_List cssFlex">
+                    <span class="great_Price">¥{{item.price}}</span>
+                    <span class="great_Member">会员专享价: <span>{{item.priceh}}</span></span>
+                    <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                </div>
+
+                <div class="great_title">
+                    {{item.summary}}
+                </div>
+            </div>
+
+
+            <div class="great_comments">
+                <div class="great_comments_title">
+                    <span>商品评价</span>
+                    <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
+                    <span @click="totalComment()">全部评价</span>
+                </div>
+
+                <div class="great_comments_content">
+                    <div class="great_comments_top">
+                        <span :class="active == 1 ? 'active' : ''" @click="commentsHandle(evalist1, 1)">好评</span>
+                        <span :class="active == 2 ? 'active' : ''" @click="commentsHandle(evalist2, 2)">中评</span>
+                        <span :class="active == 3 ? 'active' : ''" @click="commentsHandle(evalist3, 3)">差评</span>
+                    </div>
+
+                    <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
+                        <div class="great_comments_item_top cssFlex">
+                            <div><img :src="item.picon" alt=""></div>
+                            <div>
+                                <span>{{item.pname}}</span>
+                                <div>{{item.createTime}}</div>
+                            </div>
+                        </div>
+                        <div class="great_comments_item_con">
+                            {{item.content}}
+                        </div>
+                        <div class="great_comments_item_img">
+                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
+                                 :class="i%3 === 0 ? 'right0' : ''"
+                                 :src="imgObj.pic" alt="">
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img class="right0" src="../../../image/pro.png" alt="">-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="great_details">
+                <img v-for="(imgSrc, i) in imgs" :key="i"
+                     :src="imgSrc" alt="">
+            </div>
+
+            <div class="great_immediately">
+                <div class="great_immediately_comtent cssFlex">
+                    <div class="commodity_collection" @click="collectionHandle()">
+                        <img :src="att ? '../../../image/great/Collection2x.png' : '../../../image/great/Collection22x.png'" alt="">
+                        <span>收藏</span>
+                    </div>
+                    <div class="commodity_purchase" @click="purchaseHandle()">
+                        <div>¥299</div>
+                        <span>立即购买</span>
+                    </div>
+                </div>
+            </div>
+
+            <component is="magicCube"></component>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+
+    <script src="../../../script/vue.min.js"></script>
+    <script src="../../../script/vuex.min.js"></script>
+    <script src="./common/magicCube.js"></script>
+
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <script>
+
+    </script>
+
+    <script>
+
+        apiready = function () {
+            var magicCube = magicCubeInit(Vue);
+            Vue.component('magicCube', magicCube);
+
+            new Vue({
+                el: '#great',
+                data: {
+                    active: 1,
+                    item: {},
+                    list: [],
+                    len: 1,
+                    total: 0,
+                    evalist: [],
+                    evalist1: [],
+                    evalist2: [],
+                    evalist3: [],
+                    imgs: [],
+                    att: false,
+                    att_id: '',
+                    person_id: '',
+                    cid: '1'
+                },
+                created: function () {
+                    this.person_id = localStorage.getItem('person_id');
+                    this.summary();
+                },
+                mounted: function () {
+
+                    this.isDisplay = true;
+                },
+                methods: {
+                    // 获取数据
+                    summary: function () {
+                        var that = this;
+                        ajaxGetWithProgress(summary, {
+                            cid: that.cid,
+                            pid: that.person_id
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.Commodity) {
+                                that.item = data.Commodity;
+                                that.imgs = data.Commodity.intpic.split(',');
+                                that.total = data.total;
+                                that.att = data.att;
+                                that.att_id = data.att_id;
+                                document.getElementById('great').classList.remove('isDisplay');
+                            }
+
+                            if (data.commEvaluateAndPic) {
+                                var list = data.commEvaluateAndPic;
+                                that.list = list;
+                                for (var i = 0; i < list.length; i++) {
+                                    var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
+                                    if (num > 10) {
+                                        that.evalist1.push(list[i]);
+                                    } else if (num > 5) {
+                                        that.evalist2.push(list[i]);
+                                    } else if (num < 5) {
+                                        that.evalist3.push(list[i]);
+                                    }
+                                }
+                                that.evalist = that.evalist1;
+                            }
+                        });
+                    },
+                    // 评论
+                    commentsHandle: function (evalist, i) {
+                        this.evalist = evalist;
+                        this.active = i;
+                    },
+                    // 显示全部评论
+                    totalComment: function () {
+                        console.log(this.list);
+                        this.evalist = this.list;
+                        this.len = this.list.length;
+                    },
+                    // 收藏
+                    collectionHandle: function () {
+                        var that = this;
+                        ajaxGet(collectComm, {
+                            id: that.att_id,
+                            ccStatus: 1,
+                            pid: that.person_id,
+                            commId: that.item.cId
+                        }, function(data,err){
+                            console.log(data);
+                            if (data.commcollect) {
+
+                            }
+                        });
+                        that.att = !that.att;
+                    },
+                    // 立即购买
+                    purchaseHandle: function () {
+                        openNewWindow("addCards", "./addCards.html");
+                    }
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>
