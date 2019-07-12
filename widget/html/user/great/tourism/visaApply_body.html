@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
     <link rel="stylesheet" href="../../../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.picker.all.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.dtpicker.css"/>
     <link rel="stylesheet" href="../../../../css/dataRili.css"/>
     <style>
         input[type=text]{
@@ -25,7 +27,14 @@
         }
         .res-boxname{
             text-align: left !important;
+            width: 4rem !important;
         }
+        .ReserveBox{
+            padding-bottom:0 !important;
+        }
+
+
+
     </style>
 </head>
 <body class="commonBg">
@@ -39,17 +48,33 @@
                 <span class="res-boxname">姓名</span>
                 <input type="text" class="res-boxinput" v-model="name" placeholder="请填写联系人姓名">
             </div>
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="sexClick()">
                 <span class="res-boxname">性别</span>
-                <input type="text" class="res-boxinput" v-model="sex" placeholder="请填写联系人姓名">
+                <span id="sex" v-model="sex"></span>
+
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">出生地</span>
-                <input type="text" class="res-boxinput" v-model="borthAddress" placeholder="请填写联系人姓名">
+                <input type="text" class="res-boxinput" v-model="borthAddress" placeholder="请填写出生地">
+            </div>
+
+            <div class="res-box cssFlex" @click="birthDayClick()">
+                <span class="res-boxname">出生日期</span>
+                <input type="text" class="res-boxinput" v-model="birthDay" placeholder="请填写出生日期" readonly>
+            </div>
+
+            <div class="res-box cssFlex" @click="marryClick()">
+                <span class="res-boxname">婚姻状况</span>
+                <span id="marryType" v-model="marry"></span>
+
             </div>
             <div class="res-box cssFlex">
-                <span class="res-boxname">家庭住址（可接收快递）</span>
-                <input type="text" class="res-boxinput" v-model="familyAddress" placeholder="请填写联系人姓名">
+                <span class="res-boxname">家庭住址</span>
+                <input type="text" class="res-boxinput" v-model="familyAddress" placeholder="请填写家庭住址（可接收快递）">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">收货地址</span>
+                <input type="text" class="res-boxinput" v-model="shouhuoAddress" placeholder="请填写家庭住址（可接收快递）">
             </div>
         </div>
     </div>
@@ -60,9 +85,9 @@
                 <span class="res-boxname">职务</span>
                 <input type="text" class="res-boxinput" v-model="comPosi" placeholder="请填写职务">
             </div>
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="comYearPriceClick()">
                 <span class="res-boxname">年收入</span>
-                <input type="text" class="res-boxinput" v-model="comYearPrice" placeholder="请填写年收入">
+                <span id="comYearPrice" v-model="comYearPrice"></span>
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">工作年限</span>
@@ -81,8 +106,12 @@
                 <input type="text" class="res-boxinput" v-model="comPhone" placeholder="请填写单位电话">
             </div>
             <div class="res-box cssFlex">
-                <span class="res-boxname">领导姓名及职位</span>
-                <input type="text" class="res-boxinput" v-model="comLeaderName" placeholder="请填写领导姓名及职位">
+                <span class="res-boxname">领导姓名</span>
+                <input type="text" class="res-boxinput" v-model="comLeaderName" placeholder="请填写领导姓名">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">领导职位</span>
+                <input type="text" class="res-boxinput" v-model="comLeaderPosie" placeholder="请填写领导职位">
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">领导电话</span>
@@ -115,9 +144,9 @@
                 <span class="res-boxname">身份证签发机关</span>
                 <input type="text" class="res-boxinput" v-model="IDaddress" placeholder="请填写身份证签发机关">
             </div>
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="religionClick()">
                 <span class="res-boxname">宗教信仰</span>
-                <input type="text" class="res-boxinput" v-model="Religion" placeholder="请填写宗教信仰">
+                <span id="Religion" v-model="Religion"></span>
             </div>
 
         </div>
@@ -126,91 +155,726 @@
     <div class="line20"></div>
     <div class="boxSub">
         <div class="ReserveBox">
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="personPeerClick()">
                 <span class="res-boxname">是否有同行人员</span>
-                <span class="personPeer">是</span>
+                <span class="personPeer" id="personPeer" v-model="personPeer">是</span>
             </div>
-            <div class="res-box cssFlex">
-                <span class="res-boxname">护照种类</span>
-                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
+            <div class="res-boxSub">
+                如果有请注明并说明关系：
             </div>
-            <div class="res-box cssFlex">
+            <textarea name="" class="textareaType" v-model="personPeerRemark" cols="30" rows="10"></textarea>
+            <div class="res-box cssFlex" @click="isSignAbeaClick()">
+                <span class="res-boxname">是否去过以色列</span>
+                <span class="personPeer" id="isSignAbea" v-model="isSignAbea">是</span>
+            </div>
+            <div class="res-box cssFlex" @click="isSignClick()">
                 <span class="res-boxname">是否申请过以色列签证</span>
-                <span class="personPeer">是</span>
+                <span class="personPeer" id="isSign" v-model="isSign">是</span>
             </div>
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="isSignCountryClick()">
                 <span class="res-boxname">是否有过其他国家的拒签记录</span>
-                <span class="personPeer">是</span>
+                <span class="personPeer" id="isSignCountry" v-model="isSignCountry">是</span>
             </div>
+            <div class="res-boxSub">
+                如有请注明被拒签的国家名称（包括以色列）：
 
-            <div class="res-box cssFlex">
-                <span class="res-boxname">护照种类</span>
-                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
             </div>
+            <textarea name="" class="textareaType" v-model="isSignCountryText" cols="30" rows="10"></textarea>
 
-            <div class="res-box cssFlex">
+            <div class="res-box cssFlex" @click="isSignCountryJobClick()">
                 <span class="res-boxname">是否办理或申请过其他国家工作签证或劳务派遣
-签证</span>
-                <span class="personPeer">是</span>
+签证？</span>
+                <span class="personPeer" id="isSignCountryJob" v-model="isSignCountryJob">是</span>
+            </div>
+            <div class="res-box cssFlex" @click="isSignCountryOutClick()">
+                <span class="res-boxname">是否出过国或申请过出国签证？</span>
+                <span class="personPeer" id="isSignCountryOut" v-model="isSignCountryOut">是</span>
+            </div>
+            <div class="res-boxSub">
+                请说明情况（列举出您去过的所有国家）
+
+            </div>
+            <textarea name="" class="textareaType" v-model="goCountry" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+
+    <!--配偶情况-->
+    <div class="title-visa">配偶情况</div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">配偶姓名</span>
+                <input type="text" class="res-boxinput" v-model="spouseName" placeholder="请填写配偶姓名">
+            </div>
+            <div class="res-box cssFlex" @click="spouseBirthClick()">
+                <span class="res-boxname">出生日期</span>
+                <input type="text" class="res-boxinput" v-model="spouseBirth" placeholder="请填写出生日期" readonly>
             </div>
             <div class="res-box cssFlex">
-                <span class="res-boxname">是否出过国或申请过出国签证？</span>
-                <span class="personPeer">是</span>
+                <span class="res-boxname">出生地</span>
+                <input type="text" class="res-boxinput" v-model="spouseBirthAdress" placeholder="请填写出生地">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">单位名称</span>
+                <input type="text" class="res-boxinput" v-model="spouseComName" placeholder="请填写单位名称">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">职务</span>
+                <input type="text" class="res-boxinput" v-model="spousePosi" placeholder="请填写职务">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">单位电话</span>
+                <input type="text" class="res-boxinput" v-model="spousecomPhone" placeholder="请填写单位电话">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">手机号码</span>
+                <input type="text" class="res-boxinput" v-model="spousePhone" placeholder="请填写手机号码">
+            </div>
+            <div class="res-box cssFlex" @click="religion1Click()">
+                <span class="res-boxname">宗教信仰</span>
+                <span id="Religion1" v-model="Religion1"></span>
             </div>
 
+        </div>
+    </div>
+    <!--子女姓名-->
+    <div class="line20"></div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">子女姓名</span>
+                <input type="text" class="res-boxinput" v-model="childrenName" placeholder="请填写子女姓名">
+            </div>
+            <div class="res-box cssFlex" @click="childrenBirthClick()">
+                <span class="res-boxname">出生日期</span>
+                <input type="text" class="res-boxinput" v-model="childrenBirth" placeholder="请填写出生日期" readonly>
+            </div>
 
         </div>
     </div>
 
+    <!--父亲  母亲-->
+    <div class="title-visa">父母情况：（父母姓名必须填写，包括已故）</div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">父亲姓名</span>
+                <input type="text" class="res-boxinput" v-model="faName" placeholder="请填写父亲姓名">
+            </div>
+            <div class="res-box cssFlex" @click="faBirthClick()">
+                <span class="res-boxname">出生日期</span>
+                <input type="text" class="res-boxinput" v-model="faBirth" placeholder="请填写出生日期" readonly>
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">母亲姓名</span>
+                <input type="text" class="res-boxinput" v-model="moName" placeholder="请填写母亲姓名">
+            </div>
+            <div class="res-box cssFlex" @click="moBirthClick()">
+                <span class="res-boxname">出生日期</span>
+                <input type="text" class="res-boxinput" v-model="moBirth" placeholder="请填写出生日期" readonly>
+            </div>
+
+        </div>
+        <div class="Explain">
+            本人声明：<br />
+            以上所填内容完全属实，本人愿意承担因提供资料不真实而产生的取消申请资格以及其他风险和损失！
+        </div>
+
+
+        <div class="visaBtn" @click="visaBtn()">
+            提交
+        </div>
+    </div>
 
 </div>
 
 
 <script type="text/javascript" src="../../../../script/api.js"></script>
-<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<!--<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>-->
 <script type="text/javascript" src="../../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../../script/public.js"></script>
-<script type="text/javascript" src="../../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../../script/data.js"></script>
 <script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../../script/mui.dtpicker.js"></script>
 <script src="../../../../script/vue.min.js"></script>
-<script src="../../../../script/mycanledar.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 
 <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            isDefult: false,
-            person_id:"",
-            name:"",
-            sex:"",
-            borthAddress:"",
-            familyAddress:"",
-            comPosi:"",
-            comYearPrice:"",
-            comYearWork:"",
-            comName:"",
-            comAddress:"",
-            comPhone:"",
-            comLeaderName:"",
-            comLeaderPhone:"",
-        },
-        created :function () {
-            this.person_id = localStorage.getItem('person_id');
-        },
-        mounted:function () {
 
-        },
-        methods:{
-
-        }
-    })
     apiready = function () {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isDefult: false,
+                person_id:"",
+                cId:"2",
+                name:"郑博文",
+                sex:"1",
+                birthDay:"1994-09-08",
+                marry:"1",
+                borthAddress:"山西",
+                familyAddress:"北京",
+                shouhuoAddress:"北京",
+                isSignAbea:"1",
+                comPosi:"CEO",
+                comYearPrice:"2",
+                comYearWork:"1年",
+                comName:"云闪信",
+                comAddress:"朝阳北路",
+                comPhone:"010-9787896",
+                comLeaderName:"Abel",
+                comLeaderPosie:"总监",
+                comLeaderPhone:"17600010974",
+                phone:"17600010974",
+                passportType:"普通护照",
+                passportNum:"141341313131",
+                ID:"13131313131313131313",
+                IDaddress:"山西",
+                Religion:"1",
+                Religion1:"1",
+                personPeer:"1",
+                isSignCountry:"1",
+                isSignCountryText:"1113132",
+                isSignCountryJob:"1",
+                isSignCountryOut:"2",
+                goCountry:"131313131313113二点  阿达",
+                personPeerRemark:"",
+                isSign:"1",
+                spouseName:"范冰冰",
+                spouseBirth:"1995-09-06",
+                spouseBirthAdress:"北京",
+                spouseComName:"家里蹲",
+                spousePosi:"全职太太",
+                spousecomPhone:"010-8969862",
+                spousePhone:"17600010974",
+                spouseZong:"2",
+                childrenName:"哒哒哒",
+                childrenBirth:"1995-09-06",
+                faName:"安然",
+                faBirth:"1995-09-06",
+                moName:"阿三",
+                moBirth:"1995-09-06",
+            },
+            created :function () {
+                this.person_id = localStorage.getItem('person_id');
 
+            },
+            mounted:function () {
+
+            },
+            methods:{
+                sexClick :function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "男"
+                    }, {
+                        value: "2",
+                        text: "女"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "男");
+                    picker.show(function (SelectedItem) {
+                        that.sex =  SelectedItem[0].value;
+                        document.getElementById('sex').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                marryClick :function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "未婚"
+                    },{
+                        value: "2",
+                        text: "已婚（有配偶）"
+                    }, {
+                        value: "3",
+                        text: "丧偶"
+                    },  {
+                        value: "4",
+                        text: "离婚"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "未婚");
+                    picker.show(function (SelectedItem) {
+                        that.sex =  SelectedItem[0].value;
+                        document.getElementById('marryType').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                comYearPriceClick :function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "10-15k"
+                    }, {
+                        value: "2",
+                        text: "15-20k"
+                    }, {
+                        value: "3",
+                        text: "20-30k"
+                    }, {
+                        value: "4",
+                        text: "30-50k"
+                    }, {
+                        value: "5",
+                        text: "50-100k"
+                    }, {
+                        value: "6",
+                        text: "100k以上"
+                    },
+                    ])
+                    picker.pickers[0].setSelectedValue('1', "10-15k");
+                    picker.show(function (SelectedItem) {
+                        that.comYearPrice =  SelectedItem[0].value;
+                        document.getElementById('comYearPrice').innerText = SelectedItem[0].text;
+                    })
+                },
+                religionClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "无"
+                    },{
+                        value: "2",
+                        text: "基督教"
+                    }, {
+                        value: "3",
+                        text: "伊斯兰教"
+                    },  {
+                        value: "4",
+                        text: "佛教"
+                    },{
+                        value: "5",
+                        text: "其他"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "未婚");
+                    picker.show(function (SelectedItem) {
+                        that.Religion =  SelectedItem[0].value;
+                        document.getElementById('Religion').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                religion1Click:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "无"
+                    },{
+                        value: "2",
+                        text: "基督教"
+                    }, {
+                        value: "3",
+                        text: "伊斯兰教"
+                    },  {
+                        value: "4",
+                        text: "佛教"
+                    },{
+                        value: "5",
+                        text: "其他"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "未婚");
+                    picker.show(function (SelectedItem) {
+                        that.Religion1 =  SelectedItem[0].value;
+                        document.getElementById('Religion1').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                personPeerClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.personPeer =  SelectedItem[0].value;
+                        document.getElementById('personPeer').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                isSignClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.isSign =  SelectedItem[0].value;
+                        document.getElementById('isSign').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                isSignAbeaClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.isSign =  SelectedItem[0].value;
+                        document.getElementById('isSignAbea').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                isSignCountryClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.isSignCountry =  SelectedItem[0].value;
+                        document.getElementById('isSignCountry').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                isSignCountryJobClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.isSignCountryJob =  SelectedItem[0].value;
+                        document.getElementById('isSignCountryJob').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                isSignCountryOutClick:function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "1",
+                        text: "是"
+                    }, {
+                        value: "2",
+                        text: "否"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('1', "是");
+                    picker.show(function (SelectedItem) {
+                        that.isSignCountryOut =  SelectedItem[0].value;
+                        document.getElementById('isSignCountryOut').innerText = SelectedItem[0].text;
+
+                    })
+                },
+                spouseBirthClick :function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        console.log(selectItems)
+                        // $(".birth_option").val(selectItems.text)
+                        that.spouseBirth = selectItems.text;
+                    })
+                },
+                childrenBirthClick :function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        console.log(selectItems)
+                        // $(".birth_option").val(selectItems.text)
+                        that.childrenBirth = selectItems.text;
+                    })
+                },
+                faBirthClick :function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        console.log(selectItems)
+                        // $(".birth_option").val(selectItems.text)
+                        that.faBirth = selectItems.text;
+                    })
+                },
+                moBirthClick :function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        console.log(selectItems)
+                        // $(".birth_option").val(selectItems.text)
+                        that.moBirth = selectItems.text;
+                    })
+                },
+                birthDayClick :function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        console.log(selectItems)
+                        // $(".birth_option").val(selectItems.text)
+                        that.birthDay = selectItems.text;
+                    })
+                },
+
+                visaBtn:function () {
+                    console.log(1)
+                    var that = this
+                    var str = {
+                        pId: that.person_id,
+                        cId: that.cId,
+                        name: that.name,
+                        sex: that.sex,
+                        address: that.borthAddress,
+                        birthdaty: that.birthDay,
+                        maritalStatus: that.marry,
+                        homeAddr: that.familyAddress,
+                        expressAddr: that.shouhuoAddress,
+                        jobTitle: that.comPosi,
+                        yearIncome: that.comYearPrice,
+                        workYear: that.comYearWork,
+                        workUnit: that.comName,
+                        workAdr: that.comAddress,
+                        workPhone: that.comPhone,
+                        leaderName: that.comLeaderName,
+                        leaderJobName: that.comLeaderPosie,
+                        leaderPhone: that.comLeaderPhone,
+                        phone: that.phone,
+                        passportType: that.passportType,
+                        passportNum: that.passportNum,
+                        idNumber: that.ID,
+                        issuingAuthority: that.IDaddress,
+                        faith: that.Religion,
+                        isTravelpartner: that.personPeer,
+                        travelpartner: that.personPeerRemark,
+                        isBean: that.isSignAbea,
+                        isApply: that.isSign,
+                        isRejected: that.isSignCountry,
+                        rejectCountry: that.isSignCountryText,
+                        isLabor: that.isSignCountryJob,
+                        isAbroad: that.isSignCountryOut,
+                        abrSummary: that.goCountry,
+                        spouseName: that.spouseName,
+                        spouseBirthday: that.spouseBirth,
+                        spouseBirAdr: that.spouseBirthAdress,
+                        spouseJobName: that.spouseComName,
+                        spouseJobType: that.spousePosi,
+                        spouseWorkphone: that.spousecomPhone,
+                        spousePhone: that.spousePhone,
+                        spouseFaith: that.Religion1,
+                        childrenName: that.childrenName,
+                        childrenBirthday: that.childrenBirth,
+                        fatherName: that.faName,
+                        fatherBir: that.faBirth,
+                        motherName: that.moName,
+                        motherBir: that.moBirth
+                    }
+                    if (that.name){
+
+                    }
+                    if (!that.name) {
+                        mui.toast('请填写姓名');
+                        return;
+                    }
+                    if (!that.sex) {
+                        mui.toast('请填写性别');
+                        return;
+                    }
+                    if (!that.borthAddress) {
+                        mui.toast('请填写出生地');
+                        return;
+                    }
+
+                    if (!that.birthDay) {
+                        mui.toast('请填写出生日期');
+                        return;
+                    }
+                    if (!that.marry) {
+                        mui.toast('请填写婚姻状况');
+                        return;
+                    }
+                    if (!that.familyAddress) {
+                        mui.toast('请填写家庭住址');
+                        return;
+                    }
+                    if (!that.shouhuoAddress) {
+                        mui.toast('请填写收货地址');
+                        return;
+                    }
+                    if (!that.comPosi) {
+                        mui.toast('请填写职务');
+                        return;
+                    }
+                    if (!that.comPosi) {
+                        mui.toast('请填写职务');
+                        return;
+                    }
+                    if (!that.comYearPrice) {
+                        mui.toast('请填写年收入)');
+                        return;
+                    }
+                    if (!that.comYearWork) {
+                        mui.toast('请填写工作年限)');
+                        return;
+                    }
+                    if (!that.comName) {
+                        mui.toast('请填写单位名称)');
+                        return;
+                    }
+                    if (!that.comAddress) {
+                        mui.toast('请填写单位地址)');
+                        return;
+                    }
+                    if (!that.comPhone) {
+                        mui.toast('请填写单位电话)');
+                        return;
+                    }
+
+                    if (!that.comLeaderName) {
+                        mui.toast('请填写领导姓名)');
+                        return;
+                    }
+                    if (!that.comLeaderPosie) {
+                        mui.toast('请填写领导职位)');
+                        return;
+                    }
+                    if (!that.comLeaderPhone) {
+                        mui.toast('请填写领导电话)');
+                        return;
+                    }
+                    if (!that.phone) {
+                        mui.toast('请填写手机号码)');
+                        return;
+                    }else if(!checkMobileNum(that.phone)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    if (!that.passportType) {
+                        mui.toast('请填写护照种类)');
+                        return;
+                    }
+                    if (!that.passportNum) {
+                        mui.toast('请填写护照号码)');
+                        return;
+                    }
+                    if (!that.ID) {
+                        mui.toast('请填写身份证号)');
+                        return;
+                    }
+                    if (!that.IDaddress) {
+                        mui.toast('请填写身份证签发机关)');
+                        return;
+                    }
+
+                    if (!that.IDaddress) {
+                        mui.toast('请填写身份证签发机关)');
+                        return;
+                    }
+                    if (!that.spouseName) {
+                        mui.toast('请填写配偶姓名)');
+                        return;
+                    }
+                    if (!that.spouseBirth) {
+                        mui.toast('请填写出生日期)');
+                        return;
+                    }
+                    if (!that.spouseBirthAdress) {
+                        mui.toast('请填写出生地)');
+                        return;
+                    }
+                    if (!that.spouseComName) {
+                        mui.toast('请填写单位名称)');
+                        return;
+                    }
+                    if (!that.spousePosi) {
+                        mui.toast('请填写职务)');
+                        return;
+                    }
+                    if (!that.spousePhone) {
+                        mui.toast('请填写手机号码)');
+                        return;
+                    }else if(!checkMobileNum(that.spousePhone)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    
+                    console.log(str)
+                    ajaxGetWithProgress(showVisaInformation,str,function(res,err) {
+                        console.log(res);
+                    })
+                }
+
+            }
+        })
     }
 
 </script>

@@ -258,6 +258,9 @@ var deliverySetAddr = Domain + "/delivery/setAddr";
 //  聚划算  旅游 提交订单
 var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 
+//  聚划算
+var showVisaInformation = Domain + "/visa/showVisaInformation";
+
 
 
 

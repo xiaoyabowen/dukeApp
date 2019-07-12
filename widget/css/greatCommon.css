@@ -1331,9 +1331,36 @@ ul#tabs>li{
     font-size: 0.28rem;
     padding-left: 0.34rem;
 }
+textarea.textareaType {
+    height: 1.8rem;
+    margin-bottom: 0.3rem;
+}
+.res-boxSub{
+    margin: 0.2rem 0;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    font-size: 0.24rem;
+}
 
-
-
-
-
+.Explain {
+    height: 1.3rem;
+    border: 0.02rem solid rgba(235,235,235,1);
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.32rem;
+    padding: 0.18rem 0.36rem;
+    font-size: 0.24rem;
+}
+.visaBtn {
+    width: 6.3rem;
+    height: 0.78rem;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    line-height: 0.78rem;
+    text-align: center;
+    color: #fff;
+    margin: 0.3rem auto 0.7rem;
+}
 
