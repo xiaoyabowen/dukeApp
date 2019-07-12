@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../../css/api.css" />
     <link rel="stylesheet" href="../../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../../css/swiper.min.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
 </head>
 <body class="commonBg">
@@ -17,75 +18,66 @@
     <div class="Box">
         <div id="great" class="isDisplay">
             <div class="great_header">
-                <div class="great_header_banner">
-                    <img :src="item.placard" alt="">
+
+                <div class="great_header_banner swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
+                            <img :src="imgSrc" />
+                        </div>
+                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
 
-                <div class="tourism_title">以色列+约旦圣地以航全景17日游</div>
+
+
+
+                <div class="tourism_title">{{item.summary}}</div>
 
                 <div class="great_Price_List cssFlex">
-                    <span class="great_Price">¥{{item.price}}</span>
-                    <span class="great_Member">会员专享价: <span>{{item.priceh}}</span></span>
-                    <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                    <span class="great_Price">¥{{item.price_y}}</span>
+                    <span class="great_Stock">商品已售: <span>{{total}}</span>张</span>
                 </div>
 
-                <div class="great_title">
-                    {{item.summary}}
+                <div class="tourism_con">
+                    <div>出发城市: <span> {{item.comName}}</span></div>
+                    <div class="tourism_con_num">
+                        <div>组团人数: 15+1人</div>
+                        <div>最少人数：12+1，不足人数，无法发团，敬请谅解</div>
+                        <div>最多人数16+1，精致VIP小团</div>
+                    </div>
+                    <div>出发日期: <span> {{item.departureDate}}</span></div>
                 </div>
             </div>
 
 
-            <div class="great_comments">
-                <div class="great_comments_title">
-                    <span>商品评价</span>
-                    <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
-                    <span @click="totalComment()">全部评价</span>
+            <div class="tourism_main">
+                <div class="tourism_main_header">
+                    <div><span @click="activeHandle('trip')" :class="active == 'trip' ? 'active' : ''">行程路线</span></div>
+                    <div><span @click="activeHandle('cost')" :class="active == 'cost' ? 'active' : ''">费用说明</span></div>
+                    <div><span @click="activeHandle('other')" :class="active == 'other' ? 'active' : ''">其他说明</span></div>
                 </div>
 
-                <div class="great_comments_content">
-                    <div class="great_comments_top">
-                        <span :class="active == 1 ? 'active' : ''" @click="commentsHandle(evalist1, 1)">好评</span>
-                        <span :class="active == 2 ? 'active' : ''" @click="commentsHandle(evalist2, 2)">中评</span>
-                        <span :class="active == 3 ? 'active' : ''" @click="commentsHandle(evalist3, 3)">差评</span>
-                    </div>
-
-                    <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
-                        <div class="great_comments_item_top cssFlex">
-                            <div><img :src="item.picon" alt=""></div>
-                            <div>
-                                <span>{{item.pname}}</span>
-                                <div>{{item.createTime}}</div>
-                            </div>
-                        </div>
-                        <div class="great_comments_item_con">
-                            {{item.content}}
-                        </div>
-                        <div class="great_comments_item_img">
-                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
-                                 :class="i%3 === 0 ? 'right0' : ''"
-                                 :src="imgObj.pic" alt="">
-                            <!--<img src="../../../image/pro.png" alt="">-->
-                            <!--<img src="../../../image/pro.png" alt="">-->
-                            <!--<img class="right0" src="../../../image/pro.png" alt="">-->
-                        </div>
-                    </div>
-
+                <div id="trip" v-if="active == 'trip' && item.int_pic">
+                    <img v-for="(pic, index) in picList" :key="index" :src="pic" alt="">
                 </div>
-            </div>
-
-            <div class="great_details">
-                <img v-for="(imgSrc, i) in imgs" :key="i"
-                     :src="imgSrc" alt="">
+                <cost v-if="active == 'cost'"></cost>
+                <other v-if="active == 'other'"></other>
             </div>
 
             <div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
-                    <div class="commodity_collection" @click="collectionHandle()">
-                        <img :src="att ? '../../../image/great/Collection2x.png' : '../../../image/great/Collection22x.png'" alt="">
+                    <div class="tourism_collection" @click="collectionHandle()">
+                        <img :src="att ? '../../../../image/circle/Collection2.png' : '../../../../image/circle/Collection1.png'" alt="">
                         <span>收藏</span>
                     </div>
-                    <div class="commodity_purchase" @click="purchaseHandle()">
-                        <div>¥299</div>
+                    <!--<div class="tourism_visa">-->
+                        <!--办理签证-->
+                    <!--</div>-->
+                    <div class="tourism_purchase" @click="purchaseHandle()">
                         <span>立即购买</span>
                     </div>
                 </div>
@@ -104,11 +96,14 @@
     <script type="text/javascript" src="../../../../script/public.js"></script>
     <script type="text/javascript" src="../../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../../script/mui.min.js"></script>
+    <script src="../../../../script/swiper.min.js"></script>
     <script type="text/javascript" src="../../../../script/data.js"></script>
 
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
     <script src="../common/magicCube.js"></script>
+    <script src="./common/cost.js"></script>
+    <script src="./common/other.js"></script>
 
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -120,81 +115,77 @@
     <script>
 
         apiready = function () {
+
+
             var magicCube = magicCubeInit(Vue);
+
+            var cost = costInit(Vue);
+            var other = otherInit(Vue);
             Vue.component('magicCube', magicCube);
+
+            Vue.component('cost', cost);
+            Vue.component('other', other);
 
             new Vue({
                 el: '#great',
                 data: {
-                    active: 1,
+                    active: 'trip',
                     item: {},
                     list: [],
                     len: 1,
                     total: 0,
-                    evalist: [],
-                    evalist1: [],
-                    evalist2: [],
-                    evalist3: [],
+                    picList: [],
                     imgs: [],
                     att: false,
                     att_id: '',
                     person_id: '',
-                    cid: '1'
+                    cid: '2'
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
-                    this.summary();
+                    this.showTravel();
+
+
                 },
                 mounted: function () {
                     document.getElementById('great').classList.remove('isDisplay');
                     this.isDisplay = true;
+                    //获得slider插件对象
+                    var swiper = new Swiper('.swiper-container', {
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                        autoplay:true,
+                    });
                 },
                 methods: {
                     // 获取数据
-                    summary: function () {
+                    showTravel: function () {
                         var that = this;
-                        ajaxGetWithProgress(summary, {
+                        ajaxGetWithProgress(showTravel, {
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
                             console.log(data);
-                            if (data.Commodity) {
-                                that.item = data.Commodity;
-                                that.imgs = data.Commodity.intpic.split(',');
-                                that.total = data.total;
+                            if (data.commTravel) {
+                                that.item = data.commTravel;
                                 that.att = data.att;
                                 that.att_id = data.att_id;
-                                document.getElementById('great').classList.remove('isDisplay');
-                            }
-
-                            if (data.commEvaluateAndPic) {
-                                var list = data.commEvaluateAndPic;
-                                that.list = list;
-                                for (var i = 0; i < list.length; i++) {
-                                    var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
-                                    if (num > 10) {
-                                        that.evalist1.push(list[i]);
-                                    } else if (num > 5) {
-                                        that.evalist2.push(list[i]);
-                                    } else if (num < 5) {
-                                        that.evalist3.push(list[i]);
-                                    }
+                                that.total = data.total;
+                                if (that.item.int_pic) {
+                                    that.picList = that.item.int_pic.split(',')
                                 }
-                                that.evalist = that.evalist1;
+                                if (that.item.placard) {
+                                    that.imgs = that.item.placard.split(',');
+                                }
                             }
                         });
                     },
-                    // 评论
-                    commentsHandle: function (evalist, i) {
-                        this.evalist = evalist;
-                        this.active = i;
+                    // 切换tab
+                    activeHandle: function (active) {
+                        this.active = active;
                     },
-                    // 显示全部评论
-                    totalComment: function () {
-                        console.log(this.list);
-                        this.evalist = this.list;
-                        this.len = this.list.length;
-                    },
+                    // 办理签证
                     // 收藏
                     collectionHandle: function () {
                         var that = this;

@@ -11,6 +11,16 @@ html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparen
     touch-action: manipulation;
 }
 
+@font-face {
+    font-family: STHeitiSC-Light;
+    src: url("./STHeiti-Light.ttc");
+}
+
+@font-face {
+    font-family: PingFangSC-Medium;
+    src: url("./PingFangSC-Medium.ttf");
+}
+
 .commonBg{
     /*background:linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);*/
     /*background:red;*/
