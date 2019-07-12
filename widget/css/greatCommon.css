@@ -972,7 +972,7 @@ img.con-title-img {
     color: rgba(222,41,41,1);
     line-height: 0.5rem;
 }
-.conmain-subTitle,.gong-name,.con-pay-bank-name{
+.conmain-subTitle,.gong-name,.con-pay-bank-name,.tr-person-price,.res-boxname,.res-boxinput{
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
@@ -1081,3 +1081,110 @@ img.pay-gong {
     line-height: 0.50rem;
 }
 /*巨划算旅游=====================结束*/
+
+
+
+/*巨划算旅游  日历 开始===================================*/
+.tr-title {
+    margin: 0.4rem 0 0.36rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    font-size: 0.28rem;
+}
+p.tr-tab-title {
+    line-height: 0.2rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    font-size: 0.28rem;
+    text-align: center;
+}
+.getQueryPrice{
+    padding-bottom: 0.1rem;
+}
+ul#tabs{
+    padding: 0 0.34rem;
+}
+ul#tabs>li{
+    position: relative;
+}
+.activeTab:after{
+    content: "";
+    display: block;
+    width: 0.9rem;
+    height: 0.04rem;
+    background: rgba(99,139,255,1);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transition: all .5s;
+    transform: translateX(-50%);
+    font-weight: 500;
+}
+
+.tr-person.cssFlex {
+    justify-content: space-between;
+    align-items: center;
+}
+.tr-person-price{
+    margin-bottom: 0;
+}
+.res-box.cssFlex {
+    height: 0.9rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+}
+
+.res-box:last-of-type{
+    border-bottom: none;
+}
+.res-boxname{
+   margin-bottom: 0;
+    width: 1.4rem;
+    text-align: center;
+}
+.res-boxname>i{
+    color: #DE2929;
+    margin-right: 0.14rem;
+}
+.res-bottombox {
+    height: 1.2rem;
+    background: rgba(255,163,0,1);
+    width: 100%;
+    color: #fff;
+    font-size: 0.48rem;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+}
+.ReserveBox {
+    padding-bottom: 1.3rem;
+}
+.res-bom-text {
+    width: 50%;
+    text-align: center;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+.res-order-submit{
+    border-left: 1px solid #ebebeb;
+}
+
+/*申请  签证资料表*=======================================
+ */
+.title-visa {
+    height: 0.64rem;
+    line-height: 0.64rem;
+    background: rgba(27,43,150,1);
+    font-weight: 500;
+    color: rgba(255,255,255,1);
+    font-size: 0.28rem;
+    padding-left: 0.34rem;
+}
+
+
+
+
+
+

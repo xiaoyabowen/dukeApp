@@ -252,6 +252,9 @@ var deliveryDelete = Domain + "/delivery/delete";
 //  删除地址
 var deliverySetAddr = Domain + "/delivery/setAddr";
 
+//  聚划算  旅游 提交订单
+var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
+
 
 
 

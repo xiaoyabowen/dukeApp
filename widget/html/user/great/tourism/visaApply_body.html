@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>选择套餐/日期/人数</title>
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../../css/dataRili.css"/>
+    <style>
+        input[type=text]{
+            border: 0;
+            display: inline-block;
+            height: 0;
+            margin: 0;
+        }
+        .res-box{
+            height: 1.2rem !important;
+            line-height: 1.2rem !important;
+            justify-content: space-between;
+        }
+        .res-boxname{
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+
+<div class="Box" id="app" style="padding-top: 0.24rem">
+    <div class="title-visa">个人信息</div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">姓名</span>
+                <input type="text" class="res-boxinput" v-model="name" placeholder="请填写联系人姓名">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">性别</span>
+                <input type="text" class="res-boxinput" v-model="sex" placeholder="请填写联系人姓名">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">出生地</span>
+                <input type="text" class="res-boxinput" v-model="borthAddress" placeholder="请填写联系人姓名">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">家庭住址（可接收快递）</span>
+                <input type="text" class="res-boxinput" v-model="familyAddress" placeholder="请填写联系人姓名">
+            </div>
+        </div>
+    </div>
+    <div class="line20"></div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">职务</span>
+                <input type="text" class="res-boxinput" v-model="comPosi" placeholder="请填写职务">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">年收入</span>
+                <input type="text" class="res-boxinput" v-model="comYearPrice" placeholder="请填写年收入">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">工作年限</span>
+                <input type="text" class="res-boxinput" v-model="comYearWork" placeholder="请填写工作年限">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">单位名称</span>
+                <input type="text" class="res-boxinput" v-model="comName" placeholder="请填写单位名称">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">单位地址</span>
+                <input type="text" class="res-boxinput" v-model="comAddress" placeholder="请填写单位地址">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">单位电话</span>
+                <input type="text" class="res-boxinput" v-model="comPhone" placeholder="请填写单位电话">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">领导姓名及职位</span>
+                <input type="text" class="res-boxinput" v-model="comLeaderName" placeholder="请填写领导姓名及职位">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">领导电话</span>
+                <input type="text" class="res-boxinput" v-model="comLeaderPhone" placeholder="请填写领导电话">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="line20"></div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">手机号码</span>
+                <input type="text" class="res-boxinput" v-model="phone" placeholder="请填写手机号码">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">护照种类</span>
+                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">护照号码</span>
+                <input type="text" class="res-boxinput" v-model="passportNum" placeholder="请填写护照号码">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">身份证号</span>
+                <input type="text" class="res-boxinput" v-model="ID" placeholder="请填写身份证号">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">身份证签发机关</span>
+                <input type="text" class="res-boxinput" v-model="IDaddress" placeholder="请填写身份证签发机关">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">宗教信仰</span>
+                <input type="text" class="res-boxinput" v-model="Religion" placeholder="请填写宗教信仰">
+            </div>
+
+        </div>
+    </div>
+    <!--同行人员-->
+    <div class="line20"></div>
+    <div class="boxSub">
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname">是否有同行人员</span>
+                <span class="personPeer">是</span>
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">护照种类</span>
+                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">是否申请过以色列签证</span>
+                <span class="personPeer">是</span>
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">是否有过其他国家的拒签记录</span>
+                <span class="personPeer">是</span>
+            </div>
+
+            <div class="res-box cssFlex">
+                <span class="res-boxname">护照种类</span>
+                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
+            </div>
+
+            <div class="res-box cssFlex">
+                <span class="res-boxname">是否办理或申请过其他国家工作签证或劳务派遣
+签证</span>
+                <span class="personPeer">是</span>
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">是否出过国或申请过出国签证？</span>
+                <span class="personPeer">是</span>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/vue.min.js"></script>
+<script src="../../../../script/mycanledar.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isDefult: false,
+            person_id:"",
+            name:"",
+            sex:"",
+            borthAddress:"",
+            familyAddress:"",
+            comPosi:"",
+            comYearPrice:"",
+            comYearWork:"",
+            comName:"",
+            comAddress:"",
+            comPhone:"",
+            comLeaderName:"",
+            comLeaderPhone:"",
+        },
+        created :function () {
+            this.person_id = localStorage.getItem('person_id');
+        },
+        mounted:function () {
+
+        },
+        methods:{
+
+        }
+    })
+    apiready = function () {
+
+    }
+
+</script>
+</body>
+</html>
