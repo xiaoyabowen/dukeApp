@@ -6,10 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>地址管理</title>
-    <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWin.css"/>
-    <link rel="stylesheet" href="../../../css/greatCommon.css"/>
-    <link rel="stylesheet" href="../../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.min.css"/>
 </head>
 <body class="commonBg">
 
@@ -17,7 +17,7 @@
 <div class="Box" id="app">
     <div class="boxSub">
         <div class="defaultImg isDisplay">
-            <img src="../../../image/great/adress.png" alt="adress" class="adressNot">
+            <img src="../../../../image/great/adress.png" alt="adress" class="adressNot">
             <div class="subTitle">暂无收货地址</div>
             <div class="addAdressbtn" @click="addAdress()">新增地址</div>
         </div>
@@ -30,7 +30,7 @@
                         <span class="adinfo-name">{{item.name}}</span>
                         <span class="adinfo-phone">{{item.phone}}</span>
                     </div>
-                    <img src="../../../icon/delete.png" alt="de" class="adinfo-dele" @click="delAdr(item.adrId)">
+                    <img src="../../../../icon/delete.png" alt="de" class="adinfo-dele" @click="delAdr(item.adrId)">
                 </div>
                 <div class="adre-adress ellipsis">
                     <span class="adinfo-defult"  v-if="item.adrStatus == 1">默认</span>
@@ -61,15 +61,15 @@
 </div>
 
 
-<script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script src="../../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/util.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/vue.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
