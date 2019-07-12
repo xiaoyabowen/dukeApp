@@ -1,4 +1,7 @@
 
+var dateShow = "2019-9-8"
+var dateShows=dateShow.split("-"); //字符分割
+
 
 function timestampToTime(timestamp) {
     var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -29,7 +32,7 @@ var dnow = nstr.getDate(); // 今日日期
 var n1str = new Date(changedYear, changedMonth, 1); // 当月第一天Date
 var initfirstday = n1str.getDay(); // 当月第一天星期几
 
-commChanged(changedYear,changedMonth+1)
+
 
 
 // 是否为闰年
@@ -55,7 +58,7 @@ function getFirstWeekDay(year, month, day) {
 
 
 $(function () {
-    showCanledar(changedMonth+1, initfirstday, dnow, getMonthAllDay(changedMonth,changedYear),changedYear)
+    commChanged(changedYear,changedMonth+1*1)
 })
 
 
@@ -78,7 +81,8 @@ function daysOfMonth(){
 
 
 function commChanged(changedYear,changedMonth) {
-
+    console.log(changedYear)
+    console.log(changedMonth)
     var changedMonth =  changedMonth
     var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
 
@@ -110,27 +114,43 @@ function showCanledar(month, firstday, dnow, allday,changedYear) {
         for (var k = 0; k < 7; k++) { // 表格每行的单元格
             var idx = i * 7 + k; // 单元格自然序列号
             var date_str = idx - firstday + 1; // 计算日期
-            (date_str <= 0 || date_str > allday) ?  tb+="<td style='background:#fff'> </td>" : tb += '<td class="tdActive">\n' +
-                '                    <div class=" normal">\n' +
-                '                        '+date_str+' ' +
-                '                        <p class="price">¥<i class="priceNum">1380</i></p>\n' +
-                '                        <var>余 <i class="Surplus">8</i></var>\n' +
-                '<span class="price_low_tag ">完</span>'+
-                '\n' +
-                '                    </div>\n' +
-                '                </td>'; // 过滤无效日期（小于等于零的、大于月总天数的）
-            // 打印日期：今天底色为红
-            // 查询月签到情况
+            (date_str <= 0 || date_str > allday) ?  tb+="<td style='background:#fff'> </td>" : tb += '<td class="tdActive ">\n'+
+
+                '<div class=" normal">\n'+
+                    '                       <i class="normalNum">'+date_str+'</i> ' +
+                    '                        <p class="price isDisplay">¥<i class="priceNum">1380</i></p>\n' +
+                    '                        <var class="sheng isDisplay">余 <i class="Surplus">8</i></var>\n' +
+                    '\n' +
+                    '                    </div>\n' +
+                    '                </td>';
 
 
         }
+
         tb += "</tr>";
         // 表格的行结束
     }
     tb += "</table>"; // 表格结束
     $(".signincalendar").html(tb);
+    // var normalnum = getMonthAllDay(changedMonth,changedYear)
+    // var arr = []
+    // for (var i=1;i<=normalnum;i++){
+    //     arr.push(i)
+    // }
+    // for (var i=1;i<=arr.length;i++){
+    //     if (arr[i] == dateDay){
+    //         console.log($(".normal").eq(dateDay).html())
+    //     }
+    // }
+    // console.log(arr)
+    var dateDay = 13
+    var price = "12999"
+    var normalIndex = $(".normal").eq(dateDay-1*1)
+    $(".priceNum").text(price)
+    normalIndex.addClass("activeTd")
+    normalIndex.children(".price").removeClass("isDisplay")
+    normalIndex.children(".sheng").removeClass("isDisplay")
 }
-
 
 
 function getNewYear() {

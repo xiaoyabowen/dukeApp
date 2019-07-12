@@ -79,6 +79,19 @@ textarea{
     white-space:nowrap;
 }
 
+/*中文两端对齐*/
+
+.justify {
+    text-align: justify;
+}
+
+.justify:after {
+    content: "";
+    padding-left: 100%;
+    display: inline-block;
+}
+
+
 /*内容盒子样式*/
 .contentBox{
     padding: 0.4rem 0.28rem;
