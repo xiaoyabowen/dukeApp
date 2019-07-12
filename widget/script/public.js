@@ -241,6 +241,7 @@ var SetPayPwd = Domain + "/idDocument/SetPayPwd";
 // 巨划算-旅游-以色列详情
 var showTravel = Domain + "/travel/showTravel";
 
+
 // 巨划算-生成订单
 var createOrder = Domain + "/reserve/createOrder";
 // 巨划算-验证用户是否绑定银行卡
@@ -262,6 +263,11 @@ var deliverySetAddr = Domain + "/delivery/setAddr";
 
 //  聚划算  旅游 提交订单
 var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
+
+
+//  聚划算
+var showVisaInformation = Domain + "/visa/showVisaInformation";
+
 
 
 

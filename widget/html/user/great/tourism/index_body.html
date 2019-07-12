@@ -139,8 +139,12 @@
                     att: false,
                     att_id: '',
                     person_id: '',
+
                     cid: '2',
-                    data: ''
+                    data: '',
+
+                    cid: '2'
+
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
@@ -173,6 +177,7 @@
                                 that.att = data.att;
                                 that.att_id = data.att_id;
                                 that.total = data.total;
+
                                 that.data = data;
                                 if (that.item.int_pic) {
                                     that.picList = that.item.int_pic.split(',')

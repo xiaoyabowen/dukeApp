@@ -22,164 +22,142 @@
 <body class="commonBg">
 
 
-<div class="Box isDisplay" id="app">
-    <div class="boxSub" v-if="active">
-        <div class="con-adr">
-            <div class="con-adr-not cssFlex"
-                 @click="adressHandle()"
-                 :class="order.adr.addrDetails ? 'isDisplay' : ''">
-                <div class="con-adr-not-left cssFlex">
-                    <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
-                    <span>手动添加收货地址</span>
+    <div class="Box" id="app">
+        <div class="boxSub">
+            <div class="con-adr">
+                <div class="con-adr-not cssFlex isDisplay">
+                    <div class="con-adr-not-left cssFlex">
+                        <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
+                        <span>手动添加收货地址</span>
+                    </div>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                <div class="con-adr-yes ">
+                    <div class="adr-yes-info cssFlex">
+                        <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
+                        <span class="adr-yes-name">{{infoName}}</span>
+                        <span class="adr-yes-phone">{{infoPhone}}</span>
+                    </div>
+                    <div class="adr-yes-adr cssFlex">
+                        <img src="../../../image/great/adr.png" alt="ADR" class="adr-yes-adr">
+                        <span class="ellipsis">{{infoAdr}}</span>
+                    </div>
+                    <img src="../../../icon/right.png" alt="right" class="info-adr-right">
+                </div>
+                <img src="../../../image/great/lan.png" alt="lan" class="lineBot">
             </div>
-            <div class="con-adr-yes"
-                 @click="adressHandle()"
-                 :class="!order.adr.addrDetails ? 'isDisplay' : ''">
-                <div class="adr-yes-info cssFlex">
-                    <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
-                    <span class="adr-yes-name" id="name">{{order.adr.name}}</span>
-                    <span class="adr-yes-phone" id="phone">{{order.adr.phone}}</span>
-                </div>
-                <div class="adr-yes-adr cssFlex">
-                    <img src="../../../image/great/adr.png" alt="ADR" class="adr-yes-adr">
-                    <span class="ellipsis" id="address">{{order.adr.address}}{{order.adr.addrDetails}}</span>
-                </div>
-                <img src="../../../icon/right.png" alt="right" class="info-adr-right">
-            </div>
-            <img src="../../../image/great/lan.png" alt="lan" class="lineBot">
         </div>
-    </div>
+        <div class="line20">
 
-    <div class="line20" v-if="active">
-
-    </div>
-    <div class="boxSub">
-        <div class="con-main">
-
-            <div class="con-title cssFlex" v-if="!active">
-                <img :src="item.placard.split(',')[0]" alt="img" class="con-title-img">
-                <div class="con-title-info">
-                    <div class="con-title-text textOverflow">
-                        {{item.summary}}
-                    </div>
-                    <div class="conmain-price">
-                        ¥{{item.price_y}}/件
-                    </div>
-                </div>
-            </div>
-
-            <div class="con-title cssFlex" v-if="active">
-                <img :src="item.placard" alt="img" class="con-title-img">
-                <div class="con-title-info">
-                    <div class="con-title-text textOverflow">
-                        {{item.summary}}
-                    </div>
-                    <div class="conmain-price">
-                        ¥{{item.price}}/件
-                    </div>
-                </div>
-            </div>
-
-            <div class="conmain-subTitle" v-if="active">
-                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
-            </div>
-            <div class="conmain-num cssFlex" v-if="active">
-                <span class="conmain-h">购买数量</span>
-                <div class="mui-numbox">
-                    <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
-                    <input class="mui-numbox-input" type="number" v-model="num"/>
-                    <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
-                </div>
-            </div>
-
-            <div class="con-pay">支付方式:</div>
-            <div class="con-pay-box">
-                <div class="con-pay-main cssFlex">
-                    <div class="con-pay-main-left cssFlex">
-                        <img src="../../../image/great/gong.png" alt="gong" class="pay-gong">
-                        <div class="con-pay-main-left-content">
-                            <div class="gong-name">工商银行储蓄卡（推荐）</div>
-                            <div class="gong-hui">满300元减20元</div>
+        </div>
+        <div class="boxSub">
+            <div class="con-main">
+                <div class="con-title cssFlex">
+                    <img src="../../../image/great/teacherLiu.png" alt="img" class="con-title-img">
+                    <div class="con-title-info">
+                        <div class="con-title-text textOverflow">
+                            波碧水十五周年庆——唯美丽人会员礼包 深海水动力清透洁面乳 波碧水如雪防晒乳 SPF23
+                        </div>
+                        <div class="conmain-price">
+                            ¥{{mainPrice}}/件
                         </div>
                     </div>
-                    <div class="con-pay-main-right">
-                        <input type="radio" value="工商" v-model="bank" class="myOrderHaveCheck" id="mode0" name="checkItem">
-                        <label for="mode0"></label>
+                </div>
+                <div class="conmain-subTitle">
+                    会员专享价：<i class="conmain-subtitle-price">{{subMainPrice}}元</i>（渡客为会员补贴100元）
+                </div>
+                <div class="conmain-num cssFlex">
+                    <span class="conmain-h">购买数量</span>
+                    <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
+                        <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                        <input class="mui-numbox-input" type="number" />
+                        <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
                     </div>
                 </div>
-                <div class="con-pay-main cssFlex">
-                    <div class="con-pay-main-left cssFlex">
-                        <img src="../../../image/great/nong.png" alt="gong" class="pay-gong">
-                        <div class="con-pay-main-left-content">
-                            <div class="con-pay-bank-name">农业银行储蓄卡</div>
+
+                <div class="con-pay">支付方式:</div>
+                <div class="con-pay-box">
+                    <div class="con-pay-main cssFlex">
+                        <div class="con-pay-main-left cssFlex">
+                            <img src="../../../image/great/gong.png" alt="gong" class="pay-gong">
+                            <div class="con-pay-main-left-content">
+                                <div class="gong-name">工商银行储蓄卡（推荐）</div>
+                                <div class="gong-hui">满300元减20元</div>
+                            </div>
+                        </div>
+                        <div class="con-pay-main-right">
+                            <input type="radio" class="myOrderHaveCheck" id="mode0" name="checkItem">
+                            <label for="mode0"></label>
                         </div>
                     </div>
-                    <div class="con-pay-main-right">
-                        <input type="radio" value="农业" v-model="bank" class="myOrderHaveCheck" id="mode1" name="checkItem">
-                        <label for="mode1"></label>
-                    </div>
-                </div>
-                <div class="con-pay-main cssFlex">
-                    <div class="con-pay-main-left cssFlex">
-                        <img src="../../../image/great/wxc.png" alt="gong" class="pay-gong">
-                        <div class="con-pay-main-left-content">
-                            <div class="con-pay-bank-name">微信支付</div>
+                    <div class="con-pay-main cssFlex">
+                        <div class="con-pay-main-left cssFlex">
+                            <img src="../../../image/great/nong.png" alt="gong" class="pay-gong">
+                            <div class="con-pay-main-left-content">
+                                <div class="con-pay-bank-name">农业银行储蓄卡</div>
+                            </div>
+                        </div>
+                        <div class="con-pay-main-right">
+                            <input type="radio" class="myOrderHaveCheck" id="mode1" name="checkItem">
+                            <label for="mode1"></label>
                         </div>
                     </div>
-                    <div class="con-pay-main-right">
-                        <input type="radio" value="微信" v-model="bank" class="myOrderHaveCheck" id="mode2" name="checkItem">
-                        <label for="mode2"></label>
-                    </div>
-                </div>
-                <div class="con-pay-main cssFlex">
-                    <div class="con-pay-main-left  cssFlex">
-                        <img src="../../../image/great/apy.png" alt="gong" class="pay-gong">
-                        <div class="con-pay-main-left-content">
-                            <div class="con-pay-bank-name">支付宝</div>
+                    <div class="con-pay-main cssFlex">
+                        <div class="con-pay-main-left cssFlex">
+                            <img src="../../../image/great/wxc.png" alt="gong" class="pay-gong">
+                            <div class="con-pay-main-left-content">
+                                <div class="con-pay-bank-name">微信支付</div>
+                            </div>
+                        </div>
+                        <div class="con-pay-main-right">
+                            <input type="radio" class="myOrderHaveCheck" id="mode2" name="checkItem">
+                            <label for="mode2"></label>
                         </div>
                     </div>
-                    <div class="con-pay-main-right">
-                        <input type="radio" value="支付宝" v-model="bank" class="myOrderHaveCheck" id="mode3" name="checkItem">
-                        <label for="mode3"></label>
+                    <div class="con-pay-main cssFlex">
+                        <div class="con-pay-main-left  cssFlex">
+                            <img src="../../../image/great/apy.png" alt="gong" class="pay-gong">
+                            <div class="con-pay-main-left-content">
+                                <div class="con-pay-bank-name">支付宝</div>
+                            </div>
+                        </div>
+                        <div class="con-pay-main-right">
+                            <input type="radio" class="myOrderHaveCheck" id="mode3" name="checkItem">
+                            <label for="mode3"></label>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
 
-    </div>
-
-    <div class="con-main-bottom cssFlex">
-        <div class="con-flex-left">
-            <div class="con-margintop" v-if="active">¥{{item.priceh * num}}</div>
-            <div class="con-margintop" v-if="!active">¥{{item.price_y * order.num}}</div>
-            <div>实付款</div>
-        </div>
-        <div class="con-flex-right" @click="payment()">
-            立即付款
+        <div class="con-main-bottom cssFlex">
+            <div class="con-flex-left">
+                <div class="con-margintop">¥299</div>
+                <div>实付款</div>
+            </div>
+            <div class="con-flex-right">
+                立即付款
+            </div>
         </div>
     </div>
-</div>
 
 
 
-<script type="text/javascript" src="../../../script/api.js"></script>
-<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
-<script type="text/javascript" src="../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script src="../../../script/vue.min.js"></script>
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <!--<script type="text/javascript" src="../../../script/util.js"></script>-->
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script src="../../../script/vue.min.js"></script>
 
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
-<script>
-
-    apiready = function () {
+    <script>
         var app = new Vue({
             el: '#app',
             data: {
@@ -189,101 +167,21 @@
                 infoAdr : "北京市朝阳区望京社区幸福家园A座2层201室20…",
                 mainPrice : "399",
                 subMainPrice : "299",
-                num: 1,
-                person_id:"",
-                item: '',
-                order: '',
-                bank: '',
-                active: true
+                person_id:""
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
-                this.item = api.pageParam.item;
-                this.order = api.pageParam.order;
-                this.active = api.pageParam.url ? false : true;
-                console.log(api.pageParam.item);
-                console.log(api.pageParam.order);
             },
             mounted: function () {
-                document.getElementById('app').classList.remove('isDisplay');
+
             },
             methods: {
-                // 选择地址
-                adressHandle: function () {
-                    openNewWindow("Adress", "./Adress.html", {
-                        url: 'confirmOrder',
-                        adrStatus: 1
-                    });
-                },
-                // 增加商品
-                numboxAdd: function () {
-                    this.num++
-                    if (this.num > 10) {
-                        this.num = 10
-                    }
-                },
-                // 减少商品
-                numboxlit: function () {
-                    this.num--
-                    if (this.num < 1) {
-                        this.num = 1
-                    }
-                },
-                // 付款
-                payment: function () {
-                    var name = document.getElementById('name').innerText;
-                    var phone = document.getElementById('phone').innerText;
-                    var address = document.getElementById('address').innerText;
-                    console.log(name, phone, address);
-                    if (!address) {
-                        mui.confirm('是否添加收获地址','您还未添加收货地址', function (e) {
-                            if (e.index) {
-                                openNewWindow("addAdress", "./addAdress.html", {
-                                    url: 'confirmOrder',
-                                    adrStatus: 1
-                                });
-                            }
-                        }, 'div');
-                        return;
-                    }
-                    var that = this;
-                    console.log(that.bank)
-                    if (!that.bank) {
-                        mui.toast('请选择支付方式');
-                        return;
-                    } else if (that.bank == '微信' || that.bank == '支付宝') {
 
-                        return;
-                    }
-
-                    ajaxGetWithProgress(PayOrder, {
-                        pId: that.person_id,
-                        bank: that.bank
-                    }, function (data, err) {
-                        console.log(data);
-                        if (!data.date) {
-                            mui.confirm('是否添加'+ that.bank +'银行卡','您还未添加'+ that.bank +'银行卡', function (e) {
-                                if (e.index) {
-                                    openNewWindow("addCards", "./addCards.html", {
-                                        url: 'confirmOrder',
-                                        bank: that.bank
-                                    });
-                                }
-                            }, 'div');
-                            return;
-                        }
-                    });
-
-                }
             }
         })
-    }
+        apiready = function () {
 
-    function address(name, phone, address) {
-        document.getElementById('name').innerText = name;
-        document.getElementById('phone').innerText = phone;
-        document.getElementById('address').innerText = address;
-    }
-</script>
+        }
+    </script>
 </body>
 </html>

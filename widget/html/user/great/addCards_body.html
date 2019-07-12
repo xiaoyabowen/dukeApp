@@ -122,13 +122,13 @@
                     // 点击下一步
                     nextHandle: function () {
                         console.log(this.text, this.number);
-                        // var that = this;
-                        // openNewWindow("codePhone", "./codePhone.html", {
-                        //     pname: that.name,
-                        //     idcard: that.accountNo,
-                        //     issureBy: that.bank,
-                        //     idType: that.cardType
-                        // });
+                        var that = this;
+                        openNewWindow("codePhone", "./codePhone.html", {
+                            pname: that.name,
+                            idcard: that.accountNo,
+                            issureBy: that.bank,
+                            idType: that.cardType
+                        });
 
                         if (!this.text) {
                             mui.toast('姓名不能为空');
