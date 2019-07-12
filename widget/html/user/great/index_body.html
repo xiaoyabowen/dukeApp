@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-
+            <magicCube></magicCube>
             <component is="magicCube"></component>
         </div>
     </div>
@@ -119,6 +119,7 @@
 
         apiready = function () {
             var magicCube = magicCubeInit(Vue);
+            // console.log(magicCube);
             Vue.component('magicCube', magicCube);
 
             new Vue({
@@ -144,7 +145,7 @@
                     this.summary();
                 },
                 mounted: function () {
-
+                    document.getElementById('great').classList.remove('isDisplay');
                     this.isDisplay = true;
                 },
                 methods: {
