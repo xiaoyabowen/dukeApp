@@ -314,12 +314,12 @@
                         console.log(data);
                         if (data.status){
                             openNewWindow("confirmOrder", "../confirmOrder.html", {
-                                url: 'tripDate',
+                                url: 'tourism',
                                 item: that.data.commTravel,
                                 order: {
                                     OrderKey: data.OrderKey,
                                     num: that.num,
-                                    price: that.getPrice
+                                    price: that.getPrice,
                                 }
                             })
                         }else{

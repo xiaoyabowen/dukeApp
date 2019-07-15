@@ -24,7 +24,7 @@
 
 
 <div class="Box isDisplay" id="app">
-    <div class="boxSub" v-if="active">
+    <div class="boxSub" v-if="active == 'facial'">
         <div class="con-adr">
             <div class="con-adr-not cssFlex"
                  @click="adressHandle()"
@@ -53,13 +53,13 @@
         </div>
     </div>
 
-    <div class="line20" v-if="active">
+    <div class="line20" v-if="active == 'facial'">
 
     </div>
     <div class="boxSub">
         <div class="con-main">
 
-            <div class="con-title cssFlex" v-if="!active">
+            <div class="con-title cssFlex" v-if="active == 'tourism'">
                 <img :src="item.placard.split(',')[0]" alt="img" class="con-title-img">
                 <div class="con-title-info">
                     <div class="con-title-text textOverflow">
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="con-title cssFlex" v-if="active">
+            <div class="con-title cssFlex" v-if="active == 'facial'">
                 <img :src="item.placard" alt="img" class="con-title-img">
                 <div class="con-title-info">
                     <div class="con-title-text textOverflow">
@@ -83,10 +83,10 @@
                 </div>
             </div>
 
-            <div class="conmain-subTitle" v-if="active">
+            <div class="conmain-subTitle" v-if="active == 'facial'">
                 会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
             </div>
-            <div class="conmain-num cssFlex" v-if="active">
+            <div class="conmain-num cssFlex" v-if="active == 'facial'">
                 <span class="conmain-h">购买数量</span>
                 <div class="mui-numbox">
                     <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
@@ -154,8 +154,8 @@
 
     <div class="con-main-bottom cssFlex">
         <div class="con-flex-left">
-            <div class="con-margintop" v-if="active">¥{{item.priceh * num}}</div>
-            <div class="con-margintop" v-if="!active">¥{{item.price_y * order.num}}</div>
+            <div class="con-margintop" v-if="active == 'facial'">¥{{item.priceh * num}}</div>
+            <div class="con-margintop" v-if="active == 'tourism'">¥{{item.price_y * order.num}}</div>
             <div>实付款</div>
         </div>
         <div class="con-flex-right" @click="payment()">
@@ -201,7 +201,7 @@
                 this.person_id = localStorage.getItem('person_id');
                 this.item = api.pageParam.item;
                 this.order = api.pageParam.order;
-                this.active = api.pageParam.url ? false : true;
+                this.active = api.pageParam.url;
                 console.log(api.pageParam.item);
                 console.log(api.pageParam.order);
             },
@@ -232,48 +232,63 @@
                 },
                 // 付款
                 payment: function () {
-                    var name = document.getElementById('name').innerText;
-                    var phone = document.getElementById('phone').innerText;
-                    var address = document.getElementById('address').innerText;
-                    console.log(name, phone, address);
-                    if (!address) {
-                        mui.confirm('是否添加收获地址','您还未添加收货地址', function (e) {
-                            if (e.index) {
-                                openNewWindow("addAdress", "./addAdress.html", {
-                                    url: 'confirmOrder',
-                                    adrStatus: 1
-                                });
-                            }
-                        }, 'div');
-                        return;
-                    }
                     var that = this;
-                    console.log(that.bank)
-                    if (!that.bank) {
-                        mui.toast('请选择支付方式');
-                        return;
-                    } else if (that.bank == '微信' || that.bank == '支付宝') {
-
-                        return;
-                    }
-
-                    ajaxGetWithProgress(PayOrder, {
-                        pId: that.person_id,
-                        bank: that.bank
-                    }, function (data, err) {
-                        console.log(data);
-                        if (!data.date) {
-                            mui.confirm('是否添加'+ that.bank +'银行卡','您还未添加'+ that.bank +'银行卡', function (e) {
+                    // 商品类型
+                    if (that.active == 'facial') {
+                        var name = document.getElementById('name').innerText;
+                        var phone = document.getElementById('phone').innerText;
+                        var address = document.getElementById('address').innerText;
+                        console.log(name, phone, address);
+                        if (!address) {
+                            mui.confirm('是否添加收获地址','您还未添加收货地址', function (e) {
                                 if (e.index) {
-                                    openNewWindow("addCards", "./addCards.html", {
+                                    openNewWindow("addAdress", "./addAdress.html", {
                                         url: 'confirmOrder',
-                                        bank: that.bank
+                                        adrStatus: 1
                                     });
                                 }
                             }, 'div');
                             return;
                         }
-                    });
+
+                        console.log(that.bank)
+                        if (!that.bank) {
+                            mui.toast('请选择支付方式');
+                            return;
+                        } else if (that.bank == '微信' || that.bank == '支付宝') {
+
+                            return;
+                        }
+
+                        ajaxGetWithProgress(PayOrder, {
+                            pId: that.person_id,
+                            bank: that.bank
+                        }, function (data, err) {
+                            console.log(data);
+                            if (!data.date) {
+                                mui.confirm('是否添加'+ that.bank +'银行卡','您还未添加'+ that.bank +'银行卡', function (e) {
+                                    if (e.index) {
+                                        openNewWindow("addCards", "./addCards.html", {
+                                            url: 'confirmOrder',
+                                            bank: that.bank
+                                        });
+                                    }
+                                }, 'div');
+                                return;
+                            }
+
+
+                        });
+
+                        return;
+                    }
+                    // 旅游类型
+                    if (that.active == 'tourism') {
+                        var price_y = that.order.price;
+                        var num = that.order.num;
+                        var OrderKey = that.order.OrderKey;
+                    }
+
 
                 }
             }
