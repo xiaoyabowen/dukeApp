@@ -308,7 +308,7 @@
                         buy_num: that.num,
                         reservetime: that.data.commTravel.departureDate
                     }
-                    console.log(str)
+                    // console.log(str)
                     ajaxGetWithProgress(createReserveAndOrder, str, function (data, err) {
                         console.log(data);
                         if (data.status){
