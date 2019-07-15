@@ -52,10 +52,22 @@
             <span class="tr-person-price">
                 成人（￥{{getPriceDefult}}）
             </span>
+<<<<<<< HEAD
             <div class="mui-numbox">
                 <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
                 <input class="mui-numbox-input" type="number" v-model="num"/>
                 <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
+=======
+            <!--<div id="buyNum" class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10' >-->
+                <!--<button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxAdd()">-</button>-->
+                <!--<input class="mui-numbox-input buy_num" type="number" />-->
+                <!--<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>-->
+            <!--</div>-->
+            <div id="buyNum" class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='100'>
+                <button class="mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
+                <input class="mui-numbox-input" type="number" v-model="buy_num" />
+                <button class="mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
+>>>>>>> master
             </div>
         </div>
         <div class="tr-title">
@@ -81,7 +93,11 @@
         </div>
     </div>
     <div class="res-bottombox cssFlex">
+<<<<<<< HEAD
         <div class="res-bom-text">¥{{getPrice * num}}</div>
+=======
+        <div class="res-bom-text">¥{{getPrice}}</div>
+>>>>>>> master
         <div class="res-bom-text res-order-submit" @click="orderSubmit()">提交订单</div>
     </div>
 </div>
@@ -96,12 +112,17 @@
 <script type="text/javascript" src="../../../../script/data.js"></script>
 <script type="text/javascript" src="../../../../script/mui.min.js"></script>
 <script src="../../../../script/vue.min.js"></script>
+<<<<<<< HEAD
 <!--<script src="../../../../script/mycanledar.js"></script>-->
+=======
+<script src="../../../../script/mycanledar.js"></script>
+>>>>>>> master
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 
 <script>
+<<<<<<< HEAD
 
     apiready = function () {
         var app = new Vue({
@@ -125,8 +146,37 @@
                 this.getPrice = this.data.commTravel.price_y;
                 this.getPriceDefult = this.data.commTravel.price_y;
                 console.log(this.data);
+=======
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isDefult: false,
+            person_id:"",
+            name:"张三",
+            phone:"15901420546",
+            wx:"1234566",
+            remark:"24225245252",
+            getPrice:"12999",
+            getPriceDefult:"12999",
+            getQueryMonth:"12",
+            buy_num:"1"
+        },
+        created :function () {
+            this.person_id = localStorage.getItem('person_id');
+        },
+        mounted:function () {
+>>>>>>> master
 
+        },
+        methods:{
+            numboxAdd : function(){
+                var that = this;
+                // var num = mui("#buyNum").numbox().getValue()
+                that.buy_num++
+                // console.log(num)
+                that.getPrice = that.buy_num * that.getPriceDefult
             },
+<<<<<<< HEAD
             mounted:function () {
                 var that = this;
                 document.getElementById('app').classList.remove('isDisplay');
@@ -163,6 +213,17 @@
                 function is_leap(year) {
                     return (year % 100 == 0 ? res = (year % 400 == 0 ? 1 : 0)
                         : res = (year % 4 == 0 ? 1 : 0));
+=======
+            numboxlit : function(){
+                var that = this;
+                // var num = mui("#buyNum").numbox().getValue()
+                that.buy_num--
+                if (that.buy_num == 1){
+                    console.log(122112)
+                    that.getPrice = that.getPriceDefult
+                } else{
+                    that.getPrice = that.buy_num * that.getPriceDefult
+>>>>>>> master
                 }
 
                 // 获取当月的天数
@@ -280,6 +341,7 @@
                     return  $(".txt_blue").html()
                 }
             },
+<<<<<<< HEAD
             methods:{
                 // 增加商品
                 numboxAdd: function () {
@@ -333,6 +395,38 @@
 
 
 
+=======
+            orderSubmit : function () {
+                var that = this
+                var str = {
+                    pid:that.person_id,
+                    name: that.name,
+                    phone: that.phone,
+                    wechat: that.wx,
+                    summary: that.remark,
+                    cid: "2",
+                    price: that.getPrice,
+                    buy_num: mui("#buyNum").numbox().getValue(),
+                    reservetime:"2019-9-9"
+                }
+                console.log(str)
+                /*ajaxGetWithProgress(createReserveAndOrder, str, function (data, err) {
+                    console.log(data);
+                    if (data.status){
+                        openNewWindow("confirmOrder", "../confirmOrder.html", {
+                            url: 'tripDate'
+                        })
+                    }else{
+                        api.toast({
+                            msg: '请求出错'
+                        });
+                    }
+                });*/
+            }
+        }
+    })
+    apiready = function () {
+>>>>>>> master
 
     }
 
