@@ -264,20 +264,89 @@
     apiready = function () {
         job_id = api.pageParam.job_id;
         urlPosition = api.pageParam.url;
-        if (urlPosition == "home"){
-            var uid = JSON.parse(localStorage.getItem('user')).user_uid;
-            ajaxGetWithProgress(JobId, {person_id : uid}, function (data, err) {
-                console.log(data)
-                if (data){
-                    positionDe(data.job_id)
+        uidUser = localStorage.getItem("user")
+        console.log(uidUser)
+        if (job_id){
+            positionDe(job_id)
+            return;
+        }
+        if (!uidUser){
+            ajaxGetWithProgress(JobId, '', function (data, err) {
+                console.log(1,data)
+                if (data) {
+                    var data = data.JobSummary
+                    console.log(556567,data)
+                    document.querySelector('.view').classList.remove('isDisplay');
+
+                    cid = data.c_id;
+                    uid = data.uid;
+                    ptoken = data.uid;
+                    document.getElementById('job_name').innerText = data.job_name || '未填写';
+                    document.getElementById('work_ex').innerText = data.work_ex || '未填写';
+                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('ratio').innerText = data.ratio || '未填写';
+                    document.getElementById('user_name').innerText = data.user_name || '未填写';
+                    document.getElementById('c_name').innerText = data.c_name || '未填写';
+                    document.getElementById('c_name1').innerText = data.c_name || '未填写';
+                    document.getElementById('financing').innerText = data.financing || '未填写';
+                    document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
+                    document.getElementById('description').innerHTML = data.description || '未填写';
+                    document.getElementById('scale').innerText = data.scale || '未填写';
+                    document.getElementById('org_type').innerText = data.org_type || '未填写';
+                    document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
+
+                    if (data.skills) {
+                        var skills = data.skills.split(',');
+                        var doms = []
+                        for (var i = 0; i < skills.length; i++) {
+                            var str = '<span>'+ skills[i] +'</span>';
+                            doms.push(str);
+                        }
+                        document.getElementById('skills').innerHTML = doms.join('');
+                    } else {
+                        document.getElementById('skills').innerHTML = '';
+                    }
+
                 }
             })
         }else{
-            var uid = job_id;
-            ajaxGetWithProgress(JobId, {person_id : uid}, function (data, err) {
-                console.log(data)
-                if (data){
-                    positionDe(data.job_id)
+            var uid = uidUser.user_uid;
+            ajaxGetWithProgress(JobId, {person_id:uid}, function (data, err) {
+                console.log(1,data)
+                if (data) {
+                    var data = data.JobSummary
+                    console.log(556567,data)
+                    document.querySelector('.view').classList.remove('isDisplay');
+
+                    cid = data.c_id;
+                    uid = data.uid;
+                    ptoken = data.uid;
+                    document.getElementById('job_name').innerText = data.job_name || '未填写';
+                    document.getElementById('work_ex').innerText = data.work_ex || '未填写';
+                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('ratio').innerText = data.ratio || '未填写';
+                    document.getElementById('user_name').innerText = data.user_name || '未填写';
+                    document.getElementById('c_name').innerText = data.c_name || '未填写';
+                    document.getElementById('c_name1').innerText = data.c_name || '未填写';
+                    document.getElementById('financing').innerText = data.financing || '未填写';
+                    document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
+                    document.getElementById('description').innerHTML = data.description || '未填写';
+                    document.getElementById('scale').innerText = data.scale || '未填写';
+                    document.getElementById('org_type').innerText = data.org_type || '未填写';
+                    document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
+
+                    if (data.skills) {
+                        var skills = data.skills.split(',');
+                        var doms = []
+                        for (var i = 0; i < skills.length; i++) {
+                            var str = '<span>'+ skills[i] +'</span>';
+                            doms.push(str);
+                        }
+                        document.getElementById('skills').innerHTML = doms.join('');
+                    } else {
+                        document.getElementById('skills').innerHTML = '';
+                    }
+
                 }
             })
         }
@@ -399,20 +468,42 @@
     // 点击进入聊一聊
 
     function chatJob() {
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+
+        toast("功能正在开发中")
+        return;
+
         var token = localStorage.getItem('person_id');
         openNewWindow("chat_Room", "../chat/chat_Room.html", {
             token: token,
             ptoken: ptoken,
         });
     }
+
+
+
     // 点击投递简历
     function sendResume() {
+        var uidUser = localStorage.getItem("user")
+        console.log(123,uidUser)
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        toast("功能正在开发中")
+        return;
+
         var token = localStorage.getItem('user');
         console.log(112211,token)
-        /*openNewWindow("chat_Room", "../chat/chat_Room.html", {
+        openNewWindow("chat_Room", "../chat/chat_Room.html", {
             token: token,
             ptoken: ptoken,
-        });*/
+        });
+
     }
     // 点击进入发布人主页
     function homePage() {

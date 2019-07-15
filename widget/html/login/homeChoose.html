@@ -65,17 +65,17 @@
 
 
     apiready = function () {
-
+        var uid = localStorage.getItem("user")
+        if (uid){
+            openNewWindow("home", "../user/home/home.html")
+        }
 
     }
-
     function user() {
         openNewWindow("home", "../user/home/home.html")
         localStorage.setItem("role","1")
-        localStorage.clear()
 
     }
-
 
     // 伯乐
 

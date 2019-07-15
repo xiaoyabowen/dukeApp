@@ -104,7 +104,8 @@ var queryDynamicSummaryById = serverUrl + "/OrgnizationProfile/queryDynamicSumma
 // 魔方
 var queryListRandom = serverUrl + "/UserProfile/queryListRandom";
 // 进入职位详情  随机 职位  id
-var JobId = serverUrl + "/JobProfile/JobId";
+// var JobId = serverUrl + "/JobProfile/JobId";
+var JobId = serverUrl + "/JobProfile/JobSummaryRandom";
 
 // 获取订阅列表数据
 var QuerySubscriptionById = serverUrl + "/UserProfile/querySubscriptionById";

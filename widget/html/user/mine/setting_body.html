@@ -160,21 +160,13 @@
                 if (e.index) {
                     console.log(123)
                     localStorage.clear();
-                    gotoLogin();
+                    api.closeToWin({
+                        name: 'login'
+                    });
                 }
             })
         }
 
-        function gotoLogin(){
-            api.closeToWin({
-                name: 'login',
-                animation: {
-                    type: 'flip',
-                    subType: 'from_bottom',
-                    duration: 500
-                }
-            });
-        }
 
     };
     // var passLocal = localStorage.getItem("passStatus")

@@ -660,12 +660,12 @@ function ajaxGet(url, params, callBack) {
     var user = JSON.parse(localStorage.getItem('user'));
     console.log(user);
     // alert(user);
-    if (!user) {
-        api.hideProgress();
-        localStorage.clear();
-        openNewWindow('login', "../../login/login.html");
-        return;
-    }
+    // if (!user) {
+    //     api.hideProgress();
+    //     localStorage.clear();
+    //     openNewWindow('login', "../../login/login.html");
+    //     return;
+    // }
     // params.uid = '1';
     if (user) {
         params.uid = user.user_uid;

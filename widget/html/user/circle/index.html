@@ -45,6 +45,11 @@
 
     //发布活动
     function save(){
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
         openNewWindow("publishing_activities", "./publishing_activities.html")
     }
 </script>

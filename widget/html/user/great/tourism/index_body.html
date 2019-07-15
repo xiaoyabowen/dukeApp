@@ -195,6 +195,11 @@
                     // 办理签证
                     // 收藏
                     collectionHandle: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
                         var that = this;
                         ajaxGet(collectComm, {
                             id: that.att_id,
@@ -211,6 +216,11 @@
                     },
                     // 立即购买
                     purchaseHandle: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
                         var that = this;
                         openNewWindow("tripDate", "./tripDate.html", {
                             data: that.data
