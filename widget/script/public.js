@@ -3,9 +3,9 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.10:8000/SE4M';
-var Domain = 'http://192.168.1.10:8080';
+var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.3:8000/SE4M';
+var Domain = 'http://192.168.1.3:8080';
 
 var rootWindowName = "root";
 simpleVersion = true;
