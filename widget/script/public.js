@@ -214,6 +214,8 @@ var addFeedback = localhostHref + "/addFeedback";
 // var addFeedBackPic = localhostHref + "/addFeedBackPic";
 var addFeedBackPic = localhostHref + "/Pic";
 
+
+
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
@@ -269,7 +271,10 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 var showVisaInformation = Domain + "/visa/showVisaInformation";
 
 
+// 伯乐
 
+// 公司填写信息
+var addRecruiter = localhostHref + "/addRecruiter";
 
 
 

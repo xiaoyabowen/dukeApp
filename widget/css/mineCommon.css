@@ -2126,3 +2126,41 @@ i.ques-star {
     border:1px solid rgba(99,139,255,1);
 }
 /*    ----------------------   zbw     --------      */
+.nowCompanyPany,.carefulTitle{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.4rem;
+}
+.nowCompanyPany{
+    margin-top: 0.1rem;
+}
+.carefulTitle{
+    margin: 0.3rem 0 0.2rem;
+}
+.carefulMain{
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.4rem;
+    margin-bottom: 0.1rem;
+}
+.carefulImgYing{
+    display: block;
+    width: 2.9rem;
+    margin: 0 auto;
+}
+
+.addCards_btn {
+    width: 6.30rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    background: rgba(99, 139, 255, 1);
+    border-radius: 0.08rem;
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin: 0.63rem auto;
+}
