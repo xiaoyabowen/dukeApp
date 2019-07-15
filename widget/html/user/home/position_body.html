@@ -178,7 +178,7 @@
 
                                 <div class="job-chatBox cssFlex">
                                     <div class="chatJob" onclick="chatJob()">聊一聊</div>
-                                    <div class="workJob">投递简历</div>
+                                    <div class="workJob" onclick="sendResume()">投递简历</div>
                                 </div>
                             </div>
                             <div class="F9Line"></div>
@@ -397,6 +397,7 @@
     }
 
     // 点击进入聊一聊
+
     function chatJob() {
         var token = localStorage.getItem('person_id');
         openNewWindow("chat_Room", "../chat/chat_Room.html", {
@@ -404,7 +405,15 @@
             ptoken: ptoken,
         });
     }
-
+    // 点击投递简历
+    function sendResume() {
+        var token = localStorage.getItem('user');
+        console.log(112211,token)
+        /*openNewWindow("chat_Room", "../chat/chat_Room.html", {
+            token: token,
+            ptoken: ptoken,
+        });*/
+    }
     // 点击进入发布人主页
     function homePage() {
         // openNewWindow("companyInfo", "../home/companyInfo.html", {
