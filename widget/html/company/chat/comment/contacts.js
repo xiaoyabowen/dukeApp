@@ -1,5 +1,5 @@
 function contactsInit(Vue) {
-    var str = dataValue('user/chat/comment/contacts.html')
+    var str = dataValue('company/chat/comment/contacts.html')
 
     return {
         template: str,

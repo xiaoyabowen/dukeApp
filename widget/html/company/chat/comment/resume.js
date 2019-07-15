@@ -1,5 +1,5 @@
 function resumeInit(Vue) {
-    var str = dataValue('user/chat/comment/resume.html')
+    var str = dataValue('company/chat/comment/resume.html')
 
     return {
         template: str,

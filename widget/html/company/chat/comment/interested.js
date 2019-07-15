@@ -1,6 +1,6 @@
 
 function interestedInit(Vue) {
-    var str = dataValue('user/chat/comment/interested.html')
+    var str = dataValue('company/chat/comment/interested.html')
 
     return {
         template: str,
