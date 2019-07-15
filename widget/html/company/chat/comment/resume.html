@@ -1,0 +1,100 @@
+<div id="resume">
+
+    <div class="resume_main">
+        <div class="resume_main_item" v-for="(item, index) in list" :key="index">
+            <div class="subscribed_main_item" :class="index === 0 ? 'borderTop0' : ''" @click="linkHandle(item.job_id)">
+                <div class="subscribed_item_left">
+                    <div class="subscribed_item_position">{{item.job_name}}</div>
+                    <div class="subscribed_item_company">
+                        <div>
+                            <span>{{item.c_name}} </span>
+                            <span>{{item.financing}}</span>
+                        </div>
+
+                        <div>
+                            <span>{{item.address}} </span>
+                            <span>{{item.work_ex}} </span>
+                            <span>{{item.edu_ex}}</span>
+                        </div>
+                    </div>
+                    <div class="subscribed_item_user">
+                        <div class="subscribed_item_user_img">
+                            <img :src="item.p_icon" alt="">
+                        </div>
+                        <div class="subscribed_item_user_name">
+                            {{item.p_name}}·{{item.z_user_job}}
+                        </div>
+                    </div>
+                </div>
+                <div class="subscribed_item_right">
+                    <div class="subscribed_item_range">
+                        {{item.ratio}}k
+                    </div>
+                    <div class="subscribed_item_date">{{filterTime1(item.open_time)}}</div>
+                </div>
+            </div>
+            <div class="resume_main_item_bottom">
+                <span>{{filterTime2(item.time)}} </span>
+                <span>看过您的简历</span>
+            </div>
+        </div>
+
+
+
+        <!--<div class="resume_main_item">-->
+            <!--<div class="subscribed_main_item">-->
+                <!--<div class="subscribed_item_left">-->
+                    <!--<div class="subscribed_item_position">运营经理</div>-->
+                    <!--<div class="subscribed_item_company">-->
+                        <!--<div>-->
+                            <!--<span>北京天九共享控股集团 </span>-->
+                            <!--<span>不需要融资</span>-->
+                        <!--</div>-->
+
+
+        
+        <!--<div class="resume_main_item">-->
+            <!--<div class="subscribed_main_item">-->
+                <!--<div class="subscribed_item_left">-->
+                    <!--<div class="subscribed_item_position">运营经理</div>-->
+                    <!--<div class="subscribed_item_company">-->
+                        <!--<div>-->
+                            <!--<span>北京天九共享控股集团 </span>-->
+                            <!--<span>不需要融资</span>-->
+                        <!--</div>-->
+
+
+                        <!--<div>-->
+                            <!--<span>北京-朝阳区-望京 </span>-->
+                            <!--<span>10年 </span>-->
+                            <!--<span>本科</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="subscribed_item_user">-->
+                        <!--<div class="subscribed_item_user_img">-->
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="subscribed_item_user_name">-->
+                            <!--赵东东·人力资源经理-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="subscribed_item_right">-->
+                    <!--<div class="subscribed_item_range">-->
+                        <!--20k-30k-->
+                    <!--</div>-->
+                    <!--<div class="subscribed_item_date">4月17日</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="resume_main_item_bottom">-->
+                <!--<span>2018-05-30 12:00 </span>-->
+                <!--<span>看过您的简历</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="basics" v-if="list.length <= 0">
+        <img src="../../../image/chat/resume.png" alt="">
+        <div>还没有伯乐看过你，快去刷新你的简历吧！</div>
+    </div>
+</div>
