@@ -604,26 +604,28 @@
                         document.getElementById('app1').classList.remove('isDisplay');
                         that.list = data.PersonList;
                         that.list1 = data.JobListByUidRomden;
-                        console.log(that.list)
-                        console.log(that.list1)
+                        // console.log(that.list)
+                        // console.log(that.list1)
                     });
 
                 },
                 togle: function () {
-                    document.getElementById('subBox').classList.remove('isDisplay');
-                    console.log(123)
+                    // document.getElementById('subBox').classList.remove('isDisplay');
+                    // console.log(123)
                     this.active = true;
                     var that = this;
-                    this.queryListRandom();
+                    this.SmartMenu();
                     setTimeout(function () {
                         that.active = false;
                     }, 1500)
                 },
-                detailClick: function (index,job_id) {
+                detailClick: function (index,id) {
                     this.index1 = index;
                     this.index2 = -1;
                     console.log(id)
-                    ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+                    ajaxGetWithProgress(QueryPerson, {
+                        person_id: id
+                    }, function (data, err) {
                         // alert(JSON.stringify(data));
                         // console.log(data);
                         if (data) {
@@ -839,8 +841,20 @@
                 detailClick2: function (index,id) {
                     this.index2 = index;
                     this.index1 = -1;
+                    var that = this;
                     console.log(id)
-
+                    if (!that.active) {
+                        this.active = true;
+                        ajaxGet(queryPersonList, {}, function(data,err){
+                            console.log(data);
+                            that.list = data.queryPersonList;
+                            // console.log(that.list)
+                            // console.log(that.list1)
+                            setTimeout(function () {
+                                that.active = false;
+                            }, 1500)
+                        });
+                    }
                 },
                 hideHandle: function () {
                     document.getElementById('subBox').classList.add('isDisplay');
