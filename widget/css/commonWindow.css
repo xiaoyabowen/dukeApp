@@ -84,6 +84,9 @@ textarea{
     padding: 0.4rem 0.28rem;
     border-radius: 0.08rem;
 }
+.contentBox.pd {
+    padding-top: 0;
+}
 .subBox{
 
 }
@@ -152,6 +155,9 @@ textarea{
     line-height : 44px;
     font-size: 18px;
     text-align: center;
+}
+#topbar.display {
+    display: block;
 }
 .leftImgTop{
     width: 0.4rem !important;

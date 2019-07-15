@@ -91,15 +91,35 @@ textarea{
     display: inline-block;
 }
 
-
 /*内容盒子样式*/
 .contentBox{
     padding: 0.4rem 0.28rem;
     border-radius: 0.08rem;
 }
+.contentBox.pd {
+    padding-bottom: 0.2rem;
+    overflow: hidden;
+    background: #000;
+    background:
+            linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+}
 .subBox{
 
 }
+.box {
+    margin-top: 0.33rem;
+    min-height: calc(100vh - 2.4rem);
+    background: #ffffff;
+    border-radius: 0.08rem;
+    overflow: hidden;
+}
+
+#chat {
+    margin-bottom: 0.2rem;
+
+}
+
 .Box{
     width: 7rem;
     background: #fff;
@@ -167,10 +187,31 @@ textarea{
     line-height : 56px;
     font-size: 18px;
 }
+#topbar.display {
+    display: block;
+}
 .headerBox{
     justify-content: space-between;
     padding: 0 0.34rem;
     align-items: center;
+}
+
+.headerBox > div {
+    font-size: 0.36rem;
+}
+
+.headerBox > .li {
+    color: #CEDEFE;
+}
+
+.headerBox > .li.active {
+    color: #ffffff;
+}
+
+.headerBox.bg {
+    background:
+            linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
 }
 .leftImgClose{
 
@@ -212,6 +253,15 @@ textarea{
 
     position: relative;
 }
+/*.middleHeight {
+    width: 5.4rem;
+    text-align: center;
+    height :56px;
+    line-height: 56px;
+    border-radius: 0.28rem;
+    margin: 0 auto;
+    position: relative;
+}*/
 .ChatmiddleMain{
     width: 5.4rem;
     text-align: center;
@@ -238,6 +288,49 @@ textarea{
     background:url("../icon/search.png") no-repeat 0.48rem center,rgba(255,255,255,1);
     background-size: 0.26rem 0.26rem;
 }
+.middleHeightTop{
+    width: 5.34rem;
+    height: 0.56rem;
+    border-radius:0.28rem;
+    background: #ffffff;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#search-inputTop{
+    display: block;
+    height: 100%;
+    padding: 0rem 0rem 0rem 1rem;
+    border: 0;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    font-size: 0.24rem;
+    background:url("../icon/search.png") no-repeat 0.48rem center,rgba(255,255,255,1);
+    background-size: 0.26rem 0.26rem;
+}
+
+.search-Click {
+    display: block;
+    position: absolute;
+    right: 0.06rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 0.46rem;
+    height: 0.46rem;
+    line-height: 0.46rem;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background:rgba(99,139,255,1);
+    color: #ffffff;
+    font-size: 0.22rem;
+}
 .searchClick{
     display: block;
     position: absolute;
@@ -253,7 +346,6 @@ textarea{
     background:rgba(99,139,255,1);
     color: #ffffff;
     font-size: 0.22rem;
-
 }
 
 
@@ -394,19 +486,24 @@ div.isDisplay {
     bottom: 1rem;
     background: cadetblue;
 }
+.demobiox.home {
+    bottom: 0;
+    z-index: 10001;
+}
 .subBoxMO {
     width: 6.30rem;
     height: 6.20rem;
-    background: linear-gradient(to left top, rgba(183,206,255,1) 50%, transparent 50%);
+    background: linear-gradient(to left top, rgba(99,139,255,0.3) 50%, transparent 50%);
     position: absolute;
     right: 0;
     bottom: 0;
     z-index: 98;
 }
+
 .person {
     display: inline-block;
     position: absolute;
-    bottom: 0.12rem;
+    bottom: 0.24rem;
     right: 0.12rem;
     width: 1.10rem;
     height: 1.10rem;
@@ -544,12 +641,14 @@ div.isDisplay {
     right: 0.10rem;
     bottom: 2.80rem;
     transform: rotate(45deg);
+    font-size: 0.2rem;
 }
 
 .cir_hide {
     right: 2.40rem;
     bottom: 0.14rem;
     transform: rotate(45deg);
+    font-size: 0.2rem;
 }
 
 .iconImg {

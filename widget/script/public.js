@@ -269,7 +269,8 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 var showVisaInformation = Domain + "/visa/showVisaInformation";
 
 
-
+// 伯乐-魔方推送
+var SmartMenu = serverUrl + "/JobProfile/SmartMenu";
 
 
 

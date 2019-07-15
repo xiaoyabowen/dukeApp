@@ -826,6 +826,7 @@ function initFrameInWin(pageParam,overload,height){
         winHeadHeight += height;
     }
 
+
     openFrameInWin(api.winName + '_body','./' + api.winName + '_body.html',pageParam,overload);
 }
 
