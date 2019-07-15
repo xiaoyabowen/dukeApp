@@ -6,6 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>聊天</title>
+
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
@@ -45,14 +46,15 @@
             <div class="li" :class="active == 'interested' ? 'active' : ''">
                 <span @click="tabHandle('interested')">谁看过我</span>
             </div>
+
         </div>
     </div>
+
 
 
     <div class="contentBox ">
         <div class="box isDisplay">
             <div id="chat">
-
 
                 <component :is="active"></component>
             </div>
@@ -218,5 +220,7 @@
 
 
 </script>
+
+
 </body>
 </html>

@@ -1,0 +1,61 @@
+.info-choose {
+    justify-content: space-between;
+    height: 1.01rem;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+}
+.comon-mine-title{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+    margin: 0.44rem 0 0.38rem;
+    font-weight:500;
+}
+.info-choose-main {
+    align-items: center;
+}
+.info-choose-main-name {
+    color: #333;
+}
+img.info-img-right {
+    display: inline-block;
+    width: 0.32rem;
+    height: 0.32rem;
+}
+img.info-img-defalut{
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.resume_editResume_item {
+    /*border-bottom: 1px solid #EBEBEB;*/
+    padding-bottom: 0.1rem;
+}
+.inFF9A26{
+    color: #FF9A26;
+}
+.fillTitle{
+    margin-top: 0.4rem;
+}
+
+.addCards_btn {
+    width: 6.30rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    background: rgba(99, 139, 255, 1);
+    border-radius: 0.08rem;
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin: 0.63rem auto;
+}
+
+

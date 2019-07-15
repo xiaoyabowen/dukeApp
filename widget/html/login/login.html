@@ -385,13 +385,32 @@
             api.hideProgress();
             return;
         }
-
+        console.log(params)
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(data)
+            api.hideProgress();
+            if (data.role_type == 1){
+                localStorage.setItem('user',JSON.stringify(data));
+                localStorage.setItem('person_id',data.user_uid);
+                localStorage.setItem('role_type',data.role_type);
+            } else if (data.role_type == 2){
+                localStorage.setItem('userCom',JSON.stringify(data));
+                localStorage.setItem('person_idCom',data.user_uid);
+                localStorage.setItem('role_typeCom',data.role_type);
+            }
             if (data.success == false) {
-                openNewWindow("create_resume", "../user/mine/create_resume.html")
+
+                if (data.role_type == 1){
+                    openNewWindow("create_resume", "../user/mine/create_resume.html")
+                } else if (data.role_type == 2){
+                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
+                }
             } else {
-                openNewWindow("home", "../user/home/home.html")
+                if (data.role_type == 1){
+                    openNewWindow("home", "../user/home/home.html")
+                } else if (data.role_type == 2){
+                    // openNewWindow("fillInfo", "../company/home/fillInfo.html")
+                }
 
             }
         });
