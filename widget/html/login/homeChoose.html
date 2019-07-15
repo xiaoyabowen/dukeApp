@@ -43,8 +43,9 @@
             <!--<img src="../../icon/return.png" alt="">-->
         </div>
         <div class="chooseBox">
-            <div class="chosePerson">
-                <div class="choose-title" onclick="company()">我是伯乐</div>
+
+            <div class="chosePerson" onclick="company()">
+                <div class="choose-title">我是伯乐</div>
                 <div class="choose-sub">(招聘者)</div>
             </div>
             <div class="placePerson" onclick="user()">
@@ -73,9 +74,12 @@
         localStorage.setItem("role","1")
     }
 
+
     // 伯乐
+
     function company() {
-        openNewWindow("home", "../company/home/home.html")
+        openNewWindow("login", "login.html")
+
         localStorage.setItem("role","2")
     }
 </script>

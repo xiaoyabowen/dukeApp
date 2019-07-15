@@ -310,8 +310,8 @@
         var params = {};
         params.pwd = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
-        // params.token_type = "1";
-
+        params.token_type = "2";
+        // console.log(localStorage.getItem("role"))
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
@@ -324,16 +324,26 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(data)
-            localStorage.setItem('user',JSON.stringify(data));
-            localStorage.setItem('person_id',data.user_uid);
+
             api.hideProgress();
             if (data.success == false) {
-                openNewWindow("create_resume", "../user/mine/create_resume.html")
+                toast("该用户未注册")
             } else {
-                // openNewWindow("home", "../user/home/home.html")
-                openNewWindow("home", "../company/home/home.html")
-                // openNewWindow("publishing_activities", "../user/circle/publishing_activities.html")
+                console.log(123)
+                if (data.role_type == 1){
+                    localStorage.setItem('user',JSON.stringify(data));
+                    localStorage.setItem('person_id',data.user_uid);
+                    localStorage.setItem('role_type',data.role_type);
+                    openNewWindow("home", "../user/home/home.html")
+                } else if (data.role_type == 2){
+                    localStorage.setItem('userCom',JSON.stringify(data));
+                    localStorage.setItem('person_idCom',data.user_uid);
+                    localStorage.setItem('role_typeCom',data.role_type);
+                    openNewWindow("home", "../company/home/home.html")
+                }
+                // openNewWindow("home", "../company/home/home.html")
             }
+
         });
     }
     // function passLogin() {
