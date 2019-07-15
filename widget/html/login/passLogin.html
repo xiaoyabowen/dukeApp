@@ -306,12 +306,11 @@
     function goHome() {
         // openNewWindow("home", "../user/home/home.html")
         api.showProgress();
-
         var params = {};
         params.pwd = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
         params.token_type = "2";
-        // console.log(localStorage.getItem("role"))
+        params.role_type = localStorage.getItem("role");
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
@@ -327,9 +326,8 @@
 
             api.hideProgress();
             if (data.success == false) {
-                toast("该用户未注册")
+                toast("账户密码错误")
             } else {
-                console.log(123)
                 if (data.role_type == 1){
                     localStorage.setItem('user',JSON.stringify(data));
                     localStorage.setItem('person_id',data.user_uid);
@@ -339,16 +337,18 @@
                     localStorage.setItem('userCom',JSON.stringify(data));
                     localStorage.setItem('person_idCom',data.user_uid);
                     localStorage.setItem('role_typeCom',data.role_type);
+
                     openNewWindow("home", "../company/home/home.html")
+
+                    // openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")
+
                 }
-                // openNewWindow("home", "../company/home/home.html")
+
             }
 
         });
     }
-    // function passLogin() {
-    //     openNewWindow("passLogin", "passLogin.html")
-    // }
+
     function returnPass() {
         openNewWindow("returnPass", "returnPass.html")
     }
