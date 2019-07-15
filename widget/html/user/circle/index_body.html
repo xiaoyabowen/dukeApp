@@ -117,6 +117,11 @@
 
                     // 收藏
                     collection: function (status, circle_id, index) {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../login/login.html");
+                            return;
+                        }
                         var that = this;
                         if (status == 0) {
                             api.ajax({

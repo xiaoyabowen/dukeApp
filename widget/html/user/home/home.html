@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
-
+        .OneImgRight{
+            margin-top: 0.1rem;
+        }
     </style>
 
 </head>
@@ -72,14 +74,31 @@
         initFrameInWin(api.pageParam);
     }
     function mineGo() {
-       /* if (){
-
-        }*/
+        var uidUser = localStorage.getItem("user")
+        if (uidUser.date != 0){
+            openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+                url: 'home'
+            });
+            // mui.confirm('','您还未完善简历，请继续完善', function (e) {
+            //     if (e.index) {
+            //         openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+            //             url: 'home'
+            //         });
+            //     }
+            // }, 'div');
+            // openNewWindow("login", "../../login/login.html");
+            return;
+        }
         openNewWindow("mine", "../mine/mine.html")
     }
 
     // 跳转到聊天页面
     function linkChat() {
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
         openNewWindow("index", "../chat/index.html")
     }
 </script>

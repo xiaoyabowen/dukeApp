@@ -427,6 +427,11 @@
                 // 聚焦事件
                 focusHandle: function () {
                     // alert(123)
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
                     this.comment_box = true;
                 },
                 // 评论文本框input事件
@@ -550,6 +555,11 @@
                 },
                 // 二级评论
                 comments2: function (bac_id, index) {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
                     this.comment_box = true;
                     this.bac_id = bac_id;
                     console.log(bac_id)
@@ -557,6 +567,11 @@
                 // 点赞
                 giveZan: function (status, comment_id, index) {
                     // console.log(comment_id);
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
                     var that = this;
                     if (this.list1[index].status == 0) {
                         api.ajax({
@@ -601,6 +616,11 @@
                 },
                 // 点击报名
                 linkHandle: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
                     if (this.signStatus == '已报名') {
                         var that = this;
                         openNewWindow("E_ticket", "./E_ticket.html", {
