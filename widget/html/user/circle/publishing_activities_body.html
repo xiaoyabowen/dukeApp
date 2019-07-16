@@ -38,9 +38,11 @@
         </div>
 
         <!--<component :is="isCom"></component>-->
-        <information v-if="isActive"></information>
+        <!--<information v-if="isActive"></information>-->
 
-        <activities v-if="!isActive"></activities>
+        <!--<activities v-if="!isActive"></activities>-->
+
+        <component :is="isCom"></component>
         <!--<div v-if="!isActive">-->
             <!--<textarea id="demo" style="display: none;"></textarea>-->
         <!--</div>-->
@@ -66,7 +68,7 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script src="./comment/information.js"></script>
-<!--<script src="comment/activities.js"></script>-->
+<script src="comment/activities.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
@@ -77,16 +79,16 @@
         // var ckeditor = CKEDITOR.replace('textarea');
 
         var information = informationInit(Vue);
-        // var activities = activitiesInit(Vue);
+        var activities = activitiesInit(Vue);
 
 
         Vue.component('information', information);
-        // Vue.component('activities', activities);
+        Vue.component('activities', activities);
         new Vue({
             el: '#add_activities',
             components: {
                 information: information,
-                // activities: activities
+                activities: activities
             },
             data: {
                 isActive: true,
@@ -104,7 +106,7 @@
                     name: 'onInformation',
                 }, function(ret, err) {
                     console.log(ret);
-                    that.isCom = 'details';
+                    that.isCom = 'activities';
                     that.isActive = false;
                 });
             },
@@ -116,13 +118,10 @@
                     if (this.isActive) {
                         this.isCom = 'information';
                     } else {
-                        this.isCom = 'details';
+                        this.isCom = 'activities';
                     }
                 },
-                informationHandle: function (name) {
-                    console.log(name);
-                    this.isCom = 'details';
-                }
+
             }
         })
     }

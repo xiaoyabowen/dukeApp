@@ -182,7 +182,7 @@ function informationInit(Vue) {
                 api.sendEvent({
                     name: 'onInformation',
                     extra: {
-                        key: 'details',
+                        key: 'activities',
                     }
                 });
 
