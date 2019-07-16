@@ -280,6 +280,8 @@ var showVisaInformation = Domain + "/visa/showVisaInformation";
 
 //  基本信息   上传图片
 var UploadPicon = Domain + "/upload/UploadPicon";
+// 发布活动上传图片
+var UploadFlieTest = Domain + "/upload/UploadFlieTest";
 
 
 

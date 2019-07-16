@@ -1,57 +1,7 @@
 
 <div class="notDataBox">
-    <div class="container">
-        <header class="border-bm">
-            <div class="left-wrapper">
-                <a href="#" class="back" onclick="handleBackClick()">返回</a>
-            </div>
-            <div class="title">发布文章</div>
-            <div class="right-wrapper">
-                <a href="#" class="preview" onclick="handlePreviewClick()">预览</a>
-            </div>
-        </header>
-        <section class="cover-wrapper">
-            <div class="cover"><img src=""></div>
-            <input type="file" accept="image/*" style="display: none">
-        </section>
-        <!--标题-->
-        <section class="title-wrapper border-bm">
-            <div class="item placeholder">标题<span>（不超过30个字）</span></div>
-            <div class="item input-hook" contenteditable="true" style="display: none;"></div>
-        </section>
-        <!--导语、摘要-->
-        <section class="summary-wrapper border-bm" style="display: none;">
-            <div class="item placeholder">输入导语，140字内（非必填）</div>
-            <div class="item input-hook" contenteditable="true" style="display: none;"></div>
-        </section>
-        <article>
-            <div class="zx-eidtor-container" id="editorContainer"></div>
-        </article>
-    </div>
-
-    <!--预览-->
-    <div class="article-preview-wrapper">
-        <header class="border-bm">
-            <div class="left-wrapper">
-                <a href="#" class="back-text" onclick="handleBackPreviewClick()">继续编辑</a>
-            </div>
-            <div class="right-wrapper">
-                <a href="#" class="submit active" onclick="handleSubmitClick()">完成</a>
-            </div>
-        </header>
-        <div class="preview-wrapper">
-            <div class="preview-cover"><img src=""></div>
-            <div class="preview-title"></div>
-            <div class="preview-summary"></div>
-            <div class="preveiw-content"></div>
-        </div>
-    </div>
-
+    <textarea id="demo" style="display: none;"></textarea>
+    <div class="addCards_btn" @click="clickHandle()">发布</div>
 </div>
 
-
-
-<script>
-
-</script>
 
