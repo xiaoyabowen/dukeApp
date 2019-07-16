@@ -40,8 +40,8 @@
         <div class="details_header">
             <div class="details_header_top">
                 <div class="details_header_img">
-                    <!--<img :src="item.poster" alt="">-->
-                    <img src="http://192.168.1.10:8000/SE4M/ShowAvatar?person_id=1" alt="">
+                    <img :src="item.poster" alt="">
+                    <!--<img src="http://192.168.1.10:8000/SE4M/ShowAvatar?person_id=1" alt="">-->
                 </div>
                 <div class="details_header_title">
                     <div class="details_title_con textOverflow">
@@ -259,7 +259,7 @@
                         circle_id: that.circle_id,
                     }, function (data, err) {
                         document.getElementById('box').className = '';
-                        // console.log(data);
+                        console.log(123,data);
                         if (data.circle_summary) {
                             that.item = data.circle_summary;
                             that.status = data.status;
@@ -292,7 +292,6 @@
                                     that.list.push(arr[i])
                                 }
                             }
-
                         }
 
                     });

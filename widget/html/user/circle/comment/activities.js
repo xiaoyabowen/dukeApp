@@ -3,6 +3,7 @@ function activitiesInit(Vue) {
     var str = dataValue('user/circle/comment/activities.html')
 
 
+
     return {
         template: str,
         data: function() {
@@ -17,8 +18,8 @@ function activitiesInit(Vue) {
         mounted :function (){
             this.layedit = layui.layedit;
 
-            console.log(UploadFlieTest)
 
+            console.log(UploadFlieTest)
             this.layedit.set({
                 uploadImage: {
                     url: UploadFlieTest, //接口url
@@ -28,7 +29,9 @@ function activitiesInit(Vue) {
 
             this.index = this.layedit.build('demo'); //建立编辑器
             console.log(this.index);
+
         },
+
         methods: {
             clickHandle: function() {
                 console.log(this.layedit.getContent(this.index))
