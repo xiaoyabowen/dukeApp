@@ -97,9 +97,16 @@
 
             },
             mounted: function () {
+                var that = this;
                 document.getElementById('box').className = '';
                 this.isDisplay = true;
-
+                api.addEventListener({
+                    name: 'onInformation',
+                }, function(ret, err) {
+                    console.log(ret);
+                    that.isCom = 'details';
+                    that.isActive = false;
+                });
             },
             methods: {
 
@@ -111,6 +118,10 @@
                     } else {
                         this.isCom = 'details';
                     }
+                },
+                informationHandle: function (name) {
+                    console.log(name);
+                    this.isCom = 'details';
                 }
             }
         })

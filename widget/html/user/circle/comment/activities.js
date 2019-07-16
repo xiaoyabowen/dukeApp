@@ -17,9 +17,10 @@ function activitiesInit(Vue) {
         },
         mounted :function (){
             this.layedit = layui.layedit;
+            var uid = localStorage.getItem('person_id');
+            var url = UploadFlieTest + '?uid' + uid
 
-
-            console.log(UploadFlieTest)
+            console.log(url)
             this.layedit.set({
                 uploadImage: {
                     url: UploadFlieTest, //接口url
@@ -34,7 +35,17 @@ function activitiesInit(Vue) {
 
         methods: {
             clickHandle: function() {
-                console.log(this.layedit.getContent(this.index))
+                var obj = JSON.parse(sessionStorage.getItem('informationObj'));
+                console.log(this.layedit.getContent(this.index));
+                obj['details'] = this.layedit.getContent(this.index);
+                console.log(obj);
+                var that = this
+                ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
+                    console.log(data);
+                    if (data.createCircle.return_info.status) {
+                        openNewWindow("index", "./index.html")
+                    }
+                });
             }
         }
     }

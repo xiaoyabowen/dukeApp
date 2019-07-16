@@ -88,6 +88,26 @@
     width: 0.3rem;
 }
 
+/*活动内容*/
+.details_content {
+    margin: 0.2rem 0;
+    background: #ffffff;
+}
+
+.details_content_hear {
+    padding: 0.3rem 0.41rem;
+    font-size: 0.30rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.42rem;
+}
+
+.details_content_main {
+    padding: 0 0.37rem 0.47rem;
+    font-size: 0.28rem;
+}
+
 /*活动===========================结束*/
 
 /*发布活动========================开始*/
@@ -375,6 +395,7 @@
     color: #666666;
     font-size: 0.24rem;
     line-height: 0.4rem;
+    padding: 0 0.1rem;
 }
 
 .details_enrolled_item > img {

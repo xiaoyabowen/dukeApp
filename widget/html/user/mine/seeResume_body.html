@@ -91,7 +91,7 @@
                 </p>
             </div>
             <div class="comLogo comLogoSee">
-                <img src="../../../image/comLogo.png" alt="comLogo">
+                <img id="p_icon" src="../../../image/comLogo.png" alt="comLogo">
             </div>
         </div>
         <div class="F9Line"></div>
@@ -340,6 +340,10 @@
                 // 姓名
                 if (person_summary.p_name || person_summary.p_name != 'undefined') {
                     document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
+                }
+                // 图片
+                if (person_summary.p_icon) {
+                    document.getElementById('p_icon').src = person_summary.p_icon;
                 }
                 // 公司名称 // 职位
                 if (working_his) {
