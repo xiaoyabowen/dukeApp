@@ -31,7 +31,17 @@ function activitiesInit(Vue) {
         },
         methods: {
             clickHandle: function() {
-                console.log(this.layedit.getContent(this.index))
+                var obj = JSON.parse(sessionStorage.getItem('informationObj'));
+                console.log(this.layedit.getContent(this.index));
+                obj['details'] = this.layedit.getContent(this.index);
+                console.log(obj);
+                var that = this
+                ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
+                    console.log(data);
+                    if (data.createCircle.return_info.status) {
+                        openNewWindow("index", "./index.html")
+                    }
+                });
             }
         }
     }
