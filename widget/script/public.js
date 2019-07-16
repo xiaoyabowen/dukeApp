@@ -51,7 +51,8 @@ var QueryjobsList = serverUrl + "/UserProfile/queryjobsList";
 var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
 
 
-// 查询录用数量
+// 编写自我描述
+var updateTags = serverUrl + "/UserProfile/updateTags";
 
 // 获取录用列表数据
 var QueryApplicationStatus4List = serverUrl + "/EvaluateProfile/queryApplicationStatus4List";

@@ -75,9 +75,13 @@
         initFrameInWin(api.pageParam);
     }
     function mineGo() {
-
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
         var obj ={
-            uid : localStorage.getItem("user").user_id
+            uid : JSON.parse(localStorage.getItem("user")).user_id
         }
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {

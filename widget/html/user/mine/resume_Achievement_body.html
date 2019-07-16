@@ -60,7 +60,8 @@
         if (type == 1){
             text.value = '';
         } else{
-            text.value = content;
+            var newstr = content.replace(/<br\/>/g, "\r\n").replace(/<br\/>/g, "\n");
+            text.value = newstr;
         }
         mode = api.pageParam.mode;
         if (mode == undefined){
@@ -76,13 +77,13 @@
             toast("请输入你的成就");
             return;
         }
-
+        var des = value.replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, ' ');
         var frameName = url + "_body";
         api.execScript({
             name:url,
             // frameName:url +"_body",
             frameName: frameName,
-            script: 'pro_cheng('+JSON.stringify(value)+')'
+            script: 'pro_cheng('+JSON.stringify(des)+')'
         })
         closeWin();
     }

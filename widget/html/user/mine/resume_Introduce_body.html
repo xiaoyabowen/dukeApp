@@ -54,7 +54,11 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
 <script>
     var text = document.getElementById('text10')
     var num = document.querySelector('.resume_level2_num');
@@ -64,10 +68,10 @@
         content = api.pageParam.content;
 
         if (content) {
-            text.value = content || '';
+            var newstr = content.replace(/<br\/>/g, "\r\n").replace(/<br\/>/g, "\n");
+            text.value = newstr;
             num.innerText = content.length || 0;
         }
-
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
@@ -77,7 +81,29 @@
     // 点击保存执行此方法
     function preservation () {
         var value = text.value;
-        alert(value);
+        if(isBlack(value)){
+            toast("自我描述不能为空");
+            return;
+        }
+        var des = value.replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, ' ');
+        var frameName = url + "_body";
+        var person_id = localStorage.getItem('person_id');
+        ajaxGetWithProgress(updateTags, {
+            person_id: person_id,
+            p_tags: des
+        }, function (res, err) {
+            // api.alert({mas: JSON.stringify(res)});
+            console.log(res);
+            if (res.return.status) {
+                api.execScript({
+                    name:url,
+                    // frameName:url +"_body",
+                    frameName: frameName,
+                    script: 'setIntroduce('+JSON.stringify(des)+')'
+                })
+                closeWin();
+            }
+        })
     }
 
     // 此处手动调用了js
