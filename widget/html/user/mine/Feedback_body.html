@@ -54,6 +54,7 @@
 
         .resume_imgWorks_main li img {
             width: 100%;
+            height: 100%;
         }
 
         .resume_imgWorks_main li.action {
@@ -239,7 +240,7 @@
     var action = document.querySelector('.action');
     var ulBox = document.getElementById('ul_box');
     action.onclick = function () {
-        api.getPicture({
+        /*api.getPicture({
             sourceType: 'library',
             encodingType: 'jpg',
             mediaValue: 'pic',
@@ -310,8 +311,69 @@
             } else {
                 console.log(JSON.stringify(err));
             }
+        });*/
+        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+        UIAlbumBrowser.open({
+            max: 3,
+            styles: {
+                bg: '#fff',
+                mark: {
+                    icon: '',
+                    position: 'bottom_left',
+                    size: 30
+                },
+                nav: {
+                    bg: 'rgba(0,0,0,0.6)',
+                    titleColor: '#fff',
+                    titleSize: 18,
+                    cancelColor: '#fff',
+                    cancelSize: 16,
+                    finishColor: '#fff',
+                    finishSize: 16
+                }
+            },
+            rotation: true
+        }, function(ret) {
+            if (ret) {
+
+                console.log(ret)
+                var retImg = ret.list;
+                var ulBox = document.getElementById('ul_box');
+                var ulBoxLi = ''
+                ulBoxLi +='<li class="action"></li>'
+                for (var i=0;i<retImg.length;i++){
+                    ulBoxLi += '<li><img src="'+retImg[i].path+'" alt=""><span><i></i></span></li>'
+                }
+                ulBox.innerHTML = ulBoxLi
+
+                /*document.querySelector(".info-img-defalut").src = ret.list[0].thumbPath
+                var obj = {
+                  uid : localStorage.getItem("user").user_id
+                }
+                api.ajax({
+                  // report : false,
+                  url:UploadPicon,
+                  //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                  method: 'post',
+                  cache: 'false',
+                  timeout: 30,
+                  dataTpye: 'json',
+                  data: {
+
+                    files: {
+                      file: document.querySelector(".info-img-defalut").src
+                    },
+                    values: obj
+
+                  }
+                }, function (data, err) {
+
+                  console.log(data)
+                });*/
+            }
         });
     }
+
     getId = genID(32)
     function quesSubmit() {
         console.log(getId)

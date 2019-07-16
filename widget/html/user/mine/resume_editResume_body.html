@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
+    <title>编辑在线简历</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
@@ -131,7 +131,7 @@
     <div class="resume_editResume_main isDisplay">
         <div class="resume_editResume_head cssFlex">
             <div class="resume_editResume_head_left">
-                <div class="editResume_name">张敏</div>
+                <div class="editResume_name"></div>
                 <div class="editResume_information" onclick="editInfo()">编辑基本信息</div>
             </div>
             <div class="resume_editResume_head_right">
@@ -459,6 +459,12 @@
             url: 'resume_editResume',
             content: p_title
         });
+    }
+
+    function set_resume_SkillLabel(value) {
+        console.log(value);
+
+        document.getElementById("p_title").innerText = value;
     }
     // 编辑  求职状态
     function resume_editExpectations() {
