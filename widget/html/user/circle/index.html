@@ -61,7 +61,7 @@
     //发布活动
     function save(){
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser || uidUser == 'undefined'){
             openNewWindow("login", "../../login/login.html");
             return;
         }
