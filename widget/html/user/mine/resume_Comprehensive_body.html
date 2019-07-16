@@ -47,6 +47,9 @@
             color: #999999;
         }
     </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -152,13 +155,14 @@
     function preservation () {
         console.log(selectList);
         var list = selectList.join(',')
+        console.log(122,list)
         var frameName = url + "_body";
-        // api.execScript({
-        //     name: url,
-        //     frameName: frameName,
-        //     script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
-        // })
-        // closeWin();
+        api.execScript({
+            name: url,
+            frameName: frameName,
+            script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
+        })
+        closeWin();
     }
 
     // 此处手动调用了js
