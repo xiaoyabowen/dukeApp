@@ -9,6 +9,11 @@
     <title>职位信息</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+        .OneImgRight{
+            margin-top: 0.1rem;
+        }
+    </style>
 </head>
 <body>
 <div id="topbar" class="cssFlex">
@@ -44,9 +49,9 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script>
 
     apiready = function () {
@@ -54,7 +59,33 @@
 
     };
     function mineGo() {
-        openNewWindow("mine", "../mine/mine.html")
+
+        var obj ={
+            uid : localStorage.getItem("user").user_id
+        }
+        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            if (data.date != 0) {
+                api.confirm({
+                    // title: 'testtitle',
+                    msg: '您还未完善简历，请继续完善',
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if (index){
+                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+                            url: 'home'
+                        });
+                    }
+                });
+                return;
+            }else{
+                openNewWindow("mine", "../mine/mine.html")
+            }
+        })
+
+
+        // openNewWindow("mine", "../mine/mine.html")
     }
+
 </script>
 </html>
