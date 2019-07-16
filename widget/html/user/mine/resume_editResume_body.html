@@ -446,6 +446,12 @@
             content: p_tags
         });
     }
+    function setIntroduce(value) {
+        if (value) {
+            p_tags = value
+            document.getElementById('p_tags').innerText = "已填写";
+        }
+    }
 
     // 综合能力
     function resume_Comprehensive() {
