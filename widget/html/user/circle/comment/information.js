@@ -183,6 +183,8 @@ function informationInit(Vue) {
                     name: 'onInformation',
                     extra: {
                         key: 'activities',
+
+
                     }
                 });
 
