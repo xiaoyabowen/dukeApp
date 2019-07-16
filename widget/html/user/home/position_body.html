@@ -7,7 +7,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>职位信息</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <!--<link rel="stylesheet" href="../../../css/commonWindow.css"/>-->
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
@@ -94,6 +95,15 @@
             </div>
         </div>
 
+        <div class="cir_return positionCir" @click="hideHandle()">
+            <img src="../../../icon/hidden2x.png" class="iconImg" alt="person">
+
+            <span>隐藏</span>
+        </div>
+        <div class="cir_hide positionCir" @click="closeWin()">
+            <img src="../../../icon/break2x.png" class="iconImg" alt="person">
+            <span>返回</span>
+        </div>
 
         <!--<div class="cir_mine positionCir">
             <img src="images/icon/person.png" class="iconImg" alt="person">
@@ -107,7 +117,6 @@
             <img src="images/icon/person.png" class="iconImg" alt="person">
             <span>隐藏</span>
         </div>-->
-
     </div>
 </div>
 

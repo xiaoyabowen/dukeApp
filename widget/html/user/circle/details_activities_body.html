@@ -103,7 +103,7 @@
             <div class="details_comment_content">
                 <div class="details_comment_top">
                     <img src="../../../image/pro.png" alt="">
-                    <input type="text" @focus="focusHandle()" placeholder="我来说点什么...">
+                    <input type="text" @focus="focusHandle()" v-model="textarea" placeholder="我来说点什么...">
                 </div>
 
                 <div class="details_comment_item" v-for="(details, index) in list1" :key="index">
@@ -116,10 +116,12 @@
                         <p>{{details.content}}</p>
 
                         <div class="details_item_bottom">
+
                             <span>{{details.time.split(' ')[0]}}</span>
+                            <!--<span>{{details.time}}</span>-->
                             <div>
                                 <span @click="comments2(details.comment_id, index)">{{details.commentByid ? details.commentByid.length : 0}}</span>
-                                <span @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 0">{{details.CommentZan}}</span>
+                                <span @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 0">{{details.CommentZan || 0}}</span>
                                 <span class="active" @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 1">{{details.CommentZan}}</span>
                             </div>
                         </div>
@@ -145,7 +147,9 @@
 
                         <div class="details_item_children_footer" v-if="details.commentByid && details.commentByid.length > 1">
                             <!--<span>6-18 23:13</span>-->
-                            <span>{{details.commentByid[details.commentByid.length-1].time}}</span>
+                            <span style="font-size: 0.22rem;margin-left: 0.05rem">
+                                {{ filterTime2(filterTime0(details.commentByid[details.commentByid.length-1].time)) }}
+                            </span>
                             <span @click="comments2(details.comment_id, index)"><img src="../../../image/circle/reply2x.png" alt=""></span>
                         </div>
                     </div>
@@ -213,10 +217,12 @@
                 isDisplay: false,
                 comment_box: false,
                 item: {},
+                user: {},
                 status: 0,
                 person_id: '',
                 circle_id: '',
                 bac_id: null,
+                itemIndex: null,
                 edit: false,
                 list: [],
                 list1: [],
@@ -234,6 +240,9 @@
                 this.circle_id = api.pageParam.circle_id;
                 this.edit = api.pageParam.edit;
                 this.CircleProfileAllinOne();
+                this.queryApplyList();
+                this.queryCommentSummary();
+                this.QuerySummary();
             },
             mounted: function () {
                 this.watchKeybord();
@@ -254,14 +263,61 @@
                             that.item = data.circle_summary;
                             that.status = data.status;
                             that.count = data.Count;
-                            that.queryApplyList();
-                            that.queryCommentSummary();
+                            // that.queryApplyList();
+                            // that.queryCommentSummary();
                         }
 
                         if (that.status) {
                             that.signStatus = '已报名'
                         }
 
+                    });
+                },
+                // 获取报名的数据列表
+                queryApplyList: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryApplyList, {
+                        circle_id: that.circle_id,
+                    }, function (data, err) {
+                        // console.log(data);
+                        if (data.ApplyList) {
+                            var arr = data.ApplyList;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i]['active'] = false;
+                                if (i >= 7) {
+                                    return;
+                                }
+                                if (arr[i].status < 2 && i < 7) {
+                                    that.list.push(arr[i])
+                                }
+                            }
+
+                        }
+
+                    });
+                },
+                // 获取评论数据
+                queryCommentSummary: function () {
+                    var that = this;
+                    ajaxGetWithProgress(queryCommentSummary, {
+                        circle_id: that.circle_id,
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.comment) {
+                            var arr = data.comment;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i]['total'] = 1
+                            }
+                            that.list1 = arr;
+                        }
+                    });
+                },
+                // 获取个人信息数据
+                QuerySummary: function () {
+                    var that = this;
+                    ajaxGetWithProgress(QuerySummary, {}, function (data, err) {
+                        console.log(data);
+                        that.user = data;
                     });
                 },
                 // 进入报名管理
@@ -471,13 +527,14 @@
 
                     ajaxGetWithProgress(addComment, {
                         person_id: that.person_id,
-                        circle_id: that.item.circle_id,
+                        circle_id: that.circle_id,
                         content: that.textarea,
                         bac_id: that.bac_id,
                     }, function (data, err) {
                         console.log(data);
                         if (data.return_info.status) {
                             mui.toast('评论成功');
+                            
                             api.ajax({
                                 url: queryCommentSummary,
                                 method: 'get',
@@ -504,51 +561,46 @@
                         } else {
                             mui.toast('评论失败');
                         }
-                        that.bac_id = null;
-                        that.comment_box = false;
-                        that.textarea = '';
                     });
+
+                    // var time = (new Date()).format("yyyy-MM-dd hh:mm:ss.S");
+                    // var obj = {
+                    //     content: that.textarea,
+                    //     p_icon: that.user.p_icon,
+                    //     p_name: that.user.p_name,
+                    //     time: time,
+                    //     person_id: that.user.person_id,
+                    //     status: 0,
+                    //     bac_id: null,
+                    //     commentByid: [],
+                    //     CommentZan: 0
+                    // };
+                    //
+                    // console.log(123, obj);
+                    // console.log(that.itemIndex);
+                    // console.log(that.list1[that.itemIndex]);
+                    // if (that.itemIndex >= 0 && that.itemIndex != null && that.itemIndex != undefined) {
+                    //     var arr = that.list1[that.itemIndex].commentByid;
+                    //     if (arr) {
+                    //         that.$set(that.list1, that.itemIndex, that.list1[that.itemIndex].commentByid.unshift(obj));
+                    //     } else {
+                    //         that.list1[that.itemIndex]['commentByid'] = []
+                    //         that.$set(that.list1, that.itemIndex, that.list1[that.itemIndex].commentByid.unshift(obj));
+                    //     }
+                    //
+                    //     alert(1)
+                    // } else {
+                    //     that.list1.push(obj);
+                    //     console.log(that.list1);
+                    //     alert(2)
+                    // }
+
+                    that.bac_id = null;
+                    that.comment_box = false;
+                    that.textarea = '';
                 },
 
-                // 获取报名的数据列表
-                queryApplyList: function () {
-                    var that = this;
-                    ajaxGetWithProgress(queryApplyList, {
-                        circle_id: that.item.circle_id,
-                    }, function (data, err) {
-                        // console.log(data);
-                        if (data.ApplyList) {
-                            var arr = data.ApplyList;
-                            for (var i = 0; i < arr.length; i++) {
-                                arr[i]['active'] = false;
-                                if (i >= 7) {
-                                    return;
-                                }
-                                if (arr[i].status < 2 && i < 7) {
-                                    that.list.push(arr[i])
-                                }
-                            }
 
-                        }
-
-                    });
-                },
-                // 获取评论数据
-                queryCommentSummary: function () {
-                    var that = this;
-                    ajaxGetWithProgress(queryCommentSummary, {
-                        circle_id: that.item.circle_id,
-                    }, function (data, err) {
-                        console.log(data);
-                        if (data.comment) {
-                            var arr = data.comment;
-                            for (var i = 0; i < arr.length; i++) {
-                                arr[i]['total'] = 1
-                            }
-                            that.list1 = arr;
-                        }
-                    });
-                },
                 // 点击查看更多回复
                 repliesHandle: function (index) {
                     this.list1[index]['total'] = this.list1[index].commentByid.length;
@@ -562,7 +614,8 @@
                     }
                     this.comment_box = true;
                     this.bac_id = bac_id;
-                    console.log(bac_id)
+                    this.itemIndex = index;
+                    console.log(index)
                 },
                 // 点赞
                 giveZan: function (status, comment_id, index) {

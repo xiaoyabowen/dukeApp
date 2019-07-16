@@ -663,6 +663,11 @@ div.isDisplay {
     width: 100%;
     height: 100%;
 }
+
+.cir_return span, .cir_hide span {
+    font-size: 0.12rem;
+    color: #666666;
+}
 /*魔方结束*/
 
 

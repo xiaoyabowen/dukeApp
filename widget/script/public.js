@@ -305,7 +305,12 @@ var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
-
+// 过滤时间转成 - 4-5-
+function filterTime0(time) {
+    var arr = time.split('-');
+    arr.shift();
+    return arr.join('-');
+}
 // 过滤时间转成 - 4月5日
 function filterTime1(time) {
     var arr = time.split('-');
@@ -321,20 +326,6 @@ function filterTime2(time) {
     return arr.join(':');
 }
 
-// 过滤时间转成 - 4月5日
-function filterTime1(time) {
-    var arr = time.split('-');
-    var month = arr[1] + '月';
-    var day = arr[2] + '日';
-    return month + day;
-}
-// 过滤时间不要分秒
-function filterTime2(time) {
-    var arr = time.split(':');
-    arr.pop();
-    // console.log(arr);
-    return arr.join(':');
-}
 
 function checkUrl(urlString) {
     if (urlString != "") {

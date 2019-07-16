@@ -9,6 +9,20 @@
     <title>圈子</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+        .headerBox > div {
+            font-size: 0.3rem;
+        }
+
+        .middle_center {
+            font-size: 0.36rem;
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            color: rgba(255,255,255,1);
+            line-height: 0.50rem;
+            margin-left: 0.8rem;
+        }
+    </style>
 </head>
 <body>
 <div id="topbar" >
@@ -19,13 +33,14 @@
     <div class="right" onclick="save()">
         + 发布活动
     </div>-->
-    <div class="headerBox cssFlex"><div class="leftImgClose" onclick="closeWin()">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+    <div class="headerBox cssFlex">
+        <div onclick="closeWin()">
+            首页
         </div>
-        <div class="middleMain" style="width: 4rem;">
+        <div class="middle_center">
             活动
         </div>
-        <div class="rightImgEdite" onclick="save()">
+        <div onclick="save()">
             + 发布活动
         </div>
     </div>

@@ -196,19 +196,22 @@ textarea{
     align-items: center;
 }
 
-.headerBox > div {
+.headerBoxbg > div {
     font-size: 0.36rem;
 }
 
-.headerBox > .li {
+.headerBoxbg > .li {
     color: #CEDEFE;
 }
 
-.headerBox > .li.active {
+.headerBoxbg > .li.active {
     color: #ffffff;
 }
 
-.headerBox.bg {
+.headerBoxbg {
+    justify-content: space-between;
+    padding: 0 0.34rem;
+    align-items: center;
     background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
             linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
@@ -249,8 +252,8 @@ textarea{
     height :56px;
     line-height: 56px;
     margin: 0 auto;
-
     position: relative;
+    overflow: hidden;
 }
 /*.middleHeight {
     width: 5.4rem;
@@ -276,7 +279,7 @@ textarea{
     height: 0.32rem;
 }
 .searchInput{
-    width: 4.4rem;
+    width: 4.25rem;
     height: 0.32rem;
     line-height: 0.32rem;
     padding: 0.12rem 0.12rem 0.12rem 1rem;
@@ -306,7 +309,13 @@ textarea{
     color:rgba(153,153,153,1);
     font-size: 0.24rem;
     background:url("../icon/search.png") no-repeat 0.48rem center,rgba(255,255,255,1);
-    background-size: 0.26rem 0.26rem;
+    background-size: 0.28rem 0.28rem;
+}
+
+#search-inputTop::-webkit-input-placeholder{
+    line-height: 0.6rem;
+    font-size: 0.24rem;
+    color: #999999;
 }
 
 .search-Click {
@@ -345,6 +354,23 @@ textarea{
     background:rgba(99,139,255,1);
     color: #ffffff;
     font-size: 0.22rem;
+}
+
+.searchClickGo {
+    width: 0.46rem;
+    height: 0.46rem;
+    line-height: 0.5rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.22rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background:rgba(99,139,255,1);
+    position: absolute;
+    right: 0.07rem;
+    top: 34%;
+
 }
 
 
@@ -610,20 +636,23 @@ div.isDisplay {
     border-radius: 50%;
     background: rgba(255, 255, 255, 1);
     opacity: 0.7;
+    text-align: center;
     position: absolute;
 }
 
-.positionCir>img {
-    display: block;
-    width: 0.28rem;
-    height: 0.30rem;
-    padding: 0.10rem 0.28rem 0 0.10rem;
-    transform: rotate(-45deg)
-}
+/*.positionCir>img {*/
+    /*display: block;*/
+    /*width: 0.28rem;*/
+    /*height: 0.30rem;*/
+    /*padding: 0.10rem 0.28rem 0 0.10rem;*/
+    /*transform: rotate(-45deg)*/
+/*}*/
 
-.positionCir>span {
+.positionCir > span {
     display: block;
-    width: 0.92rem;
+    width: 0.7rem;
+    height: 0.2rem;
+    line-height: 0.2rem;
     margin-top: -0.04rem;
     text-align: center;
     transform: rotate(-45deg);
@@ -651,15 +680,31 @@ div.isDisplay {
 }
 
 .iconImg {
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.36rem;
     border-radius: 50%;
+    transform: rotate(-45deg);
+    position: relative;
+    left: -0.09rem;
+    top: 0.08rem;
 }
 
 .appMask {
     width: 100%;
     height: 100%;
 }
+
+.cir_return span, .cir_hide span {
+    text-align: center;
+    font-size: 0.12rem;
+    color: #666666;
+    text-align: center;
+    -webkit-transform: rotate(-45deg) translateX(16%);
+    -moz-transform: rotate(-45deg) translateX(16%);
+    -ms-transform: rotate(-45deg) translateX(16%);
+    -o-transform: rotate(-45deg) translateX(16%);
+    transform: rotate(-45deg) translateX(16%);
+}
+
 /*魔方结束*/
 
 

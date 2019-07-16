@@ -36,7 +36,7 @@
 
         <div class="middleMain">
             <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-            <span class="searchClick">GO</span>
+            <span class="searchClickGo">GO</span>
         </div>
         <div class="rightImgEdite">
             <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
@@ -76,8 +76,12 @@
     function mineGo() {
 
         var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
         if (uidUser.date != 0){
-            openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+            openNewWindow("addproduct", "../mine/addproduct.html", {
                 url: 'home'
             });
             // mui.confirm('','您还未完善简历，请继续完善', function (e) {
