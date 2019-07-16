@@ -64,7 +64,7 @@
 
         </div>
         <div class="borderBoxRote positionCom"
-             @click="detailClick(index)"
+             @click="detailClick(index,item.job_id)"
              v-bind:class="['position'+index, active ? 'animation' : '']"
              v-for="(item, index) in list" :key="index">
             <div class="xuanbox" :class="index1 == index ? 'active' : ''">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="borderBoxRote positionCom"
-             @click="detailClick2(index)"
+             @click="detailClick2(index,item.c_id)"
              v-bind:class="['position1'+index, active ? 'animation' : '']"
              v-for="(item, index) in list1" :key="index">
             <div class="xuanbox" :class="index2== index ? 'active' : ''">
@@ -324,18 +324,18 @@
 <!--   企业空间 模态框   -->
 <div class="modal-space modal-news" onclick="closeMotal()">
     <!--<div class="subspace subspaceNew">-->
-        <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
-        <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
-        <p class="spaceSubTitle">童济仕汽车评论 xxxx年xx月xx日 </p>
-        <p class="spaceContent">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵
-            手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手
-            百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是
-            什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-            车企企频繁牵手百度，背后到底是
-            什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-            车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车
-            企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企
-        </p>
+    <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
+    <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
+    <p class="spaceSubTitle">童济仕汽车评论 xxxx年xx月xx日 </p>
+    <p class="spaceContent">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵
+        手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手
+        百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是
+        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
+        车企企频繁牵手百度，背后到底是
+        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
+        车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车
+        企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企
+    </p>
 -->
     <!--</div>-->
 </div>
@@ -452,201 +452,404 @@
     map.clearMap();
 
     var infoWindow;
-    var cid,uid;
+    var cid,uid,c_id;
     apiready = function () {
         cid = api.pageParam.cid;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
-        var obj = {
-            cid: cid,
-            person_id: uid
-        }
+        if (cid){
+            document.querySelector(".comTitle").innerHTML == ''
 
-
-        var infoListHtml, product_hishtml, PIClistHtml,html2,html3;
-        ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
-            console.log(data);
-            var dataSummary = data.Orgnization_summary
-            var companySummary = data.companySummary.Result    //企查查  信息
-            var PIClist = data.PIClist    //公司图片
-            var product_his = data.product_his    //产品介绍
-            var welfare = dataSummary.welfare    //公司图片
-            var JobList = data.JobList    //  zaizhao 职位
-            var DynamicList = data.DynamicList    //  公司动态
-            var attentionCompany = data.attentionCompany    //  关注状态
-            if (welData){
-                var welData = welfare.split(",")
-
-            }else {
-                welData = ''
+            var obj = {
+                cid: cid,
+                person_id: uid
             }
-            var adressData = data.address
-            if (data) {
-                // 公司头部
+            console.log(456,cid)
+            var infoListHtml, product_hishtml, PIClistHtml,html2,html3;
+            ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
+                console.log(data);
+                var dataSummary = data.Orgnization_summary
+                var companySummary = data.companySummary.Result    //企查查  信息
+                var PIClist = data.PIClist    //公司图片
+                var product_his = data.product_his    //产品介绍
+                var welfare = dataSummary.welfare    //公司图片
+                var JobList = data.JobList    //  zaizhao 职位
+                var DynamicList = data.DynamicList    //  公司动态
+                var attentionCompany = data.attentionCompany    //  关注状态
+                if (welData){
+                    var welData = welfare.split(",")
+
+                }else {
+                    welData = ''
+                }
+                var adressData = data.address
+                if (data) {
+                    // 公司头部
 
                     if(attentionCompany.att_status == 0){
                         document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
-                        '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
+                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
                     }else if (attentionCompany.att_status == 1){
                         document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
                             '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
                     }
 
-                document.querySelector(".comTitle").innerHTML +=
-                    '<div class="comintobox cssFlex">' +
-                    '<div class="comInfo">' +
-                    '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                    '                    <p class="comInfoCon comInfoConMar">\n' +
-                    '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                    '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                    '                        <span>' + dataSummary.org_type + '</span>\n' +
-                    '                    </p>\n' +
-                    '                    <p class="timeInfo cssFlex">\n' +
-                    '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                    '                        <span>' + dataSummary.s_time + '</span>\n' +
-                    '                        <i>-</i>\n' +
-                    '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                    '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                    '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                    '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                    '                    </p>\n' +
-                    '                </div>\n' +
-                    '                <div class="comLogo">\n' +
-                    '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                    '                </div>' +
-                    '                </div>'
-                // 公司标签
+                    document.querySelector(".comTitle").innerHTML +=
+                        '<div class="comintobox cssFlex">' +
+                        '<div class="comInfo">' +
+                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
+                        '                    <p class="comInfoCon comInfoConMar">\n' +
+                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.org_type + '</span>\n' +
+                        '                    </p>\n' +
+                        '                    <p class="timeInfo cssFlex">\n' +
+                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
+                        '                        <span>' + dataSummary.s_time + '</span>\n' +
+                        '                        <i>-</i>\n' +
+                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
+                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
+                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
+                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
+                        '                    </p>\n' +
+                        '                </div>\n' +
+                        '                <div class="comLogo">\n' +
+                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
+                        '                </div>' +
+                        '                </div>'
+                    // 公司标签
 
-                for (var i = 0; i < welData.length; i++) {
-                    infoListHtml += '<span>' + welData[i] + '</span>'
+                    for (var i = 0; i < welData.length; i++) {
+                        infoListHtml += '<span>' + welData[i] + '</span>'
+                    }
+                    document.querySelector(".infoList").innerHTML = infoListHtml
+                    document.querySelector(".job-text").innerHTML = dataSummary.summary  //公司介绍
+                    // 产品介绍
+                    for (var i = 0; i < product_his.length; i++) {
+                        product_hishtml += '<div class="infoProduct cssFlex">\n' +
+                            '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
+                            '                                            <div class="infoProductContent">\n' +
+                            '                                                <h5>' + product_his[i].productname + '</h5>\n' +
+                            '                                                <p class="textOverflow">' + product_his[i].prod_desc + '<i>详情</i></p>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>'
+                    }
+                    document.querySelector(".product_hisbox").innerHTML = product_hishtml
+
+                    // 高管介绍
+                    // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
+                    document.querySelector(".seniorname").innerHTML = dataSummary.senior
+                    document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak
+
+                    // 公司官网
+                    document.querySelector(".homepage").innerHTML = dataSummary.homepage
+
+                    // 公司照片
+
+                    for (var i = 0; i < PIClist.length; i++) {
+                        PIClistHtml += '<div class="swiper-slide">\n' +
+                            // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
+                            '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
+                            '                                            </div>'
+                    }
+                    document.querySelector(".PIClistBox").innerHTML = PIClistHtml
+
+
+
+                    // 工商信息
+                    document.querySelector(".Name").innerHTML = companySummary.Name
+                    document.querySelector(".OperName").innerHTML = companySummary.OperName
+                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
+                    document.querySelector(".RegistCapi").innerHTML = companySummary.RegistCapi
+                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
+                    document.querySelector(".Status").innerHTML = companySummary.Status
+                    document.querySelector(".Address").innerHTML = companySummary.Address
+                    document.querySelector(".CreditCode").innerHTML = companySummary.CreditCode
+                    document.querySelector(".Scope").innerHTML = companySummary.Scope
+
+
+
+
+                    for (var i = 0; i < JobList.length; i++) {
+                        html2 += '<div class="jobBox cssFlex">\n' +
+                            '                                        <div class="job-left">\n' +
+                            '                                            <h4 class="job-nameNm">'+JobList[i].job_name+'</h4>\n' +
+                            '                                            <p class="job-name">\n' +
+                            '                                                <span>'+JobList[i].c_name+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                            <p class="adress-job">\n' +
+                            '                                                <span>'+JobList[i].province+'-'+JobList[i].city+'-'+JobList[i].street+'</span>\n' +
+                            '                                                <span>'+JobList[i].work_ex+'</span>\n' +
+                            '                                                <span>'+JobList[i].edu_ex+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                            <p class="job-img-content cssFlex">\n' +
+                            '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
+                            '                                                <span>'+JobList[i].c_name+'</span>\n' +
+                            '                                                <i>·</i>\n' +
+                            '                                                <span>人力资源经理</span>\n' +
+                            '                                            </p>\n' +
+                            '                                        </div>\n' +
+                            '                                        <!--薪资 日期-->\n' +
+                            '                                        <div class="job-right ">\n' +
+                            '                                            <p class="moneyNum">20k-30K</p>\n' +
+                            '                                            <p class="date-job" >4月17日</p>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>';
+                    }
+
+                    document.getElementById("tab2").innerHTML = html2
+
+                    for (var i = 0; i < DynamicList.length; i++) {
+                        html3 +=
+                            '                                        <li onclick="com_dy('+DynamicList[i].com_dynamic_id+')">\n' +
+                            '                                            <h4 class="sizeTitle">\n' +
+                            '                                                '+DynamicList[i].title+'\n' +
+                            '                                            </h4>\n' +
+                            '                                            <p>\n' +
+                            '                                                <span class="size-name">'+DynamicList[i].publisher+'</span>评论 <span class="time-size">'+DynamicList[i].create_time+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                        </li>';
+                    }
+
+                    document.querySelector(".componySize").innerHTML = html3
+
                 }
-                document.querySelector(".infoList").innerHTML = infoListHtml
-                document.querySelector(".job-text").innerHTML = dataSummary.summary  //公司介绍
-                // 产品介绍
-                for (var i = 0; i < product_his.length; i++) {
-                    product_hishtml += '<div class="infoProduct cssFlex">\n' +
-                        '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
-                        '                                            <div class="infoProductContent">\n' +
-                        '                                                <h5>' + product_his[i].productname + '</h5>\n' +
-                        '                                                <p class="textOverflow">' + product_his[i].prod_desc + '<i>详情</i></p>\n' +
-                        '                                            </div>\n' +
-                        '                                        </div>'
-                }
-                document.querySelector(".product_hisbox").innerHTML = product_hishtml
-
-                // 高管介绍
-                // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
-                document.querySelector(".seniorname").innerHTML = dataSummary.senior
-                document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak
-
-                // 公司官网
-                document.querySelector(".homepage").innerHTML = dataSummary.homepage
-
-                // 公司照片
-
-                for (var i = 0; i < PIClist.length; i++) {
-                    PIClistHtml += '<div class="swiper-slide">\n' +
-                        // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
-                        '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
-                        '                                            </div>'
-                }
-                document.querySelector(".PIClistBox").innerHTML = PIClistHtml
 
 
+                lat = adressData.latitude
+                long = adressData.longitude
+                province = adressData.province
+                city = adressData.city
+                street = adressData.street
+                allAddress = province + city + street
 
-                // 工商信息
-                document.querySelector(".Name").innerHTML = companySummary.Name
-                document.querySelector(".OperName").innerHTML = companySummary.OperName
-                document.querySelector(".StartDate").innerHTML = companySummary.StartDate
-                document.querySelector(".RegistCapi").innerHTML = companySummary.RegistCapi
-                document.querySelector(".StartDate").innerHTML = companySummary.StartDate
-                document.querySelector(".Status").innerHTML = companySummary.Status
-                document.querySelector(".Address").innerHTML = companySummary.Address
-                document.querySelector(".CreditCode").innerHTML = companySummary.CreditCode
-                document.querySelector(".Scope").innerHTML = companySummary.Scope
+                var jfong = [lat, long];
+                marker = new AMap.Marker({
+                    position: jfong,
+                    zIndex: 101,
+                    map: map
+                });
+                marker.setMap(map);
+                marker.allAddress = allAddress;
+                marker.on('click', function (e) {
+
+                    infoWindow.setContent("<ul class='main'>" +
+                        "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
+                        "</ul>");
+                    infoWindow.open(map, e.lnglat);
+                });
 
 
+                infoWindow = new AMap.InfoWindow({
+                    isCustom: true,
+                    draggable: true,  //是否可拖动
+                    offset: new AMap.Pixel(0, -31),
+                    content: ""
 
 
-                for (var i = 0; i < JobList.length; i++) {
-                    html2 += '<div class="jobBox cssFlex">\n' +
-                        '                                        <div class="job-left">\n' +
-                        '                                            <h4 class="job-nameNm">'+JobList[i].job_name+'</h4>\n' +
-                        '                                            <p class="job-name">\n' +
-                        '                                                <span>'+JobList[i].c_name+'</span>\n' +
-                        '                                            </p>\n' +
-                        '                                            <p class="adress-job">\n' +
-                        '                                                <span>'+JobList[i].province+'-'+JobList[i].city+'-'+JobList[i].street+'</span>\n' +
-                        '                                                <span>'+JobList[i].work_ex+'</span>\n' +
-                        '                                                <span>'+JobList[i].edu_ex+'</span>\n' +
-                        '                                            </p>\n' +
-                        '                                            <p class="job-img-content cssFlex">\n' +
-                        '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
-                        '                                                <span>'+JobList[i].c_name+'</span>\n' +
-                        '                                                <i>·</i>\n' +
-                        '                                                <span>人力资源经理</span>\n' +
-                        '                                            </p>\n' +
-                        '                                        </div>\n' +
-                        '                                        <!--薪资 日期-->\n' +
-                        '                                        <div class="job-right ">\n' +
-                        '                                            <p class="moneyNum">20k-30K</p>\n' +
-                        '                                            <p class="date-job" >4月17日</p>\n' +
-                        '                                        </div>\n' +
-                        '                                    </div>';
-                }
+                });
+            });
 
-                document.getElementById("tab2").innerHTML = html2
 
-                for (var i = 0; i < DynamicList.length; i++) {
-                    html3 +=
-                        '                                        <li onclick="com_dy('+DynamicList[i].com_dynamic_id+')">\n' +
-                        '                                            <h4 class="sizeTitle">\n' +
-                        '                                                '+DynamicList[i].title+'\n' +
-                        '                                            </h4>\n' +
-                        '                                            <p>\n' +
-                        '                                                <span class="size-name">'+DynamicList[i].publisher+'</span>评论 <span class="time-size">'+DynamicList[i].create_time+'</span>\n' +
-                        '                                            </p>\n' +
-                        '                                        </li>';
-                }
+        } else{
+            document.querySelector(".comTitle").innerHTML == ''
+            console.log(document.querySelector(".comTitle").innerHTML)
+            companyId(c_id)
+        }
 
-                document.querySelector(".componySize").innerHTML = html3
 
+        function companyId(c_id) {
+            console.log(123,c_id)
+            var obj = {
+                cid: c_id,
+                person_id: uid
             }
+            var infoListHtml, product_hishtml, PIClistHtml,html2,html3;
+            ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
+                console.log(data);
+
+                var dataSummary = data.Orgnization_summary
+                var companySummary = data.companySummary.Result    //企查查  信息
+                var PIClist = data.PIClist    //公司图片
+                var product_his = data.product_his    //产品介绍
+                var welfare = dataSummary.welfare    //公司图片
+                var JobList = data.JobList    //  zaizhao 职位
+                var DynamicList = data.DynamicList    //  公司动态
+                var attentionCompany = data.attentionCompany    //  关注状态
+                if (welData){
+                    var welData = welfare.split(",")
+
+                }else {
+                    welData = ''
+                }
+                var adressData = data.address
+                if (data) {
+                    // 公司头部
+                    api.hideProgress();
+                    if(attentionCompany.att_status == 0){
+                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
+                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
+                    }else if (attentionCompany.att_status == 1){
+                        document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
+                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
+                    }
+                    document.querySelector(".comTitle").innerHTML +=
+                        '<div class="comintobox cssFlex">' +
+                        '<div class="comInfo">' +
+                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
+                        '                    <p class="comInfoCon comInfoConMar">\n' +
+                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.org_type + '</span>\n' +
+                        '                    </p>\n' +
+                        '                    <p class="timeInfo cssFlex">\n' +
+                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
+                        '                        <span>' + dataSummary.s_time + '</span>\n' +
+                        '                        <i>-</i>\n' +
+                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
+                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
+                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
+                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
+                        '                    </p>\n' +
+                        '                </div>\n' +
+                        '                <div class="comLogo">\n' +
+                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
+                        '                </div>' +
+                        '                </div>'
+                    // 公司标签
+
+                    for (var i = 0; i < welData.length; i++) {
+                        infoListHtml += '<span>' + welData[i] + '</span>'
+                    }
+                    document.querySelector(".infoList").innerHTML = infoListHtml
+                    document.querySelector(".job-text").innerHTML = dataSummary.summary  //公司介绍
+                    // 产品介绍
+                    for (var i = 0; i < product_his.length; i++) {
+                        product_hishtml += '<div class="infoProduct cssFlex">\n' +
+                            '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
+                            '                                            <div class="infoProductContent">\n' +
+                            '                                                <h5>' + product_his[i].productname + '</h5>\n' +
+                            '                                                <p class="textOverflow">' + product_his[i].prod_desc + '<i>详情</i></p>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>'
+                    }
+                    document.querySelector(".product_hisbox").innerHTML = product_hishtml
+
+                    // 高管介绍
+                    // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
+                    document.querySelector(".seniorname").innerHTML = dataSummary.senior
+                    document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak
+
+                    // 公司官网
+                    document.querySelector(".homepage").innerHTML = dataSummary.homepage
+
+                    // 公司照片
+
+                    for (var i = 0; i < PIClist.length; i++) {
+                        PIClistHtml += '<div class="swiper-slide">\n' +
+                            // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
+                            '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
+                            '                                            </div>'
+                    }
+                    document.querySelector(".PIClistBox").innerHTML = PIClistHtml
 
 
-            lat = adressData.latitude
-            long = adressData.longitude
-            province = adressData.province
-            city = adressData.city
-            street = adressData.street
-            allAddress = province + city + street
 
-            var jfong = [lat, long];
-            marker = new AMap.Marker({
-                position: jfong,
-                zIndex: 101,
-                map: map
+                    // 工商信息
+                    document.querySelector(".Name").innerHTML = companySummary.Name
+                    document.querySelector(".OperName").innerHTML = companySummary.OperName
+                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
+                    document.querySelector(".RegistCapi").innerHTML = companySummary.RegistCapi
+                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
+                    document.querySelector(".Status").innerHTML = companySummary.Status
+                    document.querySelector(".Address").innerHTML = companySummary.Address
+                    document.querySelector(".CreditCode").innerHTML = companySummary.CreditCode
+                    document.querySelector(".Scope").innerHTML = companySummary.Scope
+
+
+
+
+                    for (var i = 0; i < JobList.length; i++) {
+                        html2 += '<div class="jobBox cssFlex">\n' +
+                            '                                        <div class="job-left">\n' +
+                            '                                            <h4 class="job-nameNm">'+JobList[i].job_name+'</h4>\n' +
+                            '                                            <p class="job-name">\n' +
+                            '                                                <span>'+JobList[i].c_name+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                            <p class="adress-job">\n' +
+                            '                                                <span>'+JobList[i].province+'-'+JobList[i].city+'-'+JobList[i].street+'</span>\n' +
+                            '                                                <span>'+JobList[i].work_ex+'</span>\n' +
+                            '                                                <span>'+JobList[i].edu_ex+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                            <p class="job-img-content cssFlex">\n' +
+                            '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
+                            '                                                <span>'+JobList[i].c_name+'</span>\n' +
+                            '                                                <i>·</i>\n' +
+                            '                                                <span>人力资源经理</span>\n' +
+                            '                                            </p>\n' +
+                            '                                        </div>\n' +
+                            '                                        <!--薪资 日期-->\n' +
+                            '                                        <div class="job-right ">\n' +
+                            '                                            <p class="moneyNum">20k-30K</p>\n' +
+                            '                                            <p class="date-job" >4月17日</p>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>';
+                    }
+
+                    document.getElementById("tab2").innerHTML = html2
+
+                    for (var i = 0; i < DynamicList.length; i++) {
+                        html3 +=
+                            '                                        <li onclick="com_dy('+DynamicList[i].com_dynamic_id+')">\n' +
+                            '                                            <h4 class="sizeTitle">\n' +
+                            '                                                '+DynamicList[i].title+'\n' +
+                            '                                            </h4>\n' +
+                            '                                            <p>\n' +
+                            '                                                <span class="size-name">'+DynamicList[i].publisher+'</span>评论 <span class="time-size">'+DynamicList[i].create_time+'</span>\n' +
+                            '                                            </p>\n' +
+                            '                                        </li>';
+                    }
+
+                    document.querySelector(".componySize").innerHTML = html3
+
+                }
+
+
+                lat = adressData.latitude
+                long = adressData.longitude
+                province = adressData.province
+                city = adressData.city
+                street = adressData.street
+                allAddress = province + city + street
+
+                var jfong = [lat, long];
+                marker = new AMap.Marker({
+                    position: jfong,
+                    zIndex: 101,
+                    map: map
+                });
+                marker.setMap(map);
+                marker.allAddress = allAddress;
+                marker.on('click', function (e) {
+
+                    infoWindow.setContent("<ul class='main'>" +
+                        "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
+                        "</ul>");
+                    infoWindow.open(map, e.lnglat);
+                });
+
+
+                infoWindow = new AMap.InfoWindow({
+                    isCustom: true,
+                    draggable: true,  //是否可拖动
+                    offset: new AMap.Pixel(0, -31),
+                    content: ""
+
+
+                });
             });
-            marker.setMap(map);
-            marker.allAddress = allAddress;
-            marker.on('click', function (e) {
-
-                infoWindow.setContent("<ul class='main'>" +
-                    "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
-                    "</ul>");
-                infoWindow.open(map, e.lnglat);
-            });
 
 
-            infoWindow = new AMap.InfoWindow({
-                isCustom: true,
-                draggable: true,  //是否可拖动
-                offset: new AMap.Pixel(0, -31),
-                content: ""
-
-
-            });
-        });
-
+        }
 
         new Vue({
             el: '#app1',
@@ -683,14 +886,20 @@
                         that.active = false;
                     }, 1500)
                 },
-                detailClick: function (index) {
+                detailClick: function (index,job_id) {
                     this.index1 = index;
                     this.index2 = -1;
-                    console.log(index)
+                    openNewWindow("position", "../home/position.html", {
+                        job_id: job_id
+                    });
+
                 },
-                detailClick2: function (index) {
+                detailClick2: function (index,c_id) {
                     this.index2 = index;
                     this.index1 = -1;
+
+                    companyId(c_id)
+
                 },
                 hideHandle: function () {
                     document.getElementById('subBox').classList.add('isDisplay');
@@ -729,7 +938,6 @@
             }
         })
     }
-
     // 星级评价
     mui.init();
     mui('.icons').on('click','i',function(){

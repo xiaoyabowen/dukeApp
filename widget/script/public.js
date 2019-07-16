@@ -285,6 +285,8 @@ var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
 
+// 公司填写信息
+var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
 
 
@@ -306,20 +308,6 @@ var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
-// 过滤时间转成 - 4月5日
-function filterTime1(time) {
-    var arr = time.split('-');
-    var month = arr[1] + '月';
-    var day = arr[2] + '日';
-    return month + day;
-}
-// 过滤时间不要分秒
-function filterTime2(time) {
-    var arr = time.split(':');
-    arr.pop();
-    // console.log(arr);
-    return arr.join(':');
-}
 
 // 过滤时间转成 - 4月5日
 function filterTime1(time) {
@@ -336,17 +324,21 @@ function filterTime2(time) {
     return arr.join(':');
 }
 
-function checkUrl(urlString) {
-    if (urlString != "") {
-        var reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
-        if (!reg.test(urlString)) {
-            return false;
-        } else {
-            return true;
-        }
-
-    }
+// 过滤时间转成 - 4月5日
+function filterTime1(time) {
+    var arr = time.split('-');
+    var month = arr[1] + '月';
+    var day = arr[2] + '日';
+    return month + day;
 }
+// 过滤时间不要分秒
+function filterTime2(time) {
+    var arr = time.split(':');
+    arr.pop();
+    // console.log(arr);
+    return arr.join(':');
+}
+
 
 function checkTelFour(urlString) {
     if (urlString != "") {

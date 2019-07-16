@@ -32,6 +32,7 @@ function myjoinInit(Vue) {
 
                     if (data.MyJoinCirCle) {
                         // alert(123);
+                        that.showInfo =true;
                         that.list = data.MyJoinCirCle;
                     }
                 });

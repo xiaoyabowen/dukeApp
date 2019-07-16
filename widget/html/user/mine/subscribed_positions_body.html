@@ -50,7 +50,7 @@
     <!--<div class="header"></div>-->
     <!--主体-->
     <div class="subscribed_main isDisplay">
-        <div class="subscribed_main_item">
+        <!--<div class="subscribed_main_item">
             <div class="subscribed_item_left">
                 <div class="subscribed_item_position">运营经理</div>
                 <div class="subscribed_item_company">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="subscribed_item_date">4月17日</div>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <div class="subscribed_bottom isDisplay">
@@ -153,11 +153,48 @@
         }, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
-            if (data.querySubscription) {
+            var subscribedHtml = ''
+            var dataArr = data.querySubscription
+            if (dataArr) {
                 sub_id = data.querySubscription[0].sub_id;
                 document.querySelector('.subscribed_main').classList.remove('isDisplay');
                 document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
                 document.querySelector('.clearBox').classList.add('isDisplay');
+                for (var i =0;i<dataArr.length;i++){
+                    subscribedHtml += '<div class="subscribed_main_item" onclick="subscribedClick('+dataArr[i].sub_id+')">\n' +
+                        '            <div class="subscribed_item_left">\n' +
+                        '                <div class="subscribed_item_position">'+dataArr[i].sub_name+'</div>\n' +
+                        '                <div class="subscribed_item_company">\n' +
+                        '                    <div>\n' +
+                        '                        <span>'+dataArr[i].c_name+' </span>\n' +
+                        '                        <span>'+dataArr[i].com_type+'</span>\n' +
+                        '                    </div>\n' +
+                        '\n' +
+                        '                    <div>\n' +
+                        '                        <span>'+dataArr[i].job_adr+' </span>\n' +
+                        '                        <span>'+dataArr[i].sn+'年 </span>\n' +
+                        '                        <span>'+dataArr[i].edu_ex+'</span>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '                <div class="subscribed_item_user">\n' +
+                        '                    <div class="subscribed_item_user_img">\n' +
+                        '                        <img src="../../../image/pro.png" alt="">\n' +
+                        '                    </div>\n' +
+                        '                    <div class="subscribed_item_user_name">\n' +
+                        '                        赵东东·人力资源经理\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '            <div class="subscribed_item_right">\n' +
+                        '                <div class="subscribed_item_range">\n' +
+                        '                    '+dataArr[i].job_ratio+'\n' +
+                        '                </div>\n' +
+                        '                <div class="subscribed_item_date">'+dataArr[i].issue_time+'</div>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                }
+                document.querySelector(".subscribed_main").innerHTML = subscribedHtml
+
             } else {
                 document.querySelector('.clearBox').classList.remove('isDisplay');
             }
@@ -182,6 +219,10 @@
 
     };
 
+    // 跳转职位详情
+    function subscribedClick(c_id) {
+        console.log(c_id)
+    }
     // 添加订阅
     function addSubscribed() {
         openNewWindow("add_Subscription", "./add_Subscription.html", {

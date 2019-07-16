@@ -53,5 +53,43 @@
         initFrameInWin(api.pageParam);
 
     };
+    function mineGo() {
+        var obj ={
+            uid : localStorage.getItem("user").user_id
+        }
+        console.log(obj)
+        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            if (data.date != 0) {
+                api.confirm({
+                    // title: 'testtitle',
+                    msg: '您还未完善简历，请继续完善',
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if (index){
+                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+                            url: 'home'
+                        });
+                    }
+                });
+                return;
+            }else{
+                openNewWindow("mine", "../mine/mine.html")
+            }
+        })
+
+
+        // openNewWindow("mine", "../mine/mine.html")
+    }
+
+    // 跳转到聊天页面
+    function linkChat() {
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("index", "../chat/index.html")
+    }
 </script>
 </html>

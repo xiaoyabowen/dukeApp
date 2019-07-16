@@ -134,14 +134,12 @@
 
     // 取消屏蔽公司
     function clearCompany(id) {
-        console.log(id);
         ajaxGetWithProgress(attentionCompanyByCid, {
             id: id,
             att_status: 1
         }, function (data, err) {
-            // alert(JSON.stringify(data));
-            console.log(data);
             if (data.return.status) {
+                toast("删除成功")
                 reload();
             }
         });

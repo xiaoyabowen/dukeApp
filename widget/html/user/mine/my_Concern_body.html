@@ -18,6 +18,14 @@
     <!--&lt;!&ndash;头部&ndash;&gt;-->
     <!--<div class="header"></div>-->
     <!--主体-->
+    
+    <div class="notmy_Concern_main">
+        <div class="notImg">
+            <img src="../../../image/notg.png" alt="du" class="notImgMy">
+        </div>
+        <div class="notMyConText">暂无关注的公司</div>
+    </div>
+    
     <div class="my_Concern_main">
         <div class="my_Concern_item">
             <!--<div class="concern_head">
@@ -93,7 +101,14 @@
         ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
             console.log(data)
             var conData = data.AttentionCompany
-            if (data){
+            if (conData == undefined){
+                document.querySelector(".notmy_Concern_main").style.display = "block"
+                document.querySelector(".my_Concern_main").style.display = "none"
+
+            }else{
+                document.querySelector(".my_Concern_main").style.display = "block"
+                document.querySelector(".notmy_Concern_main").style.display = "none"
+
                 for ( var i=0;i<conData.length;i++){
                     my_ConcernHtml += '<div class="concern_head">\n' +
                         '                <div class="concern_head_top" onclick="companyDetail('+conData[i].c_id+')">\n' +
@@ -149,13 +164,21 @@
                 }
 
                 document.querySelector(".my_Concern_item").innerHTML = my_ConcernHtml
-                /*api.toast({
-                    msg: '编辑成功'
-                });
-                reload();*/
             }
         })
     };
+    function companyDetail(cid) {
+        console.log(cid)
+        openNewWindow("companyInfo", "../home/companyInfo.html", {
+            cid: cid
+        });
+    }
+    function companPoi(pid) {
+        console.log(pid)
+        openNewWindow("position", "../home/position.html", {
+            job_id: pid
+        });
+    }
 
     // 此处手动调用了js
     // apiready()

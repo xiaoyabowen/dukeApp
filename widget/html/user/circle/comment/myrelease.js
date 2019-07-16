@@ -24,10 +24,11 @@ function myreleaseInit(Vue) {
                 ajaxGetWithProgress(queryCircleListByPersonId, {
                     person_id: that.person_id,
                 }, function (data, err) {
-                    console.log(data);
+                    console.log(1111,data);
 
                     if (data.CircleListByPersonId) {
                         // alert(123);
+                        that.showInfo =true;
                         that.list = data.CircleListByPersonId;
                     }
 
