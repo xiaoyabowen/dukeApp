@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
+
     <link rel="stylesheet" href="../layui/css/layui.css">
     <style>
         .addCards_btn {
@@ -26,6 +27,7 @@
             margin: 0.63rem auto;
         }
     </style>
+
 </head>
 <body>
 <div id="add_activities">
@@ -37,6 +39,7 @@
 
         <!--<component :is="isCom"></component>-->
         <information v-if="isActive"></information>
+
         <activities v-if="!isActive"></activities>
         <!--<div v-if="!isActive">-->
             <!--<textarea id="demo" style="display: none;"></textarea>-->
@@ -53,12 +56,17 @@
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+
 <script src="../layui/layui.all.js"></script>
+
+
+
+
 
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script src="./comment/information.js"></script>
-<script src="comment/activities.js"></script>
+<!--<script src="comment/activities.js"></script>-->
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
@@ -69,16 +77,16 @@
         // var ckeditor = CKEDITOR.replace('textarea');
 
         var information = informationInit(Vue);
-        var activities = activitiesInit(Vue);
+        // var activities = activitiesInit(Vue);
 
 
         Vue.component('information', information);
-        Vue.component('activities', activities);
+        // Vue.component('activities', activities);
         new Vue({
             el: '#add_activities',
             components: {
                 information: information,
-                activities: activities
+                // activities: activities
             },
             data: {
                 isActive: true,

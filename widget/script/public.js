@@ -7,6 +7,15 @@ var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.3:8000/SE4M';
 var Domain = 'http://192.168.1.3:8088';
 
+
+/*
+var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+var localhostHref = 'http://112.126.98.172:8000/SE4M';
+var Domain = 'http://112.126.98.172:8088';
+
+*/
+
+
 var rootWindowName = "root";
 simpleVersion = true;
 
@@ -223,6 +232,11 @@ var UploadPicCircle = Domain + "/upload/UploadPicCircle";
 
 
 
+//  创建简历  头像
+var UploadFileupload = Domain + "/upload/UploadFile";
+
+
+
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
@@ -280,8 +294,11 @@ var showVisaInformation = Domain + "/visa/showVisaInformation";
 
 //  基本信息   上传图片
 var UploadPicon = Domain + "/upload/UploadPicon";
+
 // 发布活动上传图片
 var UploadFlieTest = Domain + "/upload/UploadFlieTest";
+
+
 
 
 
