@@ -57,7 +57,7 @@
     <div class="preveiw-content"></div>
   </div>
 </div>
-
+<div class="imgNameReplace" style="display:none;"></div>
 <script src="../../../script/api.js"></script>
 <script src="../../../script/apiCloud.js"></script>
 <script src="../../../script/data.js"></script>
@@ -79,8 +79,27 @@
 </body>
 <script>
 
+  appready=function (fun) {
+    if (typeof fun!="function"){return;}
+    if(!window.apiready){
+      window.apiready = function(){
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("appready", false, false);
+        window.dispatchEvent(evt);
+        document.dispatchEvent(evt);
+      };
+    }
+    if (window.api) {
+      fun();
+    } else {
+      window.addEventListener("appready", function() {
+        fun();
+      })
+    }
+  }
+  window.parent.window.app.appready(function () {
 
-
+  })
 
 	/*--------向编辑器添加自定义按钮-------*/
 	zxEditor.addFooterButton([

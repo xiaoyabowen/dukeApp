@@ -7,6 +7,13 @@ var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.3:8000/SE4M';
 var Domain = 'http://192.168.1.3:8088';
 
+/*
+var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+var localhostHref = 'http://112.126.98.172:8000/SE4M';
+var Domain = 'http://112.126.98.172:8088';
+
+*/
+
 var rootWindowName = "root";
 simpleVersion = true;
 
@@ -220,6 +227,10 @@ var addFeedBackPic = localhostHref + "/Pic";
 // 圈子发布活动 编辑 图片
 
 var UploadPicCircle = Domain + "/upload/UploadPicCircle";
+
+
+//  创建简历  头像
+var UploadFileupload = Domain + "/upload/UploadFile";
 
 
 

@@ -62,13 +62,55 @@
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/welcome.js"></script>
 <script>
 
 
     apiready = function () {
+        // var WelcomePage = api.require('welcomePage');
+        // var guide = api.require('guide');
+        // alert(WelcomePage)
+        /*guide.openGuidePage({
+            imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
+            point_normal:'widget://image/guide/point_normal@2x.png',
+            point_select:'widget://image/guide/point_select@2x.png',
+            btnColor:'00FFFF',
+            btnLabel:'进入应用',
+            btnW:120,
+            btnH: 33,
+            time:'2',
+            hideStatusBar:false
+        });*/
+        /*var WelcomePage = api.require('welcomePage');
+        WelcomePage.openWelcomePage({
+            isFullscreen: true,                            //是否全屏(全屏不显示状态栏)  默认false
+            AnimationType: 'ZoomOutPage',      //动画类型   'Default默认', 'DepthPage深入浅出', 'Cube立方体', 'Rotate旋转','Accordion左右折叠',
+                                               //'InRightUp右上角进入' , 'InRightDown右下角进入', 'ZoomOutPage淡入淡出'
+            imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
+            setting: {
+                isShow: true,                                                // 是否显示页面点 默认不显示
+                SelectedImg: 'widget://image/guide/point_select@2x.png',
+                NotSelectedImg: 'widget://image/guide/point_normal@2x.png',
+                ImgSize: 30,                                                 // 图片size
+                ImgSpacing: 30                                               // 图片之间的间隔
+            }
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
 
-
-
+        WelcomePage.setWelcome({
+            setWelcome: false
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });*/
 
 
         var uid = localStorage.getItem("user")
@@ -89,6 +131,7 @@
             openNewWindow("login", "login.html")
         }
     }
+
     function user() {
         openNewWindow("home", "../user/home/home.html")
         localStorage.setItem("role","1")

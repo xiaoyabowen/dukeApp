@@ -16,6 +16,18 @@
         .info-choose-name{
             font-weight: bold;
         }
+        .resume_head{
+            position: relative;
+        }
+        .info-img-defalut{
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 99999;
+        }
     </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -105,7 +117,7 @@
         // 上传头像
         var file = document.querySelector('.resume_head');
         file.onclick = function () {
-            /*api.getPicture({
+            api.getPicture({
                 sourceType: 'library',
                 encodingType: 'jpg',
                 mediaValue: 'pic',
@@ -117,13 +129,43 @@
                 saveToPhotoAlbum: false
             }, function(ret, err) {
                 if (ret) {
+                    var obj = {
+                        uid : JSON.parse(localStorage.getItem('user')).user_uid
+                    }
                     console.log(JSON.stringify(ret));
+                    //上传剪辑后的图像到服务器
+                    api.ajax({
+                        // report : false,
+                        url: 'http://192.168.1.3:8088/upload/UploadFlie',
+                        //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                        method: 'post',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            files: {
+                                file: ret.data
+                            },
+                            values:obj
+                        }
+                    }, function (ret, err) {
+                        console.log(123,ret);
+                        var pathImgImg = ret.imgUrl
+
+                        var pathImgData = pathImgImg.split(",")
+                        console.log(pathImgData)
+                        document.querySelector(".info-img-defalut").src = pathImgData[0]
+                        api.hideProgress();
+
+                    });
                 } else {
                     console.log(JSON.stringify(err));
                 }
-            });*/
+            });
 
-            var UIAlbumBrowser = api.require('UIAlbumBrowser');
+
+
+            /*var UIAlbumBrowser = api.require('UIAlbumBrowser');
             UIAlbumBrowser.open({
                 max: 1,
                 styles: {
@@ -148,21 +190,25 @@
                 if (ret) {
                     console.log(ret)
                     document.querySelector(".info-img-defalut").src = ret.list[0].thumbPath
+                    var path = document.querySelector(".info-img-defalut").src
                     var obj = {
-                        uid : localStorage.getItem("user").user_id
+                        uid : JSON.parse(localStorage.getItem('user')).user_uid
                     }
+                    console.log(1234,obj)
                     api.ajax({
                         // report : false,
-                        url:UploadPicon,
+                        // url:UploadFileupload,
+                        url:'http://192.168.1.3:8088/upload/UploadFlie',
                         //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                         method: 'post',
                         cache: 'false',
                         timeout: 30,
                         dataTpye: 'json',
+                        contentType: false,
+                        processData: false,
                         data: {
-
                             files: {
-                                file: document.querySelector(".info-img-defalut").src
+                                file: 1
                             },
                             values: obj
 
@@ -172,7 +218,9 @@
                         console.log(data)
                     });
                 }
-            });
+            });*/
+
+
 
         }
 
@@ -291,8 +339,10 @@
         var editEmail = document.getElementById("editEmail").innerText
         var job = document.getElementById("job").innerText
         var adr_id = document.getElementById("adr_id").innerText
+        var p_icon = document.querySelector(".info-img-defalut").src
 
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        params.p_icon = p_icon
         params.person_id = uid
         params.p_name = editName
         params.p_sex = birthId
@@ -301,7 +351,6 @@
         params.email = editEmail
         params.job_from_time = job
         params.adr_id = adr_id
-        params.p_icon = "1"
 
         if (editName == "请填写您的姓名") {
             api.toast({
