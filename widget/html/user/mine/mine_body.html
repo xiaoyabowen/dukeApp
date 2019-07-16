@@ -67,14 +67,14 @@
         <div class="F9Line"></div>
         <div class="boxSub mine-order">
             <h2 class="viewZhu">我的订单</h2>
-            <ul class="m-person-list cssFlex">
+            <ul class="m-person-list  cssFlex" onclick="personOrder()">
                 <li>
                     <img src="../../../image/mine/dingdan-22x.png" alt="jianli" class="img-one">
                     <p>全部订单</p>
                 </li>
                 <li>
                     <img src="../../../image/mine/Delivery2x.png" alt="jianli" class="img-two">
-                    <p>待发货</p>
+                    <p>已支付</p>
                 </li>
                 <li>
                     <img src="../../../image/mine/Harvesting2x.png" alt="jianli" class="img-three">
@@ -240,7 +240,9 @@
         function resume_editResume() {
             openNewWindow("resume_editResume", "resume_editResume.html")
         }
-
+        function personOrder() {
+            toast("该功能正在开发中！！！")
+        }
     </script>
 </body>
 </html>

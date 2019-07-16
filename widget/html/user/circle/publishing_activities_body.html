@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <link rel="stylesheet" href="../../../zx-editor/css/index.css">
 </head>
 <body>
 <div id="add_activities">
@@ -21,9 +22,13 @@
 
         <!--<component :is="isCom"></component>-->
         <information v-if="isActive"></information>
-        <activities v-if="!isActive"></activities>
+        <!--<activities v-if="!isActive"></activities>-->
+        <div  v-if="!isActive" class="editorBox">
+            <iframe src="../zx-editor/zx-editor.html" width="100%" height="100vh" class="editorSubBox"></iframe>
+        </div>
     </div>
 </div>
+
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -33,10 +38,13 @@
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+
+
+
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script src="./comment/information.js"></script>
-<script src="comment/activities.js"></script>
+<!--<script src="comment/activities.js"></script>-->
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
@@ -47,16 +55,16 @@
         // var ckeditor = CKEDITOR.replace('textarea');
 
         var information = informationInit(Vue);
-        var activities = activitiesInit(Vue);
+        // var activities = activitiesInit(Vue);
 
 
         Vue.component('information', information);
-        Vue.component('activities', activities);
+        // Vue.component('activities', activities);
         new Vue({
             el: '#add_activities',
             components: {
                 information: information,
-                activities: activities
+                // activities: activities
             },
             data: {
                 isActive: true,

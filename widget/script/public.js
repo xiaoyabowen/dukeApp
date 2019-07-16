@@ -5,7 +5,7 @@ var isCleanUser = false;
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.3:8000/SE4M';
-var Domain = 'http://192.168.1.3:8080';
+var Domain = 'http://192.168.1.3:8088';
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -208,13 +208,18 @@ var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
 
 
 // 圈子发布活动
-var ActivecreateCircle = localhostHref + "/createCircle";
+var ActivecreateCircle = serverUrl + "/CircleProfile/CreateCircle";
 // 意见反馈
 var addFeedback = localhostHref + "/addFeedback";
 
 // 意见反馈  图片
 // var addFeedBackPic = localhostHref + "/addFeedBackPic";
 var addFeedBackPic = localhostHref + "/Pic";
+
+
+// 圈子发布活动 编辑 图片
+
+var UploadPicCircle = Domain + "/upload/UploadPicCircle";
 
 
 
@@ -271,6 +276,10 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 
 //  聚划算
 var showVisaInformation = Domain + "/visa/showVisaInformation";
+
+
+//  基本信息   上传图片
+var UploadPicon = Domain + "/upload/UploadPicon";
 
 
 

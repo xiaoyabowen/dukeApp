@@ -3,6 +3,7 @@ function activitiesInit(Vue) {
     var str = dataValue('user/circle/comment/activities.html')
 
 
+
     return {
         template: str,
         data: function() {
@@ -22,6 +23,7 @@ function activitiesInit(Vue) {
 
         },
         mounted :function (){
+
 
         },
         methods: {

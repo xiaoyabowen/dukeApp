@@ -395,7 +395,7 @@ h4.sizeTitle {
     height: 100%;
     left: 0;
     background: rgba(0,0,0,0.4);
-    z-index: 11;
+    z-index: 111111;
     top: 0;
 }
 

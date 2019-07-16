@@ -1,7 +1,6 @@
 
 
 function informationInit(Vue) {
-    // dataValue()
 
     var str = dataValue('user/circle/comment/information.html')
     return {
@@ -12,7 +11,7 @@ function informationInit(Vue) {
                     background: '',
                     backgroundSize: 'cover'
                 },
-                img: '1',
+                img: '',
                 title: '1',
                 name: '1',
                 phone: '1',
@@ -46,7 +45,7 @@ function informationInit(Vue) {
         methods: {
             // 上传图片
             upImg: function () {
-                var that = this;
+                /*var that = this;
                 api.getPicture({
                     sourceType: 'library',
                     encodingType: 'jpg',
@@ -153,7 +152,65 @@ function informationInit(Vue) {
                         console.log(JSON.stringify(err));
                     }
                 })
+*/
+
+                // dataValue()
+                var that = this
+                var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                UIAlbumBrowser.open({
+                    max: 1,
+                    styles: {
+                        bg: '#fff',
+                        mark: {
+                            icon: '',
+                            position: 'bottom_left',
+                            size: 30
+                        },
+                        nav: {
+                            bg: 'rgba(0,0,0,0.6)',
+                            titleColor: '#fff',
+                            titleSize: 18,
+                            cancelColor: '#fff',
+                            cancelSize: 16,
+                            finishColor: '#fff',
+                            finishSize: 16
+                        }
+                    },
+                    rotation: true
+                }, function(ret) {
+                    if (ret) {
+                        console.log(ret)
+                        that.img = ret.list[0].thumbPath
+                        var obj = {
+                            uid : localStorage.getItem("user").user_id
+                        }
+                        api.ajax({
+                            // report : false,
+                            url:UploadPicon,
+                            //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                            method: 'post',
+                            cache: 'false',
+                            timeout: 30,
+                            dataTpye: 'json',
+                            data: {
+
+                                files: {
+                                    file: that.img
+                                },
+                                values: obj
+
+                            }
+                        }, function (data, err) {
+
+                            console.log(data)
+                        });
+                    }
+                });
+
             },
+
+
+
             nextActive:function () {
                 var that = this
                 var obj = {
