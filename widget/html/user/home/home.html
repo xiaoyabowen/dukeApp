@@ -65,6 +65,7 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
@@ -75,27 +76,32 @@
     }
     function mineGo() {
 
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser){
-            openNewWindow("login", "../../login/login.html");
-            return;
+        var obj ={
+            uid : localStorage.getItem("user").user_id
         }
-        if (uidUser.date != 0){
-            openNewWindow("addproduct", "../mine/addproduct.html", {
-                url: 'home'
-            });
-            // mui.confirm('','您还未完善简历，请继续完善', function (e) {
-            //     if (e.index) {
-            //         openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
-            //             url: 'home'
-            //         });
-            //     }
-            // }, 'div');
-            // openNewWindow("login", "../../login/login.html");
-            return;
-        }
+        console.log(obj)
+        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            if (data.date != 0) {
+                api.confirm({
+                    // title: 'testtitle',
+                    msg: '您还未完善简历，请继续完善',
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if (index){
+                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+                            url: 'home'
+                        });
+                    }
+                });
+                return;
+            }else{
+                openNewWindow("mine", "../mine/mine.html")
+            }
+        })
 
-        openNewWindow("mine", "../mine/mine.html")
+
+        // openNewWindow("mine", "../mine/mine.html")
     }
 
     // 跳转到聊天页面

@@ -50,11 +50,16 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
+    var num = document.querySelector('.resume_level2_num');
+    var total = document.querySelector('.resume_level2_total');
     var text = document.getElementById('text9');
     var url, content;
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
+        text.oninput = function (e) {
+            num.innerText = e.target.value.length;
+        }
         type = api.pageParam.type;
         if (type == 1){
             text.value = '';

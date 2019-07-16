@@ -74,12 +74,11 @@
     };
 
     function inputhandle(value) {
-        console.log(value);
         ajaxGetWithProgress(orgnizationList, {
             c_name: value
         }, function (data, err) {
             console.log(data);
-            if (data.orgnizationList) {
+            if (data) {
                 var list = data.orgnizationList;
                 var arr = [];
                 for (var i = 0; i < list.length; i++) {
@@ -97,10 +96,12 @@
 
     // 点击屏蔽公司
     function handleClick(c_id) {
+        var uid = localStorage.getItem("user").user_id
+
         ajaxGetWithProgress(addShieldCompany, {
-            cid: c_id
+            cid: c_id,
+            uid:uid
         }, function (data, err) {
-            console.log(data);
             if (data.return_info.status) {
                 api.execScript({
                     name: 'shielding',

@@ -285,6 +285,9 @@ var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
 
+// 公司填写信息
+var querySuccessLogin = serverUrl + "/Login/querySuccess";
+
 
 
 
@@ -326,18 +329,6 @@ function filterTime2(time) {
     return arr.join(':');
 }
 
-
-function checkUrl(urlString) {
-    if (urlString != "") {
-        var reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
-        if (!reg.test(urlString)) {
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-}
 
 function checkTelFour(urlString) {
     if (urlString != "") {

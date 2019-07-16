@@ -584,13 +584,10 @@
         console.log(obj);
         ajaxGetWithProgress(UpdatePerson, obj, function (data, err) {
 
-            person_id: person_id
-        }, function (data, err) {
-
             // alert(JSON.stringify(data));
-            console.log(data);
+            console.log(12344,data);
             if (data.return_info.status) {
-                toast('修改个人信息成功');
+                // toast('修改个人信息成功');
 
                 api.execScript({
                     name: 'userCenter',
