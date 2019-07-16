@@ -106,14 +106,14 @@
             <div class="details_comment_title"><span>评论</span></div>
             <div class="details_comment_content">
                 <div class="details_comment_top">
-                    <img :src="item.p_icon.split(',')[0]" alt="">
+                    <img :src="user.p_icon.split(',')[0]" alt="">
                     <input type="text" @focus="focusHandle()" v-model="textarea" placeholder="我来说点什么...">
                 </div>
 
                 <div class="details_comment_item" v-for="(details, index) in list1" :key="index">
                     <div class="details_item_top">
-                        <img src="../../../image/pro.png" alt="">
-                        <!--<img :src="details.p_icon" alt="">-->
+                        <!--<img src="../../../image/pro.png" alt="">-->
+                        <img :src="details.p_icon" alt="">
                         <span>{{details.p_name}}</span>
                     </div>
                     <div class="details_item_con">
@@ -134,8 +134,8 @@
                     <div class="details_item_children">
                         <div v-for="(child, c) in details.commentByid" :key="c" v-if="details.commentByid && c < details.total">
                             <div class="details_item_children_top">
-                                <img src="../../../image/pro.png" alt="">
-                                <!--<img :src="child.p_icon" alt="">-->
+                                <!--<img src="../../../image/pro.png" alt="">-->
+                                <img :src="child.p_icon" alt="">
                                 <span>{{child.p_name}}</span>
                             </div>
 
@@ -246,7 +246,7 @@
                 this.CircleProfileAllinOne();
                 this.queryApplyList();
                 this.queryCommentSummary();
-                this.QuerySummary();
+                // this.QuerySummary();
             },
             mounted: function () {
                 this.watchKeybord();
@@ -263,6 +263,7 @@
                     }, function (data, err) {
                         document.getElementById('box').className = '';
                         console.log(123,data);
+                        // alert(data);
                         if (data.circle_summary) {
                             that.item = data.circle_summary;
                             that.status = data.status;
@@ -274,7 +275,6 @@
                         if (that.status) {
                             that.signStatus = '已报名'
                         }
-
                     });
                 },
                 // 获取报名的数据列表
@@ -319,7 +319,7 @@
                 QuerySummary: function () {
                     var that = this;
                     ajaxGetWithProgress(QuerySummary, {}, function (data, err) {
-                        console.log(data);
+                        // console.log(data);
                         that.user = data;
                     });
                 },

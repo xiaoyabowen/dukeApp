@@ -135,7 +135,7 @@
                 <div class="editResume_information" onclick="editInfo()">编辑基本信息</div>
             </div>
             <div class="resume_editResume_head_right">
-                <img src="../../../image/pro.png" alt="">
+                <img id="p_icon" src="../../../image/pro.png" alt="">
             </div>
         </div>
 
@@ -312,6 +312,11 @@
                 // 姓名
                 if (person_summary.p_name || person_summary.p_name != 'undefined') {
                     document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
+                }
+
+                // 图片
+                if (person_summary.p_icon) {
+                    document.getElementById('p_icon').src = person_summary.p_icon;
                 }
 
                 // 自我介绍

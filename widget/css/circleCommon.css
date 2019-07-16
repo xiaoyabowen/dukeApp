@@ -395,6 +395,7 @@
     color: #666666;
     font-size: 0.24rem;
     line-height: 0.4rem;
+    padding: 0 0.1rem;
 }
 
 .details_enrolled_item > img {

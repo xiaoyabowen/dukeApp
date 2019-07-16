@@ -17,9 +17,10 @@ function activitiesInit(Vue) {
         },
         mounted :function (){
             this.layedit = layui.layedit;
+            var uid = localStorage.getItem('person_id');
+            var url = UploadFlieTest + '?uid' + uid
 
-
-            console.log(UploadFlieTest)
+            console.log(url)
             this.layedit.set({
                 uploadImage: {
                     url: UploadFlieTest, //接口url
