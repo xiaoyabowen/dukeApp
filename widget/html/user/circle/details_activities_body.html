@@ -69,7 +69,10 @@
             </div>
         </div>
         <!--活动介绍-->
-        <div class="details_content"></div>
+        <div class="details_content">
+            <div class="details_content_hear">活动介绍</div>
+            <div class="details_content_main" v-html="item.details"></div>
+        </div>
         <!--活动参加人数-->
         <div class="details_comment_enrolled" v-if="!edit && list.length > 1">
             <div class="details_enrolled_top">
@@ -103,7 +106,7 @@
             <div class="details_comment_title"><span>评论</span></div>
             <div class="details_comment_content">
                 <div class="details_comment_top">
-                    <img src="../../../image/pro.png" alt="">
+                    <img :src="item.p_icon.split(',')[0]" alt="">
                     <input type="text" @focus="focusHandle()" v-model="textarea" placeholder="我来说点什么...">
                 </div>
 
