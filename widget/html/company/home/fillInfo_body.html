@@ -25,7 +25,6 @@
         <div class="info-choose fillIcon cssFlex" style="height: 1.5rem;">
             <span class="info-choose-name">头像</span>
             <div class="info-choose-main cssFlex">
-
                 <img src="../../../image/mine/defalut.png" alt="right" class="info-img-defalut">
             </div>
         </div>
@@ -80,6 +79,8 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
@@ -113,39 +114,6 @@
 
 
     };
-    function nextHandle (){
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
-        var obj = {
-            person_id : uid,
-            p_name: document.getElementById("fillName").innerText,
-            p_sex: document.getElementById("sex").innerText,
-            email: document.getElementById("fillEmail").innerText,
-            z_user_job: document.getElementById("fillPosition").innerText,
-            // c_id:document.getElementById("fillComName").innerText,
-            c_id:"2"
-        }
-        console.log(obj)
-        api.ajax({
-            // report : false,
-            url:addRecruiter,
-            //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-            method: 'post',
-            cache: 'false',
-            timeout: 30,
-            dataTpye: 'json',
-            data: {
-
-                files: {
-                    file: document.querySelector(".info-img-defalut").src
-                },
-                values: obj
-
-            }
-        }, function (data, err) {
-
-            console.log(data)
-        });
-    }
 
 
     // 填写 编辑 姓名
@@ -207,6 +175,84 @@
     function edit_email(value) {
         document.getElementById("fillEmail").innerText = value;
     }
+
+
+    var file = document.querySelector('.info-img-defalut');
+    file.onclick = function (){
+        api.getPicture({
+            sourceType: 'library',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            destinationType: 'url',
+            allowEdit: true,
+            quality: 50,
+            targetWidth: 100,
+            targetHeight: 100,
+            saveToPhotoAlbum: false
+        }, function(ret, err) {
+            if (ret) {
+                var obj = {
+                    uid : JSON.parse(localStorage.getItem('userCom')).user_uid
+                }
+                console.log(JSON.stringify(ret));
+                //上传剪辑后的图像到服务器
+                api.ajax({
+                    // report : false,
+                    url: 'http://192.168.1.3:8088/upload/UploadFlie',
+                    // url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+                        files: {
+                            file: ret.data
+                        },
+                        values:obj
+                    }
+                }, function (ret, err) {
+                    console.log(123,ret);
+                    var pathImgImg = ret.imgUrl
+
+                    var pathImgData = pathImgImg.split(",")
+                    console.log(pathImgData)
+                    document.querySelector(".info-img-defalut").src = pathImgData[0]
+                    api.hideProgress();
+
+                });
+            } else {
+                console.log(JSON.stringify(err));
+            }
+        });
+    }
+    function nextHandle (){
+        var uid = JSON.parse(localStorage.getItem('userCom')).user_uid;
+        var obj = {
+            person_id : uid,
+            p_name: document.getElementById("fillName").innerText,
+            p_sex: document.getElementById("sex").innerText,
+            email: document.getElementById("fillEmail").innerText,
+            z_user_job: document.getElementById("fillPosition").innerText,
+            p_iocn: document.querySelector(".info-img-defalut").src,
+            // c_id:document.getElementById("fillComName").innerText,
+            c_id:"2"
+        }
+        console.log(obj)
+        // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {
+        ajaxGetWithProgress('http://192.168.1.3:8000/SE4M/addRecruiter', obj, function (data, err) {
+            if (data){
+                if (data.date == 1){
+                    openNewWindow("postsPublish", "./postsPublish.html")
+                } else if (data.date == 0){
+                    toast("请求出错")
+                }
+            }
+        })
+
+    }
+
+
 
 </script>
 </body>

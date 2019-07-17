@@ -322,7 +322,7 @@
             return;
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-            console.log(data)
+            console.log(23434,data)
 
             api.hideProgress();
             if (data.success == false) {
@@ -337,9 +337,8 @@
                     localStorage.setItem('userCom',JSON.stringify(data));
                     localStorage.setItem('person_idCom',data.user_uid);
                     localStorage.setItem('role_typeCom',data.role_type);
-
                     openNewWindow("home", "../company/home/home.html")
-
+                    // openNewWindow("postsPublish", "../company/home/postsPublish.html")
                     // openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")
 
                 }

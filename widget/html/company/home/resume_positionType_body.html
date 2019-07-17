@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+        body {
+            padding-bottom: 0.28rem;
+        }
+
+        .resume_level2_content {
+            border: 0;
+        }
+
+        .resume_expectations_main {
+            position: relative;
+        }
+
+        .resume_positionType_head {
+            padding: 0.3rem 0.33rem 0.1rem;
+            font-size: 0.36rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .resume_expectations_item {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .info-choose {
+            height: 1.05rem;
+        }
+
+        .resume_expectations_item .info-choose-name {
+            font-size: 0.28rem;
+            font-weight: 400;
+        }
+
+        .resume_positionType_mask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: -100%;
+            top: 0;
+            background: rgba(0,0,0,.7);
+            transition: all 0.1s;
+        }
+
+        .positionType_mask_con {
+            width: 40%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 20%;
+            background: #eeeeee;
+            z-index: 100;
+            overflow: auto;
+            border-right: 1px solid #ebebeb;
+        }
+
+        .resume_positionType_mask2 {
+            width: 40%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ffffff;
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .resume_positionType_mask .info-choose {
+            border: 0;
+        }
+
+        .trans {
+            right: 0;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <!--&lt;!&ndash;头部&ndash;&gt;-->
+    <!--<div class="header"></div>-->
+    <!--主体-->
+
+    <div class="resume_expectations_main">
+        <div class="resume_positionType_head">
+            选择您的职位类型
+        </div>
+
+        <div class="resume_expectations_content">
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name">技术</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name">运营</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex">
+                    <span class="info-choose-name">销售</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">人事/财务/行政</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">高级管理</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">传媒</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">金融</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">教育培训</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="selection()">
+                    <span class="info-choose-name">市场</span>
+                    <div class="info-choose-main cssFlex">
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="resume_positionType_mask">
+            <div class="positionType_mask_con">
+                <div class="resume_expectations_item">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">技术</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume_positionType_mask2">
+                <div class="resume_expectations_item">
+                    <div class="info-choose cssFlex">
+                        <span class="info-choose-name">技术</span>
+                        <div class="info-choose-main cssFlex">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="resume_positionType_mask2 isDisplay">-->
+            <!--<div class="resume_expectations_item">-->
+                <!--<div class="info-choose cssFlex">-->
+                    <!--<span class="info-choose-name">技术</span>-->
+                    <!--<div class="info-choose-main cssFlex">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<!--<script type="text/javascript" src="../../../script/position.data.min.js"></script>-->
+<script type="text/javascript" src="../../../script/position.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+<script>
+
+    var url, content;
+    // console.log(positiondata);
+    console.log(position)
+    // var arr = positiondata.positionlist;
+    var arr = position.zpData;
+    apiready = function () {
+        url = api.pageParam.url;
+        content = api.pageParam.content;
+        var box = document.querySelector('.resume_expectations_content');
+        var list = [];
+
+        for (var i = 0; i < arr.length; i++) {
+            var str = '<div class="resume_expectations_item">\n' +
+                '                <div class="info-choose cssFlex" onclick="selection('+ i +')">\n' +
+                '                    <span class="info-choose-name">'+ arr[i].name +'</span>\n' +
+                '                    <div class="info-choose-main cssFlex">\n' +
+                '                        <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>';
+            list.push(str);
+        }
+        var dom = list.join('');
+        // console.log(dom);
+        box.innerHTML = dom;
+    };
+
+    var mask = document.querySelector('.resume_positionType_mask');
+    var mask1 = document.querySelector('.positionType_mask_con');
+    var mask2 = document.querySelector('.resume_positionType_mask2');
+    // 选择职位类型
+    function selection(index) {
+        // console.log(arr[index]);
+        // var list = arr[index].c;
+        var list = arr[index].subLevelModelList;
+        var list0 = list[0].subLevelModelList;
+
+        var list1 = [];
+        var list2 = [];
+
+        for (var i = 0; i < list.length; i++) {
+            var str = '<div class="resume_expectations_item" onclick="selection1('+ index +','+ i +')">\n' +
+                '                    <div class="info-choose cssFlex">\n' +
+                '                        <span class="info-choose-name">'+ list[i].name +'</span>\n' +
+                '                        \n' +
+                '                    </div>\n' +
+                '                </div>';
+            list1.push(str);
+        }
+        // console.log(list0);
+        for (var i = 0; i < list0.length; i++) {
+            console.log(list0[i].name);
+            var s = list0[i].name.trim();
+            var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
+                '                <div class="info-choose cssFlex">\n' +
+                '                    <span class="info-choose-name">'+ list0[i].name +'</span>\n' +
+                '                    <div class="info-choose-main cssFlex">\n' +
+                '\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>';
+            list2.push(str);
+        }
+
+        var dom1 = list1.join('');
+        var dom2 = list2.join('');
+        mask1.innerHTML = dom1;
+        mask2.innerHTML = dom2;
+        // mask.classList.remove('isDisplay');
+        // mask2.classList.remove('isDisplay');
+
+        mask.classList.add('trans');
+    }
+
+    function selection1(index, index2) {
+        console.log(index, index2);
+        var list = arr[index].subLevelModelList;
+        var list0 = list[index2].subLevelModelList;
+        var list2 = [];
+        for (var i = 0; i < list0.length; i++) {
+            // console.log(list0[i].s);
+            var s = list0[i].name.trim();
+            var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
+                '                <div class="info-choose cssFlex">\n' +
+                '                    <span class="info-choose-name">'+ list0[i].name +'</span>\n' +
+                '                    <div class="info-choose-main cssFlex">\n' +
+                '\n' +
+                '                    </div>\n' +
+                '                </div>\n' +
+                '            </div>';
+            list2.push(str);
+        }
+        var dom2 = list2.join('');
+        mask2.innerHTML = dom2;
+    }
+
+    mask2.addEventListener('click', function (e) {
+        // console.log(e.target);
+        content = e.target.innerText;
+        console.log(content);
+        preservation();
+    })
+
+    // 隐藏遮罩层
+    document.querySelector('.resume_positionType_mask').addEventListener('click', function (e) {
+        var node = e.target;
+        // console.dir(node);
+        if (node.classList.contains('resume_positionType_mask')) {
+            // mask.classList.add('isDisplay');
+            // mask2.classList.add('isDisplay');
+            mask.classList.remove('trans');
+        }
+    })
+
+    // 点击保存执行此方法
+    function preservation () {
+        var value = content;
+        // alert(value);
+        if(isBlack(value)){
+            toast("请选择职位类型");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            // frameName:url +"_body",
+            frameName: frameName,
+            script: 'position_type('+JSON.stringify(value)+')'
+        })
+        closeWin();
+    }
+
+    // 此处手动调用了js
+    // apiready()
+
+
+</script>
+</body>
+</html>
