@@ -514,13 +514,13 @@ div.isDisplay {
     position: absolute;
 }
 
-/*.positionCir>img {*/
-/*display: block;*/
-/*width: 0.28rem;*/
-/*height: 0.30rem;*/
-/*padding: 0.10rem 0.28rem 0 0.10rem;*/
-/*transform: rotate(-45deg)*/
-/*}*/
+.positionCir>img {
+display: block;
+width: 0.28rem;
+height: 0.30rem;
+padding: 0.10rem 0.28rem 0 0.10rem;
+transform: rotate(-45deg)
+}
 
 .positionCir > span {
     display: block;
@@ -554,12 +554,13 @@ div.isDisplay {
 }
 
 .iconImg {
-    width: 0.36rem;
+    width: 0.4rem;
+    height: 0.4rem;
     border-radius: 50%;
     /*transform: rotate(-45deg);*/
-    position: relative;
-    left: -0.09rem;
-    top: 0.08rem;
+    /*position: relative;*/
+    /*left: -0.09rem;*/
+    /*top: 0.08rem;*/
 }
 
 .appMask {
