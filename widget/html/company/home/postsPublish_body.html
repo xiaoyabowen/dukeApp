@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>发布职位</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/comMine.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css">
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
+    <style>
+
+
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+
+    <div class="post-title">要求学历为本科的，必须工作经验满三年</div>
+    <div class="post-box cssFlex" onclick="postJobType()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">工作类型</div>
+            <div class="commonFont commonColor" id="postJobText">请选择</div>
+            <div id="postJobType"style="display: none;"></div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postPositionName()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">职位名称</div>
+            <div class="commonFont commonColor" id="postPositionName">请填写职位名称</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">职位类型</div>
+            <div class="commonFont commonColor">选择职位名称对应的类型</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postSkillLabel()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">技能要求</div>
+            <div class="commonFont commonColor" id="positionSkill_type">请选择技能要求</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postJobTime()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">工作经验</div>
+            <div class="commonFont commonColor" id="postJobTimeText">请选择</div>
+            <div id="postJobTime" style=" display: none;">请选择</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postStudent()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">学历要求</div>
+            <div class="commonFont commonColor" id="postStudentText">请选择</div>
+            <div style="display: none" id="postStudent">请选择</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postPaySelect()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">薪资范围</div>
+            <div class="commonFont commonColor" id="postPaySelectText">请选择</div>
+            <div style="display: none;" id="postPaySelect">请选择</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex" onclick="postJobMiao()">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">职位描述</div>
+            <div class="commonFont commonColor ellipsis" id="setpostJobMiao">请填写职位描述</div>
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-box cssFlex">
+        <div class="post-box-left">
+            <div class="commonFont post-box-name">工作地点</div>
+            <div class="commonFont commonColor">请选择工作地点</div>
+
+        </div>
+        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+    </div>
+    <div class="post-niming">
+        <input type="radio" class="myOrderHaveCheck" id="mode0"  name="checkItem">
+        <label for="mode0"></label>
+        企业匿名发布
+    </div>
+    <div class="postSubRz postSubBtn">去认证</div>
+    <div class="postSubBtn postSubFa">发布</div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script>
+
+    apiready = function () {
+
+    };
+
+    // 职位类型
+    function postJobType() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "全职"
+        }, {
+            value: "2",
+            text: "兼职"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('postJobText').innerText = SelectedItem[0].text;
+            document.getElementById('postJobType').innerText = SelectedItem[0].value;
+        })
+
+    }
+    // 职位名称
+    function postPositionName() {
+        openNewWindow("resume_positionType", "./resume_positionType.html", {
+            url: 'postsPublish'
+        })
+    }
+    function position_type(value) {
+        document.getElementById("postPositionName").innerText = value;
+    }
+
+    // 技能要求
+    function postSkillLabel() {
+        openNewWindow("resume_SkillLabel", "./resume_SkillLabel.html", {
+            url: 'postsPublish'
+        })
+    }
+    function set_resume_SkillLabel(value) {
+        document.getElementById("positionSkill_type").innerText = value;
+    }
+
+    // 工作经验
+    function postJobTime() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "3-5年"
+        }, {
+            value: "2",
+            text: "5-10年"
+        },{
+            value: "3",
+            text: "10-15年"
+        },{
+            value: "4",
+            text: "15-20年"
+        },{
+            value: "5",
+            text: "20-30年"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('postJobTimeText').innerText = SelectedItem[0].text;
+            document.getElementById('postJobTime').innerText = SelectedItem[0].value;
+        })
+
+    }
+
+    // 学历选择
+    function postStudent() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "博士"
+        }, {
+            value: "2",
+            text: "研究生"
+        }, {
+            value: "3",
+            text: "本科"
+        }, {
+            value: "4",
+            text: "大专"
+        }, {
+            value: "5",
+            text: "中专/高中及以下"
+        }])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('fourth', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('postStudentText').innerText = SelectedItem[0].text;
+            document.getElementById('postStudent').innerText = SelectedItem[0].value;
+        })
+
+    }
+
+    // 薪资范围选择
+    function postPaySelect() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "10-15k"
+        }, {
+            value: "2",
+            text: "15-20k"
+        }, {
+            value: "3",
+            text: "20-30k"
+        }, {
+            value: "4",
+            text: "30-50k"
+        }, {
+            value: "5",
+            text: "50-100k"
+        }, {
+            value: "6",
+            text: "100k以上"
+        },
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            console.log(SelectedItem)
+            document.getElementById('postPaySelectText').innerText = SelectedItem[0].text;
+            document.getElementById('postPaySelect').innerText = SelectedItem[0].value;
+        })
+    }
+
+    // 职位描述
+    function postJobMiao() {
+        openNewWindow("resume_Achievement", "./resume_Achievement.html", {
+            url: 'postsPublish'
+        })
+    }
+    function setpostJobMiao(value) {
+        document.getElementById("setpostJobMiao").innerText = value;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 填写 编辑 姓名
+    function fillName() {
+        openNewWindow("resume_Name", "./resume_Name.html", {
+            url: 'fillInfo'
+        })
+    }
+
+    function edit_fillName(value) {
+        document.getElementById("fillName").innerText = value;
+    }
+
+    // 性别
+    function fillSex() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "男"
+        }, {
+            value: "2",
+            text: "女"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('fillSex').innerText = SelectedItem[0].text;
+            document.getElementById('sex').innerText = SelectedItem[0].value;
+        })
+
+    }
+
+    // 填写 公司名称
+    function fillComName() {
+        openNewWindow("resume_fillComName", "./resume_fillComName.html", {
+            url: 'fillInfo'
+        })
+    }
+
+    function edit_fillComName(value) {
+        document.getElementById("fillComName").innerText = value;
+    }
+
+    // 填写 公司职务
+    function fillPosition() {
+        openNewWindow("resume_fillPos", "./resume_fillPos.html", {
+            url: 'fillInfo'
+        })
+    }
+
+    function edit_fillPosition(value) {
+        document.getElementById("fillPosition").innerText = value;
+    }
+
+    // 填写邮箱
+    function fillEmail() {
+        openNewWindow("resume_Mailbox", "./resume_Mailbox.html", {
+            url: 'fillInfo'
+        })
+    }
+
+    function edit_email(value) {
+        document.getElementById("fillEmail").innerText = value;
+    }
+
+
+    var file = document.querySelector('.info-img-defalut');
+    file.onclick = function () {
+        api.getPicture({
+            sourceType: 'library',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            destinationType: 'url',
+            allowEdit: true,
+            quality: 50,
+            targetWidth: 100,
+            targetHeight: 100,
+            saveToPhotoAlbum: false
+        }, function (ret, err) {
+            if (ret) {
+                var obj = {
+                    uid: JSON.parse(localStorage.getItem('userCom')).user_uid
+                }
+                console.log(JSON.stringify(ret));
+                //上传剪辑后的图像到服务器
+                api.ajax({
+                    // report : false,
+                    url: 'http://192.168.1.3:8088/upload/UploadFlie',
+                    // url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+                        files: {
+                            file: ret.data
+                        },
+                        values: obj
+                    }
+                }, function (ret, err) {
+                    console.log(123, ret);
+                    var pathImgImg = ret.imgUrl
+
+                    var pathImgData = pathImgImg.split(",")
+                    console.log(pathImgData)
+                    document.querySelector(".info-img-defalut").src = pathImgData[0]
+                    api.hideProgress();
+
+                });
+            } else {
+                console.log(JSON.stringify(err));
+            }
+        });
+    }
+
+    function nextHandle() {
+        var uid = JSON.parse(localStorage.getItem('userCom')).user_uid;
+        var obj = {
+            person_id: uid,
+            p_name: document.getElementById("fillName").innerText,
+            p_sex: document.getElementById("sex").innerText,
+            email: document.getElementById("fillEmail").innerText,
+            z_user_job: document.getElementById("fillPosition").innerText,
+            p_iocn: document.querySelector(".info-img-defalut").src,
+            // c_id:document.getElementById("fillComName").innerText,
+            c_id: "2"
+        }
+        console.log(obj)
+        // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {
+        ajaxGetWithProgress('http://192.168.1.3:8000/SE4M/addRecruiter', obj, function (data, err) {
+            alert(12)
+            console.log(123, data)
+        })
+
+    }
+
+
+</script>
+</body>
+</html>

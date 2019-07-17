@@ -1019,6 +1019,7 @@ body, div, p, span, a, input, ul, li {
     border-bottom: 1px solid #EBEBEB;
     margin-bottom: 0.2rem;
     align-items: center;
+    position: relative;
 }
 
 .resume_level2_content .text {

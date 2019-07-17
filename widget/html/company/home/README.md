@@ -13,6 +13,9 @@
 ├── resume_Name          // 编辑姓名
 ├── resume_fillComName          // b编辑公司名称
 ├── companyEmailAuthen          // 企业邮箱认证
+├── postsPublish          // 发布职位
+├── resume_positionType          // z职位名称
+├── resume_SkillLabel          // 技能标签
 
 
 

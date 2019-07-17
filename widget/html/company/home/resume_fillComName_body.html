@@ -10,7 +10,21 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
-
+    <style>
+        .comBoxPush{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0.86rem;
+            width: 100%;
+            height: 4rem;
+            background: #ccc;
+            z-index: 99;
+            -webkit-border-radius: 0.06rem;
+            -moz-border-radius: 0.06rem;
+            border-radius: 0.06rem;
+        }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -22,6 +36,14 @@
         <div class="nowCompanyPany">当前就职的公司</div>
         <div class="resume_level2_content">
             <input class="text" id="text0" type="text" maxlength=30 placeholder="您的公司名称">
+
+            <ul class="comBoxPush">
+                <li>云闪信</li>
+                <li>云闪信</li>
+                <li>云闪信</li>
+                <li>云闪信</li>
+            </ul>
+
         </div>
         <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/30字符</p>
         <div class="carefulTitle">注意事项：</div>
@@ -38,7 +60,7 @@
 
 
 </div>
-
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -46,7 +68,6 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     var text = document.getElementById('text0')
     var num = document.querySelector('.resume_level2_num');
@@ -59,6 +80,10 @@
             num.innerText = e.target.value.length;
         }
     };
+
+    text.oninput = function (e) {
+        console.log(112)
+    }
 
 
     // 点击保存执行此方法
