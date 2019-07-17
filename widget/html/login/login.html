@@ -392,9 +392,9 @@
                 localStorage.setItem('person_id',data.user_uid);
                 localStorage.setItem('role_type',data.role_type);
             } else if (data.role_type == 2){
-                localStorage.setItem('userCom',JSON.stringify(data));
-                localStorage.setItem('person_idCom',data.user_uid);
-                localStorage.setItem('role_typeCom',data.role_type);
+                localStorage.setItem('user',JSON.stringify(data));
+                localStorage.setItem('person_id',data.user_uid);
+                localStorage.setItem('role_type',data.role_type);
             }
             if (data.success == false) {
                 if (data.role_type == 1){

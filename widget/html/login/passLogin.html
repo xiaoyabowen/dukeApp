@@ -334,9 +334,9 @@
                     localStorage.setItem('role_type',data.role_type);
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){
-                    localStorage.setItem('userCom',JSON.stringify(data));
-                    localStorage.setItem('person_idCom',data.user_uid);
-                    localStorage.setItem('role_typeCom',data.role_type);
+                    localStorage.setItem('user',JSON.stringify(data));
+                    localStorage.setItem('person_id',data.user_uid);
+                    localStorage.setItem('role_type',data.role_type);
                     openNewWindow("home", "../company/home/home.html")
                     // openNewWindow("postsPublish", "../company/home/postsPublish.html")
                     // openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")

@@ -192,7 +192,7 @@
         }, function(ret, err) {
             if (ret) {
                 var obj = {
-                    uid : JSON.parse(localStorage.getItem('userCom')).user_uid
+                    uid : JSON.parse(localStorage.getItem('user')).user_uid
                 }
                 console.log(JSON.stringify(ret));
                 //上传剪辑后的图像到服务器
@@ -227,7 +227,7 @@
         });
     }
     function nextHandle (){
-        var uid = JSON.parse(localStorage.getItem('userCom')).user_uid;
+        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         var obj = {
             person_id : uid,
             p_name: document.getElementById("fillName").innerText,
