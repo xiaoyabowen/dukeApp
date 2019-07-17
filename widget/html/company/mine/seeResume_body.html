@@ -1,20 +1,17 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en" class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>首页</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <!--<link rel="stylesheet" href="../../../css/commonWindow.css"/>-->
+    <title>公司详情</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-
 
         .see-contact-box {
             padding: 0.50rem 0.4rem;
@@ -76,96 +73,48 @@
         }
 
         .Have_a_chat_box {
-            height: 0.78rem;
-            padding: 0.5rem 0 0.2rem;
+            height: 1.1rem;
             background: #ffffff;
         }
 
-        .Have_a_chat {
-            width: 6.30rem;
-            height: 0.78rem;
-            line-height: 0.78rem;
-            text-align: center;
-            font-size: 0.28rem;
-            color: #ffffff;
-            background: rgba(99,139,255,1);
-            border-radius: 0.08rem;
+        .Have_a_chat_main {
+            width: 100%;
+            height: 1.1rem;
             position: fixed;
-            bottom: 0.42rem;
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            -moz-transform: translateX(-50%);
-            -ms-transform: translateX(-50%);
-            -o-transform: translateX(-50%);
-            transform: translateX(-50%);
-            z-index: 10000;
+            left: 0;
+            bottom: 0;
+            z-index: 100000;
+        }
+
+        .Have_a_chat_main div {
+            font-size: 0.36rem;
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            color: rgba(255,255,255,1);
+            line-height: 1.1rem;
+            text-align: center;
+        }
+
+        .Have_a_chat {
+            width: 2.06rem;
+            background: #5FB338;
+        }
+
+        .Inappropriate {
+            width: 2.72rem;
+            background: #FFA300;
+        }
+
+        .Interview {
+            width: 2.72rem;
+            background: #638BFF;
         }
 
     </style>
 </head>
-<body>
-<!--智能魔方菜单-->
-<div id="app1" class="demobiox home isDisplay">
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
-        <div class="appMask" @click="hideHandle()">
-
-        </div>
-        <div class="borderBoxRote positionCom"
-             @click="detailClick(index,item.person_id)"
-             v-bind:class="['position'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list" :key="index">
-            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.p_name }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="borderBoxRote positionCom"
-             @click="detailClick2(index,item.job_id)"
-             v-bind:class="['position1'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list1" :key="index">
-            <div class="xuanbox" :class="index2== index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--<div class="cir_return positionCir" @click="hideHandle()">-->
-            <!--<img src="../../../icon/hidden2x.png" class="iconImg" alt="person">-->
-            <!--<span>隐藏</span>-->
-        <!--</div>-->
-        <!--<div class="cir_hide positionCir" @click="closeWin()">-->
-            <!--<img src="../../../icon/break2x.png" class="iconImg" alt="person">-->
-            <!--<span>返回</span>-->
-        <!--</div>-->
-
-    </div>
-</div>
-
-<div id="topbar" class="display">
-    <div class="headerBoxbg cssFlex">
-        <div class="leftImgClose" style="margin-top: 0.2rem">
-            <img src="../../../icon/mine.png" onclick="mineGo()">
-        </div>
-        <div  class="middleHeightTop">
-            <input type="text" id="search-inputTop" placeholder="搜索地点/公司/职位">
-            <span class="search-Click">GO</span>
-        </div>
-        <div class="rightImgEdite">
-            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
-
-        </div>
-    </div>
-</div>
-
-<div class="contentBox pd commonBg">
-    <div class="box isDisplay">
+<body class="commonBg">
+<div class="contentBox">
+    <div class="subBox isDisplay">
         <div class="comTitle cssFlex">
             <div class="comInfo see">
                 <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
@@ -181,7 +130,7 @@
                 </p>
             </div>
             <div class="comLogo comLogoSee">
-                <img src="../../../image/comLogo.png" alt="comLogo">
+                <img id="p_icon" src="../../../image/comLogo.png" alt="comLogo">
             </div>
         </div>
         <div class="F9Line"></div>
@@ -193,7 +142,9 @@
                     <a class="mui-control-item" href="#item1mobile">
                         在线简历
                     </a>
-
+                    <a class="mui-control-item " href="#item2mobile">
+                        联系方式
+                    </a>
                     <a class="mui-control-item" href="#item3mobile">
                         图片作品
                     </a>
@@ -303,7 +254,42 @@
                             </div>
                         </div>
                     </div>
+                    <div id="item2mobile" class="mui-slider-item mui-control-content">
+                        <div id="scroll2" class="mui-scroll-wrapper">
+                            <div class="mui-scroll">
+                                <div class="mui-loading">
+                                    <div class="mui-spinner">
+                                        <!--<div class="jobBox cssFlex">-->
+                                        <!--<div class="job-left">-->
+                                        <!--<h4 class="job-nameNm">运营经理</h4>-->
+                                        <!--<p class="job-name">-->
+                                        <!--<span>北京天九共享控股集团</span>-->
+                                        <!--<span>不需要融资</span>-->
+                                        <!--</p>-->
+                                        <!--<p class="adress-job">-->
+                                        <!--<span>北京-朝阳-望京</span>-->
+                                        <!--<span><i>10</i>年</span>-->
+                                        <!--<span>本科</span>-->
+                                        <!--</p>-->
+                                        <!--<p class="job-img-content cssFlex">-->
+                                        <!--<img src="../../../image/hr.png" alt="hr" class="hrImg">-->
+                                        <!--<span>赵东东</span>-->
+                                        <!--<i>·</i>-->
+                                        <!--<span>人力资源经理</span>-->
+                                        <!--</p>-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;薪资 日期&ndash;&gt;-->
+                                        <!--<div class="job-right ">-->
+                                        <!--<p class="moneyNum">20k-30K</p>-->
+                                        <!--<p class="date-job" >4月17日</p>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
                     <div id="item3mobile" class="mui-slider-item mui-control-content">
                         <div id="scroll3" class="mui-scroll-wrapper">
                             <div class="mui-scroll">
@@ -323,16 +309,41 @@
         </div>
 
         <div class="Have_a_chat_box">
-            <div class="Have_a_chat">
-                聊一聊
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_a_chat" @click="have_a_chat()">
+                    聊一聊
+                </div>
+                <div class="Inappropriate" @click="inappropriate()">
+                    不合适
+                </div>
+                <div class="Interview" @click="interview()">
+                    安排面试
+                </div>
             </div>
         </div>
 
     </div>
+
+</div>
+</div>
+<!--   企业空间 模态框   -->
+<div class="modal-space">
+    <div class="subspace">
+        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
+        <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
+        <p class="spaceSubTitle">童济仕汽车评论 xxxx年xx月xx日 </p>
+        <p class="spaceContent">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵
+            手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手
+            百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是
+            什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
+            车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底
+            是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车
+            企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑
+        </p>
+
+    </div>
 </div>
 
-
-</body>
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -342,7 +353,6 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
-<script src="../../../script/vue.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
 <script>
@@ -361,19 +371,13 @@
     }
 
     var person_summary;
-
     apiready = function () {
-        var header = $api.dom('#topbar');
-        $api.fixStatusBar(header);
-
-
-
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            // console.log(data);
+            console.log(data);
             if (data) {
-                document.querySelector('.box').classList.remove('isDisplay');
+                document.querySelector('.subBox').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
                 var projects = data.projects;
                 var education_his = data.education_his;
@@ -388,6 +392,10 @@
                 // 姓名
                 if (person_summary.p_name || person_summary.p_name != 'undefined') {
                     document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
+                }
+                // 图片
+                if (person_summary.p_icon) {
+                    document.getElementById('p_icon').src = person_summary.p_icon.split(',')[0];
                 }
                 // 公司名称 // 职位
                 if (working_his) {
@@ -551,7 +559,18 @@
                 var phone, email;
                 phone = person_summary.phone_m || '未填写';
                 email = person_summary.email || '未填写';
-
+                var html2 = '<div class="see-contact-box">\n' +
+                    '                                        <div class="contact-box-info">\n' +
+                    '                                            <div class="contact-info-img"><img id="img1" src="../../../icon/mine/phone2x.png" alt=""></div>\n' +
+                    '                                            <div class="contact-info-title">手机号码</div>\n' +
+                    '                                            <div class="contact-info-info">' + phone + '</div>\n' +
+                    '                                        </div>\n' +
+                    '                                        <div class="contact-box-info">\n' +
+                    '                                            <div class="contact-info-img"><img id="img2" src="../../../icon/mine/email2x.png" alt=""></div>\n' +
+                    '                                            <div class="contact-info-title">联系邮箱</div>\n' +
+                    '                                            <div class="contact-info-info">' + email + '</div>\n' +
+                    '                                        </div>\n' +
+                    '                                </div>';
 
                 var html3 = ' <div class="see-xian-img cssFlex">\n' +
                     '                                    <img src="../../../image/pro.png" alt="pro">\n' +
@@ -560,10 +579,16 @@
                     '                                    <img src="../../../image/pro.png" alt="pro">\n' +
                     '                                    <img src="../../../image/pro.png" alt="pro">\n' +
                     '                                </div>';
-
+                var item2 = document.getElementById('item2mobile');
                 var item3 = document.getElementById('item3mobile');
                 document.getElementById('slider').addEventListener('slide', function (e) {
                     if (e.detail.slideNumber === 1) {
+                        if (item2.querySelector('.mui-loading')) {
+                            setTimeout(function () {
+                                item2.querySelector('.mui-scroll').innerHTML = html2;
+                            }, 500);
+                        }
+                    } else if (e.detail.slideNumber === 2) {
                         if (item3.querySelector('.mui-loading')) {
                             setTimeout(function () {
                                 item3.querySelector('.mui-scroll').innerHTML = html3;
@@ -582,332 +607,21 @@
             })(mui);
         });
 
-        new Vue({
-            el: '#app1',
-            data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
-            },
-            created: function () {
-                this.SmartMenu()
-            },
-            methods: {
-                SmartMenu: function () {
-                    var that = this;
-                    ajaxGet(SmartMenu, {}, function(data,err){
-                        console.log(data);
-                        document.getElementById('app1').classList.remove('isDisplay');
-                        that.list = data.PersonList;
-                        that.list1 = data.JobListByUidRomden;
-                        // console.log(that.list)
-                        // console.log(that.list1)
-                    });
-
-                },
-                togle: function () {
-                    // document.getElementById('subBox').classList.remove('isDisplay');
-                    // console.log(123)
-                    this.active = true;
-                    var that = this;
-                    this.SmartMenu();
-                    setTimeout(function () {
-                        that.active = false;
-                    }, 1500)
-                },
-                detailClick: function (index,id) {
-                    this.index1 = index;
-                    this.index2 = -1;
-                    console.log(id)
-                    ajaxGetWithProgress(QueryPerson, {
-                        person_id: id
-                    }, function (data, err) {
-                        // alert(JSON.stringify(data));
-                        // console.log(data);
-                        if (data) {
-                            document.querySelector('.box').classList.remove('isDisplay');
-                            var person_summary = data.person_summary;
-                            var projects = data.projects;
-                            var education_his = data.education_his;
-                            var working_his = data.working_his;
-                            var Intention = data.Intention;
-
-                            // 电话 邮箱
-                            if (person_summary) {
-                                person_summary = person_summary;
-                            }
-
-                            // 姓名
-                            if (person_summary.p_name || person_summary.p_name != 'undefined') {
-                                document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
-                            }
-                            // 公司名称 // 职位
-                            if (working_his) {
-                                var obj = working_his[0];
-                                document.getElementById('company').innerText = obj.com_name;
-                                document.getElementById('company_type').innerText = obj.position_type;
-                            } else {
-                                document.getElementById('company').innerText = '未填写';
-                                document.getElementById('company_type').innerText = '未填写';
-                            }
-                            // 工作年限
-                            if (person_summary.job_from_time) {
-                                var workingAge = ages(person_summary.job_from_time);
-                                document.getElementById('working').innerText = workingAge;
-                            } else {
-                                document.getElementById('working').innerText = 0
-                            }
-                            // 学历
-                            if (education_his) {
-                                var obj = education_his[0];
-                                document.getElementById('degree').innerText = obj.degree;
-                            } else {
-                                document.getElementById('degree').innerText = '未填写'
-                            }
-                            // 年龄
-                            if (person_summary.b_birthday) {
-                                var age = ages(person_summary.b_birthday);
-                                document.getElementById('age').innerText = age;
-                            } else {
-                                document.getElementById('age').innerText = 0
-                            }
-
-                            // 时间转换
-                            function ages(str) {
-                                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-                                if (r == null) return false;
-                                var d = new Date(r[1], r[3] - 1, r[4]);
-                                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
-                                    var Y = new Date().getFullYear();
-                                    // return ("年龄   =   " + (Y - r[1]) + "   周岁");
-                                    return (Y - r[1]);
-                                }
-                                return ("输入的日期格式错误！");
-                            }
-
-                            // 自我介绍
-                            if (person_summary.p_tags) {
-                                document.getElementById('p_tags').innerText = person_summary.p_tags;
-                            } else {
-                                document.getElementById('p_tags').innerText = "未填写";
-                            }
-                            // 综合能力
-                            if (person_summary.p_title) {
-                                var tags = document.getElementById('p_title');
-                                var list = person_summary.p_title.split(',');
-                                var arr = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    var str = '<span>' + list[i] + '</span>';
-                                    arr.push(str);
-                                }
-                                tags.innerHTML = arr.join('');
-                            }
-                            // // 求职状态
-                            if (Intention) {
-                                var statusObj = {
-                                    '1': '离职-随时到岗',
-                                    '2': '在职-月内到岗',
-                                    '3': '在职-考虑机会',
-                                    '4': '在职-暂不考虑',
-                                }
-                                document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                            }
-                            // 求职期望
-                            if (Intention) {
-                                document.getElementById('work_name').innerText = Intention[0].work_name;
-                                document.getElementById('int_city').innerText = Intention[0].int_city;
-                                document.getElementById('work').innerText = Intention[0].work;
-                                var pays = Intention[0].pay.split('.');
-                                var pays2 = []
-                                pays.forEach(function (value) {
-                                    pays2.push(value + 'k')
-                                })
-                                // console.log(pays2);
-                                document.getElementById('pay').innerText = pays2.join('-');
-                            }
-                            // 工作经历
-                            if (working_his) {
-                                var workings = document.getElementById('workings');
-                                var arr = [];
-                                for (var i = 0; i < working_his.length; i++) {
-                                    var str = '<div class="see-comlibox">\n' +
-                                        '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                                        '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                                        '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                                        '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                                        '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
-                                        '\n' +
-                                        '                                            </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(workings)
-                                workings.innerHTML = dom;
-                            }
-                            // 教育经历
-                            if (education_his) {
-                                var educations = document.getElementById('educations');
-                                var arr = [];
-
-                                for (var i = 0; i < education_his.length; i++) {
-                                    var str = '<div class="see-education cssFlex">\n' +
-                                        '                                               <div class="education-left">\n' +
-                                        '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                                        '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                                        '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
-                                        '                                               </div>\n' +
-                                        '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(educations)
-                                educations.innerHTML = dom;
-                            }
-
-
-                            if (projects != null) {
-
-                                var project = document.getElementById('project');
-                                var arr = [];
-
-                                for (var i = 0; i < projects.length; i++) {
-                                    var str = '<div class="see-product-box">\n' +
-                                        '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
-                                        '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
-                                        '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(project)
-                                project.innerHTML = dom;
-                            }
-
-                        }
-
-                        // 联系方式 和 图片作品
-                        mui.init({
-                            swipeBack: false
-                        });
-                        (function ($) {
-                            $('.mui-scroll-wrapper').scroll({
-                                indicators: true //是否显示滚动条
-                            });
-                            var phone, email;
-                            phone = person_summary.phone_m || '未填写';
-                            email = person_summary.email || '未填写';
-
-
-                            var html3 = ' <div class="see-xian-img cssFlex">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                </div>';
-
-                            var item3 = document.getElementById('item3mobile');
-                            document.getElementById('slider').addEventListener('slide', function (e) {
-                                if (e.detail.slideNumber === 1) {
-                                    if (item3.querySelector('.mui-loading')) {
-                                        setTimeout(function () {
-                                            item3.querySelector('.mui-scroll').innerHTML = html3;
-                                        }, 500);
-                                    }
-                                }
-                            });
-                            var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-                            $('.mui-input-group').on('change', 'input', function () {
-                                if (this.checked) {
-                                    sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-                                    //force repaint
-                                    sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-                                }
-                            });
-                        })(mui);
-                    });
-                },
-                detailClick2: function (index,id) {
-                    this.index2 = index;
-                    this.index1 = -1;
-                    var that = this;
-                    console.log(id)
-                    if (!that.active) {
-                        this.active = true;
-                        ajaxGet(queryPersonList, {}, function(data,err){
-                            console.log(data);
-                            that.list = data.queryPersonList;
-                            // console.log(that.list)
-                            // console.log(that.list1)
-                            setTimeout(function () {
-                                that.active = false;
-                            }, 1500)
-                        });
-                    }
-                },
-                hideHandle: function () {
-                    document.getElementById('subBox').classList.add('isDisplay');
-                },
-                // 更改简历数据
-
-            }
-        })
     };
 
-    // mui.init({
-    //     swipeBack: false
-    // });
-    // (function ($) {
-    //     $('.mui-scroll-wrapper').scroll({
-    //         indicators: true //是否显示滚动条
-    //     });
-    //
-    //     var html3 = ' <div class="see-xian-img cssFlex">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                </div>';
-    //
-    //     var item3 = document.getElementById('item3mobile');
-    //     document.getElementById('slider').addEventListener('slide', function (e) {
-    //         if (e.detail.slideNumber === 1) {
-    //             if (item3.querySelector('.mui-loading')) {
-    //                 setTimeout(function () {
-    //                     item3.querySelector('.mui-scroll').innerHTML = html3;
-    //                 }, 500);
-    //             }
-    //         }
-    //     });
-    //     var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-    //     $('.mui-input-group').on('change', 'input', function () {
-    //         if (this.checked) {
-    //             sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-    //             //force repaint
-    //             sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-    //         }
-    //     });
-    // })(mui);
+    function have_a_chat() {
+        alert('跳到聊一聊');
+    }
+
+    function inappropriate() {
+        alert('不合适');
+    }
+
+    function interview() {
+        alert('邀请面试');
+    }
 
 
-    // 跳转到我的
-    function mineGo() {
-        openNewWindow("mine", "../mine/mine.html")
-    }
-    // 跳转到聊天页面
-    function linkChat() {
-        openNewWindow("index", "../chat/index_body.html")
-    }
 </script>
+</body>
 </html>

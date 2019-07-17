@@ -3,16 +3,14 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-/*
 var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.3:8000/SE4M';
 var Domain = 'http://192.168.1.3:8088';
-*/
 
 
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+/*var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
+var Domain = 'http://112.126.98.172:8088';*/
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -307,7 +305,8 @@ var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 // 伯乐-根据职位查询简历
 var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 
-// 伯乐
+// 伯乐-消息谁看过我
+var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
 
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
@@ -334,7 +333,18 @@ var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
 
 
-
+// 计算年龄或工作年限
+function ages(str) {
+    var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+    if (r == null) return false;
+    var d = new Date(r[1], r[3] - 1, r[4]);
+    if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
+        var Y = new Date().getFullYear();
+        // return ("年龄   =   " + (Y - r[1]) + "   周岁");
+        return (Y - r[1]);
+    }
+    return ("输入的日期格式错误！");
+}
 // 过滤时间转成 - 4-5-
 function filterTime0(time) {
     var arr = time.split('-');

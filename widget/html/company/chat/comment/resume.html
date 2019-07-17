@@ -1,100 +1,118 @@
 <div id="resume">
 
     <div class="resume_main">
-        <div class="resume_main_item" v-for="(item, index) in list" :key="index">
-            <div class="subscribed_main_item" :class="index === 0 ? 'borderTop0' : ''" @click="linkHandle(item.job_id)">
-                <div class="subscribed_item_left">
-                    <div class="subscribed_item_position">{{item.job_name}}</div>
-                    <div class="subscribed_item_company">
+        <div class="resume_main_hander cssFlex">
+            <span @click="activeHandle('new')" :class="active == 'new' ? 'active' : ''">新简历</span>
+            <span @click="activeHandle('interview')" :class="active == 'interview' ? 'active' : ''">面试</span>
+            <span @click="activeHandle('offer')" :class="active == 'offer' ? 'active' : ''">录用</span>
+            <span @click="activeHandle('no')" :class="active == 'no' ? 'active' : ''">不合适</span>
+        </div>
+        <!--新简历-->
+        <div class="new" v-if="active == 'new'">
+            <div class="new_main" @click="resumeHandle()">
+                <div class="new_main_top">
+                    投递时间：<span>2019.05.27</span>     岗位：<span>产品经理</span>
+                </div>
+                <div class="contacts_main_item border0 cssFlex">
+                    <div class="contacts_item_left"><img src="../../../image/pro.png" alt=""></div>
+                    <div class="interested_item_con">
                         <div>
-                            <span>{{item.c_name}} </span>
-                            <span>{{item.financing}}</span>
+                            <span class="name">赵女士 </span>
+                            <span class="status">离职-随时到岗</span>
+                            <span class="pay">10k-15k</span>
                         </div>
-
-                        <div>
-                            <span>{{item.address}} </span>
-                            <span>{{item.work_ex}} </span>
-                            <span>{{item.edu_ex}}</span>
+                        <span class="job">北京/<span>11</span>年/<span>本科</span>/<span>33</span>岁</span>
+                        <div class="job">
+                            <span>北京A公司信息技术有限公司 </span>
+                            <span>&nbsp;&nbsp;运营经理</span>
                         </div>
-                    </div>
-                    <div class="subscribed_item_user">
-                        <div class="subscribed_item_user_img">
-                            <img :src="item.p_icon" alt="">
-                        </div>
-                        <div class="subscribed_item_user_name">
-                            {{item.p_name}}·{{item.z_user_job}}
+                        <div class="job"><span>2015.03-至今</span></div>
+                        <div class="invitation">
+                            <div class="btn" @click.prevent.stop="againHandle()">重新邀约</div>
                         </div>
                     </div>
                 </div>
-                <div class="subscribed_item_right">
-                    <div class="subscribed_item_range">
-                        {{item.ratio}}k
-                    </div>
-                    <div class="subscribed_item_date">{{filterTime1(item.open_time)}}</div>
-                </div>
-            </div>
-            <div class="resume_main_item_bottom">
-                <span>{{filterTime2(item.time)}} </span>
-                <span>看过您的简历</span>
             </div>
         </div>
-
-
-
-        <!--<div class="resume_main_item">-->
-            <!--<div class="subscribed_main_item">-->
-                <!--<div class="subscribed_item_left">-->
-                    <!--<div class="subscribed_item_position">运营经理</div>-->
-                    <!--<div class="subscribed_item_company">-->
-                        <!--<div>-->
-                            <!--<span>北京天九共享控股集团 </span>-->
-                            <!--<span>不需要融资</span>-->
-                        <!--</div>-->
-
-
-        
-        <!--<div class="resume_main_item">-->
-            <!--<div class="subscribed_main_item">-->
-                <!--<div class="subscribed_item_left">-->
-                    <!--<div class="subscribed_item_position">运营经理</div>-->
-                    <!--<div class="subscribed_item_company">-->
-                        <!--<div>-->
-                            <!--<span>北京天九共享控股集团 </span>-->
-                            <!--<span>不需要融资</span>-->
-                        <!--</div>-->
-
-
-                        <!--<div>-->
-                            <!--<span>北京-朝阳区-望京 </span>-->
-                            <!--<span>10年 </span>-->
-                            <!--<span>本科</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="subscribed_item_user">-->
-                        <!--<div class="subscribed_item_user_img">-->
-                            <!--<img src="../../../image/pro.png" alt="">-->
-                        <!--</div>-->
-                        <!--<div class="subscribed_item_user_name">-->
-                            <!--赵东东·人力资源经理-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="subscribed_item_right">-->
-                    <!--<div class="subscribed_item_range">-->
-                        <!--20k-30k-->
-                    <!--</div>-->
-                    <!--<div class="subscribed_item_date">4月17日</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="resume_main_item_bottom">-->
-                <!--<span>2018-05-30 12:00 </span>-->
-                <!--<span>看过您的简历</span>-->
-            <!--</div>-->
-        <!--</div>-->
+        <!--面试-->
+        <div class="new" v-if="active == 'interview'">
+            <div class="new_main" @click="resumeHandle()">
+                <div class="new_main_top">
+                    投递时间：<span>2019.05.27</span>     岗位：<span>产品经理</span>
+                </div>
+                <div class="contacts_main_item border0 cssFlex">
+                    <div class="contacts_item_left"><img src="../../../image/pro.png" alt=""></div>
+                    <div class="interested_item_con">
+                        <div>
+                            <span class="name">赵女士 </span>
+                            <span class="status">离职-随时到岗</span>
+                            <span class="pay">10k-15k</span>
+                        </div>
+                        <span class="job">北京/<span>11</span>年/<span>本科</span>/<span>33</span>岁</span>
+                        <div class="job">
+                            <span>北京A公司信息技术有限公司 </span>
+                            <span>&nbsp;&nbsp;运营经理</span>
+                        </div>
+                        <div class="job"><span>2015.03-至今</span></div>
+                        <div class="invitation">
+                            <div class="btn" @click.prevent.stop="withdrawHandle()">撤回邀请</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--录用-->
+        <div class="new" v-if="active == 'offer'">
+            <div class="new_main">
+                <div class="new_main_top" @click="resumeHandle()">
+                    投递时间：<span>2019.05.27</span>     岗位：<span>产品经理</span>
+                </div>
+                <div class="contacts_main_item border0 cssFlex">
+                    <div class="contacts_item_left"><img src="../../../image/pro.png" alt=""></div>
+                    <div class="interested_item_con">
+                        <div>
+                            <span class="name">赵女士 </span>
+                            <span class="status">离职-随时到岗</span>
+                            <span class="pay">10k-15k</span>
+                        </div>
+                        <span class="job">北京/<span>11</span>年/<span>本科</span>/<span>33</span>岁</span>
+                        <div class="job">
+                            <span>北京A公司信息技术有限公司 </span>
+                            <span>&nbsp;&nbsp;运营经理</span>
+                        </div>
+                        <div class="job"><span>2015.03-至今</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--不合适-->
+        <div class="new" v-if="active == 'no'">
+            <div class="new_main" @click="resumeHandle()">
+                <div class="new_main_top">
+                    投递时间：<span>2019.05.27</span>     岗位：<span>产品经理</span>
+                </div>
+                <div class="contacts_main_item border0 cssFlex">
+                    <div class="contacts_item_left"><img src="../../../image/pro.png" alt=""></div>
+                    <div class="interested_item_con">
+                        <div>
+                            <span class="name">赵女士 </span>
+                            <span class="status">离职-随时到岗</span>
+                            <span class="pay">10k-15k</span>
+                        </div>
+                        <span class="job">北京/<span>11</span>年/<span>本科</span>/<span>33</span>岁</span>
+                        <div class="job">
+                            <span>北京A公司信息技术有限公司 </span>
+                            <span>&nbsp;&nbsp;运营经理</span>
+                        </div>
+                        <div class="job"><span>2015.03-至今</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="basics" v-if="list.length <= 0">
-        <img src="../../../image/chat/resume.png" alt="">
-        <div>还没有伯乐看过你，快去刷新你的简历吧！</div>
-    </div>
+    <!--<div class="basics" v-if="list.length <= 0">-->
+        <!--<img src="../../../image/chat/resume.png" alt="">-->
+        <!--<div>还没有伯乐看过你，快去刷新你的简历吧！</div>-->
+    <!--</div>-->
 </div>
