@@ -4,11 +4,11 @@ function magicCubeInit(Vue) {
     var list = [
         {
             job_name: '面膜',
-            imgIcon: '123.png',
+            imgIcon: '../../../../image/great/001.png',
             company_c_id: 'facial',
         },{
             job_name: '旅游',
-            imgIcon: '123.png',
+            imgIcon: '../../../../image/great/002.png',
             company_c_id: 'tourism',
         },
     ]

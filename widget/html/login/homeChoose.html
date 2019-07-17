@@ -112,11 +112,11 @@
             }
         });*/
 
-
-        var uid = localStorage.getItem("user")
+        // localStorage.clear();
+        var user = localStorage.getItem("user")
         if (uid){
             var obj ={
-                uid : localStorage.getItem("user").user_id
+                uid : user.user_id
             }
             console.log(obj)
             ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
@@ -128,7 +128,7 @@
                 }
             })
         } else {
-            openNewWindow("login", "login.html")
+            openNewWindow("home", "../user/home/home.html")
         }
     }
 

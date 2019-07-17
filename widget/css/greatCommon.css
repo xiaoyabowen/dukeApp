@@ -16,6 +16,7 @@
 }
 
 .great_header_banner img {
+    width: 100%;
     height: 100%;
 }
 
@@ -555,7 +556,7 @@ div.isDisplay {
 .iconImg {
     width: 0.36rem;
     border-radius: 50%;
-    transform: rotate(-45deg);
+    /*transform: rotate(-45deg);*/
     position: relative;
     left: -0.09rem;
     top: 0.08rem;
@@ -577,7 +578,6 @@ div.isDisplay {
     -o-transform: rotate(-45deg) translateX(16%);
     transform: rotate(-45deg) translateX(16%);
 }
-
 /*魔方结束*/
 
 /*添加银行卡======================开始*/

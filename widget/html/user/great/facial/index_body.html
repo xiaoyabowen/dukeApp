@@ -18,7 +18,8 @@
         <div id="great" class="isDisplay">
             <div class="great_header">
                 <div class="great_header_banner">
-                    <img :src="item.placard" alt="">
+                    <!--<img :src="item.placard.split(',')[0]" alt="">-->
+                    <img :src="imgurl" alt="">
                 </div>
 
                 <div class="great_Price_List cssFlex">
@@ -109,8 +110,7 @@
     <script src="../common/magicCube.js"></script>
 
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
     <script>
 
     </script>
@@ -135,6 +135,7 @@
                     evalist2: [],
                     evalist3: [],
                     imgs: [],
+                    imgurl: '',
                     att: false,
                     att_id: '',
                     person_id: '',
@@ -159,6 +160,7 @@
                             console.log(data);
                             if (data.Commodity) {
                                 that.item = data.Commodity;
+                                that.imgurl = that.item.placard.split(',')[0];
                                 that.imgs = data.Commodity.intpic.split(',');
                                 that.total = data.total;
                                 that.att = data.att;

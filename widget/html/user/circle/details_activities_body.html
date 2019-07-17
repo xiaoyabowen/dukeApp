@@ -82,8 +82,8 @@
 
             <div class="details_enrolled_content cssFlex">
                 <div class="details_enrolled_item" v-for="(user, u) in list" :key="u">
-                    <img :src="user.p_icon" alt="">
-                    <span>云闪信</span>
+                    <img :src="user.p_icon.split(',')[0]" alt="">
+                    <span>{{user.u_name}}</span>
                 </div>
             </div>
         </div>
@@ -96,8 +96,8 @@
 
             <div class="details_enrolled_content cssFlex">
                 <div class="details_enrolled_item" v-for="(user, u) in list" :key="u">
-                    <img :src="user.p_icon" alt="">
-                    <span>云闪信</span>
+                    <img :src="user.p_icon.split(',')[0]" alt="">
+                    <span>{{user.u_name}}</span>
                 </div>
             </div>
         </div>
@@ -106,14 +106,15 @@
             <div class="details_comment_title"><span>评论</span></div>
             <div class="details_comment_content">
                 <div class="details_comment_top">
-                    <img :src="user.p_icon.split(',')[0]" alt="">
+                    <!--<img :src="item.p_icon.split(',')[0]" alt="">-->
+                    <img :src="imgsrc" alt="">
                     <input type="text" @focus="focusHandle()" v-model="textarea" placeholder="我来说点什么...">
                 </div>
 
                 <div class="details_comment_item" v-for="(details, index) in list1" :key="index">
                     <div class="details_item_top">
                         <!--<img src="../../../image/pro.png" alt="">-->
-                        <img :src="details.p_icon" alt="">
+                        <img :src="details.p_icon.split(',')[0]" alt="">
                         <span>{{details.p_name}}</span>
                     </div>
                     <div class="details_item_con">
@@ -135,7 +136,7 @@
                         <div v-for="(child, c) in details.commentByid" :key="c" v-if="details.commentByid && c < details.total">
                             <div class="details_item_children_top">
                                 <!--<img src="../../../image/pro.png" alt="">-->
-                                <img :src="child.p_icon" alt="">
+                                <img :src="child.p_icon.split(',')[0]" alt="">
                                 <span>{{child.p_name}}</span>
                             </div>
 
@@ -210,8 +211,7 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
 <script>
     apiready = function () {
 
@@ -222,6 +222,7 @@
                 comment_box: false,
                 item: {},
                 user: {},
+                imgsrc: '',
                 status: 0,
                 person_id: '',
                 circle_id: '',
@@ -268,6 +269,8 @@
                             that.item = data.circle_summary;
                             that.status = data.status;
                             that.count = data.Count;
+                            console.log(that.item);
+                            that.imgsrc = that.item.p_icon.split(',')[0];
                             // that.queryApplyList();
                             // that.queryCommentSummary();
                         }
@@ -283,7 +286,7 @@
                     ajaxGetWithProgress(queryApplyList, {
                         circle_id: that.circle_id,
                     }, function (data, err) {
-                        // console.log(data);
+                        console.log(2222, data);
                         if (data.ApplyList) {
                             var arr = data.ApplyList;
                             for (var i = 0; i < arr.length; i++) {

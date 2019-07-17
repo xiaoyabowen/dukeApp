@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
 </head>
 <body class="commonBg">
     <div class="Box">
@@ -150,7 +149,7 @@
                 document.getElementById('com_name').innerText = data.com_name || '未填写';
                 document.getElementById('province').innerText = data.province || '未定位';
                 document.getElementById('position_type').innerText = data.position_type || '未填写';
-                document.getElementById('p_icon').src = data.p_icon;
+                document.getElementById('p_icon').src = data.p_icon.split(',')[0];
 
                 console.log(document.getElementById('p_icon'))
 
