@@ -129,7 +129,7 @@
              v-for="(item, index) in list1" :key="index">
             <div class="xuanbox" :class="index2== index ? 'active' : ''">
                 <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
+                    <img v-bind:src="item.p_icon" class="iconImg" alt="person">
                     <div>{{ item.job_name }}</div>
                 </div>
             </div>

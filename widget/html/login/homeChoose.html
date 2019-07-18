@@ -113,8 +113,15 @@
         });*/
 
         // localStorage.clear();
+
+        var role = localStorage.getItem('role');
+        if (role == 2) {
+            openNewWindow("home", "../company/home/home.html")
+            return;
+        }
+
         var user = localStorage.getItem("user")
-        if (uid){
+        if (user && user.user_id){
             var obj ={
                 uid : user.user_id
             }

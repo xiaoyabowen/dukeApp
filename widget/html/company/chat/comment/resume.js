@@ -5,56 +5,130 @@ function resumeInit(Vue) {
         template: str,
         data: function () {
             return {
-                list: [],
-                active: 'new'
+                list1: [],
+                list2: [],
+                list3: [],
+                list4: [],
+                active: 'new',
+                status: 1
             }
         },
         created: function () {
-            // this.lookmeList();
+            this.ResumeList(1);
+            this.ResumeList2();
+            this.ResumeList(3);
+            this.ResumeList(4);
         },
         mounted: function () {
 
         },
         methods: {
             // 获取谁看过我数据列表
-            lookmeList: function () {
+            ResumeList: function (status) {
                 var that = this;
-
-                var list = localStorage.getItem('seens');
-                if (list) {
-                    that.list = JSON.parse(list);
-                    ajaxGet(lookmeList, {}, function (data, err) {
-                        console.log('后台获取数据更新的本地数据库:', data);
-                        if (data.lookmeList) {
-                            that.list = data.lookmeList;
-                            localStorage.setItem('seens', JSON.stringify(that.list));
-                        }
-                    });
-                    return;
-                }
-
-                ajaxGetWithProgress(lookmeList, {}, function (data, err) {
+                ajaxGetWithProgress(ResumeList, {
+                    status: status
+                }, function (data, err) {
                     console.log(data);
-                    if (data.lookmeList) {
-                        that.list = data.lookmeList;
-
-                        localStorage.setItem('seens', JSON.stringify(that.list));
-
-                        that.listDB = data.lookmeList;
-
-
+                    if (data.ResumeList) {
+                        var arr1 = data.ResumeList;
+                        var arr2 = [];
+                        for (var i = 0; i < arr1.length; i++) {
+                            for (var j = 0; j < arr1[i].queryPersonByJobid.length; j++) {
+                                arr2.push(arr1[i].queryPersonByJobid[j]);
+                            }
+                        }
+                        console.log(arr2);
+                        var list = 'list'+status;
+                        that[list] = arr2;
+                        // console.log(that[list]);
                     }
                 })
-                // this.setIndexedDB(this);
+            },
+            ResumeList2: function () {
+                var that = this;
+                ajaxGetWithProgress(ResumeList, {
+                    status: 2
+                }, function (data, err) {
+                    // console.log(data);
+                    if (data.ResumeList) {
+                        var arr1 = data.ResumeList;
+                        var arr2 = [];
+                        for (var i = 0; i < arr1.length; i++) {
+                            for (var j = 0; j < arr1[i].queryPersonByJobid.length; j++) {
+                                arr2.push(arr1[i].queryPersonByJobid[j]);
+                            }
+                        }
+                        console.log(arr2);
+                        that.list2 = arr2;
+                        // console.log(that[list]);
+                    }
+                    ajaxGetWithProgress(ResumeList, {
+                        status: 3
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.ResumeList) {
+                            var arr3 = data.ResumeList;
+                            for (var i = 0; i < arr3.length; i++) {
+                                for (var j = 0; j < arr3[i].queryPersonByJobid.length; j++) {
+                                    that.list2.push(arr3[i].queryPersonByJobid[j]);
+                                }
+                            }
+
+                            console.log(that.list2);
+                        }
+                    })
+                })
             },
             // tab切换
-            activeHandle: function (name) {
+            activeHandle: function (name, status) {
+                var that = this;
+                // if (name == 'interview') {
+                //     ajaxGetWithProgress(ResumeList, {
+                //         status: 2
+                //     }, function (data, err) {
+                //         // console.log(data);
+                //         if (data.ResumeList) {
+                //             var arr1 = data.ResumeList;
+                //             var arr2 = [];
+                //             for (var i = 0; i < arr1.length; i++) {
+                //                 for (var j = 0; j < arr1[i].queryPersonByJobid.length; j++) {
+                //                     arr2.push(arr1[i].queryPersonByJobid[j]);
+                //                 }
+                //             }
+                //             console.log(arr2);
+                //             that.list2 = arr2;
+                //             // console.log(that[list]);
+                //         }
+                //         ajaxGetWithProgress(ResumeList, {
+                //             status: 3
+                //         }, function (data, err) {
+                //             console.log(data);
+                //             if (data.ResumeList) {
+                //                 var arr3 = data.ResumeList;
+                //                 for (var i = 0; i < arr3.length; i++) {
+                //                     for (var j = 0; j < arr3[i].queryPersonByJobid.length; j++) {
+                //                         that.list2.push(arr3[i].queryPersonByJobid[j]);
+                //                     }
+                //                 }
+                //
+                //                 console.log(that.list2);
+                //             }
+                //         })
+                //     })
+                // } else {
+                //     this.ResumeList(status);
+                // }
+
                 this.active = name;
             },
             // 查看简历详情
-            resumeHandle: function () {
-                console.log('resume');
-                openNewWindow("seeResume", "../mine/seeResume.html")
+            resumeHandle: function (person_id, status) {
+                // console.log('resume');
+                openNewWindow("seeResume", "../mine/seeResume.html", {
+                    person_id: person_id,
+                    status: status
+                })
             },
             // 点击重新邀约
             againHandle: function () {

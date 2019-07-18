@@ -683,7 +683,7 @@ div.isDisplay {
     width: 0.4rem;
     width: 0.4rem;
     border-radius: 50%;
-    transform: rotate(-45deg);
+    /*transform: rotate(-45deg);*/
     /*position: relative;*/
     /*left: -0.09rem;*/
     /*top: 0.08rem;*/

@@ -72,6 +72,10 @@
             display: none;
         }
 
+        .isDisplay {
+            display: none;
+        }
+
         .Have_a_chat_box {
             height: 1.1rem;
             background: #ffffff;
@@ -110,14 +114,54 @@
             background: #638BFF;
         }
 
+        .comTitle_header {
+            height: 0.78rem;
+            line-height: 0.78rem;
+            text-align: center;
+            background: #7F7F7F;
+            font-size: 0.28rem;
+            font-family: PingFangSC-Regular;
+            font-weight: 400;
+            color: rgba(255,255,255,1);
+            border-radius: 0.08rem 0.08rem 0 0;
+        }
+
+        #tag {
+            display: inline-block;
+            width: 1.10rem;
+            height: 0.38rem;
+            background: rgba(215,240,216,1);
+            border-radius: 0.06rem;
+            border: 0.02rem solid rgba(56,161,60,1);
+            font-size: 0.24rem;
+            font-family: PingFangSC-Regular;
+            font-weight: 400;
+            color: rgba(56,161,60,1);
+            line-height: 0.33rem;
+            text-align: center;
+        }
+
+        #tag.status1 {
+            color: #FFA300;
+            background: #FFE5B7;
+            border: 0.02rem solid #FFA300;
+        }
+
+        #tag.status2 {
+            color: #666666;
+            background: #E5E5E5;
+            border: 0.02rem solid #666666;
+        }
+
     </style>
 </head>
 <body class="commonBg">
 <div class="contentBox">
     <div class="subBox isDisplay">
+        <div class="comTitle_header isDisplay">已预约   2019年5月28日10:00面试</div>
         <div class="comTitle cssFlex">
             <div class="comInfo see">
-                <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
+                <h3 class="comInfoTitle comInfoTitleMar"><span id="p_name">张敏</span> <span id="tag" class="isDisplay">待初试</span></h3>
                 <p class="comInfoCon">
                     <span id="company">北京A公司信息技术有限公司</span>
                     <span id="company_type">运营经理</span>
@@ -370,10 +414,14 @@
         $(".modal-space").hide()
     }
 
-    var person_summary;
+    var person_summary, person_id, status;
     apiready = function () {
+        person_id = api.pageParam.person_id;
+        status = api.pageParam.status;
         // 获取用户简历全部信息
-        ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+        ajaxGetWithProgress(QueryPerson, {
+            person_id: person_id
+        }, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
             if (data) {
@@ -605,6 +653,33 @@
                     }
                 });
             })(mui);
+
+            // 判断需要展示的提示和标签
+            var header = document.querySelector('.comTitle_header');
+            var tag = document.getElementById('tag');
+            if (status == 2) {
+                header.classList.remove('isDisplay');
+                header.innerText = '已预约   2019年5月28日10:00面试';
+                tag.classList.remove('isDisplay');
+            } else if (status == 3) {
+                header.classList.remove('isDisplay');
+                header.innerText = '已预约   2019年5月28日10:00面试';
+                tag.classList.remove('isDisplay');
+                tag.classList.add('status1');
+                tag.innerText = '待复试';
+            } else if (status == 4) {
+                header.classList.remove('isDisplay');
+                header.innerText = '已预约   2019年5月28日10:00面试';
+                tag.classList.remove('isDisplay');
+                tag.classList.add('status2');
+                tag.innerText = '已录用';
+            } else if (status == 5) {
+                header.classList.remove('isDisplay');
+                header.innerText = '已预约   2019年5月28日10:00面试';
+                tag.classList.remove('isDisplay');
+                tag.classList.add('status3');
+                tag.innerText = '不合适';
+            }
         });
 
     };

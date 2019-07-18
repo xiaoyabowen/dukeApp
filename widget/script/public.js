@@ -314,6 +314,10 @@ var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 
 // 伯乐-消息谁看过我
 var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
+// 伯乐-status=1 新简历 2初试3复试 4录用 5不合适
+var ResumeList = serverUrl + "/JobProfile/ResumeList";
+// 伯乐-查看简历详情
+var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
@@ -336,10 +340,21 @@ var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
 
 
-
-
-
-
+// 判断当前求职状态
+function isStatus(num) {
+    // 求职状态
+    var statusObj = {
+        '1': '离职-随时到岗',
+        '2': '在职-月内到岗',
+        '3': '在职-考虑机会',
+        '4': '在职-暂不考虑',
+    }
+    return statusObj[num];
+}
+// 图片路劲去逗号
+function imgSrcFun(src) {
+    return src.split(',')[0];
+}
 // 计算年龄或工作年限
 function ages(str) {
     var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
