@@ -386,6 +386,7 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(123,data)
+
             api.hideProgress();
             if (data.role_type == 1){
                 localStorage.setItem('user',JSON.stringify(data));
@@ -424,7 +425,8 @@
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 }else if (data.role_type == 2){
-                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
+                    // openNewWindow("home", "../company/home/home.html")
+                    openNewWindow("postsPublish", "../company/home/postsPublish.html")
                 }
             } else{
                 if (data.role_type == 1){

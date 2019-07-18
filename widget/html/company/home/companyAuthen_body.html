@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>企业邮箱验证</title>
+    <title>企业验证</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
@@ -21,20 +21,43 @@
             color:rgba(51,51,51,1);
             line-height:0.5rem;
             margin-bottom: 0.12rem;
+            margin-top: 0.7rem;
         }
+        .authen-yaz{
+            margin-bottom: 0.2rem;
+            font-size: 0.24rem;
+        }
+        .authenBox{
+            padding: 0.26rem 0;
+            border-bottom: 1px solid #ebebeb;
+            height: 0.4rem;
+            align-items: center;
 
+        }
+        .authenBox>span{
+            display: block;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            font-size:0.28rem;
+        }
+        #authenEmail{
+            color: #666;
+        }
     </style>
 </head>
 <body class="commonBg">
 
 <div class="Box">
     <div class="boxSub">
-        <div class="authen-sub-title commonFont">验证您与企业的所属关系和企业的真实性</div>
+
         <div class="authen-title">企业邮箱认证</div>
-        <div class="authen-yaz commonFont">通过企业邮箱获取验证码激活</div>
+        <div class="authen-yaz commonFont">请输入您的企业邮箱，请勿使用qq、163等公共邮箱</div>
+        <div class="authenBox cssFlex">
+            <span>邮箱：</span>
+            <input type="text" id="authenEmail" placeholder="输入企业邮箱地址">
+        </div>
 
-
-        <div class="postSubBtn">去认证</div>
+        <div class="postSubBtn">下一步</div>
 
     </div>
 </div>

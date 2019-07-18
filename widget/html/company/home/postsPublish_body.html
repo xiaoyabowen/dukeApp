@@ -37,10 +37,10 @@
         </div>
         <img src="../../../icon/right.png" alt="right" class="info-img-right">
     </div>
-    <div class="post-box cssFlex">
+    <div class="post-box cssFlex" onclick="postPositiontype()">
         <div class="post-box-left">
             <div class="commonFont post-box-name">职位类型</div>
-            <div class="commonFont commonColor">选择职位名称对应的类型</div>
+            <div class="commonFont commonColor" id="postPositiontype">选择职位名称对应的类型</div>
         </div>
         <img src="../../../icon/right.png" alt="right" class="info-img-right">
     </div>
@@ -95,7 +95,6 @@
         <label for="mode0"></label>
         企业匿名发布
     </div>
-    <div class="postSubRz postSubBtn">去认证</div>
     <div class="postSubBtn postSubFa">发布</div>
 
 </div>
@@ -137,15 +136,25 @@
         })
 
     }
-    // 职位名称
-    function postPositionName() {
+    // 职位leixing
+    function postPositiontype() {
         openNewWindow("resume_positionType", "./resume_positionType.html", {
             url: 'postsPublish'
         })
     }
     function position_type(value) {
+        document.getElementById("postPositiontype").innerText = value;
+    }
+    // 职位名称
+    function postPositionName() {
+        openNewWindow("positionName", "./positionName.html", {
+            url: 'postsPublish'
+        })
+    }
+    function edit_positionName(value) {
         document.getElementById("postPositionName").innerText = value;
     }
+
 
     // 技能要求
     function postSkillLabel() {
