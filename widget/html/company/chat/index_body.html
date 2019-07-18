@@ -65,8 +65,10 @@
     <div class="contentBox ">
         <div class="box isDisplay">
             <div id="chat">
+                <keep-alive>
+                    <component :is="active"></component>
+                </keep-alive>
 
-                <component :is="active"></component>
             </div>
         </div>
     </div>

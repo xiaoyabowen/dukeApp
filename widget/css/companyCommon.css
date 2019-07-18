@@ -198,7 +198,7 @@ div.job_main div {
     transform: translateX(-50%);
 }
 
-.new {
+.new > div {
     padding-bottom: 0.2rem;
     background: #F9F9F9;
 }
