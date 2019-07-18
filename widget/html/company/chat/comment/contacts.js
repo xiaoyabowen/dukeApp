@@ -20,7 +20,7 @@ function contactsInit(Vue) {
             lookmeList: function () {
                 var that = this;
                 var list = localStorage.getItem('chats');
-                // console.log(list)
+                console.log(123,list)
                 if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(queryChatList, {}, function (data, err) {

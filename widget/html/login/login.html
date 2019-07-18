@@ -204,7 +204,9 @@
 
 
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
 </head>
 <body>
 <div id="main">
@@ -426,8 +428,11 @@
                     openNewWindow("home", "../user/home/home.html")
                 }else if (data.role_type == 2){
                     // openNewWindow("home", "../company/home/home.html")
-                    openNewWindow("postsPublish", "../company/home/postsPublish.html")
+                    // openNewWindow("uploadLicense", "../company/home/uploadLicense.html")
+                    // openNewWindow("add_Subscription", "../company/mine/add_Subscription.html")
+                    openNewWindow("visaApply", "../user/mine/visaApply.html")
                 }
+
             } else{
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")

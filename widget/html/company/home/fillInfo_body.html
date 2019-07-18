@@ -75,7 +75,8 @@
 
 </div>
 
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -90,28 +91,7 @@
 <script>
 
     apiready = function () {
-// 上传头像
-        var file = document.querySelector('.fillIcon');
-        file.onclick = function () {
-            api.getPicture({
-                sourceType: 'library',
-                encodingType: 'jpg',
-                mediaValue: 'pic',
-                destinationType: 'url',
-                allowEdit: true,
-                quality: 50,
-                targetWidth: 100,
-                targetHeight: 100,
-                saveToPhotoAlbum: false
-            }, function(ret, err) {
-                if (ret) {
-                    console.log(JSON.stringify(ret));
-                    document.querySelector(".info-img-defalut").src = ret.data
-                } else {
-                    console.log(JSON.stringify(err));
-                }
-            });
-        }
+
 
 
     };
@@ -179,7 +159,7 @@
         document.getElementById("fillEmail").innerText = value;
     }
 
-
+    // 上传头像
     var file = document.querySelector('.info-img-defalut');
     file.onclick = function (){
         api.getPicture({

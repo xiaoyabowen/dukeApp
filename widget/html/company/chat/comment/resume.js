@@ -7,8 +7,8 @@ function resumeInit(Vue) {
             return {
                 list1: [],
                 list2: [],
-                list3: [],
                 list4: [],
+                list5: [],
                 active: 'new',
                 status: 1
             }
@@ -16,8 +16,8 @@ function resumeInit(Vue) {
         created: function () {
             this.ResumeList(1);
             this.ResumeList2();
-            this.ResumeList(3);
             this.ResumeList(4);
+            this.ResumeList(5);
         },
         mounted: function () {
 
@@ -123,11 +123,13 @@ function resumeInit(Vue) {
                 this.active = name;
             },
             // 查看简历详情
-            resumeHandle: function (person_id, status) {
-                // console.log('resume');
+            resumeHandle: function (item) {
+                console.log(123,item);
                 openNewWindow("seeResume", "../mine/seeResume.html", {
-                    person_id: person_id,
-                    status: status
+                    person_id: item.person_id,
+                    status: item.status,
+                    time: filterTime2(item.status_time),
+                    app_id: item.app_id
                 })
             },
             // 点击重新邀约
@@ -135,10 +137,23 @@ function resumeInit(Vue) {
                 console.log('againHandle');
             },
             // 点击撤回邀请
-            withdrawHandle: function () {
-                mui.confirm('确定要撤回面试邀请吗？', '友情提示', function (e) {
-                    if (e.index) {
-                        console.log('withdrawHandle')
+            withdrawHandle: function (app_id, index) {
+                var that = this;
+                mui.confirm('确定要撤回面试邀请吗？', '友情提示',['确认','取消'], function (e) {
+                    if (!e.index) {
+                        console.log(app_id);
+                        ajaxGetWithProgress(UpdateStatus2, {
+                            app_id: app_id,
+                            status: '撤销'
+                        }, function (data, err) {
+                            console.log(data);
+
+                            if (data.return.status) {
+                                mui.toast('撤销成功')
+                                console.log(that.list2.splice(index, 1));
+                            }
+
+                        })
                     }
                 })
             }

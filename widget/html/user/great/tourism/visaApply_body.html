@@ -10,11 +10,8 @@
     <link rel="stylesheet" href="../../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
     <link rel="stylesheet" href="../../../../css/mui.min.css"/>
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="../../../../css/mui.picker.all.css"/>
     <link rel="stylesheet" href="../../../../css/mui.dtpicker.css"/>
->>>>>>> master
     <link rel="stylesheet" href="../../../../css/dataRili.css"/>
     <style>
         input[type=text]{
@@ -117,17 +114,14 @@
                 <input type="text" class="res-boxinput" v-model="comPhone" placeholder="请填写单位电话">
             </div>
             <div class="res-box cssFlex">
-<<<<<<< HEAD
-                <span class="res-boxname">领导姓名及职位</span>
-                <input type="text" class="res-boxinput" v-model="comLeaderName" placeholder="请填写领导姓名及职位">
-=======
+
                 <span class="res-boxname">领导姓名</span>
                 <input type="text" class="res-boxinput" v-model="comLeaderName" placeholder="请填写领导姓名">
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">领导职位</span>
                 <input type="text" class="res-boxinput" v-model="comLeaderPosie" placeholder="请填写领导职位">
->>>>>>> master
+
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">领导电话</span>
@@ -160,15 +154,11 @@
                 <span class="res-boxname">身份证签发机关</span>
                 <input type="text" class="res-boxinput" v-model="IDaddress" placeholder="请填写身份证签发机关">
             </div>
-<<<<<<< HEAD
-            <div class="res-box cssFlex">
-                <span class="res-boxname">宗教信仰</span>
-                <input type="text" class="res-boxinput" v-model="Religion" placeholder="请填写宗教信仰">
-=======
+
             <div class="res-box cssFlex" @click="religionClick()">
                 <span class="res-boxname">宗教信仰</span>
                 <span id="Religion" v-model="Religion"></span>
->>>>>>> master
+
             </div>
 
         </div>
@@ -177,45 +167,6 @@
     <div class="line20"></div>
     <div class="boxSub">
         <div class="ReserveBox">
-<<<<<<< HEAD
-            <div class="res-box cssFlex">
-                <span class="res-boxname">是否有同行人员</span>
-                <span class="personPeer">是</span>
-            </div>
-            <div class="res-box cssFlex">
-                <span class="res-boxname">护照种类</span>
-                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
-            </div>
-            <div class="res-box cssFlex">
-                <span class="res-boxname">是否申请过以色列签证</span>
-                <span class="personPeer">是</span>
-            </div>
-            <div class="res-box cssFlex">
-                <span class="res-boxname">是否有过其他国家的拒签记录</span>
-                <span class="personPeer">是</span>
-            </div>
-
-            <div class="res-box cssFlex">
-                <span class="res-boxname">护照种类</span>
-                <input type="text" class="res-boxinput" v-model="passportType" placeholder="*只限因私普通护照">
-            </div>
-
-            <div class="res-box cssFlex">
-                <span class="res-boxname">是否办理或申请过其他国家工作签证或劳务派遣
-签证</span>
-                <span class="personPeer">是</span>
-            </div>
-            <div class="res-box cssFlex">
-                <span class="res-boxname">是否出过国或申请过出国签证？</span>
-                <span class="personPeer">是</span>
-            </div>
-
-
-        </div>
-    </div>
-
-
-=======
             <div class="res-box cssFlex" @click="personPeerClick()">
                 <span class="res-boxname">是否有同行人员</span>
                 <span class="personPeer" id="personPeer" v-model="personPeer">是</span>
@@ -278,6 +229,19 @@
             <div class="res-box cssFlex">
                 <span class="res-boxname">单位名称</span>
                 <input type="text" class="res-boxinput" v-model="spouseComName" placeholder="请填写单位名称">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname">邮编</span>
+
+            </div>
+            <div id="popover" class="mui-popover popover res-box cssFlex">
+                <div class="title">请填写邮编</div>
+                <input type="text" class="res-boxinput" v-model="postalcode" placeholder="请填写邮编">
+                <!--<input type="text" placeholder="所填内容用，格开为一个标签',['确定','取消']">-->
+                <div class="btn">
+                    <span @click="btn_hidden(0)">取消</span>
+                    <span @click="btn_hidden(1)">确定</span>
+                </div>
             </div>
             <div class="res-box cssFlex">
                 <span class="res-boxname">职务</span>
@@ -347,22 +311,12 @@
         </div>
     </div>
 
->>>>>>> master
+
 </div>
 
 
 <script type="text/javascript" src="../../../../script/api.js"></script>
-<<<<<<< HEAD
-<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="../../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../../script/public.js"></script>
-<script type="text/javascript" src="../../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../../script/data.js"></script>
-<script type="text/javascript" src="../../../../script/mui.min.js"></script>
-<script src="../../../../script/vue.min.js"></script>
-<script src="../../../../script/mycanledar.js"></script>
-=======
+
 <!--<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>-->
 <script type="text/javascript" src="../../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
@@ -372,9 +326,10 @@
 <script type="text/javascript" src="../../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../../script/mui.dtpicker.js"></script>
 <script src="../../../../script/vue.min.js"></script>
->>>>>>> master
 
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
 <script>
 
@@ -432,6 +387,7 @@
                 faBirth:"1995-09-06",
                 moName:"阿三",
                 moBirth:"1995-09-06",
+                postalcode:"100000",
             },
             created :function () {
                 this.person_id = localStorage.getItem('person_id');
@@ -441,6 +397,14 @@
 
             },
             methods:{
+                btn_hidden:function(index){
+                    var that = this;
+                    if (index) {
+                        var value = that.postalcode;
+                        document.getElementById('myTags').innerText = value;
+                    }
+                    mui('.mui-popover').popover('hide');
+                },
                 sexClick :function () {
                     var that = this
                     var picker = new mui.PopPicker();

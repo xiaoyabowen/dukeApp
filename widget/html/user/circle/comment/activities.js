@@ -43,7 +43,7 @@ function activitiesInit(Vue) {
                 ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
                     console.log(data);
                     if (data.createCircle.return_info.status) {
-                        openNewWindow("index", "./index.html")
+                        openNewWindow("index", "./mine.html")
                     }
                 });
             }

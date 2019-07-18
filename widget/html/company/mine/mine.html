@@ -9,45 +9,63 @@
     <title>我的</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+        /*.headerBox > div {*/
+            /*font-size: 0.3rem;*/
+        /*}*/
 
+        .middle_center {
+            /*font-size: 0.36rem;*/
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            color: rgba(255,255,255,1);
+            line-height: 0.50rem;
+            margin-left: 0.8rem;
+        }
+    </style>
 </head>
 <body>
-<div id="topbar">
-    <!--<div id="leftButton" tapmode="itemOn" onclick="homeGo()">
-        首页
+<div id="topbar" >
+    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
     </div>
-    <div>我的</div>
-    <div class="right" onclick="settingGo()">设置</div>-->
+    <div>活动</div>
+    <div class="right" onclick="save()">
+        + 发布活动
+    </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="homeGo()">
-            <span>首页</span>
+        <div onclick="closeWin()">
+            首页
         </div>
-        <div class="middleMain">
+        <div class="middle_center">
             我的
         </div>
+        <div>
 
-        <div class="rightImgEdite"onclick="settingGo()">
-
-            设置
         </div>
     </div>
-
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-    function settingGo() {
-        openNewWindow("setting", "setting.html")
-    }
-    function homeGo() {
-        openNewWindow("home", "../home/home.html")
+
+    //发布活动
+    function save(){
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser || uidUser == 'undefined'){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("publishing_activities", "./publishing_activities.html")
     }
 </script>
 </html>

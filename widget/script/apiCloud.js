@@ -9,7 +9,7 @@ function initFs(callBack){
         if(!ret.exist ){
             fs.createDir({ path:'fs://shiyuanmeng'},function(ret,err){
                 //alert(JSON.stringify(ret))
-                //alert("创建")
+                //alert("创建")·
                 if(callBack){
                     callBack(ret,err);
                 }

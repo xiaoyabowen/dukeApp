@@ -72,7 +72,7 @@
             display: none;
         }
 
-        .isDisplay {
+        span.isDisplay {
             display: none;
         }
 
@@ -126,6 +126,31 @@
             border-radius: 0.08rem 0.08rem 0 0;
         }
 
+        div.Have_chat {
+            width: 2.06rem;
+            border: 0.02rem solid rgba(99,139,255,1);
+            background: #ffffff;
+            color: #638BFF;
+            line-height: 0.4rem;
+            font-size: 0.28rem;
+        }
+
+        .Have_chat img {
+            display: block;
+            width: 0.4rem;
+            margin: 0.15rem auto 0;
+        }
+
+        .evaluation {
+            background: #E12F18;
+        }
+
+        .prohibit {
+            flex: 1;
+            background: #DEDEDE;
+            color: #FFFFFF;
+        }
+
         #tag {
             display: inline-block;
             width: 1.10rem;
@@ -151,6 +176,10 @@
             color: #666666;
             background: #E5E5E5;
             border: 0.02rem solid #666666;
+        }
+
+        #tag.isDisplay {
+            display: none;
         }
 
     </style>
@@ -352,16 +381,99 @@
 
         </div>
 
-        <div class="Have_a_chat_box">
+        <div class="Have_a_chat_box isDisplay" id="s1">
             <div class="Have_a_chat_main cssFlex">
-                <div class="Have_a_chat" @click="have_a_chat()">
+                <div class="Have_a_chat" onclick="have_a_chat()">
                     聊一聊
                 </div>
-                <div class="Inappropriate" @click="inappropriate()">
+                <div class="Inappropriate" onclick="inappropriate()">
                     不合适
                 </div>
-                <div class="Interview" @click="interview()">
+                <div class="Interview" onclick="interview()">
                     安排面试
+                </div>
+            </div>
+        </div>
+
+        <div class="Have_a_chat_box isDisplay" id="s2">
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_chat" style="color: #638BFF;" onclick="have_a_chat()">
+                    <img src="../../../image/company/chat2x.png" alt="">
+                    聊一聊
+                </div>
+                <div class="Inappropriate" onclick="inappropriate()">
+                    不合适
+                </div>
+                <div class="Interview" onclick="updataTime()">
+                    修改面试时间
+                </div>
+            </div>
+        </div>
+
+        <div class="Have_a_chat_box isDisplay" id="s3">
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_chat" style="width: 1.4rem;" onclick="have_a_chat()">
+                    <img src="../../../image/company/chat2x.png" alt="">
+                    聊一聊
+                </div>
+                <div class="Have_chat" style="width: 1.4rem;border-left: 0;" onclick="appointment()">
+                    <img src="../../../image/company/reexamination1x.png" alt="">
+                    约复试
+                </div>
+                <div class="Inappropriate" style="width: 1.56rem;" onclick="inappropriate()">
+                    不合适
+                </div>
+                <div class="evaluation" style="width: 1.56rem;" onclick="evaluation()">
+                    面试评价
+                </div>
+                <div class="Interview" style="width: 1.56rem;" onclick="employment()">
+                    录用
+                </div>
+            </div>
+        </div>
+
+        <div class="Have_a_chat_box isDisplay" id="ss3">
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_chat" style="width: 1.4rem;" onclick="have_a_chat()">
+                    <img src="../../../image/company/chat2x.png" alt="">
+                    聊一聊
+                </div>
+                <div class="Have_chat" style="width: 1.4rem;border: 0;color: #ffffff;background:#DEDEDE;">
+                    <img src="../../../image/company/reexamination2x.png" alt="">
+                    约复试
+                </div>
+                <div class="Inappropriate" style="width: 1.56rem;" onclick="inappropriate()">
+                    不合适
+                </div>
+                <div class="evaluation" style="width: 1.56rem;" onclick="evaluation()">
+                    面试评价
+                </div>
+                <div class="Interview" style="width: 1.56rem;" onclick="employment()">
+                    录用
+                </div>
+            </div>
+        </div>
+
+        <div class="Have_a_chat_box isDisplay" id="s4">
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_chat" style="color: #638BFF;" onclick="have_a_chat()">
+                    <img src="../../../image/company/chat2x.png" alt="">
+                    聊一聊
+                </div>
+                <div class="prohibit">
+                    已录用
+                </div>
+            </div>
+        </div>
+
+        <div class="Have_a_chat_box isDisplay" id="s5">
+            <div class="Have_a_chat_main cssFlex">
+                <div class="Have_chat" style="color: #638BFF;" onclick="have_a_chat()">
+                    <img src="../../../image/company/chat2x.png" alt="">
+                    聊一聊
+                </div>
+                <div class="prohibit">
+                    不合适
                 </div>
             </div>
         </div>
@@ -398,7 +510,8 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 <script>
     // swiper  轮播
     var mySwiper = new Swiper('.swiper-container', {
@@ -414,16 +527,19 @@
         $(".modal-space").hide()
     }
 
-    var person_summary, person_id, status;
+    var person_summary, person_id, status, time, app_id, name;
     apiready = function () {
         person_id = api.pageParam.person_id;
         status = api.pageParam.status;
+        time = api.pageParam.time;
+        app_id = api.pageParam.app_id;
         // 获取用户简历全部信息
         ajaxGetWithProgress(QueryPerson, {
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
+            api.hideProgress();
             if (data) {
                 document.querySelector('.subBox').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -440,6 +556,7 @@
                 // 姓名
                 if (person_summary.p_name || person_summary.p_name != 'undefined') {
                     document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
+                    name = person_summary.p_name;
                 }
                 // 图片
                 if (person_summary.p_icon) {
@@ -655,45 +772,146 @@
             })(mui);
 
             // 判断需要展示的提示和标签
+
+            if (status == 1) {
+                document.getElementById('s1').classList.remove('isDisplay');
+                return;
+            }
+
+
             var header = document.querySelector('.comTitle_header');
             var tag = document.getElementById('tag');
             if (status == 2) {
                 header.classList.remove('isDisplay');
-                header.innerText = '已预约   2019年5月28日10:00面试';
+                header.innerText = '已预约  '+ filterTime3(time) +'面试';
+                var start = new Date(time).getTime();
+                var ent = new Date().getTime();
+                console.log(start);
+                console.log(ent);
+                if (start > ent) {
+                    tag.innerText = '待初试';
+                    document.getElementById('s2').classList.remove('isDisplay');
+                } else {
+                    tag.innerText = '已初试';
+                    tag.classList.add('status1');
+                    document.getElementById('s3').classList.remove('isDisplay');
+                }
                 tag.classList.remove('isDisplay');
+
+
             } else if (status == 3) {
                 header.classList.remove('isDisplay');
-                header.innerText = '已预约   2019年5月28日10:00面试';
+                header.innerText = '已预约   '+ filterTime3(time) +'面试';
+                var start = new Date(time).getTime();
+                var ent = new Date().getTime();
+                console.log(start);
+                console.log(ent);
+                if (start > ent) {
+                    tag.innerText = '待复试';
+                } else {
+                    tag.innerText = '已复试';
+                    tag.classList.add('status1');
+                }
                 tag.classList.remove('isDisplay');
-                tag.classList.add('status1');
-                tag.innerText = '待复试';
+                document.getElementById('ss3').classList.remove('isDisplay');
             } else if (status == 4) {
                 header.classList.remove('isDisplay');
-                header.innerText = '已预约   2019年5月28日10:00面试';
+                header.innerText = '已预约   '+ filterTime3(time) +'面试';
                 tag.classList.remove('isDisplay');
-                tag.classList.add('status2');
+                tag.classList.add('status1');
                 tag.innerText = '已录用';
+                document.getElementById('s4').classList.remove('isDisplay');
             } else if (status == 5) {
                 header.classList.remove('isDisplay');
-                header.innerText = '已预约   2019年5月28日10:00面试';
+                header.innerText = '已预约   '+ filterTime3(time) +'面试';
                 tag.classList.remove('isDisplay');
-                tag.classList.add('status3');
+                tag.classList.add('status2');
                 tag.innerText = '不合适';
+                document.getElementById('s5').classList.remove('isDisplay');
             }
         });
 
     };
-
+    // 聊一聊
     function have_a_chat() {
         alert('跳到聊一聊');
     }
-
+    // 不合适
     function inappropriate() {
-        alert('不合适');
+        mui.confirm('确定要拒接此简历吗?', '不合适',['确认','取消'], function (e) {
+            if (!e.index) {
+                console.log(app_id);
+                ajaxGetWithProgress(UpdateStatus, {
+                    app_id: app_id,
+                    status: '5'
+                }, function (data, err) {
+                    console.log(data);
+                    if (data.return.status) {
+                        mui.toast('此简历已拒绝');
+                        // closeWin();
+                        var tag = document.getElementById('tag');
+                        tag.classList.remove('isDisplay');
+                        tag.classList.add('status2');
+                        tag.innerText = '不合适';
+                        /*document.getElementById('s5').classList.remove('isDisplay');
+                        document.getElementById('s4').classList.add('isDisplay');
+                        document.getElementById('s3').classList.add('isDisplay');
+                        document.getElementById('ss3').classList.add('isDisplay');
+                        document.getElementById('s2').classList.add('isDisplay');
+                        document.getElementById('s1').classList.add('isDisplay');*/
+                    }
+                })
+            }
+        })
     }
-
+    // 安排面试
     function interview() {
-        alert('邀请面试');
+        // alert('安排面试');
+        openNewWindow("preliminary", "../chat/preliminary.html", {
+            person_id: person_id,
+            app_id: app_id,
+            name: name
+        })
+    }
+    // 修改面试时间
+    function updataTime() {
+        alert('修改面试时间')
+    }
+    //约复试
+    function appointment() {
+        alert('约复试')
+    }
+    // 面试评价
+    function evaluation() {
+
+    }
+    // 录用
+    function employment() {
+        mui.confirm('确定要拒接此简历吗?', '不合适',['确认','取消'], function (e) {
+            if (!e.index) {
+                console.log(app_id);
+                ajaxGetWithProgress(UpdateStatus, {
+                    app_id: app_id,
+                    status: '4'
+                }, function (data, err) {
+                    console.log(data);
+                    if (data.return.status) {
+                        mui.toast('此简历已录用');
+                        // closeWin();
+                        var tag = document.getElementById('tag');
+                        tag.classList.remove('isDisplay');
+                        tag.classList.add('status2');
+                        tag.innerText = '已录用';
+                        /*document.getElementById('s5').classList.add('isDisplay');
+                        document.getElementById('s4').classList.remove('isDisplay');
+                        document.getElementById('s3').classList.add('isDisplay');
+                        document.getElementById('ss3').classList.add('isDisplay');
+                        document.getElementById('s2').classList.add('isDisplay');
+                        document.getElementById('s1').classList.add('isDisplay');*/
+                    }
+                })
+            }
+        })
     }
 
 

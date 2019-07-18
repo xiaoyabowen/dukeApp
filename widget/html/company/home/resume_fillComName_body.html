@@ -71,7 +71,8 @@
 
 
 </div>
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>     <script>eruda.init();</script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
@@ -127,7 +128,7 @@
     function preservation () {
         var c_name = document.getElementById('text0').value;
         var c_id = document.getElementById('c_id').value;
-
+        localStorage.setItem("com_id",c_id)
         if(isBlack(c_name)){
             toast("请输入公司名称");
             return;

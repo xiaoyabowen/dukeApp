@@ -58,11 +58,11 @@ function magicCubeInit(Vue) {
                 this.index1 = index;
                 this.index2 = -1;
                 console.log(job_id)
-                openNewWindow("index", "widget://html/user/great/"+ job_id +"/index.html");
+                openNewWindow("index", "widget://html/user/great/"+ job_id +"/mine.html");
                 // if (job_id == 'great') {
-                //     openNewWindow("index", "widget://html/user/great/index.html");
+                //     openNewWindow("index", "widget://html/user/great/mine.html");
                 // } else {
-                //     openNewWindow("index", "widget://html/user/great/"+ job_id +"/index.html");
+                //     openNewWindow("index", "widget://html/user/great/"+ job_id +"/mine.html");
                 // }
 
             },

@@ -302,6 +302,10 @@ var UploadFlieTest = Domain + "/upload/UploadFlieTest";
 var uploadploadFlie = Domain + "/upload/UploadFlie";
 
 
+//伯乐上传营业执照  头像
+var OrgnizationProfileUploadBusiness = serverUrl + "/OrgnizationProfile/UploadBusiness";
+
+
 
 
 
@@ -318,6 +322,11 @@ var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
 var ResumeList = serverUrl + "/JobProfile/ResumeList";
 // 伯乐-查看简历详情
 var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
+// 伯乐-消息撤回面试邀请
+var UpdateStatus2 = serverUrl + "/EvaluateProfile/UpdateStatus2";
+// 伯乐-消息不合适
+var UpdateStatus = serverUrl + "/EvaluateProfile/UpdateStatus";
+
 
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
@@ -325,28 +334,17 @@ var addRecruiter = localhostHref + "/addRecruiter";
 // 公司填写信息
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
-// 公司填写信息
+//  填写公司全称  返回id
 var JobProfileCreateCompany = serverUrl + "/OrgnizationProfile/CreateCompany";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 发布职位
+var createJobProfile = serverUrl + "/JobProfile/createJob";
+// 发布职位  发布地址返回id
+var addAddressJobProfile = serverUrl + "/JobProfile/addAddress";
+// 企业邮箱认证
+var SendEmailOrgnizationProfile = serverUrl + "/OrgnizationProfile/SendEmail";
+// 企业邮箱 验证码 认证
+var CertifiedMailOrgnizationProfile = serverUrl + "/OrgnizationProfile/CertifiedMail";
 
 // 判断当前求职状态
 function isStatus(num) {
@@ -394,6 +392,14 @@ function filterTime2(time) {
     arr.pop();
     // console.log(arr);
     return arr.join(':');
+}
+// 过滤时间转成 - 2019年4月5日
+function filterTime3(time) {
+    var arr = time.split('-');
+    var year = arr[0] + '年';
+    var month = arr[1] + '月';
+    var day = arr[2] + '日';
+    return year + month + day;
 }
 
 
@@ -480,7 +486,7 @@ var industryNum = 3;//商家最多选择三个行业
 /**
  *
  * @param url 跳转   内部跳转 inner://xxx/xxx 外部跳转 http://xxx/xxx
- * @param currentDirectory 当前目录  最外层目录小于0（index.html） 第一级目录（html文件夹下的，目前没有） 第二级目录（html文件夹下的文件夹）
+ * @param currentDirectory 当前目录  最外层目录小于0（mine.html） 第一级目录（html文件夹下的，目前没有） 第二级目录（html文件夹下的文件夹）
  */
 function systemForword(url, currentDirectory, overLoad) {
     currentDirectory = currentDirectory || 0;

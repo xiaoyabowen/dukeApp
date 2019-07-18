@@ -34,7 +34,7 @@
         <div class="authen-yaz commonFont">通过企业邮箱获取验证码激活</div>
 
 
-        <div class="postSubBtn">去认证</div>
+        <div class="postSubBtn" onclick="goPostSub()">去认证</div>
 
     </div>
 </div>
@@ -51,6 +51,9 @@
 
     };
 
+        function goPostSub() {
+            openNewWindow("companyAuthen", "./companyAuthen.html")
+        }
 
     // 点击保存执行此方法
     function preservation () {

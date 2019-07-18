@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>工作地点</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css">
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
+    <style>
+
+        .authen-title{
+            height:0.5rem;
+            font-size:0.36rem;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:0.5rem;
+            margin-bottom: 0.12rem !important;
+            margin-top: 0.7rem;
+        }
+        .authen-yaz{
+            margin-bottom: 0.2rem;
+            /*font-size: 0.24rem;*/
+            margin-top: 0.3rem;
+        }
+        .authenBox{
+            padding: 0.26rem 0;
+            border-bottom: 1px solid #ebebeb;
+            align-items: center;
+
+        }
+        .authenBox>span{
+            display: block;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            font-size:0.28rem;
+        }
+        .authenBox>input{
+            font-size: 0.28rem;
+            font-weight: 400;
+            color: rgba(51,51,51,1);
+            border: none;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+    </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+</head>
+<body class="commonBg">
+
+<div class="Box">
+    <div class="boxSub">
+
+        <div class="authen-title">公司地址</div>
+
+        <div class="authenBox" onclick="cityChoose()">
+            <span class="authen-yaz commonFont">所在区域</span>
+            <input type="text" id="authenAdress" placeholder="北京-海淀区-西北旺" readonly>
+            <input type="hidden" id="adr_id">
+            <input type="hidden" id="latitude" >
+            <input type="hidden" id="longitude">
+        </div>
+        <!--<div class="authenBox">
+            <div class="authen-yaz commonFont">详细地址</div>
+            <input type="text" id="adressDetail" placeholder="办公大楼名称">
+        </div>-->
+        <div class="postSubBtn" onclick="adressSubmit()">保存</div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script type="text/javascript" src="../../../script/city.data-3.js"></script>
+<script>
+    var url;
+    apiready = function () {
+        url = api.pageParam.url;
+    };
+
+    // 选择城市
+    function cityChoose() {
+        openNewWindow("gaomap", "../map/gaomap.html", {
+            url: 'companyAdress',
+        })
+    }
+
+    function int_city(value,provincer, cityr, streetr, P_addressz,P_name,longituder,latituder) {
+
+        document.getElementById("adr_id").value = value;
+        document.getElementById("longitude").value = longituder;
+        document.getElementById("latitude").value = latituder;
+        if (cityr) {
+            document.getElementById('authenAdress').value = provincer + '' + cityr + '' + streetr + '' + P_addressz+ '' + P_name;
+        } else {
+            document.getElementById('authenAdress').value = provincer + '' + streetr + '' + P_addressz+ '' + P_name;
+        }
+    }
+    // 点击保存执行此方法
+    function adressSubmit () {
+        adressPtext = document.getElementById("authenAdress").value
+        var adressP = adressPtext;
+        console.log(adressP)
+        longitude = document.getElementById("longitude").value;
+        latitude = document.getElementById("latitude").value;
+        adr_id = document.getElementById("adr_id").value;
+        if(adressP == ''){
+            toast("请输入地址");
+            return;
+        }
+
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script: 'companyAdressId('+JSON.stringify(adressP)+','+JSON.stringify(longitude)+','+JSON.stringify(latitude)+','+JSON.stringify(adr_id)+')'
+        })
+        closeWin();
+
+
+    }
+
+    // 点击保存执行此方法
+    function preservation () {
+
+    }
+</script>
+</body>
+</html>
