@@ -325,6 +325,13 @@ var addRecruiter = localhostHref + "/addRecruiter";
 // 公司填写信息
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
+// 公司填写信息
+var JobProfileCreateCompany = serverUrl + "/OrgnizationProfile/CreateCompany";
+
+
+
+
+
 
 
 

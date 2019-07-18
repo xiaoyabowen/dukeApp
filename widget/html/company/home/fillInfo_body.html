@@ -31,8 +31,8 @@
         <div class="info-choose cssFlex" onclick="fillName()">
             <span class="info-choose-name"><i class="inFF9A26">*</i>姓名</span>
             <div class="info-choose-main cssFlex">
-                <!--<span class="info-choose-main-name birth_option" id="fillName">请填写您的姓名</span>-->
-                <span class="info-choose-main-name birth_option" id="fillName">恒博恩</span>
+                <span class="info-choose-main-name birth_option" id="fillName">请填写您的姓名</span>
+                <!--<span class="info-choose-main-name birth_option" id="fillName">恒博恩</span>-->
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
@@ -47,16 +47,17 @@
         <div class="info-choose cssFlex" onclick="fillComName()">
             <span class="info-choose-name"><i class="inFF9A26">*</i>我的公司</span>
             <div class="info-choose-main cssFlex">
-                <!--<span class="info-choose-main-name birth_option" id="fillComName">请填写公司名称</span>-->
-                <span class="info-choose-main-name birth_option" id="fillComName">云闪信</span>
+                <span class="info-choose-main-name birth_option" id="fillComName">请填写公司名称</span>
+                <!--<span class="info-choose-main-name birth_option" id="fillComName">云闪信</span>-->
+                <span style="display: none;" id="fillId"></span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
         <div class="info-choose cssFlex" onclick="fillPosition()">
             <span class="info-choose-name"><i class="inFF9A26">*</i>我的职务</span>
             <div class="info-choose-main cssFlex">
-                <!--<span class="info-choose-main-name birth_option" id="fillPosition">请填写您的职务</span>-->
-                <span class="info-choose-main-name birth_option" id="fillPosition">前端</span>
+                <span class="info-choose-main-name birth_option" id="fillPosition">请填写您的职务</span>
+                <!--<span class="info-choose-main-name birth_option" id="fillPosition">前端</span>-->
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
@@ -152,10 +153,12 @@
             url: 'fillInfo'
         })
     }
-    function edit_fillComName(value) {
+    function edit_fillComName(value,c_id) {
+        console.log(value)
+        console.log(c_id)
         document.getElementById("fillComName").innerText = value;
+        document.getElementById("fillId").innerText = c_id;
     }
-
     // 填写 公司职务
     function fillPosition() {
         openNewWindow("resume_fillPos", "./resume_fillPos.html", {
@@ -235,8 +238,8 @@
             email: document.getElementById("fillEmail").innerText,
             z_user_job: document.getElementById("fillPosition").innerText,
             p_iocn: document.querySelector(".info-img-defalut").src,
-            // c_id:document.getElementById("fillComName").innerText,
-            c_id:"2"
+            nameall:document.getElementById("fillComName").innerText,
+            c_id:document.getElementById("fillId").innerText || ''
         }
         console.log(obj)
         // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {

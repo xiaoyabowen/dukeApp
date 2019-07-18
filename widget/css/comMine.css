@@ -76,13 +76,7 @@ img.info-img-defalut{
     align-items: center;
     border-bottom: 1px solid #ebebeb;
 }
-.commonFont {
-    height: 0.4rem;
-    font-size: 0.28rem;
-    font-weight: 400;
-    color: rgba(51,51,51,1);
-    line-height: 0.4rem;
-}
+
 .commonColor{
     color:#999999;
 }
@@ -117,9 +111,7 @@ img.info-img-defalut{
 
 
 /*单选框自定义  样式   结束*/
-.postSubRz,.postSubFa{
-    display: none;
-}
+
 
 .postSubBtn {
     width: 6.3rem;
