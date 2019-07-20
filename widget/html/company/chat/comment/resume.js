@@ -38,10 +38,10 @@ function resumeInit(Vue) {
                                 arr2.push(arr1[i].queryPersonByJobid[j]);
                             }
                         }
-                        console.log(arr2);
+                        console.log(123456,arr2);
                         var list = 'list'+status;
                         that[list] = arr2;
-                        // console.log(that[list]);
+                        console.log(that[list]);
                     }
                 })
             },
@@ -124,12 +124,20 @@ function resumeInit(Vue) {
             },
             // 查看简历详情
             resumeHandle: function (item) {
-                console.log(123,item);
+                console.log("简历详情跳转数据",item);
                 openNewWindow("seeResume", "../mine/seeResume.html", {
                     person_id: item.person_id,
                     status: item.status,
-                    time: filterTime2(item.status_time),
+                    time: item.status_time,
                     app_id: item.app_id
+                })
+            },
+            interview :function (item) {
+
+                openNewWindow("preliminary", "./preliminary.html", {
+                    person_id: item.person_id,
+                    app_id: item.app_id,
+                    name: item.p_name
                 })
             },
             // 点击重新邀约

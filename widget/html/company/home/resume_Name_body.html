@@ -41,15 +41,21 @@
     var text = document.getElementById('text0')
     var num = document.querySelector('.resume_level2_num');
     var total = document.querySelector('.resume_level2_total');
-    var url;
+    var url,content;
     apiready = function () {
-
+        content = api.pageParam.content;
         url = api.pageParam.url;
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
-    };
 
+        if (content == '请填写您的姓名'){
+            text.value = ''
+        }else{
+            text.value = content
+        }
+
+    };
 
     // 点击保存执行此方法
     function preservation () {

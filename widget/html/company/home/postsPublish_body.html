@@ -394,11 +394,19 @@
         }
         ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
             console.log(data)
-            if (data.return_info.status){
-                toast("请求chengg ")
-            } else{
+            if (data){
+                if (data.return_info.status){
+                    toast("请求成功")
+                }
+                if (!data.emailStatus){
+                    openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
+                }else{
+                    openNewWindow("home", "./home.html")
+                }
+            }else{
                 toast("请求出错!")
             }
+
             api.hideProgress();
         })
     }

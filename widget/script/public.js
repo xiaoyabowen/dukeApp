@@ -3,17 +3,18 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+/*
 var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.3:8000/SE4M';
 var Domain = 'http://192.168.1.3:8088';
 
+*/
 
 
-/*
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-*/
+
 
 
 var rootWindowName = "root";
@@ -334,6 +335,15 @@ var addRecruiter = localhostHref + "/addRecruiter";
 // 公司填写信息
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
+// 公司 我的 页面   获取  沟通过  数目
+var chatNumAndInvitation = serverUrl + "/JobProfile/chatNumAndInvitation";
+
+// 伯乐  编辑我的信息
+var queryPersonByidnUserProfile = serverUrl + "/UserProfile/queryPersonByid";
+
+
+
+
 //  填写公司全称  返回id
 var JobProfileCreateCompany = serverUrl + "/OrgnizationProfile/CreateCompany";
 
@@ -345,6 +355,17 @@ var addAddressJobProfile = serverUrl + "/JobProfile/addAddress";
 var SendEmailOrgnizationProfile = serverUrl + "/OrgnizationProfile/SendEmail";
 // 企业邮箱 验证码 认证
 var CertifiedMailOrgnizationProfile = serverUrl + "/OrgnizationProfile/CertifiedMail";
+
+
+
+
+
+
+
+
+
+
+
 
 // 判断当前求职状态
 function isStatus(num) {

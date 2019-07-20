@@ -730,14 +730,32 @@ div.isDisplay {
     color: rgba(51,51,51,1);
     line-height: 0.4rem;
 }
+.commonTitle{
+    height: 0.5rem;
+    font-size: 0.36rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.5rem;
+}
+img.info-img-right {
+    display: inline-block;
+    width: 0.32rem;
+    height: 0.32rem;
+}
 
+.commonSub24{
+    height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    line-height: 0.32rem;
+}
 
-
-
-
-
-
-
+.line20{
+    height: 0.2rem;
+    width: 100%;
+    background:rgba(249,249,249,1);
+}
 
 
 

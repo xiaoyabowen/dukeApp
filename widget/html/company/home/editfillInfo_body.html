@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>填写信息</title>
+    <title>编辑个人信息</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/comMine.css"/>
@@ -13,7 +13,17 @@
     <link rel="stylesheet" href="../../../css/mui.picker.all.css">
     <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
     <style>
-
+        img.uploadIn {
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin: 0.34rem auto 0.18rem;
+            border-radius: 50%;
+        }
+        .uploadText{
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -21,15 +31,12 @@
 
 <div class="Box">
     <div class="boxSub">
-        <div class="comon-mine-title">介绍一下自己吧</div>
-        <div class="info-choose fillIcon cssFlex" style="height: 1.5rem;">
-            <span class="info-choose-name">头像</span>
-            <div class="info-choose-main cssFlex">
-                <img src="http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png" alt="right" class="info-img-defalut">
-            </div>
-        </div>
+        <!--上传头像-->
+        <img src="http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png" alt="upl" class="uploadIn">
+        <div class="uploadText commonFont">上传头像</div>
+        
         <div class="info-choose cssFlex" onclick="fillName()">
-            <span class="info-choose-name"><i class="inFF9A26">*</i>姓名</span>
+            <span class="info-choose-name">姓名</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="fillName">请填写您的姓名</span>
                 <!--<span class="info-choose-main-name birth_option" id="fillName">恒博恩</span>-->
@@ -37,46 +44,41 @@
             </div>
         </div>
         <div class="info-choose cssFlex" onclick="fillSex()">
-            <span class="info-choose-name"><i class="inFF9A26">*</i>性别</span>
+            <span class="info-choose-name">性别</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="fillSex">请选择</span>
                 <span id="sex" style="display: none"></span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" onclick="fillComName()">
-            <span class="info-choose-name"><i class="inFF9A26">*</i>我的公司</span>
+        <div class="info-choose cssFlex">
+            <span class="info-choose-name">我的公司</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="fillComName">请填写公司名称</span>
-                <!--<span class="info-choose-main-name birth_option" id="fillComName">云闪信</span>-->
                 <span style="display: none;" id="fillId"></span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
         <div class="info-choose cssFlex" onclick="fillPosition()">
-            <span class="info-choose-name"><i class="inFF9A26">*</i>我的职务</span>
+            <span class="info-choose-name">我的职务</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="fillPosition">请填写您的职务</span>
-                <!--<span class="info-choose-main-name birth_option" id="fillPosition">前端</span>-->
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="resume_editResume_item top" onclick="fillEmail()">
-            <div class="fillTitle link"><i class="inFF9A26">*</i>我的邮箱</div>
-            <div class="info-choose minHeight cssFlex">
-                <span class="info-choose-name" id="fillEmail">请填写您的邮箱</span>
-                <div class="info-choose-main cssFlex">
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
+        <div class="info-choose cssFlex" onclick="fillEmail()">
+            <span class="info-choose-name">接收简历邮箱</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="fillEmail">请填写您的邮箱</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="addCards_btn" onclick="nextHandle()">下一步</div>
     </div>
 
 </div>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -89,10 +91,31 @@
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 
 <script>
-
+    var urlED;
     apiready = function () {
-
-
+        urlED = api.pageParam.url;
+        var userObj = JSON.parse(localStorage.getItem("user"))
+        var uid = userObj.user_id
+        var obj = {
+            person_id:uid
+        }
+        ajaxGetWithProgress(queryPersonByidnUserProfile,obj,function (data,ret) {
+            console.log(data)
+            if (data){
+                document.querySelector(".uploadIn").src = data.p_icon;
+                document.getElementById("fillName").innerText = data.p_name;
+                if (data.p_sex == 1){
+                    document.getElementById("fillSex").innerText = "男";
+                }else if (data.p_sex == 2){
+                    document.getElementById("fillSex").innerText = "女";
+                }
+                document.getElementById("sex").innerText = data.p_sex;
+                document.getElementById("fillComName").innerText = data.c_name;
+                document.getElementById("fillPosition").innerText = data.z_user_job;
+                document.getElementById("fillEmail").innerText = data.email;
+                document.getElementById("fillId").innerText = data.c_id;
+            }
+        })
 
     };
 
@@ -100,10 +123,12 @@
     // 填写 编辑 姓名
     function fillName() {
         openNewWindow("resume_Name", "./resume_Name.html", {
-            url: 'fillInfo'
+            url: 'editfillInfo',
+            content : document.getElementById("fillName").innerText,
         })
     }
     function edit_fillName(value) {
+        console.log(value)
         document.getElementById("fillName").innerText = value;
     }
 
@@ -127,10 +152,11 @@
 
     }
 
-    // 填写 公司名称
+    /*// 填写 公司名称
     function fillComName() {
         openNewWindow("resume_fillComName", "./resume_fillComName.html", {
-            url: 'fillInfo'
+            url: 'editfillInfo',
+            content : document.getElementById("fillComName").innerText,
         })
     }
     function edit_fillComName(value,c_id) {
@@ -138,11 +164,12 @@
         console.log(c_id)
         document.getElementById("fillComName").innerText = value;
         document.getElementById("fillId").innerText = c_id;
-    }
+    }*/
     // 填写 公司职务
     function fillPosition() {
         openNewWindow("resume_fillPos", "./resume_fillPos.html", {
-            url: 'fillInfo'
+            url: 'editfillInfo',
+            content : document.getElementById("fillPosition").innerText,
         })
     }
     function edit_fillPosition(value) {
@@ -152,7 +179,8 @@
     // 填写邮箱
     function fillEmail() {
         openNewWindow("resume_Mailbox", "./resume_Mailbox.html", {
-            url: 'fillInfo'
+            url: 'editfillInfo',
+            content : document.getElementById("fillEmail").innerText,
         })
     }
     function edit_email(value) {
@@ -160,7 +188,7 @@
     }
 
     // 上传头像
-    var file = document.querySelector('.info-img-defalut');
+    var file = document.querySelector('.uploadIn');
     file.onclick = function (){
         api.getPicture({
             sourceType: 'library',
@@ -200,7 +228,7 @@
 
                     var pathImgData = pathImgImg.split(",")
                     console.log(pathImgData)
-                    document.querySelector(".info-img-defalut").src = pathImgData[0]
+                    document.querySelector(".uploadIn").src = pathImgData[0]
                     api.hideProgress();
 
                 });
@@ -209,7 +237,7 @@
             }
         });
     }
-    function nextHandle (){
+    function preservation (){
         var uid = JSON.parse(localStorage.getItem('user')).user_uid;
         var obj = {
             person_id : uid,
@@ -217,21 +245,23 @@
             p_sex: document.getElementById("sex").innerText,
             email: document.getElementById("fillEmail").innerText,
             z_user_job: document.getElementById("fillPosition").innerText,
-            p_icon: document.querySelector(".info-img-defalut").src,
-            nameall:document.getElementById("fillComName").innerText,
-            c_id:document.getElementById("fillId").innerText || ''
+            p_icon: document.querySelector(".uploadIn").src,
+            c_id:document.getElementById("fillId").innerText
+
         }
         console.log(obj)
-        localStorage.setItem("username",document.getElementById("fillName").innerText)
         // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {
-        ajaxGetWithProgress('http://192.168.1.3:8000/SE4M/addRecruiter', obj, function (data, err) {
-            if (data){
-                if (data.date == 1){
-                    openNewWindow("postsPublish", "./postsPublish.html")
-                } else if (data.date == 0){
-                    toast("请求出错")
-                }
+        ajaxGetWithProgress("http://192.168.1.3:8000/SE4M/addRecruiter", obj, function (data, err) {
+            if (data.date = "1"){
+                console.log(data)
+                var frameName = urlED + "_body";
+                api.execScript({
+                    name:urlED,
+                    frameName: frameName,
+                })
+                closeWin();
             }
+
         })
 
     }

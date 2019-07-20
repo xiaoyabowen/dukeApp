@@ -220,7 +220,7 @@
             <div class="login-input">
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
-                    <input id="phone" type="number" value="15901420539" placeholder="请输入您的手机号">
+                    <input id="phone" type="number" value="18338766606" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
                     <input id="password" type="number" value="123456" placeholder="请输入验证码">
@@ -387,8 +387,7 @@
             return;
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-            console.log(123,data)
-
+            console.log("Logindata=",data)
             api.hideProgress();
             if (data.role_type == 1){
                 localStorage.setItem('user',JSON.stringify(data));
@@ -398,7 +397,12 @@
                 localStorage.setItem('user',JSON.stringify(data));
                 localStorage.setItem('person_id',data.user_uid);
                 localStorage.setItem('role_type',data.role_type);
+                localStorage.setItem('com_id',data.c_id);
+
             }
+
+            // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
+
             if (data.success == false) {
                 if (data.role_type == 1){
                     openNewWindow("create_resume", "../user/mine/create_resume.html")
@@ -414,32 +418,40 @@
             } else if ( data.date == 2 ){
                 if (data.role_type == 1){
                     openNewWindow("addWork", "../user/mine/addWork.html")
+                }else if (data.role_type == 2){
+                    openNewWindow("postsPublish", "../company/home/postsPublish.html")
                 }
             } else if (data.date == 3){
                 if (data.role_type == 1){
                     openNewWindow("addEdution", "../user/mine/addEdution.html")
+                }else if (data.role_type == 2){
+                    openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")
                 }
             } else if (data.date == 4){
                 if (data.role_type == 1){
                     openNewWindow("addProduct", "../user/mine/addProduct.html")
+                }else if (data.role_type == 2){
+                    openNewWindow("uploadLicense", "../company/home/uploadLicense.html")
                 }
             } else if (data.date == 0){
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 }else if (data.role_type == 2){
                     // openNewWindow("home", "../company/home/home.html")
-                    // openNewWindow("uploadLicense", "../company/home/uploadLicense.html")
+                    // openNewWindow("editfillInfo", "../company/home/companyInfo.html")
                     // openNewWindow("add_Subscription", "../company/mine/add_Subscription.html")
-                    openNewWindow("visaApply", "../user/mine/visaApply.html")
-                }
+                    openNewWindow("mine", "../company/mine/mine.html")
 
+                }
             } else{
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){
-                    // openNewWindow("fillInfo", "../company/home/home.html")
+                    openNewWindow("home", "../company/home/home.html")
                 }
             }
+
+
         });
     }
 

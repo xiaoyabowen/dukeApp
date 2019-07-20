@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,23 +11,77 @@
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/boMineCommon.css">
 </head>
-<body>
+<body  class="commonBg">
 
 <div class="Box" id="mine">
-    <div class="boxSub">
-        <div class="roleDiv">我是伯乐</div>
-        <div class="mine-box">
-            <div class="mine-box-left">
-                <div class="mine-name">
-                    {{mineName}}
-                </div>
-                <div class="mine-info-edit cssFlex">
-                    <img src="../../../image/company/chat2x.png" alt="edit" class="editImgInfo">
-                    编辑基本信息
-                </div>
+    <div class="roleDiv">
+        <div class="roleDivChos">我是伯乐</div>
+    </div>
+    <div class="mine-box cssFlex">
+        <div class="mine-box-left">
+            <div class="mine-name">
+                {{mineName}}
+            </div>
+            <div class="mine-info-edit cssFlex" @click="editInfoClick()">
+                <img src="../../../image/company/edit.png" alt="edit" class="editImgInfo">
+                编辑基本信息
             </div>
         </div>
+        <div class="mine-logo-Img">
+            <img :src="defultImg" alt="de" class="mine-logo-defalutImg">
+        </div>
     </div>
+    <div class="line20"></div>
+    <div class="mineChatbox cssFlex">
+        <div class="mineChat">
+            <div class="chatNum">{{chatNum}}</div>
+            <div>沟通过</div>
+        </div>
+        <div class="mineInter">
+            <div class="mineInterNum">{{mineInterNum}}</div>
+            <div>面试</div>
+        </div>
+    </div>
+    <div class="line20"></div>
+    <div class="mineMain">
+        <div class="mineMainBox cssFlex" @click="companyInfo()">
+            <div class="mineMainSubBox cssFlex">
+                <img src="../../../image/company/company.png" style="width: 0.32rem;height: 0.28rem;" alt="icon" class="minMainImg">
+                <span class="commonFont">我的公司</span>
+            </div>
+            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+        </div>
+        <div class="mineMainBox cssFlex">
+            <div class="mineMainSubBox cssFlex">
+                <img src="../../../image/company/posimes.png" style="width: 0.32rem;height: 0.28rem;" alt="icon" class="minMainImg">
+                <span class="commonFont">职位管理</span>
+            </div>
+            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+        </div>
+        <div class="mineMainBox cssFlex">
+            <div class="mineMainSubBox cssFlex">
+                <img src="../../../image/company/person.png" style="width: 0.34rem;height: 0.28rem;" alt="icon" class="minMainImg">
+                <span class="commonFont">人才订阅</span>
+            </div>
+            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+        </div>
+        <div class="mineMainBox cssFlex">
+            <div class="mineMainSubBox cssFlex">
+                <img src="../../../image/company/collon.png" style="width: 0.3rem;height: 0.28rem;" alt="icon" class="minMainImg">
+                <span class="commonFont">我的收藏</span>
+            </div>
+            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+        </div>
+        <div class="mineMainBox cssFlex">
+            <div class="mineMainSubBox cssFlex">
+                <img src="../../../image/company/setMin.png" style="width: 0.28rem;height: 0.28rem;" alt="icon" class="minMainImg">
+                <span class="commonFont">设置</span>
+            </div>
+            <img src="../../../icon/right.png" alt="right" class="info-img-right">
+        </div>
+    </div>
+    
+
 </div>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -44,33 +98,30 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
-        new Vue({
-            el: '#mine',
-            data: {
-                isDisplay: false,
-                mineName:"李宏伟",
-                person_id: ''
-            },
-            created: function () {
 
-            },
-            mounted: function () {
-
-
-            },
-            methods: {
-                // 点击跳转到活动详情页
-                linkHandle: function (circle_id) {
-                    console.log(circle_id)
-                    openNewWindow("details_activities", "./details_activities.html", {
-                        circle_id: circle_id
-                    })
-                },
-
-            }
-        })
         apiready = function () {
+            new Vue({
+                el: '#mine',
+                data: {
+                    isDisplay: false,
+                    mineName:localStorage.getItem("username"),
+                    chatNum:"0",
+                    mineInterNum:"0",
+                    defultImg:"http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png",
+                    person_id: ''
+                },
+                created: function () {
+                    this.chatNumAndInvitation()
+                },
+                mounted: function () {
 
+                },
+                methods: {
+                    companyInfo : function () {
+                        openNewWindow("companyInfo", "./companyInfo.html")
+                    }
+                }
+            })
         }
     </script>
 </body>

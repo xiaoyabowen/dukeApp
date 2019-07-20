@@ -11,6 +11,14 @@
 ├── resume_positionType          // 我的订阅  职位类别
 ├── resume_CompanyIndustry          // 我的订阅  行业类别
 ├── subscribed_positions          // 我的订阅  缺省页
+├── companyInfoFinsh          // 公司信息完善
+├── whriteComInfo          // 填写公司信息
+├── whriteComPro          // 填写公司介绍
+├── whriteComWelfare          // 填写公司福利
+├── whriteComImg          // 填写公司照片
+├── whriteComSuggest          // 填写产品介绍
+├── whriteComMange          // 填写高管介绍
+
 
 
 ```

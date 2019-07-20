@@ -96,6 +96,22 @@
             background:rgba(99,139,255,1);
             border-radius:0.08rem;
         }
+        .authenBox{
+            padding: 0.26rem 0;
+            border-bottom: 1px solid #ebebeb;
+            height: 0.4rem;
+            align-items: center;
+
+        }
+        .authenBox>span{
+            display: block;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            font-size:0.28rem;
+        }
+        #authenEmail{
+            color: #666;
+        }
     </style>
 
 </head>
@@ -107,9 +123,11 @@
         <div class="authen-title">企业邮箱认证</div>
         <div class="authen-yaz commonFont">们向您的邮箱 <i>test01@gotoip2.com</i> 中下发了四位数验证码，
             请查收并填入下方。</div>
-        <div>
-            <input type="text" id="emailInputA">
+        <div class="authenBox cssFlex">
+            <span>验证码：</span>
+            <input type="text" id="authenEmail" value="bowenru@163.com" placeholder="输入企业邮箱地址">
         </div>
+
         <div class="postSubBtn" onclick="emailYz()">下一步</div>
         <div class="subBtnAuthen cssFlex">
             <span class="notInEmail">无法收到邮件？</span>

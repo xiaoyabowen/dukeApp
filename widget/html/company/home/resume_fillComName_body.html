@@ -85,10 +85,17 @@
     // var num = document.querySelector('.resume_level2_num');
     var box = document.querySelector('.comBoxPush');
     // var total = document.querySelector('.resume_level2_total');
-    var url;
+    var url,content;
     apiready = function () {
-
+        content = api.pageParam.content;
         url = api.pageParam.url;
+
+        if (content == '请填写公司名称'){
+            text.value = ''
+        }else{
+            text.value = content
+        }
+
         text.oninput = function (e) {
             // num.innerText = e.target.value.length;
             box.style.display = "block"

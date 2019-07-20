@@ -129,16 +129,16 @@
             <div id="chat">
                 <ul class="chat_main">
                     <li class="li1" @click="timeHandle()"><span>面试日期</span><span>{{time}}</span></li>
-                    <li class="li2"><span>具体时间</span><span>{{mount}}</span></li>
-                    <li class="li3"><span>联系人</span><span>赵东东</span></li>
-                    <li class="li4"><span>联系电话</span><span>13398551010</span></li>
+                    <!--<li class="li2" @click="hoursHandle()"><span>具体时间</span><span>{{mount}}</span></li>-->
+                    <li class="li3" @click="userContact()"><span>联系人</span><span>{{userName}}</span></li>
+                    <li class="li4" @click="userPhoneInput()"><span>联系电话</span><span>{{userPhone}}</span></li>
                     <li class="li5">
                         <span>面试地点</span><span></span>
                     </li>
                 </ul>
                 <div class="chat_main">
-                    <textarea name="" id="text" cols="30" rows="10"></textarea>
-                    <div class="chat_main_btn">发送</div>
+                    <textarea name="" id="text" cols="30" rows="10" v-model="jobAddress"></textarea>
+                    <div class="chat_main_btn" @click="sendPrelim()">发送</div>
                 </div>
             </div>
         </div>
@@ -169,6 +169,7 @@
 <script>
 
     apiready = function () {
+
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
 
@@ -177,9 +178,12 @@
             el: '#chatBox',
             data: {
                 time: '',
-                mount: '10:00',
+                mount: '',
                 app_id: '',
                 name: '',
+                userName: '',
+                userPhone: '',
+                jobAddress: '',
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
@@ -199,18 +203,81 @@
                 },
                 // 选择时间
                 timeHandle: function () {
+                    var that = this
                     var year = new Date().getFullYear();
                     var mount = (new Date().getMonth()) + 2;
                     var day = new Date().getDay();
                     var dtpicker = new mui.DtPicker(
                         {
-                            type: "date", //设置日历初始视图模式
+                            type: "datetime", //设置日历初始视图模式
                             beginDate: new Date(1950, 04, 25), //设置开始日期
                             endDate: new Date(year, mount, day) //设置开始日期
                         }
                     );
                     dtpicker.show(function (selectItems) {
                         console.log(selectItems.text)
+                        that.time = selectItems.text
+                    })
+                },
+                /*hoursHandle : function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker({
+                        "type": "time",
+
+                    })
+                    dtpicker.show(function(e) {
+                        console.log(e);
+                        that.mount = e.value
+                    })
+                }*/
+                userContact : function (){
+                    var that = this
+                    mui.prompt('', '请填写姓名', '请填写姓名', ['确定', '取消'], function (e) {
+                        // console.log(e)
+                        if (e.index === 0) {
+                            that.userName = e.value;
+                        }
+
+                    }, 'div')
+                },
+                userPhoneInput : function (){
+                    var that = this
+                    mui.prompt('', '请填写手机号', '请填写手机号', ['确定', '取消'], function (e) {
+                        // console.log(e)
+                        if (e.index === 0) {
+                            that.userPhone = e.value;
+                        }
+
+                    }, 'div')
+                },
+                sendPrelim : function () {
+                    var that = this
+                    var obj = {
+                        name : that.userName,
+                        phone : that.userPhone,
+                        status : "2",      //  2 初试
+                        status_time : that.time,
+                        status2 : "未接受",
+                        adr_id : that.jobAddress,
+                        app_id : that.app_id,
+                    }
+                    console.log(obj)
+                    ajaxGetWithProgress(UpdateStatus,obj,function (data,ret) {
+
+                        console.log(data)
+                        if (data.return_info.status){
+                            toast("邀约成功")
+                            openNewWindow("resume", "./comment/resume.html")
+                            api.sendEvent({
+                                extra: {
+                                    key: 'activities',
+
+
+                                }
+                            });
+                        } else {
+                            toast("邀约失败")
+                        }
                     })
                 }
             }

@@ -187,7 +187,7 @@
 <body class="commonBg">
 <div class="contentBox">
     <div class="subBox isDisplay">
-        <div class="comTitle_header isDisplay">已预约   2019年5月28日10:00面试</div>
+        <div class="comTitle_header isDisplay">已预约 <i class="Yutime"></i> 面试</div>
         <div class="comTitle cssFlex">
             <div class="comInfo see">
                 <h3 class="comInfoTitle comInfoTitleMar"><span id="p_name">张敏</span> <span id="tag" class="isDisplay">待初试</span></h3>
@@ -846,19 +846,21 @@
                     status: '5'
                 }, function (data, err) {
                     console.log(data);
-                    if (data.return.status) {
+
+                    if (data.return_info.status) {
                         mui.toast('此简历已拒绝');
+
                         // closeWin();
                         var tag = document.getElementById('tag');
                         tag.classList.remove('isDisplay');
                         tag.classList.add('status2');
                         tag.innerText = '不合适';
-                        /*document.getElementById('s5').classList.remove('isDisplay');
+                        document.getElementById('s5').classList.remove('isDisplay');
                         document.getElementById('s4').classList.add('isDisplay');
                         document.getElementById('s3').classList.add('isDisplay');
                         document.getElementById('ss3').classList.add('isDisplay');
                         document.getElementById('s2').classList.add('isDisplay');
-                        document.getElementById('s1').classList.add('isDisplay');*/
+                        document.getElementById('s1').classList.add('isDisplay');
                     }
                 })
             }
@@ -887,7 +889,7 @@
     }
     // 录用
     function employment() {
-        mui.confirm('确定要拒接此简历吗?', '不合适',['确认','取消'], function (e) {
+        mui.confirm('确定要录用此简历吗?', '录用',['确认','取消'], function (e) {
             if (!e.index) {
                 console.log(app_id);
                 ajaxGetWithProgress(UpdateStatus, {
@@ -902,12 +904,12 @@
                         tag.classList.remove('isDisplay');
                         tag.classList.add('status2');
                         tag.innerText = '已录用';
-                        /*document.getElementById('s5').classList.add('isDisplay');
+                        document.getElementById('s5').classList.add('isDisplay');
                         document.getElementById('s4').classList.remove('isDisplay');
                         document.getElementById('s3').classList.add('isDisplay');
                         document.getElementById('ss3').classList.add('isDisplay');
                         document.getElementById('s2').classList.add('isDisplay');
-                        document.getElementById('s1').classList.add('isDisplay');*/
+                        document.getElementById('s1').classList.add('isDisplay');
                     }
                 })
             }

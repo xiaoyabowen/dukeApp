@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>编辑个人信息</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/comMine.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css">
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
+    <style>
+        .info-choose{
+            height: 1.1rem;
+        }
+
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box" id="app1">
+    <div class="boxSub">
+        
+        <div class="info-choose cssFlex" @click="whriteComInfo()">
+            <span class="info-choose-name">公司基本信息</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComInfo">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" @click="whriteComPro()">
+            <span class="info-choose-name">公司介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComPro">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" @click="whriteComWelfare()">
+            <span class="info-choose-name">公司福利</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComWelfare">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" @click="whriteComImg()">
+            <span class="info-choose-name">公司相册</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComImg">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" @click="whriteComSuggest()">
+            <span class="info-choose-name">产品介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComSuggest">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" onclick="whriteComMange()">
+            <span class="info-choose-name">高管介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" id="whriteComMange">未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+
+<script>
+
+    apiready = function () {
+        new Vue({
+            el: '#app1',
+            data: {
+                list: [],
+                list1: [],
+                isHide: true,
+                active: false,
+                index1: -1,
+                index2: -1
+            },
+            created: function () {
+
+            },
+            methods: {
+                whriteComInfo : function () {
+                    openNewWindow("whriteComInfo", "./whriteComInfo.html")
+                },
+                whriteComPro : function () {
+                    openNewWindow("whriteComPro", "./whriteComPro.html")
+                },
+                whriteComWelfare : function () {
+                    openNewWindow("whriteComWelfare", "./whriteComWelfare.html")
+                },
+                whriteComImg : function () {
+                    openNewWindow("whriteComImg", "./whriteComImg.html")
+                },
+                whriteComSuggest : function () {
+                    openNewWindow("whriteComSuggest", "./whriteComSuggest.html")
+                },
+                whriteComMange : function () {
+                    openNewWindow("whriteComMange", "./whriteComMange.html")
+                },
+            }
+        })
+    };
+
+
+
+</script>
+</body>
+</html>

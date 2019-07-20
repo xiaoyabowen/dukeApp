@@ -6,31 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>企业验证</title>
+    <title>编辑个人信息</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+
+
+
 </head>
 <body>
-<div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
+<div id="topbar" class="cssFlex">
+    <!--<div id="leftButton" tapmode="itemOn">
+        <img class="leftImgTop" src="../../../icon/mine.png">
     </div>
-    <div>输入姓名</div>
+    <div class="home-middle">
+        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
+        <span class="searchClick">GO</span>
+    </div>
     <div class="right" onclick="save()">
-        保存
+        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
     </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose">
+        <div class="leftImgClose" onclick="closeWin()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleMain">
-            企业验证
+            编辑个人信息
         </div>
-
+        <div class="rightImgEdite"onclick="save()">
+            保存
+        </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
@@ -41,11 +51,10 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-
     //点击保存
     function save(){
         api.execScript({
-            frameName: "companyEmailAuthen_body",
+            frameName: "editfillInfo_body",
             script: 'preservation()'
         })
     }

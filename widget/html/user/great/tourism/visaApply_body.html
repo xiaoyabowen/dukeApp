@@ -725,57 +725,6 @@
                 },
 
                 visaBtn:function () {
-                    console.log(1)
-                    var that = this
-                    var str = {
-                        pId: that.person_id,
-                        cId: that.cId,
-                        name: that.name,
-                        sex: that.sex,
-                        address: that.borthAddress,
-                        birthdaty: that.birthDay,
-                        maritalStatus: that.marry,
-                        homeAddr: that.familyAddress,
-                        expressAddr: that.shouhuoAddress,
-                        jobTitle: that.comPosi,
-                        yearIncome: that.comYearPrice,
-                        workYear: that.comYearWork,
-                        workUnit: that.comName,
-                        workAdr: that.comAddress,
-                        workPhone: that.comPhone,
-                        leaderName: that.comLeaderName,
-                        leaderJobName: that.comLeaderPosie,
-                        leaderPhone: that.comLeaderPhone,
-                        phone: that.phone,
-                        passportType: that.passportType,
-                        passportNum: that.passportNum,
-                        idNumber: that.ID,
-                        issuingAuthority: that.IDaddress,
-                        faith: that.Religion,
-                        isTravelpartner: that.personPeer,
-                        travelpartner: that.personPeerRemark,
-                        isBean: that.isSignAbea,
-                        isApply: that.isSign,
-                        isRejected: that.isSignCountry,
-                        rejectCountry: that.isSignCountryText,
-                        isLabor: that.isSignCountryJob,
-                        isAbroad: that.isSignCountryOut,
-                        abrSummary: that.goCountry,
-                        spouseName: that.spouseName,
-                        spouseBirthday: that.spouseBirth,
-                        spouseBirAdr: that.spouseBirthAdress,
-                        spouseJobName: that.spouseComName,
-                        spouseJobType: that.spousePosi,
-                        spouseWorkphone: that.spousecomPhone,
-                        spousePhone: that.spousePhone,
-                        spouseFaith: that.Religion1,
-                        childrenName: that.childrenName,
-                        childrenBirthday: that.childrenBirth,
-                        fatherName: that.faName,
-                        fatherBir: that.faBirth,
-                        motherName: that.moName,
-                        motherBir: that.moBirth
-                    }
                     if (that.name){
 
                     }
@@ -904,6 +853,59 @@
                         toast("手机号码不正确");
                         return;
                     }
+                    console.log(1)
+                    var that = this
+                    var str = {
+                        pId: that.person_id,
+                        cId: that.cId,
+                        name: that.name,
+                        sex: that.sex,
+                        address: that.borthAddress,
+                        birthdaty: that.birthDay,
+                        maritalStatus: that.marry,
+                        homeAddr: that.familyAddress,
+                        expressAddr: that.shouhuoAddress,
+                        jobTitle: that.comPosi,
+                        yearIncome: that.comYearPrice,
+                        workYear: that.comYearWork,
+                        workUnit: that.comName,
+                        workAdr: that.comAddress,
+                        workPhone: that.comPhone,
+                        leaderName: that.comLeaderName,
+                        leaderJobName: that.comLeaderPosie,
+                        leaderPhone: that.comLeaderPhone,
+                        phone: that.phone,
+                        passportType: that.passportType,
+                        passportNum: that.passportNum,
+                        idNumber: that.ID,
+                        issuingAuthority: that.IDaddress,
+                        faith: that.Religion,
+                        isTravelpartner: that.personPeer,
+                        travelpartner: that.personPeerRemark,
+                        isBean: that.isSignAbea,
+                        isApply: that.isSign,
+                        isRejected: that.isSignCountry,
+                        rejectCountry: that.isSignCountryText,
+                        isLabor: that.isSignCountryJob,
+                        isAbroad: that.isSignCountryOut,
+                        abrSummary: that.goCountry,
+                        spouseName: that.spouseName,
+                        spouseBirthday: that.spouseBirth,
+                        spouseBirAdr: that.spouseBirthAdress,
+                        spouseJobName: that.spouseComName,
+                        spouseJobType: that.spousePosi,
+                        spouseWorkphone: that.spousecomPhone,
+                        spousePhone: that.spousePhone,
+                        spouseFaith: that.Religion1,
+                        childrenName: that.childrenName,
+                        childrenBirthday: that.childrenBirth,
+                        fatherName: that.faName,
+                        fatherBir: that.faBirth,
+                        motherName: that.moName,
+                        motherBir: that.moBirth,
+                        postalcode: that.postalcode,
+                    }
+
 
                     console.log(str)
                     ajaxGetWithProgress(showVisaInformation,str,function(res,err) {
