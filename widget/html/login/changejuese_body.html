@@ -86,8 +86,17 @@
             },
             methods : {
                 changeRole : function(index) {
-                    openNewWindow("home", "../user/home/home.html")
-                    localStorage.setItem("role",index)
+                    if (index == 1){
+                        alert("qianlima")
+                        openNewWindow("home", "../user/home/home.html")
+                        localStorage.setItem("role",index)
+                    }
+                    if (index == 2){
+                        alert("bole")
+                        openNewWindow("home", "../company/home/home.html")
+                        localStorage.setItem("role",index)
+                    }
+
                 }
             }
         })

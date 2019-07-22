@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>消息推送设置</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css">
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
+    <style>
+
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
+
+        .commonTitle{
+            color: #666666 !important;
+            margin-bottom: 0.36rem;
+            text-align: center;
+        }
+        .pushnewBoxMain{
+            height: auto;
+            color: #333333 !important;
+            text-align: center;
+        }
+        .pushnewBoxMain>i{
+            display: inline-block;
+            color: #638BFF !important;
+        }
+        .commonFont{
+            color: #333 !important;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box" id="app1">
+    <div class="pushnewBox isDisplay">
+        <img src="../../../image/company/open.png" alt="open" class="newopenIMg">
+        <div class="commonTitle">已开启新消息通知</div>
+        <div class="pushnewBoxMain commonFont">你已经开启消息提醒，如想关闭提醒，需要在 <i>设置-渡客-通知</i>中手动设置</div>
+    </div>
+    <div class="pushnewBox">
+        <img src="../../../image/company/open.png" alt="open" class="newopenIMg">
+        <div class="commonTitle">已开启新消息通知</div>
+        <div class="commonFont">别错过任何一个机会！</div>
+        <div class="postSubBtn" onclick="nextPass()">立即开启</div>
+    </div>
+
+</div>
+
+
+
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script src="../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script src="../../../script/vue.min.js"></script>
+
+<script>
+
+    var cid,uid,url,index;
+    apiready = function () {
+        cid = api.pageParam.cid;
+        url = api.pageParam.url;
+        index = api.pageParam.index;
+        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        new Vue({
+            el: '#app1',
+            data: {
+                setPassInput:'',
+                setPassInputAgain:'',
+            },
+            created: function () {
+                // this.orgnizationPICBbycidlist()
+            },
+            mounted : function (){
+
+            },
+            methods: {
+                /*orgnizationPICBbycidlist : function (){
+                    if (index == 2){
+                        var uid = localStorage.getItem("user").user_id
+                        var obj = {
+                            uid: uid
+                        }
+                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
+                            console.log(data)
+                        })
+                    }
+
+                },*/
+
+            }
+        })
+    };
+
+</script>
+</body>
+</html>

@@ -22,6 +22,11 @@
 ├── mangePositionDetail          // 职位管理  详情
 ├── subscribed_positions          // 职位订阅
 ├── setting          // 设置
+├── CandidateCol          // 收藏的  候选人
+├── myAccountNumber          // 我的账号
+├── setPass          // 设置 密码
+├── pushNews          // 消息推送设置
+├── phoneBinding          // 绑定手机号
 
 
 

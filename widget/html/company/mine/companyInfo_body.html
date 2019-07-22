@@ -183,7 +183,7 @@
                             <span>{{item.edu_ex}}</span>
                         </p>
                         <p class="job-img-content cssFlex">
-                            <img src="{{item.p_icon}}" alt="hr" class="hrImg">
+                            <img :src="item.p_icon.split(',')[0]" alt="hr" class="hrImg">
                             <span>{{item.c_name}}</span>
                             <i>·</i>
                             <span>{{item.z_user_job}}</span>

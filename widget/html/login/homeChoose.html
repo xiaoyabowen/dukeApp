@@ -114,12 +114,9 @@
 
         // localStorage.clear();
 
-       /* var role = localStorage.getItem('role');
-        if (role == 2) {
-            openNewWindow("home", "../company/home/home.html")
-            return;
-        }
+        var role = localStorage.getItem('role');
 
+        // alert(role)
         var user = localStorage.getItem("user")
         if (user && user.user_id){
             var obj ={
@@ -127,16 +124,29 @@
             }
             console.log(obj)
             ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+                alert(11)
                 if (data.date != 0) {
                     openNewWindow("login", "login.html")
                     return;
                 }else{
-                    openNewWindow("home", "../user/home/home.html")
+                    if (role == 2) {
+                        openNewWindow("home", "../company/home/home.html")
+                        return;
+                    }else if(role == 1){
+                        openNewWindow("home", "../user/home/home.html")
+                    }
+
                 }
             })
         } else {
-            openNewWindow("home", "../user/home/home.html")
-        }*/
+            if (role == 2) {
+
+                openNewWindow("home", "../company/home/home.html")
+                return;
+            }else if(role == 1){
+                openNewWindow("home", "../user/home/home.html")
+            }
+        }
 
     }
 

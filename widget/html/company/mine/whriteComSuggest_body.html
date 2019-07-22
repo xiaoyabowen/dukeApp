@@ -54,7 +54,7 @@
             <input type="text" class="w-comurl-input commonFont" placeholder="产品标题"  :value="item.productname">
             <div class="subggestTitle commonFont">产品介绍</div>
             <textarea cols="30" rows="10" class="textAreaCom" :value="item.prod_tags" placeholder="公司的产品名称或者提供的服务名称"></textarea>
-            <img :src="item.prod_icon" alt="pro" class="addComProImg addComProImgFor">
+            <img :src="item.prod_icon.split(',')[0]" alt="pro" class="addComProImg addComProImgFor">
         </div>
 
 

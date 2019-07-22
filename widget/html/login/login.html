@@ -220,10 +220,10 @@
             <div class="login-input">
                 <div class="input-phone cssFlex">
                     <span class="phone-top">+86</span>
-                    <input id="phone" type="number" value="18338766606" placeholder="请输入您的手机号">
+                    <input id="phone" type="number" value="" placeholder="请输入您的手机号">
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="number" value="123456" placeholder="请输入验证码">
+                    <input id="password" type="number" value="" placeholder="请输入验证码">
                     <button  id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
                 </div>
             </div>
@@ -270,7 +270,7 @@
         //     time :'2'
         // });
         // 添加安卓退出按钮事件
-        api.addEventListener({
+       /* api.addEventListener({
             name: 'keyback'
         }, function (ret, err) {
             closeOnKeyBack();
@@ -288,7 +288,7 @@
                 backButtonPress = 0;
             }, 1000);
         }
-
+*/
         var Height = $(window).height();   //获取当前页面高度
         $(window).resize(function () {
             $('body').height(Height);
@@ -437,10 +437,10 @@
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 }else if (data.role_type == 2){
-                    // openNewWindow("home", "../company/home/home.html")
+                    openNewWindow("home", "../company/home/home.html")
                     // openNewWindow("editfillInfo", "../company/home/companyInfo.html")
                     // openNewWindow("add_Subscription", "../company/mine/add_Subscription.html")
-                    openNewWindow("companyInfo", "../company/mine/companyInfo.html")
+                    // openNewWindow("companyInfo", "../company/mine/companyInfo.html")
                 }
 
             } else{

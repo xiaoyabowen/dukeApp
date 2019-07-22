@@ -102,7 +102,7 @@
         ajaxGetWithProgress(queryPersonByidnUserProfile,obj,function (data,ret) {
             console.log(data)
             if (data){
-                document.querySelector(".uploadIn").src = data.p_icon;
+                document.querySelector(".uploadIn").src = imgSrcFun(data.p_icon);
                 document.getElementById("fillName").innerText = data.p_name;
                 if (data.p_sex == 1){
                     document.getElementById("fillSex").innerText = "男";

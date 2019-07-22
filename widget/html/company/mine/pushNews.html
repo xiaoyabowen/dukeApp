@@ -6,46 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
+    <title>消息推送设置</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+
     <style>
-      .headerBox{
-          justify-content: space-between;
-      }
-        .middle_center {
-            /*font-size: 0.36rem;*/
-            font-family: PingFangSC-Medium;
-            font-weight: 500;
-            color: rgba(255,255,255,1);
-            line-height: 0.50rem;
-            margin-left: 0.8rem;
+        .headerBox{
+            justify-content: space-between;
         }
     </style>
+
 </head>
 <body>
-<div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
-    </div>
-    <div>活动</div>
-    <div class="right" onclick="save()">
-        + 发布活动
-    </div>-->
+<div id="topbar" class="cssFlex">
+
     <div class="headerBox cssFlex">
-        <div onclick="mineGo()">
-            首页
+        <div class="leftImgClose">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleMain">
-            我的
+            消息推送设置
         </div>
         <div class="rightImgEdite">
 
         </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
@@ -56,20 +46,13 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-    // 首页
+    //点击保存
 
-    function mineGo() {
-        openNewWindow("home", "../home/home.html")
-    }
-
-    //发布活动
     function save(){
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser || uidUser == 'undefined'){
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("publishing_activities", "./publishing_activities.html")
+        api.execScript({
+            frameName: "whriteComInfo_body",
+            script: 'preservation()'
+        })
     }
 </script>
 </html>

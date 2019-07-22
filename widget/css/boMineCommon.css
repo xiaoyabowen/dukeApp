@@ -530,5 +530,116 @@ textarea.textAreaCom {
     transform: translateX(-50%);
     font-weight: 500;
 }
+/*收藏的候选人*/
+.colboxmain.cssFlex {
+    padding: 0.5rem 0.34rem 0.2rem;
+}
+img.colIMg {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.16rem;
+}
+.colinfobox.cssFlex {
+    height: 0.66rem;
+    font-size: 0.48rem;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.66rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.colinfoboxPrice{
+    display: block;
+    font-weight: 500 !important;
+    color:rgba(99,139,255,1) !important;
+}
+.colcom{
+    margin-right: 0.3rem;
+}
+.colcomjob{
+    margin-bottom: 0.08rem;
+}
+.info-choose {
+    justify-content: space-between;
+    height: 1.1rem;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 0.28rem;
+    font-weight: 400;
+
+}
+
+.info-choose-main {
+    align-items: center;
+}
+.info-choose-name{
+    color: #333333; !important;
+}
+.info-choose-main-name{
+    margin-right: 0.2rem;
+    color: #999999 !important;
+}
+input.inputboxSet {
+    display: block;
+    border: 0 !important;
+    border-bottom: 1px solid #ebebeb !important;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    color: #333 !important;
+}
+/*推送消息设置*/
+.pushnewBox{
+    width: 6.3rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+.newopenIMg{
+    display: block;
+    width: 2.62rem;
+    height: 2.06rem;
+    margin: 0 auto 0.2rem;
+
+}
+.bintitle{
+    color: #333333 !important;
+    margin-top: 0.6rem;
+}
+.binsubtitle{
+    color: #999999 !important;
+    margin-bottom: 0.5rem;
+}
+.bingPhone{
+    align-items: center;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    margin-bottom: 1.1rem;
+
+}
+
+input.bingphoneInput {
+    display: block;
+    border: 0 !important;
+    margin: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

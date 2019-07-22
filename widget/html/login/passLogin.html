@@ -175,8 +175,11 @@
             color: rgba(116,160,255,1);
             margin-bottom: 0.32rem;
         }
-        p.subLogin {
-            text-align: right;
+        .passReturnBtn{
+            justify-content: space-between;
+        }
+        .subLogin {
+
             text-decoration: underline;
         }
         .three-login{
@@ -230,7 +233,11 @@
                 </div>
             </div>
             <button class="login-href" onclick="goHome()">进入渡客</button>
-            <p class="subLogin" onclick="returnPass()">忘记密码？</p>
+            <div class="passReturnBtn cssFlex">
+                <span class="subLogin" onclick="returnLogin()">验证码登陆</span>
+                <span class="subLogin" onclick="returnPass()">忘记密码？</span>
+            </div>
+            <!--<p class="subLogin" onclick="returnPass()">忘记密码？</p>-->
             <div class="three-login">
                 <h4>使用第三方登录</h4>
                 <ul class="cssFlex threeLi">
@@ -350,6 +357,9 @@
 
     function returnPass() {
         openNewWindow("returnPass", "returnPass.html")
+    }
+    function returnLogin() {
+        openNewWindow("login", "login.html")
     }
 
 

@@ -117,42 +117,46 @@
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
-    var job_id,url,statusD;
+    var job_id,url,statusD,loginAuthen;
     apiready = function () {
         job_id = api.pageParam.job_id;
         url = api.pageParam.url;
         statusD = api.pageParam.status;
+        loginAuthen = 3;
         var that = this
         var obj = {
             job_id : job_id
         }
-        ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
-            console.log(data)
-            if (data) {
+        if (statusD == 2){
+            ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
+                console.log(data)
+                if (data) {
 
-                document.getElementById("adr_id").innerText = data.adr_id
-                document.getElementById("companyAdressId").innerText = data.shortname
-                document.getElementById("postPositionName").innerText = data.job_name
-                document.getElementById("setpostJobMiao").innerText = data.description
-                document.getElementById("postPositiontype").innerText = data.job_type
-                document.getElementById("postPaySelect").innerText = data.ratio
-                document.getElementById("postPaySelectText").innerText = data.ratio
-                document.getElementById("postJobTime").innerText = data.work_ex
-                document.getElementById("postJobTimeText").innerText = data.work_ex
-                document.getElementById("postStudent").innerText = data.edu_ex
-                document.getElementById("postStudentText").innerText = data.edu_ex
-                document.getElementById("positionSkill_type").innerText = data.skills
-                document.getElementById("postJobType").innerText = data.nature
-                document.getElementById("postJobText").innerText = data.nature
-
-
-
+                    document.getElementById("adr_id").innerText = data.adr_id
+                    document.getElementById("companyAdressId").innerText = data.shortname
+                    document.getElementById("postPositionName").innerText = data.job_name
+                    document.getElementById("setpostJobMiao").innerText = data.description
+                    document.getElementById("postPositiontype").innerText = data.job_type
+                    document.getElementById("postPaySelect").innerText = data.ratio
+                    document.getElementById("postPaySelectText").innerText = data.ratio
+                    document.getElementById("postJobTime").innerText = data.work_ex
+                    document.getElementById("postJobTimeText").innerText = data.work_ex
+                    document.getElementById("postStudent").innerText = data.edu_ex
+                    document.getElementById("postStudentText").innerText = data.edu_ex
+                    document.getElementById("positionSkill_type").innerText = data.skills
+                    document.getElementById("postJobType").innerText = data.nature
+                    document.getElementById("postJobText").innerText = data.nature
 
 
-            } else {
-                toast("请求失败")
-            }
-        })
+
+
+
+                } else {
+                    toast("请求失败")
+                }
+            })
+        }
+
     };
 
     // guozuo 类型
@@ -349,7 +353,7 @@
 
 
     function postJobSubmit() {
-
+        console.log(loginAuthen)
         var adr_id = document.getElementById("adr_id").innerText
         var companyAdressId = document.getElementById("companyAdressId").innerText
         var job_name = document.getElementById("postPositionName").innerText
@@ -413,7 +417,6 @@
         var uid = JSON.parse(localStorage.getItem("user")).user_id
 
         if (statusD == 2){
-            alert(111)
             var obj = {
                 uid:uid,
                 adr_id : adr_id,
@@ -488,7 +491,7 @@
                 }
                 api.hideProgress();
             })
-        }else if (statusD == 3) {
+        }else if (loginAuthen == 3) {
             var obj = {
                 uid:uid,
                 adr_id : adr_id,

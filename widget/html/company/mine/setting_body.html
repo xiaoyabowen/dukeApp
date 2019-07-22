@@ -25,7 +25,7 @@
     <!--主体-->
     <div class="setting_main">
         <ul class="setting_ul">
-            <li data-type="iconPush">
+            <li data-type="myAccountNumber">
                 <div>
                     <img src="../../../image/company/mine.png" alt="">
                     <span>我的账号</span>
@@ -35,7 +35,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li data-type="editPhone">
+            <li data-type="setPass">
                 <div>
                     <img src="../../../image/company/setPas.png" alt="">
                     <span>设置密码</span>
@@ -56,7 +56,7 @@
                 </div>
             </li>
 
-            <li data-type="shielding">
+            <li data-type="pushNews">
                 <div>
                     <img src="../../../image/company/push.png" alt="">
                     <span>推送消息设置</span>
@@ -66,7 +66,7 @@
                     <img src="../../../icon/right.png" alt="">
                 </div>
             </li>
-            <li data-type="Feedback">
+            <li data-type="aboutDuke">
                 <div>
                     <img src="../../../image/company/about.png" alt="">
                     <span>关于我们</span>
@@ -138,10 +138,7 @@
                 console.log(e)
 
                 if (e.index) {
-                    console.log(123)
 
-
-                    localStorage.clear();
 
                     openNewWindow('login', "../../login/login.html");
                     // api.closeToWin({
