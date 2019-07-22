@@ -74,12 +74,13 @@ p.timeInfo {
     font-weight: 400;
     color: rgba(102,102,102,1);
     line-height: 0.28rem;
-    /*align-items: center;*/
+    align-items: center;
 }
 img.ComTime,.dateCom{
     display: inline-block;
     width: 0.24rem;
     height: 0.24rem;
+    margin-right: 0.1rem;
 }
 .comLogo{
     width: 1rem;
@@ -209,6 +210,9 @@ img.hrImg {
     width: 0.6rem !important;
     height: 0.6rem;
     margin-right: 0.2rem;
+}
+.job-left{
+    width: 4.3rem;
 }
 p.job-img-content {
     height: 0.6rem;

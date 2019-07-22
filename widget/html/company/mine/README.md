@@ -20,6 +20,8 @@
 ├── whriteComMange          // 填写高管介绍
 ├── mangePosition          // 职位管理
 ├── mangePositionDetail          // 职位管理  详情
+├── subscribed_positions          // 职位订阅
+├── setting          // 设置
 
 
 

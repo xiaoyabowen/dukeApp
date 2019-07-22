@@ -14,7 +14,12 @@
         .Box{
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
-
+        .addComProImg{
+            display: block;
+            width: 2.2rem;
+            height: 2.2rem;
+            margin: 0.3rem 0 2.3rem;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -38,7 +43,7 @@
 曾在XX公司担任XX岗位，有哪些辉煌业绩
 现任XX公司担任XX岗位，负责XX项目"></textarea>
 
-
+        <img :src="senior_icon" alt="manger" class="addComProImg" @click="wuploadimg()">
         <div class="postSubBtn" @click="preservation()">保存</div>
 
     </div>
@@ -60,10 +65,11 @@
 
 <script>
 
-    var cid,uid,url;
+    var cid,uid,url,index;
     apiready = function () {
         cid = api.pageParam.cid;
         url = api.pageParam.url;
+        index = api.pageParam.index;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         new Vue({
             el: '#app1',
@@ -71,17 +77,89 @@
                 mangeName:"",
                 mangePosition:"",
                 comproText:"",
-                senior_icon:"",
+                senior_icon:"../../../image/company/commanger.png",
             },
             created: function () {
-
+                this.queryOrgnizationSenior()
             },
             mounted : function (){
 
             },
             methods: {
+                queryOrgnizationSenior : function (){
+                    var that = this
+                    if (index == 2){
+                        var uid = localStorage.getItem("user").user_id
+                        var obj = {
+                            uid: uid
+                        }
+                        ajaxGetWithProgress(queryOrgnizationSenior,obj,function (data,ret) {
+                            console.log(data)
+                            if (data){
+                                that.mangeName = data.senior
+                                that.mangePosition = data.senior_position
+                                that.comproText = data.senior_bak
+                                that.senior_icon = data.senior_bak
+                            }
+                        })
+                    }
 
+                },
+                wuploadimg : function () {
+                    var that = this
+                    api.getPicture({
+                        sourceType: 'library',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        allowEdit: true,
+                        quality: 50,
+                        targetWidth: 100,
+                        targetHeight: 100,
+                        saveToPhotoAlbum: false
+                    }, function(ret, err) {
 
+                        if (ret) {
+                            var obj = {
+                                uid : JSON.parse(localStorage.getItem('user')).user_uid
+                            }
+                            console.log(JSON.stringify(ret));
+                            //上传剪辑后的图像到服务器
+                            api.ajax({
+                                // report : false,
+                                // url: 'http://192.168.1.4:8088/upload/UploadFlie',
+                                url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+                                    files: {
+                                        file: ret.data
+                                    },
+                                    values:obj
+                                }
+                            }, function (ret, err) {
+                                console.log(ret);
+                                var pathImgImg = ret.imgUrl
+                                if (pathImgImg == ''){
+                                    that.senior_icon = '../../../image/company/commanger.png'
+                                }else{
+                                    var pathImgData = pathImgImg.split(",")
+                                    console.log(pathImgData)
+                                    that.senior_icon = pathImgData[0]
+                                }
+
+                                api.hideProgress();
+
+                            });
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+
+                    });
+                },
                 preservation: function () {
                     var that = this
                     var c_id = localStorage.getItem("com_id")

@@ -1,31 +1,18 @@
 
 <div class="notDataBox">
+    <div class="on-box cssFlex" v-for="(item,index) in onlineList" :key="index">
+        <div class="" @click="mangePositionDetail(item.job_id)" style="width: 100%;">
+            <div class="on-position cssFlex" style="justify-content: space-between">
+                <span class="commonFont ellipsis jobNameWidth">{{item.job_name}}</span>
+                <span class="commonFont">{{item.ratio}}k</span>
+            </div>
+            <div class="on-positiondetail cssFlex">
+                <span class="on-poaddress">{{item.address}}</span>
+                <span class="on-year">{{item.work_ex}}</span>
+                <span class="on-edudent">{{item.edu_ex}}</span>
+            </div>
+        </div>
 
-    <div class="on-box cssFlex">
-        <div class="on-box-left on-box-leftNon">
-            <div class="on-position cssFlex">
-                <span class="commonFont">运营经理</span>
-                <span class="commonFont">8-10k</span>
-            </div>
-            <div class="on-positiondetail cssFlex">
-                <span class="on-poaddress">北京-朝阳区-望京</span>
-                <span class="on-year">5-10年</span>
-                <span class="on-edudent">本科</span>
-            </div>
-        </div>
-    </div>
-    <div class="on-box cssFlex">
-        <div class="on-box-left">
-            <div class="on-position cssFlex">
-                <span class="commonFont">运营经理</span>
-                <span class="commonFont">8-10k</span>
-            </div>
-            <div class="on-positiondetail cssFlex">
-                <span class="on-poaddress">北京-朝阳区-望京</span>
-                <span class="on-year">5-10年</span>
-                <span class="on-edudent">本科</span>
-            </div>
-        </div>
     </div>
 </div>
 

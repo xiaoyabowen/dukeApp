@@ -34,11 +34,11 @@
     <div class="line20"></div>
     <div class="mineChatbox cssFlex">
         <div class="mineChat">
-            <div class="chatNum">{{chatNum}}</div>
+            <div class="chatNum">{{ChatNum}}</div>
             <div>沟通过</div>
         </div>
         <div class="mineInter">
-            <div class="mineInterNum">{{mineInterNum}}</div>
+            <div class="mineInterNum">{{mineNum}}</div>
             <div>面试</div>
         </div>
     </div>
@@ -51,14 +51,14 @@
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex" @click="companyInfo()">
+        <div class="mineMainBox cssFlex" @click="mangePosition()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/posimes.png" style="width: 0.32rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">职位管理</span>
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex" @click="companyInfo()">
+        <div class="mineMainBox cssFlex" @click="subscribed_positions()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/person.png" style="width: 0.34rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">人才订阅</span>
@@ -72,7 +72,7 @@
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex" @click="companyInfo()">
+        <div class="mineMainBox cssFlex" @click="setting()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/setMin.png" style="width: 0.28rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">设置</span>
@@ -105,8 +105,8 @@
                 data: {
                     isDisplay: false,
                     mineName:localStorage.getItem("username"),
-                    chatNum:"0",
-                    mineInterNum:"0",
+                    ChatNum:"",
+                    mineNum:"",
                     defultImg:"http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png",
                     person_id: ''
                 },
@@ -128,8 +128,9 @@
                             var that = this
                             console.log(data)
                             if (data){
-                                that.chatNum = data.ChatNum;
-                                that.mineInterNum = data.InvitationNum;
+                                that.ChatNum = data.ChatNum;
+                                that.mineNum = data.InvitationNum;
+
                             }
                         })
                     },
@@ -141,6 +142,16 @@
                     companyInfo : function () {
                         openNewWindow("companyInfo", "./companyInfo.html")
                     },
+                    mangePosition : function () {
+                        openNewWindow("mangePosition", "./mangePosition.html")
+                    },
+                    subscribed_positions : function () {
+                        openNewWindow("subscribed_positions", "./subscribed_positions.html")
+                    },
+                    setting : function () {
+                        openNewWindow("setting", "./setting.html")
+                    },
+
 
 
 

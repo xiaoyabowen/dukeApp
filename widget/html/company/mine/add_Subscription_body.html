@@ -60,27 +60,12 @@
 
 <div class="Box">
     <div class="boxSub">
-        <div class="comon-mine-title">添加工作经历（第<span id="num">一</span>份）</div>
+
         <div class="subscriber cssFlex">
             <labal>订阅器名称</labal>
             <input id="text" type="text" maxlength=30>
         </div>
         <div class="resume_content">
-            <div class="info-choose cssFlex" onclick="resume_Company()">
-                <span class="info-choose-name">公司名称</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_name">请输入</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-
-            <div class="info-choose cssFlex" onclick="int_city()">
-                <span class="info-choose-name">工作地点</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="int_city">请选择</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
 
             <div class="info-choose cssFlex" onclick="resume_positionType()">
                 <span class="info-choose-name">职位类型</span>
@@ -89,22 +74,6 @@
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-
-            <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
-                <span class="info-choose-name">行业类别</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="com_type">请选择</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-            <div class="info-choose cssFlex" onclick="entry_date()">
-                <span class="info-choose-name">发布时间</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date" id="entry_date">请选择</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-
             <div class="info-choose cssFlex" onclick="showUserPicker()">
                 <span class="info-choose-name">学历要求</span>
                 <div class="info-choose-main cssFlex">
@@ -112,21 +81,22 @@
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <div class="info-choose cssFlex" onclick="company_size()">
-                <span class="info-choose-name">公司融资规模</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date" id="company_size">请选择</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
-            <div class="info-choose cssFlex" onclick="team_size()">
-                <span class="info-choose-name">公司团队规模</span>
-                <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name quit_date" id="team_size">请选择</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </div>
 
+
+            <div class="info-choose cssFlex" onclick="resume_CompanyIndustry()">
+                <span class="info-choose-name">院校要求</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option" id="com_type">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="entry_date()">
+                <span class="info-choose-name">工作年限</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name quit_date" id="entry_date">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
             <div class="info-choose cssFlex" onclick="paySelect()">
                 <span class="info-choose-name">薪资范围</span>
                 <div class="info-choose-main cssFlex">
@@ -135,6 +105,43 @@
                 </div>
             </div>
 
+            <div class="info-choose cssFlex" onclick="int_city()">
+                <span class="info-choose-name">期望工作城市</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name birth_option" id="int_city">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="age_date()">
+                <span class="info-choose-name">年龄</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name quit_date" id="age">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+
+            <div class="info-choose cssFlex" onclick="company_size()">
+                <span class="info-choose-name">公司融资规模</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name quit_date" id="company_size">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+            <div class="info-choose cssFlex" onclick="team_status()">
+                <span class="info-choose-name">求职状态</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name quit_date" id="team_status">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
+
+            <div class="info-choose cssFlex" onclick="team_size()">
+                <span class="info-choose-name">求职类型</span>
+                <div class="info-choose-main cssFlex">
+                    <span class="info-choose-main-name quit_date" id="team_size">请选择</span>
+                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -185,7 +192,7 @@
     // 选择城市
     function int_city() {
         var picker = new mui.PopPicker({
-            layer: 3
+            layer: 1
         });
         picker.setData(cityData3)
         picker.pickers[0].setSelectedIndex(0);
@@ -254,34 +261,50 @@
         })
     }
 
-    // 团队规模
+    // 球职类型
     function team_size() {
         var picker = new mui.PopPicker();
         picker.setData([{
             value: "1",
-            text: "0-20人"
+            text: "不限"
         }, {
             value: "2",
-            text: "20-99人"
+            text: "全职"
         }, {
             value: "3",
-            text: "100-499人"
-        }, {
-            value: "4",
-            text: "500-999人"
-        }, {
-            value: "5",
-            text: "1000-9999人"
-        }, {
-            value: "6",
-            text: "10000人以上"
-        },
+            text: "兼职"
+        }
         ])
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
             console.log(SelectedItem)
             document.getElementById('team_size').innerText = SelectedItem[0].text;
+        })
+    }
+
+    // 求职状态
+    function team_status() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "离职-随时到岗"
+        }, {
+            value: "2",
+            text: "在职-月内到岗"
+        }, {
+            value: "3",
+            text: "在职-考虑机会"
+        }, {
+            value: "4",
+            text: "在职-暂不考虑"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            console.log(SelectedItem)
+            document.getElementById('team_status').innerText = SelectedItem[0].text;
         })
     }
 
@@ -316,8 +339,36 @@
         })
     }
 
-    // 入学开始
+    // 工作年限
     function entry_date() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "3-5年"
+        }, {
+            value: "2",
+            text: "5-10年"
+        },{
+            value: "3",
+            text: "10-15年"
+        },{
+            value: "4",
+            text: "15-20年"
+        },{
+            value: "5",
+            text: "20-30年"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('entry_date').innerText = SelectedItem[0].text;
+        })
+
+
+    }
+    //年龄
+    function age_date() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -328,11 +379,10 @@
         dtpicker.show(function (selectItems) {
             console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
-            document.getElementById('entry_date').innerText = selectItems.text;
+            document.getElementById('age').innerText = selectItems.text;
         })
 
     }
-
     // 学历选择
     function showUserPicker() {
         var picker = new mui.PopPicker();
@@ -365,10 +415,10 @@
     function preservation() {
 
         var sub_name = document.getElementById("text").value;
-        var c_name = document.getElementById("com_name").innerText;
+        var age = document.getElementById("age").innerText;
         var job_adr = document.getElementById("int_city").innerText;
         var job_type = document.getElementById("position_type").innerText;
-        var com_type = document.getElementById("com_type").innerText;
+        var team_status = document.getElementById("team_status").innerText;
         var com_scale = document.getElementById("company_size").innerText;
         var com_financing = document.getElementById("team_size").innerText;
         var job_ratio = document.getElementById("pay").innerText;
@@ -385,24 +435,9 @@
                 msg: '请填写订阅器名称'
             });
             return
-        }else if(c_name == "请输入"){
-            api.toast({
-                msg: '请填写公司名称'
-            });
-            return
-        }else if(job_adr == "请选择"){
-            api.toast({
-                msg: '请选择工作地址'
-            });
-            return
         }else if(job_type == "请选择"){
             api.toast({
                 msg: '请选择职位类型'
-            });
-            return
-        }else if(com_type == "请选择"){
-            api.toast({
-                msg: '请选择行业类型'
             });
             return
         }else if(edu_ex == "请选择"){
@@ -412,7 +447,22 @@
             return
         }else if(issue_time == "请选择"){
             api.toast({
-                msg: '请选择入职时间'
+                msg: '请选择工作年限'
+            });
+            return
+        }else if(job_ratio == "请选择"){
+            api.toast({
+                msg: '请选择薪资范围'
+            });
+            return
+        }else if(job_adr == "请选择"){
+            api.toast({
+                msg: '请选择工作城市'
+            });
+            return
+        }else if(age == "请选择"){
+            api.toast({
+                msg: '请选择年龄'
             });
             return
         }else if(com_scale == "请选择"){
@@ -420,14 +470,14 @@
                 msg: '请选择公司融资规模'
             });
             return
-        }else if(com_financing == "请选择"){
+        }else if(team_status == "请选择"){
             api.toast({
-                msg: '请选择公司团队规模'
+                msg: '请选择求职状态'
             });
             return
-        }else if(job_ratio == "请选择"){
+        }else if(com_financing == "请选择"){
             api.toast({
-                msg: '请选择薪资范围'
+                msg: '请选择求职类型'
             });
             return
         }
@@ -449,7 +499,7 @@
         }
         console.log(params);
 
-        ajaxGetWithProgress(AddSubscription, params, function (data, err) {
+        ajaxGetWithProgress(addSubscriptionUserProfile, params, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
             if (data.return_info.status) {

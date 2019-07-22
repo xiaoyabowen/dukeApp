@@ -226,9 +226,16 @@
                     console.log(123,ret);
                     var pathImgImg = ret.imgUrl
 
-                    var pathImgData = pathImgImg.split(",")
-                    console.log(pathImgData)
-                    document.querySelector(".uploadIn").src = pathImgData[0]
+
+                    if (pathImgImg == ''){
+                        document.querySelector(".uploadIn").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                    }else{
+                        var pathImgData = pathImgImg.split(",")
+                        console.log(pathImgData)
+                        document.querySelector(".uploadIn").src = pathImgData[0]
+                    }
+
+
                     api.hideProgress();
 
                 });

@@ -22,47 +22,97 @@
 <body class="commonBg">
 
 <div class="Box" id="app1">
-    <div class="boxSub">
+    <div class="boxSub isDisplay">
         
-        <div class="info-choose cssFlex" @click="whriteComInfo()">
+        <div class="info-choose cssFlex" @click="whriteComInfo(1)" v-if="comInfomation == false">
             <span class="info-choose-name">公司基本信息</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComInfo">未完善</span>
+                <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComPro()">
+        <div class="info-choose cssFlex" @click="whriteComInfo(2)" v-if="comInfomation == true">
+            <span class="info-choose-name">公司基本信息</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option">已完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+
+        <div class="info-choose cssFlex" @click="whriteComPro(1)" v-if="comProduct == false">
             <span class="info-choose-name">公司介绍</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComPro">未完善</span>
+                <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComWelfare()">
+
+        <div class="info-choose cssFlex" @click="whriteComPro(2)" v-if="comProduct == true">
+            <span class="info-choose-name">公司介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option">已完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+
+        <div class="info-choose cssFlex" @click="whriteComWelfare(1)" v-if="comWelfare == false">
             <span class="info-choose-name">公司福利</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComWelfare">未完善</span>
+                <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComImg()">
+        <div class="info-choose cssFlex" @click="whriteComWelfare(2)"v-if="comWelfare == true">
+            <span class="info-choose-name">公司福利</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" >已完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+
+
+
+        <div class="info-choose cssFlex" @click="whriteComImg(1)" v-if="comPicture == false">
             <span class="info-choose-name">公司相册</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComImg">未完善</span>
+                <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComSuggest()">
+        <div class="info-choose cssFlex" @click="whriteComImg(2)" v-if="comPicture == true">
+            <span class="info-choose-name">公司相册</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option">已完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+
+        <div class="info-choose cssFlex" @click="whriteComSuggest(1)" v-if="comSummary == false">
             <span class="info-choose-name">产品介绍</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComSuggest">未完善</span>
+                <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComMange()">
+        <div class="info-choose cssFlex" @click="whriteComSuggest(2)"v-if="comSummary == true">
+            <span class="info-choose-name">产品介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" >已完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+        <div class="info-choose cssFlex" @click="whriteComMange(1)"v-if="comSentior == false">
             <span class="info-choose-name">高管介绍</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="whriteComMange">未完善</span>
+                <span class="info-choose-main-name birth_option" >未完善</span>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+        </div>
+
+        <div class="info-choose cssFlex" @click="whriteComMange(2)"v-if="comSentior == true">
+            <span class="info-choose-name">高管介绍</span>
+            <div class="info-choose-main cssFlex">
+                <span class="info-choose-main-name birth_option" >已完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
@@ -95,40 +145,100 @@
                 isHide: true,
                 active: false,
                 index1: -1,
-                index2: -1
+                index2: -1,
+                comInfomation: false,
+                comProduct: '',
+                comWelfare: '',
+                comPicture: '',
+                comSummary: '',
+                comSentior: '',
             },
             created: function () {
-
+                this.CompanySummaryIsPerfect()
             },
             methods: {
-                whriteComInfo : function () {
+
+                CompanySummaryIsPerfect : function () {
+
+                    var that = this
+                    var uid = localStorage.getItem("user").user_id
+                    var obj = {
+                        uid:uid
+                    }
+                    ajaxGetWithProgress(CompanySummaryIsPerfect,obj,function (data,ret) {
+
+                        if (data) {
+                            if (data.InformationPerfect){
+                                that.comInfomation = true
+                            }else{
+                                that.comInfomation = false
+                            }
+                            if (data.ProductPerfect){
+                                that.comProduct = true
+                            }else{
+                                that.comProduct = false
+                            }
+                            if (data.SeniorPerfect){
+                                that.comSentior = true
+                            }else{
+                                that.comSentior = false
+                            }
+                            if (data.SummaryPerfect){
+                                that.comSummary = true
+                            }else{
+                                that.comSummary = false
+                            }
+                            if (data.PicturePerfect){
+                                that.comPicture = true
+                            }else{
+                                that.comPicture = false
+                            }
+                            if (data.WelfarePerfect){
+                                that.comWelfare = true
+                            }else{
+                                that.comWelfare = false
+                            }
+                            document.querySelector(".boxSub").classList.remove("isDisplay")
+                        } else {
+                            toast("请求出错！")
+                        }
+                    })
+                },
+
+                whriteComInfo : function (index) {
                     openNewWindow("whriteComInfo", "./whriteComInfo.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
-                whriteComPro : function () {
+                whriteComPro : function (index) {
                     openNewWindow("whriteComPro", "./whriteComPro.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
-                whriteComWelfare : function () {
+                whriteComWelfare : function (index) {
                     openNewWindow("whriteComWelfare", "./whriteComWelfare.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
-                whriteComImg : function () {
+                whriteComImg : function (index) {
                     openNewWindow("whriteComImg", "./whriteComImg.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
-                whriteComSuggest : function () {
+                whriteComSuggest : function (index) {
                     openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
-                whriteComMange : function () {
+                whriteComMange : function (index) {
                     openNewWindow("whriteComMange", "./whriteComMange.html", {
-                        url: 'companyInfoFinsh'
+                        url: 'companyInfoFinsh',
+                        index:index
                     })
                 },
             }

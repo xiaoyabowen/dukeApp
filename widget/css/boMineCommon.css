@@ -360,6 +360,10 @@ textarea.textAreaCom {
     align-items: center;
     border-bottom: 0.01rem solid #ebebeb;
 }
+.jobNameWidth{
+    max-width: 3.3rem;
+    margin-right: 0.1rem;
+}
 .on-box-left{
     width: 4.5rem;
     border-right: 0.01rem solid #ebebeb;
@@ -497,6 +501,7 @@ textarea.textAreaCom {
     align-items: center;
     left: 0;
     bottom: 0;
+    z-index: 1111;
 }
 .mp-posiOff,.mp-posiEdit,.mp-posiPushAgain{
     height: 1.1rem;
@@ -511,6 +516,19 @@ textarea.textAreaCom {
 }
 .mp-posiPushAgain{
     width: 100%;
+}
+.activeTab:after{
+    content: "";
+    display: block;
+    width: 0.9rem;
+    height: 0.04rem;
+    background: rgba(99,139,255,1);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transition: all .5s;
+    transform: translateX(-50%);
+    font-weight: 500;
 }
 
 

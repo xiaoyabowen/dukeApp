@@ -4,11 +4,11 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 /*
-var serverUrl = "http://192.168.1.3:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.3:8000/SE4M';
-var Domain = 'http://192.168.1.3:8088';
-
+var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.4:8000/SE4M';
+var Domain = 'http://192.168.1.4:8088';
 */
+
 
 
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
@@ -347,6 +347,25 @@ var CertifiedMailOrgnizationProfile = serverUrl + "/OrgnizationProfile/Certified
 
 //  伯乐查询我的公司
 var queryMyOrgProfileAllinOne = serverUrl + "/OrgnizationProfile/queryMyOrgProfileAllinOne";
+//  伯乐 完善我的公司  状态
+var CompanySummaryIsPerfect = serverUrl + "/OrgnizationProfile/CompanySummaryIsPerfect";
+//  伯乐 完善我的公司  状态  公司基本信息 已填写  详细信息
+var queryOrgnizationInformation = serverUrl + "/OrgnizationProfile/queryOrgnizationInformation";
+
+//  伯乐 完善我的公司  状态 公司介绍  已填写  详细信息
+var queryOrgnizationSummaryAndAddress = serverUrl + "/OrgnizationProfile/queryOrgnizationSummaryAndAddress";
+
+//  伯乐 完善我的公司  状态 公司福利   已填写  详细信息
+var queryOrgnizationWelfare = serverUrl + "/OrgnizationProfile/queryOrgnizationWelfare";
+
+//  伯乐 完善我的公司  状态 高管  已填写  详细信息
+var queryOrgnizationSenior = serverUrl + "/OrgnizationProfile/queryOrgnizationSenior";
+//  伯乐 完善我的公司  状态 产品介绍已填写  详细信息
+var queryProductSummary = serverUrl + "/OrgnizationProfile/queryProductSummary";
+//  伯乐 完善我的公司  状态 图片  已填写  详细信息
+var orgnizationPICBbycidlist = serverUrl + "/OrgnizationProfile/orgnizationPICBbycidlist";
+
+
 //  伯乐填写我的公司基本信息
 var createOrgnization = serverUrl + "/OrgnizationProfile/createOrgnization";
 //  伯乐填写我的公司  公司介绍
@@ -356,10 +375,21 @@ var addCompanyProduct = serverUrl + "/OrgnizationProfile/addCompanyProduct";
 //  伯乐填写我的公司  公司福利
 var createCompanyWelfare = serverUrl + "/OrgnizationProfile/createCompanyWelfare";
 
-
-
 //  伯乐 填写我的公司 公司高管
 var createCompanySenior = serverUrl + "/OrgnizationProfile/createCompanySenior";
+
+//  伯乐 职位管理  在线职位
+var queryMyJobsCandidateNum = serverUrl + "/JobProfile/queryMyJobsCandidateNum";
+
+//  伯乐 职位  详情
+var queryJobSummaryJobProfile = serverUrl + "/JobProfile/queryJobSummary";
+//  伯乐 职位管理  下线职位
+var queryICListJobProfile = serverUrl + "/JobProfile/queryICList";
+//  伯乐 下线 2  上线 1
+var ICjobsJobProfile = serverUrl + "/JobProfile/ICjobs";
+
+//  伯乐 添加订阅
+var addSubscriptionUserProfile= serverUrl + "/UserProfile/addSubscription";
 
 
 
@@ -402,6 +432,18 @@ function isStatus(num) {
 function imgSrcFun(src) {
     return src.split(',')[0];
 }
+
+// 字符串 转数组
+function stringFun(string) {
+    return string.split(',');
+}
+
+// 数组转 字符传
+function ArrFun(arr) {
+    return arr.join(',');
+}
+
+
 // 计算年龄或工作年限
 function ages(str) {
     var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);

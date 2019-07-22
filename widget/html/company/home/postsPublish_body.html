@@ -117,9 +117,42 @@
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
-
+    var job_id,url,statusD;
     apiready = function () {
+        job_id = api.pageParam.job_id;
+        url = api.pageParam.url;
+        statusD = api.pageParam.status;
+        var that = this
+        var obj = {
+            job_id : job_id
+        }
+        ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
+            console.log(data)
+            if (data) {
 
+                document.getElementById("adr_id").innerText = data.adr_id
+                document.getElementById("companyAdressId").innerText = data.shortname
+                document.getElementById("postPositionName").innerText = data.job_name
+                document.getElementById("setpostJobMiao").innerText = data.description
+                document.getElementById("postPositiontype").innerText = data.job_type
+                document.getElementById("postPaySelect").innerText = data.ratio
+                document.getElementById("postPaySelectText").innerText = data.ratio
+                document.getElementById("postJobTime").innerText = data.work_ex
+                document.getElementById("postJobTimeText").innerText = data.work_ex
+                document.getElementById("postStudent").innerText = data.edu_ex
+                document.getElementById("postStudentText").innerText = data.edu_ex
+                document.getElementById("positionSkill_type").innerText = data.skills
+                document.getElementById("postJobType").innerText = data.nature
+                document.getElementById("postJobText").innerText = data.nature
+
+
+
+
+
+            } else {
+                toast("请求失败")
+            }
+        })
     };
 
     // guozuo 类型
@@ -322,11 +355,11 @@
         var job_name = document.getElementById("postPositionName").innerText
         var description = document.getElementById("setpostJobMiao").innerText
         var job_type = document.getElementById("postPositiontype").innerText
-        var radio = document.getElementById("postPaySelect").innerText
-        var work_ex = document.getElementById("postJobTime").innerText
-        var edu_ex = document.getElementById("postStudent").innerText
+        var radio = document.getElementById("postPaySelectText").innerText
+        var work_ex = document.getElementById("postJobTimeText").innerText
+        var edu_ex = document.getElementById("postStudentText").innerText
         var skills = document.getElementById("positionSkill_type").innerText
-        var nature = document.getElementById("postJobType").innerText
+        var nature = document.getElementById("postJobText").innerText
 
         if (nature == "请选择") {
             api.toast({
@@ -378,37 +411,123 @@
 
 
         var uid = JSON.parse(localStorage.getItem("user")).user_id
-        var obj = {
-            uid:uid,
-            adr_id : adr_id,
-            job_name : job_name,
-            description : description,
-            open_time : getNowFormatDate(),
-            job_type : job_type,
-            radio : radio,
-            work_ex : work_ex,
-            edu_ex : edu_ex,
-            skills : skills,
-            nature :nature,
-            status : '2'
-        }
-        ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
-            console.log(data)
-            if (data){
-                if (data.return_info.status){
-                    toast("请求成功")
-                }
-                if (!data.emailStatus){
-                    openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
-                }else{
-                    openNewWindow("home", "./home.html")
-                }
-            }else{
-                toast("请求出错!")
-            }
 
-            api.hideProgress();
-        })
+        if (statusD == 2){
+            alert(111)
+            var obj = {
+                uid:uid,
+                adr_id : adr_id,
+                job_name : job_name,
+                description : description,
+                open_time : getNowFormatDate(),
+                job_type : job_type,
+                ratio : radio,
+                work_ex : work_ex,
+                edu_ex : edu_ex,
+                skills : skills,
+                nature :nature,
+                status : '1',
+                job_id:job_id
+            }
+            console.log(obj)
+            ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
+                console.log(data)
+                if (data){
+                    if (data.return_info.status){
+                        toast("请求成功")
+                        var frameName = url + "_body";
+                        api.execScript({
+                            name:url,
+                            // frameName:url +"_body",
+                            frameName: frameName,
+                            script: apiready()
+                        })
+                        closeWin();
+                    }
+
+                }else{
+                    toast("请求出错!")
+                }
+
+                api.hideProgress();
+            })
+
+        } else if (statusD == 1) {
+            var obj = {
+                uid:uid,
+                adr_id : adr_id,
+                job_name : job_name,
+                description : description,
+                open_time : getNowFormatDate(),
+                job_type : job_type,
+                ratio : radio,
+                work_ex : work_ex,
+                edu_ex : edu_ex,
+                skills : skills,
+                nature :nature,
+                status : '2',
+
+            }
+            ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
+                console.log(data)
+                if (data){
+                    if (data.return_info.status){
+                        toast("请求成功")
+                        var frameName = url + "_body";
+                        api.execScript({
+                            name:url,
+                            // frameName:url +"_body",
+                            frameName: frameName,
+                            script: apiready()
+                        })
+                        closeWin();
+                    }
+
+                }else{
+                    toast("请求出错!")
+                }
+                api.hideProgress();
+            })
+        }else if (statusD == 3) {
+            var obj = {
+                uid:uid,
+                adr_id : adr_id,
+                job_name : job_name,
+                description : description,
+                open_time : getNowFormatDate(),
+                job_type : job_type,
+                ratio : radio,
+                work_ex : work_ex,
+                edu_ex : edu_ex,
+                skills : skills,
+                nature :nature,
+                status : '2',
+                job_id:job_id
+
+            }
+            ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
+                console.log(data)
+                if (data){
+                    if (data.return_info.status){
+                        toast("请求成功")
+                    }
+                    if (!data.emailStatus){
+                        openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
+                    }else{
+                        openNewWindow("home", "./home.html")
+                    }
+                }else{
+                    toast("请求出错!")
+                }
+
+                api.hideProgress();
+            })
+        }
+
+
+
+
+
     }
 
 

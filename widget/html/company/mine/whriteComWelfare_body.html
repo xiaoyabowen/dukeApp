@@ -87,10 +87,11 @@
 
 
 
-    var cid,uid,url;
+    var cid,uid,url,index;
     apiready = function () {
         cid = api.pageParam.cid;
         url = api.pageParam.url;
+        index = api.pageParam.index;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         new Vue({
             el: '#app1',
@@ -150,12 +151,24 @@
                 ], //生活补贴
             },
             created: function () {
-
+                this.queryOrgnizationWelfare()
             },
             mounted : function (){
 
             },
             methods: {
+                queryOrgnizationWelfare : function (){
+                    if (index == 2){
+                        var uid = localStorage.getItem("user").user_id
+                        var obj = {
+                            uid: uid
+                        }
+                        ajaxGetWithProgress(queryOrgnizationWelfare,obj,function (data,ret) {
+                            console.log(data)
+                        })
+                    }
+
+                },
                 comscaleList : function (value,index){   //保险
                     if(this.comscaleText.indexOf( value )!=-1){
                         this.comscaleText.splice( this.comscaleText.indexOf( value ), 1 )
@@ -188,17 +201,14 @@
 
                 preservation: function () {
                     var that = this
-                    var c_id = localStorage.getItem("com_id")
-                    var comscaleText = that.comscaleText
-                    var restText = that.restText
-                    var overtimeText = that.overtimeText
-                    var lifeText = that.lifeText
+                    var c_id = localStorage.getItem("com_id");
+                    var welfareArr = [];
+                    welfareArr = welfareArr.concat(that.comscaleText).concat(that.restText).concat(that.overtimeText).concat(that.lifeText)
+                    console.log(welfareArr)
                     var obj = {
                         c_id : c_id,
-                        comscaleText : comscaleText.join(','), // 规模
-                        restText : restText.join(','),
-                        overtimeText : overtimeText.join(','),
-                        lifeText : lifeText.join(','),
+                        welfare : welfareArr.join(','), //
+
                     }
                     console.log(obj)
                     ajaxGetWithProgress(createCompanyWelfare,obj,function (data,ret) {

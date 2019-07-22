@@ -7,12 +7,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>公司详情</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
         .job-img-content {
             padding: 16px 0 10px;
             position: relative;
@@ -22,52 +24,53 @@
             padding: 0.48rem 0rem 0.12rem 0rem;
         }
 
-        .infobox{
+        .infobox {
             padding: 0 !important;
         }
 
 
-        .job-name{
+        .job-name {
             height: 0.3rem !important;
             line-height: 0.3rem !important;
-            font-size:0.22rem !important;
-            font-weight:400;
-            color:rgba(153,153,153,1) !important;
+            font-size: 0.22rem !important;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1) !important;
         }
 
     </style>
 </head>
 <body class="commonBg">
 
-<div class="Box">
-    <div class="boxSub">
-
+<div class="Box" id="app1">
+    <div class="boxSub isDisplay">
         <div class="comTitle" id="comTitleId">
             <div class="comintobox cssFlex">
                 <div class="comInfo">
-                    <h3 class="comInfoTitle ">百度科技</h3>
+                    <h3 class="comInfoTitle">{{ComName}}</h3>
                     <p class="comInfoCon comInfoConMar">
-                        <span>已上市</span><i>·</i>
-                        <span>10000人以上</span><i>·</i>
-                        <span>互联网</span>
+                        <span>{{ComContactor}}</span><i>·</i>
+                        <span>{{ComScale}}</span><i>·</i>
+                        <span>{{ComOrgType}}</span>
                     </p>
-                    <p class="timeInfo">
+                    <p class="timeInfo cssFlex">
                         <img src="../../../icon/time.png" alt="time" class="ComTime">
-                        <span>10:00</span>
+                        <span>{{ComStime}}</span>
                         <i>-</i>
-                        <span class="marginR">18:00</span>
+                        <span class="marginR">{{ComXtime}}</span>
                         <img src="../../../icon/date.png" alt="date" class="dateCom">
-                        <span class="marginR">双休</span>
-                        <span>弹性工作</span>
+                        <span class="marginR">{{ComBreakTime}}</span>
+                        <span>{{ComworkOver}}</span>
                     </p>
                 </div>
                 <div class="comLogo">
-                    <img src="../../../image/comLogo.png" alt="comLogo">
+                    <img :src="ComLogo" alt="comLogo">
                 </div>
             </div>
 
         </div>
-        <div class="F9Line"></div>
+    </div>
+    <div class="F9Line isDisplay"></div>
+    <div class="boxSub boxSubDis isDisplay">
         <!-- mui  滑动tab切换-->
         <ul id="tabs" class="cssFlex">
             <li class="activeTab"><a href="javascript:;" title="tab1">基本信息</a></li>
@@ -79,43 +82,37 @@
             <div id="tab1" style="display: block;">
                 <div class="infobox">
                     <div class="infoList cssFlex">
-                        <span>餐补</span>
-                        <span>五险一金</span>
-                        <span>五险</span>
-                        <span>五险</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
+                        <span v-for="(item , index) in ComWelfare" :key="index">{{item}}</span>
+
                     </div>
                     <p class="job-text">
-                        百度，全球最大的中文搜索引擎、最大的中文网站。百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。<br/>
-                        “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。
+                        {{ComSummary}}
                     </p>
                     <h4 class="productName productNamePad">产品介绍</h4>
                     <div class="product_hisbox">
-                        <div class="infoProduct infoProductPad clearfix">
+                        <div class="infoProduct infoProductPad clearfix"
+                             v-for="(item , index) in ComProList" :key="index">
+                            <img :src="imgSrcFun(item.prod_icon)" alt="pro" class="pro-img">
+                            <div class="infoProductContent">
+                                <h5>{{item.productname}}</h5>
+                                <p class="textOverflow">{{item.prod_tags}}</p>
+                            </div>
+                        </div>
+                        <!--<div class="infoProduct infoProductPad clearfix">
                             <img src="../../../image/pro.png" alt="pro" class="pro-img">
                             <div class="infoProductContent">
                                 <h5>百度本地广告直通车</h5>
                                 <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
                             </div>
-                        </div>
-                        <div class="infoProduct infoProductPad clearfix">
-                            <img src="../../../image/pro.png" alt="pro" class="pro-img">
-                            <div class="infoProductContent">
-                                <h5>百度本地广告直通车</h5>
-                                <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
-                            </div>
-                        </div>
+                        </div>-->
                     </div>
 
                     <h4 class="productName productNamePad">高管介绍</h4>
                     <div class="infoProduct infoProductPad clearfix">
-                        <img src="../../../image/pro.png" alt="pro" class="seniorimg">
+                        <img :src="ComSeniorLogo" alt="pro" class="seniorimg">
                         <div class="infoProductContent">
-                            <h5 class="seniorname">李彦宏</h5>
-                            <p class="textOverflow seniorinfo">1968年11月生，山西阳泉人，无党派，研究生学历。现任全国政协委员、全国工商<i>详情</i></p>
+                            <h5 class="seniorname">{{ComSenior}}&nbsp;&nbsp;&nbsp;&nbsp;{{ComSeniorPos}}</h5>
+                            <p class="textOverflow seniorinfo">{{ComSeniorBak}}</p>
                         </div>
                     </div>
                     <h4 class="productName productNamePad">公司照片</h4>
@@ -148,13 +145,13 @@
                 <div class="infobox">
                     <h4 class="productName productNamePad">公司官网</h4>
                     <div class="link-compony cssFlex">
-                        <span class="homepage">http://www.baidu.com</span>
+                        <span class="homepage">{{ComUrl}}</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                     <h4 class="productName productNamePad">工商信息</h4>
                     <div class="gong-info">
                         <p>
-                            公司全称：<span class="Name">百度在线网络技术（北京）有限公司</span>
+                            公司全称：<span class="Name">{{ComNameAll}}</span>
                         </p>
                         <p>
                             企业法人：<span class="OperName">向海龙</span>
@@ -174,11 +171,43 @@
                 </div>
             </div>
             <div id="tab2" style="display:none;">
-
+                <div class="jobBox cssFlex" v-for="(item , index) in ComJobList" :key="index">
+                    <div class="job-left ellipsis">
+                        <h4 class="job-nameNm">{{item.job_name}}</h4>
+                        <p class="job-name">
+                            <span>{{item.c_name}}</span>
+                        </p>
+                        <p class="adress-job">
+                            <span>{{item.province}}-{{item.city}}-{{item.street}}</span>
+                            <span>{{item.work_ex}}</span>
+                            <span>{{item.edu_ex}}</span>
+                        </p>
+                        <p class="job-img-content cssFlex">
+                            <img src="{{item.p_icon}}" alt="hr" class="hrImg">
+                            <span>{{item.c_name}}</span>
+                            <i>·</i>
+                            <span>{{item.z_user_job}}</span>
+                        </p>
+                    </div>
+                    <!--薪资 日期-->
+                    <div class="job-right ">
+                        <p class="moneyNum">{{item.ratio}}K</p>
+                        <p class="date-job">{{item.open_time}}</p>
+                    </div>
+                </div>
             </div>
             <div id="tab3" style="display: none">
 
-                <ul class="componySize"></ul>
+                <ul class="componySize">
+                    <li v-for="(item,index) in ComDynamicList" :key="index">
+                        <h4 class="sizeTitle">
+                            {{item.title}}
+                        </h4>
+                        <p>
+                            <span class="size-name">{{item.publisher}}</span>评论 <span class="time-size">{{item.create_time}}</span>
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -255,14 +284,12 @@
 </div>
 
 
-
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
@@ -277,11 +304,7 @@
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
     })
-    $("#tabs li").click(function () {
-        $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
-        var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-        $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-    });
+
     // 公司模态框
     $(document).on("click", ".more-see", function () {
         // alert(1)
@@ -291,54 +314,116 @@
     function closeMotalCom() {
         $(".model-com").hide()
     }
+
     // xinwen模态框
     function com_dy(ID) {
         $(".modal-news").show()
-        ajaxGetWithProgress(queryDynamicSummaryById, {com_dynamic_id:ID}, function (data, err) {
+        ajaxGetWithProgress(queryDynamicSummaryById, {com_dynamic_id: ID}, function (data, err) {
             console.log(data)
             document.querySelector(".modal-news").innerHTML = '<div class="subspace subspaceNew">' +
                 '<div class="subspace">\n' +
                 '        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">\n' +
-                '        <h5 class="spaceTitle">'+data.title+'</h5>\n' +
-                '        <p class="spaceSubTitle">'+data.publisher+'评论 '+data.create_time+' </p>\n' +
-                '        <p class="spaceContent"> '+data.summary+'</p>\n' +
+                '        <h5 class="spaceTitle">' + data.title + '</h5>\n' +
+                '        <p class="spaceSubTitle">' + data.publisher + '评论 ' + data.create_time + ' </p>\n' +
+                '        <p class="spaceContent"> ' + data.summary + '</p>\n' +
                 '\n' +
-                '    </div>'+
+                '    </div>' +
                 '    </div>'
         })
     }
+
     function closeMotal() {
         $(".modal-news").hide()
     }
+
     var map = new AMap.Map("container", {
         resizeEnable: true,
         zoom: 16
     });
     map.clearMap();
 
-    var infoWindow;
-    var cid,uid,c_id;
+    var cid, uid;
     apiready = function () {
         cid = api.pageParam.cid;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         new Vue({
             el: '#app1',
             data: {
+                ComName: '',     // 公司名称
+                ComContactor: '', //  公司性质
+                ComScale: '',
+                ComOrgType: '',
+                ComStime: '',
+                ComXtime: '',
+                ComBreakTime: '',
+                ComworkOver: '',
+                ComLogo: '',
+                ComWelfare: [],
+                ComSummary: '',
+                ComUrl: '',
+                ComNameAll: '',
+                ComSenior: '',
+                ComSeniorPos: '',
+                ComSeniorBak: '',
+                ComSeniorLogo: '',
+                ComProList: [],  //产品介绍
+                ComJobList: [],  //再照职位
+                ComDynamicList: [],  //企业空间
 
             },
             created: function () {
                 this.queryMyOrgProfileAllinOne()
             },
+            mounted : function() {
+                $("#tabs li").click(function () {
+                    $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
+                    var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+                    $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+                });
+            },
             methods: {
-                queryMyOrgProfileAllinOne : function () {
+                queryMyOrgProfileAllinOne: function () {
                     var that = this
                     var uid = localStorage.getItem("user").user_id
                     var obj = {
-                        uid : uid
+                        uid: uid
                     }
 
-                    ajaxGetWithProgress(queryMyOrgProfileAllinOne,obj,function (data,ret) {
+                    ajaxGetWithProgress(queryMyOrgProfileAllinOne, obj, function (data, ret) {
                         console.log(data)
+                        document.querySelector(".boxSub").classList.remove("isDisplay")
+                        document.querySelector(".boxSubDis").classList.remove("isDisplay")
+                        document.querySelector(".F9Line").classList.remove("isDisplay")
+                        var cvomInfo = data.Orgnization_summary
+                        var cvomproduct = data.product_his  //产品介绍
+                        var JobList = data.JobList  // 再照职位
+                        var DynamicList = data.DynamicList  //企业空间
+                        if (data) {
+                            that.ComName = cvomInfo.c_name
+                            that.ComContactor = cvomInfo.contactor
+                            that.ComScale = cvomInfo.scale
+                            that.ComOrgType = cvomInfo.org_type
+                            that.ComStime = cvomInfo.s_time
+                            that.ComXtime = cvomInfo.x_time
+                            that.ComBreakTime = cvomInfo.break_time
+                            that.ComworkOver = cvomInfo.work_overtime
+                            that.ComLogo = imgSrcFun(cvomInfo.logo_icon)
+                            that.ComWelfare = stringFun(cvomInfo.welfare)
+                            that.ComSummary = cvomInfo.summary
+                            that.ComUrl = cvomInfo.homepage
+                            that.ComNameAll = cvomInfo.nameall
+                            that.ComSenior = cvomInfo.senior
+                            that.ComSeniorPos = cvomInfo.senior_position
+                            that.ComSeniorBak = cvomInfo.senior_bak
+                            that.ComSeniorLogo = imgSrcFun(cvomInfo.senior_icon)
+                            that.ComProList = cvomproduct
+                            that.ComJobList = JobList
+                            that.ComDynamicList = DynamicList
+
+
+                        } else {
+                            toast("请求失败")
+                        }
                     })
                 }
             }

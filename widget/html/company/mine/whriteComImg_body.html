@@ -54,10 +54,11 @@
 
 <script>
 
-    var cid,uid,url;
+    var cid,uid,url,index;
     apiready = function () {
         cid = api.pageParam.cid;
         url = api.pageParam.url;
+        index = api.pageParam.index;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         new Vue({
             el: '#app1',
@@ -65,14 +66,24 @@
 
             },
             created: function () {
-
+                this.orgnizationPICBbycidlist()
             },
             mounted : function (){
 
             },
             methods: {
+                orgnizationPICBbycidlist : function (){
+                    if (index == 2){
+                        var uid = localStorage.getItem("user").user_id
+                        var obj = {
+                            uid: uid
+                        }
+                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
+                            console.log(data)
+                        })
+                    }
 
-
+                },
                 preservation: function () {
                     var that = this
                     var c_id = localStorage.getItem("com_id")
