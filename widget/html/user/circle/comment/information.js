@@ -1,6 +1,6 @@
 function informationInit(Vue) {
 
-    var str = dataValue('user/circle/comment/information.html')
+    var str = dataValue('user/circle/comment/offlinePosition.html')
     return {
         template: str,
         data: function () {

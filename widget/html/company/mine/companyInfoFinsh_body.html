@@ -59,7 +59,7 @@
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" onclick="whriteComMange()">
+        <div class="info-choose cssFlex" @click="whriteComMange()">
             <span class="info-choose-name">高管介绍</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="whriteComMange">未完善</span>
@@ -82,6 +82,7 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script src="../../../script/vue.min.js"></script>
 
 <script>
 
@@ -101,22 +102,34 @@
             },
             methods: {
                 whriteComInfo : function () {
-                    openNewWindow("whriteComInfo", "./whriteComInfo.html")
+                    openNewWindow("whriteComInfo", "./whriteComInfo.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
                 whriteComPro : function () {
-                    openNewWindow("whriteComPro", "./whriteComPro.html")
+                    openNewWindow("whriteComPro", "./whriteComPro.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
                 whriteComWelfare : function () {
-                    openNewWindow("whriteComWelfare", "./whriteComWelfare.html")
+                    openNewWindow("whriteComWelfare", "./whriteComWelfare.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
                 whriteComImg : function () {
-                    openNewWindow("whriteComImg", "./whriteComImg.html")
+                    openNewWindow("whriteComImg", "./whriteComImg.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
                 whriteComSuggest : function () {
-                    openNewWindow("whriteComSuggest", "./whriteComSuggest.html")
+                    openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
                 whriteComMange : function () {
-                    openNewWindow("whriteComMange", "./whriteComMange.html")
+                    openNewWindow("whriteComMange", "./whriteComMange.html", {
+                        url: 'companyInfoFinsh'
+                    })
                 },
             }
         })

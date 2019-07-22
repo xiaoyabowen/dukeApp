@@ -18,6 +18,8 @@
 ├── whriteComImg          // 填写公司照片
 ├── whriteComSuggest          // 填写产品介绍
 ├── whriteComMange          // 填写高管介绍
+├── mangePosition          // 职位管理
+├── mangePositionDetail          // 职位管理  详情
 
 
 

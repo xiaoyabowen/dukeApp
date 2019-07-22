@@ -82,5 +82,435 @@ img.editImgInfo {
 
 }
 
+/*企业空间   模态框*/
+.modal-space{
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 111111;
+    top: 0;
+}
+
+.subspace{
+    width: 6rem;
+    max-height: calc(100vh - 2rem);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%); 	/* IE 9 */
+    -moz-transform:translate(-50%,-50%); 	/* Firefox */
+    -webkit-transform:translate(-50%,-50%); /* Safari 和 Chrome */
+    background: #fff;
+    padding: 0.38rem 0.3rem;
+    -webkit-border-radius: 0.08rem;
+    -moz-border-radius: 0.08rem;
+    border-radius: 0.08rem;
+    overflow: auto;
+    overflow-x: hidden;
+}
+h5.spaceTitle {
+    color: #333333;
+    font-size: 0.28rem;
+    line-height: 0.4rem;
+    font-weight:500;
+}
+p.spaceSubTitle {
+    font-size: 0.24rem;
+    color: #333;
+}
+p.spaceContent {
+    color: #333;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
+    font-weight: 300;
+}
+.delete-space{
+    display: inline-block;
+    position: absolute;
+    right: -0.2rem;
+    top: -0.2rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    z-index: 9999;
+}
+
+/*公司  模态框*/
+.subspaceCom {
+    padding: 0.3rem 0.44rem 0.44rem 0.44rem;
+}
+.com-logo {
+    width: 1.74rem;
+    margin: 0 auto 0.24rem;
+    height: 0.76rem;
+}
+img.baidulogo {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.com-title {
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    line-height: 0.4rem;
+    text-align: center;
+    margin-bottom: 0.1rem;
+}
+
+.com-link {
+    height: 0.36rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(99,139,255,1);
+    line-height: 0.36rem;
+    text-align: center;
+    margin-bottom: 0.46rem;
+}
+span.main-left {
+    display: inline-block;
+    width: 1.8rem;
+    height: 0.4rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(153,153,153,1);
+    line-height: 0.4rem;
+}
+span.main-right {
+    width: 3.4rem;
+    font-size: 0.24rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    display: inline-block;
+}
+.laiyuan {
+    margin: 1.1rem auto 0.2rem;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    font-size: 0.24rem;
+}
+.laiyuan>i{
+    color:rgba(99,139,255,1);
+}
+
+/*完善公司基本信息*/
+.w-title.commonTitle {
+    margin: 0.3rem 0 0.24rem;
+}
+.w-sub-title{
+    height: auto;
+    margin-bottom: 0.2rem;
+}
+img.w-uploadimg {
+    display: block;
+    width: 1.8rem;
+    height: 2.1rem;
+    border-radius: 0.08rem;
+    margin: 0 auto 0.52rem;
+}
+.w-comurl{
+    font-weight: 500;
+    margin-bottom: 0.12rem;
+}
+input.w-comurl-input,.jobTime {
+    display: block;
+    border: 0 !important;
+    border-bottom: 1px solid #ebebeb !important;
+    padding: 0.06rem 0 0.06rem 0 !important;
+    color: #333;
+}
+.comscale.cssFlex ,.comindustry,.overtimeList,.restList,.mp-mainWelf{
+    align-items: center;
+    flex-wrap: wrap;
+}
+span.listSpan {
+    display: block;
+    border-radius: 0.06rem;
+    border: 0.02rem solid rgba(99,139,255,1);
+    padding: 0.1rem 0.26rem;
+    color: rgba(99,139,255,1);
+    margin: 0 0.2rem 0.28rem 0;
+    height: auto;
+}
+.listSpanActive,.indusListActive{
+    background:rgba(99,139,255,1) !important;
+    color: #fff !important;
+
+}
+
+
+
+
+span.indusList.commonFont {
+    display: block;
+    padding: 0.06rem 0.26rem;
+    height: auto;
+    color:rgba(51,51,51,1);
+    background:rgba(234,234,234,1);
+    border-radius:0.26rem;
+    margin: 0 0.2rem 0.4rem 0;
+}
+.comOptional{
+    margin: 0.4rem 0 0.18rem;
+    color:rgba(102,102,102,1)
+}
+
+.postSubBtn {
+    width: 6.3rem;
+    height: 0.78rem;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    line-height: 0.78rem;
+    color: #fff;
+    font-size: 0.28rem;
+    text-align: center;
+    font-weight: 500;
+    margin: 0.4rem auto;
+}
+
+textarea.textAreaCom {
+    border: 0.01rem solid #ebebeb;
+    width: 5.9rem;
+    height: 4rem;
+    margin: 0 auto;
+    padding: 0.2rem;
+    font-size: 0.28rem;
+    color: #999999;
+}
+
+
+/*高管管理*/
+.formbox {
+    align-items: center;
+    height: 0.76rem;
+    margin-bottom: 0.2rem;
+}
+.formboxtitle{
+    width: 1.4rem;
+}
+.formboxInput{
+    height: 0.46rem;
+    padding: 0.2rem 0 0.2rem 0.1rem !important;
+    color: #333333;
+    font-size: 0.28rem;
+    width: 4.64rem;
+    border: 1px solid #ebebeb;
+}
+/*zbw   职位管理  样式*/
+.notDataBox{
+    background: #ffffff;
+}
+.notData{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+}
+
+
+.add_activities_header {
+    width: 100%;
+    height: 0.92rem;
+    line-height: 0.92rem;
+    background: #ffffff;
+    font-size: 0.28rem;
+    color: #333333;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.add_activities_header div {
+    flex: 50%;
+    text-align: center;
+}
+
+.add_activities_header div span {
+    position: relative;
+}
+
+.add_activities_header div span.active {
+    color: #638BFF;
+}
+
+.add_activities_header div span.active:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.04rem;
+    background: #638BFF;
+}
+.notDataBox{
+    padding:0 0.34rem;
+
+}
+.on-box {
+    height: 1.4rem;
+    padding: 0.12rem 0 0.16rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.01rem solid #ebebeb;
+}
+.on-box-left{
+    width: 4.5rem;
+    border-right: 0.01rem solid #ebebeb;
+}
+.on-box-leftNon  {
+    border-right: none !important;
+}
+.on-position{
+    margin: 0.12rem 0;
+}
+.on-position>span{
+    display: block;
+    font-weight: 500;
+    color: #333333; !important;
+
+}
+.on-positiondetail{
+    margin-bottom: 0.12rem;
+
+}
+.on-positiondetail>span{
+    display: block;
+    color: #666666 !important;
+    font-weight: 500;
+    font-size: 0.24rem !important;
+    height: 0.4rem;
+    line-height: 0.4rem;
+
+}
+.on-poaddress{
+    margin-right: 0.15rem;
+}
+.on-year{
+    margin-right: 0.2rem;
+}
+.on-box-right{
+    width: 1.74rem;
+    text-align: center;
+}
+.onCandidateNum{
+    font-weight:500;
+    color:rgba(99,139,255,1) !important;
+    margin: 0.12rem 0 0.04rem;
+}
+.onCandidatePer{
+    margin-bottom: 0.12rem;
+
+}
+/*职位详情*/
+.mp-title{
+    margin: 0.37rem 0 0.24rem;
+}
+.mp-subInfo{
+    margin: 0.24rem 0 0.28rem;
+    height: 0.32rem;
+    align-items: center;
+}
+.mp-subinfo-year,.mp-subinfo-edu{
+    align-items: center;
+    margin-right: 0.1rem;
+    color:rgba(102,102,102,1) !important;
+}
+.mp-subinfo-type{
+    color:rgba(102,102,102,1) !important;
+}
+.mp-subinfo-edu{
+    margin-right: 0.5rem;
+}
+.mp-jobTimeImg{
+    display: block;
+    width: 0.26rem;
+    height: 0.2rem;
+    margin-right: 0.08rem;
+}
+.mp-eduImg{
+    display: block;
+    width: 0.28rem;
+    height: 0.22rem;
+    margin-right: 0.08rem;
+}
+.mp-posiPrice{
+    color:rgba(99,139,255,1) !important;
+    margin-bottom: 0.24rem;
+}
+.mpAdrBox{
+    margin: 0.18rem 0 0.2rem;
+}
+.mp-address{
+    align-items: center;
+}
+.mp-addressImg  {
+    display: block;
+    width: 0.2rem;
+    height: 0.24rem;
+    margin-right: 0.1rem;
+}
+.mp-address,.mp-detaAddr{
+    color: #666666 !important;
+}
+.mp-detaAddr{
+    padding-left: 0.3rem;
+}
+.mp-mainWelf{
+    margin: 0.16rem 0 0.38rem;
+}
+.mp-maintitle{
+    font-weight: 500 !important;
+    margin: 0.26rem 0 0.16rem;
+    color: #333333 !important;
+}
+.mp-derection{
+    font-weight: 500 !important;
+    margin-bottom: 0.1rem;
+    color: #333333 !important;
+}
+.mp-mainsubtitle {
+    height: 0.36rem;
+    line-height: 0.36rem;
+    font-size: 0.26rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 0.15rem;
+}
+.mp-mainTet{
+    line-height: 0.28rem;
+    font-size: 0.22rem;
+    color: #333333;
+    font-weight: 400;
+    padding-bottom: 2rem;
+}
+.mp-posiBommom{
+    position: fixed;
+    width: 100%;
+    height: 1.1rem;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+}
+.mp-posiOff,.mp-posiEdit,.mp-posiPushAgain{
+    height: 1.1rem;
+    width: 50%;
+    background:rgba(99,139,255,1);
+    color: #ffffff !important;
+    text-align: center;
+    line-height: 1.1rem;
+}
+.mp-posiOff  {
+    background:rgba(255,163,0,1);
+}
+.mp-posiPushAgain{
+    width: 100%;
+}
 
 

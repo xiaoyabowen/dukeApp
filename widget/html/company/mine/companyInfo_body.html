@@ -257,7 +257,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -324,18 +324,23 @@
         new Vue({
             el: '#app1',
             data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
+
             },
             created: function () {
-
+                this.queryMyOrgProfileAllinOne()
             },
             methods: {
+                queryMyOrgProfileAllinOne : function () {
+                    var that = this
+                    var uid = localStorage.getItem("user").user_id
+                    var obj = {
+                        uid : uid
+                    }
 
+                    ajaxGetWithProgress(queryMyOrgProfileAllinOne,obj,function (data,ret) {
+                        console.log(data)
+                    })
+                }
             }
         })
     };

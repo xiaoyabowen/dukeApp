@@ -51,28 +51,28 @@
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex">
+        <div class="mineMainBox cssFlex" @click="companyInfo()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/posimes.png" style="width: 0.32rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">职位管理</span>
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex">
+        <div class="mineMainBox cssFlex" @click="companyInfo()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/person.png" style="width: 0.34rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">人才订阅</span>
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex">
+        <div class="mineMainBox cssFlex" @click="companyInfo()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/collon.png" style="width: 0.3rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">我的收藏</span>
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
-        <div class="mineMainBox cssFlex">
+        <div class="mineMainBox cssFlex" @click="companyInfo()">
             <div class="mineMainSubBox cssFlex">
                 <img src="../../../image/company/setMin.png" style="width: 0.28rem;height: 0.28rem;" alt="icon" class="minMainImg">
                 <span class="commonFont">设置</span>
@@ -117,9 +117,33 @@
 
                 },
                 methods: {
+                    chatNumAndInvitation : function () {
+                        var userObj = JSON.parse(localStorage.getItem("user"))
+                        var uid = userObj.user_id
+                        var obj = {
+                            person_id:uid
+                        }
+                        console.log(obj)
+                        ajaxGetWithProgress(chatNumAndInvitation,obj,function (data,ret) {
+                            var that = this
+                            console.log(data)
+                            if (data){
+                                that.chatNum = data.ChatNum;
+                                that.mineInterNum = data.InvitationNum;
+                            }
+                        })
+                    },
+                    editInfoClick : function () {
+                        openNewWindow("editfillInfo", "../home/editfillInfo.html",{
+                            url:"mine"
+                        })
+                    },
                     companyInfo : function () {
                         openNewWindow("companyInfo", "./companyInfo.html")
-                    }
+                    },
+
+
+
                 }
             })
         }

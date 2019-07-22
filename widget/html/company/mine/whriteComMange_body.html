@@ -5,338 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>公司详情</title>
+    <title>高管介绍</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
-    <link rel="stylesheet" href="../../../css/componyDetail.css">
-    <link rel="stylesheet" href="../../../css/mui.min.css">
-    <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
     <style>
 
-
-        .job-img-content {
-            padding: 16px 0 10px;
-            position: relative;
-        }
-
-        .comTitle {
-            padding: 0.48rem 0rem 0.12rem 0rem;
-        }
-
-        .infobox{
-            padding: 0 !important;
-        }
-
-
-        .job-name{
-            height: 0.3rem !important;
-            line-height: 0.3rem !important;
-            font-size:0.22rem !important;
-            font-weight:400;
-            color:rgba(153,153,153,1) !important;
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
 
     </style>
 </head>
 <body class="commonBg">
 
-<div class="Box">
+<div class="Box" id="app1">
     <div class="boxSub">
+        <div class="w-title commonTitle">添加公司高管介绍</div>
 
-        <div class="comTitle" id="comTitleId">
-            <div class="comintobox cssFlex">
-                <div class="comInfo">
-                    <h3 class="comInfoTitle ">百度科技</h3>
-                    <p class="comInfoCon comInfoConMar">
-                        <span>已上市</span><i>·</i>
-                        <span>10000人以上</span><i>·</i>
-                        <span>互联网</span>
-                    </p>
-                    <p class="timeInfo">
-                        <img src="../../../icon/time.png" alt="time" class="ComTime">
-                        <span>10:00</span>
-                        <i>-</i>
-                        <span class="marginR">18:00</span>
-                        <img src="../../../icon/date.png" alt="date" class="dateCom">
-                        <span class="marginR">双休</span>
-                        <span>弹性工作</span>
-                    </p>
-                </div>
-                <div class="comLogo">
-                    <img src="../../../image/comLogo.png" alt="comLogo">
-                </div>
-            </div>
-
+        <div class="formbox cssFlex">
+            <span class="formboxtitle commonFont">高管姓名：</span>
+            <input type="text" class="formboxInput" placeholder="高管姓名" v-model="mangeName">
         </div>
-        <div class="F9Line"></div>
-        <!-- mui  滑动tab切换-->
-        <ul id="tabs" class="cssFlex">
-            <li class="activeTab"><a href="javascript:;" title="tab1">基本信息</a></li>
-            <li><a href="javascript:;" title="tab2">在招职位</a></li>
-            <li><a href="javascript:;" title="tab3">企业空间</a></li>
-        </ul>
-        <div class="tabBorder"></div>
-        <div id="content">
-            <div id="tab1" style="display: block;">
-                <div class="infobox">
-                    <div class="infoList cssFlex">
-                        <span>餐补</span>
-                        <span>五险一金</span>
-                        <span>五险</span>
-                        <span>五险</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
-                        <span>五险一金</span>
-                    </div>
-                    <p class="job-text">
-                        百度，全球最大的中文搜索引擎、最大的中文网站。百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司。<br/>
-                        “百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。
-                    </p>
-                    <h4 class="productName productNamePad">产品介绍</h4>
-                    <div class="product_hisbox">
-                        <div class="infoProduct infoProductPad clearfix">
-                            <img src="../../../image/pro.png" alt="pro" class="pro-img">
-                            <div class="infoProductContent">
-                                <h5>百度本地广告直通车</h5>
-                                <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
-                            </div>
-                        </div>
-                        <div class="infoProduct infoProductPad clearfix">
-                            <img src="../../../image/pro.png" alt="pro" class="pro-img">
-                            <div class="infoProductContent">
-                                <h5>百度本地广告直通车</h5>
-                                <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="productName productNamePad">高管介绍</h4>
-                    <div class="infoProduct infoProductPad clearfix">
-                        <img src="../../../image/pro.png" alt="pro" class="seniorimg">
-                        <div class="infoProductContent">
-                            <h5 class="seniorname">李彦宏</h5>
-                            <p class="textOverflow seniorinfo">1968年11月生，山西阳泉人，无党派，研究生学历。现任全国政协委员、全国工商<i>详情</i></p>
-                        </div>
-                    </div>
-                    <h4 class="productName productNamePad">公司照片</h4>
-                    <div class="swiper-container infoProductPad">
-                        <div class="swiper-wrapper PIClistBox">
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow01.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow02.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow01.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow02.png" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="productName productNamePad">公司地址</h4>
-
-                </div>
-
-                <div class="map-compony" id="container">
-
-                </div>
-                <div class="info">
-                    <!--点击地图上的点标记，打开所添加的自定义信息窗体-->
-                </div>
-                <div class="infobox">
-                    <h4 class="productName productNamePad">公司官网</h4>
-                    <div class="link-compony cssFlex">
-                        <span class="homepage">http://www.baidu.com</span>
-                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                    </div>
-                    <h4 class="productName productNamePad">工商信息</h4>
-                    <div class="gong-info">
-                        <p>
-                            公司全称：<span class="Name">百度在线网络技术（北京）有限公司</span>
-                        </p>
-                        <p>
-                            企业法人：<span class="OperName">向海龙</span>
-                        </p>
-                        <p>
-                            注册时间：<span class="StartDate">2000-1-18</span>
-                        </p>
-                        <p>
-                            注册资本：<span class="RegistCapi">4520万美元</span>
-                        </p>
-                    </div>
-                    <div class="more-see">
-                        查看更多
-                    </div>
-
-
-                </div>
-            </div>
-            <div id="tab2" style="display:none;">
-
-            </div>
-            <div id="tab3" style="display: none">
-
-                <ul class="componySize"></ul>
-            </div>
+        <div class="formbox cssFlex">
+            <span class="formboxtitle commonFont">担任职务：</span>
+            <input type="text" class="formboxInput" placeholder="担任职务" v-model="mangePosition">
         </div>
 
+        <textarea cols="30" rows="10" v-model="comproText" class="textAreaCom" placeholder="高管介绍可以填写学业或者职业履历，或者所负责的项目
+可以从以下几个方面来介绍：
+毕业于哪家知名学校？
+曾在XX公司担任XX岗位，有哪些辉煌业绩
+现任XX公司担任XX岗位，负责XX项目"></textarea>
+
+
+        <div class="postSubBtn" @click="preservation()">保存</div>
 
     </div>
 
 </div>
-<!--   企业空间 模态框   -->
-<div class="modal-space modal-news" onclick="closeMotal()">
-    <!--<div class="subspace subspaceNew">-->
-    <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
-    <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
-    <p class="spaceSubTitle">童济仕汽车评论 xxxx年xx月xx日 </p>
-    <p class="spaceContent">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵
-        手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手
-        百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是
-        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-        车企企频繁牵手百度，背后到底是
-        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-        车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车
-        企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企
-    </p>
--->
-    <!--</div>-->
-</div>
-<!--公司详细信息-->
-<div class="modal-space model-com" onclick="closeMotalCom()">
-    <div class="subspace subspaceCom">
-        <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotalCom()">-->
-        <div class="com-logo">
-            <img src="../../../image/mine/icon_baidulogo.png" alt="icon" class="baidulogo">
-        </div>
-        <div class="com-title Name">
-            百度在线网络技术（北京）有限公司
-        </div>
-        <div class="com-link homepage">
-            http://www.baidu.com
-        </div>
-        <div class="com-main">
-            <div class="main-right cssFlex">
-                <span class="main-left ">企业法人</span>
-                <span class="main-right OperName">向海龙</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">注册资本</span>
-                <span class="main-right RegistCapi">向海龙</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">成立时间</span>
-                <span class="main-right StartDate">向海龙</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">经营状态</span>
-                <span class="main-right Status">向海龙</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">注册地址</span>
-                <span class="main-right Address">北京市海淀区上地十街10号百度 大厦三层</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">统一信用代码</span>
-                <span class="main-right CreditCode">向海龙</span>
-            </div>
-            <div class="main-right cssFlex">
-                <span class="main-left">经营范围</span>
-                <span class="main-right Scope">开发、生产计算机软件，开发、 生产计算机软件，开发、生产计 算机软件，开发、生产计算机软 件。生产计算机软件…</span>
-            </div>
 
-        </div>
-        <div class="laiyuan">
-            数据来源：<i>企查查</i>
-        </div>
-    </div>
-</div>
 
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
-<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
-<script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="../../../script/vue.min.js"></script>
 
 <script>
-    // swiper  轮播
-    var mySwiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-    })
-    $("#tabs li").click(function () {
-        $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
-        var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-        $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-    });
-    // 公司模态框
-    $(document).on("click", ".more-see", function () {
-        // alert(1)
-        $(".model-com").show()
-    })
 
-    function closeMotalCom() {
-        $(".model-com").hide()
-    }
-    // xinwen模态框
-    function com_dy(ID) {
-        $(".modal-news").show()
-        ajaxGetWithProgress(queryDynamicSummaryById, {com_dynamic_id:ID}, function (data, err) {
-            console.log(data)
-            document.querySelector(".modal-news").innerHTML = '<div class="subspace subspaceNew">' +
-                '<div class="subspace">\n' +
-                '        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">\n' +
-                '        <h5 class="spaceTitle">'+data.title+'</h5>\n' +
-                '        <p class="spaceSubTitle">'+data.publisher+'评论 '+data.create_time+' </p>\n' +
-                '        <p class="spaceContent"> '+data.summary+'</p>\n' +
-                '\n' +
-                '    </div>'+
-                '    </div>'
-        })
-    }
-    function closeMotal() {
-        $(".modal-news").hide()
-    }
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        zoom: 16
-    });
-    map.clearMap();
-
-    var infoWindow;
-    var cid,uid,c_id;
+    var cid,uid,url;
     apiready = function () {
         cid = api.pageParam.cid;
+        url = api.pageParam.url;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
         new Vue({
             el: '#app1',
             data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
+                mangeName:"",
+                mangePosition:"",
+                comproText:"",
+                senior_icon:"",
             },
             created: function () {
 
             },
+            mounted : function (){
+
+            },
             methods: {
 
+
+                preservation: function () {
+                    var that = this
+                    var c_id = localStorage.getItem("com_id")
+
+                    if (that.mangeName == ''){
+                        toast("请填写高管姓名")
+                        return
+                    }
+                    if (that.mangePosition == ''){
+                        toast("请填写高管职位")
+                        return
+                    }
+                    if (that.comproText == ''){
+                        toast("请填写背景介绍")
+                        return
+                    }
+
+
+
+
+                    var obj = {
+                        c_id : c_id,
+                        senior : that.mangeName,
+                        senior_position : that.mangePosition,
+                        senior_bak : that.comproText,
+                        senior_icon : that.senior_icon,
+                    }
+                    console.log(obj)
+                    ajaxGetWithProgress(createCompanySenior,obj,function (data,ret) {
+                        console.log(data)
+                        if (data.return.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name:url,
+                                frameName: frameName,
+                                script: apiready()
+                            })
+                            closeWin();
+                        }
+                    })
+                },
             }
         })
     };

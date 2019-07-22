@@ -293,30 +293,27 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 var showVisaInformation = Domain + "/visa/showVisaInformation";
 
 
+
+
+// ================================================ 伯乐
+
+
 //  基本信息   上传图片
 var UploadPicon = Domain + "/upload/UploadPicon";
-
 // 发布活动上传图片
 var UploadFlieTest = Domain + "/upload/UploadFlieTest";
-
 //伯乐创建简历  头像
 var uploadploadFlie = Domain + "/upload/UploadFlie";
 
 
 //伯乐上传营业执照  头像
 var OrgnizationProfileUploadBusiness = serverUrl + "/OrgnizationProfile/UploadBusiness";
-
-
-
-
-
 // 伯乐-魔方推送
 var SmartMenu = serverUrl + "/JobProfile/SmartMenu";
 // 伯乐-简历详情
 var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 // 伯乐-根据职位查询简历
 var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
-
 // 伯乐-消息谁看过我
 var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
 // 伯乐-status=1 新简历 2初试3复试 4录用 5不合适
@@ -328,10 +325,6 @@ var UpdateStatus2 = serverUrl + "/EvaluateProfile/UpdateStatus2";
 // 伯乐-消息不合适
 var UpdateStatus = serverUrl + "/EvaluateProfile/UpdateStatus";
 
-
-// 公司填写信息
-var addRecruiter = localhostHref + "/addRecruiter";
-
 // 公司填写信息
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
 
@@ -340,10 +333,6 @@ var chatNumAndInvitation = serverUrl + "/JobProfile/chatNumAndInvitation";
 
 // 伯乐  编辑我的信息
 var queryPersonByidnUserProfile = serverUrl + "/UserProfile/queryPersonByid";
-
-
-
-
 //  填写公司全称  返回id
 var JobProfileCreateCompany = serverUrl + "/OrgnizationProfile/CreateCompany";
 
@@ -355,6 +344,37 @@ var addAddressJobProfile = serverUrl + "/JobProfile/addAddress";
 var SendEmailOrgnizationProfile = serverUrl + "/OrgnizationProfile/SendEmail";
 // 企业邮箱 验证码 认证
 var CertifiedMailOrgnizationProfile = serverUrl + "/OrgnizationProfile/CertifiedMail";
+
+//  伯乐查询我的公司
+var queryMyOrgProfileAllinOne = serverUrl + "/OrgnizationProfile/queryMyOrgProfileAllinOne";
+//  伯乐填写我的公司基本信息
+var createOrgnization = serverUrl + "/OrgnizationProfile/createOrgnization";
+//  伯乐填写我的公司  公司介绍
+var createCompanySummary = serverUrl + "/OrgnizationProfile/createCompanySummary";
+//  伯乐填写我的公司  产品介绍
+var addCompanyProduct = serverUrl + "/OrgnizationProfile/addCompanyProduct";
+//  伯乐填写我的公司  公司福利
+var createCompanyWelfare = serverUrl + "/OrgnizationProfile/createCompanyWelfare";
+
+
+
+//  伯乐 填写我的公司 公司高管
+var createCompanySenior = serverUrl + "/OrgnizationProfile/createCompanySenior";
+
+
+
+
+
+
+
+
+// 公司填写信息
+var addRecruiter = localhostHref + "/addRecruiter";
+
+
+
+
+
 
 
 

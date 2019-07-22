@@ -756,7 +756,11 @@ img.info-img-right {
     width: 100%;
     background:rgba(249,249,249,1);
 }
-
+.line1{
+    height: 1px;
+    width: 100%;
+    background:rgba(249,249,249,1);
+}
 
 
 

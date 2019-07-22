@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>公司详情</title>
+    <title>公司基本信息</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
 
     <style>
-        .OneImgRight{
-            margin-top: 0.1rem;
-        }
-        .searchClick{
-            right: 0.1rem;
+        .headerBox{
+            justify-content: space-between;
         }
     </style>
 
@@ -28,10 +25,10 @@
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleMain">
-            首页
+            公司介绍
         </div>
-        <div class="rightImgEdite"onclick="save()">
-            编辑
+        <div class="rightImgEdite">
+
         </div>
     </div>
 </div>
@@ -52,7 +49,10 @@
     //点击保存
 
     function save(){
-        openNewWindow("companyInfoFinsh", "./companyInfoFinsh.html")
+        api.execScript({
+            frameName: "whriteComInfo_body",
+            script: 'preservation()'
+        })
     }
 </script>
 </html>
