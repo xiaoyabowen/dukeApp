@@ -85,6 +85,7 @@
         }
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            // alert(JSON.stringify(data))
             if (data.date != 0) {
                 api.confirm({
                     // title: 'testtitle',
@@ -92,7 +93,7 @@
                     buttons: ['确定', '取消']
                 }, function(ret, err) {
                     var index = ret.buttonIndex;
-                    if (index){
+                    if (index == 1){
                         openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
                             url: 'home'
                         });

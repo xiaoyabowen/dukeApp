@@ -135,7 +135,6 @@
                     })
                 },
                 ICjobsJobProfile : function (status) {
-                    alert(1)
                     var that = this
                     var obj = {
                         job_id : job_id,
@@ -149,11 +148,13 @@
                                 name:url,
                                 // frameName:url +"_body",
                                 frameName: frameName,
-                                script: apiready()
+                                script: 'loadCom()'
                             })
                             closeWin();
                         }
                     })
+
+
                 },
 
                 pushPosition : function () {

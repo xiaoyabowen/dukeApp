@@ -110,10 +110,10 @@
                 el: '#mine',
                 data: {
                     isDisplay: false,
-                    mineName:"company",
+                    mineName:"",
                     ChatNum:"",
                     mineNum:"",
-                    defultImg:"http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png",
+                    defultImg:"",
                     person_id: ''
                 },
                 created: function () {
@@ -136,6 +136,8 @@
                             if (data){
                                 that.ChatNum = data.ChatNum;
                                 that.mineNum = data.InvitationNum;
+                                that.mineName = data.p_name;
+                                that.defultImg = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
 
                             }
                         })

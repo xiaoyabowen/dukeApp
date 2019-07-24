@@ -21,10 +21,10 @@
                 <div class="time">05/22 06:30</div>
                 <div class="msg">
                     <img src="../../../image/chat/touxiang.png" alt=""/>
-                    <span class="name">斜杠青年</span>
+                    <span class="name">伯乐</span>
                     <p>
                         <i class="msg_input"></i>
-                        你好在不在呀，妹子！
+                        您好，请问对这个职位感兴趣吗？
                     </p>
                 </div>
             </div>
@@ -32,9 +32,11 @@
                 <div class="time">05/22 06:30</div>
                 <div class="msg">
                     <img src="../../../image/chat/touxiangm.png" alt=""/>
+                    <!--<span class="name">千里马</span>-->
                     <p>
                         <i clas="msg_input"></i>
-                        你好你好你好
+                        您好，我想应聘贵公司的运营经理，
+                        期盼回复，谢谢！
                     </p>
                 </div>
             </div>
@@ -257,12 +259,12 @@
                     // 发送
                     sendHandle: function () {
                         console.log(this.t_key);
-                        // var html = "<div class='ask'><div class='msg'><img src='../image/chat/touxiang.png' />" + "<p><i class='msg_input'></i>" + this.sendInput + "</p></div></div>";
-                        // var message = $('#message');
-                        // message.append(html);
-                        // $('html,body').animate({
-                        //     scrollTop: message.outerHeight() - window.innerHeight
-                        // }, 200);
+                        var html = "<div class='ask'><div class='msg'><img src='../image/chat/touxiang.png' />" + "<p><i class='msg_input'></i>" + this.sendInput + "</p></div></div>";
+                        var message = $('#message');
+                        message.append(html);
+                        $('html,body').animate({
+                            scrollTop: message.outerHeight() - window.innerHeight
+                        }, 200);
 
                         var message = new Paho.Message(this.sendInput);
                         message.destinationName = this.t_key;

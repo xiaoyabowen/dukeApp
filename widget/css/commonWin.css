@@ -23,10 +23,10 @@ html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparen
 
 .commonBg{
     /*background:linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);*/
-    /*background:red;*/
-    background:
+    background:#638BFF;
+    /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
-            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
 }
 a,a:hover,a:active,a:visited,a:link,a:focus{
     -webkit-tap-highlight-color: transparent;
@@ -385,6 +385,8 @@ textarea{
     display: block;
     width: 7rem;
     height: calc(100vh - 28px);
+    background-position: center top;
+    background-size: cover;
 }
 
 /*发送邮箱*/

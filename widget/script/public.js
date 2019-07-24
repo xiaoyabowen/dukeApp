@@ -7,8 +7,8 @@ var isCleanUser = false;
 var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.4:8000/SE4M';
 var Domain = 'http://192.168.1.4:8088';
-*/
 
+*/
 
 
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
@@ -63,6 +63,8 @@ var GetResumeInformation = serverUrl + "/UserProfile/queryProfileAllinOne";
 
 // 编写自我描述
 var updateTags = serverUrl + "/UserProfile/updateTags";
+// 综合能力
+var updateTitle = serverUrl + "/UserProfile/updateTitle";
 
 // 获取录用列表数据
 var QueryApplicationStatus4List = serverUrl + "/EvaluateProfile/queryApplicationStatus4List";

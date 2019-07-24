@@ -342,7 +342,7 @@
     });
     map.clearMap();
 
-    var cid, uid;
+    var cid, uid,c_id;
     apiready = function () {
         cid = api.pageParam.cid;
         uid = JSON.parse(localStorage.getItem('user')).user_uid;
@@ -395,6 +395,8 @@
                         document.querySelector(".boxSubDis").classList.remove("isDisplay")
                         document.querySelector(".F9Line").classList.remove("isDisplay")
                         var cvomInfo = data.Orgnization_summary
+                        c_id = cvomInfo.c_id
+                        localStorage.setItem("com_id",c_id)
                         var cvomproduct = data.product_his  //产品介绍
                         var JobList = data.JobList  // 再照职位
                         var DynamicList = data.DynamicList  //企业空间

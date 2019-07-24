@@ -64,13 +64,14 @@
 
         </div>
         <div class="borderBoxRote positionCom"
-             @click="detailClick(index,item.job_id)"
+
              v-bind:class="['position'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list" :key="index">
+             v-for="(item, index) in list" :key="index"
+             @click="detailClick(index ,item.job_id)">
             <div class="xuanbox" :class="index1 == index ? 'active' : ''">
                 <div class="daobox">
                     <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
+                    <div>{{ item.imgIcon }}</div>
                 </div>
             </div>
         </div>
@@ -871,20 +872,25 @@
                 queryListRandom: function () {
                     var that = this;
                     ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
-                        console.log(data);
-
+                        // console.log(data);
                         that.list = data.job;
                         that.list1 = data.company;
-                        // console.log(that.list)
+
                         document.getElementById('app1').classList.remove('isDisplay');
                     });
                 },
                 togle: function () {
                     document.getElementById('subBox').classList.remove('isDisplay');
-                    console.log(123)
                     this.active = true;
                     var that = this;
-                    this.queryListRandom();
+                    console.log("thatlist-",that.list)
+                    ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
+                        // console.log(data);
+                        that.list = data.job;
+                        that.list1 = data.company;
+                        console.log(that.list)
+                        document.getElementById('app1').classList.remove('isDisplay');
+                    });
                     setTimeout(function () {
                         that.active = false;
                     }, 1500)
@@ -892,9 +898,12 @@
                 detailClick: function (index,job_id) {
                     this.index1 = index;
                     this.index2 = -1;
-                    openNewWindow("position", "../home/position.html", {
+                    console.log(job_id)
+
+                    /*openNewWindow("position", "../home/position.html", {
                         job_id: job_id
-                    });
+                    });*/
+
 
                 },
                 detailClick2: function (index,c_id) {

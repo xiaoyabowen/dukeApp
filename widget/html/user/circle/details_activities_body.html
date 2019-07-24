@@ -74,18 +74,18 @@
             <div class="details_content_main" v-html="item.details"></div>
         </div>
         <!--活动参加人数-->
-        <div class="details_comment_enrolled" v-if="!edit && list.length > 1">
+        <div class="details_comment_enrolled" v-if="!edit && list == ''">
             <div class="details_enrolled_top">
                 <span>已报名</span>
                 <span>{{count || 0}}</span>
             </div>
 
-            <div class="details_enrolled_content cssFlex">
+            <!--<div class="details_enrolled_content cssFlex">
                 <div class="details_enrolled_item" v-for="(user, u) in list" :key="u">
                     <img :src="user.p_icon.split(',')[0]" alt="">
                     <span>{{user.u_name}}</span>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div class="details_comment_enrolled" v-if="edit && list.length > 1" @click="signManage(item.circle_id)">
@@ -261,7 +261,7 @@
                     // console.log(123)
                     ajaxGetWithProgress(CircleProfileAllinOne, {
                         person_id: that.person_id,
-                        circle_id: that.circle_id,
+                        circle_id: that.circle_id
                     }, function (data, err) {
                         document.getElementById('box').className = '';
                         console.log(123,data);
@@ -285,7 +285,7 @@
                 queryApplyList: function () {
                     var that = this;
                     ajaxGetWithProgress(queryApplyList, {
-                        circle_id: that.circle_id,
+                        circle_id: that.circle_id
                     }, function (data, err) {
                         console.log(2222, data);
                         if (data.ApplyList) {
@@ -299,6 +299,8 @@
                                     that.list.push(arr[i])
                                 }
                             }
+                        }else{
+
                         }
 
                     });
@@ -307,7 +309,7 @@
                 queryCommentSummary: function () {
                     var that = this;
                     ajaxGetWithProgress(queryCommentSummary, {
-                        circle_id: that.circle_id,
+                        circle_id: that.circle_id
                     }, function (data, err) {
                         console.log(data);
                         if (data.comment) {
@@ -404,7 +406,7 @@
                                 if (amap_installed && bmap_installed) {
                                     if (systemType == 'ios') {
                                         api.openApp({
-                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
                                         }, function (ret, err) {
 
                                         });
@@ -420,7 +422,7 @@
                                     if (amap_installed) {
                                         if (systemType == 'ios') {
                                             api.openApp({
-                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3',
+                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
                                             }, function (ret, err) {
 
                                             });
@@ -437,7 +439,7 @@
                                     if (bmap_installed) {
                                         if (systemType == 'ios') {
                                             api.openApp({
-                                                iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                                iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
                                             }, function (ret, err) {
                                                 if (err) {
 
@@ -459,7 +461,7 @@
                             case 2:
                                 if (systemType == 'ios') {
                                     api.openApp({
-                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding',
+                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
                                     }, function (ret, err) {
                                         if (err) {
                                             //alert(JSON.stringify(err));
@@ -536,7 +538,7 @@
                         person_id: that.person_id,
                         circle_id: that.circle_id,
                         content: that.textarea,
-                        bac_id: that.bac_id,
+                        bac_id: that.bac_id
                     }, function (data, err) {
                         console.log(data);
                         if (data.return_info.status) {
@@ -547,7 +549,7 @@
                                 method: 'get',
                                 data: {
                                     values: {
-                                        circle_id: that.item.circle_id,
+                                        circle_id: that.item.circle_id
                                     },
                                 }
                             }, function(data, err) {

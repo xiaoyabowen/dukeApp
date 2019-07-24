@@ -36,13 +36,13 @@ function magicCubeInit(Vue) {
         methods: {
             queryListRandom: function () {
                 var that = this;
-                // ajaxGet(queryListRandom, {}, function(data,err){
-                //     console.log(123, data);
-                //     that.list = data.job;
-                //     that.list1 = data.company;
-                //     // console.log(that.list)
-                //     document.getElementById('app1').classList.remove('isDisplay');
-                // });
+                ajaxGet(queryListRandom, {}, function(data,err){
+                    console.log(123, data);
+                    that.list = data.job;
+                    that.list1 = data.company;
+                    console.log("thatlist=",that.list)
+                    document.getElementById('app1').classList.remove('isDisplay');
+                });
             },
             togle: function () {
                 document.getElementById('subBox').classList.remove('isDisplay');
@@ -58,13 +58,13 @@ function magicCubeInit(Vue) {
                 this.index1 = index;
                 this.index2 = -1;
                 console.log(job_id)
-                openNewWindow("index", "widget://html/user/great/"+ job_id +"/mine.html");
-                // if (job_id == 'great') {
-                //     openNewWindow("index", "widget://html/user/great/mine.html");
-                // } else {
-                //     openNewWindow("index", "widget://html/user/great/"+ job_id +"/mine.html");
-                // }
-
+                openNewWindow("index", "../../great/"+ job_id +"/index.html");
+                /*if (job_id == 'facial') {
+                    openNewWindow("index", "widget://html/user/great/index.html");
+                } else if (job_id == 'tourism') {
+                    openNewWindow("index", "widget://html/user/great/tourism/index.html");
+                }
+*/
             },
             detailClick2: function (index,c_id) {
                 this.index2 = index;

@@ -204,8 +204,8 @@
                                                 <div class="education-edu">本科 | 营销管理</div>
                                                 <div class="education-date">2011年-2015年</div>
                                             </div>
-                                            <img src="../../../image/mine/defalut.png" alt="defult"
-                                                 class="edcution-img">
+                                            <!--<img src="../../../image/mine/defalut.png" alt="defult"-->
+                                                 <!--class="edcution-img">-->
                                         </div>
                                     </div>
 
@@ -357,6 +357,7 @@
                 // 工作年限
                 if (person_summary.job_from_time) {
                     var workingAge = ages(person_summary.job_from_time);
+                    console.log(workingAge)
                     document.getElementById('working').innerText = workingAge;
                 } else {
                     document.getElementById('working').innerText = 0
@@ -370,7 +371,7 @@
                 }
                 // 年龄
                 if (person_summary.b_birthday) {
-                    var age = ages(person_summary.b_birthday);
+                    var age = ages(person_summary.p_birthday);
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0

@@ -129,7 +129,7 @@
              v-for="(item, index) in list1" :key="index">
             <div class="xuanbox" :class="index2== index ? 'active' : ''">
                 <div class="daobox">
-                    <img v-bind:src="item.p_icon" class="iconImg" alt="person">
+                    <img v-bind:src="item.icon.split(',')[0]" class="iconImg" alt="person">
                     <div>{{ item.job_name }}</div>
                 </div>
             </div>
@@ -345,8 +345,9 @@
 <script src="../../../script/vue.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 <script>
+
     // swiper  轮播
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
@@ -366,8 +367,6 @@
     apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
-
-
 
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
@@ -599,22 +598,23 @@
             methods: {
                 SmartMenu: function () {
                     var that = this;
+                    var obj = {
+                        person_id : localStorage.getItem("user").user_id
+                    }
                     ajaxGet(SmartMenu, {}, function(data,err){
                         console.log(data);
                         document.getElementById('app1').classList.remove('isDisplay');
                         that.list = data.PersonList;
                         that.list1 = data.JobListByUidRomden;
-                        // console.log(that.list)
+                        // console.log("thatlist-",that.list)
                         // console.log(that.list1)
                     });
-
                 },
                 togle: function () {
                     document.getElementById('subBox').classList.remove('isDisplay');
-                    console.log(123)
                     this.active = true;
                     var that = this;
-                    this.SmartMenu();
+                    that.SmartMenu();
                     setTimeout(function () {
                         that.active = false;
                     }, 1500)
@@ -904,11 +904,59 @@
 
     // 跳转到我的
     function mineGo() {
-        openNewWindow("mine", "../mine/mine.html")
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        var obj ={
+            uid : JSON.parse(localStorage.getItem("user")).user_id
+        }
+        console.log(obj)
+        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            // alert(JSON.stringify(data))
+            if (data.date != 0) {
+                api.confirm({
+                    // title: 'testtitle',
+                    msg: '您还未完善简历，请继续完善',
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if (index == 1){
+                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
+                            url: 'home'
+                        });
+                    }
+                });
+                return;
+            }else{
+                openNewWindow("mine", "../mine/mine.html")
+            }
+        })
+
     }
     // 跳转到聊天页面
     function linkChat() {
-        openNewWindow("index", "../chat/index_body.html")
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }else {
+            openNewWindow("index", "../chat/index_body.html")
+        }
+        /*var obj ={
+            uid : JSON.parse(localStorage.getItem("user")).user_id
+        }
+        console.log(obj)
+        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+            if (data.date != 0) {
+
+                return;
+            }else{
+                openNewWindow("index", "../chat/index_body.html")
+            }
+        })*/
+
     }
 </script>
 </html>

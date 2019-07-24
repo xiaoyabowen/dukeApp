@@ -1,6 +1,6 @@
 function informationInit(Vue) {
 
-    var str = dataValue('user/circle/comment/offlinePosition.html')
+    var str = dataValue('user/circle/comment/information.html')
     return {
         template: str,
         data: function () {
@@ -10,15 +10,15 @@ function informationInit(Vue) {
                     backgroundSize: 'cover'
                 },
                 img: '',
-                title: '1',
-                name: '1',
-                phone: '1',
-                code: '1',
-                city: '1',
-                time_from: '2017-09-09',
-                time_to: '2018-09-09',
-                num: '24',
-                end: '2019-09-09',
+                title: '',
+                name: '',
+                phone: '',
+                code: '',
+                city: '',
+                time_from: '',
+                time_to: '',
+                num: '',
+                end: '',
                 poster: ''
             }
         },
@@ -31,13 +31,13 @@ function informationInit(Vue) {
                 person_id: that.person_id,
                 circle_id: that.circle_id,
             }, function (data, err) {
-                console.log(data);
-                if (data.queryInvoice) {
+                console.log("data=",data);
+               /* if (data.queryInvoice) {
                     that.obj = data.queryInvoice[0];
                     that.qrcode.clear();
                     that.qrcode.makeCode(that.obj.invoice);
                     document.getElementById('box').className = '';
-                }
+                }*/
 
             });
         },

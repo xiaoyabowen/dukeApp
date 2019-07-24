@@ -48,7 +48,7 @@
                 <div class="choose-title">我是伯乐</div>
                 <div class="choose-sub">(招聘者)</div>
             </div>
-            <div class="placePerson" onclick="user()">
+            <div class="placePerson" onclick="user11()">
                 <div class="choose-title">我是千里马</div>
                 <div class="choose-sub">(应聘者)</div>
             </div>
@@ -62,7 +62,8 @@
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/data.js"></script>
-
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
 
 
@@ -114,24 +115,32 @@
 
         // localStorage.clear();
 
-        var role = localStorage.getItem('role');
 
-        // alert(role)
+
+
+    }
+
+    function user11() {
+        localStorage.setItem("role","1")
+        var role = localStorage.getItem('role');
+        console.log(role)
+
         var user = localStorage.getItem("user")
+        // openNewWindow("home", "../user/home/home.html")
         if (user && user.user_id){
             var obj ={
                 uid : user.user_id
             }
             console.log(obj)
             ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-                alert(11)
+
                 if (data.date != 0) {
                     openNewWindow("login", "login.html")
                     return;
                 }else{
                     if (role == 2) {
                         openNewWindow("home", "../company/home/home.html")
-                        return;
+
                     }else if(role == 1){
                         openNewWindow("home", "../user/home/home.html")
                     }
@@ -140,26 +149,50 @@
             })
         } else {
             if (role == 2) {
-
                 openNewWindow("home", "../company/home/home.html")
-                return;
+            }else if(role == 1){
+                openNewWindow("home", "../user/home/home.html")
+            }
+        }
+    }
+    // 伯乐
+
+    function company() {
+        localStorage.setItem("role","2")
+        var role = localStorage.getItem('role');
+        console.log(role)
+        // console.log(user)
+        // alert(role)
+        var user = localStorage.getItem("user")
+        // openNewWindow("login", "login.html")
+        if (user && user.user_id){
+            var obj ={
+                uid : user.user_id
+            }
+            console.log(obj)
+            ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
+
+                if (data.date != 0) {
+                    openNewWindow("login", "login.html")
+                    return;
+                }else{
+                    if (role == 2) {
+                        openNewWindow("home", "../company/home/home.html")
+
+                    }else if(role == 1){
+                        openNewWindow("home", "../user/home/home.html")
+                    }
+
+                }
+            })
+        } else {
+            if (role == 2) {
+                openNewWindow("home", "../company/home/home.html")
             }else if(role == 1){
                 openNewWindow("home", "../user/home/home.html")
             }
         }
 
-    }
-
-    function user() {
-        openNewWindow("home", "../user/home/home.html")
-        localStorage.setItem("role","1")
-    }
-    // 伯乐
-
-    function company() {
-        openNewWindow("login", "login.html")
-
-        localStorage.setItem("role","2")
     }
 </script>
 </body>

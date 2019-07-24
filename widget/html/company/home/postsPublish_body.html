@@ -137,7 +137,7 @@
                     document.getElementById("postPositionName").innerText = data.job_name
                     document.getElementById("setpostJobMiao").innerText = data.description
                     document.getElementById("postPositiontype").innerText = data.job_type
-                    document.getElementById("postPaySelect").innerText = data.ratio
+                    document.getElementById("postPaySelect").innerText = data.ratio+'k'
                     document.getElementById("postPaySelectText").innerText = data.ratio
                     document.getElementById("postJobTime").innerText = data.work_ex
                     document.getElementById("postJobTimeText").innerText = data.work_ex
@@ -181,7 +181,8 @@
     // 职位leixing
     function postPositiontype() {
         openNewWindow("resume_positionType", "./resume_positionType.html", {
-            url: 'postsPublish'
+            url: 'postsPublish',
+            content : "选择职位名称对应的类型"
         })
     }
     function position_type(value) {
@@ -190,7 +191,8 @@
     // 职位名称
     function postPositionName() {
         openNewWindow("positionName", "./positionName.html", {
-            url: 'postsPublish'
+            url: 'postsPublish',
+            content : "请填写职位名称"
         })
     }
     function edit_positionName(value) {
@@ -300,7 +302,8 @@
     // 职位描述
     function postJobMiao() {
         openNewWindow("resume_Achievement", "./resume_Achievement.html", {
-            url: 'postsPublish'
+            url: 'postsPublish',
+            type : 1
         })
     }
     function setpostJobMiao(value) {
@@ -311,7 +314,8 @@
     // gongzuo didian
     function companyAdress() {
         openNewWindow("companyAdress", "./companyAdress.html", {
-            url: 'postsPublish'
+            url: 'postsPublish',
+            content : "请选择工作地点"
         })
     }
     function companyAdressId(value,long,lat,adr_id) {
@@ -416,6 +420,8 @@
 
         var uid = JSON.parse(localStorage.getItem("user")).user_id
 
+
+
         if (statusD == 2){
             var obj = {
                 uid:uid,
@@ -430,7 +436,8 @@
                 skills : skills,
                 nature :nature,
                 status : '1',
-                job_id:job_id
+                job_id:job_id,
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
             }
             console.log(obj)
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
@@ -443,7 +450,7 @@
                             name:url,
                             // frameName:url +"_body",
                             frameName: frameName,
-                            script: apiready()
+                            script: 'loadCom()'
                         })
                         closeWin();
                     }
@@ -469,7 +476,7 @@
                 skills : skills,
                 nature :nature,
                 status : '2',
-
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 console.log(data)
@@ -481,7 +488,7 @@
                             name:url,
                             // frameName:url +"_body",
                             frameName: frameName,
-                            script: apiready()
+                            script: 'loadCom()'
                         })
                         closeWin();
                     }
@@ -505,8 +512,8 @@
                 skills : skills,
                 nature :nature,
                 status : '2',
-                job_id:job_id
-
+                job_id:job_id,
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 console.log(data)

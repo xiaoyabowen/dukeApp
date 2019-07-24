@@ -49,6 +49,13 @@
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
+
+        if (content == '请填写职位名称'){
+            text = ''
+        } else {
+            text = content
+        }
+
     };
 
 

@@ -72,7 +72,7 @@
             </div>
 
             <div class="con-title cssFlex" v-if="active == 'facial'">
-                <img :src="item.placard" alt="img" class="con-title-img">
+                <img :src="item.placard.split(',')[0]" alt="img" class="con-title-img">
                 <div class="con-title-info">
                     <div class="con-title-text textOverflow">
                         {{item.summary}}
@@ -284,6 +284,7 @@
                     }
                     // 旅游类型
                     if (that.active == 'tourism') {
+                        toast("暂未开通")
                         var price_y = that.order.price;
                         var num = that.order.num;
                         var OrderKey = that.order.OrderKey;

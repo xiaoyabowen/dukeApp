@@ -155,16 +155,28 @@
 
     // 点击保存执行此方法
     function preservation () {
-        console.log(selectList);
+
         var list = selectList.join(',')
-        console.log(122,list)
-        var frameName = url + "_body";
-        api.execScript({
-            name: url,
-            frameName: frameName,
-            script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
+        console.log(list);
+        var person_id = localStorage.getItem('person_id');
+        ajaxGetWithProgress(updateTitle, {
+            person_id: person_id,
+            p_title: list
+        }, function (res, err) {
+            // api.alert({mas: JSON.stringify(res)});
+            console.log(res);
+            if (res.return.status) {
+                var frameName = url + "_body";
+                api.execScript({
+                    name: url,
+                    frameName: frameName,
+                    script: 'set_resume_SkillLabel('+JSON.stringify(list)+')'
+                })
+                closeWin();
+            }
         })
-        closeWin();
+
+
     }
 
     // 此处手动调用了js

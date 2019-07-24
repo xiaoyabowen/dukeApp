@@ -21,6 +21,10 @@
         .info-choose-add{
             color: #638BFF;
         }
+
+        .info-choose-main-name{
+            width: 4.4rem;
+        }
     </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -50,7 +54,7 @@
             <div class="info-choose cssFlex" onclick="resume_ProjectDescription()">
                 <span class="info-choose-name">项目描述</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name birth_option" id="pro_note">请输入</span>
+                    <span class="info-choose-main-name birth_option"id="pro_note">请输入</span>
                     <!--<span class="info-choose-main-name birth_option" id="pro_note">miaoshu</span>-->
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
@@ -293,6 +297,16 @@
                 msg: '请填写你的成就'
             });
             return
+        }else if(p_from == "请输入"){
+            api.toast({
+                msg: '请填写你的项目起始时间'
+            });
+            return
+        }else if(pro_up == "请输入"){
+            api.toast({
+                msg: '请填写你的项目结束时间'
+            });
+            return
         }else if(p_url == "请输入"){
             api.toast({
                 msg: '请填写你的项目链接'
@@ -316,7 +330,7 @@
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data)
-            if (data.return_info.status) {
+            if (data.return_info.status == true) {
                 openNewWindow("home", "../home/home.html")
             }else{
                 api.toast({

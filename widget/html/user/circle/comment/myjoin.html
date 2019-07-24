@@ -1,11 +1,11 @@
 <div class="subsignBoxInfo">
     <div class="notmy_Concern_main" >
         <div class="notImg">
-            <img src="../../../image/myca.png" alt="du" class="notImgMy" v-if="showInfo ? '' : 'notDisplay'">
+            <img src="../../../image/myca.png" alt="du" class="notImgMy" v-if="showInfo ? 'notDisplay' : ''">
         </div>
         <div class="notMyConText">您还没有参加活动哦，快去寻找感兴趣的活动吧！</div>
     </div>
-    <div class="rel-box join-rel-box" v-for="(item, index) in list" :key="index" v-if="showInfo ? 'notDisplay' : ''">
+    <div class="rel-box join-rel-box" v-for="(item, index) in list" :key="index" v-if="showInfo ? '' : 'notDisplay'">
         <div class="rel-info join-rel-info cssFlex">
             <img :src="item.p_icon" alt="hr" class="rel-info-img">
             <div class="rel-info-info">

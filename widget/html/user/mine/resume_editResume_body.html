@@ -41,9 +41,14 @@
             width: 1.44rem;
             height: 1.44rem;
             border-radius: 50%;
-            overflow: hidden;
+            /*overflow: hidden;*/
         }
-
+        .p_iconImg{
+            display: block;
+            width: 1.44rem;
+            height: 1.44rem;
+            border-radius: 50%;
+        }
         .resume_editResume_head_right img {
             width: 100%;
         }
@@ -116,6 +121,9 @@
         div.isDisplay {
             display: none;
         }
+
+
+
     </style>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -135,7 +143,7 @@
                 <div class="editResume_information" onclick="editInfo()">编辑基本信息</div>
             </div>
             <div class="resume_editResume_head_right">
-                <img id="p_icon" src="../../../image/pro.png" alt="">
+                <img id="p_icon" src="../../../image/pro.png" alt="pro" class="p_iconImg">
             </div>
         </div>
 
@@ -294,150 +302,154 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
-    var p_tags, p_title, home_page;
+    var p_tags, p_title, home_page,home;
     apiready = function () {
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
+            home = api.pageParam.home
             console.log(data);
-            if (data) {
-                document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
-                var person_summary = data.person_summary;
-                var projects = data.projects;
-                var education_his = data.education_his;
-                var working_his = data.working_his;
-                var Intention = data.Intention;
-                var HomePage = data.HomePage;
+            if (home = "home"){}else{
+                if (data) {
+                    document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
+                    var person_summary = data.person_summary;
+                    var projects = data.projects;
+                    var education_his = data.education_his;
+                    var working_his = data.working_his;
+                    var Intention = data.Intention;
+                    var HomePage = data.HomePage;
 
-                // 姓名
-                if (person_summary.p_name || person_summary.p_name != 'undefined') {
-                    document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
-                }
-
-                // 图片
-                if (person_summary.p_icon) {
-                    document.getElementById('p_icon').src = person_summary.p_icon;
-                }
-
-                // 自我介绍
-                if (person_summary.p_tags) {
-                    document.getElementById('p_tags').innerText = "已填写";
-                    p_tags = person_summary.p_tags;
-                } else {
-                    document.getElementById('p_tags').innerText = "未填写";
-                    p_tags = '';
-                }
-                // 综合能力
-                if (person_summary.p_title) {
-                    document.getElementById('p_title').innerText = "已填写";
-                    p_title = person_summary.p_title;
-                } else {
-                    document.getElementById('p_title').innerText = "未填写";
-                    p_title = '';
-                }
-                // 求职状态
-                if (Intention) {
-                    var statusObj = {
-                        '1': '离职-随时到岗',
-                        '2': '在职-月内到岗',
-                        '3': '在职-考虑机会',
-                        '4': '在职-暂不考虑',
-                    }
-                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                    document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
-                }
-                // 求职期望
-                if (Intention) {
-                    document.querySelector('.work_name').innerText = Intention[0].work_name;
-                    document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
-                    document.querySelector('.int_city').innerText = Intention[0].int_city;
-                    var pays = Intention[0].pay.split('.');
-                    var pays2 = []
-                    pays.forEach(function (value) {
-                        pays2.push(value + 'k')
-                    })
-                    // console.log(pays2);
-                    document.querySelector('.pay').innerText = pays2.join('-');
-                }
-                // 工作经历
-                if (working_his) {
-                    var workings = document.getElementById('workings');
-                    var arr = [];
-                    for (var i = 0; i < working_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
-                            '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
-                            '                        <div class="info-choose-main cssFlex">\n' +
-                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                            '                        </div>\n' +
-                            '                    </div>';
-                        arr.push(str);
+                    // 姓名
+                    if (person_summary.p_name || person_summary.p_name != 'undefined') {
+                        document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
                     }
 
-                    var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(workings)
-                    workings.innerHTML = dom;
-                }
-                // 教育经历
-                if (education_his) {
-                    var educations = document.getElementById('educations');
-                    var arr = [];
-                    for (var i = 0; i < education_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
-                            '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
-                            '                        <div class="info-choose-main cssFlex">\n' +
-                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                            '                        </div>\n' +
-                            '                    </div>';
-                        arr.push(str);
+                    // 图片
+                    if (person_summary.p_icon) {
+                        document.getElementById('p_icon').src = person_summary.p_icon;
                     }
 
-                    var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(educations)
-                    educations.innerHTML = dom;
-                }
+                    // 自我介绍
+                    if (person_summary.p_tags) {
+                        document.getElementById('p_tags').innerText = "已填写";
+                        p_tags = person_summary.p_tags;
+                    } else {
+                        document.getElementById('p_tags').innerText = "未填写";
+                        p_tags = '';
+                    }
+                    // 综合能力
+                    if (person_summary.p_title) {
+                        document.getElementById('p_title').innerText = "已填写";
+                        p_title = person_summary.p_title;
+                    } else {
+                        document.getElementById('p_title').innerText = "未填写";
+                        p_title = '';
+                    }
+                    // 求职状态
+                    if (Intention) {
+                        var statusObj = {
+                            '1': '离职-随时到岗',
+                            '2': '在职-月内到岗',
+                            '3': '在职-考虑机会',
+                            '4': '在职-暂不考虑',
+                        }
+                        document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                        document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
+                    }
+                    // 求职期望
+                    if (Intention) {
+                        document.querySelector('.work_name').innerText = Intention[0].work_name;
+                        document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
+                        document.querySelector('.int_city').innerText = Intention[0].int_city;
+                        var pays = Intention[0].pay.split('.');
+                        var pays2 = []
+                        pays.forEach(function (value) {
+                            pays2.push(value + 'k')
+                        })
+                        // console.log(pays2);
+                        document.querySelector('.pay').innerText = pays2.join('-');
+                    }
+                    // 工作经历
+                    if (working_his) {
+                        var workings = document.getElementById('workings');
+                        var arr = [];
+                        for (var i = 0; i < working_his.length; i++) {
+                            var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
+                                '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
+                                '                        <div class="info-choose-main cssFlex">\n' +
+                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            arr.push(str);
+                        }
 
+                        var dom = arr.join('');
+                        // console.log(dom);
+                        // console.log(workings)
+                        workings.innerHTML = dom;
+                    }
+                    // 教育经历
+                    if (education_his) {
+                        var educations = document.getElementById('educations');
+                        var arr = [];
+                        for (var i = 0; i < education_his.length; i++) {
+                            var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
+                                '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
+                                '                        <div class="info-choose-main cssFlex">\n' +
+                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            arr.push(str);
+                        }
 
-                if (projects != null) {
-
-                    var project = document.getElementById('project');
-                    var arr = [];
-                    for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
-                            '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
-                            '                        <div class="info-choose-main cssFlex">\n' +
-                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                            '                        </div>\n' +
-                            '                    </div>';
-                        arr.push(str);
+                        var dom = arr.join('');
+                        // console.log(dom);
+                        // console.log(educations)
+                        educations.innerHTML = dom;
                     }
 
-                    var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(project)
-                    project.innerHTML = dom;
-                }
 
-                if (HomePage) {
-                    home_page = HomePage;
-                    var arr = [];
-                    for (var i = 0; i < HomePage.length; i++) {
-                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
-                            '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
-                            '                        <div class="info-choose-main cssFlex">\n' +
-                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                            '                        </div>\n' +
-                            '                    </div>';
-                        arr.push(str);
+                    if (projects != null) {
+
+                        var project = document.getElementById('project');
+                        var arr = [];
+                        for (var i = 0; i < projects.length; i++) {
+                            var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
+                                '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
+                                '                        <div class="info-choose-main cssFlex">\n' +
+                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            arr.push(str);
+                        }
+
+                        var dom = arr.join('');
+                        // console.log(dom);
+                        // console.log(project)
+                        project.innerHTML = dom;
                     }
-                    document.getElementById('home_page').innerHTML = arr.join('');
-                } else {
-                    document.getElementById('home_page').innerHTML = '';
+
+                    if (HomePage) {
+                        home_page = HomePage;
+                        var arr = [];
+                        for (var i = 0; i < HomePage.length; i++) {
+                            var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
+                                '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
+                                '                        <div class="info-choose-main cssFlex">\n' +
+                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            arr.push(str);
+                        }
+                        document.getElementById('home_page').innerHTML = arr.join('');
+                    } else {
+                        document.getElementById('home_page').innerHTML = '';
+                    }
+
+
                 }
-
-
             }
+
 
         });
 

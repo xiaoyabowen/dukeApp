@@ -54,8 +54,12 @@ body, div, p, span, a, input, ul, li {
 }
 
 .m-adressimg {
+    display: block;
     width: 0.22rem;
     height: 0.28rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
 }
 
 .m-zhiweiimg {
@@ -114,9 +118,10 @@ body, div, p, span, a, input, ul, li {
 }
 
 .m-img-logo {
-    display: inline-block;
+    display:block;
     width: 1.3rem;
     height: 1.3rem;
+    border-radius: 50%;
 }
 
 /*我的沟通记录*/
@@ -797,24 +802,27 @@ body, div, p, span, a, input, ul, li {
 }
 
 .subscribed_bottom_btn {
-    height: 0.78rem;
+    height: 0.82rem;
     border: 0.01rem solid #5C91FD;
     border-radius: 0.08rem;
-    display: flex;
     color: #5C91FD;
     font-size: 0.28rem;
     margin-top: 0.5rem;
+    width: 100%;
+    align-items: center;
 }
 
 .subscribed_bottom_btn div {
-    flex: 50%;
+    width: 48%;
     text-align: center;
-    line-height: 0.78rem;
+    line-height: 0.82rem;
 }
 
 .subscribed_bottom_btn div:first-child {
     background: #5C91FD;
     color: #ffffff;
+    border-top-left-radius: 0.08rem;
+    border-bottom-left-radius: 0.08rem;
 }
 
 /*订阅页面结束*/

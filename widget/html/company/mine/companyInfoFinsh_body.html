@@ -136,7 +136,14 @@
 
 <script>
 
+    function loadCom (){
+        window.location.reload()
+    }
+
+
     apiready = function () {
+
+
         new Vue({
             el: '#app1',
             data: {
@@ -166,7 +173,7 @@
                         uid:uid
                     }
                     ajaxGetWithProgress(CompanySummaryIsPerfect,obj,function (data,ret) {
-
+                        console.log("finshCom",data)
                         if (data) {
                             if (data.InformationPerfect){
                                 that.comInfomation = true

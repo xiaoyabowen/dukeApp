@@ -81,12 +81,18 @@
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
     var text = document.getElementById('text10');
+    var num = document.querySelector('.resume_level2_num');
+    var total = document.querySelector('.resume_level2_total');
     var url, content;
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
-
+        text.oninput = function (e) {
+            num.innerText = e.target.value.length;
+        }
         type = api.pageParam.type;
+
+
         if (type == 1){
             text.value = '';
         } else{

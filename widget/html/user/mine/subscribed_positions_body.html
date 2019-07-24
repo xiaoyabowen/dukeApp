@@ -116,7 +116,7 @@
     </div>
 
     <div class="subscribed_bottom isDisplay">
-        <div class="subscribed_bottom_btn">
+        <div class="subscribed_bottom_btn cssFlex">
             <div class="subscribed_bottom_left">修改订阅</div>
             <div class="subscribed_bottom_right">删除订阅</div>
         </div>
@@ -144,6 +144,15 @@
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 <script>
+
+    // 重新获取数据
+    function reset() {
+        document.querySelector('.subscribed_main').classList.remove('isDisplay');
+        document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
+        document.querySelector('.clearBox').classList.add('isDisplay');
+        window.location.reload()
+    }
+
     var sub_id;
     apiready = function () {
 
@@ -252,13 +261,7 @@
         })
     }
 
-    // 重新获取数据
-    function reset() {
-        console.log(1233)
-        document.querySelector('.subscribed_main').classList.remove('isDisplay');
-        document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
-        document.querySelector('.clearBox').classList.add('isDisplay');
-    }
+
 
 
 </script>
