@@ -43,5 +43,12 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
+    //点击保存
+    function save(){
+        api.execScript({
+            frameName: "WorkReshName_body",
+            script: 'preservation()'
+        })
+    }
 </script>
 </html>

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
-    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
-    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css"/>
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css"/>
     <style>
         body {
             padding-bottom: 0.28rem;
@@ -43,12 +43,14 @@
             border-radius: 50%;
             /*overflow: hidden;*/
         }
-        .p_iconImg{
+
+        .p_iconImg {
             display: block;
             width: 1.44rem;
             height: 1.44rem;
             border-radius: 50%;
         }
+
         .resume_editResume_head_right img {
             width: 100%;
         }
@@ -121,7 +123,6 @@
         div.isDisplay {
             display: none;
         }
-
 
 
     </style>
@@ -201,17 +202,17 @@
 
                 <div class="workExperience" id="workings">
                     <!--<div class="info-choose cssFlex" onclick="addEditWork()">-->
-                        <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
-                        <!--<div class="info-choose-main cssFlex">-->
-                            <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
-                        <!--</div>-->
+                    <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
+                    <!--<div class="info-choose-main cssFlex">-->
+                    <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
+                    <!--</div>-->
                     <!--</div>-->
 
                     <!--<div class="info-choose cssFlex" onclick="addEditWork()">-->
-                        <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
-                        <!--<div class="info-choose-main cssFlex">-->
-                            <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
-                        <!--</div>-->
+                    <!--<span class="info-choose-name">北京A公司信息技术有限公司</span>-->
+                    <!--<div class="info-choose-main cssFlex">-->
+                    <!--<img src="../../../icon/right.png" alt="right" class="info-img-right">-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
 
@@ -302,152 +303,159 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
 
-    var p_tags, p_title, home_page,home;
+    var p_tags, p_title, home_page, url;
     apiready = function () {
+        url = api.pageParam.url
+        console.log(url)
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            home = api.pageParam.home
+
             console.log(data);
-            if (home = "home"){}else{
-                if (data) {
-                    document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
-                    var person_summary = data.person_summary;
-                    var projects = data.projects;
-                    var education_his = data.education_his;
-                    var working_his = data.working_his;
-                    var Intention = data.Intention;
-                    var HomePage = data.HomePage;
 
-                    // 姓名
-                    if (person_summary.p_name || person_summary.p_name != 'undefined') {
-                        document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
-                    }
+            if (data) {
+                // if (url = "home"){
+                //     alert(1)
+                // }else if (url = "resume_editResume"){
+                document.querySelector('.resume_editResume_main').classList.remove('isDisplay');
+                var person_summary = data.person_summary;
+                var projects = data.projects;
+                var education_his = data.education_his;
+                var working_his = data.working_his;
+                var Intention = data.Intention;
+                var HomePage = data.HomePage;
 
-                    // 图片
-                    if (person_summary.p_icon) {
-                        document.getElementById('p_icon').src = person_summary.p_icon;
-                    }
+                console.log(person_summary)
+                console.log(person_summary.p_name)
+                // 姓名
+                if (person_summary.p_name || person_summary.p_name != 'undefined') {
 
-                    // 自我介绍
-                    if (person_summary.p_tags) {
-                        document.getElementById('p_tags').innerText = "已填写";
-                        p_tags = person_summary.p_tags;
-                    } else {
-                        document.getElementById('p_tags').innerText = "未填写";
-                        p_tags = '';
-                    }
-                    // 综合能力
-                    if (person_summary.p_title) {
-                        document.getElementById('p_title').innerText = "已填写";
-                        p_title = person_summary.p_title;
-                    } else {
-                        document.getElementById('p_title').innerText = "未填写";
-                        p_title = '';
-                    }
-                    // 求职状态
-                    if (Intention) {
-                        var statusObj = {
-                            '1': '离职-随时到岗',
-                            '2': '在职-月内到岗',
-                            '3': '在职-考虑机会',
-                            '4': '在职-暂不考虑',
-                        }
-                        document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                        document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
-                    }
-                    // 求职期望
-                    if (Intention) {
-                        document.querySelector('.work_name').innerText = Intention[0].work_name;
-                        document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
-                        document.querySelector('.int_city').innerText = Intention[0].int_city;
-                        var pays = Intention[0].pay.split('.');
-                        var pays2 = []
-                        pays.forEach(function (value) {
-                            pays2.push(value + 'k')
-                        })
-                        // console.log(pays2);
-                        document.querySelector('.pay').innerText = pays2.join('-');
-                    }
-                    // 工作经历
-                    if (working_his) {
-                        var workings = document.getElementById('workings');
-                        var arr = [];
-                        for (var i = 0; i < working_his.length; i++) {
-                            var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
-                                '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
-                                '                        <div class="info-choose-main cssFlex">\n' +
-                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                                '                        </div>\n' +
-                                '                    </div>';
-                            arr.push(str);
-                        }
-
-                        var dom = arr.join('');
-                        // console.log(dom);
-                        // console.log(workings)
-                        workings.innerHTML = dom;
-                    }
-                    // 教育经历
-                    if (education_his) {
-                        var educations = document.getElementById('educations');
-                        var arr = [];
-                        for (var i = 0; i < education_his.length; i++) {
-                            var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
-                                '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
-                                '                        <div class="info-choose-main cssFlex">\n' +
-                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                                '                        </div>\n' +
-                                '                    </div>';
-                            arr.push(str);
-                        }
-
-                        var dom = arr.join('');
-                        // console.log(dom);
-                        // console.log(educations)
-                        educations.innerHTML = dom;
-                    }
-
-
-                    if (projects != null) {
-
-                        var project = document.getElementById('project');
-                        var arr = [];
-                        for (var i = 0; i < projects.length; i++) {
-                            var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
-                                '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
-                                '                        <div class="info-choose-main cssFlex">\n' +
-                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                                '                        </div>\n' +
-                                '                    </div>';
-                            arr.push(str);
-                        }
-
-                        var dom = arr.join('');
-                        // console.log(dom);
-                        // console.log(project)
-                        project.innerHTML = dom;
-                    }
-
-                    if (HomePage) {
-                        home_page = HomePage;
-                        var arr = [];
-                        for (var i = 0; i < HomePage.length; i++) {
-                            var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
-                                '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
-                                '                        <div class="info-choose-main cssFlex">\n' +
-                                '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
-                                '                        </div>\n' +
-                                '                    </div>';
-                            arr.push(str);
-                        }
-                        document.getElementById('home_page').innerHTML = arr.join('');
-                    } else {
-                        document.getElementById('home_page').innerHTML = '';
-                    }
-
-
+                    document.querySelector('.editResume_name').innerText = person_summary.p_name || '未登录';
                 }
+
+                // 图片
+                if (person_summary.p_icon) {
+                    document.getElementById('p_icon').src = imgSrcFun(person_summary.p_icon);
+                }
+
+                // 自我介绍
+                if (person_summary.p_tags) {
+                    document.getElementById('p_tags').innerText = "已填写";
+                    p_tags = person_summary.p_tags;
+                } else {
+                    document.getElementById('p_tags').innerText = "未填写";
+                    p_tags = '';
+                }
+                // 综合能力
+                if (person_summary.p_title) {
+                    document.getElementById('p_title').innerText = "已填写";
+                    p_title = person_summary.p_title;
+                } else {
+                    document.getElementById('p_title').innerText = "未填写";
+                    p_title = '';
+                }
+                // 求职状态
+                if (Intention) {
+                    var statusObj = {
+                        '1': '离职-随时到岗',
+                        '2': '在职-月内到岗',
+                        '3': '在职-考虑机会',
+                        '4': '在职-暂不考虑',
+                    }
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                    document.getElementById('jobHuntingStatus').dataset['status'] = Intention[0].status;
+                }
+                // 求职期望
+                if (Intention) {
+                    document.querySelector('.work_name').innerText = Intention[0].work_name;
+                    document.querySelector('.work_name').dataset['i_id'] = Intention[0].i_id;
+                    document.querySelector('.int_city').innerText = Intention[0].int_city;
+                    var pays = Intention[0].pay.split('.');
+                    var pays2 = []
+                    pays.forEach(function (value) {
+                        pays2.push(value + 'k')
+                    })
+                    // console.log(pays2);
+                    document.querySelector('.pay').innerText = pays2.join('-');
+                }
+                // 工作经历
+                if (working_his) {
+                    var workings = document.getElementById('workings');
+                    var arr = [];
+                    for (var i = 0; i < working_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn + ',' + working_his[i].w_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(workings)
+                    workings.innerHTML = dom;
+                }
+                // 教育经历
+                if (education_his) {
+                    var educations = document.getElementById('educations');
+                    var arr = [];
+                    for (var i = 0; i < education_his.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="editEducation(' + education_his[i].sn + ',' + education_his[i].univ_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + education_his[i].univ_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(educations)
+                    educations.innerHTML = dom;
+                }
+
+
+                if (projects != null) {
+
+                    var project = document.getElementById('project');
+                    var arr = [];
+                    for (var i = 0; i < projects.length; i++) {
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ',' + projects[i].pro_id + ')">\n' +
+                            '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(project)
+                    project.innerHTML = dom;
+                }
+
+                if (HomePage) {
+                    home_page = HomePage;
+                    var arr = [];
+                    for (var i = 0; i < HomePage.length; i++) {
+                        var str = '<div class="info-choose cssFlex" id="home' + i + '" data-id="' + HomePage[i].id + '" data-home="' + HomePage[i].home_page + '" onclick="resume_SocialEditHomepage(home' + i + ')">\n' +
+                            '                        <span class="info-choose-name">' + HomePage[i].home_page + '</span>\n' +
+                            '                        <div class="info-choose-main cssFlex">\n' +
+                            '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        arr.push(str);
+                    }
+                    document.getElementById('home_page').innerHTML = arr.join('');
+                } else {
+                    document.getElementById('home_page').innerHTML = '';
+                }
+                // }
+
             }
 
 
@@ -463,6 +471,7 @@
             content: p_tags
         });
     }
+
     function setIntroduce(value) {
         if (value) {
             p_tags = value
@@ -483,6 +492,7 @@
 
         document.getElementById("p_title").innerText = value;
     }
+
     // 编辑  求职状态
     function resume_editExpectations() {
         var i_id = document.querySelector('.work_name').dataset['i_id'];
@@ -580,6 +590,7 @@
             url: 'resume_editResume',
         })
     }
+
     function resume_SocialEditHomepage(e) {
         console.log(e);
         console.log(e.dataset.home);
@@ -591,6 +602,7 @@
             mode: 1
         })
     }
+
     // 刷新
     function setTime() {
         reload();
@@ -620,6 +632,7 @@
             w_id: w_id
         })
     }
+
     // 编辑项目经历
     function resume_editProject(sn, pro_id) {
         console.log(sn, pro_id)
@@ -628,6 +641,7 @@
             pro_id: pro_id
         })
     }
+
     //刷新页面
     function reload() {
 
@@ -693,7 +707,7 @@
                     var workings = document.getElementById('workings');
                     var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn+','+ working_his[i].w_id + ')">\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="addEditWork(' + working_his[i].sn + ',' + working_his[i].w_id + ')">\n' +
                             '                        <span class="info-choose-name">' + working_his[i].com_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -733,7 +747,7 @@
                     var project = document.getElementById('project');
                     var arr = [];
                     for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ','+ projects[i].pro_id +')">\n' +
+                        var str = '<div class="info-choose cssFlex" onclick="resume_editProject(' + projects[i].sn + ',' + projects[i].pro_id + ')">\n' +
                             '                        <span class="info-choose-name">' + projects[i].project_name + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
@@ -752,8 +766,8 @@
                     home_page = HomePage;
                     var arr = [];
                     for (var i = 0; i < HomePage.length; i++) {
-                        var str = '<div class="info-choose cssFlex" id="home'+ i +'" data-id="'+ HomePage[i].id +'" data-home="'+ HomePage[i].home_page +'" onclick="resume_SocialEditHomepage(home'+ i +')">\n' +
-                            '                        <span class="info-choose-name">'+ HomePage[i].home_page +'</span>\n' +
+                        var str = '<div class="info-choose cssFlex" id="home' + i + '" data-id="' + HomePage[i].id + '" data-home="' + HomePage[i].home_page + '" onclick="resume_SocialEditHomepage(home' + i + ')">\n' +
+                            '                        <span class="info-choose-name">' + HomePage[i].home_page + '</span>\n' +
                             '                        <div class="info-choose-main cssFlex">\n' +
                             '                            <img src="../../../icon/right.png" alt="right" class="info-img-right">\n' +
                             '                        </div>\n' +

@@ -282,7 +282,7 @@ body, div, p, span, a, input, ul, li {
     height: 0.78rem;
     line-height: 0.78rem;
     background: rgba(0, 0, 0, 0.5);
-
+    width: 100%;
     padding-left: 0.36rem;
     padding-right: 0.3rem;
     justify-content: space-between;
@@ -2129,6 +2129,7 @@ i.ques-star {
     line-height: 0.78rem;
     text-align: center;
     color: #fff;
+    margin: 0 auto;
 }
 .ques-active{
     color:rgba(99,139,255,1);

@@ -13,42 +13,70 @@
 </head>
 <body class="commonBg">
     <div class="Box">
-        <div class="boxSub">
-            <div class='textarea-block'>
-                <textarea class="textarea-item" name="content" placeholder="请输入内容，不超过50字。" maxlength="50" spellcheck="false"></textarea>
-                <div class="textarea-count">
-                    <span class="textareaInput">0</span>/<span class="textareaTotal">50</span>
-                </div>
+        <div class="resume_level2_main">
+            <div class="resume_level2_head">
+                您的简历
             </div>
 
+            <div class="resume_level2_content">
+                <input class="text" id="text0" type="text" maxlength=30 placeholder="">
+            </div>
+            <p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/30字符</p>
         </div>
-        <div class="line-border"></div>
     </div>
     <script type="text/javascript" src="../../../script/api.js"></script>
     <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
+        var name,url,nameLast,filesId;
+        var text = document.getElementById('text0')
+        var num = document.querySelector('.resume_level2_num');
         apiready = function () {
+            name = api.pageParam.name
+            url = api.pageParam.url
+            nameLast = api.pageParam.nameLast
+            filesId = api.pageParam.filesId
+            text.oninput = function (e) {
+                num.innerText = e.target.value.length;
+            }
+            if (name){
+                text.value = name
+            }
+
 
         };
-        $(document).ready(function(){
+        // 点击保存执行此方法
+        function preservation () {
+            var value = text.value;
+            if(isBlack(value)){
+                toast("请输入简历");
+                return;
+            }
 
-            var lenInput = $('.textarea-item').val().length;
 
-            $(".textarea-item").keyup(function(){
-                lenInput = $(this).val().length;
-                if(lenInput>0 && lenInput<=50){
-                    $('.textareaInput').html(lenInput);
-                    $('.textarea-btn').attr('disabled',false);
-                }else{
-                    $('.textarea-btn').attr('disabled',true);
+            var obj ={
+                res_name: value + '.' + nameLast,
+                id: filesId
+            }
+            console.log(obj)
+            ajaxGetWithProgress(UpdateResumeNameUserProfile, obj, function (res, err) {
+                console.log(res);
+                if (res.return.status) {
+                    var frameName = url + "_body";
+                    api.execScript({
+                        name:url,
+                        frameName: frameName,
+                        script: 'loadCom()'
+                    })
+                    closeWin();
                 }
-            });
-        });
+            })
+
+        }
 
     </script>
 </body>

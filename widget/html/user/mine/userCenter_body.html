@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
 
     <style>
@@ -78,8 +78,8 @@
     <div class="height10"></div>
     <div class="boxSub">
         <div class="user-label cssFlex">
-            <div class="info-name">基础信息</div>
-            <div class="info-list">
+            <div class="info-name commonSub24">基础信息</div>
+            <div class="info-list ">
                 <p>
                     <span class="inter-list-title">年龄</span>
                     <i id="user_age">26</i>
@@ -175,7 +175,7 @@
 
             document.querySelector('.Box').classList.remove('isDisplay');
             if (data.p_icon) {
-                document.getElementById('p_icon').src = data.p_icon;
+                document.getElementById('p_icon').src = imgSrcFun(data.p_icon);
             }
 
             if (data.p_name) {

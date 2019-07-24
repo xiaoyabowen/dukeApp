@@ -127,7 +127,7 @@ function informationInit(Vue) {
                     rotation: true
                 }, function (ret) {
                     if (ret) {
-                        console.log(ret)
+                        console.log("ret==",ret)
                         that.img = ret.list[0].thumbPath
                         var obj = {
                             uid: localStorage.getItem("user").user_id

@@ -3,23 +3,22 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-/*
 var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.4:8000/SE4M';
 var Domain = 'http://192.168.1.4:8088';
 
-*/
 
+/*
 
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
+*/
 
 
 
 var rootWindowName = "root";
 simpleVersion = true;
-
 
 //分享地址
 var shareNotice = "http://39.107.247.82:99/html/classNotice_detail_body.html?nid=";
@@ -292,8 +291,19 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 
 
 //  聚划算
-var showVisaInformation = Domain + "/visa/showVisaInformation";
+var showVisaInformation = Domain + "/visa/showVisaInformation"
 
+
+// 千里马  简历上传
+var uploadUploadResume = Domain + "/upload/UploadResume";
+// 千里马  简历查询
+var QueryResumeUserProfile = serverUrl + "/UserProfile/QueryResume";
+// 千里马  修改简历名字
+var UpdateResumeNameUserProfile = serverUrl + "/UserProfile/UpdateResumeName";
+// 千里马  删除简历
+var deleteResumeNameUserProfile = serverUrl + "/UserProfile/deleteResume";
+// 千里马 发送简历至邮箱
+var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail ";
 
 
 
@@ -430,6 +440,45 @@ function isStatus(num) {
     }
     return statusObj[num];
 }
+
+// JS字符串截取   .  后面的 内容
+function getCaption(obj){
+    var index=obj.lastIndexOf("\.");
+    obj=obj.substring(index+1,obj.length);
+    console.log(obj);
+    return obj;
+}
+
+function getFirst(obj) {
+    var index = obj .lastIndexOf("\.");
+    obj  = obj .substring(0, index);
+    console.log(obj);
+    return obj;
+}
+
+// JS大小转化B KB MB GB的转化方法
+function conver(limit){
+    var size = "";
+    if( limit < 0.1 * 1024 ){ //如果小于0.1KB转化成B
+        size = limit.toFixed(2) + "B";
+    }else if(limit < 0.1 * 1024 * 1024 ){//如果小于0.1MB转化成KB
+        size = (limit / 1024).toFixed(2) + "KB";
+    }else if(limit < 0.1 * 1024 * 1024 * 1024){ //如果小于0.1GB转化成MB
+        size = (limit / (1024 * 1024)).toFixed(2) + "MB";
+    }else{ //其他转化成GB
+        size = (limit / (1024 * 1024 * 1024)).toFixed(2) + "GB";
+    }
+
+    var sizestr = size + "";
+    var len = sizestr.indexOf("\.");
+    var dec = sizestr.substr(len + 1, 2);
+    if(dec == "00"){//当小数点后为00时 去掉小数部分
+        return sizestr.substring(0,len) + sizestr.substr(len + 3,2);
+    }
+    return sizestr;
+}
+
+
 // 图片路劲去逗号
 function imgSrcFun(src) {
     return src.split(',')[0];
