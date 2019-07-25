@@ -6,10 +6,12 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <content src="html/login/homeChoose.html" />
+    <!--<content src="html/login/homeChoose.html" />-->
     <!--<content src="html/user/mine/create_resume.html" />-->
+    <!--<content src="html/order/myorder.html" />-->
     <!--<content src="html/login/passLogin.html" />-->
-    <!--<content src="html/login/login.html" />-->
+    <content src="html/login/loginComfir.html" />
+
     <!--<content src="html/user/mine/mine.html" />-->
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />

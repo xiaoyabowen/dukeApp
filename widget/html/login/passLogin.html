@@ -197,13 +197,22 @@
             margin: 0.5rem 0 0.66rem;
         }
         .threeLi>li{
-            width: 33%;
+            width:50%;
             text-align: center;
         }
         .threeLi>li>img{
-            display: inline-block;
+            display: block;
             width: 0.94rem;
             height: 0.94rem;
+            margin: 0 auto 0.12rem;
+
+        }
+        .threeLi>li>span{
+            height:0.36rem;
+            font-size:0.26rem;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:0.36rem;
         }
         .login-title>img{
             display: block;
@@ -250,12 +259,11 @@
                 <ul class="cssFlex threeLi">
                     <li>
                         <img src="../../image/login/wechat.png" alt="weixin">
+                        <span>微信登陆</span>
                     </li>
                     <li>
-                        <img src="../../image/login/qq.png" alt="qq">
-                    </li>
-                    <li>
-                        <img src="../../image/login/weibo.png" alt="weibo">
+                        <img src="../../image/login/in.png" alt="qq">
+                        <span>领英登录</span>
                     </li>
                 </ul>
             </div>
@@ -288,9 +296,9 @@
             passInput.setAttribute("type","password")
         }
     })
-
+    var url
     apiready = function () {
-
+        url = api.pageParam.url
         //添加安卓退出按钮事件
         /*api.addEventListener({
             name: 'keyback'
@@ -366,7 +374,13 @@
         openNewWindow("returnPass", "returnPass.html")
     }
     function returnLogin() {
-        openNewWindow("login", "login.html")
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+        })
+        closeWin();
+
     }
 
 

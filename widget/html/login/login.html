@@ -189,13 +189,22 @@
             margin: 0.5rem 0 0.66rem;
         }
         .threeLi>li{
-            width: 33%;
+            width:50%;
             text-align: center;
         }
         .threeLi>li>img{
-            display: inline-block;
+            display: block;
             width: 0.94rem;
             height: 0.94rem;
+            margin: 0 auto 0.12rem;
+
+        }
+        .threeLi>li>span{
+            height:0.36rem;
+            font-size:0.26rem;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:0.36rem;
         }
         p.agreeLink {
             padding-bottom: 0.8rem;
@@ -234,12 +243,11 @@
                 <ul class="cssFlex threeLi">
                     <li>
                         <img src="../../image/login/wechat.png" alt="weixin">
+                        <span>微信登陆</span>
                     </li>
                     <li>
-                        <img src="../../image/login/qq.png" alt="qq">
-                    </li>
-                    <li>
-                        <img src="../../image/login/weibo.png" alt="weibo">
+                        <img src="../../image/login/in.png" alt="qq">
+                        <span>领英登录</span>
                     </li>
                 </ul>
             </div>
@@ -462,7 +470,9 @@
         openNewWindow("home", "../user/home/home.html")
     }
     function passLogin() {
-        openNewWindow("passLogin", "passLogin.html")
+        openNewWindow("passLogin", "passLogin.html",{
+            url : "login"
+        })
     }
 
 </script>

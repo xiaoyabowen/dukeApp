@@ -7,8 +7,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的订单</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../css/api.css" />
+    <link rel="stylesheet" href="../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../css/myOrderCommon.css" />
 
     <style>
         .headerBox{
@@ -18,13 +19,12 @@
 
 </head>
 <body>
-<div id="topbar" class="cssFlex">
-
-    <div class="headerBox cssFlex">
-        <div class="leftImgClose">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
+<div id="topbar" class="display">
+    <div class="headerBoxbg cssFlex">
+        <div class="leftImgClose" >
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../icon/back.png"  onclick="closeWin()">
         </div>
-        <div class="middleMain">
+        <div  class="middleHeight">
             我的订单
         </div>
         <div class="rightImgEdite">
@@ -32,27 +32,83 @@
         </div>
     </div>
 </div>
+<div id="add_activities">
+    <!--<div class="isDisplay" id="box">-->
+    <div id="box">
+        <div class="add_activities_header cssFlex" @click="componentHandle()">
+            <div><span :class="isActive ? 'active' : ''">全部订单</span></div>
+            <div><span :class="isActive ? '' : 'active'">已支付</span></div>
+            <div><span :class="isActive ? '' : 'active'">已支付</span></div>
+            <div><span :class="isActive ? '' : 'active'">已支付</span></div>
+        </div>
+        <component :is="isCom"></component>
+
+    </div>
+</div>
+
 
 </body>
-<script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/vuex.min.js"></script>
+<script type="text/javascript" src="comment/allOrder.js"></script>
+<script type="text/javascript" src="comment/yesPay.js"></script>
+<script type="text/javascript" src="comment/waitPay.js"></script>
 <script>
 
     apiready = function () {
-        initFrameInWin(api.pageParam);
+
+        var header = $api.dom('#topbar');
+        $api.fixStatusBar(header);
+
+        var allOrder = allOrderInit(Vue);
+        var yesPay = yesPayInit(Vue);
+        var waitPay = waitPayInit(Vue);
+
+        Vue.component('allOrder', allOrder);
+        Vue.component('yesPay', yesPay);
+        Vue.component('waitPay', waitPay);
+
+        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        new Vue({
+            el: '#add_activities',
+            data: {
+                isActive: true,
+                isCom: 'allOrder',
+            },
+            components: {
+                allOrder: allOrder,
+                yesPay: yesPay,
+                waitPay: waitPay
+            },
+            created: function () {
+
+            },
+            mounted : function (){
+
+            },
+            methods: {
+                // 切换组件
+                componentHandle: function () {
+                    this.isActive = !this.isActive;
+                    if (this.isActive) {
+                        this.isCom = 'allOrder';
+                    } else {
+                        this.isCom = 'yesPay';
+                    }
+                },
+            }
+        })
+
     };
     //点击保存
 
-    function save(){
-        api.execScript({
-            frameName: "whriteComInfo_body",
-            script: 'preservation()'
-        })
-    }
 </script>
 </html>

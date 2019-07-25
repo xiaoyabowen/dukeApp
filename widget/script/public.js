@@ -3,17 +3,15 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
+/*var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.4:8000/SE4M';
-var Domain = 'http://192.168.1.4:8088';
+var Domain = 'http://192.168.1.4:8088';*/
 
 
-/*
 
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-*/
 
 
 
@@ -41,6 +39,8 @@ var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role
 
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
+// 账号密码登录
+var CreatePersonBasicUserProfile = serverUrl + "/UserProfile/CreatePersonBasic";
 
 
 // 获取面试数量
@@ -535,15 +535,25 @@ function filterTime3(time) {
     var day = arr[2] + '日';
     return year + month + day;
 }
+// 手机号  后4位
+function telFourLast(urlString) {
+    if (urlString != "") {
+        tel = urlString.substr(urlString.length-4)
+        console.log(tel)
+        return tel
+    }
+}
+telFourLast("15901420539")
 
 
+
+// 手机号  中间4位 为 * 号
 function checkTelFour(urlString) {
     if (urlString != "") {
         tel = "" + urlString
         var reg = /(\d{3})\d{4}(\d{4})/;
         return tel.replace(reg, "$1****$2")
     }
-
 }
 
 function checkUrl(urlString) {

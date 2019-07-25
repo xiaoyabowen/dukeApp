@@ -1,6 +1,6 @@
 
 function activitiesInit(Vue) {
-    var str = dataValue('user/circle/comment/activities.html')
+    var str = dataValue('user/circle/comment/yesPay.html')
 
 
 

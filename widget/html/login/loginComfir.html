@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../../css/api.css">
+    <link rel="stylesheet" href="../../css/commonWin.css">
+    <title>登录</title>
+    <style>
+        #topbar,.headerBoxbg{
+            background:rgba(249,249,249,1);
+            color: #333333;
+        }
+        .lcSubBoxInput{
+            padding: 0 0.34rem 0.55rem;
+        }
+        .lcBoxmain {
+            justify-content: space-between;
+            align-items: center;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            border-bottom: 1px solid #D4D4D4;
+        }
+        .lcBoxmain:first-of-type{
+            padding-bottom: 0.04rem;
+            height: 1.76rem;
+        }
+        input.lcBoxInput {
+            display: block;
+            text-align: right;
+            width: 2.2rem;
+            color: #D4D4D4 !important;
+        }
+        img.logoUser {
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+        }
+        .commonFont>i{
+            display: inline-block;
+            color: #FFA300;
+            margin-right: 0.1rem;
+            font-size:0.28rem;
+            font-weight:400;
+        }
+        .pasBox.cssFlex {
+            align-items: center;
+            width: 2.2rem;
+        }
+        .passImg{
+            display: inline-block;
+            width: 0.34rem;
+            height: 0.24rem;
+        }
+        input.lcBoxInputPass {
+            width: 1.6rem;
+            color: #D4D4D4;
+            margin-right: 0.2rem;
+            font-size: 0.28rem;
+        }
+
+        input.lcBoxInputPass::-webkit-input-placeholder{
+            font-size: 0.28rem;
+            color: #D4D4D4;
+        }
+        .chosMain.cssFlex {
+            justify-content: center;
+            align-items: center;
+            margin: 1.3rem auto 1rem;
+            width: 100%;
+        }
+        .chosContent {
+            width: 50%;
+            text-align: center;
+        }
+        img.chosImg {
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0 auto 0.14rem;
+        }
+        span.chosContentText {
+            color: rgba(93,146,254,1);
+            display: block;
+            text-decoration: underline;
+        }
+        .chosContentTextActive{
+            color: #304AB3 !important;
+        }
+
+
+        .commBtnBottom{
+            width: 6.8rem;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: #ffffff;
+            border-radius: 0.12rem;
+            background:rgba(93,146,254,1);
+            font-size: 0.36rem;
+            font-weight: 400;
+
+        }
+    </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
+</head>
+<body>
+<div id="topbar" class="display">
+    <div class="headerBoxbg cssFlex">
+        <div class="leftImgClose" >
+
+        </div>
+        <div  class="middleHeight">
+            快速登录
+        </div>
+        <div class="rightImgEdite">
+
+        </div>
+    </div>
+</div>
+
+<div class="lcBox" id="app1">
+    <div class="lcSubBoxInput">
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont">头像</span>
+            <img :src="logoUser" class="logoUser" v-show="num == 1" alt="user">
+            <img :src="logoCom" class="logoUser" v-show="num == 2" alt="com">
+        </div>
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont">名字</span>
+            <input type="text" class="lcBoxInput" v-model="userName">
+        </div>
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont">手机号</span>
+            <input type="text" class="lcBoxInput" v-model="userPhone" readonly>
+        </div>
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont"><i>*</i>设置登录密码</span>
+            <div class="pasBox cssFlex">
+                <input type="text" class="lcBoxInputPass" v-model="userPass" placeholder="请填写密码" v-if="checked">
+                <input type="password" class="lcBoxInputPass" v-model="userPass" placeholder="请填写密码" v-else>
+                <img src="../../image/login/passHide.png" alt="pas"  v-show="checked" @click="checked=!checked" class="passShowImg passImg">
+                <img src="../../image/login/passShow.png" alt="pas"  v-show="!checked" @click="checked=!checked" class="passShowImg passImg">
+            </div>
+        </div>
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont"><i>*</i>确认登录密码</span>
+            <div class="pasBox cssFlex">
+                <input type="text" class="lcBoxInputPass" v-model="userAgainPass" placeholder="请填写密码" v-if="checkedAgain" @blur="funPass()">
+                <input type="password" class="lcBoxInputPass" v-model="userAgainPass" placeholder="请填写密码" v-else @blur="funPass()">
+                <img src="../../image/login/passHide.png" alt="pas"  v-show="checkedAgain" @click="checkedAgain=!checkedAgain" class="passShowImg passImg">
+                <img src="../../image/login/passShow.png" alt="pas"  v-show="!checkedAgain" @click="checkedAgain=!checkedAgain" class="passShowImg passImg">
+            </div>
+        </div>
+
+
+        <div class="chosMain cssFlex">
+            <div class="chosContent" @click="ComClick()">
+                <img :src="chosCom" alt="com" v-show="currentCom == 0"  class="chosImg">
+                <img :src="chosCom1" alt="com" v-show="currentCom == 2"  class="chosImg">
+                <span class="chosContentText commonFont" :class="currentCom == 2 ? 'chosContentTextActive':''">我要招人才</span>
+            </div>
+            <div class="chosContent" @click="userClick()">
+                <img :src="chosUser" v-show="currentUser == 0" alt="user" class="chosImg">
+                <img :src="chosUser1"  alt="user" v-show="currentUser == 1" class="chosImg">
+                <span class="chosContentText commonFont" :class="currentUser == 1 ? 'chosContentTextActive':''">我要找工作</span>
+            </div>
+        </div>
+
+        <div class="commBtnBottom" @click="dukeIn()">进入渡客</div>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script>
+    var phone,
+    apiready = function () {
+        // phone = api.pageParam.phone
+        phone = "15901420539"
+        var header = $api.dom('#topbar');
+        $api.fixStatusBar(header);
+        new Vue({
+            el: '#app1',
+            data: {
+                logoCom : 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png',
+                logoUser : 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png',
+                checked : false,
+                checkedAgain : false,
+                userName : '',
+                userPhone : '',
+                userPass : '',
+                userAgainPass : '',
+                num : 1,
+                currentCom : 0,
+                currentUser : 1,
+                chosUser:'../../image/login/user.png',
+                chosUser1:'../../image/login/usercheck.png',
+                chosCom : '../../image/login/com.png',
+                chosCom1 : '../../image/login/comcheck.png'
+            },
+            created: function () {
+
+                this.userPhone = checkTelFour(phone)
+                this.userName = '渡客'+telFourLast(phone)
+            },
+            mounted : function (){
+
+            },
+            methods: {
+                funPass : function () {
+                    var that = this
+                    console.log(that.userPass)
+                    console.log(that.userAgainPass)
+                    if (that.userPass != that.userAgainPass){
+                        toast("两次密码不一致");
+                        that.userAgainPass = ''
+                        return;
+                    }
+                },
+                ComClick : function () {
+                    var that = this;
+                    that.num = 2
+                    that.currentCom = 2
+                    that.currentUser = 0
+                },
+                userClick : function () {
+                    var that = this;
+                    that.num = 1
+                    that.currentUser = 1
+                    that.currentCom = 0
+                },
+
+                dukeIn: function () {
+                    var that = this
+
+
+                    if (that.userPass == ''){
+                        toast("请输入密码！");
+                        return;
+                    }
+                    if (that.userAgainPass == ''){
+                        toast("请再次输入密码！");
+                        return;
+                    }
+                    if (that.userPass != that.userAgainPass){
+                        toast("两次密码不一致");
+                        that.userAgainPass = ''
+                        return;
+                    }
+
+                    var uid = JSON.parse(localStorage.getItem("user")).user_id
+                    var obj = {
+                        person_id : uid,
+                        p_name : that.userName,
+                        p_icon : document.querySelector(".logoUser").src,
+                        role_type : that.currentUser,
+                        pwd : that.userPass
+                    }
+                    console.log(obj)
+                    ajaxGetWithProgress(CreatePersonBasicUserProfile,obj,function (data) {
+                        console.log(data)
+                        if (data.PersonBasicMessage.return.status){
+                            toast("开始进入渡客")
+                        } else {
+                            toast("请求出错")
+                        }
+                    })
+
+                },
+            }
+        })
+    }
+</script>
+</body>
+</html>

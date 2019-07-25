@@ -180,9 +180,10 @@ textarea{
 	position: relative;
 	display: none;
 	color:#fff;
-    background:
+    /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
-            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
+    background: #638BFF;
     height : 56px;
     line-height : 56px;
     font-size: 18px;
@@ -212,9 +213,10 @@ textarea{
     justify-content: space-between;
     padding: 0 0.34rem;
     align-items: center;
-    background:
+    /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
-            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
+    background: #638BFF;
 }
 .leftImgClose{
 
@@ -763,7 +765,5 @@ img.info-img-right {
     width: 100%;
     background:rgba(249,249,249,1);
 }
-
-
 
 
