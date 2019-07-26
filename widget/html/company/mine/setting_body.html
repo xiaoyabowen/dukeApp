@@ -98,11 +98,10 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -138,8 +137,6 @@
                 console.log(e)
 
                 if (e.index) {
-
-
                     openNewWindow('login', "../../login/login.html");
                     // api.closeToWin({
                     //     name: 'login'
@@ -165,7 +162,23 @@
 
     }
     function changejuese(){
-        openNewWindow("changejuese", "../../login/changejuese.html");
+        alert(localStorage.getItem('person_id'))
+        var uid = localStorage.getItem("person_id")
+        var obj = {
+            uid : uid
+        }
+
+        ajaxGetWithProgress(suIdentityLogin,obj,function (data,ret) {
+            console.log("juese",data)
+            if (data.role_type == 1){
+                openNewWindow("changejuese", "../../user/home/home.html");
+                localStorage.setItem('person_id',data.user_uid);
+                alert(localStorage.getItem('person_id'))
+            }
+        })
+        
+        
+        // openNewWindow("changejuese", "../../login/changejuese.html");
     }
     // 此处手动调用了js
     // apiready()

@@ -36,6 +36,9 @@
             display: block;
             width: 1.3rem;
             height: 1.3rem;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
         }
         .commonFont>i{
             display: inline-block;
@@ -58,6 +61,7 @@
             color: #D4D4D4;
             margin-right: 0.2rem;
             font-size: 0.28rem;
+            text-align: right;
         }
 
         input.lcBoxInputPass::-webkit-input-placeholder{
@@ -127,8 +131,8 @@
     <div class="lcSubBoxInput">
         <div class="lcBoxmain cssFlex">
             <span class="commonFont">头像</span>
-            <img :src="logoUser" class="logoUser" v-show="num == 1" alt="user">
-            <img :src="logoCom" class="logoUser" v-show="num == 2" alt="com">
+            <img :src="logoUser" class="logoUser" v-show="num == 1" alt="user" @click="imgUserClick()">
+            <img :src="logoCom" class="logoUser" v-show="num == 2" alt="com" @click="imgComClick()">
         </div>
         <div class="lcBoxmain cssFlex">
             <span class="commonFont">名字</span>
@@ -185,21 +189,23 @@
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/vue.min.js"></script>
 <script>
-    var phone,
+    var phone,p_icon,
     apiready = function () {
-        // phone = api.pageParam.phone
-        phone = "15901420539"
+        phone = api.pageParam.phoneValue
+        console.log(phone)
+        // phone = "15901420539"
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
         new Vue({
             el: '#app1',
             data: {
                 logoCom : 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png',
-                logoUser : 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png',
+                logoUser : 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/q9ej4b0i96jy58c8.png',
                 checked : false,
                 checkedAgain : false,
                 userName : '',
                 userPhone : '',
+                phone : '',
                 userPass : '',
                 userAgainPass : '',
                 num : 1,
@@ -212,6 +218,7 @@
             },
             created: function () {
 
+                this.phone = phone
                 this.userPhone = checkTelFour(phone)
                 this.userName = '渡客'+telFourLast(phone)
             },
@@ -219,6 +226,114 @@
 
             },
             methods: {
+                imgUserClick : function (){
+                    var that = this
+                    api.getPicture({
+                        sourceType: 'library',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        allowEdit: true,
+                        quality: 50,
+                        targetWidth: 100,
+                        targetHeight: 100,
+                        saveToPhotoAlbum: false
+                    }, function(ret, err) {
+                        if (ret) {
+                            var obj = {
+                                uid : JSON.parse(localStorage.getItem('user')).user_uid
+                            }
+                            console.log(JSON.stringify(ret));
+                            //上传剪辑后的图像到服务器
+                            api.ajax({
+                                // report : false,
+                                // url: 'http://192.168.1.7:8088/upload/UploadFlie',
+                                url: 'http://192.168.1.7:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+                                    files: {
+                                        file: ret.data
+                                    },
+                                    values:obj
+                                }
+                            }, function (ret, err) {
+                                console.log(123,ret);
+                                var pathImgImg = ret.imgUrl
+                                if (pathImgImg == ''){
+                                    that.logoUser = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/q9ej4b0i96jy58c8.png'
+                                }else{
+                                    var pathImgData = pathImgImg.split(",")
+                                    console.log(pathImgData)
+                                    that.logoUser  = pathImgData[0]
+                                }
+
+
+                                api.hideProgress();
+
+                            });
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
+                },
+                imgComClick : function (){
+                    var that = this
+                    api.getPicture({
+                        sourceType: 'library',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        allowEdit: true,
+                        quality: 50,
+                        targetWidth: 100,
+                        targetHeight: 100,
+                        saveToPhotoAlbum: false
+                    }, function(ret, err) {
+                        if (ret) {
+                            var obj = {
+                                uid : JSON.parse(localStorage.getItem('user')).user_uid
+                            }
+                            console.log(JSON.stringify(ret));
+                            //上传剪辑后的图像到服务器
+                            api.ajax({
+                                // report : false,
+                                // url: 'http://192.168.1.7:8088/upload/UploadFlie',
+                                url: 'http://192.168.1.7:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+                                    files: {
+                                        file: ret.data
+                                    },
+                                    values:obj
+                                }
+                            }, function (ret, err) {
+                                console.log(123,ret);
+                                var pathImgImg = ret.imgUrl
+                                if (pathImgImg == ''){
+                                    that.logoCom = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                                }else{
+                                    var pathImgData = pathImgImg.split(",")
+                                    console.log(pathImgData)
+                                    that.logoCom  = pathImgData[0]
+                                }
+
+
+                                api.hideProgress();
+
+                            });
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
+                },
                 funPass : function () {
                     var that = this
                     console.log(that.userPass)
@@ -245,7 +360,6 @@
                 dukeIn: function () {
                     var that = this
 
-
                     if (that.userPass == ''){
                         toast("请输入密码！");
                         return;
@@ -260,22 +374,36 @@
                         return;
                     }
 
+                    if (that.num == 1){
+                        p_icon = that.logoUser
+                    } else if (that.num == 2){
+                        p_icon = that.logoCom
+                    }
+
                     var uid = JSON.parse(localStorage.getItem("user")).user_id
                     var obj = {
                         person_id : uid,
                         p_name : that.userName,
-                        p_icon : document.querySelector(".logoUser").src,
-                        role_type : that.currentUser,
-                        pwd : that.userPass
+                        p_icon : p_icon + ',',
+                        role_type : that.num,
+                        pwd : that.userPass,
+                        phone : that.phone
                     }
+
                     console.log(obj)
                     ajaxGetWithProgress(CreatePersonBasicUserProfile,obj,function (data) {
                         console.log(data)
+                        api.hideProgress();
                         if (data.PersonBasicMessage.return.status){
-                            toast("开始进入渡客")
+                            if (data.PersonBasicMessage.role_type == 2) {
+                                openNewWindow("home", "../company/home/home.html")
+                            }else if(data.PersonBasicMessage.role_type == 1){
+                                openNewWindow("home", "../user/home/home.html")
+                            }
                         } else {
                             toast("请求出错")
                         }
+
                     })
 
                 },

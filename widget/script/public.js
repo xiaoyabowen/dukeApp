@@ -3,16 +3,18 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-/*var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.4:8000/SE4M';
-var Domain = 'http://192.168.1.4:8088';*/
+var serverUrl = "http://192.168.1.7:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.7:8000/SE4M';
+var Domain = 'http://192.168.1.7:8088';
 
 
 
+/*
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
 
+*/
 
 
 var rootWindowName = "root";
@@ -41,6 +43,12 @@ var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role
 var PwdLogin = serverUrl + "/Login/pwdLogin";
 // 账号密码登录
 var CreatePersonBasicUserProfile = serverUrl + "/UserProfile/CreatePersonBasic";
+// 判断是千里马还是伯乐
+var quRoleTypeUserProfile = serverUrl + "/Login/quRoleType";
+
+// 切换角色
+var suIdentityLogin = serverUrl + "/Login/suIdentity";
+
 
 
 // 获取面试数量
@@ -93,7 +101,7 @@ var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjectExperienceByI
 var DeleteProjec = serverUrl + "/ProjectExperienceProfile/removeProjectExperience";
 
 // 查询求职期望
-var GetStatus = serverUrl + "/UserProfile/queryIntention";
+var GetStatus = serverUrl + "/UserProfile/queryIntentionById";
 // 修改求职期望
 var SetStatus = serverUrl + "/UserProfile/createIntention";
 
@@ -102,8 +110,11 @@ var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 
 // 获取个人中心数据
 var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
+
+
+
 // 编辑个人中心
-var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
+var CreatePersonUserProfile = serverUrl + "/UserProfile/CreatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
@@ -229,9 +240,7 @@ var addFeedBackPic = localhostHref + "/Pic";
 
 
 // 圈子发布活动 编辑 图片
-
 var UploadPicCircle = Domain + "/upload/UploadPicCircle";
-
 
 
 //  创建简历  头像

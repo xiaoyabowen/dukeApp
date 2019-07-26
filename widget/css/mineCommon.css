@@ -1095,7 +1095,7 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-div.isDisplay {
+.isDisplay {
     display: none;
 }
 

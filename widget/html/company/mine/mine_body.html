@@ -133,11 +133,13 @@
                         console.log(obj)
                         ajaxGetWithProgress(chatNumAndInvitation,obj,function (data,ret) {
                             console.log(data)
+                            api.hideProgress();
                             if (data){
                                 that.ChatNum = data.ChatNum;
                                 that.mineNum = data.InvitationNum;
                                 that.mineName = data.p_name;
-                                that.defultImg = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
+                                // that.defultImg = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
+                                that.defultImg = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
 
                             }
                         })

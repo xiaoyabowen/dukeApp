@@ -64,7 +64,7 @@
                 <div class="info-choose cssFlex" onclick="resume_positionType()">
                     <span class="info-choose-name">期望职位</span>
                     <div class="info-choose-main cssFlex">
-                        <span class="info-choose-main-name birth_option" id="work_name">运营经理</span>
+                        <span class="info-choose-main-name birth_option" id="work_name">请选择</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
                 </div>
@@ -99,7 +99,15 @@
                     </div>
                 </div>
             </div>
-
+            <div class="resume_expectations_item">
+                <div class="info-choose cssFlex" onclick="postJobType()">
+                    <span class="info-choose-name">求职类型</span>
+                    <div class="info-choose-main cssFlex">
+                        <span class="info-choose-main-name birth_option" id="postJobText">请选择</span>
+                        <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="resume_editExpectations_btn" onclick="setStatus()">
@@ -126,25 +134,33 @@
     <script>eruda.init();</script>
 <script>
 
-    var i_id, status;
+    var content,id;
     apiready = function () {
-        i_id = api.pageParam.i_id;
-        status = api.pageParam.status;
-        console.log(status)
+        content = api.pageParam.content;
+        id = api.pageParam.id;
+
         var obj = {
-            person_id: i_id
+            id: id
         }
-        ajaxGetWithProgress(GetStatus,obj,function(res,err) {
-            // api.alert({mas: JSON.stringify(res.education_his)});
-            console.log(res);
-            if (res && res.intentionList) {
-                var msg = res.intentionList[0];
-                document.getElementById("work_name").innerText = msg.work_name || '请输入';
-                document.getElementById("work").innerText = msg.work || '请输入';
-                document.getElementById("int_city").innerText = msg.int_city || '请选择';
-                document.getElementById("pay").innerText = msg.pay + 'k' || '请选择';
-            }
-        })
+        if (content == "未填写"){
+
+        }else {
+            ajaxGetWithProgress(GetStatus,obj,function(res,err) {
+                // api.alert({mas: JSON.stringify(res.education_his)});
+                console.log("求职期望详情=",res);
+                if (res) {
+                    var msg = res;
+                    document.getElementById("work_name").innerText = msg.work_name || '请输入';
+                    document.getElementById("work").innerText = msg.work || '请输入';
+                    document.getElementById("int_city").innerText = msg.int_city || '请选择';
+                    document.getElementById("pay").innerText = msg.pay + 'k' || '请选择';
+                    document.getElementById("postJobText").innerText = msg.status1 || '请选择';
+                }else {
+                    toast("请求失败")
+                }
+            })
+        }
+
     };
 
     // 期望职位类型
@@ -212,37 +228,65 @@
             document.getElementById('pay').innerText = SelectedItem[0].text;
         })
     }
+    // guozuo 类型
+    function postJobType() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "全职"
+        }, {
+            value: "2",
+            text: "兼职"
+        }
+        ])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('first', 2000);
+        picker.show(function (SelectedItem) {
+            document.getElementById('postJobText').innerText = SelectedItem[0].text;
+        })
 
+    }
     // 点击保存执行此方法
     function setStatus () {
         var work_name = document.getElementById("work_name").innerText;
         var work = document.getElementById("work").innerText;
         var int_city = document.getElementById("int_city").innerText;
         var pay = document.getElementById("pay").innerText;
+        var postJobText = document.getElementById("postJobText").innerText;
         pay = pay.slice(0, pay.length-1);
 
         var person_id = localStorage.getItem('person_id');
-
-        var obj = {
-            i_id: person_id,
-            id: i_id,
-            work_name: work_name,
-            work: work,
-            int_city: int_city,
-            pay: pay,
-            status: status
+        if (content == "未填写"){
+            var obj = {
+                i_id: person_id,
+                id: id,
+                work_name: work_name,
+                work: work,
+                int_city: int_city,
+                pay: pay,
+                status1: postJobText
+            }
+        } else {
+            var obj = {
+                i_id: person_id,
+                id: id,
+                work_name: work_name,
+                work: work,
+                int_city: int_city,
+                pay: pay,
+                status1: postJobText
+            }
         }
 
+        console.log("求职期望传：",obj)
         ajaxGetWithProgress(SetStatus,obj,function(res,err) {
-            console.log(res);
+            console.log("求职期望返回：",res)
             if (res.return_info.status) {
-                api.toast({
-                    msg: '修改成功'
-                });
+
                 api.execScript({
                     name: 'resume_editResume',
                     frameName: "resume_editResume_body",
-                    script: 'reload()'
+                    script: 'loadCom()'
                 })
                 closeWin();
             }

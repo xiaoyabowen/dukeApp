@@ -116,7 +116,7 @@
     </div>
 
     <div class="subscribed_bottom isDisplay">
-        <div class="subscribed_bottom_btn">
+        <div class="subscribed_bottom_btn cssFlex">
             <div class="subscribed_bottom_left">修改订阅</div>
             <div class="subscribed_bottom_right">删除订阅</div>
         </div>
@@ -144,6 +144,10 @@
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 <script>
+
+    function loadCom (){
+        window.location.reload()
+    }
     var sub_id;
     apiready = function () {
 
@@ -172,7 +176,7 @@
                         '\n' +
                         '                    <div>\n' +
                         '                        <span>'+dataArr[i].job_adr+' </span>\n' +
-                        '                        <span>'+dataArr[i].sn+'年 </span>\n' +
+                        '                        <span>'+dataArr[i].work_ex+' </span>\n' +
                         '                        <span>'+dataArr[i].edu_ex+'</span>\n' +
                         '                    </div>\n' +
                         '                </div>\n' +
@@ -198,7 +202,6 @@
             } else {
                 document.querySelector('.clearBox').classList.remove('isDisplay');
             }
-            console.log(sub_id);
         });
 
         // 点击订阅
@@ -212,8 +215,11 @@
 
         // 修改订阅
         document.querySelector('.subscribed_bottom_left').onclick = function () {
-            openNewWindow("edit_Subscription", "./edit_Subscription.html", {
-                url: 'subscribed_positions'
+            console.log(sub_id)
+            openNewWindow("add_Subscription", "./add_Subscription.html", {
+                url: 'subscribed_positions',
+                content : "edit",
+                sub_id : sub_id
             })
         }
 
@@ -226,7 +232,8 @@
     // 添加订阅
     function addSubscribed() {
         openNewWindow("add_Subscription", "./add_Subscription.html", {
-            url: 'subscribed_positions'
+            url: 'subscribed_positions',
+            content : ""
         })
     }
 
@@ -258,6 +265,7 @@
         document.querySelector('.subscribed_main').classList.remove('isDisplay');
         document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
         document.querySelector('.clearBox').classList.add('isDisplay');
+        window.location.reload()
     }
 
 

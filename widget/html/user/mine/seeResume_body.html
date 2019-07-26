@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>公司详情</title>
+    <title>预览简历</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
+
 
         .see-contact-box {
             padding: 0.50rem 0.4rem;
@@ -323,7 +324,7 @@
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            console.log("seeRESume=",data);
             if (data) {
                 document.querySelector('.subBox').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -343,7 +344,7 @@
                 }
                 // 图片
                 if (person_summary.p_icon) {
-                    document.getElementById('p_icon').src = person_summary.p_icon;
+                    document.getElementById('p_icon').src = imgSrcFun(person_summary.p_icon);
                 }
                 // 公司名称 // 职位
                 if (working_his) {

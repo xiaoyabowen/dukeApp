@@ -266,7 +266,7 @@
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
-
+    var phoneValue
     apiready = function () {
 
         // var guide = api.require('guide');
@@ -372,13 +372,13 @@
     // 登陆
     function login() {
         api.showProgress();
-        // api.closeWin({
-        //     name: "setUp"//防止从推出登录过来的时候  设置页面没关闭
-        // })
+        api.closeWin({
+            name: "setting"//防止从推出登录过来的时候  设置页面没关闭
+        })
         var params = {};
         params.code = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
-        params.role_type = localStorage.getItem("role");
+        // params.role_type = localStorage.getItem("role");
         // params.token_type = "1";
         console.log(params)
         if (isBlack(params.phone)) {
@@ -397,69 +397,32 @@
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log("Logindata=",data)
             api.hideProgress();
-            if (data.role_type == 1){
-                localStorage.setItem('user',JSON.stringify(data));
-                localStorage.setItem('person_id',data.user_uid);
-                localStorage.setItem('role_type',data.role_type);
-            } else if (data.role_type == 2){
-                localStorage.setItem('user',JSON.stringify(data));
-                localStorage.setItem('person_id',data.user_uid);
-                localStorage.setItem('role_type',data.role_type);
-                localStorage.setItem('com_id',data.c_id);
+            localStorage.setItem('user',JSON.stringify(data));
+            localStorage.setItem('person_id',data.user_uid);
 
-            }
+            phoneValue = data.phone
+            localStorage.setItem('phone',phoneValue);
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
-
             if (data.success == false) {
-                if (data.role_type == 1){
-                    openNewWindow("create_resume", "../user/mine/create_resume.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
-                }
-            } else if (data.date == 1){
-                if (data.role_type == 1){
-                    openNewWindow("create_resume", "../user/mine/create_resume.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
-                }
-            } else if ( data.date == 2 ){
-                if (data.role_type == 1){
-                    openNewWindow("addWork", "../user/mine/addWork.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("postsPublish", "../company/home/postsPublish.html")
-                }
-            } else if (data.date == 3){
-                if (data.role_type == 1){
-                    openNewWindow("addEdution", "../user/mine/addEdution.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")
-                }
-            } else if (data.date == 4){
-                if (data.role_type == 1){
-                    openNewWindow("addProduct", "../user/mine/addProduct.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("uploadLicense", "../company/home/uploadLicense.html")
-                }
-            } else if (data.date == 0){
-                if (data.role_type == 1){
-                    openNewWindow("home", "../user/home/home.html")
 
-                }else if (data.role_type == 2){
-                    openNewWindow("home", "../company/home/home.html")
-                    // openNewWindow("editfillInfo", "../company/home/companyInfo.html")
-                    // openNewWindow("add_Subscription", "../company/mine/add_Subscription.html")
-                    // openNewWindow("companyInfo", "../company/mine/companyInfo.html")
-                }
+                console.log(phoneValue)
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phoneValue : phoneValue
+                })
+            } else if (data.date == 1 && data.success == true){
 
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phone :phoneValue
+                })
             } else{
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){
                     openNewWindow("home", "../company/home/home.html")
                 }
-            }
 
+            }
 
         });
     }

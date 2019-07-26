@@ -1,122 +1,304 @@
-
 <!DOCTYPE html>
-<html>
+<html class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css"/>
     <style>
-        .OneImgRight{
+
+        .OneImgRight {
             margin-top: 0.1rem;
         }
+
+        .contentBoxBox {
+            height: calc(100vh - 1.4rem);
+            background:#638BFF;
+            /*padding: 0 !important;*/
+            padding-bottom: 0.2rem !important;
+            padding-top: 0 !important;
+
+        }
+
+        .footerBar {
+            position: fixed;
+            bottom: 0.9rem;
+            left: 50%;
+            -webkit-transform: translateX(-50%); /*为Chrome/Safari*/
+            -moz-transform: translateX(-50%); /*为Firefox*/
+            -ms-transform: translateX(-50%); /*为IE*/
+            -o-transform: translateX(-50%); /*为Opera*/
+            transform: translateX(-50%);
+            width: 5.20rem;
+            height: 0.78rem;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 0.4rem;
+            color: #638BFF;
+            justify-content: space-between;
+            /*padding: 0 0.28rem;*/
+        }
+
+        .barLeft, .barRight {
+            align-items: center;
+            padding: 0 0.29rem;
+        }
+
+        .barLeft > img {
+            width: 0.52rem;
+            height: 0.4rem;
+            margin-right: 0.1rem;
+        }
+
+        .barRight > img {
+            width: 0.4rem;
+            height: 0.34rem;
+            margin-left: 0.1rem;
+
+        }
+
+        .job-box {
+            /*display: none;*/
+            position: fixed;
+            left: 50%;
+            -webkit-transform: translateX(-50%); /*为Chrome/Safari*/
+            -moz-transform: translateX(-50%); /*为Firefox*/
+            -ms-transform: translateX(-50%); /*为IE*/
+            -o-transform: translateX(-50%); /*为Opera*/
+            transform: translateX(-50%);
+            bottom: -0.3rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            /*line-height: 1.5rem;*/
+            text-align: center;
+            background: rgba(99, 139, 255, 1);
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            color: #ffffff;
+            vertical-align: center;
+        }
+
+        .mine-job-img {
+            display: block;
+            width: 0.5rem;
+            height: 0.56rem;
+            margin: 0.2rem auto 0.1rem;
+        }
+
+        .mine-job-text {
+            display: block;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            width: 100%;
+            font-size: 0.24rem;
+        }
+
+        .subcontentBoxBanner {
+            width: 7rem;
+            height: calc(100vh - 1.4rem);
+            margin: 0 auto;
+        }
+
+        .subcontentBoxBanner>img {
+            display: block;
+            width: 7rem;
+            height: calc(100vh - 1.4rem);
+            padding-top: 0 !important;
+            object-fit: cover;
+            object-position : center;
+        }
+        .middleHeightTop{
+            height: 0.56rem;
+            align-items: center;
+        }
+        #search-inputTop {
+            display: block;
+            width: 4.25rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            padding: 0 0.12rem 0 1rem;
+            border-radius: 0.28rem;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.24rem;
+            background: url("../../../icon/search.png") no-repeat 0.48rem center, rgba(255, 255, 255, 1);
+            background-size: 0.26rem 0.26rem;
+            margin-bottom: 0 !important;
+        }
+
+        #search-inputTop::-webkit-input-placeholder {
+            font-size: 0.28rem;
+            line-height: 0.32rem;
+        }
+
     </style>
-
 </head>
-<body>
-<div id="topbar">
-    <!--<div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/mine.png" onclick="mineGo()">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        <span class="searchClick">GO</span>
-    </div>
-    <div class="right">
-        <img class="rightImgTop" src="../../../icon/msg.png" onclick="linkChat()" alt="chat">
-    </div>-->
+<body class="commonBg">
+    <div id="topbar" class="display">
+        <div class="headerBoxbg cssFlex">
+            <div class="leftImgClose" style="margin-top: 0.2rem">
+                <img src="../../../icon/mine.png" onclick="mineGo()">
+            </div>
+            <div class="middleHeightTop cssFlex">
+                <input type="text" id="search-inputTop" placeholder="搜索地点/公司/职位">
+                <span class="search-Click">GO</span>
+            </div>
+            <div class="rightImgEdite">
+                <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
 
-    <div class="headerBox cssFlex">
-        <div class="leftImgClose" style="margin-top: 0.2rem">
-            <img src="../../../icon/mine.png" onclick="mineGo()">
-        </div>
-
-        <div class="middleMain">
-            <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-            <span class="searchClickGo">GO</span>
-        </div>
-        <div class="rightImgEdite">
-            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
-
+            </div>
         </div>
     </div>
 
-</div>
 
-<!--
-<div id="topbar" class="cssFlex">
-    <div class="home-left">
-        <img class="leftImgTop" src="../../../icon/mine.png">
+    <div class="contentBoxBox">
+        <div class="subcontentBoxBanner">
+            <img src="../../../image/banner.png" alt="banner" class="home-banner">
+            <div class="footerBar cssFlex">
+                <div class="barLeft cssFlex" onclick="circle()">
+                    <img src="../../../icon/quan.png" alt="quan 26 20">
+                    <span>圈子</span>
+                </div>
+                <div class="barRight cssFlex" onclick="hua()">
+                    <span>巨划算</span>
+                    <img src="../../../icon/hua.png" alt="hua 20 16">
+                </div>
+                <div class="job-box" onclick="position()">
+                    <img src="../../../icon/mine.png" alt="" class="mine-job-img">
+                    <span class="mine-job-text">工作</span>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        &lt;!&ndash;<span class="searchClick">GO</span>&ndash;&gt;
-    </div>
-    <div class="home-right">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
-</div>
--->
 
 </body>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script>
 
+
     apiready = function () {
-        initFrameInWin(api.pageParam);
+        // initFrameInWin(api.pageParam);
+        var header = $api.dom('#topbar');
+        $api.fixStatusBar(header);
+        var uid = localStorage.getItem("person_id")
+        var obj = {
+            uid : uid
+        }
+        alert(localStorage.getItem('person_id'))
+        console.log(uid)
+        ajaxGetWithProgress(quRoleTypeUserProfile,obj,function (data) {
+
+            console.log("ifq",data)
+            // alert(data.role_type)
+            if (data.role_type == 1){
+                openNewWindow("home", "./home.html")
+            } else if (data.role_type == 2){
+                openNewWindow("home", "../../company/home/home.html")
+            }
+        })
+        // var guide = api.require('guide');
+        // // alert(WelcomePage)
+        // guide.openGuidePage({
+        //     imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
+        //     point_normal:'widget://image/guide/point_normal@2x.png',
+        //     point_select:'widget://image/guide/point_select@2x.png',
+        //     btnColor:'00FFFF',
+        //     btnLabel:'进入应用',
+        //     btnW:120,
+        //     btnH: 33,
+        //     time:'2',
+        //     hideStatusBar:false
+        // });
     }
+
+
+
     function mineGo() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        var obj ={
-            uid : JSON.parse(localStorage.getItem("user")).user_id
+
+        var obj = {
+            uid: JSON.parse(localStorage.getItem("user")).user_id
         }
+
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            // alert(JSON.stringify(data))
-            if (data.date != 0) {
-                api.confirm({
-                    // title: 'testtitle',
-                    msg: '您还未完善简历，请继续完善',
-                    buttons: ['确定', '取消']
-                }, function(ret, err) {
-                    var index = ret.buttonIndex;
-                    if (index == 1){
-                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
-                            url: 'home'
-                        });
+            console.log("homeData",data)
+            if (data.date == 1) {
+
+                mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
+                    console.log("mumiicomfir",e)
+                    if (e.index == 0){
+                        openNewWindow("resume_editResume", "../mine/resume_editResume.html")
+                    }else if (e.index == 1){
+                        openNewWindow("mine", "../mine/mine.html")
                     }
-                });
+                })
                 return;
-            }else{
+            }else if (data.date == 2){
                 openNewWindow("mine", "../mine/mine.html")
+            }else if (data.date == 3){
+                var phoneValue = localStorage.getItem("phone")
+                openNewWindow("loginComfir", "../../login/loginComfir.html",{
+                    phoneValue : phoneValue
+                })
             }
         })
-
-
         // openNewWindow("mine", "../mine/mine.html")
     }
 
     // 跳转到聊天页面
     function linkChat() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
         openNewWindow("index", "../chat/index.html")
     }
+
+    // 圈子
+    function circle() {
+        openNewWindow("index", "../circle/index.html")
+    }
+
+    function position() {
+        openNewWindow("position", "./position.html", {
+            url: 'home',
+        });
+    }
+
+    function hua() {
+
+
+        openNewWindow("index", "../great/facial/index.html")
+        // openNewWindow("visaApply", "../great/tourism/visaApply.html")
+
+        // openNewWindow("index", "../great/facial/mine.html")
+        // openNewWindow("visaApply", "../great/tourism/visaApply.html")
+
+        // openNewWindow("login", "../../login/login.html")
+
+        // openNewWindow("Adress", "../great/addAdress.html")
+        // openNewWindow("confirmOrder", "../great/confirmOrder.html")
+        // openNewWindow("create_resume", "../mine/create_resume.html")
+    }
+
 </script>
 </html>

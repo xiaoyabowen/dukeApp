@@ -343,6 +343,7 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
+<script src="../../../script/mui.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
@@ -900,7 +901,7 @@
     //         }
     //     });
     // })(mui);
-
+    
 
     // 跳转到我的
     function mineGo() {
@@ -914,22 +915,19 @@
         }
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            // alert(JSON.stringify(data))
-            if (data.date != 0) {
-                api.confirm({
-                    // title: 'testtitle',
-                    msg: '您还未完善简历，请继续完善',
-                    buttons: ['确定', '取消']
-                }, function(ret, err) {
-                    var index = ret.buttonIndex;
-                    if (index == 1){
-                        openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
-                            url: 'home'
-                        });
+            console.log("homeData",data)
+            if (data.date == 1) {
+
+                mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
+                    console.log("mumiicomfir",e)
+                    if (e.index == 0){
+                        openNewWindow("editfillInfo", "./editfillInfo.html")
+                    }else if (e.index == 1){
+                        openNewWindow("mine", "../mine/mine.html")
                     }
-                });
+                })
                 return;
-            }else{
+            }else if (data.date == 2){
                 openNewWindow("mine", "../mine/mine.html")
             }
         })

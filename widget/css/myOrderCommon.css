@@ -1,5 +1,5 @@
 
-.add_activities_header {
+.order_header {
     width: 100%;
     height: 0.92rem;
     line-height: 0.92rem;
@@ -7,22 +7,22 @@
     font-size: 0.28rem;
     color: #333333;
     border-bottom: 1px solid #EAEAEA;
+    align-items: center;
+    margin-top: 0.28rem;
 }
 
-.add_activities_header div {
+.order_header span {
     flex: 25%;
     text-align: center;
-}
-
-.add_activities_header div span {
     position: relative;
+
 }
 
-.add_activities_header div span.active {
+.order_header span.active {
     color: #638BFF;
 }
 
-.add_activities_header div span.active:after {
+.order_header span.active:after {
     content: '';
     display: block;
     width: 100%;

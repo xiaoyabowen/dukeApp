@@ -35,13 +35,20 @@
 <div id="add_activities">
     <!--<div class="isDisplay" id="box">-->
     <div id="box">
-        <div class="add_activities_header cssFlex" @click="componentHandle()">
-            <div><span :class="isActive ? 'active' : ''">全部订单</span></div>
+        <div class="order_header cssFlex" @click="componentHandle()">
+            <!--<div><span :class="isActive ? 'active' : ''">全部订单</span></div>
             <div><span :class="isActive ? '' : 'active'">已支付</span></div>
             <div><span :class="isActive ? '' : 'active'">已支付</span></div>
-            <div><span :class="isActive ? '' : 'active'">已支付</span></div>
+            <div><span :class="isActive ? '' : 'active'">已支付</span></div>-->
+
+            <span v-for="(item,index) in tabList" :key="index"
+                  :class="orderActive == index ? 'active':''"
+                    @click="orderClick(index)">
+                {{item.name}}
+            </span>
+
         </div>
-        <component :is="isCom"></component>
+        <!--<component :is="isCom"></component>-->
 
     </div>
 </div>
@@ -82,6 +89,25 @@
             data: {
                 isActive: true,
                 isCom: 'allOrder',
+                orderActive: -1,
+                tabList : [
+                    {
+                        id : 0,
+                        name: '全部订单'
+                    },
+                    {
+                        id : 1,
+                        name: '已支付'
+                    },
+                    {
+                        id : 2,
+                        name: '待收货'
+                    },
+                    {
+                        id : 3,
+                        name: '待评价'
+                    },
+                ]
             },
             components: {
                 allOrder: allOrder,
@@ -95,6 +121,10 @@
 
             },
             methods: {
+                orderClick : function (index) {
+                    var that = this
+                    that.orderActive = index
+                },
                 // 切换组件
                 componentHandle: function () {
                     this.isActive = !this.isActive;
