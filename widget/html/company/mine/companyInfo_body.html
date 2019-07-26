@@ -345,7 +345,7 @@
     var cid, uid,c_id;
     apiready = function () {
         cid = api.pageParam.cid;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
@@ -384,7 +384,7 @@
             methods: {
                 queryMyOrgProfileAllinOne: function () {
                     var that = this
-                    var uid = localStorage.getItem("user").user_id
+                    var uid = localStorage.getItem("person_id")
                     var obj = {
                         uid: uid
                     }

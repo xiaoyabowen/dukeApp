@@ -47,7 +47,7 @@
     <script type="text/javascript" src="../../../script/template-native.js"></script>
     <script>
         apiready = function () {
-            var phoneLogin = JSON.parse(localStorage.getItem('user')).UserInfo.login_id;
+            // var phoneLogin = localStorage.getItem("user").UserInfo.login_id;
             document.querySelector('.nowPhoneEdit').innerText = checkTelFour(phoneLogin)
 
         };

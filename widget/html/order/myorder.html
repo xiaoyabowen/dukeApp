@@ -83,7 +83,7 @@
         Vue.component('yesPay', yesPay);
         Vue.component('waitPay', waitPay);
 
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#add_activities',
             data: {

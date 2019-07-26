@@ -553,7 +553,7 @@
             // console.log(SelectedItem)
             document.getElementById('jobHuntingStatus').innerText = SelectedItem[0].text;
             document.getElementById('jobHuntingStatus').dataset['status'] = SelectedItem[0].value;
-            var uid = JSON.parse(localStorage.getItem("user")).user_id
+            var uid = localStorage.getItem("person_id")
             console.log(uid)
             ajaxGetWithProgress(EditStatus, {
                 status: SelectedItem[0].value,

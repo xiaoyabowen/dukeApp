@@ -102,7 +102,7 @@
                     <span>切换身份</span>
                 </div>
                 <div class="setting_active">
-                    <span class="setting_wanted">我要求职</span>
+                    <span class="setting_wanted">我要招人</span>
                     <img src="../../../icon/right.png" alt="" class="info-img-right">
                 </div>
             </li>
@@ -132,7 +132,7 @@
         document.querySelector(".setting_wanted").innerHTML="我是招聘"
     }
     apiready = function () {
-        var user = JSON.parse(localStorage.getItem('user'));
+        var user = localStorage.getItem("user");
         console.log(user);
 
         var setting_ul = document.querySelector('.setting_ul');
@@ -191,7 +191,17 @@
         var obj = {
             uid : uid
         }
-        ajaxGetWithProgress(suIdentityLogin,obj,function (data,ret) {
+
+        api.ajax({
+            url:suIdentityLogin,
+            method: 'get',
+            cache: 'false',
+            timeout: 30,
+            dataTpye: 'json',
+            data: {
+                values:obj
+            }
+        }, function (data, err) {
             console.log("juese",data)
             if (data.role_type == 2){
 
@@ -200,7 +210,21 @@
                 localStorage.setItem('person_id',data.user_uid);
                 console.log("之后的是",localStorage.getItem('person_id'))
             }
-        })
+            api.hideProgress();
+
+        });
+
+
+        // ajaxGetWithProgress(suIdentityLogin,obj,function (data,ret) {
+        //     console.log("juese",data)
+        //     if (data.role_type == 1){
+        //
+        //         openNewWindow("home", "../../company/home/home.html");
+        //
+        //         localStorage.setItem('person_id',data.user_uid);
+        //         console.log("之后的是",localStorage.getItem('person_id'))
+        //     }
+        // })
 
 
         // openNewWindow("changejuese", "../../login/changejuese.html");

@@ -94,7 +94,7 @@
     var urlED;
     apiready = function () {
         urlED = api.pageParam.url;
-        var userObj = JSON.parse(localStorage.getItem("user"))
+        var userObj = localStorage.getItem("user")
         var uid = userObj.user_id
         var obj = {
             person_id:uid
@@ -203,7 +203,7 @@
         }, function(ret, err) {
             if (ret) {
                 var obj = {
-                    uid : JSON.parse(localStorage.getItem('user')).user_uid
+                    uid : localStorage.getItem("person_id")
                 }
                 console.log(JSON.stringify(ret));
                 //上传剪辑后的图像到服务器
@@ -245,7 +245,7 @@
         });
     }
     function preservation (){
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var obj = {
             person_id : uid,
             p_name: document.getElementById("fillName").innerText,

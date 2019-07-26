@@ -456,7 +456,7 @@
     var cid,uid,c_id;
     apiready = function () {
         cid = api.pageParam.cid;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         if (cid){
             document.querySelector(".comTitle").innerHTML == ''
 
@@ -923,7 +923,7 @@
 
     var flag = true;//
     function flowGuan(id,stauts) {
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var obj = {
             person_id:uid,
             cid:cid,

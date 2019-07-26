@@ -59,7 +59,7 @@
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {

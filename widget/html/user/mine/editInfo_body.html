@@ -240,7 +240,7 @@
 
     apiready = function () {
         url = api.pageParam.url
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         // console.log(uid);
         ajaxGetWithProgress(QuerySummary, {
             uid: uid

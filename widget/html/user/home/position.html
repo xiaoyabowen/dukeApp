@@ -61,7 +61,7 @@
     function mineGo() {
 
         var obj ={
-            uid : localStorage.getItem("user").user_id
+            uid : localStorage.getItem("person_id")
         }
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
             if (data.date != 0) {

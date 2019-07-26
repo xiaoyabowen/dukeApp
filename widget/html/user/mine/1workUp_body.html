@@ -92,7 +92,7 @@
                 methods: {
                     QueryResumeUserProfile : function (){
                         var that = this
-                        var uids = JSON.parse(localStorage.getItem("user")).user_id
+                        var uids = localStorage.getItem("person_id")
                         console.log(uids)
                         var obj = {
                             uid : uids
@@ -128,7 +128,7 @@
                             fileBrowser.open(function(ret) {
                                 console.log(ret)
                                 if (ret) {
-                                    var uid = JSON.parse(localStorage.getItem("user")).user_id
+                                    var uid = localStorage.getItem("person_id")
                                     var obj = {
                                         uid : uid,
                                         resName : ret.name,

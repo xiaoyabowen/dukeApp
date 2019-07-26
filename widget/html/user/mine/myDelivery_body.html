@@ -173,7 +173,7 @@
     apiready = function () {
 
         var params = {}
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.person_id = uid
         ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
             console.log(res);

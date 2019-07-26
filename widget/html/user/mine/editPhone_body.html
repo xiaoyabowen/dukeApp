@@ -125,8 +125,7 @@
     <script type="text/javascript" src="../../../script/template-native.js"></script>
     <script>
         apiready = function () {
-            console.log(JSON.parse(localStorage.getItem('user')))
-            var phoneLogin = JSON.parse(localStorage.getItem('user')).phone;
+            var phoneLogin = localStorage.getItem('phone');
             document.querySelector('.nowPhoneEdit').innerText = checkTelFour(phoneLogin)
 
         };

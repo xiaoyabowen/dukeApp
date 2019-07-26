@@ -72,7 +72,7 @@
             return;
         }
         var obj ={
-            uid : JSON.parse(localStorage.getItem("user")).user_id
+            uid : localStorage.getItem("person_id")
         }
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {

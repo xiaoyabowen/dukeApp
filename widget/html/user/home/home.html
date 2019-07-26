@@ -187,8 +187,6 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script>
-
-
     apiready = function () {
         // initFrameInWin(api.pageParam);
         var header = $api.dom('#topbar');
@@ -196,20 +194,31 @@
         var uid = localStorage.getItem("person_id")
         var obj = {
             uid : uid
+            // uid : '12346'
         }
-        alert(uid)
-        console.log("给你传的",obj)
-        ajaxGetWithProgress(quRoleTypeUserProfile,obj,function (data) {
+        console.log("user",localStorage.getItem("user"))
+        api.ajax({
 
+            url: 'http://192.168.1.7:8000/SE4M/SE/Login/quRoleType',
+            method: 'get',
+            cache: 'false',
+            timeout: 30,
+            dataTpye: 'json',
+            data: {
+                values:obj
+            }
+        }, function (data, err) {
             console.log("ifq",data)
-            api.hideProgress();
-            // alert(data.role_type)
-            if (data.role_type == 1){
-                openNewWindow("home", "./home.html")
-            } else if (data.role_type == 2){
+            if (data.role_type == 1) {
+                // openNewWindow("home", "./home.html")
+            } else if (data.role_type == 2) {
                 openNewWindow("home", "../../company/home/home.html")
             }
-        })
+            api.hideProgress();
+
+        });
+
+
         // var guide = api.require('guide');
         // // alert(WelcomePage)
         // guide.openGuidePage({
@@ -235,12 +244,13 @@
         }
 
         var obj = {
-            uid: JSON.parse(localStorage.getItem("user")).user_id
+
+            uid: localStorage.getItem("person_id")
         }
 
-        console.log(obj)
+        // console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            console.log("homeData",data)
+            // console.log("homeData",data)
             if (data.date == 1) {
 
                 mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {

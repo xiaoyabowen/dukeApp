@@ -130,7 +130,7 @@
             }, function(ret, err) {
                 if (ret) {
                     var obj = {
-                        uid : JSON.parse(localStorage.getItem('user')).user_uid
+                        uid : localStorage.getItem("person_id")
                     }
                     console.log(JSON.stringify(ret));
                     //上传剪辑后的图像到服务器
@@ -286,7 +286,7 @@
         var adr_id = document.getElementById("adr_id").innerText
         var p_icon = document.querySelector(".info-img-defalut").src
 
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.p_icon = p_icon
         params.person_id = uid
         params.p_name = editName

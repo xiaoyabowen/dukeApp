@@ -84,7 +84,7 @@
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
@@ -105,7 +105,7 @@
                     document.querySelector(".boxSub").classList.remove("isDisplay")
                     if (index == 2){
                         that.indexNum = 2
-                        var uid = localStorage.getItem("user").user_id
+                        var uid = localStorage.getItem("person_id")
                         var c_id = localStorage.getItem("com_id")
                         var obj = {
                             uid: uid,
@@ -144,7 +144,7 @@
 
                         if (ret) {
                             var obj = {
-                                uid : JSON.parse(localStorage.getItem('user')).user_uid
+                                uid : localStorage.getItem("person_id")
                             }
                             console.log(JSON.stringify(ret));
                             //上传剪辑后的图像到服务器

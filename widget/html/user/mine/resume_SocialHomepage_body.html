@@ -71,7 +71,7 @@
         }
 
         var  params = {}
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.person_id = uid
         params.home_page = value
         ajaxGetWithProgress(addHomePage, params, function (data, err) {

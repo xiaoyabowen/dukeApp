@@ -131,7 +131,7 @@
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script>
         apiready = function () {
-            var user = JSON.parse(localStorage.getItem('user'));
+            var user = localStorage.getItem("user");
             if (!user) {
                 api.hideProgress();
                 localStorage.clear();
@@ -139,7 +139,7 @@
                 return;
             }
             // 获取用户信息
-            var uid = user.user_uid;
+            var uid = user;
             // console.log(uid);
             ajaxGetWithProgress(QuerySummary, {
                 uid: uid

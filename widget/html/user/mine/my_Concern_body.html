@@ -93,7 +93,7 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
     apiready = function () {
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var obj = {
             person_id:uid
         }

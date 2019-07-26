@@ -397,7 +397,7 @@
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log("Logindata=",data)
             api.hideProgress();
-            localStorage.setItem('user',JSON.stringify(data));
+            localStorage.setItem('user',data.user_uid);
             localStorage.setItem('person_id',data.user_uid);
 
             phoneValue = data.phone
@@ -421,7 +421,6 @@
                 } else if (data.role_type == 2){
                     openNewWindow("home", "../company/home/home.html")
                 }
-
             }
 
         });
