@@ -346,8 +346,12 @@ var UpdateStatus2 = serverUrl + "/EvaluateProfile/UpdateStatus2";
 // 伯乐-消息不合适
 var UpdateStatus = serverUrl + "/EvaluateProfile/UpdateStatus";
 
-// 公司填写信息
+// 千里马  点击我的
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
+// 伯乐  点击我的
+var queryRecruiterSuccessJobProfile = serverUrl + "/JobProfile/queryRecruiterSuccess";
+
+
 
 // 公司 我的 页面   获取  沟通过  数目
 var chatNumAndInvitation = serverUrl + "/JobProfile/chatNumAndInvitation";

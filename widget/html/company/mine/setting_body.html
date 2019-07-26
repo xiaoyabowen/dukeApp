@@ -167,17 +167,16 @@
         var obj = {
             uid : uid
         }
-
+        console.log("以前的是",localStorage.getItem('person_id'))
         ajaxGetWithProgress(suIdentityLogin,obj,function (data,ret) {
             console.log("juese",data)
             if (data.role_type == 1){
                 openNewWindow("changejuese", "../../user/home/home.html");
                 localStorage.setItem('person_id',data.user_uid);
-                alert(localStorage.getItem('person_id'))
+                console.log("现在的是",localStorage.getItem('person_id'))
             }
         })
-        
-        
+
         // openNewWindow("changejuese", "../../login/changejuese.html");
     }
     // 此处手动调用了js

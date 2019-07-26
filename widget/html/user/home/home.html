@@ -197,11 +197,12 @@
         var obj = {
             uid : uid
         }
-        alert(localStorage.getItem('person_id'))
-        console.log(uid)
+        alert(uid)
+        console.log("给你传的",obj)
         ajaxGetWithProgress(quRoleTypeUserProfile,obj,function (data) {
 
             console.log("ifq",data)
+            api.hideProgress();
             // alert(data.role_type)
             if (data.role_type == 1){
                 openNewWindow("home", "./home.html")
