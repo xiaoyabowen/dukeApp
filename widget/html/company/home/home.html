@@ -916,7 +916,7 @@
         console.log(obj)
         ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function (data, err) {
             console.log("homeData",data)
-            if (data.date == 1) {
+            /*if (data.date == 1) {
                 mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
                     console.log("mumiicomfir",e)
                     if (e.index == 0){
@@ -930,7 +930,25 @@
                 return;
             }else if (data.date == 2){
                 openNewWindow("mine", "../mine/mine.html")
+            }*/
+
+
+            if (data.date == 1){
+                openNewWindow("fillInfo", "./fillInfo.html")
+            } else if ( data.date == 2 ){
+                openNewWindow("postsPublish", "./postsPublish.html")
+            } else if (data.date == 3){
+                openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
+            } else if (data.date == 4){
+                openNewWindow("uploadLicense", "./uploadLicense.html")
+            } else if (data.date == 0){
+                openNewWindow("mine", "../mine/mine.html")
+
             }
+
+
+
+
         })
 
     }
@@ -943,6 +961,8 @@
         }else {
             openNewWindow("index", "../chat/index_body.html")
         }
+
+
         /*var obj ={
             uid : localStorage.getItem("user").user_id
         }

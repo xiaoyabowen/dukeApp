@@ -3,40 +3,50 @@
     <div class="resume_main">
         <div class="resume_main_hander cssFlex">
             <span @click="activeHandle('new', 1)" :class="active == 'new' ? 'active' : ''">新简历</span>
-            <span @click="activeHandle('interview')" :class="active == 'interview' ? 'active' : ''">面试</span>
-            <span @click="activeHandle('offer', 4)" :class="active == 'offer' ? 'active' : ''">录用</span>
-            <span @click="activeHandle('no', 5)" :class="active == 'no' ? 'active' : ''">不合适</span>
+            <span @click="interviewHandle('interview')" :class="active == 'interview' ? 'active' : ''">面试</span>
+            <span @click="offerHandle('offer', 4)" :class="active == 'offer' ? 'active' : ''">录用</span>
+            <span @click="noHandle('no', 5)" :class="active == 'no' ? 'active' : ''">不合适</span>
         </div>
         <!--新简历-->
         <div class="new" v-show="active == 'new'">
             <div v-for="(item1, index) in list1" :key="index">
                 <div class="new_main" >
+
                     <div class="new_main_top">
-                        投递时间：<span>{{filterTime2(item1.status_time)}}</span>     岗位：<span>{{item1.role}}</span>
+                        投递时间：<span>{{item1[0].status_time}}</span>     岗位：<span>{{item1[0].role}}</span>
                     </div>
                     <div class="contacts_main_item border0 cssFlex">
-                        <div class="contacts_item_left"><img :src="imgSrcFun(item1.p_icon)" alt=""></div>
+                        <div class="contacts_item_left"><img :src="imgSrcFun(item1[0].p_icon)" alt=""></div>
                         <div class="interested_item_con">
                             <div  @click="resumeHandle(item1)" >
-                                <span class="name">{{item1.p_name}} </span>
-                                <span class="status">{{isStatus(item1.i_status)}}</span>
-                                <span class="pay">{{item1.pay}}k</span>
+                                <span class="name">{{item1[0].p_name}} </span>
+                                <span class="status">{{isStatus(item1[0].i_status)}}</span>
+                                <span class="pay">{{item1[0].pay}}</span>
                             </div>
-                            <span class="job">{{item1.int_city}}/<span>{{ages(item1.w_from)}}</span>年/<span>{{item1.degree}}</span>/<span>{{ages(item1.p_birthday)}}</span>岁</span>
+                            <span class="job">{{item1[0].int_city}}/<span>{{ages(item1[0].w_from)}}</span>年/<span>{{item1[0].degree}}</span>/<span>{{ages(item1[0].p_birthday)}}</span>岁</span>
                             <div class="job"  @click="resumeHandle(item1)" >
-                                <span>{{item1.com_name}} </span>
-                                <span>&nbsp;&nbsp;{{item1.role}}</span>
+                                <span>{{item1[0].com_name}} </span>
+                                <span>&nbsp;&nbsp;{{item1[0].role}}</span>
                             </div>
-                            <div class="job"  @click="resumeHandle(item1)" ><span>{{item1.w_from}}至{{item1.w_to}}</span></div>
+                            <div class="job"  @click="resumeHandle(item1)" ><span>{{item1[0].w_from}}至{{item1[0].w_to}}</span></div>
 
                             <div class="invitation" @click="interview(item1)" >
-                                <div class="btn" v-if="item1.status2 == '接受'">已接受</div>
-                                <div class="btn" v-if="item1.status2 == '未接受'">未接受</div>
-                                <div class="btn" v-if="item1.status2 == '撤销'">重新邀约</div>
-                                <div class="btn" v-if="item1.status2 == '投递'">邀约</div>
+                                <div class="btn" v-if="item1[0].status2 == '接受'">已接受</div>
+                                <div class="btn" v-if="item1[0].status2 == '未接受'">未接受</div>
+                                <div class="btn" v-if="item1[0].status2 == '撤销'">重新邀约</div>
+                                <div class="btn" v-if="item1[0].status2 == '投递'">邀约</div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="basics" v-if="item1">
+                    <!--<img src="../../../image/chat/resume.png" alt="">-->
+                    <div>还没有伯乐看过你，快去刷新你的简历吧！</div>
+                </div>
+                <div class="basics" v-else>
+                    <!--<img src="../../../image/chat/resume.png" alt="">-->
+                    <div>刷新你的简历吧！</div>
                 </div>
             </div>
 
@@ -44,6 +54,7 @@
         <!--面试-->
         <div class="new" v-show="active == 'interview'">
             <div v-for="(item1, index) in list2" :key="index">
+
                 <div class="new_main">
                     <div class="new_main_top">
                         投递时间：<span>{{filterTime2(item1.status_time)}}</span>     岗位：<span>{{item1.role}}</span>
@@ -54,7 +65,7 @@
                             <div @click="resumeHandle(item1)" >
                                 <span class="name">{{item1.p_name}} </span>
                                 <span class="status">{{isStatus(item1.i_status)}}</span>
-                                <span class="pay">{{item1.pay}}k</span>
+                                <span class="pay">{{item1.pay}}</span>
                             </div>
                             <span class="job">{{item1.int_city}}/<span>{{ages(item1.w_from)}}</span>年/<span>{{item1.degree}}</span>/<span>{{ages(item1.p_birthday)}}</span>岁</span>
                             <div class="job" @click="resumeHandle(item1)" >
@@ -62,15 +73,16 @@
                                 <span>&nbsp;&nbsp;{{item1.role}}</span>
                             </div>
                             <div class="job" @click="resumeHandle(item1)" ><span>{{item1.w_from}}至{{item1.w_to}}</span></div>
-                            <div class="invitation" @click="interview(item1)" >
+                            <div class="invitation" >
                                 <div class="btn" v-if="item1.status2 == '接受'">已接受</div>
-                                <div class="btn" v-if="item1.status2 == '未接受'">未接受</div>
-                                <div class="btn" v-if="item1.status2 == '撤销'">重新邀约</div>
-                                <div class="btn" v-if="item1.status2 == '投递'">邀约</div>
+                                <div class="btn" v-if="item1.status2 == '未接受'" @click="interviewNot(item1.app_id)">撤销</div>
+                                <div class="btn" v-if="item1.status2 == '撤销'" @click="interviewAgain(item1.app_id)">重新邀约</div>
+                                <div class="btn" v-if="item1.status2 == '投递'" @click="interview(item1)">邀约</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -79,22 +91,22 @@
             <div v-for="(item1, index) in list4" :key="index">
                 <div class="new_main" @click="resumeHandle(item1)" >
                     <div class="new_main_top">
-                        投递时间：<span>{{filterTime2(item1.status_time)}}</span>     岗位：<span>{{item1.role}}</span>
+                        投递时间：<span>{{filterTime2(item1[0].status_time)}}</span>     岗位：<span>{{item1[0].role}}</span>
                     </div>
                     <div class="contacts_main_item border0 cssFlex">
-                        <div class="contacts_item_left"><img :src="imgSrcFun(item1.p_icon)" alt=""></div>
+                        <div class="contacts_item_left"><img :src="imgSrcFun(item1[0].p_icon)" alt=""></div>
                         <div class="interested_item_con">
                             <div>
-                                <span class="name">{{item1.p_name}} </span>
-                                <span class="status">{{isStatus(item1.i_status)}}</span>
-                                <span class="pay">{{item1.pay}}k</span>
+                                <span class="name">{{item1[0].p_name}} </span>
+                                <span class="status">{{isStatus(item1[0].i_status)}}</span>
+                                <span class="pay">{{item1[0].pay}}</span>
                             </div>
-                            <span class="job">{{item1.int_city}}/<span>{{ages(item1.w_from)}}</span>年/<span>{{item1.degree}}</span>/<span>{{ages(item1.p_birthday)}}</span>岁</span>
+                            <span class="job">{{item1[0].int_city}}/<span>{{ages(item1[0].w_from)}}</span>年/<span>{{item1[0].degree}}</span>/<span>{{ages(item1[0].p_birthday)}}</span>岁</span>
                             <div class="job">
-                                <span>{{item1.com_name}} </span>
-                                <span>&nbsp;&nbsp;{{item1.role}}</span>
+                                <span>{{item1[0].com_name}} </span>
+                                <span>&nbsp;&nbsp;{{item1[0].role}}</span>
                             </div>
-                            <div class="job"><span>{{item1.w_from}}至{{item1.w_to}}</span></div>
+                            <div class="job"><span>{{item1[0].w_from}}至{{item1[0].w_to}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -106,22 +118,22 @@
             <div v-for="(item1, index) in list5" :key="index">
                 <div class="new_main" @click="resumeHandle(item1)" >
                     <div class="new_main_top">
-                        投递时间：<span>{{filterTime2(item1.status_time)}}</span>     岗位：<span>{{item1.role}}</span>
+                        投递时间：<span>{{filterTime2(item1[0].status_time)}}</span>     岗位：<span>{{item1[0].role}}</span>
                     </div>
                     <div class="contacts_main_item border0 cssFlex">
-                        <div class="contacts_item_left"><img :src="imgSrcFun(item1.p_icon)" alt=""></div>
+                        <div class="contacts_item_left"><img :src="imgSrcFun(item1[0].p_icon)" alt=""></div>
                         <div class="interested_item_con">
                             <div>
-                                <span class="name">{{item1.p_name}} </span>
-                                <span class="status">{{isStatus(item1.i_status)}}</span>
-                                <span class="pay">{{item1.pay}}k</span>
+                                <span class="name">{{item1[0].p_name}} </span>
+                                <span class="status">{{isStatus(item1[0].i_status)}}</span>
+                                <span class="pay">{{item1[0].pay}}</span>
                             </div>
-                            <span class="job">{{item1.int_city}}/<span>{{ages(item1.w_from)}}</span>年/<span>{{item1.degree}}</span>/<span>{{ages(item1.p_birthday)}}</span>岁</span>
+                            <span class="job">{{item1[0].int_city}}/<span>{{ages(item1[0].w_from)}}</span>年/<span>{{item1[0].degree}}</span>/<span>{{ages(item1[0].p_birthday)}}</span>岁</span>
                             <div class="job">
-                                <span>{{item1.com_name}} </span>
-                                <span>&nbsp;&nbsp;{{item1.role}}</span>
+                                <span>{{item1[0].com_name}} </span>
+                                <span>&nbsp;&nbsp;{{item1[0].role}}</span>
                             </div>
-                            <div class="job"><span>{{item1.w_from}}至{{item1.w_to}}</span></div>
+                            <div class="job"><span>{{item1[0].w_from}}至{{item1[0].w_to}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -130,8 +142,5 @@
         </div>
     </div>
 
-    <!--<div class="basics" v-if="list.length <= 0">-->
-        <!--<img src="../../../image/chat/resume.png" alt="">-->
-        <!--<div>还没有伯乐看过你，快去刷新你的简历吧！</div>-->
-    <!--</div>-->
+
 </div>

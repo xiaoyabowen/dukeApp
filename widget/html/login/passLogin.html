@@ -331,8 +331,6 @@
         var params = {};
         params.pwd = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
-        params.token_type = "2";
-        params.role_type = localStorage.getItem("role");
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
@@ -343,32 +341,63 @@
             api.hideProgress();
             return;
         }
-        ajaxGetUser(LoginAndRegist, params, function (data, err) {
+        /*ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log(23434,data)
 
             api.hideProgress();
             if (data.success == false) {
                 toast("账户密码错误")
             } else {
-                openNewWindow("home", "../user/home/home.html")
-                /*if (data.role_type == 1){
-                    localStorage.setItem('user',JSON.stringify(data));
+
+                if (data.role_type == 1){
+
                     localStorage.setItem('person_id',data.user_uid);
-                    localStorage.setItem('role_type',data.role_type);
+                    localStorage.setItem('phone',data.phone);
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){
-                    localStorage.setItem('user',JSON.stringify(data));
                     localStorage.setItem('person_id',data.user_uid);
-                    localStorage.setItem('role_type',data.role_type);
                     localStorage.setItem('com_id',data.c_id);
+                    localStorage.setItem('phone',data.phone);
                     openNewWindow("home", "../company/home/home.html")
-                    // openNewWindow("mangePosition", "../company/mine/mangePosition.html")
-                    // openNewWindow("subscribed_positions", "../company/mine/subscribed_positions.html")
-                }*/
+
+                }
 
             }
 
+        });*/
+
+        ajaxGetUser(LoginAndRegist, params, function (data, err) {
+            console.log("Logindata=",data)
+            api.hideProgress();
+            localStorage.setItem('user',data.user_uid);
+            localStorage.setItem('person_id',data.user_uid);
+
+            phoneValue = data.phone
+            localStorage.setItem('phone',phoneValue);
+
+            // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
+            if (data.success == false) {
+
+                console.log(phoneValue)
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phoneValue : phoneValue
+                })
+            } else if (data.date == 1 && data.success == true){
+
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phone :phoneValue
+                })
+            } else{
+                if (data.role_type == 1){
+                    openNewWindow("home", "../user/home/home.html")
+                } else if (data.role_type == 2){
+                    openNewWindow("home", "../company/home/home.html")
+                }
+            }
+
         });
+
+
     }
 
     function returnPass() {

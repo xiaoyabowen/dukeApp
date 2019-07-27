@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  class="commonBg">
+<html lang="en" class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -29,7 +29,7 @@
             </div>
             <div class="mp-subinfo-type">{{posiType}}</div>
         </div>
-        <div class="mp-posiPrice commonTitle">{{posiPrice}}k</div>
+        <div class="mp-posiPrice commonTitle">{{posiPrice}}</div>
     </div>
     <div class="line1"></div>
     <div class="boxSub">
@@ -60,10 +60,9 @@
         <div class="mp-posiEdit commonTitle" @click="pushPosition()">编辑</div>
     </div>
     <div class="mp-posiBommom" v-if="statusDetail == 1">
-        <div class="mp-posiPushAgain commonTitle">再次发布</div>
+        <div class="mp-posiPushAgain commonTitle" @click="AgjobsJobProfile(1)">再次发布</div>
     </div>
 </div>
-
 
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -75,8 +74,6 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 
 
-
-
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 
@@ -85,7 +82,7 @@
 <script>eruda.init();</script>
 <script>
 
-    var job_id,url,statusD;
+    var job_id, url, statusD;
     apiready = function () {
         url = api.pageParam.url;
         job_id = api.pageParam.job_id;
@@ -103,49 +100,55 @@
                 posiPrice: '',
                 posiAddress: '',
                 posiDeAddress: '',
-                waeltList:[],
-                posiMain : '',
-                statusDetail :statusD,
+                waeltList: [],
+                posiMain: '',
+                statusDetail: statusD,
             },
             created: function () {
                 this.queryJobSummaryJobProfile()
             },
             methods: {
-                queryJobSummaryJobProfile : function () {
+                queryJobSummaryJobProfile: function () {
                     var that = this
                     var obj = {
-                        job_id : job_id
+                        job_id: job_id
                     }
-                    ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
+                    ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
                         console.log(data)
-                        if (data){
-                            that.posiName = data.job_name
+                        if (data) {
+                            that.posiName = data.job_name || ""
                             that.posiYear = data.work_ex
                             that.posiEdu = data.edu_ex
                             that.posiType = data.nature
                             that.posiPrice = data.ratio
-                            that.posiAddress = data.province+ '-' +data.city+ '-' +data.street
+                            that.posiAddress = data.province + '-' + data.city + '-' + data.street
                             that.posiDeAddress = data.shortname
-                            that.waeltList = stringFun(data.skills)
+                            if (data.skills){
+
+                                that.waeltList = stringFun(data.skills)
+                            } else{
+                                that.waeltList = ""
+                            }
+
                             that.posiMain = data.description
-                        } else{
+                        } else {
                             toast("请求失败")
                         }
                         document.querySelector(".boxSub").classList.remove("isDisplay")
                     })
                 },
-                ICjobsJobProfile : function (status) {
+                ICjobsJobProfile: function (status) {
                     var that = this
                     var obj = {
-                        job_id : job_id,
-                        status : status
+                        job_id: job_id,
+                        status: status
                     }
-                    ajaxGetWithProgress(ICjobsJobProfile,obj,function (data,ret) {
+                    ajaxGetWithProgress(ICjobsJobProfile, obj, function (data, ret) {
                         console.log(data)
-                        if (data.return.status){
+                        if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({
-                                name:url,
+                                name: url,
                                 // frameName:url +"_body",
                                 frameName: frameName,
                                 script: 'loadCom()'
@@ -153,15 +156,33 @@
                             closeWin();
                         }
                     })
-
-
                 },
 
-                pushPosition : function () {
+                AgjobsJobProfile: function (status) {
+                    var that = this
+                    var obj = {
+                        job_id: job_id,
+                        status: status
+                    }
+                    ajaxGetWithProgress(ICjobsJobProfile, obj, function (data, ret) {
+                        console.log(data)
+                        if (data.return.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name: url,
+                                // frameName:url +"_body",
+                                frameName: frameName,
+                                script: 'loadCom()'
+                            })
+                            closeWin();
+                        }
+                    })
+                },
+                pushPosition: function () {
                     openNewWindow("postsPublish", "../home/postsPublish.html", {
                         url: 'mangePositionDetail',
-                        job_id : job_id,
-                        status:2
+                        job_id: job_id,
+                        status: 2
                     })
                 }
 

@@ -51,6 +51,38 @@ var suIdentityLogin = serverUrl + "/Login/suIdentity";
 
 
 
+/*
+* 支付状态   orderStatus  0 未支付
+*            1 支付    -- bill
+*                          adrStatus   0 待收货   1 待评价  2
+*
+*
+* */
+// 我的订单   全部订单
+var allCommodityOrder = Domain + "/CommodityProFile/allCommodityOrder";
+// 我的订单   已支付
+var queryPayOrderByPidCommodityProFile = Domain + "/CommodityProFile/queryPayOrderByPid";
+// 我的订单   待收货
+var takeCommodityOrderCommodityProFile = Domain + "/CommodityProFile/takeCommodityOrder";
+// 我的订单   待评价
+var evaCommodityOrderCommodityProFile = Domain + "/CommodityProFile/evaCommodityOrder";
+// 我的订单   待付款
+var queryNoOrderByPidCommodityProFile = Domain + "/CommodityProFile/queryNoOrderByPid";
+
+// 我的订单  提醒发货
+var CommodityProFileRemind = Domain + "/CommodityProFile/Remind";
+// 我的订单  删除订单
+var deleteOrderCommodityProFile = Domain + "/CommodityProFile/deleteOrder";
+// 我的订单  商品详情
+var OrderSummaryCommodityProFile = Domain + "/CommodityProFile/OrderSummary";
+
+
+
+
+
+
+
+
 // 获取面试数量
 var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
 // 获取面试列表
@@ -232,7 +264,7 @@ var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
 // 圈子发布活动
 var ActivecreateCircle = serverUrl + "/CircleProfile/CreateCircle";
 // 意见反馈
-var addFeedback = localhostHref + "/addFeedback";
+var addFeedback = serverUrl + "/FeedbackFile/addFeedback";
 
 // 意见反馈  图片
 // var addFeedBackPic = localhostHref + "/addFeedBackPic";
@@ -319,8 +351,7 @@ var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail ";
 // ================================================ 伯乐
 
 
-//  基本信息   上传图片
-var UploadPicon = Domain + "/upload/UploadPicon";
+
 // 发布活动上传图片
 var UploadFlieTest = Domain + "/upload/UploadFlieTest";
 //伯乐创建简历  头像
@@ -339,6 +370,10 @@ var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
 // 伯乐-status=1 新简历 2初试3复试 4录用 5不合适
 var ResumeList = serverUrl + "/JobProfile/ResumeList";
+// 伯乐- 修改面试时间 查询
+var queryApplicationStatusEvaluateProfile = serverUrl + "/EvaluateProfile/queryApplicationStatus";
+// 伯乐- 修改面试时间 修改
+var UpdateInvitationEvaluateProfile = serverUrl + "/EvaluateProfile/UpdateInvitation";
 // 伯乐-查看简历详情
 var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 // 伯乐-消息撤回面试邀请

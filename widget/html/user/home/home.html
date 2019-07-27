@@ -108,7 +108,7 @@
             width: 7rem;
             height: calc(100vh - 1.4rem);
             padding-top: 0 !important;
-            object-fit: cover;
+            /*object-fit: cover;*/
             object-position : center;
         }
         .middleHeightTop{
@@ -188,6 +188,29 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script>
     apiready = function () {
+
+        var wx = api.require('wx');
+        wx.isInstalled(function(ret, err) {
+            if (ret.installed) {
+                // alert("当前设备已安装微信客户端");
+            } else {
+                // alert('当前设备未安装微信客户端');
+            }
+        });
+        var wx = api.require('wx');
+        wx.shareImage({
+            apiKey: '',
+            scene: 'session',
+            thumb: 'widget://image/duke-2.png',
+            contentUrl: 'widget://html/login/login.html'
+        }, function(ret, err) {
+            if (ret.status) {
+                // alert('分享成功');
+            } else {
+                // alert(err.code);
+            }
+        });
+
         // initFrameInWin(api.pageParam);
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
@@ -271,7 +294,7 @@
                 })
             }
         })
-        // openNewWindow("mine", "../mine/mine.html")
+        // openNewWindow("Feedback", "../mine/Feedback.html")
     }
 
     // 跳转到聊天页面

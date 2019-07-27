@@ -2129,7 +2129,7 @@ i.ques-star {
     line-height: 0.78rem;
     text-align: center;
     color: #fff;
-    margin: 0 auto;
+    margin: 0 auto 0.3rem;
 }
 .ques-active{
     color:rgba(99,139,255,1);

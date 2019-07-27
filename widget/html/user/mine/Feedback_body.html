@@ -13,7 +13,9 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <style>
-
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
         .boxSub {
             padding-top: 0.2rem;
         }
@@ -124,6 +126,12 @@
             -o-transform: translate(-50%, -60%) rotate(-45deg);
             transform: translate(-50%, -60%) rotate(-45deg);
         }
+        .action{
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin: 0 auto 0.2rem;
+        }
     </style>
 
 </head>
@@ -150,8 +158,10 @@
         <div class="update-box">
             <div class="update-box-title">上传凭证（不超过3张）</div>
             <div class="resume_imgWorks_main">
+                <!--<div class="action"></div>-->
+                <img src="../../../image/company/uploadIn.png" alt="action" class="action">
                 <ul id="ul_box">
-                    <li class="action"></li>
+
                     <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
                     <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
                     <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
@@ -188,9 +198,9 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 
 <script>
-
+    var picture,url
     apiready = function () {
-
+        url = api.pageParam.url
     };
     var list = ["系统闪退","系统bug","支付问题","举报企业","发布信息","兑换服务"]
 
@@ -230,7 +240,7 @@
 
 
 
-    var picture = []
+
     function genID(length){
         return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
     }
@@ -240,78 +250,6 @@
     var action = document.querySelector('.action');
     var ulBox = document.getElementById('ul_box');
     action.onclick = function () {
-        /*api.getPicture({
-            sourceType: 'library',
-            encodingType: 'jpg',
-            mediaValue: 'pic',
-            destinationType: 'url',
-            allowEdit: true,
-            quality: 50,
-            targetWidth: 100,
-            targetHeight: 100,
-            saveToPhotoAlbum: false
-        }, function (ret, err) {
-            if (ret) {
-                console.log(ret.data);
-                // localStorage.setItem("picPath",ret.data)
-                document.querySelector(".picPath").innerText = ret.data
-                picture.push(ret.data);
-
-                var arr = ['<li class="action"></li>'];
-                for (var i = 0; i < list.length; i++) {
-                    var str = '<li><img src="' + list[i] + '" alt=""><span><i></i></span></li>';
-                    arr.push(str);
-                }
-                ulBox.innerHTML = arr.join('');
-
-                // //将图片转换为Base64
-                // function getImgToBase64(url, callback) {
-                //     var canvas = document.createElement('canvas'),
-                //         ctx = canvas.getContext('2d'),
-                //         img = new Image;
-                //     img.crossOrigin = 'Anonymous';
-                //     img.onload = function () {
-                //         canvas.height = img.height;
-                //         canvas.width = img.width;
-                //         ctx.drawImage(img, 0, 0);
-                //         var dataURL = canvas.toDataURL('image/png');
-                //         callback(dataURL);
-                //         canvas = null;
-                //     };
-                //     img.src = url;
-                // }
-                //
-                // //将base64转换为文件对象
-                // function dataURLtoFile(dataurl, filename) {
-                //     var arr = dataurl.split(',');
-                //     var mime = arr[0].match(/:(.*?);/)[1];
-                //     var bstr = atob(arr[1]);
-                //     var n = bstr.length;
-                //     var u8arr = new Uint8Array(n);
-                //     while (n--) {
-                //         u8arr[n] = bstr.charCodeAt(n);
-                //     }
-                //     //转换成file对象
-                //     return new File([u8arr], filename, {type: mime});
-                //     //转换成成blob对象
-                //     //return new Blob([u8arr],{type:mime});
-                // }
-                //
-                // //将图片转换为base64,再将base64转换成file对象
-                // getImgToBase64(ret.data, function (data) {
-                //     console.log(data);
-                //     var myFile = dataURLtoFile(data, 'testimgtestimgtestimg');
-                //     console.log(myFile);
-                //     var file = JSON.stringify(myFile)
-                //     console.log(file);
-                //
-                // });
-
-
-            } else {
-                console.log(JSON.stringify(err));
-            }
-        });*/
 
         var UIAlbumBrowser = api.require('UIAlbumBrowser');
         UIAlbumBrowser.open({
@@ -337,40 +275,47 @@
         }, function(ret) {
             if (ret) {
 
-                console.log(ret)
-                var retImg = ret.list;
-                var ulBox = document.getElementById('ul_box');
-                var ulBoxLi = ''
-                ulBoxLi +='<li class="action"></li>'
-                for (var i=0;i<retImg.length;i++){
-                    ulBoxLi += '<li><img src="'+retImg[i].path+'" alt=""><span><i></i></span></li>'
+                console.log("fanhuid",ret)
+                var imgListArr = {}
+                var imgList = ret.list
+                for (var i=0;i<imgList.length;i++){
+                    imgListArr["file"+(i+1)] = imgList[i].thumbPath
                 }
-                ulBox.innerHTML = ulBoxLi
+                console.log(imgListArr)
 
-                /*document.querySelector(".info-img-defalut").src = ret.list[0].thumbPath
-                var obj = {
-                  uid : localStorage.getItem("user").user_id
-                }
                 api.ajax({
-                  // report : false,
-                  url:UploadPicon,
-                  //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                  method: 'post',
-                  cache: 'false',
-                  timeout: 30,
-                  dataTpye: 'json',
-                  data: {
+                    // report : false,
+                    url:'http://192.168.1.7:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
 
-                    files: {
-                      file: document.querySelector(".info-img-defalut").src
-                    },
-                    values: obj
+                        files: imgListArr,
+                        // values: ret.list
 
-                  }
+                    }
                 }, function (data, err) {
 
-                  console.log(data)
-                });*/
+                    console.log(data)
+                    picture = data.imgUrl
+                    var retImg = stringFun(data.imgUrl)
+                    console.log(retImg)
+                    var ulBox = document.getElementById('ul_box');
+                    var ulBoxLi = ''
+                    // ulBoxLi +='<li class="action"></li>'
+                    for (var i=0;i<retImg.length-1;i++){
+                        ulBoxLi += '<li><img src="'+retImg[i]+'" alt=""></li>'
+                    }
+                    ulBox.innerHTML = ulBoxLi
+
+
+                });
+
+
+
             }
         });
     }
@@ -387,54 +332,36 @@
             contact:contact,
             phone:phone,
             title:title,
-            id:getId
+            id:getId,
+            pic: picture
         }
+        console.log(obj)
         api.ajax({
             // report : false,
             url:addFeedback,
             //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-            method: 'post',
+            method: 'get',
             cache: 'false',
             timeout: 30,
             dataTpye: 'json',
             data: {
-
-                /*files: {
-                    file: ret.data
-                },*/
                 values: obj
 
             }
         }, function (ret, err) {
             api.hideProgress();
             console.log(ret)
-            addFeedBackPicClick()
+            if (ret.return_info.status){
+                var frameName = url + "_body";
+                api.execScript({
+                    name:url,
+                    frameName: frameName
+                })
+                closeWin();
+            } else {
+                toast("反馈失败")
+            }
         });
-
-        var picPath =document.querySelector(".picPath").innerText
-        function addFeedBackPicClick() {
-            console.log(getId)
-            console.log(picPath)
-            api.ajax({
-                // report : false,
-                url:addFeedBackPic,
-                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                method: 'post',
-                cache: 'false',
-                timeout: 30,
-                dataTpye: 'json',
-                data: {
-                    files: {
-                        picture:picPath,
-                    },
-                    values: {
-                        id:getId
-                    }
-                }
-            }, function (ret, err) {
-
-            });
-        }
     }
 
 </script>

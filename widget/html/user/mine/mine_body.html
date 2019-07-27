@@ -67,20 +67,24 @@
         <div class="F9Line"></div>
         <div class="boxSub mine-order">
             <h2 class="viewZhu">我的订单</h2>
-            <ul class="m-person-list  cssFlex" onclick="personOrder()">
-                <li>
+            <ul class="m-person-list  cssFlex">
+                <li onclick="personOrder()">
                     <img src="../../../image/mine/dingdan-22x.png" alt="jianli" class="img-one">
                     <p>全部订单</p>
                 </li>
-                <li>
+                <li onclick="notpayOrder()">
+                    <img src="../../../image/mine/Delivery2x.png" alt="jianli" class="img-two">
+                    <p>待付款</p>
+                </li>
+                <li onclick="payOrder()">
                     <img src="../../../image/mine/Delivery2x.png" alt="jianli" class="img-two">
                     <p>已支付</p>
                 </li>
-                <li>
+                <li onclick="waitOrder()">
                     <img src="../../../image/mine/Harvesting2x.png" alt="jianli" class="img-three">
                     <p>待收货</p>
                 </li>
-                <li>
+                <li onclick="starOrder()">
                     <img src="../../../image/mine/evaluate2x.png" alt="jianli" class="img-four">
                     <p>待评价</p>
                 </li>
@@ -154,7 +158,7 @@
 
                 console.log(document.getElementById('p_icon'))
 
-                localStorage.setItem('person_id', uid);
+                // localStorage.setItem('person_id', uid);
             });
 
 
@@ -242,9 +246,33 @@
                 url : "resume_editResume"
             })
         }
+        // 全部订单
         function personOrder() {
-            toast("该功能正在开发中！！！")
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'all'
+            });
         }
+        function notpayOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'notpay'
+            });
+        }
+        function payOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'pay'
+            });
+        }
+        function waitOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'wait'
+            });
+        }
+        function starOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'star'
+            });
+        }
+
     </script>
 </body>
 </html>

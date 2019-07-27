@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>发表评价</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/myOrderCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <style>
+
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
+        .comMain{
+            padding-top: 0.3rem;
+        }
+        .textOverflow3{
+            -webkit-line-clamp:3;
+            -moz-line-clamp: 3;
+            -o-line-clamp: 3;
+            line-clamp: 3;
+        }
+
+        .mui-table-view{
+            padding: 0 0.3rem !important;
+            margin: 0.2rem 0 !important;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box" id="app1">
+
+    <div class="new">
+
+
+
+        <!--pingjia -->
+        <div class="comBox">
+
+            <div class="comMain cssFlex">
+                <img src="../../../image/chat/touxiangm.png" alt="orderImg" class="comLeftImg">
+                <div class="comMain">
+                    <div class="comProTet textOverflow commonFont">
+                        面膜
+                    </div>
+                    <div class="comProTet textOverflow textOverflow3 commonSub24">
+                        波碧水十五周年庆——唯美丽人会员礼包   深海水动力清透洁面乳    波碧水如雪防晒乳 SPF23 PA++   波碧水五分钟水疗急救面波碧水五分钟水疗急…
+                    </div>
+
+                </div>
+            </div>
+            <!--<div class="comMain cssFlex" v-show="tId == 2">
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        面膜
+                    </div>
+                </div>
+            </div>
+-->
+            <!--星级评价-->
+            <ul class="mui-table-view">
+                <li class="star-li cssFlex">
+                    <a>产品效果</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+                <li class="star-li cssFlex">
+                    <a>物流服务</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+                <li class="star-li cssFlex">
+                    <a>服务态度</a>
+                    <div class="icons">
+                        <i data-index="1" class="mui-icon mui-icon-star"></i>
+                        <i data-index="2" class="mui-icon mui-icon-star"></i>
+                        <i data-index="3" class="mui-icon mui-icon-star"></i>
+                        <i data-index="4" class="mui-icon mui-icon-star"></i>
+                        <i data-index="5" class="mui-icon mui-icon-star"></i>
+                    </div>
+                </li>
+
+            </ul>
+
+            <!--评价内容-->
+
+
+            <textarea cols="30" rows="10" class="textAreaCom" placeholder="您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦~"></textarea>
+            <div class="postSubBtn" @click="preservation()">提交评价</div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+
+<script>
+
+    var uid,tId;
+    apiready = function () {
+        tId = api.pageParam.tId
+        uid = localStorage.getItem("person_id");
+    };
+
+    // 星级评价
+    mui.init();
+    console.log(mui('.icons'))
+    mui('.icons').on('click','i',function(){
+        var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
+        var parent = this.parentNode;//获取当前元素的父节点
+        var children = parent.children;//获取父节点下所有子元素
+        if(this.classList.contains("mui-icon-star")){//判断当前节点列表中是否含有.mui-icon-star元素
+            for(var i=0;i<index;i++){//亮星
+                children[i].classList.remove('mui-icon-star');
+                children[i].classList.add('mui-icon-star-filled');
+            }
+        }else{//重置已经亮星的元素
+            for (var i = index; i < 5; i++) {
+                children[i].classList.add('mui-icon-star')
+                children[i].classList.remove('mui-icon-star-filled')
+            }
+        }
+        console.log(parent.previousElementSibling.innerText + "："+index+"星好评")
+        // document.getElementById("info").innerHTML = parent.previousElementSibling.innerText + "："+index+"星好评";
+    })
+</script>
+</body>
+</html>

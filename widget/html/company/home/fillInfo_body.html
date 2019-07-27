@@ -238,7 +238,8 @@
             if (data){
                 if (data.date == 1){
                     openNewWindow("postsPublish", "./postsPublish.html",{
-                        loginAuthen:3
+                        loginAuthen:3,
+                        company_c_id : document.getElementById("fillId").innerText
                     })
                 } else if (data.date == 0){
                     toast("请求出错")

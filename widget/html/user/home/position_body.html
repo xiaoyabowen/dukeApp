@@ -20,6 +20,9 @@
         img.hrImg {
             width: 40px !important;
             height: 40px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
         }
 
         .job-img-content {
@@ -167,7 +170,7 @@
                                 </div>
                                 <!--薪资 日期-->
                                 <div class="job-right ">
-                                    <p class="moneyNum"><span id="ratio">20k-30K</span>k</p>
+                                    <p class="moneyNum"><span id="ratio">20k-30K</span></p>
                                 </div>
                             </div>
                             <div class="F9Line"></div>
@@ -297,7 +300,7 @@
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
                     document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
@@ -337,7 +340,7 @@
                     document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
@@ -382,7 +385,7 @@
                     document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';

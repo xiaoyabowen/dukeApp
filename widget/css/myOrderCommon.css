@@ -1,4 +1,6 @@
-
+.isDisplay{
+    display: none;
+}
 .order_header {
     width: 100%;
     height: 0.92rem;
@@ -29,3 +31,283 @@
     height: 0.04rem;
     background: #638BFF;
 }
+
+.comtile,.comMain,.comMain,.comConPrice,.comGoodBtn{
+    padding: 0 0.3rem;
+}
+.padding30{
+    padding: 0 0.3rem;
+}
+.resume_main_hander {
+    height: 0.97rem;
+    line-height: 0.97rem;
+    justify-content: space-around;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.resume_main_hander span {
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51,51,51,1);
+    position: relative;
+}
+
+.resume_main_hander span.active {
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: rgba(99,139,255,1);
+
+}
+
+.resume_main_hander span.active::after {
+    content: '';
+    display: block;
+    width: 0.9rem;
+    height: 0.04rem;
+    background: #638BFF;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+
+.comBox{
+    padding: 0.2rem 0 0.3rem;
+}
+.comtile{
+    margin-bottom: 0.1rem;
+    text-align: right;
+}
+.comtileText{
+    color:rgba(254,145,20,1) !important;
+}
+.comMain{
+    padding-bottom: 0.22rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+.comLeftImg{
+    width: 1.8rem;
+    height: 1.8rem;
+    display: block;
+    margin-right: 0.32rem;
+}
+.comContent{
+    position: relative;
+    width: 4.14rem;
+}
+.comProTet{
+    height: auto !important;
+    color: #999999;
+}
+.comPrice{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.priceColorWei{
+    color: #DE2929 !important;
+}
+.comConPrice{
+    margin: 0.15rem 0 0.1rem;
+    text-align: right;
+}
+.priceColor{
+    color: #DE2929;
+}
+.comGoodBtn{
+    justify-content: flex-end;
+
+}
+.remindText{
+    color:rgba(153,153,153,1);
+    margin: 0.04rem 0 0.34rem;
+    text-align: right;
+}
+.RemarksTet{
+    color:rgba(153,153,153,1) !important;
+    height: auto;
+
+}
+.margibottom{
+    margin-bottom: 0.3rem;
+}
+.comBtnClass{
+    height:0.5rem;
+    line-height: 0.5rem;
+    border-radius:0.04rem;
+    border:0.02rem solid rgba(205,205,205,1);
+    color:rgba(124,124,124,1);
+    font-size: 0.24rem;
+    text-align: center;
+    padding: 0 0.2rem;
+    margin-left: 0.18rem;
+    margin-top: 0.1rem;
+}
+.comBtnClassFE{
+    color: #FE9114;
+    border:0.02rem solid #FE9114;
+}
+.comBtnClassBF{
+    color: #638BFF;
+    border:0.02rem solid #638BFF;
+}
+.fareSpeed{
+    height:0.6rem;
+    line-height: 0.6rem;
+    background:rgba(235,235,235,1);
+    color:rgba(99,139,255,1) !important;
+    margin: 0.4rem  auto;
+    width: 6.3rem;
+    padding: 0 0.3rem;
+
+}
+.fareSpeedName{
+    color: #638BFF;
+}
+
+/*商品详情*/
+.fareBox{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0;
+
+    border-bottom: 1px solid #ebebeb;
+}
+.DeliImg{
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.22rem;
+}
+.fareBoxMain{
+    width: 5.2rem;
+}
+
+.fareBoxWhere{
+    height: auto;
+    color:rgba(99,139,255,1);
+}
+.fareBoxTime{
+    color:rgba(153,153,153,1);
+}
+
+.overGoods{
+    align-items: center;
+    padding: 0.3rem 0;
+}
+.overGoodsMain{
+    align-items: center;
+}
+.overGoodsName{
+    color: #333333;
+}
+.overGoodsPhone{
+    color: #999999;
+}
+.overGoodsAdr{
+    color: #333333;
+}
+.phoneBO{
+    width:6.3rem;
+    height:0.8rem;
+    line-height: 0.8rem;
+    border-radius:0.06rem;
+    border:0.02rem solid rgba(99,139,255,1);
+    text-align: center;
+    background: url("../image/circle/phone2x.png") no-repeat 2.1rem center;
+    background-size: 0.28rem 0.28rem;
+    margin: 0.6rem auto 0.4rem;
+    color: #638BFF;
+}
+.goodInfoBoxContent{
+    width:6.3rem;
+    border-radius:0.06rem;
+    border:0.02rem solid rgba(205,205,205,1);
+    padding: 0.3rem;
+    margin: 0.4rem auto 0.2rem;
+}
+.goodInfoBoxMain{
+    align-items: center;
+    margin-bottom: 0.1rem;
+}
+
+/*评价*/
+textarea.textAreaCom {
+    border: 0.01rem solid #ebebeb;
+    width: 6.3rem;
+    height: 4rem;
+    margin: 0.2rem auto;
+    padding: 0.2rem;
+    font-size: 0.28rem;
+    color: #333333;
+    display: block;
+}
+
+.postSubBtn {
+    width: 6.3rem;
+    height: 0.78rem;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    line-height: 0.78rem;
+    color: #fff;
+    font-size: 0.28rem;
+    text-align: center;
+    font-weight: 500;
+    margin: 0.4rem auto;
+}
+
+
+/*星级*/
+.mui-table-view:after{
+    display: none !important;
+}
+.mui-icon-star{
+    display: inline-block;
+    background: url("../image/mine/starry.png") no-repeat;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-size: 0.4rem 0.4rem;
+}
+.mui-icon-star-filled{
+    display: inline-block;
+    background: url("../image/mine/star.png") no-repeat;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-size: 0.4rem 0.4rem;
+}
+.star-li{
+    justify-content: space-between;
+    width: 100%;margin-bottom: 0.26rem;height:0.4rem;line-height: 0.4rem;
+}
+.star-li>a{
+    display: block;font-size: 0.28rem;color: #333;
+}
+.star-li div{
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

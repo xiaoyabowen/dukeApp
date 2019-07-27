@@ -125,10 +125,7 @@ textarea{
     background: #fff;
     min-height: calc(100vh - 0.48rem);
     overflow: hidden;
-
-
     margin: 0.1rem 0.24rem 0 0.24rem;
-
     border-radius: 0.08rem;
 }
 .boxSub{
@@ -383,13 +380,13 @@ textarea{
     /*margin-bottom: -12px;*/
     /*height: calc(100vh - 28px);*/
 }
-.home-banner{
+/*.home-banner{
     display: block;
     width: 7rem;
     height: calc(100vh - 28px);
-    background-position: center top;
-    background-size: cover;
-}
+    !*background-position: center top;*!
+    !*background-size: cover;*!
+}*/
 
 /*发送邮箱*/
 .workCard{

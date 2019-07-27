@@ -258,7 +258,12 @@
 
              document.getElementById('adr_id').innerText = data.adr_id || '未选择';
 
-             document.getElementById('int_city').innerText = data.province + '-' + data.city + '-' +data.street|| '未选择';
+             if (data.province == null || data.city == null || data.street == null) {
+                 document.getElementById('int_city').innerText = '未选择';
+             }else{
+                 document.getElementById('int_city').innerText = data.province + '-' + data.city + '-' +data.street ;
+             }
+
 
              document.getElementById('emotion').innerText = data.emotion || '未填写';
              // 我的标签
