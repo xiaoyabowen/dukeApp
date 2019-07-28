@@ -44,65 +44,7 @@ function informationInit(Vue) {
         methods: {
             // 上传图片
             upImg: function () {
-                // var that = this;
-                // api.getPicture({
-                //     sourceType: 'library',
-                //     encodingType: 'jpg',
-                //     mediaValue: 'pic',
-                //     destinationType: 'url',
-                //     allowEdit: true,
-                //     quality: 50,
-                //     targetWidth: 100,
-                //     targetHeight: 100,
-                //     saveToPhotoAlbum: false
-                // }, function (ret, err) {
-                //     if (ret) {
-                //         console.log(ret.data);
-                //
-                //         that.img = ret.data;
-                //         // that.styleObject.background = 'url(' + ret.data + ') no-repeat center';
-                //
-                //         //上传剪辑后的图像到服务器
-                //         // api.ajax({
-                //         //     // report : false,
-                //         //     url : 'http://192.168.1.10:8000/SE4M/SE/UserProfile/UplodeTest',
-                //         //     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                //         //     method : 'post',
-                //         //     cache : 'false',
-                //         //     timeout : 30,
-                //         //     dataTpye : 'json',
-                //         //     data : {
-                //         //         files : {
-                //         //             file : ret.data
-                //         //         },
-                //         //         person_id: person_id
-                //         //     }
-                //         // }, function(ret, err) {
-                //         //     alert(JSON.stringify(ret));
-                //         //     api.hideProgress();
-                //         //     if (ret.status == 1) {
-                //         //         api.toast({
-                //         //             msg : ret.info
-                //         //         });
-                //         //     }
-                //         //     //上传进度
-                //         //     if (ret.status == 0) {
-                //         //         api.toast({
-                //         //             msg : '上传错误',
-                //         //             duration : 3000,
-                //         //             location : 'bottom'
-                //         //         });
-                //         //     } else if (ret.status == 1) {
-                //         //         $api.byId(valueId).value = ret.id;
-                //         //         $api.byId(imgId).src = ret.path;
-                //         //     }
-                //         // });
-                //     } else {
-                //         console.log(JSON.stringify(err));
-                //     }
-                // })
 
-                // dataValue()
                 var that = this
                 var UIAlbumBrowser = api.require('UIAlbumBrowser');
                 UIAlbumBrowser.open({
@@ -159,8 +101,6 @@ function informationInit(Vue) {
                 });
 
             },
-
-
             nextActive: function () {
                 var that = this
                 var obj = {
@@ -187,6 +127,63 @@ function informationInit(Vue) {
 
                     }
                 });
+
+            },
+            starTime : function () {
+                var that = this
+                var year = new Date().getFullYear();
+                var mount = (new Date().getMonth()) + 2;
+                var day = new Date().getDay();
+                var dtpicker = new mui.DtPicker(
+                    {
+                        type: "datetime", //设置日历初始视图模式
+                        beginDate: new Date(1950, 04, 25), //设置开始日期
+                        endDate: new Date(year, mount, day) //设置开始日期
+                    }
+                );
+                dtpicker.show(function (selectItems) {
+                    console.log(selectItems.text)
+                    that.time_from = selectItems.text
+                })
+
+            },
+            endTime : function () {
+                var that = this
+                var year = new Date().getFullYear();
+                var mount = (new Date().getMonth()) + 2;
+                var day = new Date().getDay();
+                var dtpicker = new mui.DtPicker(
+                    {
+                        type: "datetime", //设置日历初始视图模式
+                        beginDate: new Date(1950, 04, 25), //设置开始日期
+                        endDate: new Date(year, mount, day) //设置开始日期
+                    }
+                );
+                dtpicker.show(function (selectItems) {
+                    console.log(selectItems.text)
+                    that.time_to = selectItems.text
+                })
+
+            },
+            upEndTime : function () {
+                var that = this
+                var year = new Date().getFullYear();
+                var mount = (new Date().getMonth()) + 2;
+                var day = new Date().getDay();
+                var dtpicker = new mui.DtPicker(
+                    {
+                        type: "datetime", //设置日历初始视图模式
+                        beginDate: new Date(1950, 04, 25), //设置开始日期
+                        endDate: new Date(year, mount, day) //设置开始日期
+                    }
+                );
+                dtpicker.show(function (selectItems) {
+                    console.log(selectItems.text)
+                    that.end = selectItems.text
+                })
+
+            },
+            activeAdr : function () {
 
             }
         }

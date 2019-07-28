@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <style>
 
+    </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 </head>
@@ -42,7 +44,7 @@
 
             <!--我的沟通记录-->
             <div class="m-chat cssFlex">
-                <div class="m-chat-text">
+                <div class="m-chat-text" onclick="chatUser()">
                     <p class="tong-num" id="communicate">0</p>
                     <p class="tong-text">沟通过</p>
                 </div>
@@ -206,10 +208,15 @@
         function userCenter() {
             openNewWindow("userCenter", "userCenter.html")
         }
+        // 沟通过
+        function chatUser() {
+            openNewWindow("index", "../chat/index.html")
+        }
         // 我的面试
         function Interview() {
             openNewWindow("Interview", "Interview.html")
-        }// 已投递
+        }
+        // 已投递
         function myDelivery() {
             openNewWindow("myDelivery", "myDelivery.html")
         }// 录用
@@ -251,10 +258,22 @@
             openNewWindow("myorder", "../../order/myorder.html",{
                 activeName: 'all'
             });
+            api.sendEvent({
+                name: 'myorder',
+                extra: {
+                    key: 'all',
+                }
+            });
         }
         function notpayOrder() {
             openNewWindow("myorder", "../../order/myorder.html",{
                 activeName: 'notpay'
+            });
+            api.sendEvent({
+                name: 'myordernotpay',
+                extra: {
+                    key: 'notpay',
+                }
             });
         }
         function payOrder() {

@@ -100,7 +100,7 @@
         var my_ConcernHtml= ''
         ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
             console.log(data)
-            api.hideProgress();
+
             var conData = data.AttentionCompany
             if (conData == undefined){
                 document.querySelector(".notmy_Concern_main").style.display = "block"

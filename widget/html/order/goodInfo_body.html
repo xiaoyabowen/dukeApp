@@ -208,7 +208,7 @@
             <span class="comBtnClass" @click="delOrderClick(bId,oId)">删除订单</span>
             <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
             <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-            <span class="comBtnClass comBtnClassBF" @click="starOrderClick()">立即评价</span>
+            <span class="comBtnClass comBtnClassBF" @click="starOrderClick(pId,cId)">立即评价</span>
         </div>
 
         <!--代发货-->
@@ -313,6 +313,13 @@
                         }
                     })
                 },
+                starOrderClick : function () {
+                    var that = this
+                    openNewWindow("orderStar", "comment/orderStar.html",{
+                        pId : pId,
+                        cId : cId
+                    })
+                }
             }
         })
     };

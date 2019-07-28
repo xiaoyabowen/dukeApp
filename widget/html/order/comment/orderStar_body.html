@@ -67,7 +67,7 @@
             <ul class="mui-table-view">
                 <li class="star-li cssFlex">
                     <a>产品效果</a>
-                    <div class="icons">
+                    <div class="icons grade1">
                         <i data-index="1" class="mui-icon mui-icon-star"></i>
                         <i data-index="2" class="mui-icon mui-icon-star"></i>
                         <i data-index="3" class="mui-icon mui-icon-star"></i>
@@ -77,7 +77,7 @@
                 </li>
                 <li class="star-li cssFlex">
                     <a>物流服务</a>
-                    <div class="icons">
+                    <div class="icons grade2">
                         <i data-index="1" class="mui-icon mui-icon-star"></i>
                         <i data-index="2" class="mui-icon mui-icon-star"></i>
                         <i data-index="3" class="mui-icon mui-icon-star"></i>
@@ -87,7 +87,7 @@
                 </li>
                 <li class="star-li cssFlex">
                     <a>服务态度</a>
-                    <div class="icons">
+                    <div class="icons grade3">
                         <i data-index="1" class="mui-icon mui-icon-star"></i>
                         <i data-index="2" class="mui-icon mui-icon-star"></i>
                         <i data-index="3" class="mui-icon mui-icon-star"></i>
@@ -102,7 +102,23 @@
 
 
             <textarea cols="30" rows="10" class="textAreaCom" placeholder="您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦~"></textarea>
-            <div class="postSubBtn" @click="preservation()">提交评价</div>
+
+            <div class="update-box">
+                <div class="update-box-title">上传凭证（不超过3张）</div>
+                <div class="resume_imgWorks_main">
+                    <!--<div class="action"></div>-->
+                    <img src="../../../image/company/uploadIn.png" alt="action" class="action">
+                    <ul id="ul_box">
+
+                        <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                        <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                        <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                        <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="postSubBtn" onclick="preservation()">提交评价</div>
 
         </div>
     </div>
@@ -123,16 +139,17 @@
 
 <script>
 
-    var uid,tId;
+    var uid,tId,cId,pId,picture,grade1,grade2,grade3;
     apiready = function () {
         tId = api.pageParam.tId
+        pId = api.pageParam.pId
+        cId = api.pageParam.cId
         uid = localStorage.getItem("person_id");
     };
 
     // 星级评价
     mui.init();
-    console.log(mui('.icons'))
-    mui('.icons').on('click','i',function(){
+    mui('.grade1').on('click','i',function(){
         var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
         var parent = this.parentNode;//获取当前元素的父节点
         var children = parent.children;//获取父节点下所有子元素
@@ -147,9 +164,145 @@
                 children[i].classList.remove('mui-icon-star-filled')
             }
         }
-        console.log(parent.previousElementSibling.innerText + "："+index+"星好评")
+        grade1 = parent.previousElementSibling.innerText+index+"星好评"
         // document.getElementById("info").innerHTML = parent.previousElementSibling.innerText + "："+index+"星好评";
     })
+    mui('.grade2').on('click','i',function(){
+        var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
+        var parent = this.parentNode;//获取当前元素的父节点
+        var children = parent.children;//获取父节点下所有子元素
+        if(this.classList.contains("mui-icon-star")){//判断当前节点列表中是否含有.mui-icon-star元素
+            for(var i=0;i<index;i++){//亮星
+                children[i].classList.remove('mui-icon-star');
+                children[i].classList.add('mui-icon-star-filled');
+            }
+        }else{//重置已经亮星的元素
+            for (var i = index; i < 5; i++) {
+                children[i].classList.add('mui-icon-star')
+                children[i].classList.remove('mui-icon-star-filled')
+            }
+        }
+        grade2 = parent.previousElementSibling.innerText+index+"星好评"
+    })
+    mui('.grade3').on('click','i',function(){
+        var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
+        var parent = this.parentNode;//获取当前元素的父节点
+        var children = parent.children;//获取父节点下所有子元素
+        if(this.classList.contains("mui-icon-star")){//判断当前节点列表中是否含有.mui-icon-star元素
+            for(var i=0;i<index;i++){//亮星
+                children[i].classList.remove('mui-icon-star');
+                children[i].classList.add('mui-icon-star-filled');
+            }
+        }else{//重置已经亮星的元素
+            for (var i = index; i < 5; i++) {
+                children[i].classList.add('mui-icon-star')
+                children[i].classList.remove('mui-icon-star-filled')
+            }
+        }
+        grade3 = parent.previousElementSibling.innerText+index+"星好评"
+    })
+    var action = document.querySelector('.action');
+    var ulBox = document.getElementById('ul_box');
+    action.onclick = function () {
+
+        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+        UIAlbumBrowser.open({
+            max: 3,
+            styles: {
+                bg: '#fff',
+                mark: {
+                    icon: '',
+                    position: 'bottom_left',
+                    size: 30
+                },
+                nav: {
+                    bg: 'rgba(0,0,0,0.6)',
+                    titleColor: '#fff',
+                    titleSize: 18,
+                    cancelColor: '#fff',
+                    cancelSize: 16,
+                    finishColor: '#fff',
+                    finishSize: 16
+                }
+            },
+            rotation: true
+        }, function(ret) {
+            if (ret) {
+
+                console.log("fanhuid",ret)
+                var imgListArr = {}
+                var imgList = ret.list
+                for (var i=0;i<imgList.length;i++){
+                    imgListArr["file"+(i+1)] = imgList[i].thumbPath
+                }
+                console.log(imgListArr)
+
+                api.ajax({
+                    // report : false,
+                    url:'http://112.126.98.172:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+
+                        files: imgListArr,
+                        // values: ret.list
+
+                    }
+                }, function (data, err) {
+
+                    console.log(data)
+                    picture = data.imgUrl
+                    var retImg = stringFun(data.imgUrl)
+                    console.log(retImg)
+                    var ulBox = document.getElementById('ul_box');
+                    var ulBoxLi = ''
+                    // ulBoxLi +='<li class="action"></li>'
+                    for (var i=0;i<retImg.length-1;i++){
+                        ulBoxLi += '<li><img src="'+retImg[i]+'" alt=""></li>'
+                    }
+                    ulBox.innerHTML = ulBoxLi
+
+
+                });
+
+
+
+            }
+        });
+    }
+
+
+    // 评价提交
+    // CommodityProFileEvaluation
+    function preservation() {
+        var content = document.querySelector(".textAreaCom").value
+        var obj = {
+            pId:pId,
+            cId:cId,
+            grade1:grade1,
+            grade2:grade2,
+            grade3:grade3,
+            content:content,
+            pic:picture,
+        }
+        console.log("star:",obj)
+        ajaxGetWithProgress(CommodityProFileEvaluation,obj,function (data) {
+            console.log("starPing",data)
+            if (data) {
+
+            } else {
+                toast("请求出错")
+            }
+        })
+    }
+
+
+
+
+
 </script>
 </body>
 </html>

@@ -20,27 +20,27 @@
         <div class="information_item cssFlex">
             <label>输入验证码</label>
             <input type="text" v-model="code" maxlength=10 placeholder="验证码">
-            <span class="code">发送验证码</span>
+            <span class="code" >发送验证码</span>
         </div>
-        <div class="information_item cssFlex">
+        <div class="information_item cssFlex" @click="activeAdr">
             <label>活动地点</label>
             <input type="text" v-model="city" maxlength=80 placeholder="请输入活动的具体地址">
         </div>
-        <div class="information_item cssFlex">
+        <div class="information_item cssFlex" @click="starTime">
             <label>开始时间</label>
-            <input type="text" v-model="time_from" maxlength=80 placeholder="列: 2019-12-12 10:00">
+            <input type="text" v-model="time_from" maxlength=80 placeholder="列: 2019-12-12 10:00" readonly>
         </div>
-        <div class="information_item cssFlex">
+        <div class="information_item cssFlex" @click="endTime">
             <label>结束时间</label>
-            <input type="text" v-model="time_to" maxlength=80 placeholder="列: 2019-12-12 18:00">
+            <input type="text" v-model="time_to" maxlength=80 placeholder="列: 2019-12-12 18:00" readonly>
         </div>
         <div class="information_item cssFlex">
             <label>活动人数</label>
             <input type="text" v-model="num" maxlength=80 placeholder="不限">
         </div>
-        <div class="information_item cssFlex">
+        <div class="information_item cssFlex" @click="upEndTime">
             <label>报名截止时间</label>
-            <input type="text" v-model="end" maxlength=80 placeholder="列: 2019-12-12 18:00">
+            <input type="text" v-model="end" maxlength=80 placeholder="列: 2019-12-12 18:00" readonly>
         </div>
 
         <div class="information_btn" @click="nextActive()">下一步</div>

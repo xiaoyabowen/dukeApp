@@ -3,18 +3,18 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+/*
 var serverUrl = "http://192.168.1.7:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.7:8000/SE4M';
 var Domain = 'http://192.168.1.7:8088';
+*/
 
 
 
-/*
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
 
-*/
 
 
 var rootWindowName = "root";
@@ -75,6 +75,9 @@ var CommodityProFileRemind = Domain + "/CommodityProFile/Remind";
 var deleteOrderCommodityProFile = Domain + "/CommodityProFile/deleteOrder";
 // 我的订单  商品详情
 var OrderSummaryCommodityProFile = Domain + "/CommodityProFile/OrderSummary";
+
+// 我的订单  商品 评价
+var CommodityProFileEvaluation = Domain + "/CommodityProFile/Evaluation";
 
 
 

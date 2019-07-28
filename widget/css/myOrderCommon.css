@@ -290,10 +290,133 @@ textarea.textAreaCom {
 .star-li div{
     text-align: right;
 }
+.queDiv{
+    color: #333333;
+    font-size: 0.3rem;
+    text-align: center;
+}
+/*上传图片*/
+.update-box{
+    border-radius: 0.04rem;
+    border: 0.02rem solid #ebebeb;
+    padding: 0.2rem;
+    width: 6.3rem;
+    margin: 0.2rem auto;
+}
+.update-box-title{
+    height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(102,102,102,1);
+    line-height: 0.4rem;
+    margin-bottom: 0.14rem;
+}
+.resume_imgWorks_main {
+    /*padding: 0.38rem 0.30rem 0.38rem 0.31rem;*/
+    padding: 0.3rem 0rem 0.3rem 0.18rem;
+}
 
+.resume_imgWorks_main ul {
+    /*justify-content: space-between;*/
+    /*flex-wrap: wrap;*/
+}
 
+.resume_imgWorks_main li {
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: pink;
+    /*margin-right: 0.19rem;*/
+    margin: 0 0.10rem;
+    margin-bottom: 0.1rem;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
 
+/*.resume_imgWorks_main li:nth-child(3n),*/
+/*.resume_imgWorks_main li:nth-child(3n) {*/
+/*margin-right: 0;*/
+/*}*/
 
+.resume_imgWorks_main li img {
+    width: 100%;
+    height: 100%;
+}
+
+.resume_imgWorks_main li.action {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    box-sizing: border-box;
+    background: #F6F6F6;
+}
+
+.resume_imgWorks_main li.action:before {
+    content: '';
+    display: block;
+    width: 0.1rem;
+    height: 0.88rem;
+    background: #D8D8D8;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.resume_imgWorks_main li.action:after {
+    content: '';
+    display: block;
+    width: 0.88rem;
+    height: 0.1rem;
+    background: #D8D8D8;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.resume_imgWorks_main li.active > span {
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 50%;
+    border: 0.02rem solid #ffffff;
+    background: #564B42;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.resume_imgWorks_main li > span.active > i {
+    display: block;
+    width: 0.15rem;
+    height: 0.08rem;
+    border-left: 0.02rem solid #ffffff;
+    border-bottom: 0.02rem solid #ffffff;
+    background: #564B42;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -60%) rotate(-45deg);
+    -moz-transform: translate(-50%, -60%) rotate(-45deg);
+    -ms-transform: translate(-50%, -60%) rotate(-45deg);
+    -o-transform: translate(-50%, -60%) rotate(-45deg);
+    transform: translate(-50%, -60%) rotate(-45deg);
+}
+.action{
+    display: block;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0 auto 0.2rem;
+}
 
 
 

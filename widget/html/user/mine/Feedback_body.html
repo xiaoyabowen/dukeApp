@@ -28,18 +28,18 @@
         }
         .resume_imgWorks_main {
             /*padding: 0.38rem 0.30rem 0.38rem 0.31rem;*/
-            padding: 0.38rem 0rem 0.38rem 0.18rem;
+            padding: 0.3rem 0rem 0.3rem 0.18rem;
         }
 
         .resume_imgWorks_main ul {
             /*justify-content: space-between;*/
-            /*flex-wrap: wrap;*/
+            flex-wrap: wrap;
         }
 
         .resume_imgWorks_main li {
             display: inline-block;
-            width: 2rem;
-            height: 2rem;
+            width: 1.6rem;
+            height: 1.6rem;
             background: pink;
             /*margin-right: 0.19rem;*/
             margin: 0 0.10rem;
@@ -285,7 +285,7 @@
 
                 api.ajax({
                     // report : false,
-                    url:'http://192.168.1.7:8088/upload/UploadFlie',
+                    url:'http://112.126.98.172:8088/upload/UploadFlie',
                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                     method: 'post',
                     cache: 'false',
@@ -311,6 +311,7 @@
                     }
                     ulBox.innerHTML = ulBoxLi
 
+                    console.log(ulBox)
 
                 });
 
