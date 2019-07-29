@@ -522,9 +522,19 @@
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 console.log(data)
                 if (data){
-                    if (data.return_info.status){
-                        toast("请求成功")
-                    }
+                    // if (data.return_info.status){
+                    //     toast("请求成功")
+                    // }
+                    mui.confirm('系统已存储请进行企业邮箱的认证', '认证',['确认','取消'], function (e) {
+                        if (!e.index) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name:url,
+                                frameName: frameName
+                            })
+                            closeWin();
+                        }
+                    })
                     if (!data.emailStatus){
                         openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
                     }else{

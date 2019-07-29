@@ -916,6 +916,7 @@
         console.log(obj)
         ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function (data, err) {
             console.log("homeData",data)
+            localStorage.setItem("com_id",data.c_id)
             /*if (data.date == 1) {
                 mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
                     console.log("mumiicomfir",e)
@@ -972,7 +973,7 @@
 
                 return;
             }else{
-                openNewWindow("index", "../chat/index_body.html")
+                openNewWindow("index", "../chat/bigIndex_body.html")
             }
         })*/
 

@@ -111,7 +111,7 @@
                     <div class="infoProduct infoProductPad clearfix">
                         <img :src="ComSeniorLogo" alt="pro" class="seniorimg">
                         <div class="infoProductContent">
-                            <h5 class="seniorname">{{ComSenior}}&nbsp;&nbsp;&nbsp;&nbsp;{{ComSeniorPos}}</h5>
+                            <h5 class="seniorname">{{ComSenior}}{{ComSeniorPos}}</h5>
                             <p class="textOverflow seniorinfo">{{ComSeniorBak}}</p>
                         </div>
                     </div>
@@ -401,26 +401,26 @@
                         var JobList = data.JobList  // 再照职位
                         var DynamicList = data.DynamicList  //企业空间
                         if (data) {
-                            that.ComName = cvomInfo.c_name
-                            that.ComContactor = cvomInfo.contactor
-                            that.ComScale = cvomInfo.scale
-                            that.ComOrgType = cvomInfo.org_type
-                            that.ComStime = cvomInfo.s_time
-                            that.ComXtime = cvomInfo.x_time
-                            that.ComBreakTime = cvomInfo.break_time
-                            that.ComworkOver = cvomInfo.work_overtime
-                            that.ComLogo = imgSrcFun(cvomInfo.logo_icon)
-                            that.ComWelfare = stringFun(cvomInfo.welfare)
-                            that.ComSummary = cvomInfo.summary
-                            that.ComUrl = cvomInfo.homepage
-                            that.ComNameAll = cvomInfo.nameall
-                            that.ComSenior = cvomInfo.senior
-                            that.ComSeniorPos = cvomInfo.senior_position
-                            that.ComSeniorBak = cvomInfo.senior_bak
-                            that.ComSeniorLogo = imgSrcFun(cvomInfo.senior_icon)
-                            that.ComProList = cvomproduct
-                            that.ComJobList = JobList
-                            that.ComDynamicList = DynamicList
+                            that.ComName = cvomInfo.c_name || '未填写'
+                            that.ComContactor = cvomInfo.contactor || '未填写'
+                            that.ComScale = cvomInfo.scale || '未填写'
+                            that.ComOrgType = cvomInfo.org_type || '未填写'
+                            that.ComStime = cvomInfo.s_time || '未填写'
+                            that.ComXtime = cvomInfo.x_time || '未填写'
+                            that.ComBreakTime = cvomInfo.break_time || '未填写'
+                            that.ComworkOver = cvomInfo.work_overtime || '未填写'
+                            that.ComLogo = imgSrcFun(cvomInfo.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                            that.ComWelfare = stringFun(cvomInfo.welfare) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                            that.ComSummary = cvomInfo.summary || '未填写'
+                            that.ComUrl = cvomInfo.homepage || '未填写'
+                            that.ComNameAll = cvomInfo.nameall || '未填写'
+                            that.ComSenior = cvomInfo.senior || '未填写'
+                            that.ComSeniorPos = cvomInfo.senior_position || '未填写'
+                            that.ComSeniorBak = cvomInfo.senior_bak || '未填写'
+                            that.ComSeniorLogo = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png' || imgSrcFun(cvomInfo.senior_icon)
+                            that.ComProList = cvomproduct || '未填写'
+                            that.ComJobList = JobList || '未填写'
+                            that.ComDynamicList = DynamicList || '未填写'
 
 
                         } else {

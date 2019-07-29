@@ -101,7 +101,7 @@
             <!--评价内容-->
 
 
-            <textarea cols="30" rows="10" class="textAreaCom" placeholder="您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦~"></textarea>
+            <textarea cols="30" rows="10" class="textAreaCom" placeholder="您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦~"  id="keyWordsFiltering"></textarea>
 
             <div class="update-box">
                 <div class="update-box-title">上传凭证（不超过3张）</div>
@@ -132,6 +132,7 @@
 <script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
@@ -139,13 +140,17 @@
 
 <script>
 
-    var uid,tId,cId,pId,picture,grade1,grade2,grade3;
+    var url,uid,tId,cId,pId,picture,grade1,grade2,grade3,_keyWordsFiltering;
     apiready = function () {
         tId = api.pageParam.tId
         pId = api.pageParam.pId
         cId = api.pageParam.cId
+        url = api.pageParam.url
         uid = localStorage.getItem("person_id");
     };
+
+
+
 
     // 星级评价
     mui.init();
@@ -164,7 +169,7 @@
                 children[i].classList.remove('mui-icon-star-filled')
             }
         }
-        grade1 = parent.previousElementSibling.innerText+index+"星好评"
+        grade1 = index
         // document.getElementById("info").innerHTML = parent.previousElementSibling.innerText + "："+index+"星好评";
     })
     mui('.grade2').on('click','i',function(){
@@ -182,7 +187,7 @@
                 children[i].classList.remove('mui-icon-star-filled')
             }
         }
-        grade2 = parent.previousElementSibling.innerText+index+"星好评"
+        grade2 = index
     })
     mui('.grade3').on('click','i',function(){
         var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
@@ -199,7 +204,7 @@
                 children[i].classList.remove('mui-icon-star-filled')
             }
         }
-        grade3 = parent.previousElementSibling.innerText+index+"星好评"
+        grade3 =index
     })
     var action = document.querySelector('.action');
     var ulBox = document.getElementById('ul_box');
@@ -239,7 +244,7 @@
 
                 api.ajax({
                     // report : false,
-                    url:'http://112.126.98.172:8088/upload/UploadFlie',
+                    url:'http://192.168.1.10:8088/upload/UploadFlie',
                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                     method: 'post',
                     cache: 'false',
@@ -278,20 +283,50 @@
     // 评价提交
     // CommodityProFileEvaluation
     function preservation() {
-        var content = document.querySelector(".textAreaCom").value
+        _keyWordsFiltering = document.getElementById("keyWordsFiltering").value;
+
+        var keyWordsList = [
+            "美女",
+            "卧槽",
+            "垃圾",
+            "我操",
+            "我操",
+
+        ]
+
+
+        for(var i=0;i<keyWordsList.length;i++){
+            // console.log(keyWordsList[i]);
+            _keyWordsFiltering = _keyWordsFiltering.replace(keyWordsList[i],"***")
+
+        }
+
+        // var content = document.querySelector(".textAreaCom").value
         var obj = {
             pId:pId,
             cId:cId,
             grade1:grade1,
             grade2:grade2,
             grade3:grade3,
-            content:content,
+            content:_keyWordsFiltering,
             pic:picture,
         }
         console.log("star:",obj)
+        console.log( _keyWordsFiltering)
         ajaxGetWithProgress(CommodityProFileEvaluation,obj,function (data) {
             console.log("starPing",data)
-            if (data) {
+            if (data.Evaluation) {
+
+                mui.confirm('非常感谢您的评价', '',['确认','取消'], function (e) {
+                    if (!e.index) {
+                        var frameName = url + "_body";
+                        api.execScript({
+                            name:url,
+                            frameName: frameName
+                        })
+                        closeWin();
+                    }
+                })
 
             } else {
                 toast("请求出错")

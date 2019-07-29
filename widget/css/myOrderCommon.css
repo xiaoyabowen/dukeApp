@@ -419,6 +419,30 @@ textarea.textAreaCom {
 }
 
 
+/*我的订单  缺省页*/
+.notmy_Concern_main,.my_Concern_main{
+    display: none;
+}
+.notImg{
+    width: 2.33rem;
+    height: 1.83rem;
+    margin: 2rem auto 0.6rem;
+
+}
+.notImgMy{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.notMyConText{
+    line-height: 0.4rem;
+    width: 4rem;
+    margin: 0 auto;
+    text-align: center;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    font-size: 0.28rem;
+}
 
 
 

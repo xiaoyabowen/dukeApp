@@ -36,6 +36,12 @@
     <!--全部订单-->
     <div class="new" v-show="active == 'all'">
         <div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
+        <!--<div class="notmy_Concern_main" :class="listall.length == 0 ? 'queDiv notDisplay' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>-->
         <div class="comBox" v-for="(item,index) in listall" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
                 <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
@@ -469,7 +475,13 @@
     </div>
     <!--待评价-->
     <div class="new" v-show="active == 'star'">
-        <div :class="liststar.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
+        <!--<div :class="liststar.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <!--<div class="notmy_Concern_main" :class="liststar.length == 0 ? 'notmy_Concern_main' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>-->
         <div class="comBox" v-for="(item,index) in liststar" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
 
@@ -740,7 +752,8 @@
                     var that = this
                     openNewWindow("orderStar", "comment/orderStar.html",{
                         pId : pId,
-                        cId : cId
+                        cId : cId,
+                        url : "myorder"
                     })
                 },
 

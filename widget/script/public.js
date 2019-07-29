@@ -3,17 +3,17 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.10:8000/SE4M';
+var Domain = 'http://192.168.1.10:8088';
+
+
+
 /*
-var serverUrl = "http://192.168.1.7:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.7:8000/SE4M';
-var Domain = 'http://192.168.1.7:8088';
-*/
-
-
-
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
+*/
 
 
 
@@ -82,6 +82,23 @@ var CommodityProFileEvaluation = Domain + "/CommodityProFile/Evaluation";
 
 
 
+
+
+
+
+// 面试日程列表
+var queryInvitationList = serverUrl + "/EvaluateProfile/queryInvitationList";
+// 面试日程详情
+var queryInvitationSummary = serverUrl + "/EvaluateProfile/queryInvitationSummary";
+
+// 面试评价页面  显示的头像 名字 公司名 职务
+var queryEvaluateRecruiter = serverUrl + "/EvaluateProfile/queryEvaluateRecruiter";
+//     面试评价
+var createEvaluate = serverUrl + "/EvaluateProfile/createEvaluate";
+//     投递简历  卡片内容
+var queryJobTopicChatProFile = serverUrl + "/ChatProFile/queryJobTopic";
+//     投递简历
+var sendResume = serverUrl + "/UserProfile/sendResume";
 
 
 
@@ -454,30 +471,60 @@ var ICjobsJobProfile = serverUrl + "/JobProfile/ICjobs";
 //  伯乐 添加订阅
 var addSubscriptionUserProfile= serverUrl + "/UserProfile/addSubscription";
 
-
-
-
-
-
-
-
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
 
+//日期字符串转成时间戳
+//例如var date = '2015-03-05 17:59:00.0';
+function dateStrChangeTimeTamp(dateStr) {
+    dateStr = dateStr.substring(0, 18);
+    dateStr = dateStr.replace(/-/g, '/');
+    var timeTamp = new Date(dateStr).getTime();
+    return timesTamp
+}
+
+
+//把时间戳转成日期格式
+//例如 timeTamp = '1425553097';
+function formatTimeTamp(timeTamp){
+    var time = new Date(timeTamp*1000);
+    var date = ((time.getFullYear())  + "-" +
+        (time.getMonth() + 1) + "-" +
+        (time.getDate()) + " " +
+        (time.getHour()) + ":" +
+        (time.getMinutes()) + ":" +
+        (time.getSeconds()))
+    return date
+}
 
 
 
 
-
-
-
-
-
-
-
+// 获取当前时间
+function nowDate() {
+    var now = new Date();
+    var yy = now.getFullYear();      //年
+    var mm = now.getMonth() + 1;     //月
+    var dd = now.getDate();          //日
+    var hh = now.getHours();         //时
+    var ii = now.getMinutes();       //分
+    var ss = now.getSeconds();       //秒
+    var clock = yy + "-";
+    if(mm < 10) clock += "0";
+    clock += mm + "-";
+    if(dd < 10) clock += "0";
+    clock += dd + " ";
+    if(hh < 10) clock += "0";
+    clock += hh + ":";
+    if (ii < 10) clock += '0';
+    clock += ii + ":";
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return clock;
+}
 
 
 // 判断当前求职状态

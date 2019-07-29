@@ -2177,7 +2177,7 @@ i.ques-star {
 
 /*我的关注   缺省页*/
 .notmy_Concern_main,.my_Concern_main{
-    display: none;
+    display: block;
 }
 .notImg{
     width: 2.33rem;

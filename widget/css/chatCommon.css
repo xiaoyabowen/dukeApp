@@ -58,16 +58,19 @@
     /*height: 1.22rem;*/
     padding: 0.21rem 0;
     border-bottom: 1px solid #EBEBEB;
+    justify-content: space-between;
 }
 
 .contacts_item_left img{
+    display: block;
     width: 0.8rem;
+    height: 0.8rem;
     border-radius: 50%;
     margin-right: 0.24rem;
 }
 
 .contacts_item_con {
-    width: 4.08rem;
+    width: 4.3rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -97,8 +100,7 @@
 }
 
 .contacts_item_right {
-    flex: 1;
-    text-align: right;
+
     line-height: 0.8rem;
     font-size: 0.24rem;
     font-weight: 400;
@@ -375,12 +377,12 @@
 
 
 }
-#footer p{
+/*#footer p{
     width:1.2rem;
 
     margin-top: 0.3rem;
     margin-right: 0.2rem;
-}
+}*/
 #footer p{
     width:1rem;
 
@@ -413,13 +415,21 @@
     top: -.1rem;
     left: .9rem;
 }
-.msg>img{
+.ask .msg .name{
+    position: absolute;
+    font-size: .24rem;
+    color: #999;
+    top: -.1rem;
+    right: .9rem;
+}
+ .msg>img{
     width: 0.8rem;
     float: left;
+    border-radius: 50%;
 }
-.reply .msg>p{
-    top: .3rem;
-}
+/*.reply .msg>p{*/
+    /*top: .3rem;*/
+/*}*/
 .msg>p{
     float: left;
     margin:0  0.4rem;
@@ -428,6 +438,7 @@
     background: #90ACFD;
     color: #ffffff;
 
+    margin-top: 0.1rem;
     font-size: 0.3rem;
     position: relative;
     border-radius: 0.2rem;
@@ -436,6 +447,85 @@
     box-sizing: border-box;
     word-wrap: break-word;
 }
+.ask .msg>div{
+    float: left;
+    margin:0  0.4rem;
+    background: #f9f9f9;
+    margin-top: 0.1rem;
+    font-size: 0.3rem;
+    position: relative;
+    border-radius: 0.2rem;
+    max-width:5rem ;
+    min-height: .8rem;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    padding: 0.2rem 0.14rem 0.1rem 0.28rem;
+}
+.defultCardInfo{
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.nowPos{
+    margin-bottom: 0.16rem;
+    color: #333333;
+}
+.nowPosBox{
+    justify-content: space-between;
+}
+.nowPosName{
+    color: #333333;
+    font-weight:500;
+}
+.nowPosPrice{
+    color: #638BFF;
+
+}
+.nowPosBoxCom{
+    height:0.3rem;
+    font-size:0.22rem;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:0.3rem;
+    margin-bottom: 0.1rem;
+}
+.nowPosCom{
+    margin-right: 0.2rem;
+}
+.nowPosBoxComInfo{
+    height:0.28rem;
+    font-size:0.2rem;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:0.28rem;
+    margin-bottom: 0.18rem;
+}
+.conInfo{
+    height: 0.52rem;
+    align-items: center;
+    font-size:0.22rem;
+    color: #666666;
+    margin-bottom: 0.18rem;
+}
+.conInfoIMg{
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin-right: 0.1rem;
+}
+.sendWord{
+    height:0.48rem;
+    border-radius:0.04rem;
+    border:0.02rem solid rgba(99,139,255,1);
+    line-height: 0.48rem;
+    font-size:0.22rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    float: right;
+    margin-top: 0.1rem;
+    padding: 0 0.1rem;
+}
+
 
 .msg_input{
     position: absolute;

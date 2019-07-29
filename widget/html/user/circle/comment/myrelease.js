@@ -28,10 +28,11 @@ function myreleaseInit(Vue) {
 
                     if (data.CircleListByPersonId) {
                         // alert(123);
-                        that.showInfo =true;
+                        that.showInfo = true;
                         that.list = data.CircleListByPersonId;
                     }
-
+                    console.log(that.list)
+                    console.log(that.showInfo)
                 });
             },
             // 点击跳转到活动详情页

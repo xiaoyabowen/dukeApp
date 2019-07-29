@@ -280,6 +280,7 @@
         uidUser = localStorage.getItem("user")
         console.log("user=",uidUser)
         if (job_id){
+            console.log("biedeyemian",job_id)
             positionDe(job_id)
             return;
         }
@@ -370,6 +371,7 @@
             var obj = {
                 job_id: jobId || job_id
             }
+            console.log("biedeyemina",obj)
             ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
                 // alert(JSON.stringify(data));
                 console.log("positiondata=",data);
@@ -424,6 +426,9 @@
             },
             created: function () {
                 this.queryListRandom()
+            },
+            mounted :  function (){
+
             },
             methods: {
                 queryListRandom: function () {

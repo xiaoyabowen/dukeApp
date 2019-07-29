@@ -1,8 +1,8 @@
 
 function activitiesInit(Vue) {
-    var str = dataValue('user/circle/comment/yesPay.html')
+    var str = dataValue('user/circle/comment/activities.html')
 
-
+    console.log(str)
 
     return {
         template: str,
@@ -29,21 +29,31 @@ function activitiesInit(Vue) {
             });
 
             this.index = this.layedit.build('demo'); //建立编辑器
-            console.log(this.index);
+            console.log("layedit",this.index);
 
         },
 
         methods: {
             clickHandle: function() {
                 var obj = JSON.parse(sessionStorage.getItem('informationObj'));
+
                 console.log(this.layedit.getContent(this.index));
                 obj['details'] = this.layedit.getContent(this.index);
-                console.log(obj);
+                obj['status'] = 1;
+                obj['cir_status'] = 1;
+
+
+                console.log("activeObj",obj);
                 var that = this
                 ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
                     console.log(data);
                     if (data.createCircle.return_info.status) {
-                        openNewWindow("index", "./mine.html")
+                        mui.confirm('已发布请等待审核', '',['确认','取消'], function (e) {
+                            if (!e.index) {
+                                openNewWindow("index", "./bigIndex.html")
+                            }
+                        })
+
                     }
                 });
             }

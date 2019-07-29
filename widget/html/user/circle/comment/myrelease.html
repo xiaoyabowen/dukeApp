@@ -1,14 +1,15 @@
 <div class="subsignBoxInfo">
 
-    <div class="notmy_Concern_main" >
+    <div class="notmy_Concern_main" v-if="showInfo ? '' : 'notDisplay'">
         <div class="notImg">
-            <img src="../../../image/myfa.png" alt="du" class="notImgMy" v-if="showInfo ? 'notDisplay' : ''">
+            <img src="../../../image/myfa.png" alt="du" class="notImgMy" >
         </div>
         <div class="notMyConText">暂无发布活动！</div>
         <!--<div class=""></div>-->
     </div>
 
-    <div class="rel-box" @click="linkHandle(item.circle_id)" v-for="(item, index) in list" :key="index"  v-if="showInfo ? '' : 'notDisplay'">
+
+    <div class="rel-box" @click="linkHandle(item.circle_id)" v-for="(item, index) in list" :key="index"  v-if="showInfo ? 'notDisplay' : ''">
         <div class="rel-info cssFlex">
             <img :src="item.p_icon" alt="hr" class="rel-info-img">
             <div class="rel-info-info">

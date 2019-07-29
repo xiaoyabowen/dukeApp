@@ -87,6 +87,12 @@ img.ComTime,.dateCom{
     height: 1rem;
     margin-top: 0.2rem;
 }
+.comLogo>img{
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+}
 .comLogoSee{
     width: 1.44rem;
     height: 1.44rem;

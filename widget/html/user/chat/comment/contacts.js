@@ -42,11 +42,12 @@ function contactsInit(Vue) {
                 })
             },
             // 跳转到聊一聊
-            linkHandle: function (token, ptoken, t_key) {
+            linkHandle: function (token, ptoken, t_key,job_id) {
                 openNewWindow("chat_Room", "./chat_Room.html", {
                     token: token,
                     ptoken: ptoken,
                     t_key: t_key,
+                    job_id: job_id,
                 });
             },
         }

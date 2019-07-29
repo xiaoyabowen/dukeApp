@@ -17,6 +17,40 @@
     <div class="Box" id="chat">
 
         <div id="message">
+
+            <div class="ask">
+                <div class="time">05/22 06:30</div>
+                <div class="msg">
+                    <img src="../../../image/chat/touxiangm.png" alt=""/>
+                    <!--<span class="name">千里马</span>-->
+                    <div class="defultCard">
+                        <div class="defultCardInfo">
+                            <div class="nowPos commonFont">当前沟通职位</div>
+                            <div class="nowPosBox cssFlex commonFont">
+                                <span class="nowPosName">{{job_name}}</span>
+                                <span class="nowPosPrice">{{ratio}}</span>
+                            </div>
+                            <div class="nowPosBox nowPosBoxCom cssFlex">
+                                <span class="nowPosCom">{{c_name}}</span>
+                                <span class="nowPosComSize">{{financing}}</span>
+                            </div>
+                            <div class="nowPosBox nowPosBoxComInfo cssFlex">
+                                <span class="nowPosAdr">{{address}}</span>
+                                <span class="nowPosYear">{{work_ex}}</span>
+                                <span class="nowPosComEdu">{{edu_ex}}</span>
+                            </div>
+                            <div class="conInfo cssFlex">
+                                <img :src="p_icon" alt="hr" class="conInfoIMg">
+                                <span>{{p_name}}·{{z_user_job}}</span>
+                            </div>
+                        </div>
+                        <div class="sendWord" @click="sendWordClick()" v-show="status == 2">发送简历</div>
+                        <div class="sendWord" @click="sendWordClick()" v-show="status == 1">已发送</div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="reply">
                 <div class="time">05/22 06:30</div>
                 <div class="msg">
@@ -32,7 +66,7 @@
                 <div class="time">05/22 06:30</div>
                 <div class="msg">
                     <img src="../../../image/chat/touxiangm.png" alt=""/>
-                    <!--<span class="name">千里马</span>-->
+                    <span class="name">千里马</span>
                     <p>
                         <i clas="msg_input"></i>
                         您好，我想应聘贵公司的运营经理，
@@ -185,11 +219,27 @@
                     token: '',
                     ptoken: '',
                     t_key: '',
+                    job_id: '',
                     canSend: false,
 
                     sendInput: '',
                     result: '',
-                    type: ''
+                    type: '',
+
+                    job_name: '',
+                    ratio: '',
+                    c_name: '',
+                    financing: '',
+                    address: '',
+                    work_ex: '',
+                    edu_ex: '',
+                    p_name: '',
+                    p_icon: '',
+                    z_user_job: '',
+                    status:''
+
+
+
                 },
                 created: function () {
                     // this.token = api.pageParam.token;
@@ -197,8 +247,10 @@
                     // this.ptoken = api.pageParam.ptoken;
                     this.ptoken = 2;
                     this.t_key = api.pageParam.t_key;
-
+                    this.job_id = api.pageParam.job_id;
+                    this.queryJobTopicChatProFile();
                     this.addTopic();
+
                 },
                 mounted: function () {
                     this.isDisplay = true;
@@ -256,6 +308,28 @@
                     // }
                 },
                 methods: {
+                    queryJobTopicChatProFile : function() {
+                        var that = this
+                        var obj = {
+                            job_id : that.job_id
+                        }
+                        ajaxGetWithProgress(queryJobTopicChatProFile,obj,function (data) {
+                            console.log("cardChat",data)
+                            if (data){
+                                that.job_name = data.job_name
+                                that.ratio = data.ratio
+                                that.c_name = data.c_name
+                                that.financing = data.financing
+                                that.address = data.address
+                                that.work_ex = data.work_ex
+                                that.edu_ex = data.edu_ex
+                                that.p_name = data.p_name
+                                that.p_icon = imgSrcFun(data.p_icon)
+                                that.z_user_job = data.z_user_job
+                                that.status = data.status
+                            }
+                        })
+                    },
                     // 发送
                     sendHandle: function () {
                         console.log(this.t_key);
@@ -348,6 +422,21 @@
                         }
 
                         return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+                    },
+                    sendWordClick : function () {
+
+                        var that = this
+                        var obj = {
+                            uid : localStorage.getItem("person_id"),
+                            job_id : that.job_id
+                        }
+                        ajaxGetWithProgress(sendResume,obj,function (data) {
+                            if (data.success){
+                                toast("发送成功")
+                            } else {
+                                toast("发送失败")
+                            }
+                        })
                     }
                 }
             })

@@ -28,6 +28,7 @@
             text-align: center;
             margin: 0.63rem auto;
         }
+
     </style>
 
 </head>
@@ -128,7 +129,16 @@
             }
         })
     }
+    function int_city(value,provincer, cityr, streetr, P_addressz,P_name,longituder,latituder) {
 
+        document.querySelector(".adr_id").value = value
+        if (cityr) {
+            document.querySelector(".addressInput").value = provincer + '' + cityr + '' + streetr + '' + P_addressz+ '' + P_name;
+        } else {
+            document.querySelector(".addressInput").value = provincer + '' + streetr + '' + P_addressz+ '' + P_name;
+        }
+        console.log(document.querySelector(".addressInput").value)
+    }
 
 </script>
 </body>
