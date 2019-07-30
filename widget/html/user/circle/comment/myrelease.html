@@ -11,7 +11,7 @@
 
     <div class="rel-box" @click="linkHandle(item.circle_id)" v-for="(item, index) in list" :key="index"  v-if="showInfo ? 'notDisplay' : ''">
         <div class="rel-info cssFlex">
-            <img :src="item.p_icon" alt="hr" class="rel-info-img">
+            <img :src="item.p_icon.split(',')[0]" alt="hr" class="rel-info-img">
             <div class="rel-info-info">
                 <div class="rel-infoname">{{item.p_name}}</div>
                 <div class="fel-infotime">

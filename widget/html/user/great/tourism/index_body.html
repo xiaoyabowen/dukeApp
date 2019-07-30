@@ -209,7 +209,8 @@
                         }, function(data,err){
                             console.log(data);
                             if (data.commcollect) {
-
+                                toast("编辑成功")
+                                window.location.reload()
                             }
                         });
                         that.att = !that.att;

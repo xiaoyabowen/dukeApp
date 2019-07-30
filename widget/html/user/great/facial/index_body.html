@@ -110,6 +110,7 @@
     <script src="../common/magicCube.js"></script>
 
 
+
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
@@ -213,7 +214,8 @@
                         }, function(data,err){
                             console.log(data);
                             if (data.commcollect) {
-
+                                toast("编辑成功")
+                                window.location.reload()
                             }
                         });
                         that.att = !that.att;

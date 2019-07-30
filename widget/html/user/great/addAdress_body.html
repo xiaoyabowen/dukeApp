@@ -49,7 +49,6 @@
 
 
     <script type="text/javascript" src="../../../script/api.js"></script>
-    <!--<script type="text/javascript" src="../../../script/util.js"></script>-->
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -91,6 +90,31 @@
 
                 },
                 methods: {
+                    int_city : function () {
+                        var that = this
+                        var picker = new mui.PopPicker({
+                            layer: 3
+                        });
+                        picker.setData(cityData3)
+                        picker.pickers[0].setSelectedIndex(0);
+                        picker.show(function(SelectedItem) {
+                            that.adress = SelectedItem[0].text +'-'+ SelectedItem[1].text +'-'+ SelectedItem[2].text;
+                            var obj = {
+                                province : SelectedItem[0].text,
+                                city : SelectedItem[1].text,
+                                street : SelectedItem[2].text
+                            }
+
+                            ajaxGetWithProgress(addAddressByPerson,obj,function (data) {
+                                if (data){
+                                    that.adrId = data.adr_id
+                                } else {
+                                    toast("请求出错")
+                                }
+                            })
+                            console.log(that.adrId)
+                        })
+                    },
                     addAdrBtn : function () {
                         var that = this
                         if (isBlack(that.name)) {
@@ -112,24 +136,18 @@
                             toast('请输入详细地址');
                             return;
                         }
-                        var str = {
-                            pid:that.person_id,
-                            name: that.name,
-                            phone: that.phone,
-                            address: that.adress,
-                            addr_details: that.detailed
-                        }
-                        var str2 = {
-                            adrId:that.adrId,
-                            pid:that.person_id,
-                            name: that.name,
-                            phone: that.phone,
-                            address: that.adress,
-                            addr_details: that.detailed
-                        }
+
+
+
                         var adrStatus = that.adrStatus
-                        console.log(456)
                         if (adrStatus == 1){
+                            var str = {
+                                pid:that.person_id,
+                                name: that.name,
+                                phone: that.phone,
+                                address: that.adress,
+                                addr_details: that.detailed
+                            }
                             ajaxGetWithProgress(addDeliveryAdr, str, function (data, err) {
                                 console.log(data);
                                 var url = api.pageParam.url
@@ -159,7 +177,14 @@
                                 }
                             });
                         } else if(adrStatus == 2){
-                            console.log(str2)
+                            var str2 = {
+                                adrId:that.adrId,
+                                pid:that.person_id,
+                                name: that.name,
+                                phone: that.phone,
+                                address: that.adress,
+                                addr_details: that.detailed
+                            }
                             ajaxGetWithProgress(deliveryUpdate, str2, function (data, err) {
                                 console.log(data);
                                 var url = api.pageParam.url
@@ -180,18 +205,7 @@
                         }
 
                     },
-                    int_city : function () {
-                        var that = this
-                        var picker = new mui.PopPicker({
-                            layer: 3
-                        });
-                        picker.setData(cityData3)
-                        picker.pickers[0].setSelectedIndex(0);
-                        picker.show(function(SelectedItem) {
-                            that.adress = SelectedItem[0].text +'-'+ SelectedItem[1].text +'-'+ SelectedItem[2].text;
 
-                        })
-                    }
                 }
             })
         }

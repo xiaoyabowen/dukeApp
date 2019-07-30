@@ -222,7 +222,7 @@
         console.log("user",localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://192.168.1.10:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://112.126.98.172:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -320,18 +320,9 @@
 
     function hua() {
 
+        openNewWindow("index", "../great/index.html")
+        // openNewWindow("index", "../great/facial/index.html")
 
-        openNewWindow("index", "../great/facial/index.html")
-        // openNewWindow("visaApply", "../great/tourism/visaApply.html")
-
-        // openNewWindow("index", "../great/facial/mine.html")
-        // openNewWindow("visaApply", "../great/tourism/visaApply.html")
-
-        // openNewWindow("login", "../../login/login.html")
-
-        // openNewWindow("Adress", "../great/addAdress.html")
-        // openNewWindow("confirmOrder", "../great/confirmOrder.html")
-        // openNewWindow("create_resume", "../mine/create_resume.html")
     }
 
 </script>

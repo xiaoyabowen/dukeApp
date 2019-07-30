@@ -1,3 +1,119 @@
+/*巨划算 ===========================  魔方 */
+.boxCost{
+    background: #f5f5f5;
+    /*position: relative;*/
+    width: 100%;
+    min-height: calc(100vh - 4.5rem)
+}
+.listCastBox{
+    background: #f5f5f5;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 4.5rem)
+}
+.personCost{
+    display: block;
+    position: fixed;
+    right: 0.64rem;
+    bottom: 0.8rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    z-index: 111;
+}
+
+/*返回图片*/
+.returnBtn{
+    width: 1.1rem;
+    height: 1.1rem;
+    position: absolute;
+    left: 0.4rem;
+    top: 0.72rem;
+
+}
+.returnBtn>img{
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.xuanboxCast{
+    width: 1.8rem;
+    height: 1.8rem;
+    position: absolute;
+    transform: rotate(-45deg);
+    border-radius: 0.2rem;
+    background: #fff;
+}
+
+.daoboxCast{
+    width: 1.8rem;
+    height: 1.8rem;
+    transform: rotate(45deg);
+    padding: 0.2rem 0;
+}
+
+.iconImgCast{
+    display: block;
+    width: 1.1rem;
+    height: 0.66rem;
+    margin: 0 auto;
+}
+.CastText{
+    color: #333333;
+    height: auto;
+    text-align: center;
+    margin-top: 0.12rem;
+}
+
+.posiCast0 {
+    right: 0.5rem;
+    top: 1rem;
+}
+.posiCast1 {
+    top: 1rem;
+    right: 3.2rem;
+}
+.posiCast2 {
+    top: 2.4rem;
+    right: 1.84rem;
+}
+.posiCast3 {
+    top: 3.8rem;
+    right: 0.48rem;
+}
+.posiCast4{
+    top: 2.4rem;
+    right: 4.6rem;
+}
+.posiCast5{
+    top: 3.8rem;
+    right: 3.2rem;
+
+}
+.posiCast6{
+    top: 5.2rem;
+    right: 1.8rem;
+}
+.posiCast7{
+    background: #FCC117;
+    top: 5.2rem;
+    right: 4.57rem;
+
+}
+.posiCast7 .CastText{
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /*巨划算面膜==================开始*/
 #great {
@@ -332,7 +448,7 @@ div.isDisplay {
 }
 
 .person {
-    display: inline-block;
+    display: block;
     position: absolute;
     bottom: 0.12rem;
     right: 0.12rem;
@@ -351,7 +467,6 @@ div.isDisplay {
 
 .borderBoxRote {
     border: 0 !important;
-
 }
 
 .xuanbox {

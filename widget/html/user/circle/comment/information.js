@@ -231,7 +231,7 @@ function informationInit(Vue) {
                 }
                 console.log(obj)
                 // console.log(dateStrChangeTimeTamp(that.c_from))
-                if (isBlack(that.poster)){
+                if (isBlack(that.img)){
 
                     toast("请选择活动海报")
                     return
@@ -257,19 +257,19 @@ function informationInit(Vue) {
                     toast("请填写活动地址")
                     return
                 }
-                if (isBlack(that.c_from)){
+                if (isBlack(that.time_from)){
                     toast("请填写开始时间")
                     return
                 }
-                if (isBlack(that.c_to)){
+                if (isBlack(that.time_to)){
                     toast("请填写结束时间")
                     return
                 }
-                if (isBlack(that.number)){
+                if (isBlack(that.num)){
                     toast("请填写活动人数")
                     return
                 }
-                if (isBlack(that.endtime)){
+                if (isBlack(that.end)){
                     toast("请填写报名截止时间")
                     return
                 }

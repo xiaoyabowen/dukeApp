@@ -121,7 +121,7 @@
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>-->
-        <div class="info-choose cssFlex" onclick="user_jobTime()">
+        <div class="info-choose cssFlex" onclick="user_jobTimeClick()">
             <span class="info-choose-name ellipsis">开始工作的时间</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" id="user_jobTime">请选择</span>
@@ -132,7 +132,7 @@
             <span class="info-choose-name ellipsis">居住地</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name" id="int_city">请填写</span>
-                <span class="isDisplay" id="adr_id">请填写</span>
+                <span class="isDisplay" id="adr_id">未选择</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
@@ -315,7 +315,7 @@
     }
 
     // 开始工作的时间
-    function user_jobTime() {
+    function user_jobTimeClick() {
         var dtpicker = new mui.DtPicker(
             {
                 type: "date", //设置日历初始视图模式
@@ -495,13 +495,13 @@
         var job_from_time = document.getElementById('user_jobTime').innerText;
         var adr_id = document.getElementById('adr_id').innerText;
         var p_name = document.getElementById('user_p_name').innerText;
-
-        if (job_from_time = "请选择"){
+        console.log(job_from_time)
+        if (job_from_time == "未选择"){
             toast("请选择开始工作时间")
             return
         }
 
-        if (int_city = "请填写"){
+        if (adr_id == "未选择"){
             toast("请选择居住地")
             return
         }
@@ -523,7 +523,7 @@
 
             // alert(JSON.stringify(data));
             console.log(12344,data);
-            if (data.updatePerson.return.status) {
+            if (data.Person_address.return_info.status) {
                 // toast('修改个人信息成功');
                 api.execScript({
                     name: 'userCenter',

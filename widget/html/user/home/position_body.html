@@ -82,7 +82,7 @@
             <div class="xuanbox" :class="index1 == index ? 'active' : ''">
                 <div class="daobox">
                     <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
+                    <div class="fontsize22">{{ item.job_name }}</div>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
             <div class="xuanbox" :class="index2== index ? 'active' : ''">
                 <div class="daobox">
                     <img v-bind:src="item.logo_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.c_name }}</div>
+                    <div class="fontsize22">{{ item.c_name }}</div>
                 </div>
             </div>
         </div>
@@ -278,7 +278,7 @@
         job_id = api.pageParam.job_id;
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
-        console.log("user=",uidUser)
+        console.log("user=",job_id)
         if (job_id){
             console.log("biedeyemian",job_id)
             positionDe(job_id)
@@ -426,6 +426,7 @@
             },
             created: function () {
                 this.queryListRandom()
+                this.togle()
             },
             mounted :  function (){
 

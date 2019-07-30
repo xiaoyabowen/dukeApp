@@ -50,7 +50,7 @@ function activitiesInit(Vue) {
                     if (data.createCircle.return_info.status) {
                         mui.confirm('已发布请等待审核', '',['确认','取消'], function (e) {
                             if (!e.index) {
-                                openNewWindow("index", "./bigIndex.html")
+                                openNewWindow("index", "./index.html")
                             }
                         })
 

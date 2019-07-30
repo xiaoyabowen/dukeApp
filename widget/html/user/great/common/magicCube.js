@@ -61,9 +61,9 @@ function magicCubeInit(Vue) {
                 console.log(job_id)
                 openNewWindow("index", "../../great/"+ job_id +"/index.html");
                 /*if (job_id == 'facial') {
-                    openNewWindow("index", "widget://html/user/great/bigIndex.html");
+                    openNewWindow("index", "widget://html/user/great/index.html");
                 } else if (job_id == 'tourism') {
-                    openNewWindow("index", "widget://html/user/great/tourism/bigIndex.html");
+                    openNewWindow("index", "widget://html/user/great/tourism/index.html");
                 }
 */
             },
