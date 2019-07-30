@@ -220,6 +220,9 @@ img.hrImg {
     width: 0.6rem !important;
     height: 0.6rem;
     margin-right: 0.2rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
 }
 .job-left{
     width: 4.3rem;
@@ -310,6 +313,9 @@ img.pro-img {
     /*flex: 1;*/
     float: left;
     margin-right: 0.28rem;
+}
+.infoProductContent{
+    width: 6rem;
 }
 .infoProductContent>h5{
     font-size: 0.28rem;

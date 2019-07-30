@@ -77,7 +77,8 @@ function magicCubeInit(Vue) {
             },
             hideHandle: function () {
                 document.getElementById('subBox').classList.add('isDisplay');
-            }
+            },
+
 
         }
     }

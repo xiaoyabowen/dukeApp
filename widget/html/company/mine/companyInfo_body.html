@@ -336,11 +336,7 @@
         $(".modal-news").hide()
     }
 
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        zoom: 16
-    });
-    map.clearMap();
+
 
     var cid, uid,c_id;
     apiready = function () {
@@ -349,23 +345,23 @@
         new Vue({
             el: '#app1',
             data: {
-                ComName: '',     // 公司名称
-                ComContactor: '', //  公司性质
-                ComScale: '',
-                ComOrgType: '',
-                ComStime: '',
-                ComXtime: '',
-                ComBreakTime: '',
-                ComworkOver: '',
-                ComLogo: '',
+                ComName: '未填写',     // 公司名称
+                ComContactor: '未填写', //  公司性质
+                ComScale: '未填写',
+                ComOrgType: '未填写',
+                ComStime: '未填写',
+                ComXtime: '未填写',
+                ComBreakTime: '未填写',
+                ComworkOver: '未填写',
+                ComLogo: 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png',
                 ComWelfare: [],
-                ComSummary: '',
-                ComUrl: '',
-                ComNameAll: '',
-                ComSenior: '',
-                ComSeniorPos: '',
-                ComSeniorBak: '',
-                ComSeniorLogo: '',
+                ComSummary: '未填写',
+                ComUrl: '未填写',
+                ComNameAll: '未填写',
+                ComSenior: '未填写',
+                ComSeniorPos: '未填写',
+                ComSeniorBak: '未填写',
+                ComSeniorLogo: 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png',
                 ComProList: [],  //产品介绍
                 ComJobList: [],  //再照职位
                 ComDynamicList: [],  //企业空间
@@ -380,6 +376,11 @@
                     var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
                     $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
                 });
+                var map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    zoom: 16
+                });
+                map.clearMap();
             },
             methods: {
                 queryMyOrgProfileAllinOne: function () {
@@ -395,13 +396,17 @@
                         document.querySelector(".boxSubDis").classList.remove("isDisplay")
                         document.querySelector(".F9Line").classList.remove("isDisplay")
                         var cvomInfo = data.Orgnization_summary
+                        console.log(cvomInfo)
                         c_id = cvomInfo.c_id
                         localStorage.setItem("com_id",c_id)
                         var cvomproduct = data.product_his  //产品介绍
                         var JobList = data.JobList  // 再照职位
                         var DynamicList = data.DynamicList  //企业空间
                         if (data) {
+                            console.log("cvomInfoc_name",cvomInfo.c_name)
                             that.ComName = cvomInfo.c_name || '未填写'
+                            console.log("ComName",that.ComName)
+                            console.log(document.querySelector(".comInfoTitle"))
                             that.ComContactor = cvomInfo.contactor || '未填写'
                             that.ComScale = cvomInfo.scale || '未填写'
                             that.ComOrgType = cvomInfo.org_type || '未填写'

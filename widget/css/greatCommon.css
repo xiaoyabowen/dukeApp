@@ -3,13 +3,14 @@
     background: #f5f5f5;
     /*position: relative;*/
     width: 100%;
-    min-height: calc(100vh - 4.5rem)
+    min-height: calc(100vh - 0.48rem);
 }
 .listCastBox{
     background: #f5f5f5;
-    position: relative;
     width: 100%;
-    min-height: calc(100vh - 4.5rem)
+}
+.listBox{
+    position: relative;
 }
 .personCost{
     display: block;
@@ -34,6 +35,7 @@
     display: block;
     width: 1.1rem;
     height: 1.1rem;
+    z-index:111;
 }
 
 .xuanboxCast{
@@ -49,14 +51,105 @@
     width: 1.8rem;
     height: 1.8rem;
     transform: rotate(45deg);
-    padding: 0.2rem 0;
+    padding: 0.1rem 0;
 }
 
 .iconImgCast{
     display: block;
-    width: 1.1rem;
-    height: 0.66rem;
+    width: 0.92rem;
+    height: 0.92rem;
     margin: 0 auto;
+}
+
+
+@keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-moz-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+}
+
+@-webkit-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-o-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+.animationCast {
+    animation: zoomOutLeft 2s;
+    -ms-animation: zoomOutLeft 2s;
+    -moz-animation: zoomOutLeft 2s;
+    -webkit-animation: zoomOutLeft 2s;
+    -o-animation: zoomOutLeft 2s;
+}
+
+
+
+.iconImgCastActive{
+    background:rgba(99,139,255,1);
+}
+.iconImgCastActivePro{
+    background:rgba(201,215,255,1);
+}
+.iconImgCastActive .CastText{
+    color: #ffffff;
 }
 .CastText{
     color: #333333;
@@ -68,10 +161,14 @@
 .posiCast0 {
     right: 0.5rem;
     top: 1rem;
+
 }
 .posiCast1 {
     top: 1rem;
     right: 3.2rem;
+}
+.posiCastTwo1{
+    background:rgba(99,139,255,1);
 }
 .posiCast2 {
     top: 2.4rem;
@@ -95,12 +192,15 @@
     right: 1.8rem;
 }
 .posiCast7{
-    background: #FCC117;
+
     top: 5.2rem;
     right: 4.57rem;
 
 }
-.posiCast7 .CastText{
+.posiCast7FCC{
+    background: #FCC117;
+}
+.posiCast7FCC .CastText{
     color: #ffffff;
 }
 
@@ -429,6 +529,13 @@ div.isDisplay {
     }
 
 }
+.animation {
+    animation: zoomOutLeft 2s;
+    -ms-animation: zoomOutLeft 2s;
+    -moz-animation: zoomOutLeft 2s;
+    -webkit-animation: zoomOutLeft 2s;
+    -o-animation: zoomOutLeft 2s;
+}
 
 .demobiox {
     position: fixed;
@@ -457,13 +564,6 @@ div.isDisplay {
     z-index: 1111;
 }
 
-.animation {
-    animation: zoomOutLeft 2s;
-    -ms-animation: zoomOutLeft 2s;
-    -moz-animation: zoomOutLeft 2s;
-    -webkit-animation: zoomOutLeft 2s;
-    -o-animation: zoomOutLeft 2s;
-}
 
 .borderBoxRote {
     border: 0 !important;
@@ -920,6 +1020,7 @@ img.adressNot {
 }
 .adress-info {
     margin: 0.28rem 0;
+    position: relative;
 }
 .adinfo-title.cssFlex {
     height: 0.45rem;
@@ -937,8 +1038,12 @@ span.adinfo-name {
 
 img.adinfo-dele {
     display: block;
-    width: 0.2rem;
-    height: 0.2rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    z-index:1111;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .adre-adress {
     padding-bottom: 0.3rem;

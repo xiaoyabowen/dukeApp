@@ -99,7 +99,7 @@
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
                 <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
                 <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <!--<span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>-->
             </div>
 
             <!--未支付-->
@@ -637,10 +637,24 @@
                 this.htmlname = Htmlname
                 this.person_id = localStorage.getItem("person_id")
                 if (this.htmlname = 'all'){
-                    this.orderAll('all', 1)
+                    api.addEventListener({
+                        name: 'myorder',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        this.orderAll('all', 1)
+
+                    });
+
 
                 }else if (this.htmlname = 'notpay'){
-                    this.orderNotPay('notpay', 5)
+                    api.addEventListener({
+                        name: 'myordernotpay',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        this.orderNotPay('notpay', 5)
+
+                    });
+
 
                 }else if (this.htmlname = 'pay'){
                     this.orderPay('pay',2)

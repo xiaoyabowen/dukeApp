@@ -69,10 +69,10 @@
                 el: '#app',
                 data: {
                     isDefult:false,
-                    name:"张三",
-                    phone:"15901420583",
+                    name:"",
+                    phone:"",
                     adress:"",
-                    detailed:"15号楼28单元",
+                    detailed:"",
                     person_id:"",
                     adrId:"",
                     adrStatus:'',
@@ -142,14 +142,15 @@
                         var adrStatus = that.adrStatus
                         if (adrStatus == 1){
                             var str = {
-                                pid:that.person_id,
+                                pId:that.person_id,
                                 name: that.name,
                                 phone: that.phone,
                                 address: that.adress,
-                                addr_details: that.detailed
+                                addrDetails: that.detailed
                             }
+                            console.log(str)
                             ajaxGetWithProgress(addDeliveryAdr, str, function (data, err) {
-                                console.log(data);
+                                console.log("adrStatus1",data);
                                 var url = api.pageParam.url
                                 if (data.status){
                                     var frameName = url + "_body";
@@ -176,17 +177,19 @@
                                     });
                                 }
                             });
+
                         } else if(adrStatus == 2){
                             var str2 = {
                                 adrId:that.adrId,
-                                pid:that.person_id,
+                                pId:that.person_id,
                                 name: that.name,
                                 phone: that.phone,
                                 address: that.adress,
-                                addr_details: that.detailed
+                                addrDetails: that.detailed
                             }
+                            console.log(str2)
                             ajaxGetWithProgress(deliveryUpdate, str2, function (data, err) {
-                                console.log(data);
+                                console.log("adrStatus2",data);
                                 var url = api.pageParam.url
                                 if (data.success){
                                     var frameName = url + "_body";

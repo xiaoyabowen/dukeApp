@@ -1,5 +1,5 @@
-function castTwoInit(Vue) {
-    var str = dataValue('user/great/common/castTwo.html')
+function castOneOneInit(Vue) {
+    var str = dataValue('user/great/common/castOneOne.html')
 
     return {
         template: str,
@@ -7,13 +7,13 @@ function castTwoInit(Vue) {
             return {
                 imgs: [
                     {
-                        imgSrc: '../../../image/bigWeigh/mianBan1.png'
+                        imgSrc: '../../../image/bigWeigh/lvyouBan1.png'
                     },
                     {
-                        imgSrc: '../../../image/bigWeigh/mianBan2.png'
+                        imgSrc: '../../../image/bigWeigh/lvyouBan2.png'
                     },
                     {
-                        imgSrc: '../../../image/bigWeigh/mianBan3.png'
+                        imgSrc: '../../../image/bigWeigh/lvyouBan3.png'
                     },
                 ]
             }
@@ -39,6 +39,9 @@ function castTwoInit(Vue) {
                     }
                 });
             },
+            tourClick : function () {
+                openNewWindow("index", "tourism/index.html");
+            },
             castSixClick : function () {    // 农产品     第六个
                 var that = this
                 api.sendEvent({
@@ -47,18 +50,6 @@ function castTwoInit(Vue) {
                         key: 'castThree',
                     }
                 });
-            },
-            castOneClick : function () {
-                var that = this
-                api.sendEvent({
-                    name: 'one',
-                    extra: {
-                        key: 'castOneOne',
-                    }
-                });
-            },
-            facilClick : function () {
-                openNewWindow("index", "facial/index.html");
             },
             togle : function () {
                 toast("切换内容")

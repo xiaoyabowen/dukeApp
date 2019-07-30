@@ -1,5 +1,6 @@
 <div class="listCastBox">
 
+
     <img src="../../../image/duke-2.png" class="personCost" alt="personCost" @click="togle()">
 
     <div class="great_header_banner swiper-container">
@@ -14,9 +15,12 @@
 
 
     <div class="listBox">
-        <div class="positionComCast positionRate " @click="castOneClick()">
+        <div class="returnBtn" @click="returnBtnClick()">
+            <img src="../../../image/bigWeigh/return.png" alt="fanhui" class="returnBTNImg">
+        </div>
 
-            <div class="xuanboxCast posiCast0 ">
+        <div class="positionComCast positionRate ">
+            <div class="xuanboxCast posiCast0 iconImgCastActive">
                 <div class="daoboxCast">
                     <img src="../../../image/bigWeigh/lvyouW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">旅游</div>
@@ -24,23 +28,26 @@
             </div>
         </div>
 
-        <div class="positionComCast positionRate" @click="castTwoClick()">
-            <div class="xuanboxCast posiCast1">
+
+
+        <div class="positionComCast positionRate " @click="tourClick()">
+            <div class="xuanboxCast posiCast1 iconImgCastActivePro">
                 <div class="daoboxCast">
-                    <img src="../../../image/bigWeigh/huazhuangW.png" class="iconImgCast" alt="person">
-                    <div class="CastText commonFont">化妆品</div>
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast " alt="person">
+                    <div class="CastText commonFont">欧来欧去</div>
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate"  @click="castFangClick()">
-            <div class="xuanboxCast posiCast2">
+
+        <div class="positionComCast positionRate" @click="tourClick()">
+            <div class="xuanboxCast posiCast2 iconImgCastActivePro">
                 <div class="daoboxCast">
-                    <img src="../../../image/bigWeigh/fangW.png" class="iconImgCast" alt="person">
-                    <div class="CastText commonFont">希腊房产</div>
+                    <img src="../../../image/bigWeigh/trip2.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">以色列</div>
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate" @click="castFourClick()">
+        <div class="positionComCast positionRate">
             <div class="xuanboxCast posiCast3">
                 <div class="daoboxCast">
                     <img src="../../../image/bigWeigh/baoxianW.png" class="iconImgCast" alt="person">
@@ -48,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate" @click="castFiveClick()">
+        <div class="positionComCast positionRate">
             <div class="xuanboxCast posiCast4">
                 <div class="daoboxCast">
                     <img src="../../../image/bigWeigh/zucheW.png" class="iconImgCast" alt="person">
@@ -64,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate" @click="castSevenClick()">
+        <div class="positionComCast positionRate">
             <div class="xuanboxCast posiCast6">
                 <div class="daoboxCast">
                     <img src="../../../image/bigWeigh/meirongW.png" class="iconImgCast" alt="person">

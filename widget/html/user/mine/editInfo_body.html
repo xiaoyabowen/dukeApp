@@ -250,11 +250,11 @@
             document.querySelector('.Box').classList.remove('isDisplay');
              document.getElementById('user_p_name').innerText = data.p_name || '未填写';
 
-             document.getElementById('user_age').innerText = data.p_birthday || '未选择';
+             document.getElementById('user_age').innerText = data.p_birthday || '';
 
              document.getElementById('user_sex').innerText = data.p_sex || '未选择';
 
-             document.getElementById('user_jobTime').innerText = data.job_from_time || '未选择';
+             document.getElementById('user_jobTime').innerText = data.job_from_time || '';
 
              document.getElementById('adr_id').innerText = data.adr_id || '未选择';
 
@@ -495,8 +495,14 @@
         var job_from_time = document.getElementById('user_jobTime').innerText;
         var adr_id = document.getElementById('adr_id').innerText;
         var p_name = document.getElementById('user_p_name').innerText;
-        console.log(job_from_time)
-        if (job_from_time == "未选择"){
+
+        if (p_birthday == ""){
+            toast("请选择年龄")
+            return
+        }
+
+
+        if (job_from_time == ""){
             toast("请选择开始工作时间")
             return
         }
@@ -528,12 +534,10 @@
                 api.execScript({
                     name: 'userCenter',
                     frameName:url +"_body",
-                    // frameName: 'userCenter_body',
                     script: 'loadCom()'
                 })
                 closeWin();
             }
-
 
         });
     }

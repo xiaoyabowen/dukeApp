@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <component is="magicCube"></component>
+            <!--<component is="magicCube"></component>-->
         </div>
     </div>
 
@@ -101,7 +101,7 @@
 
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
-    <script src="../common/magicCube.js"></script>
+    <!--<script src="../common/magicCube.js"></script>-->
     <script src="./common/cost.js"></script>
     <script src="./common/other.js"></script>
 
@@ -117,11 +117,11 @@
         apiready = function () {
 
 
-            var magicCube = magicCubeInit(Vue);
+            // var magicCube = magicCubeInit(Vue);
 
             var cost = costInit(Vue);
             var other = otherInit(Vue);
-            Vue.component('magicCube', magicCube);
+            // Vue.component('magicCube', magicCube);
 
             Vue.component('cost', cost);
             Vue.component('other', other);
@@ -142,8 +142,6 @@
 
                     cid: '2',
                     data: '',
-
-                    cid: '2'
 
                 },
                 created: function () {
