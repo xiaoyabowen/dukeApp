@@ -181,6 +181,11 @@
 <script>
 
     apiready = function () {
+
+
+        var aliPay = api.require('aliPay');
+
+
         var app = new Vue({
             el: '#app',
             data: {
@@ -256,6 +261,138 @@
                             mui.toast('请选择支付方式');
                             return;
                         } else if (that.bank == '微信' || that.bank == '支付宝') {
+                            /*var payData = {
+                                channel: "UN_APP",
+                                title: "apicloud",
+                                totalfee: 1,
+                                billno: "201508191436987",
+                                optional: { 'userID': '张三', 'mobile': '0512-86861620' }
+                            };
+                            demo.pay(payData, payCallBack);
+
+                            function payCallBack(ret, err) {
+                                api.toast({ msg: ret.result_msg });
+                            }*/
+
+                            // alert(aliPay)
+
+
+                            /*aliPay.payOrder({
+                                // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2016101100660261&biz_content=%7B%22body%22%3A%22%E9%9D%A2%E8%86%9C%E7%9A%84%E5%8A%9F%E6%95%88%E4%BB%A5%E5%8F%8A%E9%80%82%E7%94%A8%E4%BA%BA%E6%9D%83%22%2C%22out_trade_no%22%3A%22276606476384993280%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22xxx%E9%9D%A2%E8%86%9C%E4%BA%A7%E5%93%81%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%221%22%7D&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F112.126.98.172%3A8081%2FaliChannel%2Fpay%2Fnotice&sign=FQfkXPFKU0kqULK2mxHNl00UutLqandiD8f1FuvPeX8iiv1n3XikLs5KpMkPpo8UNE25IFVYll8Y0APgxzkVrbPjjcyHeL7hWhVKHQYoLu0QocntAk6lhTvIwiF43UHZ5S4fyLfVLkCNQD5XcK3iYoYNYHI6U5q%2BPCAx3crcG0ZF7UxXgygCjMuaMI2gMlBJpJlPR2eKFOlBmtSlr%2BMR0ueSoLlhOq4a%2F4KLOIodUo8o5uXKnnaV%2Bxb7NFZLdO28t7mB1%2FA8RHxCBMuCNJOswVx23dC1SvNNuyuFPjU7CsQJ%2BRhY%2BWnRJzGpurYbkvX9h12bznACCqrcC3JGGKPb6g%3D%3D&sign_type=RSA2&timestamp=2019-07-31+14%3A55%3A23&version=1.0'
+                                // orderInfo: 'service=alipay.trade.app.pay&partner=2088102179071585&_input_charset=utf-8&sign_type=RSA2&sign=I9wxkDEjXcr1AfXLkkNNQlsIzpycV%2FUs58WU36Iq79UBPzRSYMyagbCCyFQuQJPC1eh08QaP8x9FpebJIa5vTlGttqFR1n7SoS8FFPNPIhOfTVGBKxtkS2BVQ8NZer82OAMqhzz5EeblSVYVYjdJRN8xR2%2BoqLfCKiGw337etCUvZAqUrs65sUSgciWzYrr16PPn82s28NZt%2F7sN1Czifapx%2ByR3A8CKJDg1FUWMkS4USosIgn%2FG7QcGAQi%2F4GCmgurWKnoWPDHbBkgsqB70FPmGMUoa72vbc9xolKWzA%2FPvygiFf2fh6c4XXF%2BUqLc4NBGQumsA%2BoKtK5EMpo0FfA%3D%3D&notify_url=http://112.126.98.172:8081/aliChannel/pay/notice&out_trade_no=276608857566871553&subject=测试&payment_type=1&seller_id=yviabq9749@sandbox.com&total_fee=0.01&body=商品详情内容'
+                                orderInfo: 'service=alipay.trade.app.pay&partner=2088102179071585&_input_charset=utf-8&sign_type=RSA2&notify_url=http://112.126.98.172:8081/aliChannel/pay/notice&out_trade_no=276608857566871553&subject=测试&payment_type=1&seller_id=yviabq9749@sandbox.com&total_fee=0.01&body=商品详情内容&sign=KI9LFAONh8FYVcKZJ93FxoNI/+3yQy2PnBqMfcpI+bF+WCjNk3jKbkKYE0w/tiedfu9xrjoWkU/UjglR3PhWrX76vBagzsy2GQ15/kQpyCfrLNe0/EJD1S5RjawJD/0o2fyvnPwytePyLyl0g6bTag+5ixXQdWHnhq56EAQi/ga9kiuoF92Cx61Vm222aMqhar7ZE5KgR8lxS2NVQZHzX63+6vDNqDNDNj8oYSofc37A7bQU3AQyYTTjXybAsU/cNAbtE/hOCtal3ylIw3yotcsq1zR7dB5vd5oK7YoIsaCtKRf4Y2GkHHROUm4wbsOpUeAlJ7YYDo+XtSC4v11erw=='
+                                orderInfo: 'service=alipay.trade.app.pay' +
+                                        '&partner=2088102179071585' +
+                                        '&_input_charset=utf-8' +
+                                        '&sign_type=RSA2' +
+                                        '&sign=I9wxkDEjXcr1AfXLkkNNQlsIzpycV%2FUs58WU36Iq79UBPzRSYMyagbCCyFQuQJPC1eh08QaP8x9FpebJIa5vTlGttqFR1n7SoS8FFPNPIhOfTVGBKxtkS2BVQ8NZer82OAMqhzz5EeblSVYVYjdJRN8xR2%2BoqLfCKiGw337etCUvZAqUrs65sUSgciWzYrr16PPn82s28NZt%2F7sN1Czifapx%2ByR3A8CKJDg1FUWMkS4USosIgn%2FG7QcGAQi%2F4GCmgurWKnoWPDHbBkgsqB70FPmGMUoa72vbc9xolKWzA%2FPvygiFf2fh6c4XXF%2BUqLc4NBGQumsA%2BoKtK5EMpo0FfA%3D%3D' +
+                                        '&notify_url=http://112.126.98.172:8081/aliChannel/pay/notice'+
+                                        '&out_trade_no=276608857566871553'+
+                                        '&subject=测试' +
+                                        '&payment_type=1'+
+                                        '&seller_id=yviabq9749@sandbox.com'+
+                                        '&total_fee=0.01'+
+                                        '&body=商品详情内容'
+                            }, function(ret, err) {
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.code,
+                                    buttons: ['确定']
+                                });
+                            });*/
+
+                            /*aliPay.payOrder({
+                                orderInfo: 'partner="2088101568358171"&seller_id="xxx@alipay.com"&out_trade_no="0819145412-6177"&subject="测试"&body="测试测试"&total_fee="0.01"&notify_url="http://notify.msp.hk/notify.htm"&service="mobile.securitypay.pay"&payment_type="1"&_input_charset="utf-8"&it_b_pay="30m"&sign="lBBK%2F0w5LOajrMrji7DUgEqNjIhQbidR13GovA5r3TgIbNqv231yC1NksLdw%2Ba3JnfHXoXuet6XNNHtn7VE%2BeCoRO1O%2BR1KugLrQEZMtG5jmJIe2pbjm%2F3kb%2FuGkpG%2BwYQYI51%2BhA3YBbvZHVQBYveBqK%2Bh8mUyb7GM1HxWs9k4%3D"&sign_type="RSA"'
+                            }, function(ret, err) {
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.code,
+                                    buttons: ['确定']
+                                });
+                            });*/
+
+                            /*var notifyURL = 'http://www.apicloud.com';
+                            aliPay.pay({
+                                subject: '订单名',
+                                body: '订单描述',
+                                amount: '0.01',
+                                tradeNO: '276608857566871553'
+                            }, function(ret, err) {
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.code,
+                                    buttons: ['确定']
+                                });
+                            });*/
+
+                            aliPay.pay({
+                                service: 'alipay.trade.app.pay',
+                                partner: '2088102179071585',
+                                _input_charset: 'utf-8',
+                                it_b_pay: '30m',
+                                sign_type: 'RSA2',
+                                payment_type: '1',
+                                seller_id: 'yviabq9749@sandbox.com',
+                                rsaPriKey: 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCTUbMX14uIKSX8hxuJAp4WEgPcv3Rpaz1kgVK8+MDroAgPtex4yNwOP3bjooFaPmDwRKycW6X9pEtVDwHWCZAb7/bOmuFlJ7lhrpjUOhv/Yz490eSHMA1p8hd8ouJpUyVbdGzG9blKk9BvhmaITuvfHadJwqmwUGASM6JBHN1Xww8gWncep0qBqbgcfvs7v3f7vZVlNZJCar0bDkJFh6nuauXYA+uMPss8yPHNH4hX3ovuyuvRirqYzOfqc9dkgqCLrYvsVV5CrXyQByG9o/CSnMIy9iBCOXo9AM4RgS2FYRdf8xHiQywA9YTKO33Xx6HEi9gCEiEBVSqf1aPyhXrjAgMBAAECggEAWi0EZ2+1JV+qtO0u2asUgYX9fz5iT7UpG0BeGPZbgN+wj41YdobczIvkhmqOq2LLi8c9sWgYLy5GPoa1JQMthyxX8xezKGwsebKaMi5vvOBO1SCJtoafb16VKeG6naYbk+OsQg1folrgl6O5V26Xyzcnk2ro29gXNo0MoLa+dl0tr0RkrMeLITyZWwDvRu36E/DSKlogwqlCSZLaemk+Kxi/wZjHRB/rEUPQVSi6Ac7LyMSbGOim0T80lOZtAgv66jdGl7+jEIQYvVX4OsjWDtdSmz9oCSSmggQ+/GTv0vwGsaxwZc1RMEsdTTH1DkPRraMiNs/kvUsiXsG5tv6qgQKBgQDQJKtbq2NHxqPHl9aFMhYDY0smSNzLmsQ4jDzd+qXthOxGowTDTUbQh95qI//ZpKZaKlcEJL8/cur1g85MPk3JFOBS8/4p4C1pxXRWdNzrWSEClAE6bUoPhovjsfVPHfQ9qvV2WMy+zj7qGU9qchmbk1Q5ybg/sdZ1P59LTG5fEQKBgQC1MOr91SgI5yJBvo/W6ODqvjT6xMPqB2KwccmhrKXmPzsCy13ndI2Kibu7CcircS2+frASEF+PGOCBeS9SEfVAFL4OETBPhJUzbgzMWgAq7bAeW2BkaV1IahC+xVGkgvf7VuHFYqBsWHBSMgMCXrSiwmDX7APVvVwL3wzdEqziswKBgD4Zgqqh8sf6Yujsy0sIC3tNR6GPgZiZf0ujw5Ey9AhubRQSFRyz1Jnov5oJTY9AyYUDNtz8nbavcZx4i7dBq3F/8gGt3DngMYxqJfCZg0QQXoHnaIpnCv6g1OHFOXw2YqV3eS6rBcMzw5+Sl5gZnLxG840eOwN96o8mwT70+cURAoGABDXt0BZLBuHwLtzx1Mm2qF3hN06pSt//ECCk0egENvSTN35oYT+ZJnYK8c7JZgqMSJgDGXhd8CJg3UFmsx6Nt36D6CnIGKD5IqfVDk6tIFJDvIDdHZhBPbSRTQ2i1xLgFmwvdPnUxo/LlG1rGnv+8KVZwMrQUABFilUVpHGRqPcCgYASLjk6bu1SRYntjWuQHaJ08wJlG5wI1GLzQJvQeT/WRUBEYivvGnHh5lzdAjfn9BDi3O9ijcnZz/UpGFj080E7v4nkcDpnXeYuue+gl4yztnpj1Q8Vh5UI0Fd3tyHucwecZ3iqI00sgrgta/m5ogcgENBD46BIssIIEmuHv9NmoQ==',
+                                rsaPubKey: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk1GzF9eLiCkl/IcbiQKeFhID3L90aWs9ZIFSvPjA66AID7XseMjcDj9246KBWj5g8ESsnFul/aRLVQ8B1gmQG+/2zprhZSe5Ya6Y1Dob/2M+PdHkhzANafIXfKLiaVMlW3RsxvW5SpPQb4ZmiE7r3x2nScKpsFBgEjOiQRzdV8MPIFp3HqdKgam4HH77O793+72VZTWSQmq9Gw5CRYep7mrl2APrjD7LPMjxzR+IV96L7srr0Yq6mMzn6nPXZIKgi62L7FVeQq18kAchvaPwkpzCMvYgQjl6PQDOEYEthWEXX/MR4kMsAPWEyjt918ehxIvYAhIhAVUqn9Wj8oV64wIDAQAB',
+                                subject: '测试',
+                                body: '商品详情内容',
+                                amount: '1',
+                                tradeNO: '276608857566871553',
+                                notify_url: 'http://www.apicloud.com'
+
+                            }, function(ret, err) {
+                                /*document.getElementById("pay_message").value = ret.statusMessage;
+                                document.getElementById("pay_code").value = ret.statusCode;*/
+                                console.log(ret)
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.statusMessage,
+                                    buttons: ['确定']
+                                });
+                            });
+
+
+                            /*var aliPay = api.require('aliPay');
+                            var notifyURL = 'http://www.apicloud.com';
+                            aliPay.pay({
+                                subject: '订单名',
+                                body: '订单描述',
+                                amount: '0.01',
+                                tradeNO: '4563548735674'
+                            }, function(ret, err) {
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.code,
+                                    buttons: ['确定']
+                                });
+                            });*/
+
+
+                            /*aliPay.config({
+                                partner: '2088102179071585',
+                                seller: 'yviabq9749@sandbox.com',
+                                rsaPriKey: 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCTUbMX14uIKSX8hxuJAp4WEgPcv3Rpaz1kgVK8+MDroAgPtex4yNwOP3bjooFaPmDwRKycW6X9pEtVDwHWCZAb7/bOmuFlJ7lhrpjUOhv/Yz490eSHMA1p8hd8ouJpUyVbdGzG9blKk9BvhmaITuvfHadJwqmwUGASM6JBHN1Xww8gWncep0qBqbgcfvs7v3f7vZVlNZJCar0bDkJFh6nuauXYA+uMPss8yPHNH4hX3ovuyuvRirqYzOfqc9dkgqCLrYvsVV5CrXyQByG9o/CSnMIy9iBCOXo9AM4RgS2FYRdf8xHiQywA9YTKO33Xx6HEi9gCEiEBVSqf1aPyhXrjAgMBAAECggEAWi0EZ2+1JV+qtO0u2asUgYX9fz5iT7UpG0BeGPZbgN+wj41YdobczIvkhmqOq2LLi8c9sWgYLy5GPoa1JQMthyxX8xezKGwsebKaMi5vvOBO1SCJtoafb16VKeG6naYbk+OsQg1folrgl6O5V26Xyzcnk2ro29gXNo0MoLa+dl0tr0RkrMeLITyZWwDvRu36E/DSKlogwqlCSZLaemk+Kxi/wZjHRB/rEUPQVSi6Ac7LyMSbGOim0T80lOZtAgv66jdGl7+jEIQYvVX4OsjWDtdSmz9oCSSmggQ+/GTv0vwGsaxwZc1RMEsdTTH1DkPRraMiNs/kvUsiXsG5tv6qgQKBgQDQJKtbq2NHxqPHl9aFMhYDY0smSNzLmsQ4jDzd+qXthOxGowTDTUbQh95qI//ZpKZaKlcEJL8/cur1g85MPk3JFOBS8/4p4C1pxXRWdNzrWSEClAE6bUoPhovjsfVPHfQ9qvV2WMy+zj7qGU9qchmbk1Q5ybg/sdZ1P59LTG5fEQKBgQC1MOr91SgI5yJBvo/W6ODqvjT6xMPqB2KwccmhrKXmPzsCy13ndI2Kibu7CcircS2+frASEF+PGOCBeS9SEfVAFL4OETBPhJUzbgzMWgAq7bAeW2BkaV1IahC+xVGkgvf7VuHFYqBsWHBSMgMCXrSiwmDX7APVvVwL3wzdEqziswKBgD4Zgqqh8sf6Yujsy0sIC3tNR6GPgZiZf0ujw5Ey9AhubRQSFRyz1Jnov5oJTY9AyYUDNtz8nbavcZx4i7dBq3F/8gGt3DngMYxqJfCZg0QQXoHnaIpnCv6g1OHFOXw2YqV3eS6rBcMzw5+Sl5gZnLxG840eOwN96o8mwT70+cURAoGABDXt0BZLBuHwLtzx1Mm2qF3hN06pSt//ECCk0egENvSTN35oYT+ZJnYK8c7JZgqMSJgDGXhd8CJg3UFmsx6Nt36D6CnIGKD5IqfVDk6tIFJDvIDdHZhBPbSRTQ2i1xLgFmwvdPnUxo/LlG1rGnv+8KVZwMrQUABFilUVpHGRqPcCgYASLjk6bu1SRYntjWuQHaJ08wJlG5wI1GLzQJvQeT/WRUBEYivvGnHh5lzdAjfn9BDi3O9ijcnZz/UpGFj080E7v4nkcDpnXeYuue+gl4yztnpj1Q8Vh5UI0Fd3tyHucwecZ3iqI00sgrgta/m5ogcgENBD46BIssIIEmuHv9NmoQ==',
+                                rsaPubKey: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk1GzF9eLiCkl/IcbiQKeFhID3L90aWs9ZIFSvPjA66AID7XseMjcDj9246KBWj5g8ESsnFul/aRLVQ8B1gmQG+/2zprhZSe5Ya6Y1Dob/2M+PdHkhzANafIXfKLiaVMlW3RsxvW5SpPQb4ZmiE7r3x2nScKpsFBgEjOiQRzdV8MPIFp3HqdKgam4HH77O793+72VZTWSQmq9Gw5CRYep7mrl2APrjD7LPMjxzR+IV96L7srr0Yq6mMzn6nPXZIKgi62L7FVeQq18kAchvaPwkpzCMvYgQjl6PQDOEYEthWEXX/MR4kMsAPWEyjt918ehxIvYAhIhAVUqn9Wj8oV64wIDAQAB\n',
+                                notifyURL: 'http://www.apicloud.com'
+                            }, function(ret, err) {
+                                console.log(ret)
+                                api.alert({
+                                    title: '支付结果',
+                                    msg: ret.msg,
+                                    buttons: ['确定']
+                                });
+                            });*/
+
+                           /* var aliPay = api.require('aliPay');
+                            aliPay.auth({
+                                appId: '2016101100660261',
+                                partner: '2088102179071585',
+                                targetId: '276608857566871553'
+                            }, function(ret) {
+                                alert(JSON.stringify(ret));
+                            });
+*/
 
                             return;
                         }
@@ -294,13 +431,6 @@
                 }
             }
         })
-    }
+   }
 
-    function address(name, phone, address) {
-        document.getElementById('name').innerText = name;
-        document.getElementById('phone').innerText = phone;
-        document.getElementById('address').innerText = address;
-    }
 </script>
-</body>
-</html>

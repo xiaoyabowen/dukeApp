@@ -145,6 +145,7 @@
         tId = api.pageParam.tId
         pId = api.pageParam.pId
         cId = api.pageParam.cId
+        bId = api.pageParam.bId
         url = api.pageParam.url
         uid = localStorage.getItem("person_id");
     };
@@ -305,11 +306,13 @@
         var obj = {
             pId:pId,
             cId:cId,
+            bId:bId,
             grade1:grade1,
             grade2:grade2,
             grade3:grade3,
             content:_keyWordsFiltering,
             pic:picture,
+            adrStatus:4,
         }
         console.log("star:",obj)
         console.log( _keyWordsFiltering)

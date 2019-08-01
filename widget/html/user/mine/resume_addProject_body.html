@@ -130,7 +130,7 @@
             <div class="info-choose maxHeight cssFlex">
                 <span class="info-choose-name">项目起始时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name entry_date" id="pro_begin">2017.02</span>
+                    <span class="info-choose-main-name entry_date" id="pro_begin"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -140,7 +140,7 @@
             <div class="info-choose maxHeight cssFlex" onclick="end_date()">
                 <span class="info-choose-name">项目结束时间</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name end_date" id="pro_up">2017.02</span>
+                    <span class="info-choose-main-name end_date" id="pro_up"></span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -289,14 +289,14 @@
                 msg: '请填写项目描述'
             });
             return
-        }else if(summary == "请输入"){
+        }else if(p_from == ""){
             api.toast({
-                msg: '请填写你的成就'
+                msg: '请填写项目起始时间'
             });
             return
-        }else if(p_url == "请输入"){
+        }else if(p_to == ""){
             api.toast({
-                msg: '请填写你的项目链接'
+                msg: '请填写项目结束时间'
             });
             return
         }

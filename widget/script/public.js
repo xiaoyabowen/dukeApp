@@ -7,7 +7,6 @@ var isCleanUser = false;
 var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.10:8000/SE4M';
 var Domain = 'http://192.168.1.10:8088';
-
 */
 
 
@@ -363,7 +362,7 @@ var UpdateResumeNameUserProfile = serverUrl + "/UserProfile/UpdateResumeName";
 // 千里马  删除简历
 var deleteResumeNameUserProfile = serverUrl + "/UserProfile/deleteResume";
 // 千里马 发送简历至邮箱
-var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail ";
+var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail";
 
 
 

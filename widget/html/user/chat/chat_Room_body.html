@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="sendWord" @click="sendWordClick()" v-show="status == 2">发送简历</div>
-                        <div class="sendWord" @click="sendWordClick()" v-show="status == 1">已发送</div>
+                        <div class="sendWord" v-show="status == 1">已发送</div>
                     </div>
                 </div>
             </div>
@@ -433,6 +433,7 @@
                         ajaxGetWithProgress(sendResume,obj,function (data) {
                             if (data.success){
                                 toast("发送成功")
+                                window.location.reload()
                             } else {
                                 toast("发送失败")
                             }

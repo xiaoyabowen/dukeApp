@@ -73,6 +73,9 @@
         div.isDisplay {
             display: none;
         }
+        .boxSub{
+            padding: 0 !important;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -327,7 +330,7 @@
             // alert(JSON.stringify(data));
             console.log("seeRESume=",data);
             if (data) {
-                document.querySelector('.subBox').classList.remove('isDisplay');
+                document.querySelector('.boxSub').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
                 var projects = data.projects;
                 var education_his = data.education_his;
@@ -427,7 +430,7 @@
                     var pays = Intention[0].pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
-                        pays2.push(value + 'k')
+                        pays2.push(value)
                     })
                     // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');

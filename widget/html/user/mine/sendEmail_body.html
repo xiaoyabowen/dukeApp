@@ -82,13 +82,33 @@
                 methods: {
                     sendEmail : function (){
                         var that = this
-
+                        if (isBlack(that.email)){
+                            toast("请输入邮箱")
+                            return
+                        }else if (!checkEmail(that.email)){
+                            toast("请输入正确的邮箱格式")
+                            return
+                        }
                         var uid = localStorage.getItem("person_id")
                         var obj = {
-                            email : that.email
+                            email : that.email,
+                            resume : filesDocu
                         }
+                        console.log(obj)
                         ajaxGetWithProgress(SendResumeEmailUserProfile,obj,function (data,ret) {
-                            console.log("sendemail",data)
+                            if (data.date){
+                                mui.confirm('发送成功，请前往查看！', '提示',['确认','取消'], function (e) {
+                                    if (!e.index) {
+                                        var frameName = url + "_body";
+                                        api.execScript({
+                                            name:url,
+                                            frameName: frameName
+                                        })
+                                        closeWin();
+                                    }
+                                })
+
+                            }
                         })
                     },
 

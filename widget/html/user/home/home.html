@@ -189,6 +189,23 @@
 <script>
     apiready = function () {
 
+        var ajpush = api.require('ajpush');
+        api.addEventListener({
+            name: 'appintent'
+        }, function(ret, err) {
+            console.log(ret)
+            if (ret && ret.appParam.ajpush) {
+                var ajpush = ret.appParam.ajpush;
+                var id = ajpush.id;
+                var title = ajpush.title;
+                var content = ajpush.content;
+                var extra = ajpush.extra;
+            }
+        })
+
+
+
+
         var wx = api.require('wx');
         wx.isInstalled(function(ret, err) {
             if (ret.installed) {
@@ -242,19 +259,19 @@
         });
 
 
-        // var guide = api.require('guide');
-        // // alert(WelcomePage)
-        // guide.openGuidePage({
-        //     imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
-        //     point_normal:'widget://image/guide/point_normal@2x.png',
-        //     point_select:'widget://image/guide/point_select@2x.png',
-        //     btnColor:'00FFFF',
-        //     btnLabel:'进入应用',
-        //     btnW:120,
-        //     btnH: 33,
-        //     time:'2',
-        //     hideStatusBar:false
-        // });
+        /*var guide = api.require('guide');
+        // alert(WelcomePage)
+        guide.openGuidePage({
+            imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
+            point_normal:'widget://image/guide/point_normal@2x.png',
+            point_select:'widget://image/guide/point_select@2x.png',
+            btnColor:'00FFFF',
+            btnLabel:'进入应用',
+            btnW:120,
+            btnH: 33,
+            time:'2',
+            hideStatusBar:false
+        });*/
     }
 
 

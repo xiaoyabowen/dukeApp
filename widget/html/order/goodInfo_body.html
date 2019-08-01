@@ -290,6 +290,7 @@
                     ajaxGetWithProgress(OrderSummaryCommodityProFile, obj, function (data) {
                         console.log("orderdetail", data)
                         if(data){
+
                             that.shouName = data.adress.name || "未填写"
                             that.shouPhone = data.adress.phone || "未填写"
                             that.shouAdress = data.adress.address + data.adress.addrDetails

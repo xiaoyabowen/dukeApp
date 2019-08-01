@@ -35,13 +35,13 @@
     <div class="line20"></div>
     <!--全部订单-->
     <div class="new" v-show="active == 'all'">
-        <div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
-        <!--<div class="notmy_Concern_main" :class="listall.length == 0 ? 'queDiv notDisplay' : 'isDisplay'">
+        <!--<div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listall.length == 0 ? '' : 'isDisplay'">
             <div class="notImg">
                 <img src="../../image/myfa.png" alt="du" class="notImgMy">
             </div>
             <div class="notMyConText">您没有相关订单！</div>
-        </div>-->
+        </div>
         <div class="comBox" v-for="(item,index) in listall" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
                 <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="comPrice commonTitle">
-                        <i class="priceColorWei">¥399</i>元
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
                 <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
                 <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
-                <!--<span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>-->
+                <!--<span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>-->
             </div>
 
             <!--未支付-->
@@ -124,7 +124,7 @@
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
                 <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
 
             <!--已评价-->
@@ -148,7 +148,13 @@
     </div>
     <!--待支付-->
     <div class="new" v-show="active == 'notpay'">
-        <div :class="listnotpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
+        <!--<div :class="listnotpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listnotpay.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
         <div class="comBox" v-for="(item,index) in listnotpay" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
 
@@ -233,7 +239,7 @@
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
                 <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
 
             <!--已评价-->
@@ -256,7 +262,13 @@
     </div>
     <!--已支付-->
     <div class="new" v-show="active == 'pay'">
-        <div :class="listpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
+        <!--<div :class="listpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listpay.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
         <div class="comBox" v-for="(item,index) in listpay" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
 
@@ -341,7 +353,7 @@
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
                 <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
 
             <!--已评价-->
@@ -365,7 +377,13 @@
     <!--待收货-->
     <div class="new" v-show="active == 'wait'">
 
-        <div :class="listwait.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>
+        <!--<div :class="listwait.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listwait.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
         <div class="comBox" v-for="(item,index) in listwait" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
 
@@ -452,7 +470,7 @@
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
                 <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
 
             <!--已评价-->
@@ -476,12 +494,12 @@
     <!--待评价-->
     <div class="new" v-show="active == 'star'">
         <!--<div :class="liststar.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
-        <!--<div class="notmy_Concern_main" :class="liststar.length == 0 ? 'notmy_Concern_main' : 'isDisplay'">
+        <div  :class="liststar.length == 0 ? '' : 'isDisplay'">
             <div class="notImg">
                 <img src="../../image/myfa.png" alt="du" class="notImgMy">
             </div>
             <div class="notMyConText">您没有相关订单！</div>
-        </div>-->
+        </div>
         <div class="comBox" v-for="(item,index) in liststar" :key="index">
             <div class="comtile" v-show="item.orderStatus == 1">
 
@@ -566,7 +584,7 @@
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
                 <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
-                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId)">立即评价</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
 
             <!--已评价-->
@@ -636,7 +654,9 @@
                 // this.active = Htmlname
                 this.htmlname = Htmlname
                 this.person_id = localStorage.getItem("person_id")
+                this.orderAll('all', 1)
                 if (this.htmlname = 'all'){
+
                     api.addEventListener({
                         name: 'myorder',
                     }, function(ret, err) {
@@ -762,11 +782,12 @@
                     })*/
                 },
                 // 立即评价
-                starOrderClick : function (pId,cId) {
+                starOrderClick : function (pId,cId,bId) {
                     var that = this
                     openNewWindow("orderStar", "comment/orderStar.html",{
                         pId : pId,
                         cId : cId,
+                        bId : bId,
                         url : "myorder"
                     })
                 },

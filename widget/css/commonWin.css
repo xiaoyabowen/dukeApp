@@ -763,4 +763,7 @@ img.info-img-right {
     background:rgba(249,249,249,1);
 }
 
-
+.colorFE{
+    display: block;
+    color: #FE9114 !important;
+}

@@ -322,7 +322,7 @@
 
         </div>
 
-        <div class="Have_a_chat_box">
+        <div class="Have_a_chat_box" @click="HavechatClick()">
             <div class="Have_a_chat">
                 聊一聊
             </div>
@@ -368,6 +368,26 @@
     apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
+
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                closeApp();
+            } else {
+                api.toast({msg: '再按一次退出应用'});
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+
         console.log("user",localStorage.getItem("user"))
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
@@ -861,7 +881,15 @@
                     document.getElementById('subBox').classList.add('isDisplay');
                 },
                 // 更改简历数据
-
+                HavechatClick : function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }else {
+                        openNewWindow("index", "../chat/index_body.html")
+                    }
+                },
             }
         })
     };

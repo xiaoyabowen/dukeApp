@@ -181,7 +181,7 @@
         }, function (data, err) {
             console.log("juese",data)
             if (data.role_type == 1){
-                mui.confirm('切换至我是伯乐', '切换角色',['确认','取消'], function (e) {
+                mui.confirm('切换至我是千里马', '切换角色',['确认','取消'], function (e) {
                     if (!e.index) {
                         openNewWindow("home", "../../user/home/home.html");
                         localStorage.setItem('person_id',data.user_uid);

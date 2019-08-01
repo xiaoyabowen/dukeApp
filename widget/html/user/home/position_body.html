@@ -275,6 +275,27 @@
 
     var job_id, cid, uid, ptoken;
     apiready = function () {
+
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                closeApp();
+            } else {
+                api.toast({msg: '再按一次退出应用'});
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+
+
         job_id = api.pageParam.job_id;
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
@@ -497,8 +518,6 @@
             return;
         }
 
-        toast("功能正在开发中")
-        return;
 
         var token = localStorage.getItem('person_id');
         openNewWindow("chat_Room", "../chat/chat_Room.html", {
