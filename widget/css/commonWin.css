@@ -767,3 +767,8 @@ img.info-img-right {
     display: block;
     color: #FE9114 !important;
 }
+
+
+.nonedisplay{
+    display: none;
+}

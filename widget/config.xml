@@ -28,11 +28,11 @@
         <param name="ios_api_key" value="4091f06d6613a7ecefa0ad420d637212" />
     </feature>
 
-    <!--<feature name="wx">
+    <feature name="wx">
         <param name="urlScheme" value="wxdf5e81cc88d9dc86"/>
         <param name="apiKey" value="wxdf5e81cc88d9dc86"/>
         <param name="apiSecret" value="bebb46abfc0a660288e604067fa02ff6"/>
-    </feature>-->
+    </feature>
     <!--beecloud   支付-->
     <!--<feature name="beecloud">
         <param name="urlScheme" value="wxf1aa465362b4c8f1" />
@@ -40,14 +40,14 @@
         <param name="sandbox" value="false" />
     </feature>-->
     <!--支付寶 支付-->
-    <feature name="aliPay">
+    <!--<feature name="aliPay">
         <param name="urlScheme" value="AliPayA6015404524948" />
-    </feature>
+    </feature>-->
 
     <!--支付寶 支付-->
-    <!--<feature name="aliPayPlus">
+    <feature name="aliPayPlus">
         <param name="urlScheme" value="aliPayPlusA6015404524948" />
-    </feature>-->
+    </feature>
     <feature name="ajpush">
         <param name="app_key" value="29a45b8537d8f51d104ef748" />
         <param name="channel" value="A6015404524948" />

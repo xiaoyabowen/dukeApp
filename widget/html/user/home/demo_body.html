@@ -1,286 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>职位信息</title>
+    <title>demo</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWindow.css"/>
-    <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
-
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mofang.css"/>
     <style>
-        @keyframes zoomOutLeft {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform:rotateY(360deg);
-            }
 
+        .Box {
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
 
-        html,body {
-            background: #ffffff;
-        }
-        .demobiox{
-            width: 7.50rem;
-            height: 10.00rem;
-            position: relative;
-            background: cadetblue;
-            margin: 0 auto;
-        }
-        .subBox {
-            width: 6.30rem;
-            height: 6.20rem;
-            background: linear-gradient(to left top, #5D92FE 50%, transparent 50%);
-            position: absolute;
-            right: 0;
-            bottom: 0;
-        }
-        .person {
-            display: inline-block;
-            position: absolute;
-            bottom: 0.12rem;
-            right: 0.12rem;
-            width: 1.10rem;
-            height: 1.10rem;
-            z-index: 1111;
-        }
-        .borderBoxRote{
-            border: 0 !important;
-            animation: zoomOutLeft 2s;
-        }
-        .xuanbox{
-            width: 1.2rem;
-            height: 1.2rem;
-            position: absolute;
-            transform: rotate(-45deg);
-            border: 1px solid #cccccc;
-            border-radius: 0.1rem;
-        }
-        .daobox{
-            transform: rotate(45deg);
-            width: 1.00rem;
-            height: 1.00rem;
-
-        }
-        /* 菱形方块  样式 */
-        .positionCom {
-            width: 1.00rem;
-            height: 1.00rem;
-            position: absolute;
-            box-sizing: border-box;
-            border: 1px solid #cccccc;
-            border-radius: 0.10rem;
-        }
-
-        .position_one {
-            right: 0.50rem;
-            bottom: 3.50rem;
-            /*transform: rotate(45deg)*/
-        }
-
-        .position_two {
-            right: 1.40rem;
-            bottom: 2.60rem;
-            /*transform: rotate(45deg);*/
-        }
-
-        .position_three {
-            right: 2.30rem;
-            bottom: 1.70rem;
-            /*transform: rotate(45deg);*/
-        }
-
-        .position_four {
-            right: 3.20rem;
-            bottom: 0.80rem;
-            /*transform: rotate(45deg);*/
-        }
-
-        .position_five {
-            right: 0.54rem;
-            bottom: 1.72rem;
-            /*transform: rotate(45deg);*/
-        }
-
-        .position_six {
-            right: 1.40rem;
-            bottom: 0.80rem;
-            /*transform: rotate(45deg);*/
-        }
-
-        .positionCom>img {
-            display: block;
-            padding: 0.00rem 0.28rem 0 0.05rem;
-            transform: rotate(-45deg)
-        }
-
-        .positionCom>div{
-            display: block;
-            width: 1.00rem;
-            height: 1.00rem;
-            text-align: center;
-            color: #333;
-            position: absolute;
-            margin: 0 auto;
-            transform: rotate(-45deg);
-            font-size: 0.12rem;
-        }
-
-        /* 圆形  样式 */
-        .positionCir {
-            width: 0.70rem;
-            height: 0.70rem;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 1);
-            opacity: 0.7;
-            position: absolute;
-        }
-
-        .positionCir>img {
-            display: block;
-            width: 0.28rem;
-            height: 0.30rem;
-            padding: 0.10rem 0.28rem 0 0.10rem;
-            transform: rotate(-45deg)
-        }
-
-        .positionCir>span {
-            display: block;
-            width: 0.92rem;
-            margin-top: -0.04rem;
-            text-align: center;
-            transform: rotate(-45deg);
-            color: #333;
-        }
-
-        .cir_mine {
-            right: 4.30rem;
-            bottom: 0.14rem;
-            transform: rotate(45deg);
-        }
-
-        .cir_return {
-            right: 0.10rem;
-            bottom: 2.80rem;
-            transform: rotate(45deg);
-        }
-
-        .cir_hide {
-            right: 2.40rem;
-            bottom: 0.14rem;
-            transform: rotate(45deg);
-        }
-
-        .iconImg {
-            width: 0.4rem;
-            height: 0.4rem;
-            border-radius: 50%;
-        }
     </style>
 </head>
-<body>
+<body class="commonBg">
+<img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+<div class="magicBox">
 
-<div class="demobiox">
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle">
-    <div class="subBox" v-bind:class="{ active: isHide}">
-        <div class="borderBoxRote" v-bind:class="item.class" v-for="(item, index) in list">
-            <div class="xuanbox" >
-                <div class="daobox">
-                    <img v-bind:src="item.imgIcon" class="iconImg" alt="person">
-                    <div>{{ item.name }}</div>
+    <div class="magicBG cssFlex">
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端前端前端前端</div>
+                </div>
+            </div>
+        </div>
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端</div>
+                </div>
+            </div>
+        </div>
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端</div>
+                </div>
+            </div>
+        </div>
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端</div>
                 </div>
             </div>
         </div>
 
-
-        <!--<div class="cir_mine positionCir">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>我的</span>
-        </div>
-        <div class="cir_return positionCir">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>返回</span>
-        </div>
-        <div class="cir_hide positionCir" @click="togleHide">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>隐藏</span>
-        </div>-->
-
     </div>
+    <div class="magicBG cssFlex">
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端</div>
+                </div>
+            </div>
+        </div>
+        <div class="magicBtn">
+            <div class="magicSubBox">
+                <div class="magicSubBoxMain">
+                    <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                    <div class="magicSize">前端</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Box">
+    <!--智能魔方菜单-->
+
 
 </div>
 
 
-<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
+<!--<script type="text/javascript" src="../../../script/magic.js"></script>-->
 <script src="../../../script/vue.min.js"></script>
-<script src="../../../script/vuex.min.js"></script>
-
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
 
 <script>
-    var app = new Vue({
-        el: '.demobiox',
-        data: {
-            isHide: true,
-            list: [{
-                class: "position_one positionCom",
-                imgIcon: "../../../image/mine/attclight.png",
-                name: "Web前端工程师"
-            },
-                {
-                    class: "position_two positionCom",
-                    imgIcon: "../../../image/mine/attclight.png",
-                    name: "Java开发"
-                },
-                {
-                    class: "position_three positionCom",
-                    imgIcon: "../../../image/mine/attclight.png",
-                    name: "运营经理"
-                },
-                {
-                    class: "position_four positionCom",
-                    imgIcon: "../../../image/mine/attclight.png",
-                    name: "UI设计师"
-                },
 
+    var uid, magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg
+    // 底部的宽度
 
-                {
-                    class: "position_five positionCom",
-                    imgIcon: "../../../image/mine/attclight.png",
-                    name: "美团外卖"
-                },
-                {
-                    class: "position_six positionCom",
-                    imgIcon: "../../../image/mine/attclight.png",
-                    name: "云闪信"
-                }
+    apiready = function () {
 
-            ]
-        },
-        methods: {
-            togle: function (event) {
-                this.isHide = false;
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
 
-            },
-            togleHide: function (event) {
-                this.isHide = true;
-            }
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w-10)*0.23-10;    // 100
+
+        console.log("a01_w", a01_w)
+        console.log("winWidth", winWidth)
+        console.log("bevelLength", bevelLength)
+        console.log("m_d", m_d)
+        magicBox = document.querySelector(".magicBox")
+        magicBtn = document.getElementsByClassName("magicBtn")
+        magicSubBox = document.getElementsByClassName("magicSubBox")
+        iconImg = document.getElementsByClassName("iconImg")
+        magicBox.style.width = bevelLength * 2 + "px"
+        magicBox.style.height = bevelLength + "px"
+        var rightYi = bevelLength
+        magicBox.style.right = '-' + rightYi + "px"
+        // 里面小盒子宽度
+        for (var i =0;i<magicBtn.length ; i++){
+            magicBtn[i].style.width = m_d + "px"
+            magicBtn[i].style.height = m_d + "px"
+        }
+    // 里面小盒子宽度
+        for (var i =0;i<magicSubBox.length ; i++){
+            magicSubBox[i].style.width = m_d + "px"
+            magicSubBox[i].style.height = m_d + "px"
+        }
+// 图片宽度
+        for (var i =0;i<iconImg.length ; i++){
+            iconImg[i].style.width = m_d/2 + "px"
+            iconImg[i].style.height = m_d/2 + "px"
         }
 
-    })
+
+
+        uid = localStorage.getItem("person_id");
+        new Vue({
+            el: '#app1',
+            data: {
+                list: [
+                    {
+                        class: "position_one positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "Web前端工程师"
+                    },
+                    {
+                        class: "position_two positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "Java开发"
+                    },
+                    {
+                        class: "position_three positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "运营经理"
+                    },
+                    {
+                        class: "position_four positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "UI设计师"
+                    },
+
+
+                    {
+                        class: "position_five positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "美团外卖"
+                    },
+                    {
+                        class: "position_six positionCom",
+                        imgIcon: "../../../image/mine/attclight.png",
+                        name: "云闪信"
+                    }
+
+                ]
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+            },
+            methods: {}
+        })
+    };
 
 </script>
 </body>

@@ -545,7 +545,7 @@ span.main-right {
     bottom: 0;
     left: 0;
     padding: 0.2rem 0 0.2rem 0.2rem;
-    z-index: 999;
+    z-index: 989;
 }
 .chatJob,.workJob{
     width:46%;

@@ -3,16 +3,16 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+var serverUrl = "http://192.168.1.5:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.5:8000/SE4M';
+var Domain = 'http://192.168.1.5:8088';
+
+
 /*
-var serverUrl = "http://192.168.1.10:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.10:8000/SE4M';
-var Domain = 'http://192.168.1.10:8088';
-*/
-
-
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
+*/
 
 
 var rootWindowName = "root";
@@ -46,6 +46,28 @@ var quRoleTypeUserProfile = serverUrl + "/Login/quRoleType";
 
 // 切换角色
 var suIdentityLogin = serverUrl + "/Login/suIdentity";
+// 千里马  home 搜索
+var QueryUserSolr = serverUrl + "/UserProfile/QueryUserSolr";
+// 伯乐  home 搜索
+var QueryRecruiteSolr = serverUrl + "/UserProfile/QueryRecruiteSolr";
+// 千里马 历史搜索
+var querySearchHistory = serverUrl + "/UserProfile/querySearchHistory";
+// 千里马 删除历史搜索
+var removeSearchHistory = serverUrl + "/UserProfile/removeSearchHistory";
+
+// 千里马  魔方
+var MenuListQyMenu = serverUrl + "/Menu/MenuListQ";
+// 千里马  点击公司查询该公司下的四个职位和一个随机公司
+var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
+
+
+
+
+
+
+
+// 支付宝  支付  接口
+var payalipayUniform = Domain +'/pay/alipayUniform'
 
 
 
