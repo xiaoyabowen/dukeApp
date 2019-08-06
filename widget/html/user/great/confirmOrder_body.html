@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="commonBg">
 <head>
@@ -7,12 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>确认订单</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <link rel="stylesheet" href="../../../css/greatCommon.css" />
-    <link rel="stylesheet" href="../../../css/mui.min.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css"/>
     <style>
-        .con-title-text{
+        .con-title-text {
             -webkit-line-clamp: 3;
             -moz-line-clamp: 3;
             -o-line-clamp: 3;
@@ -28,7 +27,7 @@
         <div class="con-adr">
             <div class="con-adr-not cssFlex"
                  @click="adressHandle()"
-                 :class="order.adr.addrDetails ? 'isDisplay' : ''">
+                 :class="order.adr == '' ? '' : 'isDisplay'">
                 <div class="con-adr-not-left cssFlex">
                     <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
                     <span>手动添加收货地址</span>
@@ -37,7 +36,7 @@
             </div>
             <div class="con-adr-yes"
                  @click="adressHandle()"
-                 :class="!order.adr.addrDetails ? 'isDisplay' : ''">
+                 :class="order.adr != '' ? '' : 'isDisplay'">
                 <div class="adr-yes-info cssFlex">
                     <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
                     <span class="adr-yes-name" id="name">{{order.adr.name}}</span>
@@ -52,7 +51,34 @@
             <img src="../../../image/great/lan.png" alt="lan" class="lineBot">
         </div>
     </div>
-
+    <div class="boxSub" v-if="active == 'farmProduce'">
+        <div class="con-adr">
+            <div class="con-adr-not cssFlex"
+                 @click="adressHandle()"
+                 :class="order.adr == '' ? '' : 'isDisplay'">
+                <div class="con-adr-not-left cssFlex">
+                    <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
+                    <span>手动添加收货地址</span>
+                </div>
+                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+            </div>
+            <div class="con-adr-yes"
+                 @click="adressHandle()"
+                 :class="order.adr != '' ? '' : 'isDisplay'">
+                <div class="adr-yes-info cssFlex">
+                    <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
+                    <span class="adr-yes-name" id="name">{{order.adr.name}}</span>
+                    <span class="adr-yes-phone" id="phone">{{order.adr.phone}}</span>
+                </div>
+                <div class="adr-yes-adr cssFlex">
+                    <img src="../../../image/great/adr.png" alt="ADR" class="adr-yes-adr">
+                    <span class="ellipsis" id="address">{{order.adr.address}}{{order.adr.addrDetails}}</span>
+                </div>
+                <img src="../../../icon/right.png" alt="right" class="info-adr-right">
+            </div>
+            <img src="../../../image/great/lan.png" alt="lan" class="lineBot">
+        </div>
+    </div>
     <div class="line20" v-if="active == 'facial'">
 
     </div>
@@ -83,10 +109,34 @@
                 </div>
             </div>
 
+            <div class="con-title cssFlex" v-if="active == 'farmProduce'">
+                <img src="../../../image/bigWeigh/confirmImg.png" alt="img" class="con-title-img">
+                <div class="con-title-info">
+                    <div class="con-title-text textOverflow">
+                        {{item.summary}}
+                    </div>
+                    <div class="conmain-price">
+                        ¥{{item.price}}/件
+                    </div>
+                </div>
+            </div>
+
+
             <div class="conmain-subTitle" v-if="active == 'facial'">
                 会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
             </div>
             <div class="conmain-num cssFlex" v-if="active == 'facial'">
+                <span class="conmain-h">购买数量</span>
+                <div class="mui-numbox">
+                    <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
+                    <input class="mui-numbox-input" type="number" v-model="num"/>
+                    <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
+                </div>
+            </div>
+            <div class="conmain-subTitle" v-if="active == 'farmProduce'">
+                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
+            </div>
+            <div class="conmain-num cssFlex" v-if="active == 'farmProduce'">
                 <span class="conmain-h">购买数量</span>
                 <div class="mui-numbox">
                     <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
@@ -106,7 +156,8 @@
                         </div>
                     </div>
                     <div class="con-pay-main-right">
-                        <input type="radio" value="工商" v-model="bank" class="myOrderHaveCheck" id="mode0" name="checkItem">
+                        <input type="radio" value="工商" v-model="bank" class="myOrderHaveCheck" id="mode0"
+                               name="checkItem">
                         <label for="mode0"></label>
                     </div>
                 </div>
@@ -118,7 +169,8 @@
                         </div>
                     </div>
                     <div class="con-pay-main-right">
-                        <input type="radio" value="农业" v-model="bank" class="myOrderHaveCheck" id="mode1" name="checkItem">
+                        <input type="radio" value="农业" v-model="bank" class="myOrderHaveCheck" id="mode1"
+                               name="checkItem">
                         <label for="mode1"></label>
                     </div>
                 </div>
@@ -130,7 +182,8 @@
                         </div>
                     </div>
                     <div class="con-pay-main-right">
-                        <input type="radio" value="微信" v-model="bank" class="myOrderHaveCheck" id="mode2" name="checkItem">
+                        <input type="radio" value="微信" v-model="bank" class="myOrderHaveCheck" id="mode2"
+                               name="checkItem">
                         <label for="mode2"></label>
                     </div>
                 </div>
@@ -142,8 +195,22 @@
                         </div>
                     </div>
                     <div class="con-pay-main-right">
-                        <input type="radio" value="支付宝" v-model="bank" class="myOrderHaveCheck" id="mode3" name="checkItem">
+                        <input type="radio" value="支付宝" v-model="bank" class="myOrderHaveCheck" id="mode3"
+                               name="checkItem">
                         <label for="mode3"></label>
+                    </div>
+                </div>
+                <div class="con-pay-main cssFlex">
+                    <div class="con-pay-main-left  cssFlex">
+                        <img src="../../../image/great/yun.png" alt="gong" class="pay-gong">
+                        <div class="con-pay-main-left-content">
+                            <div class="con-pay-bank-name">银联</div>
+                        </div>
+                    </div>
+                    <div class="con-pay-main-right">
+                        <input type="radio" value="银联" v-model="bank" class="myOrderHaveCheck" id="mode4"
+                               name="checkItem">
+                        <label for="mode4"></label>
                     </div>
                 </div>
             </div>
@@ -153,9 +220,10 @@
     </div>
 
     <div class="con-main-bottom cssFlex">
-        <div class="con-flex-left">
+        <div class="con-flex-left cssFlex">
             <div class="con-margintop" v-if="active == 'facial'">¥{{item.priceh * num}}</div>
             <div class="con-margintop" v-if="active == 'tourism'">¥{{item.price_y * order.num}}</div>
+            <div class="con-margintop" v-if="active == 'farmProduce'">¥{{item.priceh * num}}</div>
             <div>实付款</div>
         </div>
         <div class="con-flex-right" @click="payment()">
@@ -163,7 +231,6 @@
         </div>
     </div>
 </div>
-
 
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -176,203 +243,491 @@
 <script src="../../../script/vue.min.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
 <script>
-
-    apiready = function () {
-
+    var orderInfo,
 
 
-        var orderInfo
-        var app = new Vue({
-            el: '#app',
-            data: {
-                isDefult:false,
-                infoName : "",
-                infoPhone : "",
-                infoAdr : "",
-                mainPrice : "",
-                subMainPrice : "",
-                num: 1,
-                person_id:"",
-                item: '',
-                order: '',
-                bank: '',
-                active: true
-            },
-            created: function () {
-                this.person_id = localStorage.getItem('person_id');
-                this.item = api.pageParam.item;
-                this.order = api.pageParam.order;
-                this.active = api.pageParam.url;
-                console.log(api.pageParam.item);
-                console.log(api.pageParam.order);
-            },
-            mounted: function () {
-                document.getElementById('app').classList.remove('isDisplay');
-            },
-            methods: {
-                // 选择地址
-                adressHandle: function () {
-                    openNewWindow("Adress", "./Adress.html", {
-                        url: 'confirmOrder',
-                        adrStatus: 1
-                    });
+
+        apiready = function () {
+            console.log(api.pageParam.item);
+            console.log(api.pageParam.order);
+            console.log(api.pageParam.order);
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    isDefult: false,
+                    infoName: "",
+                    infoPhone: "",
+                    infoAdr: "",
+                    mainPrice: "",
+                    subMainPrice: "",
+                    num: 1,
+                    person_id: "",
+                    item: {},
+                    order: '',
+                    bank: '',
+                    OrderKey: '',
+                    active: true
                 },
-                // 增加商品
-                numboxAdd: function () {
-                    this.num++
-                    if (this.num > 10) {
-                        this.num = 10
-                    }
-                },
-                // 减少商品
-                numboxlit: function () {
-                    this.num--
-                    if (this.num < 1) {
-                        this.num = 1
-                    }
-                },
-                // 付款
-                payment: function () {
+                created: function () {
+                    this.person_id = localStorage.getItem('person_id');
+                    this.item = api.pageParam.item;
+                    this.order = api.pageParam.order;
+                    this.active = api.pageParam.url;
+                    this.OrderKey = api.pageParam.OrderKey
 
-                    var that = this;
-                    // 商品类型
-                    if (that.active == 'facial') {
-                        var name = document.getElementById('name').innerText;
-                        var phone = document.getElementById('phone').innerText;
-                        var address = document.getElementById('address').innerText;
-                        console.log(name, phone, address);
-                        if (!address) {
-                            mui.confirm('是否添加收获地址','您还未添加收货地址', function (e) {
-                                if (e.index) {
-                                    openNewWindow("addAdress", "./addAdress.html", {
-                                        url: 'confirmOrder',
-                                        adrStatus: 1
-                                    });
-                                }
-                            }, 'div');
-                            return;
+                },
+                mounted: function () {
+                    document.getElementById('app').classList.remove('isDisplay');
+                },
+                methods: {
+                    // 选择地址
+                    adressHandle: function () {
+                        openNewWindow("Adress", "./Adress.html", {
+                            url: 'confirmOrder',
+                            adrStatus: 1
+                        });
+                    },
+                    // 增加商品
+                    numboxAdd: function () {
+                        this.num++
+                        if (this.num > 10) {
+                            this.num = 10
                         }
 
-                        console.log(that.bank)
-                        if (!that.bank) {
-                            mui.toast('请选择支付方式');
-                            return;
-                        } else if (that.bank == '微信') {
-
-                            mui.alert('weixin', '提示', function(e) {
-                                console.log(e)
-                                if (e.index == 0){
-
-                                }
-                            });
-
-                            return;
-                        }else if (that.bank == '支付宝') {
-
-                            api.ajax({
-                                url: 'http://192.168.1.5:8088/pay/alipayUniform',  //url+模块
-                                method: 'GET',
-                                dataType:'text',
-                                timeout: 30,
-                                data:{}
-                            },function(ret, err){
-                                //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                console.log("自己处理订单信息以及签名过程请求:",ret);
-                                var aliPayPlus = api.require('aliPayPlus');
-                                aliPayPlus.payOrder({
-                                    orderInfo:ret,
-                                    sandbox : true
-
-                                }, function(ret, err) {
-                                    console.log(ret)
-                                    var msg = ret.code
-
-                                    if (msg == 9000){
-                                        mui.alert('支付成功', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 8000){
-                                        mui.alert('正在处理中', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 4000){
-                                        mui.alert('订单支付失败', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 5000){
-                                        mui.alert('重复请求', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 6001){
-                                        mui.alert('用户中途取消支付操作', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 6002){
-                                        mui.alert('网络连接出错', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }else if (msg == 6004){
-                                        mui.alert('请查询商户订单的支付状态', '提示', function(e) {
-                                            if (e.index == 0){
-
-                                            }
-                                        });
-                                    }
-                                });
-                            });
-
-                            return;
+                    },
+                    // 减少商品
+                    numboxlit: function () {
+                        this.num--
+                        if (this.num < 1) {
+                            this.num = 1
                         }
+                    },
+                    // 付款
+                    payment: function () {
 
-                        ajaxGetWithProgress(PayOrder, {
-                            pId: that.person_id,
-                            bank: that.bank
-                        }, function (data, err) {
-                            console.log(data);
-                            if (!data.date) {
-                                mui.confirm('是否添加'+ that.bank +'银行卡','您还未添加'+ that.bank +'银行卡', function (e) {
+                        var that = this;
+                        // 商品类型
+                        if (that.active == 'facial') {
+                            var name = document.getElementById('name').innerText;
+                            var phone = document.getElementById('phone').innerText;
+                            var address = document.getElementById('address').innerText;
+                            console.log(name, phone, address);
+                            if (!address) {
+                                mui.confirm('是否添加收获地址', '您还未添加收货地址', function (e) {
                                     if (e.index) {
-                                        openNewWindow("addCards", "./addCards.html", {
+                                        openNewWindow("addAdress", "./addAdress.html", {
                                             url: 'confirmOrder',
-                                            bank: that.bank
+                                            adrStatus: 1
                                         });
                                     }
                                 }, 'div');
                                 return;
                             }
 
+                            console.log(that.bank)
+                            if (!that.bank) {
+                                mui.toast('请选择支付方式');
+                                return;
+                            } else if (that.bank == '微信') {
 
-                        });
+                                mui.alert('weixin', '提示', function (e) {
+                                    console.log(e)
+                                    if (e.index == 0) {
 
-                        return;
+                                    }
+                                });
+
+                                return;
+                            } else if (that.bank == '支付宝') {
+
+                                var obj = {
+                                    cId:that.item.cId,
+                                    pId: that.person_id,
+                                    oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "支付宝",
+                                }
+                                console.log(obj)
+                                api.ajax({
+                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                    method: 'GET',
+                                    dataType: 'text',
+                                    timeout: 30,
+                                    data: {
+                                        values: obj
+                                    }
+                                }, function (ret, err) {
+                                    //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
+                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    var aliPayPlus = api.require('aliPayPlus');
+                                    aliPayPlus.payOrder({
+                                        orderInfo: ret,
+                                        sandbox: true
+
+                                    }, function (ret, err) {
+                                        console.log(ret)
+                                        var msg = ret.code
+
+                                        if (msg == 9000) {
+                                            mui.alert('支付成功', '提示', function (e) {
+                                                if (e.index == 0) {
+                                                    openNewWindow("myorder", "../../order/myorder.html");
+                                                }
+                                            });
+                                        } else if (msg == 8000) {
+                                            mui.alert('正在处理中', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 4000) {
+                                            mui.alert('订单支付失败', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 5000) {
+                                            mui.alert('重复请求', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6001) {
+                                            mui.alert('用户中途取消支付操作', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6002) {
+                                            mui.alert('网络连接出错', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6004) {
+                                            mui.alert('请查询商户订单的支付状态', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+                                return;
+                            }else if (that.bank == '银联') {
+                                var unPay = api.require('unionPay');
+                                var obj = {
+                                    cId :that.item.cId,
+                                    pId: that.person_id,
+                                    oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "银联",
+                                }
+                                api.ajax({
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    method: 'post',
+                                    dataType: 'text',
+                                    returnAll:false,
+                                    timeout: 30,
+                                    data: {
+                                        values: obj
+                                    }
+                                },function(ret,err){
+                                    console.log("yinlian",ret)
+                                    if (ret) {
+                                        unPay.pay({
+                                            tn: ret,
+                                            devMode: true
+                                        }, function(ret, err){
+                                            console.log("pay",ret)
+                                            if (ret.result == "success"){
+                                                mui.alert('支付成功', '提示', function (e) {
+                                                    if (e.index == 0) {
+                                                        openNewWindow("myorder", "../../order/myorder.html");
+                                                    }
+                                                });
+                                            }else if (ret.result == "fail") {
+                                                mui.alert('支付失败', '提示', function (e) {
+                                                    if (e.index == 0) {
+
+                                                    }
+                                                });
+                                            }else if (ret.result == "cancel") {
+                                                mui.alert('用户取消支付', '提示', function (e) {
+                                                    if (e.index == 0) {
+
+                                                    }
+                                                });
+                                            }
+                                            // api.alert({msg:JSON.stringify(ret)});
+                                        });
+                                    }
+                                });
+
+                                return;
+                            }
+
+                            ajaxGetWithProgress(PayOrder, {
+                                pId: that.person_id,
+                                bank: that.bank
+                            }, function (data, err) {
+                                console.log(data);
+                                if (!data.date) {
+                                    mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
+                                        if (e.index) {
+                                            openNewWindow("addCards", "./addCards.html", {
+                                                url: 'confirmOrder',
+                                                bank: that.bank
+                                            });
+                                        }
+                                    }, 'div');
+                                    return;
+                                }
+
+
+                            });
+
+                            return;
+                        }
+                        if (that.active == 'farmProduce') {
+
+
+                            var name = document.getElementById('name').innerText;
+                            var phone = document.getElementById('phone').innerText;
+                            var address = document.getElementById('address').innerText;
+                            console.log(name, phone, address);
+                            if (!address) {
+                                mui.confirm('是否添加收获地址', '您还未添加收货地址', function (e) {
+                                    if (e.index) {
+                                        openNewWindow("addAdress", "./addAdress.html", {
+                                            url: 'confirmOrder',
+                                            adrStatus: 1
+                                        });
+                                    }
+                                }, 'div');
+                                return;
+                            }
+
+                            console.log(that.bank)
+                            if (!that.bank) {
+                                mui.toast('请选择支付方式');
+                                return;
+                            } else if (that.bank == '微信') {
+
+                                mui.alert('weixin', '提示', function (e) {
+                                    console.log(e)
+                                    if (e.index == 0) {
+
+                                    }
+                                });
+
+                                return;
+                            } else if (that.bank == '支付宝') {
+
+                                var obj = {
+                                    cId:that.item.cId,
+                                    pId: that.person_id,
+                                    oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "支付宝",
+                                }
+                                console.log(obj)
+                                api.ajax({
+                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                    method: 'GET',
+                                    dataType: 'text',
+                                    timeout: 30,
+                                    data: {
+                                        values: obj
+                                    }
+                                }, function (ret, err) {
+                                    //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
+                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    var aliPayPlus = api.require('aliPayPlus');
+                                    aliPayPlus.payOrder({
+                                        orderInfo: ret,
+                                        sandbox: true
+
+                                    }, function (ret, err) {
+                                        console.log(ret)
+                                        var msg = ret.code
+
+                                        if (msg == 9000) {
+                                            mui.alert('支付成功', '提示', function (e) {
+                                                if (e.index == 0) {
+                                                    openNewWindow("myorder", "../../order/myorder.html");
+                                                }
+                                            });
+                                        } else if (msg == 8000) {
+                                            mui.alert('正在处理中', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 4000) {
+                                            mui.alert('订单支付失败', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 5000) {
+                                            mui.alert('重复请求', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6001) {
+                                            mui.alert('用户中途取消支付操作', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6002) {
+                                            mui.alert('网络连接出错', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        } else if (msg == 6004) {
+                                            mui.alert('请查询商户订单的支付状态', '提示', function (e) {
+                                                if (e.index == 0) {
+
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+
+                                return;
+                            }else if (that.bank == '银联') {
+                                var unPay = api.require('unionPay');
+                                var obj = {
+                                    cId: that.item.cId,
+                                    pId: that.person_id,
+                                    oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "银联",
+                                }
+
+                                console.log(obj)
+
+
+                                api.ajax({
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    method: 'post',
+                                    dataType: 'text',
+                                    returnAll:false,
+                                    timeout: 30,
+                                    data: {
+                                        values: obj
+                                    }
+                                },function(ret,err){
+                                    console.log("yinlian",ret)
+                                    if (ret) {
+                                        unPay.pay({
+                                            tn: ret,
+                                            devMode: true
+                                        }, function(ret, err){
+                                            console.log("pay",ret)
+                                            if (ret.result == "success"){
+                                                mui.alert('支付成功', '提示', function (e) {
+                                                    if (e.index == 0) {
+                                                        openNewWindow("myorder", "../../order/myorder.html");
+                                                    }
+                                                });
+                                            }else if (ret.result == "fail") {
+                                                mui.alert('支付失败', '提示', function (e) {
+                                                    if (e.index == 0) {
+
+                                                    }
+                                                });
+                                            }else if (ret.result == "cancel") {
+                                                mui.alert('用户取消支付', '提示', function (e) {
+                                                    if (e.index == 0) {
+
+                                                    }
+                                                });
+                                            }
+                                            // api.alert({msg:JSON.stringify(ret)});
+                                        });
+                                    }
+                                });
+
+                                return;
+                            }
+
+                            ajaxGetWithProgress(PayOrder, {
+                                pId: that.person_id,
+                                bank: that.bank
+                            }, function (data, err) {
+                                console.log(data);
+                                if (!data.date) {
+                                    mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
+                                        if (e.index) {
+                                            openNewWindow("addCards", "./addCards.html", {
+                                                url: 'confirmOrder',
+                                                bank: that.bank
+                                            });
+                                        }
+                                    }, 'div');
+                                    return;
+                                }
+
+
+                            });
+
+                            return;
+                        }
+                        // 旅游类型
+                        if (that.active == 'tourism') {
+                            toast("暂未开通")
+                            var price_y = that.order.price;
+                            var num = that.order.num;
+                            var OrderKey = that.order.OrderKey;
+                        }
+
+
                     }
-                    // 旅游类型
-                    if (that.active == 'tourism') {
-                        toast("暂未开通")
-                        var price_y = that.order.price;
-                        var num = that.order.num;
-                        var OrderKey = that.order.OrderKey;
-                    }
-
-
                 }
-            }
-        })
-   }
+            })
+        }
 
+        function address(name,phone,addrDetails,adrId) {
+            console.log(name)
+            console.log(phone)
+            console.log(addrDetails)
+
+            document.querySelector(".con-adr-not").classList.add("isDisplay")
+            document.querySelector(".con-adr-yes").classList.remove("isDisplay")
+
+            document.getElementById('name').innerText = name
+            document.getElementById('phone').innerText = phone
+            document.getElementById('address').innerText = addrDetails
+
+            var str = {
+                adrId : adrId,
+                oId : api.pageParam.OrderKey
+            }
+            console.log(str)
+            ajaxGetWithProgress(updateDeliveryAddress,str,function(res,err) {
+
+            })
+
+        }
 </script>

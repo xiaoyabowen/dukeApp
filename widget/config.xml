@@ -52,5 +52,8 @@
         <param name="app_key" value="29a45b8537d8f51d104ef748" />
         <param name="channel" value="A6015404524948" />
     </feature>
-
+    <!--银联支付-->
+    <feature name="unionPay">
+        <param name="urlScheme" value="unionPayA6015404524948" />
+    </feature>
 </widget>

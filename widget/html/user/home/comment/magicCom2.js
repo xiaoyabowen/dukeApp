@@ -17,24 +17,21 @@ function magicCom2Init(Vue) {
         template: str,
         data: function() {
             return {
+                styles:{
+                    //存放的是 动态修改的样式
+                    width:m_d + "px",// 内容标题总样式
+                    height : m_d + "px",
+                },
                 animate : false,
-
                 magicCom2Img: '',
                 magicCom1Img: '',
                 magicCom2Text: '',
                 magicCom1Text: '',
-
+                magicComCid1 : '',
+                magicComCid2 : '',
 
                 job_id: '',
                 c_id: '',
-                listJob1Img: '',
-                listJob1Text: '',
-                listJob2Img: '',
-                listJob2Text: '',
-                listJob3Img: '',
-                listJob3Text: '',
-                listJob4Img: '',
-                listJob4Text: '',
 
                 listJob: [],
                 index: ''
@@ -67,30 +64,38 @@ function magicCom2Init(Vue) {
                 iconImg[i].style.width = m_d/2 + "px"
                 iconImg[i].style.height = m_d/2 + "px"
             }
-
         },
 
         methods: {
             togle : function() {
-                this.OneCompanyFourJobMenu()
+                var isBlck=document.querySelector('.bgBlack')
+                if(isBlck.getAttribute("class")=='isDisplay'){
+                    document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    console.log(document.querySelector('.bgBlack'))
+                }else {
+                    var that = this;
+                    that.active = 'magicCom2';
+                    document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    this.OneCompanyFourJobMenu()
+                }
+
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
+                that.magicComCid2 = localStorage.getItem("magic_id2")
+                that.magicCom2Text = localStorage.getItem("magic_name2")
+                that.magicCom2Img = localStorage.getItem("magic_img2")
 
-                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :localStorage.getItem("magic_id2")},function (data) {
+                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid2},function (data) {
                     console.log("com2",data)
                     var jobList = data.job
                     if (data) {
-                         that.listJob = jobList
+                        if (jobList == null){
+                            that.listJob = ''
+                        } else{
+                            that.listJob = jobList
+                        }
 
-                        that.listJob1Img = imgSrcFun(data.job[0].icon)
-                        that.listJob1Text = data.job[0].job_name
-                        that.listJob2Img = imgSrcFun(data.job[1].icon)
-                        that.listJob2Text = data.job[1].job_name
-                       /* that.listJob3Img = imgSrcFun(data.job[2].icon)
-                        that.listJob3Text = data.job[2].job_name
-                        that.listJob4Img = imgSrcFun(data.job[3].icon)
-                        that.listJob4Text = data.job[3].job_name*/
 
                         that.magicCom2Img =localStorage.getItem("magic_img2")
                         that.magicCom1Img =data.company[0].logo_icon
@@ -100,32 +105,63 @@ function magicCom2Init(Vue) {
                     }
                 })
             },
-            magicCom1Click: function () {  // 公司1
-                var that = this;
-                localStorage.setItem("magic_id",that.magicComCid1)
-                localStorage.setItem("magic_img",that.magicCom1Img)
-                localStorage.setItem("magic_name",that.magicCom1Text)
-
+            jobDetailClick : function (job_id,job_name){
+                console.log(job_id)
+                console.log(job_name)
                 api.sendEvent({
-                    name: 'com1',
+                    name: 'jobAll',
                     extra: {
-                        key: 'magicCom1',
-                        c_id : that.magicComCid1
+                        key: {
+                            job_id : job_id,
+                            job_name : job_name,
+                        },
                     }
                 });
+
+            },
+            magicCom1Click: function () {  // 公司1
+                var that = this;
+                api.sendEvent({
+                    name: 'comCom1',
+                    extra: {
+                        key: {
+                            c_id: that.magicComCid1,
+                            c_name: that.magicCom1Text,
+                            logo_icon: that.magicCom1Img,
+                            magicCom1: 'magicCom1'
+                        },
+                    }
+                });
+
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                localStorage.setItem("magic_id2",that.magicComCid2)
-                localStorage.setItem("magic_img2",that.magicCom2Img)
-                localStorage.setItem("magic_name2",that.magicCom2Text)
-                api.sendEvent({
-                    name: 'com2',
-                    extra: {
-                        key: 'magicCom2',
-                        c_id : that.magicComCid2
+
+                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
+                    console.log("com1",data)
+                    alert(1)
+                    var jobList = data.job
+                    if (data) {
+                        if (jobList == null){
+                            that.listJob = ''
+                        } else{
+                            that.listJob = jobList
+                        }
+
+                        /*console.log(data.company[1].c_name)
+                        that.magicCom1Img =data.company[1].logo_icon
+                        that.magicComCid1 =data.company[1].c_id
+                        that.magicCom1Text = data.company[1].c_name
+                        api.sendEvent({
+                            name: 'com2',
+                            extra: {
+                                key: 'magicCom2',
+                                c_id : that.magicComCid2
+                            }
+                        });*/
                     }
-                });
+                })
+
             },
         }
     }

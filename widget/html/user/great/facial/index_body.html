@@ -140,6 +140,7 @@
                     imgurl: '',
                     att: false,
                     att_id: '',
+                    comName: '',
                     person_id: '',
                     cid: '1'
                 },
@@ -167,6 +168,7 @@
                                 that.total = data.total;
                                 that.att = data.att;
                                 that.att_id = data.att_id;
+                                that.comName = data.comName;
                                 document.getElementById('great').classList.remove('isDisplay');
                             }
 
@@ -232,12 +234,13 @@
                             pId: that.person_id,
                             cId: that.cid
                         }, function (data, err) {
-                            console.log(data);
-                            if (data.date) {
+                            console.log("creat",data);
+                            if (data) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {
                                     item: that.item,
                                     order: data,
-                                    url: 'facial'
+                                    url: 'facial',
+                                    OrderKey : data.OrderKey
                                 });
                             }else {
                                 toast("请求失败")

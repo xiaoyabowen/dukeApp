@@ -2,7 +2,6 @@ function magicAllInit(Vue) {
     var str = dataValue('user/home/comment/magicAll.html')
 
     apiready = function () {
-
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
@@ -16,12 +15,12 @@ function magicAllInit(Vue) {
         template: str,
         data: function () {
             return {
-                styles:{
+                styles: {
                     //存放的是 动态修改的样式
-                    width:m_d + "px",// 内容标题总样式
-                    height : m_d + "px",
+                    width: m_d + "px",// 内容标题总样式
+                    height: m_d + "px",
                 },
-                animate : false,
+                animate: false,
 
                 magicCom2Img: '',
                 magicCom1Img: '',
@@ -30,16 +29,6 @@ function magicAllInit(Vue) {
                 magicComCid1: '',
                 magicComCid2: '',
 
-
-                job_id: '',
-                listJob1Img: '',
-                listJob1Text: '',
-                listJob2Img: '',
-                listJob2Text: '',
-                listJob3Img: '',
-                listJob3Text: '',
-                listJob4Img: '',
-                listJob4Text: '',
 
                 listJob: [],
                 index: ''
@@ -51,59 +40,22 @@ function magicAllInit(Vue) {
         mounted: function () {
 
 
-
-            this.$nextTick(function () {
-                console.log("111",this.$refs.magicBG)
-                console.log("333",this.$refs)
-            })
-            magicBox = document.querySelector(".magicBox")
-            magicBtn = document.getElementsByClassName("magicBtn")
-            magicSubBox = document.getElementsByClassName("magicSubBox")
-            iconImg = document.getElementsByClassName("iconImg")
-            magicBox.style.width = bevelLength * 2 + "px"
-            magicBox.style.height = bevelLength + "px"
-            var rightYi = bevelLength
-            magicBox.style.right = '-' + rightYi + "px"
-
-            // 里面小盒子宽度
-            for (var i =0;i<magicBtn.length ; i++){
-                magicBtn[i].style.width = m_d + "px"
-                magicBtn[i].style.height = m_d + "px"
-            }
-            // 里面小盒子宽度
-            for (var i =0;i<magicSubBox.length ; i++){
-                magicSubBox[i].style.width = m_d + "px"
-                magicSubBox[i].style.height = m_d + "px"
-            }
-            // 图片宽度
-            for (var i =0;i<iconImg.length ; i++){
-                iconImg[i].style.width = m_d/2 + "px"
-                iconImg[i].style.height = m_d/2 + "px"
-            }
-
         },
 
         methods: {
-            togle : function() {
-                this.MenuListQyMenu()
-            },
+
             MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
                     console.log("magicall", data)
                     var jobList = data.job
+                    console.log(jobList)
                     if (data) {
-                        that.listJob = jobList
-                        that.listJob1Img = imgSrcFun(data.job[0].icon)
-                        that.listJob1Text = data.job[0].job_name
-                        that.listJob2Img = imgSrcFun(data.job[1].icon)
-                        that.listJob2Text = data.job[1].job_name
-                        that.listJob3Img = imgSrcFun(data.job[2].icon)
-                        that.listJob3Text = data.job[2].job_name
-                        that.listJob4Img = imgSrcFun(data.job[3].icon)
-                        that.listJob4Text = data.job[3].job_name
-
-
+                        if (jobList == null) {
+                            that.listJob = ''
+                        } else {
+                            that.listJob = jobList
+                        }
 
 
                         that.magicComCid1 = data.company[0].c_id
@@ -120,30 +72,63 @@ function magicAllInit(Vue) {
                 })
 
             },
-            magicCom1Click: function () {  // 公司1
-                var that = this;
-                localStorage.setItem("magic_id",that.magicComCid1)
-                localStorage.setItem("magic_img",that.magicCom1Img)
-                localStorage.setItem("magic_name",that.magicCom1Text)
-
+            togle: function () {
+                // this.active = true;
+                var isBlck = document.querySelector('.bgBlack')
+                if (isBlck.getAttribute("class") == 'isDisplay') {
+                    document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    console.log(document.querySelector('.bgBlack'))
+                } else {
+                    var that = this;
+                    that.active = 'magicAll';
+                    document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    this.MenuListQyMenu();
+                }
+            },
+            jobDetailClick: function (job_id, job_name) {
+                console.log(job_id)
+                console.log(job_name)
                 api.sendEvent({
-                    name: 'com1',
+                    name: 'jobAll',
                     extra: {
-                        key: 'magicCom1',
-                        c_id : that.magicComCid1
+                        key: {
+                            job_id: job_id,
+                            job_name: job_name,
+                        },
                     }
                 });
+
+            },
+            magicCom1Click: function () {  // 公司1
+                var that = this;
+
+                api.sendEvent({
+                    name: 'comCom1',
+                    extra: {
+                        key: {
+                            c_id: that.magicComCid1,
+                            c_name: that.magicCom1Text,
+                            logo_icon: that.magicCom1Img,
+                            magicCom1: 'magicCom1'
+                        },
+                    }
+                });
+
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                localStorage.setItem("magic_id2",that.magicComCid2)
-                localStorage.setItem("magic_img2",that.magicCom2Img)
-                localStorage.setItem("magic_name2",that.magicCom2Text)
+                console.log(that.magicComCid2)
+
                 api.sendEvent({
-                    name: 'com2',
+                    name: 'comCom2',
                     extra: {
-                        key: 'magicCom2',
-                        c_id : that.magicComCid2
+                        key: {
+                            c_id: that.magicComCid2,
+                            c_name: that.magicCom2Text,
+                            logo_icon: that.magicCom2Img,
+                            magicCom2: 'magicCom2'
+                        },
+
                     }
                 });
             },

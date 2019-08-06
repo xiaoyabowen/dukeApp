@@ -1,0 +1,72 @@
+
+<div class="magicComBox">
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <div class="magicBox">
+
+        <div class="magicBG cssFlex">
+            <!-- <div class="magicBtn" v-for="(item,index) in listJob" :key="index"
+             @click="jobDetailClick(item.job_id,item.job_name)"
+             v-bind:style="styles">
+                 <div class="magicSubBox" v-bind:style="styles">
+                     <div class="magicSubBoxMain">
+                         <img :src="item.icon.split(',')[0]" class="iconImg" alt="person">
+                         <div class="magicSize">{{item.job_name}}</div>
+                     </div>
+                 </div>
+             </div>-->
+            <div class="magicBtn animation" @click="jobDetailClick()">
+                <div class="magicSubBox ">
+                    <div class="magicSubBoxMain">
+                        <img :src="jobImg" class="iconImg" alt="person">
+                        <div class="magicSize">{{jobText}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn" @click="jobDetailClick(job_id2)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="circleImg" class="iconImg" alt="person">
+                        <div class="magicSize">{{circleText}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn" @click="jobDetailClick(job_id3)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="juImg" class="iconImg" alt="person">
+                        <div class="magicSize">{{juText}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magicBtn" @click="jobDetailClick(job_id4)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="activeImg" class="iconImg" alt="person">
+                        <div class="magicSize">{{activeText}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="magicBG cssFlex">
+            <div class="magicBtn" @click="magicCom1Click(magicComCid1,magicCom1Img,magicCom1Text)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="active1Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{active1Text}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn">
+                <div class="magicSubBox" @click="magicCom2Click(magicComCid2)">
+                    <div class="magicSubBoxMain">
+                        <img :src="active2Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{active3Text}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

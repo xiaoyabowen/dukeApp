@@ -3,16 +3,15 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+/*
 var serverUrl = "http://192.168.1.5:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.5:8000/SE4M';
 var Domain = 'http://192.168.1.5:8088';
+*/
 
-
-/*
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-*/
 
 
 var rootWindowName = "root";
@@ -333,6 +332,12 @@ var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
 // 巨划算-面膜详情
 var summary = Domain + "/Mask/summary";
+
+// 巨划算-面膜详情
+var summaryCommodityProFile = Domain + "/CommodityProFile/summary";
+
+
+
 // 巨划算-商品收藏
 var collectComm = Domain + "/CommodityProFile/collectComm";
 // 巨划算-添加银行卡-验证银行卡
@@ -364,8 +369,11 @@ var deliveryShow = Domain + "/delivery/show";
 //  删除地址
 var deliveryDelete = Domain + "/delivery/delete";
 
-//  删除地址
+//  moren地址
 var deliverySetAddr = Domain + "/delivery/setAddr";
+
+//   修改 收货 地址
+var updateDeliveryAddress = Domain + "/reserve/updateDeliveryAddress";
 
 //  聚划算  旅游 提交订单
 var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";

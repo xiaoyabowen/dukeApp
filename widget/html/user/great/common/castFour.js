@@ -36,6 +36,11 @@ function castFourInit(Vue) {
                     }
                 });
             },
+            Peach : function (){
+                openNewWindow("index", "./farmProduce/index.html", {
+                    url: 'index'
+                });
+            },
             togle : function () {
                 toast("切换内容")
                 api.sendEvent({

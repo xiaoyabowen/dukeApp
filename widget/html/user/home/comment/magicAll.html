@@ -5,7 +5,7 @@
 
         <div class="magicBG cssFlex" ref="boxMagic">
             <div class="magicBtn" v-for="(item,index) in listJob" :key="index"
-            @click="jobDetailClick(item.job_id)"
+            @click="jobDetailClick(item.job_id,item.job_name)"
             v-bind:style="styles">
                 <div class="magicSubBox" v-bind:style="styles">
                     <div class="magicSubBoxMain">
@@ -14,6 +14,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!--<div class="magicBtn animation" @click="jobDetailClick(job_id1)">
                 <div class="magicSubBox ">
@@ -50,7 +51,7 @@
             </div>-->
         </div>
         <div class="magicBG cssFlex">
-            <div class="magicBtn" @click="magicCom1Click(magicComCid1,magicCom1Img,magicCom1Text)">
+            <div class="magicBtn" @click="magicCom1Click(magicComCid1)">
                 <div class="magicSubBox">
                     <div class="magicSubBoxMain">
                         <img :src="magicCom1Img" class="iconImg" alt="person">

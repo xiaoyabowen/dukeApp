@@ -1,4 +1,10 @@
-
+.bgBlack{
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0);
+    z-index: 9;
+}
 .magicBox{
     position: fixed;
     /*background: red;*/
@@ -37,7 +43,7 @@
 }
 .person {
     display: inline-block;
-    position: absolute;
+    position: fixed;
     bottom: 0.24rem;
     right: 0.12rem;
     width: 1.10rem;
@@ -77,6 +83,16 @@
     line-height: 0.3rem;
     font-size: 0.28rem;
     color: #333333;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    -o-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
 }
 
 .animation {

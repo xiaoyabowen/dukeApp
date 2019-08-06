@@ -34,7 +34,7 @@
                     </div>
 
                 </div>
-                <div class="adre-adress ellipsis" @click="linkHandle(item.name,item.phone,item.address,item.addrDetails)">
+                <div class="adre-adress ellipsis" @click="linkHandle(item.name,item.phone,item.address,item.addrDetails,item.adrId)">
                     <span class="adinfo-defult"  v-if="item.adrStatus == 1">默认</span>
                     <span  v-if="item.adrStatus == 0"></span>
                     {{item.address}}{{item.addrDetails}}
@@ -117,7 +117,7 @@
             },
             methods:{
                 // 选择收货地址
-                linkHandle: function (name, phone, address, addrDetails) {
+                linkHandle: function (name, phone, address, addrDetails,adrId) {
                     var url = api.pageParam.url
                     var frameName = url + "_body";
                     if (url == 'confirmOrder') {
@@ -125,7 +125,7 @@
                         api.execScript({
                             name:url,
                             frameName: frameName,
-                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+')'
+                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+','+JSON.stringify(adrId)+')'
                         })
                         closeWin();
                         return;
@@ -158,7 +158,8 @@
                     console.log(index)
 
                     mui.confirm('是否删除此地址吗?', function (e) {
-                        if (!e.index) {
+                        if (e.index == 1) {
+
                             var str = {
                                 adrId:index,
                             }

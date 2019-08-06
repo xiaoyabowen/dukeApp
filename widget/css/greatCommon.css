@@ -1040,7 +1040,7 @@ img.adinfo-dele {
     display: block;
     width: 0.4rem;
     height: 0.4rem;
-    z-index:1111;
+    z-index:11;
     position: absolute;
     right: 0;
     top: 0;
@@ -1352,7 +1352,10 @@ img.pay-gong {
     width: 100%;
     align-items: center;
 }
-
+.con-flex-left{
+    justify-content: center;
+    align-items: center;
+}
 .con-flex-left,.con-flex-right {
     width: 50%;
     text-align: center;
@@ -1365,7 +1368,7 @@ img.pay-gong {
     line-height: 0.5rem;
 }
 .con-margintop{
-    margin-top: 0.2rem;
+    /*margin-top: 0.2rem;*/
 }
 .con-flex-right{
     background:rgba(255,163,0,1);
@@ -1664,4 +1667,7 @@ textarea.textareaType {
     margin: 0.3rem auto 0.7rem;
 }
 
-
+.peachTitle{
+    padding: 0 0.3rem;
+    margin-top: 0.16rem;
+}

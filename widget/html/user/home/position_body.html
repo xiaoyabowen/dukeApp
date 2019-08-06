@@ -126,6 +126,8 @@
 <!--</div>-->
 
 <div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <keep-alive>
         <component :is="active"></component>
     </keep-alive>
@@ -284,14 +286,12 @@
     // card_el.style.height=csreen_height-80+"px";
     // console.log("card", card_el);
     // console.log("card height: "+card_el.style.height);
-
     var job_id, cid, uid, ptoken,s_id,h_type,ms_type,search,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
     apiready = function () {
 
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
         var magicCom2 = magicCom2Init(Vue);
-
 
         Vue.component('magicAll', magicAll);
         Vue.component('magicCom1', magicCom1);
@@ -306,12 +306,6 @@
         bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
         // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w-10)*0.23-10;    // 100
-
-
-
-
-
-
 
         api.addEventListener({
             name: 'keyback'
@@ -343,7 +337,7 @@
         if (job_id){
             console.log("biedeyemian",job_id)
             positionDe(job_id,h_type,ms_type,search)
-            return;
+            // return;
         }
         if (!uidUser){
             ajaxGetWithProgress(JobId, '', function (data, err) {
@@ -483,27 +477,41 @@
                 active:'magicAll'
             },
             created: function () {
+
                 this.queryListRandom()
                 this.togle()
             },
+
             mounted :  function (){
                 var that = this
-
                 api.addEventListener({
-                    name: 'com1',
+                    name: 'comCom1',
                 }, function(ret, err) {
                     console.log("ret",ret);
-                    that.active = 'magicCom1';
+                    that.active = ret.value.key.magicCom1;
+                    localStorage.setItem("magic_id",ret.value.key.c_id)
+                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)
                 });
                 api.addEventListener({
-                    name: 'com2',
+                    name: 'comCom2',
                 }, function(ret, err) {
                     console.log("ret",ret);
-                    that.active = 'magicCom2';
+                    that.active = ret.value.key.magicCom2;
+                    localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)
                 });
-
+                api.addEventListener({
+                    name: 'jobAll',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    console.log("job_id",ret.value.key.job_id)
+                    positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                });
 
                 magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
                 magicBtn = document.getElementsByClassName("magicBtn")
                 magicSubBox = document.getElementsByClassName("magicSubBox")
                 iconImg = document.getElementsByClassName("iconImg")
@@ -511,6 +519,8 @@
                 magicBox.style.height = bevelLength + "px"
                 var rightYi = bevelLength
                 magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width =winWidth + "px"
+                bgBlack.style.height =winHeight + "px"
                 // 里面小盒子宽度
                 for (var i =0;i<magicBtn.length ; i++){
                     magicBtn[i].style.width = m_d + "px"
@@ -531,43 +541,77 @@
 
             },
             methods: {
-                queryListRandom: function () {
-                    var that = this;
-                    ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
-                        console.log(data);
-
-                        that.list = data.job;
-                        that.list1 = data.company;
-                        // console.log(that.list)
-                        document.getElementById('app1').classList.remove('isDisplay');
-                    });
-                },
+                // queryListRandom: function () {
+                //     var that = this;
+                //     ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
+                //         console.log(data);
+                //         that.list = data.job;
+                //         that.list1 = data.company;
+                //         // console.log(that.list)
+                //         document.getElementById('app1').classList.remove('isDisplay');
+                //     });
+                // },
                 togle: function () {
-                    document.getElementById('subBox').classList.remove('isDisplay');
-                    console.log(123)
-                    this.active = true;
-                    var that = this;
-                    this.queryListRandom();
-                    setTimeout(function () {
-                        that.active = false;
-                    }, 1500)
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        this.MenuListQyMenu();
+                    }
                 },
-                detailClick: function (index,job_id,item,search) {
-                    this.index1 = index;
-                    this.index2 = -1;
-                    console.log("job_id",job_id)
-                    positionDe(job_id,h_type,'1',search)
-                },
-                detailClick2: function (index,c_id) {
-                    this.index2 = index;
-                    this.index1 = -1;
-                    console.log(c_id)
-                    openNewWindow("companyInfo", "../home/companyInfo.html", {
-                        cid: c_id
-                    });
-                },
-                hideHandle: function () {
-                    document.getElementById('subBox').classList.add('isDisplay');
+                // togle: function () {
+                //     // alert(2)
+                //     // this.active = true;
+                //     var isBlck=document.querySelector('.bgBlack')
+                //     if(isBlck.getAttribute("class")=='isDisplay'){
+                //         document.querySelector('.bgBlack').classList.remove('isDisplay');
+                //         console.log(document.querySelector('.bgBlack'))
+                //      }else {
+                //         var that = this;
+                //         that.active = 'magicAll';
+                //         document.querySelector('.bgBlack').classList.remove('isDisplay');
+                //         this.queryListRandom();
+                //     }
+                //
+                //
+                //
+                //
+                //     /*setTimeout(function () {
+                //         that.active = false;
+                //     }, 1500)*/
+                // },
+                // detailClick: function (index,job_id,item,search) {
+                //     this.index1 = index;
+                //     this.index2 = -1;
+                //     console.log("job_id",job_id)
+                //     positionDe(job_id,h_type,'1',search)
+                // },
+                // detailClick2: function (index,c_id) {
+                //     this.index2 = index;
+                //     this.index1 = -1;
+                //     console.log(c_id)
+                //     openNewWindow("companyInfo", "../home/companyInfo.html", {
+                //         cid: c_id
+                //     });
+                // },
+                // jobDetailClick : function (job_id,job_name){
+                //     console.log(job_id)
+                //     console.log(job_name)
+                //
+                //     positionDe(job_id,'1','1',job_name)
+                // },
+                // hideHandle: function () {
+                //     document.getElementById('subBox').classList.add('isDisplay');
+                // },
+                hideBg : function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
                 }
 
             }
