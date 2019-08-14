@@ -90,7 +90,10 @@
                     <img src="../../../image/mine/evaluate2x.png" alt="jianli" class="img-four">
                     <p>待评价</p>
                 </li>
-
+                <li onclick="historySee()">
+                    <img src="../../../image/mine/historySee.png" alt="jianli" class="img-four">
+                    <p>我的足迹</p>
+                </li>
             </ul>
         </div>
         <div class="F9Line"></div>
@@ -289,6 +292,11 @@
         function starOrder() {
             openNewWindow("myorder", "../../order/myorder.html",{
                 activeName: 'star'
+            });
+        }
+        function historySee() {
+            openNewWindow("historyOrder", "../../order/historyOrder.html",{
+                activeName: 'historyOrder'
             });
         }
 

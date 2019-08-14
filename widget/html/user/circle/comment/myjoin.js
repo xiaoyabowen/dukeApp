@@ -42,6 +42,7 @@ function myjoinInit(Vue) {
                 console.log(circle_id);
                 openNewWindow("details_activities", "./details_activities.html", {
                     circle_id: circle_id,
+                    url: "myActives",
                 })
             },
             // 查看电子票

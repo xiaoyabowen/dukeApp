@@ -23,7 +23,7 @@ function contactsInit(Vue) {
                 console.log(123,list)
                 if (list) {
                     that.list = JSON.parse(list);
-                    ajaxGet(queryChatList, {}, function (data, err) {
+                    ajaxGet(queryChatListB, {}, function (data, err) {
                         console.log(data);
                         if (data.ChatList) {
                             that.list = data.ChatList;
@@ -33,7 +33,7 @@ function contactsInit(Vue) {
                     return;
                 }
 
-                ajaxGetWithProgress(queryChatList, {}, function (data, err) {
+                ajaxGetWithProgress(queryChatListB, {}, function (data, err) {
                     console.log(data);
                     if (data.ChatList) {
                         that.list = data.ChatList;
@@ -42,11 +42,15 @@ function contactsInit(Vue) {
                 })
             },
             // 跳转到聊一聊
-            linkHandle: function (token, ptoken, t_key) {
+            linkHandle: function (token, ptoken, t_key,job_id,pid_accept,pid_name,pid_icon) {
                 openNewWindow("chat_Room", "./chat_Room.html", {
                     token: token,
                     ptoken: ptoken,
                     t_key: t_key,
+                    job_id: job_id,
+                    pid_accept: pid_accept,
+                    pid_name: pid_name,
+                    pid_icon: pid_icon,
                 });
             },
         }

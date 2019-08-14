@@ -176,7 +176,7 @@ function ajax(url,params,callback,endFunction){
    //alert(url);
     api.ajax({
         url: url,
-        method: 'post',
+        method: 'get',
         timeout: 120,
         dataType: 'json',
         data: {

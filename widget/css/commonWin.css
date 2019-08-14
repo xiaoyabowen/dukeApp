@@ -390,16 +390,17 @@ textarea{
 
 /*发送邮箱*/
 .workCard{
-    height: 0.82rem;
-    background: rgba(255,255,255,1);
-    box-shadow: 0px 0px 0.15rem 0px rgba(0,0,0,0.27);
-    border-radius: 0.06rem;
-    padding: 0.34rem 0 0.34rem 0.3rem;
+    height: 1.5rem !important;
+    background: rgba(255,255,255,1) !important;
+    box-shadow: 0px 0px 0.15rem 0px rgba(0,0,0,0.27) !important;
+    border-radius: 0.06rem !important;
+    padding: 0.34rem 0 0.34rem 0.3rem !important;
 }
 img.workImgChange {
     display: inline-block;
     width: 0.66rem;
     margin-right: 0.2rem;
+    height: 0.82rem !important;
 }
 p.workname {
     height: 0.4rem;
@@ -533,7 +534,7 @@ div.isDisplay {
     right: 0.12rem;
     width: 1.10rem;
     height: 1.10rem;
-    z-index: 1111;
+    z-index: 99;
 }
 
 .animation {

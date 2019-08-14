@@ -36,11 +36,13 @@ function myreleaseInit(Vue) {
                 });
             },
             // 点击跳转到活动详情页
-            linkHandle: function (circle_id) {
-                console.log(circle_id);
+            linkHandle: function (circle_id,cir_status) {
+                console.log(cir_status);
                 openNewWindow("details_activities", "./details_activities.html", {
                     circle_id: circle_id,
+                    cir_status: cir_status,
                     edit: true,
+                    url: "myActives",
                 })
             },
 

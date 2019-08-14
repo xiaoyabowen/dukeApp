@@ -9,7 +9,7 @@
     <title>首页</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <!--<link rel="stylesheet" href="../../../css/commonWindow.css"/>-->
+    <link rel="stylesheet" href="../../../css/mofang.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
@@ -98,13 +98,14 @@
             -ms-transform: translateX(-50%);
             -o-transform: translateX(-50%);
             transform: translateX(-50%);
-            z-index: 10000;
+            z-index: 88;
         }
 
     </style>
 </head>
 <body>
 <!--智能魔方菜单-->
+<!--
 <div id="app1" class="demobiox home isDisplay">
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
@@ -136,17 +137,28 @@
         </div>
 
 
-        <!--<div class="cir_return positionCir" @click="hideHandle()">-->
-            <!--<img src="../../../icon/hidden2x.png" class="iconImg" alt="person">-->
-            <!--<span>隐藏</span>-->
-        <!--</div>-->
-        <!--<div class="cir_hide positionCir" @click="closeWin()">-->
-            <!--<img src="../../../icon/break2x.png" class="iconImg" alt="person">-->
-            <!--<span>返回</span>-->
-        <!--</div>-->
+        &lt;!&ndash;<div class="cir_return positionCir" @click="hideHandle()">&ndash;&gt;
+            &lt;!&ndash;<img src="../../../icon/hidden2x.png" class="iconImg" alt="person">&ndash;&gt;
+            &lt;!&ndash;<span>隐藏</span>&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
+        &lt;!&ndash;<div class="cir_hide positionCir" @click="closeWin()">&ndash;&gt;
+            &lt;!&ndash;<img src="../../../icon/break2x.png" class="iconImg" alt="person">&ndash;&gt;
+            &lt;!&ndash;<span>返回</span>&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
 
     </div>
 </div>
+-->
+
+<div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <keep-alive>
+        <component :is="active"></component>
+    </keep-alive>
+</div>
+
+
 
 <div id="topbar" class="display">
     <div class="headerBoxbg cssFlex">
@@ -335,16 +347,18 @@
 </body>
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
 <script src="../../../script/mui.min.js"></script>
-
+<script src="common/magicComAll.js"></script>
+<script src="common/magicPosition.js"></script>
+<script src="common/magicComPosiAll.js"></script>
+<script src="common/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
@@ -363,7 +377,7 @@
         $(".modal-space").hide()
     }
 
-    var person_summary;
+    var person_summary,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
 
     apiready = function () {
         var header = $api.dom('#topbar');
@@ -376,6 +390,113 @@
         });
         var backButtonPress = 0;
 
+        var magicComAll = magicComAllInit(Vue);
+        Vue.component('magicComAll', magicComAll);
+        var magicPosition = magicPositionInit(Vue);
+        Vue.component('magicPosition', magicPosition);
+        var magicComPosiAll = magicComPosiAllInit(Vue);
+        Vue.component('magicComPosiAll', magicComPosiAll);
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w-10)*0.23-10;    // 100
+
+        new Vue({
+            el: '#app1',
+            data: {
+                active:'magicComAll',
+
+                // listJob:[]
+            },
+            created: function () {
+                this.SmartMenu()
+                this.togle()
+            },
+            mounted : function (){
+                var that = this
+                api.addEventListener({
+                    name: 'positionAll',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = ret.value.key.magicPosition;
+
+                });
+                api.addEventListener({
+                    name: 'jobPosiAll',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = ret.value.key.magicComPosiAll;
+
+                });
+
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width =winWidth + "px"
+                bgBlack.style.height =winHeight + "px"
+                // 里面小盒子宽度
+                for (var i =0;i<magicBtn.length ; i++){
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i =0;i<magicSubBox.length ; i++){
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i =0;i<iconImg.length ; i++){
+                    iconImg[i].style.width = m_d/2 + "px"
+                    iconImg[i].style.height = m_d/2 + "px"
+                }
+
+            },
+            methods: {
+
+                togle: function () {
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicComAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    }
+                },
+
+                // 更改简历数据
+                HavechatClick : function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }else {
+                        openNewWindow("index", "../chat/index_body.html")
+                    }
+                },
+
+                hideBg : function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
+                }
+            }
+        })
+
+
         function closeOnKeyBack() {
             backButtonPress++;
             if (backButtonPress > 1) {
@@ -387,6 +508,8 @@
                 backButtonPress = 0;
             }, 1000);
         }
+
+
 
         console.log("user",localStorage.getItem("user"))
         // 获取用户简历全部信息
@@ -603,295 +726,7 @@
             })(mui);
         });
 
-        new Vue({
-            el: '#app1',
-            data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
-            },
-            created: function () {
-                this.SmartMenu()
-            },
-            methods: {
-                SmartMenu: function () {
-                    var that = this;
-                    var obj = {
-                        person_id : localStorage.getItem("person_id")
-                    }
-                    ajaxGet(SmartMenu, {}, function(data,err){
-                        console.log(data);
-                        document.getElementById('app1').classList.remove('isDisplay');
-                        that.list = data.PersonList;
-                        that.list1 = data.JobListByUidRomden;
-                        // console.log("thatlist-",that.list)
-                        // console.log(that.list1)
-                    });
-                },
-                togle: function () {
-                    document.getElementById('subBox').classList.remove('isDisplay');
-                    this.active = true;
-                    var that = this;
-                    that.SmartMenu();
-                    setTimeout(function () {
-                        that.active = false;
-                    }, 1500)
-                },
-                detailClick: function (index,id) {
-                    this.index1 = index;
-                    this.index2 = -1;
-                    console.log(id)
-                    ajaxGetWithProgress(QueryPerson, {
-                        person_id: id
-                    }, function (data, err) {
-                        // alert(JSON.stringify(data));
-                        // console.log(data);
-                        if (data) {
-                            document.querySelector('.box').classList.remove('isDisplay');
-                            var person_summary = data.person_summary;
-                            var projects = data.projects;
-                            var education_his = data.education_his;
-                            var working_his = data.working_his;
-                            var Intention = data.Intention;
 
-                            // 电话 邮箱
-                            if (person_summary) {
-                                person_summary = person_summary;
-                            }
-
-                            // 姓名
-                            if (person_summary.p_name || person_summary.p_name != 'undefined') {
-                                document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
-                            }
-                            // 公司名称 // 职位
-                            if (working_his) {
-                                var obj = working_his[0];
-                                document.getElementById('company').innerText = obj.com_name;
-                                document.getElementById('company_type').innerText = obj.position_type;
-                            } else {
-                                document.getElementById('company').innerText = '未填写';
-                                document.getElementById('company_type').innerText = '未填写';
-                            }
-                            // 工作年限
-                            if (person_summary.job_from_time) {
-                                var workingAge = ages(person_summary.job_from_time);
-                                document.getElementById('working').innerText = workingAge;
-                            } else {
-                                document.getElementById('working').innerText = 0
-                            }
-                            // 学历
-                            if (education_his) {
-                                var obj = education_his[0];
-                                document.getElementById('degree').innerText = obj.degree;
-                            } else {
-                                document.getElementById('degree').innerText = '未填写'
-                            }
-                            // 年龄
-                            if (person_summary.b_birthday) {
-                                var age = ages(person_summary.b_birthday);
-                                document.getElementById('age').innerText = age;
-                            } else {
-                                document.getElementById('age').innerText = 0
-                            }
-
-                            // 时间转换
-                            function ages(str) {
-                                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-                                if (r == null) return false;
-                                var d = new Date(r[1], r[3] - 1, r[4]);
-                                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
-                                    var Y = new Date().getFullYear();
-                                    // return ("年龄   =   " + (Y - r[1]) + "   周岁");
-                                    return (Y - r[1]);
-                                }
-                                return ("输入的日期格式错误！");
-                            }
-
-                            // 自我介绍
-                            if (person_summary.p_tags) {
-                                document.getElementById('p_tags').innerText = person_summary.p_tags;
-                            } else {
-                                document.getElementById('p_tags').innerText = "未填写";
-                            }
-                            // 综合能力
-                            if (person_summary.p_title) {
-                                var tags = document.getElementById('p_title');
-                                var list = person_summary.p_title.split(',');
-                                var arr = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    var str = '<span>' + list[i] + '</span>';
-                                    arr.push(str);
-                                }
-                                tags.innerHTML = arr.join('');
-                            }
-                            // // 求职状态
-                            if (Intention) {
-                                var statusObj = {
-                                    '1': '离职-随时到岗',
-                                    '2': '在职-月内到岗',
-                                    '3': '在职-考虑机会',
-                                    '4': '在职-暂不考虑',
-                                }
-                                document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                            }
-                            // 求职期望
-                            if (Intention) {
-                                document.getElementById('work_name').innerText = Intention[0].work_name;
-                                document.getElementById('int_city').innerText = Intention[0].int_city;
-                                document.getElementById('work').innerText = Intention[0].work;
-                                var pays = Intention[0].pay.split('.');
-                                var pays2 = []
-                                pays.forEach(function (value) {
-                                    pays2.push(value + 'k')
-                                })
-                                // console.log(pays2);
-                                document.getElementById('pay').innerText = pays2.join('-');
-                            }
-                            // 工作经历
-                            if (working_his) {
-                                var workings = document.getElementById('workings');
-                                var arr = [];
-                                for (var i = 0; i < working_his.length; i++) {
-                                    var str = '<div class="see-comlibox">\n' +
-                                        '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                                        '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                                        '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                                        '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                                        '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
-                                        '\n' +
-                                        '                                            </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(workings)
-                                workings.innerHTML = dom;
-                            }
-                            // 教育经历
-                            if (education_his) {
-                                var educations = document.getElementById('educations');
-                                var arr = [];
-
-                                for (var i = 0; i < education_his.length; i++) {
-                                    var str = '<div class="see-education cssFlex">\n' +
-                                        '                                               <div class="education-left">\n' +
-                                        '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                                        '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                                        '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
-                                        '                                               </div>\n' +
-                                        '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(educations)
-                                educations.innerHTML = dom;
-                            }
-
-
-                            if (projects != null) {
-
-                                var project = document.getElementById('project');
-                                var arr = [];
-
-                                for (var i = 0; i < projects.length; i++) {
-                                    var str = '<div class="see-product-box">\n' +
-                                        '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
-                                        '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
-                                        '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(project)
-                                project.innerHTML = dom;
-                            }
-
-                        }
-
-                        // 联系方式 和 图片作品
-                        mui.init({
-                            swipeBack: false
-                        });
-                        (function ($) {
-                            $('.mui-scroll-wrapper').scroll({
-                                indicators: true //是否显示滚动条
-                            });
-                            var phone, email;
-                            phone = person_summary.phone_m || '未填写';
-                            email = person_summary.email || '未填写';
-
-
-                            var html3 = ' <div class="see-xian-img cssFlex">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                </div>';
-
-                            var item3 = document.getElementById('item3mobile');
-                            document.getElementById('slider').addEventListener('slide', function (e) {
-                                if (e.detail.slideNumber === 1) {
-                                    if (item3.querySelector('.mui-loading')) {
-                                        setTimeout(function () {
-                                            item3.querySelector('.mui-scroll').innerHTML = html3;
-                                        }, 500);
-                                    }
-                                }
-                            });
-                            var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-                            $('.mui-input-group').on('change', 'input', function () {
-                                if (this.checked) {
-                                    sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-                                    //force repaint
-                                    sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-                                }
-                            });
-                        })(mui);
-                    });
-                },
-                detailClick2: function (index,id) {
-                    this.index2 = index;
-                    this.index1 = -1;
-                    var that = this;
-                    console.log(id)
-                    if (!that.active) {
-                        this.active = true;
-                        ajaxGet(queryPersonList, {}, function(data,err){
-                            console.log(data);
-                            that.list = data.queryPersonList;
-                            // console.log(that.list)
-                            // console.log(that.list1)
-                            setTimeout(function () {
-                                that.active = false;
-                            }, 1500)
-                        });
-                    }
-                },
-                hideHandle: function () {
-                    document.getElementById('subBox').classList.add('isDisplay');
-                },
-                // 更改简历数据
-                HavechatClick : function () {
-                    var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
-                        openNewWindow("login", "../../login/login.html");
-                        return;
-                    }else {
-                        openNewWindow("index", "../chat/index_body.html")
-                    }
-                },
-            }
-        })
     };
 
     // mui.init({

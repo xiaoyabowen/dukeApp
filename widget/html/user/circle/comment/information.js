@@ -1,6 +1,11 @@
 function informationInit(Vue) {
 
     var str = dataValue('user/circle/comment/information.html')
+
+    apiready = function () {
+        content = api.pageParam.content
+    }
+
     return {
         template: str,
         data: function () {
@@ -9,6 +14,8 @@ function informationInit(Vue) {
                     background: '',
                     backgroundSize: 'cover'
                 },
+                circle_id :'',
+                person_id :'',
                 img: '',
                 title: '',
                 name: '',
@@ -18,12 +25,18 @@ function informationInit(Vue) {
                 time_to: '',
                 num: '',
                 end: '',
-                poster: ''
+                poster: '',
+                content : '',
+                item : ''
             }
         },
         created: function () {
             this.person_id = localStorage.getItem('person_id');
-
+            this.content = api.pageParam.content
+            this.circle_id = api.pageParam.circle_id
+            if (this.content = "edit"){
+                this.CircleProfileAllinOne()
+            }
         },
         mounted: function () {
             var that = this
@@ -43,6 +56,34 @@ function informationInit(Vue) {
 
         },
         methods: {
+            // 获取数据
+            CircleProfileAllinOne: function () {
+                var that = this;
+                // console.log(123)
+                ajaxGetWithProgress(CircleProfileAllinOne, {
+                    person_id: that.person_id,
+                    circle_id: that.circle_id
+                }, function (data, err) {
+                    console.log("CircleProfileAllinOne", data);
+                    // alert(data);
+                    if (data.circle_summary) {
+                        that.item = data.circle_summary;
+
+                        that.img = that.item.poster;
+                        that.title = that.item.title;
+                        that.name = that.item.p_name;
+                        that.phone = that.item.phone;
+                        that.time_from = that.item.c_from;
+                        that.time_to = that.item.c_to;
+                        that.num = that.item.number;
+                        that.end = that.item.endtime;
+
+                        document.querySelector(".addressInput").value = that.item.shortname
+                        // that.queryApplyList();
+                        // that.queryCommentSummary();
+                    }
+                });
+            },
             // 上传图片
             upImg: function () {
 
@@ -77,7 +118,7 @@ function informationInit(Vue) {
                         }
                         api.ajax({
                             // report : false,
-                            url: UploadFlieTest,
+                            url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
                             //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                             method: 'post',
                             cache: 'false',
@@ -93,7 +134,7 @@ function informationInit(Vue) {
                             }
                         }, function (data, err) {
 
-                            console.log(data);
+                            console.log("data",data);
                             if (data.code == 0) {
                                 that.poster = data.date.src.split(',')[0];
                             }
@@ -158,7 +199,7 @@ function informationInit(Vue) {
 
             },
             activeAdr : function () {
-                openNewWindow("gaomap", "../../company/map/gaomap.html", {
+                openNewWindow("gaomapActive", "../../company/map/gaomapActive.html", {
                     url: 'publishing_activities',
                 })
 

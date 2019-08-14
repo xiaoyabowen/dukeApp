@@ -150,21 +150,13 @@
                     item: {},
                     list: [],
                     len: 1,
-                    total: 0,
+                    total: '0',
                     evalist: [],
                     evalist1: [],
                     evalist2: [],
                     evalist3: [],
                     imgsBanner : [
-                        /*{
-                            imgSrc : '../../../../image/bigWeigh/peaBan1.png'
-                        },
-                        {
-                            imgSrc : '../../../../image/bigWeigh/peaBan2.png'
-                        },
-                        {
-                            imgSrc : '../../../../image/bigWeigh/peaBan3.png'
-                        },*/
+
                     ],
                     imgsDetail: [
                         {
@@ -186,7 +178,7 @@
                     att_id: '',
                     comName: '',
                     person_id: '',
-                    cid: '1'
+                    cid: ''
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
@@ -216,12 +208,13 @@
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgsBanner = data.intpic;
-                                /*that.imgurl = that.item.placard.split(',')[0];
-                                that.imgs = data.Commodity.intpic.split(',');
+                                that.cid = data.Commodity.cId;
+                                // that.imgurl = that.item.placard.split(',')[0];
+                                // that.imgs = data.Commodity.intpic.split(',');
                                 that.total = data.total;
-                                that.att = data.att;
-                                that.att_id = data.att_id;
-                                that.comName = data.comName;*/
+                                // that.att = data.att;
+                                // that.att_id = data.att_id;
+                                // that.comName = data.comName;
                                 document.getElementById('great').classList.remove('isDisplay');
                             }
 
@@ -283,10 +276,12 @@
                             return;
                         }
                         var that = this;
-                        ajaxGetWithProgress(createOrder, {
+                        var obj ={
                             pId: that.person_id,
                             cId: that.cid
-                        }, function (data, err) {
+                        }
+                        console.log(obj)
+                        ajaxGetWithProgress(createOrder, obj, function (data, err) {
                             console.log("creat",data);
                             if (data.date) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {

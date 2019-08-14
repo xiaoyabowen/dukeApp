@@ -103,7 +103,7 @@
             ajaxGetWithProgress(orgnizationList, {
                 c_name: valuePill
             }, function (data, err) {
-                console.log(data);
+                console.log("12345",data);
                 if (data) {
                     var list = data.orgnizationList;
                     if (list){
@@ -124,7 +124,7 @@
         }
     };
     function postComName(list) {
-
+        console.log("ist.dataset.id",list.dataset.id)
         c_id.value = list.dataset.id;
         text.value = list.dataset.name;
         box.style.display = "none"
@@ -142,7 +142,7 @@
         }
 
         ajaxGetWithProgress(JobProfileCreateCompany, {
-            c_id: c_id,
+            c_id: c_id || '',
             nameall:c_name
         }, function (data, err) {
             console.log(data);

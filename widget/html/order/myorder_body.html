@@ -681,7 +681,7 @@
                 }else if (this.htmlname = 'wait'){
                     this.orderWait('wait', 3)
                 }else if (this.htmlname = 'star'){
-                    alert(5)
+
                     this.orderStar('star', 4)
                 }
 
@@ -691,7 +691,7 @@
                     name: 'myorder',
                 }, function(ret, err) {
                     console.log(ret);
-                    alert(22)
+
                     this.active = 'all';
 
                 });
@@ -699,7 +699,7 @@
                     name: 'myordernotpay',
                 }, function(ret, err) {
                     console.log(ret);
-                    alert(111)
+
                     this.active = 'notpay';
                     this.orderNotPay('notpay', 5)
 

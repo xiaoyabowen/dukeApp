@@ -344,6 +344,7 @@
 }
 
 #footer{
+    justify-content: space-between;
     position: fixed;
     bottom: 0;
     height:1rem;
@@ -373,7 +374,7 @@
     border-radius: 0.1rem;
     border:0.01rem solid #ddd;
     padding : 0 0.15rem;
-
+    margin-top: 0.3rem;
 
 
 }
@@ -388,14 +389,14 @@
 
     height:0.68rem;
     font-size:0.3rem;
-    color:#fff;
+    color:#333333;
     line-height:0.68rem;
     text-align:center;
     background-color:#ddd;
     border-radius: 0.1rem;
     margin-top:0.2rem;
     margin-right:0.2rem;
-
+    margin-left: 0.1rem;
     flex: 1;
 
 

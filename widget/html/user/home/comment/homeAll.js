@@ -1,8 +1,7 @@
 function homeAllInit(Vue) {
     var str = dataValue('user/home/comment/homeAll.html')
-    console.log(str)
+
     apiready = function () {
-        alert(1)
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
@@ -60,7 +59,7 @@ function homeAllInit(Vue) {
             MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
-                    console.log("magicall", data)
+                    console.log("magicalldata", data)
                     var jobList = data.job
                     console.log(jobList)
                     if (data) {

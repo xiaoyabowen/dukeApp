@@ -233,13 +233,14 @@
                             })
                         }
                         if (buttonIndex == 3) {
-
+                            var name = getFirst(filesName)
                             openNewWindow("sendEmail", "./sendEmail.html", {
                                 filesName: filesName,
                                 url: "workUp",
                                 filesSize: filesSize,
                                 filesTime: filesTime,
                                 filesDocu: filesDocu,
+                                name: name,
                             })
                         }
                     });

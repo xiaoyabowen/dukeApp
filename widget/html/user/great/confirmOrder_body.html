@@ -123,7 +123,7 @@
 
 
             <div class="conmain-subTitle" v-if="active == 'facial'">
-                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
+                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>
             </div>
             <div class="conmain-num cssFlex" v-if="active == 'facial'">
                 <span class="conmain-h">购买数量</span>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="conmain-subTitle" v-if="active == 'farmProduce'">
-                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>（渡客为会员补贴100元）
+                会员专享价：<i class="conmain-subtitle-price">{{item.priceh}}元</i>
             </div>
             <div class="conmain-num cssFlex" v-if="active == 'farmProduce'">
                 <span class="conmain-h">购买数量</span>
@@ -202,7 +202,7 @@
                 </div>
                 <div class="con-pay-main cssFlex">
                     <div class="con-pay-main-left  cssFlex">
-                        <img src="../../../image/great/yun.png" alt="gong" class="pay-gong">
+                        <img src="../../../image/great/yuns.png" alt="gong" class="pay-gong">
                         <div class="con-pay-main-left-content">
                             <div class="con-pay-bank-name">银联</div>
                         </div>
@@ -211,6 +211,19 @@
                         <input type="radio" value="银联" v-model="bank" class="myOrderHaveCheck" id="mode4"
                                name="checkItem">
                         <label for="mode4"></label>
+                    </div>
+                </div>
+                <div class="con-pay-main cssFlex">
+                    <div class="con-pay-main-left  cssFlex">
+                        <img src="../../../image/great/yun.png" alt="gong" class="pay-gong">
+                        <div class="con-pay-main-left-content">
+                            <div class="con-pay-bank-name">云闪付</div>
+                        </div>
+                    </div>
+                    <div class="con-pay-main-right">
+                        <input type="radio" value="银联" v-model="bank" class="myOrderHaveCheck" id="mode5"
+                               name="checkItem">
+                        <label for="mode5"></label>
                     </div>
                 </div>
             </div>
@@ -344,82 +357,83 @@
                                 return;
                             } else if (that.bank == '支付宝') {
 
-                                var obj = {
-                                    cId:that.item.cId,
-                                    pId: that.person_id,
-                                    oId: that.OrderKey,
-                                    buyNum: that.num,
-                                    price: that.item.price,
-                                    comName: that.item.comName,
-                                    summary: that.item.summary,
-                                    payType: "支付宝",
-                                }
-                                console.log(obj)
-                                api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
-                                    method: 'GET',
-                                    dataType: 'text',
-                                    timeout: 30,
-                                    data: {
-                                        values: obj
-                                    }
-                                }, function (ret, err) {
-                                    //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                    console.log("自己处理订单信息以及签名过程请求:", ret);
-                                    var aliPayPlus = api.require('aliPayPlus');
-                                    aliPayPlus.payOrder({
-                                        orderInfo: ret,
-                                        sandbox: true
+                                 var obj = {
+                                     cId:that.item.cId,
+                                     pId: that.person_id,
+                                     oId: that.OrderKey,
+                                     buyNum: that.num,
+                                     price: that.item.price,
+                                     comName: that.item.comName,
+                                     summary: that.item.summary,
+                                     payType: "支付宝",
+                                 }
+                                 console.log(obj)
+                                 api.ajax({
+                                     url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                     method: 'GET',
+                                     dataType: 'text',
+                                     timeout: 30,
+                                     data: {
+                                         values: obj
+                                     }
 
-                                    }, function (ret, err) {
-                                        console.log(ret)
-                                        var msg = ret.code
+                                 }, function (ret, err) {
+                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
+                                     console.log("自己处理订单信息以及签名过程请求:", ret);
+                                     var aliPayPlus = api.require('aliPayPlus');
+                                     aliPayPlus.payOrder({
+                                         orderInfo: ret,
+                                         // orderInfo: 'app_id=2019081266240052&biz_content=timeout_express30mproduct_codeQUICK_MSECURITY_PAYtotal_amount1subject1234455body34234324343out_trade_no281088602799079424&charset=utf-8&format=json&method=&sign_type=RSA2&timestamp=2016-08-25%2020%3A26%3A31&version=1.0&sign=',
+                                         // sandbox: false
+                                     }, function (ret, err) {
+                                         console.log(ret)
+                                         var msg = ret.code
 
-                                        if (msg == 9000) {
-                                            mui.alert('支付成功', '提示', function (e) {
-                                                if (e.index == 0) {
-                                                    openNewWindow("myorder", "../../order/myorder.html");
-                                                }
-                                            });
-                                        } else if (msg == 8000) {
-                                            mui.alert('正在处理中', '提示', function (e) {
-                                                if (e.index == 0) {
+                                         if (msg == 9000) {
+                                             mui.alert('支付成功', '提示', function (e) {
+                                                 if (e.index == 0) {
+                                                     openNewWindow("myorder", "../../order/myorder.html");
+                                                 }
+                                             });
+                                         } else if (msg == 8000) {
+                                             mui.alert('正在处理中', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        } else if (msg == 4000) {
-                                            mui.alert('订单支付失败', '提示', function (e) {
-                                                if (e.index == 0) {
+                                                 }
+                                             });
+                                         } else if (msg == 4000) {
+                                             mui.alert('订单支付失败', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        } else if (msg == 5000) {
-                                            mui.alert('重复请求', '提示', function (e) {
-                                                if (e.index == 0) {
+                                                 }
+                                             });
+                                         } else if (msg == 5000) {
+                                             mui.alert('重复请求', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        } else if (msg == 6001) {
-                                            mui.alert('用户中途取消支付操作', '提示', function (e) {
-                                                if (e.index == 0) {
+                                                 }
+                                             });
+                                         } else if (msg == 6001) {
+                                             mui.alert('用户中途取消支付操作', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        } else if (msg == 6002) {
-                                            mui.alert('网络连接出错', '提示', function (e) {
-                                                if (e.index == 0) {
+                                                 }
+                                             });
+                                         } else if (msg == 6002) {
+                                             mui.alert('网络连接出错', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        } else if (msg == 6004) {
-                                            mui.alert('请查询商户订单的支付状态', '提示', function (e) {
-                                                if (e.index == 0) {
+                                                 }
+                                             });
+                                         } else if (msg == 6004) {
+                                             mui.alert('请查询商户订单的支付状态', '提示', function (e) {
+                                                 if (e.index == 0) {
 
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
+                                                 }
+                                             });
+                                         }
+                                     });
+                                 });
                                 return;
                             }else if (that.bank == '银联') {
                                 var unPay = api.require('unionPay');
@@ -559,7 +573,9 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        sandbox: true
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // sandbox: true
+
 
                                     }, function (ret, err) {
                                         console.log(ret)

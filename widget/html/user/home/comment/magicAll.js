@@ -1,5 +1,16 @@
 function magicAllInit(Vue) {
     var str = dataValue('user/home/comment/magicAll.html')
+    /*var bus = Vue.use(Vuex);
+
+    console.log("bus",bus)
+    var obj = {
+        magicCom2: 'magicCom2'
+    }
+    bus.$emit("com1Value",obj)
+    console.log("bus",bus.$emit("com1Value",'1'))*/
+    // console.log("123",$store)
+
+
 
     apiready = function () {
         winWidth = api.winWidth;
@@ -88,6 +99,8 @@ function magicAllInit(Vue) {
             jobDetailClick: function (job_id, job_name) {
                 console.log(job_id)
                 console.log(job_name)
+
+
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
@@ -101,31 +114,41 @@ function magicAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
+                store.state.obj.c_id = that.magicComCid1
+                store.state.obj.c_name = that.magicCom1Text
+                store.state.obj.logo_icon = that.magicCom1Img
+                store.state.obj.magicCom =  'magicCom1'
 
                 api.sendEvent({
                     name: 'comCom1',
                     extra: {
                         key: {
-                            c_id: that.magicComCid1,
+                            /*c_id: that.magicComCid1,
                             c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,
+                            logo_icon: that.magicCom1Img,*/
                             magicCom1: 'magicCom1'
                         },
                     }
                 });
-
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                console.log(that.magicComCid2)
+                console.log("magicComCid2",that.magicComCid2)
+
+                store.state.obj.c_id = that.magicComCid2
+                store.state.obj.c_name = that.magicCom2Text
+                store.state.obj.logo_icon = that.magicCom2Img
+                store.state.obj.magicCom =  'magicCom2'
+
+                console.log(store.state.obj.magicCom)
 
                 api.sendEvent({
                     name: 'comCom2',
                     extra: {
                         key: {
-                            c_id: that.magicComCid2,
+                            /*c_id: that.magicComCid2,
                             c_name: that.magicCom2Text,
-                            logo_icon: that.magicCom2Img,
+                            logo_icon: that.magicCom2Img,*/
                             magicCom2: 'magicCom2'
                         },
 

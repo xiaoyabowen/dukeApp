@@ -1,6 +1,10 @@
 
 function magicCom1Init(Vue) {
     var str = dataValue('user/home/comment/magicCom1.html')
+
+    var bus = dataValue('user/home/comment/bus.js')
+    console.log(bus)
+
     apiready = function () {
 
         winWidth = api.winWidth;
@@ -43,6 +47,7 @@ function magicCom1Init(Vue) {
 
         },
         mounted :function (){
+            var that = this
             magicBox = document.querySelector(".magicBox")
             magicBtn = document.getElementsByClassName("magicBtn")
             magicSubBox = document.getElementsByClassName("magicSubBox")
@@ -66,11 +71,18 @@ function magicCom1Init(Vue) {
                 iconImg[i].style.width = m_d/2 + "px"
                 iconImg[i].style.height = m_d/2 + "px"
             }
+
+            that.magicComCid1 = store.state.obj.c_id
+            that.magicCom1Text = store.state.obj.c_name
+            that.magicCom1Img = store.state.obj.logo_icon
         },
 
         methods: {
             togle : function() {
-
+                /*var that = this
+                that.magicComCid1 = store.state.obj.c_id
+                that.magicCom1Text = store.state.obj.c_name
+                that.magicCom1Img = store.state.obj.logo_icon*/
                 var isBlck=document.querySelector('.bgBlack')
                 if(isBlck.getAttribute("class")=='isDisplay'){
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
@@ -95,9 +107,16 @@ function magicCom1Init(Vue) {
 
 
                 });*/
-                that.magicComCid1 = localStorage.getItem("magic_id")
+                /*that.magicComCid1 = localStorage.getItem("magic_id")
                 that.magicCom1Text = localStorage.getItem("magic_name")
                 that.magicCom1Img = localStorage.getItem("magic_img")
+*/
+                that.magicComCid1 = store.state.obj.c_id
+                that.magicCom1Text = store.state.obj.c_name
+                that.magicCom1Img = store.state.obj.logo_icon
+
+
+                console.log("store.state.obj.c_name1",store.state.obj.c_name)
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
                     console.log("com1",data)
@@ -114,12 +133,17 @@ function magicCom1Init(Vue) {
                         that.magicCom2Text = data.company[0].c_name
                         that.magicComCid2 = data.company[0].c_id
 
+                        /*store.state.obj.c_id = ''
+                        store.state.obj.c_name = ''
+                        store.state.obj.logo_icon = ''*/
+
+
                     }
                 })
             },
             jobDetailClick : function (job_id,job_name){
-                console.log(job_id)
-                console.log(job_name)
+                console.log("job_id",job_id)
+                console.log("job_name",job_name)
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
@@ -130,10 +154,10 @@ function magicCom1Init(Vue) {
                     }
                 });
 
+
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-
 
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :localStorage.getItem("magic_id")},function (data) {
@@ -166,13 +190,17 @@ function magicCom1Init(Vue) {
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
+
+                store.state.obj.c_id = that.magicComCid2
+                store.state.obj.c_name = that.magicCom2Text
+                store.state.obj.logo_icon = that.magicCom2Img
                 api.sendEvent({
                     name: 'comCom2',
                     extra: {
                         key: {
-                            c_id: that.magicComCid2,
+                            /*c_id: that.magicComCid2,
                             c_name: that.magicCom2Text,
-                            logo_icon: that.magicCom2Img,
+                            logo_icon: that.magicCom2Img,*/
                             magicCom2: 'magicCom2'
                         },
 

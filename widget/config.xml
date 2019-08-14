@@ -39,18 +39,15 @@
         <param name="bcAppID" value="6f4f5e56-a389-403e-ab5e-0485a89062ef" />
         <param name="sandbox" value="false" />
     </feature>-->
-    <!--支付寶 支付-->
-    <!--<feature name="aliPay">
-        <param name="urlScheme" value="AliPayA6015404524948" />
-    </feature>-->
 
     <!--支付寶 支付-->
     <feature name="aliPayPlus">
         <param name="urlScheme" value="aliPayPlusA6015404524948" />
     </feature>
+    <!--推送-->
     <feature name="ajpush">
         <param name="app_key" value="29a45b8537d8f51d104ef748" />
-        <param name="channel" value="A6015404524948" />
+        <param name="channel" value="A6015404523444948" />
     </feature>
     <!--银联支付-->
     <feature name="unionPay">

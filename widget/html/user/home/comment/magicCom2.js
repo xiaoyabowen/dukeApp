@@ -1,7 +1,7 @@
 
 function magicCom2Init(Vue) {
     var str = dataValue('user/home/comment/magicCom2.html')
-
+    var bus = dataValue('user/home/comment/bus.js')
     apiready = function () {
 
         winWidth = api.winWidth;
@@ -41,6 +41,7 @@ function magicCom2Init(Vue) {
             this.OneCompanyFourJobMenu()
         },
         mounted :function (){
+            var that = this
             magicBox = document.querySelector(".magicBox")
             magicBtn = document.getElementsByClassName("magicBtn")
             magicSubBox = document.getElementsByClassName("magicSubBox")
@@ -64,6 +65,13 @@ function magicCom2Init(Vue) {
                 iconImg[i].style.width = m_d/2 + "px"
                 iconImg[i].style.height = m_d/2 + "px"
             }
+
+
+            that.magicComCid2 = store.state.obj.c_id
+            that.magicCom2Text = store.state.obj.c_name
+            that.magicCom2Img = store.state.obj.logo_icon
+            console.log(store.state.obj.c_name)
+            console.log("magicComCid2that",that.magicComCid2)
         },
 
         methods: {
@@ -82,9 +90,14 @@ function magicCom2Init(Vue) {
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
-                that.magicComCid2 = localStorage.getItem("magic_id2")
+                /*that.magicComCid2 = localStorage.getItem("magic_id2")
                 that.magicCom2Text = localStorage.getItem("magic_name2")
                 that.magicCom2Img = localStorage.getItem("magic_img2")
+*/
+                that.magicComCid2 = store.state.obj.c_id
+                // that.magicCom2Text = store.state.obj.c_name
+                // that.magicCom2Img = store.state.obj.logo_icon
+
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid2},function (data) {
                     console.log("com2",data)
@@ -97,10 +110,18 @@ function magicCom2Init(Vue) {
                         }
 
 
-                        that.magicCom2Img =localStorage.getItem("magic_img2")
+                        // that.magicCom2Img =localStorage.getItem("magic_img2")
                         that.magicCom1Img =data.company[0].logo_icon
-                        that.magicCom2Text = localStorage.getItem("magic_name2")
+                        // that.magicCom2Text = localStorage.getItem("magic_name2")
                         that.magicCom1Text = data.company[0].c_name
+                        that.magicComCid1 = data.company[0].c_id
+
+
+                      /*  store.state.obj.c_id = ''
+                        store.state.obj.c_name = ''
+                        store.state.obj.logo_icon = ''
+*/
+                        console.log("store.state.obj.c_name",store.state.obj.c_name)
 
                     }
                 })
@@ -121,13 +142,21 @@ function magicCom2Init(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
+
+                console.log("that.magicComCid1",that.magicComCid1)
+
+
+                store.state.obj.c_id = that.magicComCid1
+                store.state.obj.c_name = that.magicCom1Text
+                store.state.obj.logo_icon = that.magicCom1Img
+
                 api.sendEvent({
                     name: 'comCom1',
                     extra: {
                         key: {
-                            c_id: that.magicComCid1,
+                            /*c_id: that.magicComCid1,
                             c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,
+                            logo_icon: that.magicCom1Img,*/
                             magicCom1: 'magicCom1'
                         },
                     }
@@ -139,7 +168,6 @@ function magicCom2Init(Vue) {
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
                     console.log("com1",data)
-                    alert(1)
                     var jobList = data.job
                     if (data) {
                         if (jobList == null){

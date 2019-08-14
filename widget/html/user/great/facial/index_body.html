@@ -79,10 +79,20 @@
 
             <div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
-                    <div class="commodity_collection" @click="collectionHandle()">
+                   <!-- <div class="commodity_collection" @click="collectionHandle()">
                         <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
                         <span>收藏</span>
+                    </div>-->
+
+                    <div class="commodity_collection" @click="collectionHandleActive()" v-show="att">
+                        <img src="../../../../image/great/Collection2x.png" alt="">
+                        <span>收藏</span>
                     </div>
+                    <div class="commodity_collection" @click="collectionHandle()" v-show="!att">
+                        <img src="../../../../image/great/Collection22x.png" alt="">
+                        <span>收藏</span>
+                    </div>
+
                     <div class="commodity_purchase" @click="purchaseHandle()">
                         <div>¥{{item.priceh}}</div>
                         <span>立即购买</span>
@@ -164,7 +174,8 @@
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];
-                                that.imgs = data.Commodity.intpic.split(',');
+                                // that.imgs = data.intpic;
+                                that.imgs = data.Commodity.intPic.split(',');
                                 that.total = data.total;
                                 that.att = data.att;
                                 that.att_id = data.att_id;
@@ -211,9 +222,29 @@
                         ajaxGet(collectComm, {
                             id: that.att_id,
                             ccStatus: 1,
-                            pid: that.person_id,
-                            commId: that.item.cId
                         }, function(data,err){
+                            console.log(data);
+                            if (data.commcollect) {
+                                toast("编辑成功")
+                                window.location.reload()
+                            }
+                        });
+                        that.att = !that.att;
+                    },
+                    // 收藏
+                    collectionHandleActive: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
+                        var that = this;
+                        var obj = {
+                            id: that.att_id,
+                            ccStatus: 0,
+                        }
+                        console.log(obj)
+                        ajaxGet(collectComm, obj, function(data,err){
                             console.log(data);
                             if (data.commcollect) {
                                 toast("编辑成功")

@@ -31,9 +31,9 @@ function OnlinePositionInit(Vue) {
                 }
                 ajaxGetWithProgress(queryMyJobsCandidateNum,obj,function (data,ret) {
                     console.log("zhiwei",data)
-                    if (data.valid == 1){
+                    if (data.valid == 0){
                         that.onlineList = data.queryMyJobs
-                    }else if (data.valid == 0){
+                    }else if (data.valid == 1){
                         toast("公司还在审核中")
                     }else {
                         toast("请求出错")

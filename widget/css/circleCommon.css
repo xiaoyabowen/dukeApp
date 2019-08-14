@@ -769,21 +769,34 @@
 .details_edit {
     height: 1.10rem;
     line-height: 1.10rem;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    width: 7.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.details_editCancel {
+    width:  50%;
+    height: 1.10rem;
+    line-height: 1.10rem;
+    background: #FFA300 !important;
     text-align: center;
     font-size: 0.28rem;
     color: #ffffff;
 }
 
-.details_edit > div:first-child {
-    flex: 50%;
-    height: 100%;
-    background: #FFA300;
-}
-
-.details_edit > div:last-child {
-    flex: 50%;
-    height: 100%;
+.details_editEdit{
+    width: 50%;
+    height: 1.10rem;
+    line-height: 1.10rem;
+    font-size: 0.28rem;
+    text-align: center;
     background: #638BFF;
+    color: #ffffff;
 }
 
 

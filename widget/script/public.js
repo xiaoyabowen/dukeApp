@@ -3,6 +3,7 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
+
 /*
 var serverUrl = "http://192.168.1.5:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.5:8000/SE4M';
@@ -12,7 +13,6 @@ var Domain = 'http://192.168.1.5:8088';
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -28,6 +28,7 @@ function al(data) {
     } else {
     }
 }
+
 
 // 接口    信息  列表
 
@@ -59,14 +60,28 @@ var MenuListQyMenu = serverUrl + "/Menu/MenuListQ";
 // 千里马  点击公司查询该公司下的四个职位和一个随机公司
 var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
 
+// 伯乐  初次进入魔方
+var SmartMenuMenu = serverUrl + "/Menu/SmartMenu";
 
+// 伯乐   uid 随机五个我发布的职位
+var queryJobsByUidMenu = serverUrl + "/Menu/queryJobsByUidMenu";
 
-
-
-
+// 伯乐    job_name  点击职位随机查询五个人才
+var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
 
 // 支付宝  支付  接口
 var payalipayUniform = Domain +'/pay/alipayUniform'
+
+
+// 聊天
+
+var getSignatureJiGuang = serverUrl + "/JiGuang/getSignature";
+
+
+// 聊天
+var MessageListByUserName = serverUrl + "/JiGuang/MessageListByUserName";
+// 聊天
+var JMessagepush = serverUrl + "/JiGuang/JMessagepush";
 
 
 
@@ -97,6 +112,8 @@ var OrderSummaryCommodityProFile = Domain + "/CommodityProFile/OrderSummary";
 
 // 我的订单  商品 评价
 var CommodityProFileEvaluation = Domain + "/CommodityProFile/Evaluation";
+// 我的订单  我的足迹
+var Queryhistory = Domain + "/CommodityProFile/Queryhistory";
 
 
 
@@ -255,6 +272,10 @@ var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
 var createCircle = serverUrl + "/CircleProfile/createCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
+
+
+
+
 // 圈子活动详情
 // var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
 var CircleProfileAllinOne = serverUrl + "/CircleProfile/CircleProfileAllinOne";
@@ -325,8 +346,16 @@ var lookmeList = serverUrl + "/UserProfile/lookmeList";
 // 聊天-获取订阅号
 var addTopic = serverUrl + "/ChatProFile/addTopic";
 
+// 聊天-获取订阅号
+var addTopicLink = serverUrl + "/ChatProFile/addTopicLink";
+
+
+
+
 // 聊天-联系人列表
 var queryChatList = serverUrl + "/ChatProFile/queryChatList";
+// 聊天-联系人列表
+var queryChatListB = serverUrl + "/ChatProFile/queryChatListB";
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
@@ -505,6 +534,22 @@ var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
+function getNowFormatDate() {
+    var d = new Date();
+
+    var year = d.getFullYear(); //获取年 
+
+    var month = d.getMonth();//获取月  
+    var day = d.getDay(); //获取当日
+    var hours = d.getHours()//获取小时
+    var minutes = d.getMinutes()//获取分钟
+    var miao = d.getSeconds()//获取秒
+    currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao
+    console.log(currentdate)
+    return currentdate;
+}
+
+
 //日期字符串转成时间戳
 //例如var date = '2015-03-05 17:59:00.0';
 function dateStrChangeTimeTamp(dateStr) {
@@ -522,14 +567,42 @@ function formatTimeTamp(timeTamp){
     var date = ((time.getFullYear())  + "-" +
         (time.getMonth() + 1) + "-" +
         (time.getDate()) + " " +
-        (time.getHour()) + ":" +
+        (time.getHours()) + ":" +
         (time.getMinutes()) + ":" +
         (time.getSeconds()))
     return date
 }
+/**
+ * 时间戳转化为年 月 日 时 分 秒
+ * number: 传入时间戳
+ * format：返回格式，支持自定义，但参数必须与formateArr里保持一致
+ */
+function formatTime(number,format) {
 
+    var formateArr  = ['Y','M','D','h','m','s'];
+    var returnArr   = [];
 
+    var date = new Date(number * 1000);
+    returnArr.push(date.getFullYear());
+    returnArr.push(formatNumber(date.getMonth() + 1));
+    returnArr.push(formatNumber(date.getDate()));
 
+    returnArr.push(formatNumber(date.getHours()));
+    returnArr.push(formatNumber(date.getMinutes()));
+    returnArr.push(formatNumber(date.getSeconds()));
+
+    for (var i in returnArr)
+    {
+        format = format.replace(formateArr[i], returnArr[i]);
+    }
+    return format;
+}
+
+//数据转化
+function formatNumber(n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+}
 
 // 获取当前时间
 function nowDate() {
