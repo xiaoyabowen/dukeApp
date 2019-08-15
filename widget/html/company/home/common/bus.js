@@ -4,9 +4,9 @@ Vue.use(Vuex);
 var store = new Vuex.Store({
     state: {
         obj:{
-            c_id: '',
-            c_name: '',
-            logo_icon: '',
+            job_id: '',
+            job_name: '',
+            job_icon: '',
             magicCom: 'magicAll'
         }
     },

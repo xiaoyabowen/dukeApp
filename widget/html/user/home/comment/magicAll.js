@@ -114,10 +114,21 @@ function magicAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                store.state.obj.c_id = that.magicComCid1
+                /*store.state.obj.c_id = that.magicComCid1
                 store.state.obj.c_name = that.magicCom1Text
                 store.state.obj.logo_icon = that.magicCom1Img
-                store.state.obj.magicCom =  'magicCom1'
+                store.state.obj.magicCom =  'magicCom1'*/
+
+                var obj = {
+                    magicComCid1: that.magicComCid1,
+                    magicCom1Text: that.magicCom1Text,
+                    magicCom1Img: that.magicCom1Img,
+                    magicCom: 'magicCom1',
+                }
+
+
+
+                store.commit('upData', obj);
 
                 api.sendEvent({
                     name: 'comCom1',
@@ -135,12 +146,20 @@ function magicAllInit(Vue) {
                 var that = this;
                 console.log("magicComCid2",that.magicComCid2)
 
-                store.state.obj.c_id = that.magicComCid2
+                /*store.state.obj.c_id = that.magicComCid2
                 store.state.obj.c_name = that.magicCom2Text
                 store.state.obj.logo_icon = that.magicCom2Img
-                store.state.obj.magicCom =  'magicCom2'
+                store.state.obj.magicCom =  'magicCom2'*/
 
-                console.log(store.state.obj.magicCom)
+                var obj = {
+                    magicComCid1: that.magicComCid2,
+                    magicCom1Text: that.magicCom2Text,
+                    magicCom1Img: that.magicCom2Img,
+                    magicCom: 'magicCom2',
+                }
+
+                store.commit('upData', obj);
+
 
                 api.sendEvent({
                     name: 'comCom2',

@@ -1,10 +1,28 @@
 function castOneInit(Vue) {
     var str = dataValue('user/great/common/castOne.html')
+    console.log(str)
 
+    apiready = function () {
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        if (winWidth > winHeight / 2){
+            m_d = "1.5"
+        }else {
+            m_d = "1.8"
+        }
+    }
     return {
         template: str,
         data: function () {
             return {
+                styles: {
+                    //存放的是 动态修改的样式
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+
+
                 imgs: [
                     {
                         imgSrc: '../../../image/bigWeigh/mianBan2.png'
@@ -32,6 +50,10 @@ function castOneInit(Vue) {
                 },
                 autoplay: true,
             });
+            xuanboxCast = document.getElementsByClassName("xuanboxCast")
+            daoboxCast = document.getElementsByClassName("daoboxCast")
+
+
         },
         methods: {
             castOneClick : function () {
@@ -73,8 +95,21 @@ function castOneInit(Vue) {
 
             togle : function () {
                 toast("切换内容")
-                window.location.reload()
-            }
+            },
+            castFourClick : function () {
+                toast("暂无商品")
+            },
+            castFiveClick : function () {
+                toast("暂无商品")
+            },
+
+            castSevenClick : function () {
+                toast("暂无商品")
+            },
+            castEightClick : function () {
+                toast("暂无商品")
+            },
+
 
         }
     }

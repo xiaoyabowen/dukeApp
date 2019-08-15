@@ -46,8 +46,8 @@
     </feature>
     <!--推送-->
     <feature name="ajpush">
-        <param name="app_key" value="29a45b8537d8f51d104ef748" />
-        <param name="channel" value="A6015404523444948" />
+        <param name="app_key" value="2b54b81f8ec4d8bee3971108" />
+        <param name="channel" value="29a45b8537d8f51d104ef748" />
     </feature>
     <!--银联支付-->
     <feature name="unionPay">

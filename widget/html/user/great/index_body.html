@@ -129,8 +129,44 @@
 <script>eruda.init();</script>
 
 <script>
-
+    var m_d,right,top
     apiready = function () {
+
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+
+        if (winWidth > winHeight / 2){
+            m_d = "1.5"
+        }else {
+            m_d = "1.8"
+        }
+
+        /*xuanboxCast = document.getElementsByClassName("xuanboxCast")
+        daoboxCast = document.getElementsByClassName("daoboxCast")
+        console.log(xuanboxCast)
+        if (winWidth > winHeight / 2){
+            alert(1)
+            for (var i = 0; i < xuanboxCast.length; i++) {
+                xuanboxCast[i].style.width = "1.5rem"
+                xuanboxCast[i].style.height = "1.5rem"
+            }
+            for (var i = 0; i < daoboxCast.length; i++) {
+                daoboxCast[i].style.width = "1.5rem"
+                daoboxCast[i].style.height = "1.5rem"
+            }
+
+        }else {
+            homeBtnLr.style.width = "4.8rem"
+            for (var i = 0; i < homeBtnCom.length; i++) {
+                xuanboxCast[i].style.width = "1.8rem"
+                xuanboxCast[i].style.height = "1.8rem"
+            }
+            for (var i = 0; i < daoboxCast.length; i++) {
+                daoboxCast[i].style.width = "1.8rem"
+                daoboxCast[i].style.height = "1.8rem"
+            }
+        }*/
 
         var castOne = castOneInit(Vue);
         var castOneOne = castOneOneInit(Vue);
@@ -150,7 +186,18 @@
                 isDisplay: false,
                 person_id: '',
                 active: 'castOne',
-
+                styles: {
+                    //存放的是 动态修改的样式
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+                stylesMove: {
+                    //存放的是 动态修改的样式
+                    right: m_d + "rem",// 内容标题总样式
+                    top: m_d + "rem",
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
             },
             created: function () {
 

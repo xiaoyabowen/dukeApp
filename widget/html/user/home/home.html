@@ -24,11 +24,13 @@
             padding-top: 0 !important;
 
         }
-        .posiCast7FCC{
+
+        .posiCast7FCC {
             background: #FCC117;
             border: 1px solid #FCC117;
         }
-        .posiCast7FCC .CastText{
+
+        .posiCast7FCC .CastText {
             color: #ffffff;
         }
 
@@ -209,7 +211,7 @@
             height: 0.32rem;
         }
 
-        .homeBtn{
+        .homeBtn {
             width: 7.5rem;
             position: fixed;
             bottom: 0.48rem;
@@ -217,33 +219,37 @@
             margin: 0 auto;
             transform: translateX(-50%);
         }
-        .homeBtnLr{
+
+        .homeBtnLr {
             justify-content: space-between;
             /*width: 4.8rem;*/
             margin: 0 auto;
             position: relative;
             top: -0.4rem;
         }
-        .homeBtnCom{
+
+        .homeBtnCom {
             display: block;
             transform: rotate(-45deg);
         }
-        .homeJob{
+
+        .homeJob {
 
             margin: 0 auto;
         }
-        .homeJu{
+
+        .homeJu {
             right: 0;
 
         }
 
-        .homeCar{
+        .homeCar {
             position: relative;
             margin: 0 auto;
             top: -0.8rem;
         }
 
-        .homeCircle{
+        .homeCircle {
             left: 0;
         }
     </style>
@@ -367,7 +373,6 @@
         </div>
 
 
-
     </div>
 
     <!--搜索功能-->
@@ -415,9 +420,40 @@
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
 <!--<script src="./comment/homeAll.html"></script>-->
 <script>
-    var wx, UISearchBar, searchinputTop,JIMData,homeBtnCom;
-
+    var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
+    var jpush = null;
     apiready = function () {
+
+        jpush = api.require('push');
+        console.log(jpush)
+        // function initJPush(){
+
+
+        jpush.bind({
+            userName:'testName',
+            userId:'testId'
+        },function(ret,err){
+            console.log("jpush.bind",ret)
+            if(ret.status){
+                api.alert({msg:'绑定成功'});
+            }else{
+                api.alert({msg:err.msg});
+            }
+        });
+
+
+        //设置监听
+        jpush.setListener(
+            function(ret,err){
+                console.log("jpush.setListener",ret)
+                if(ret){
+                    api.alert({msg:ret.data});
+                }
+            }
+        );
+        // }
+
+
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
         // 添加安卓退出按钮事件
@@ -453,14 +489,14 @@
         // 首页 4个按钮  适配
         homeBtnCom = document.getElementsByClassName("homeBtnCom")
         homeBtnLr = document.querySelector(".homeBtnLr")
-        if (winWidth > winHeight / 2){
+        if (winWidth > winHeight / 2) {
             homeBtnLr.style.width = "3.8rem"
             for (var i = 0; i < homeBtnCom.length; i++) {
                 homeBtnCom[i].style.width = "1.5rem"
                 homeBtnCom[i].style.height = "1.5rem"
             }
 
-        }else {
+        } else {
             homeBtnLr.style.width = "4.8rem"
             for (var i = 0; i < homeBtnCom.length; i++) {
                 homeBtnCom[i].style.width = "1.9rem"
@@ -468,7 +504,7 @@
             }
         }
 
-        console.log("homeUser",localStorage.getItem('user'))
+        console.log("homeUser", localStorage.getItem('user'))
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2))
         // width_d=(screen_w-20) *2/5 - 5;
@@ -485,13 +521,13 @@
             data: {
                 // active: 'homeAll',
                 // 聊天
-                JIM : '',
-                pid_accept : '',         //接收消息者 username
-                pid_name : '',             //接收消息者 name
-                appkey : '',
-                random_str : '',
-                signature : '',
-                timestamp : '',
+                JIM: '',
+                pid_accept: '',         //接收消息者 username
+                pid_name: '',             //接收消息者 name
+                appkey: '',
+                random_str: '',
+                signature: '',
+                timestamp: '',
             },
             created: function () {
                 // this.getSignatureJiGuang()
@@ -546,14 +582,14 @@
                     openNewWindow("index", "../circle/index.html")
                 },
                 jobDetail: function () {
-                    openNewWindow("position", "./position.html",{
-                        job_id : 23,
+                    openNewWindow("position", "./position.html", {
+                        job_id: 23,
                         url: 'home',
                     })
                 },
                 jobDetail1: function () {
-                    openNewWindow("position", "./position.html",{
-                        job_id : 59,
+                    openNewWindow("position", "./position.html", {
+                        job_id: 59,
                         url: 'home',
                     })
                 },
@@ -563,18 +599,18 @@
 
 
                 // 聊天获取 appkey random_str signature timestamp   初始化  JIM
-                getSignatureJiGuang : function () {
+                getSignatureJiGuang: function () {
                     var that = this
                     ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
                         console.log(data)
-                        if (data){
+                        if (data) {
                             that.appkey = data.appkey
                             that.random_str = data.random_str
                             that.signature = data.signature
                             that.timestamp = data.timestamp
 
-                            that.JIM =  new JMessage({debug:true})
-                            console.log("JIM",that.JIM)
+                            that.JIM = new JMessage({debug: true})
+                            console.log("JIM", that.JIM)
                             that.init()
 
                         } else {
@@ -583,20 +619,20 @@
                     })
                 },
 
-                init : function (){
+                init: function () {
                     var that = this
                     that.JIM.init({
-                        "appkey":that.appkey,
-                        "random_str":that.random_str,
-                        "signature":  that.signature,
-                        "timestamp":  that.timestamp,
+                        "appkey": that.appkey,
+                        "random_str": that.random_str,
+                        "signature": that.signature,
+                        "timestamp": that.timestamp,
                         "flag": 1
 
-                    }).onSuccess(function(data) {
+                    }).onSuccess(function (data) {
                         console.log('success:', data);
 
-                    }).onFail(function(data) {
-                        console.log('error2:' ,data)
+                    }).onFail(function (data) {
+                        console.log('error2:', data)
                     });
                 },
 
@@ -652,7 +688,11 @@
 
     }
 
+    function getRegistrationId(ret) {
 
+        var registrationId = ret;
+        console.log("registrationId  回调 结果",registrationId)
+    };
 
     searchinputTop = document.getElementById("search-inputTop")
     searchinputTop.oninput = function (e) {
@@ -692,12 +732,11 @@
                 var searchHtml = ''
                 var ret = ret.list
 
-                console.log("ret[i].S_name",ret[0].S_name)
-                console.log("list",ret)
+                console.log("ret[i].S_name", ret[0].S_name)
+                console.log("list", ret)
                 for (var i = 0; i < ret.length; i++) {
-                    searchHtml += '<div class="searchMain cssFlex" onclick="searchListClick(' + ret[i].S_Id + ',' +i +',' + ret[i].type + ')"><div class="commonFont searchListText" data-search="' + ret[i].S_Name + '">' + ret[i].S_Name + '</div></div>'
+                    searchHtml += '<div class="searchMain cssFlex" onclick="searchListClick(' + ret[i].S_Id + ',' + i + ',' + ret[i].type + ')"><div class="commonFont searchListText" data-search="' + ret[i].S_Name + '">' + ret[i].S_Name + '</div></div>'
                 }
-
 
 
                 console.log("ret.length", ret.length)

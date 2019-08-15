@@ -191,9 +191,18 @@ function magicCom1Init(Vue) {
             magicCom2Click: function () {  // 公司2
                 var that = this;
 
-                store.state.obj.c_id = that.magicComCid2
+                /*store.state.obj.c_id = that.magicComCid2
                 store.state.obj.c_name = that.magicCom2Text
-                store.state.obj.logo_icon = that.magicCom2Img
+                store.state.obj.logo_icon = that.magicCom2Img*/
+
+                var obj = {
+                    magicComCid1: that.magicComCid2,
+                    magicCom1Text: that.magicCom2Text,
+                    magicCom1Img: that.magicCom2Img,
+                    magicCom: 'magicCom2',
+                }
+                store.commit('upData', obj);
+
                 api.sendEvent({
                     name: 'comCom2',
                     extra: {

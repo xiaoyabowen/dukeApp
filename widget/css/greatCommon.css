@@ -161,9 +161,17 @@
 .posiCast0 {
     right: 0.5rem;
     top: 1rem;
-
 }
+.posiCast00{
+    right: 0.9rem;
+    top: 1rem
+}
+
 .posiCast1 {
+    top: 1rem;
+    right: 3.2rem;
+}
+.posiCast11 {
     top: 1rem;
     right: 3.2rem;
 }
@@ -174,29 +182,59 @@
     top: 2.4rem;
     right: 1.84rem;
 }
+.posiCast22 {
+    top: 2.2rem;
+    right: 2.04rem;
+}
+
+
+
 .posiCast3 {
     top: 3.8rem;
     right: 0.48rem;
 }
+.posiCast33 {
+    top: 3.4rem;
+    right: 0.9rem;
+}
+
 .posiCast4{
     top: 2.4rem;
     right: 4.6rem;
 }
+.posiCast44{
+    top: 2.2rem;
+    right: 4.4rem;
+}
+
+
 .posiCast5{
     top: 3.8rem;
     right: 3.2rem;
-
 }
+.posiCast55{
+    top: 3.4rem;
+    right: 3.2rem;
+}
+
 .posiCast6{
     top: 5.2rem;
     right: 1.8rem;
 }
-.posiCast7{
+.posiCast66{
+    top: 4.6rem;
+    right: 2rem;
+}
 
+.posiCast7{
     top: 5.2rem;
     right: 4.57rem;
-
 }
+.posiCast77{
+    top: 4.6rem;
+    right:4.4rem;
+}
+
 .posiCast7FCC{
     background: #FCC117;
 }

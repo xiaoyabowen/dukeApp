@@ -16,8 +16,8 @@
     <div class="listBox">
         <div class="positionComCast positionRate " @click="castOneClick()">
 
-            <div class="xuanboxCast posiCast0 ">
-                <div class="daoboxCast">
+            <div class="xuanboxCast" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast00': 'posiCast0'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/lvyouW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">旅游</div>
                 </div>
@@ -25,48 +25,48 @@
         </div>
 
         <div class="positionComCast positionRate" @click="castTwoClick()">
-            <div class="xuanboxCast posiCast1">
-                <div class="daoboxCast">
+            <div class="xuanboxCast" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast11': 'posiCast1'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/huazhuangW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">化妆品</div>
                 </div>
             </div>
         </div>
         <div class="positionComCast positionRate"  @click="castFangClick()">
-            <div class="xuanboxCast posiCast2">
-                <div class="daoboxCast">
+            <div class="xuanboxCast" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast22': 'posiCast2'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/fangW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">希腊房产</div>
                 </div>
             </div>
         </div>
         <div class="positionComCast positionRate" @click="castFourClick()">
-            <div class="xuanboxCast posiCast3">
-                <div class="daoboxCast">
+            <div class="xuanboxCast " v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast33': 'posiCast3'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/baoxianW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">保险</div>
                 </div>
             </div>
         </div>
         <div class="positionComCast positionRate" @click="castFiveClick()">
-            <div class="xuanboxCast posiCast4">
-                <div class="daoboxCast">
+            <div class="xuanboxCast " v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast44': 'posiCast4'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/zucheW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">租车</div>
                 </div>
             </div>
         </div>
         <div class="positionComCast positionRate" @click="castSixClick()">
-            <div class="xuanboxCast posiCast5">
-                <div class="daoboxCast">
+            <div class="xuanboxCast " v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast55': 'posiCast5'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/nongW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">农产品</div>
                 </div>
             </div>
         </div>
         <div class="positionComCast positionRate" @click="castSevenClick()">
-            <div class="xuanboxCast posiCast6">
-                <div class="daoboxCast">
+            <div class="xuanboxCast " v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast66': 'posiCast6'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/meirongW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">美容</div>
                 </div>
@@ -74,8 +74,8 @@
         </div>
         <!--固定的  优惠券  不动-->
         <div class="positionComCast positionRate" @click="castEightClick()">
-            <div class="xuanboxCast posiCast7 posiCast7FCC">
-                <div class="daoboxCast">
+            <div class="xuanboxCast  posiCast7FCC" v-bind:style="styles" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast77': 'posiCast7'">
+                <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/xicheW.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">洗车券</div>
                 </div>
