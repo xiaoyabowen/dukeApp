@@ -1,5 +1,5 @@
 function otherInit(Vue) {
-    var str = dataValue('user/great/tourism/common/other.html')
+    var str = dataValue('user/great/tourism/common/comNatural.html')
 
     return {
         template: str,

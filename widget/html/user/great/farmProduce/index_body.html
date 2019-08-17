@@ -93,19 +93,18 @@
             </div>
 
             <div class="great_details">
-                <img v-for="(imgSrc, i) in imgsDetail" :key="i"
-                     :src="imgSrc.imgSrc" alt="">
+                <img v-for="(imgSrc, i) in imgs" :key="i"
+                     :src="imgSrc" alt="">
             </div>
 
             <div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
-                    <div class="commodity_collection" @click="collectionHandle()">
+                    <div class="commodity_collection cssFlex" @click="collectionHandle()">
                         <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
                         <span>收藏</span>
                     </div>
-                    <div class="commodity_purchase" @click="purchaseHandle()">
-                        <div>¥{{item.priceh}}</div>
-                        <span>立即购买</span>
+                    <div class="commodity_purchase cssFlex" @click="purchaseHandle()">
+                        <div>¥{{item.priceh}}立即购买</div>
                     </div>
                 </div>
             </div>
@@ -130,8 +129,8 @@
 
 
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>-->
     <script>
 
     </script>
@@ -158,7 +157,7 @@
                     imgsBanner : [
 
                     ],
-                    imgsDetail: [
+                   /* imgsDetail: [
                         {
                             imgSrc : '../../../../image/bigWeigh/1@2x.png'
                         },
@@ -184,7 +183,7 @@
 
                             imgSrc : '../../../../image/bigWeigh/8@2x.png'
                         },
-                    ],
+                    ],*/
                     imgs: [],
                     imgurl: '',
                     att: false,
@@ -223,8 +222,9 @@
                                 that.imgsBanner = data.intpic;
                                 that.cid = data.Commodity.cId;
                                 // that.imgurl = that.item.placard.split(',')[0];
-                                // that.imgs = data.Commodity.intpic.split(',');
+                                that.imgs = data.Commodity.intPic.split(',');
                                 that.total = data.total;
+
                                 // that.att = data.att;
                                 // that.att_id = data.att_id;
                                 // that.comName = data.comName;
@@ -293,7 +293,7 @@
                             pId: that.person_id,
                             cId: that.cid
                         }
-                        console.log(obj)
+                        console.log("qie",obj)
                         ajaxGetWithProgress(createOrder, obj, function (data, err) {
                             console.log("creat",data);
                             if (data.date) {

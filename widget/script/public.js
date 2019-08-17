@@ -8,14 +8,18 @@ var isCleanUser = false;
 var serverUrl = "http://192.168.1.5:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.5:8000/SE4M';
 var Domain = 'http://192.168.1.5:8088';
+
 */
 
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
 
+
+
 var rootWindowName = "root";
 simpleVersion = true;
+
 
 //分享地址
 var shareNotice = "http://39.107.247.82:99/html/classNotice_detail_body.html?nid=";
@@ -29,10 +33,14 @@ function al(data) {
     }
 }
 
+//  市场上线
+var SendSmsCode = serverUrl + "/Status/status";
+
 
 // 接口    信息  列表
 
 var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
+
 
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
 var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
@@ -410,6 +418,28 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 
 //  聚划算
 var showVisaInformation = Domain + "/visa/showVisaInformation"
+
+//  聚划算 获取商品首页展示数据
+var commodityListCommodityProFile = Domain + "/CommodityProFile/commodityList"
+
+//  聚划算 希腊房产详情信息
+var housequeryHouseSummary = Domain + "/house/queryHouseSummary"
+
+//  聚划算 希腊房产详情信息
+var createHouseOrderhouse = Domain + "/house/createHouseOrder"
+
+//  聚划算 欧来欧去 查看欧来欧去详情
+var querySummaryByidoloq = Domain + "/oloq/querySummaryByid"
+//  聚划算 欧来欧去 获取该商品的类型和所有城市
+var queryPeopleAndCityoloq = Domain + "/oloq/queryPeopleAndCity"
+//  聚划算 欧来欧去 获取一个月所有的价格和日期
+var queryDateAndPriceoloq = Domain + "/oloq/queryDateAndPrice"
+
+//  聚划算 欧来欧去 点击提交订单，添加订单信息
+var createOrderoloq = Domain + "/oloq/createOrder"
+
+
+
 
 
 // 千里马  简历上传

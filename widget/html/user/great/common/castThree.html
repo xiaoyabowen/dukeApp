@@ -18,8 +18,23 @@
         <div class="returnBtn" @click="returnBtnClick()">
             <img src="../../../image/bigWeigh/return.png" alt="fanhui" class="returnBTNImg">
         </div>
-
-        <div class="positionComCast positionRate ">
+        <!--<div class="positionComCast positionRate">
+            <div class="xuanboxCast iconImgCastActive" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast22': 'posiCast2'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/fangA.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">希腊房产</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" v-for="(item,index) in hourseList" :key="index">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast'+index+index: 'posiCast'+index">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/1.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">{{item.comName}}</div>
+                </div>
+            </div>
+        </div>-->
+        <div class="positionComCast positionRate" @click="hourser1(4)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast00': 'posiCast0'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/1.png" class="iconImgCast" alt="person">
@@ -30,7 +45,7 @@
 
 
 
-        <div class="positionComCast positionRate">
+        <div class="positionComCast positionRate" @click="hourser1(3)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast11': 'posiCast1'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/2.png" class="iconImgCast " alt="person">
@@ -47,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate">
+        <div class="positionComCast positionRate" @click="hourser1(5)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast33': 'posiCast3'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/3.png" class="iconImgCast" alt="person">
@@ -55,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate">
+        <div class="positionComCast positionRate" @click="hourser1(10)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast44': 'posiCast4'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/4.png" class="iconImgCast" alt="person">
@@ -63,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate">
+        <div class="positionComCast positionRate" @click="hourser1(9)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast55': 'posiCast5'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/5.png" class="iconImgCast" alt="person">
@@ -71,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="positionComCast positionRate ">
+        <div class="positionComCast positionRate " @click="hourser1(6)">
             <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast66': 'posiCast6'">
                 <div class="daoboxCast" v-bind:style="styles">
                     <img src="../../../image/bigWeigh/6.png" class="iconImgCast" alt="person">

@@ -2,7 +2,7 @@
 function activitiesInit(Vue) {
     var str = dataValue('user/circle/comment/activities.html')
 
-    console.log(str)
+    // console.log(str)
     apiready = function () {
         content = api.pageParam.content
     }

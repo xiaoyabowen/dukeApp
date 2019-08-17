@@ -1,6 +1,6 @@
 function castOneInit(Vue) {
     var str = dataValue('user/great/common/castOne.html')
-    console.log(str)
+    // console.log(str)
 
     apiready = function () {
 

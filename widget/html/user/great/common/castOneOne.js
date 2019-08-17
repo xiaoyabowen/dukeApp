@@ -54,8 +54,11 @@ function castOneOneInit(Vue) {
                     }
                 });
             },
-            tourClick : function () {
-                openNewWindow("index", "tourism/index.html");
+            tourClick : function (ouId) {
+                // openNewWindow("index", "../great/ouou/index.html")
+                openNewWindow("index", "../great/ouou/index.html",{
+                    ouId : ouId
+                });
             },
             castSixClick : function () {    // 农产品     第六个
                 var that = this

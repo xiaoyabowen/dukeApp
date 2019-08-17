@@ -35,7 +35,7 @@
 
 
 
-                <div class="tourism_title">{{item.summary}}</div>
+                <div class="tourism_title">{{item.comName}}</div>
 
                 <div class="great_Price_List cssFlex">
                     <span class="great_Price">¥{{item.price_y}}</span>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="tourism_con">
-                    <div>出发城市: <span> {{item.comName}}</span></div>
+                    <div>出发城市: <span> {{item.departureCity}}</span></div>
                     <div class="tourism_con_num">
                         <div>组团人数: 15+1人</div>
                         <div>最少人数：12+1，不足人数，无法发团，敬请谅解</div>
@@ -70,7 +70,7 @@
 
             <div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
-                    <div class="tourism_collection" @click="collectionHandle()">
+                    <div class="tourism_collection cssFlex" @click="collectionHandle()">
                         <img :src="att ? '../../../../image/circle/Collection2.png' : '../../../../image/circle/Collection1.png'" alt="">
                         <span>收藏</span>
                     </div>
@@ -106,8 +106,8 @@
     <script src="./common/other.js"></script>
 
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>-->
     <script>
 
     </script>
