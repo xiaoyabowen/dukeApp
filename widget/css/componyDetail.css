@@ -80,12 +80,30 @@ p.timeInfo {
     line-height: 0.28rem;
     align-items: center;
 }
-img.ComTime,.dateCom{
-    display: inline-block;
+.dateCom{
+    display:block;
     width: 0.24rem;
     height: 0.24rem;
-    margin-right: 0.1rem;
+    margin-right: 0.08rem;
 }
+img.ComTime{
+    display:block;
+    width: 0.21rem;
+    height: 0.27rem;
+    margin-right: 0.08rem;
+}
+img.posiSee{
+    display:block;
+    width: 0.26rem;
+    height: 0.22rem;
+    margin-right: 0.08rem;
+}
+img.posiShare{
+    display:block;
+    width: 0.34rem;
+    height: 0.3rem;
+}
+
 .comLogo{
     width: 1rem;
     height: 1rem;
@@ -194,10 +212,11 @@ div#content {
 h4.job-nameNm {
     height: 0.44rem;
     font-size: 0.36rem;
-    font-weight: 600;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.44rem;
     margin-bottom: 0.12rem;
+    width: 4.3rem;
 }
 p.job-name {
     height: 0.32rem;
@@ -209,11 +228,12 @@ p.job-name {
 }
 p.adress-job {
     height: 0.28rem;
-    font-size: 0.2rem;
+    font-size: 0.24rem;
     font-weight: 400;
     color: rgba(102,102,102,1);
     line-height: 0.28rem;
     margin-bottom: 0.24rem;
+    align-items: center;
 }
 img.hrImg {
     display: inline-block;
@@ -225,7 +245,15 @@ img.hrImg {
     border-radius: 50%;
 }
 .job-left{
-    width: 4.3rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.adress-job{
+    align-items: center;
+}
+.adress-job>span{
+    color: #666666 !important;
+    font-size: 0.24rem;
 }
 p.job-img-content {
     height: 0.6rem;
@@ -236,9 +264,8 @@ p.job-img-content {
     align-items: center;
 }
 .job-right {
-    width: 1.5rem;
-    flex: 1;
-    text-align: right;
+    /*width: 1.5rem;*/
+    align-items: center;
 }
 p.moneyNum {
     height: 0.48rem;
@@ -246,7 +273,7 @@ p.moneyNum {
     font-weight: 500;
     color: rgba(92,145,253,1);
     line-height: 0.48rem;
-    margin: 0.24rem 0 0.2rem;
+    margin: 0.24rem 0.3rem 0.2rem 0;
 }
 
 
@@ -287,6 +314,9 @@ p.job-text {
 /*产品介绍*/
 h4.productName {
     padding: 0 0 0.2rem 0.34rem;
+    font-size: 0.3rem;
+    font-weight:500;
+    margin-top: 0.2rem;
 }
 .productNamePad{
     padding: 0 0 0.2rem 0 !important;
@@ -540,12 +570,12 @@ span.main-right {
     width: 100%;
     height: 1rem;
     background: #fff;
-    position: fixed;
+    /*position: fixed;*/
     /*padding-bottom: 10px;*/
-    bottom: 0;
-    left: 0;
-    padding: 0.2rem 0 0.2rem 0.2rem;
-    z-index: 989;
+    /*bottom: 0;*/
+    /*left: 0;*/
+    padding: 0rem 0 0.2rem 0.2rem;
+    /*z-index: 989;*/
 }
 .chatJob,.workJob{
     width:46%;

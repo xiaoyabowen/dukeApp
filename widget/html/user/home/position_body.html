@@ -14,8 +14,14 @@
     <link rel="stylesheet" href="../../../css/mofang.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-        span.adressInfo, .job-year {
-            margin-right: 10px;
+        span.adressInfo{
+            margin-right: 0.4rem;
+            font-size: 0.24rem;
+        }
+        .job-year {
+            margin-right: 0.56rem;
+            font-size: 0.24rem;
+            align-items: center;
         }
 
         img.hrImg {
@@ -69,7 +75,6 @@
 
 
 
-
 <div id="app1">
     <div class="bgBlack" @click="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
@@ -113,20 +118,25 @@
                                     <img src="../../../image/comLogo.png" alt="comLogo">
                                 </div>
                             </div>-->
-                            <div class="jobBox cssFlex">
-                                <div class="job-left">
+                            <div class="jobBox ">
+                                <div class="job-left cssFlex">
                                     <h4 class="job-nameNm ellipsis" id="job_name">运营经理</h4>
-                                    <input type="hidden" id="job_id">
-                                    <input type="hidden" id="puid">
-                                    <p class="adress-job">
-                                        <span class="adressInfo" id="city">北京-朝阳-望京</span>
-                                        <span class="job-year"><i id="work_ex">10</i></span>
-                                        <span id="edu_ex">本科</span>
-                                    </p>
+                                    <!--薪资 日期-->
+                                    <div class="job-right cssFlex">
+                                        <p class="moneyNum"><span id="ratio">20k-30K</span></p>
+                                        <img src="../../../icon/posiShare.png" alt="time" class="posiShare">
+                                    </div>
+
                                 </div>
-                                <!--薪资 日期-->
-                                <div class="job-right ">
-                                    <p class="moneyNum"><span id="ratio">20k-30K</span></p>
+
+                                <input type="hidden" id="job_id">
+                                <input type="hidden" id="puid">
+                                <div class="adress-job cssFlex">
+                                    <img src="../../../icon/adress.png" alt="time" class="ComTime">
+                                    <span class="adressInfo" id="city">北京-朝阳-望京</span>
+                                    <span class="job-year cssFlex"><img src="../../../icon/year.png" alt="date" class="dateCom"><i id="work_ex">10</i></span>
+                                    <img src="../../../icon/posiSee.png" alt="date" class="posiSee">
+                                    <span><i id="count">300</i>次浏览</span>
                                 </div>
                             </div>
                             <div class="F9Line"></div>
@@ -140,7 +150,6 @@
                                             <i>·</i>
                                             <span id="z_user_job">人力资源部经理</span>
                                         </p>
-
                                     </div>
                                     <img src="../../../icon/right.png" alt="right" class="link-right">
                                 </div>
@@ -170,7 +179,7 @@
                                     4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
                                 </p>
                             </div>
-                            <h4 class="productName">技能要求</h4>
+                            <!--<h4 class="productName">技能要求</h4>
                             <div class="skillList cssFlex" id="skills">
                                 <span>餐补</span>
                                 <span>五险一金</span>
@@ -180,7 +189,7 @@
                                 <span>五险一金</span>
                                 <span>五险一金</span>
                                 <span>五险一金</span>
-                            </div>
+                            </div>-->
                             <div class="infoProduct cssFlex" id="company" onclick="company()">
                                 <img src="../../../image/pro.png" alt="pro" class="pro-img">
                                 <div class="infoProductContent">
@@ -191,9 +200,9 @@
                                 </div>
                             </div>
 
-                            <div class="map-compony" id="container">
+                            <!--<div class="map-compony" id="container">
 
-                            </div>
+                            </div>-->
                         </div>
 
 
@@ -227,8 +236,8 @@
 <script src="comment/bus.js"></script>
 
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
 <script>
     // var card_el=document.getElementById("card_main");
@@ -238,7 +247,7 @@
 
 
 
-    var job_id, cid,jobId, uid, ptoken,s_id,h_type,ms_type,search,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
+    var job_id, cid,jobId, uid, ptoken,s_id,h_type,magicBGheight,ms_type,search,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
     apiready = function () {
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
@@ -251,12 +260,17 @@
 
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+        console.log("a01_w",a01_w)
+        console.log("winWidth/2",winWidth/2)
 
         // 斜边长
-        bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+        console.log("bevelLength",bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w-10)*0.23-10;    // 100
+        m_d = (a01_w-10)*0.23-25;    // 100
 
         api.addEventListener({
             name: 'keyback'
@@ -304,7 +318,7 @@
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('job_id').value = data.job_id ;
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
@@ -346,7 +360,7 @@
                     jobId = data.job_id;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
@@ -376,6 +390,7 @@
         }
         function positionDe(job_id,h_type,ms_type,search) {
             var obj = {
+                uid : localStorage.getItem("user"),
                 job_id: job_id,
                 search : search,
                 h_type : h_type,
@@ -394,7 +409,7 @@
                     ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
@@ -434,6 +449,7 @@
                 random_str : '',
                 signature : '',
                 timestamp : '',
+                timeIndex : '',
             },
             created: function () {
                 this.togle()
@@ -448,6 +464,7 @@
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom1;
+
                     /*localStorage.setItem("magic_id",ret.value.key.c_id)
                     localStorage.setItem("magic_img",ret.value.key.logo_icon)
                     localStorage.setItem("magic_name",ret.value.key.c_name)*/
@@ -457,6 +474,7 @@
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom2;
+
                     /*localStorage.setItem("magic_id2",ret.value.key.c_id)
                     localStorage.setItem("magic_img2",ret.value.key.logo_icon)
                     localStorage.setItem("magic_name2",ret.value.key.c_name)*/
@@ -467,10 +485,12 @@
                     console.log("ret",ret);
                     console.log("job_id",ret.value.key.job_id)
                     positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+
                 });
 
                 magicBox = document.querySelector(".magicBox")
                 bgBlack = document.querySelector(".bgBlack")
+
                 magicBtn = document.getElementsByClassName("magicBtn")
                 magicSubBox = document.getElementsByClassName("magicSubBox")
                 iconImg = document.getElementsByClassName("iconImg")
@@ -480,6 +500,9 @@
                 magicBox.style.right = '-' + rightYi + "px"
                 bgBlack.style.width =winWidth + "px"
                 bgBlack.style.height =winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
                 // 里面小盒子宽度
                 for (var i =0;i<magicBtn.length ; i++){
                     magicBtn[i].style.width = m_d + "px"
@@ -495,8 +518,6 @@
                     iconImg[i].style.width = m_d/2 + "px"
                     iconImg[i].style.height = m_d/2 + "px"
                 }
-
-
 
             },
             methods: {
@@ -548,11 +569,11 @@
 
             }
         })
-        var map = new AMap.Map("container", {
+        /*var map = new AMap.Map("container", {
             resizeEnable: true,
             zoom: 16
         });
-        map.clearMap();
+        map.clearMap();*/
 
     };
 

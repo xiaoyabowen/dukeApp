@@ -818,10 +818,12 @@ transform: rotate(-45deg)
     font-size: 0.2rem;
 }
 
+
 .iconImg {
     width: 0.4rem;
     height: 0.4rem;
     border-radius: 50%;
+
     /*transform: rotate(-45deg);*/
     /*position: relative;*/
     /*left: -0.09rem;*/
@@ -837,7 +839,6 @@ transform: rotate(-45deg)
     text-align: center;
     font-size: 0.12rem;
     color: #666666;
-    text-align: center;
     -webkit-transform: rotate(-45deg) translateX(16%);
     -moz-transform: rotate(-45deg) translateX(16%);
     -ms-transform: rotate(-45deg) translateX(16%);

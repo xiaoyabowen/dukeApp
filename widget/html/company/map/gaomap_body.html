@@ -57,8 +57,8 @@
             display: block;
         }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -267,8 +267,8 @@
 
 
 
-        Ajax('get', 'http://112.126.98.172:8000/SE4M/SE/JobProfile/addAddress', data, function(data){
-        // Ajax('get', 'http://112.126.98.172:8000/SE4M/SE/JobProfile/addAddress', data, function(data){
+        Ajax('get', 'http://192.168.1.7:8000/SE4M/SE/JobProfile/addAddress', data, function(data){
+        // Ajax('get', 'http://192.168.1.7:8000/SE4M/SE/JobProfile/addAddress', data, function(data){
             var data = JSON.parse(data)
             adr_id = data.adr_id
             province = adressStrData.province
@@ -360,7 +360,7 @@
 
 
         /*api.ajax({
-            url: "http://112.126.98.172:8000/SE4M/SE/UserProfile/addAddressByPerson",
+            url: "http://192.168.1.7:8000/SE4M/SE/UserProfile/addAddressByPerson",
             method: 'get',
             timeout: 60,
             dataType: 'json',

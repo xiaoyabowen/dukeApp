@@ -354,8 +354,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -369,10 +369,11 @@
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
 <script src="comment/magicAll.js"></script>
 <script src="comment/magicCom1.js"></script>
 <script src="comment/magicCom2.js"></script>
-
+<script src="comment/bus.js"></script>
 
 
 <script>
@@ -427,7 +428,6 @@
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
         var magicCom2 = magicCom2Init(Vue);
-        console.log(magicAll)
         Vue.component('magicAll', magicAll);
         Vue.component('magicCom1', magicCom1);
         Vue.component('magicCom2', magicCom2);
@@ -452,7 +452,9 @@
         cid = api.pageParam.cid;
         c_id = api.pageParam.c_id;
         uid = localStorage.getItem("person_id");
-        if (cid){
+        console.log("c_idc_id",c_id)
+        console.log("cidcid",cid)
+        if (cid || c_id){
             document.querySelector(".comTitle").innerHTML == ''
 
             var obj = {
@@ -882,7 +884,7 @@
             },
             created: function () {
 
-                this.queryListRandom()
+                // this.queryListRandom()
                 this.togle()
             },
 
@@ -893,18 +895,20 @@
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom1;
-                    localStorage.setItem("magic_id",ret.value.key.c_id)
+
+                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
                     localStorage.setItem("magic_img",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name",ret.value.key.c_name)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'comCom2',
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom2;
-                    localStorage.setItem("magic_id2",ret.value.key.c_id)
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
                     localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name2",ret.value.key.c_name)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'jobAll',
@@ -945,16 +949,30 @@
 
             },
             methods: {
-                // queryListRandom: function () {
-                //     var that = this;
-                //     ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
-                //         console.log(data);
-                //         that.list = data.job;
-                //         that.list1 = data.company;
-                //         // console.log(that.list)
-                //         document.getElementById('app1').classList.remove('isDisplay');
-                //     });
-                // },
+                MenuListQyMenu: function () {
+                    var that = this
+                    ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
+                        console.log("magicall1234", data)
+                        var jobList = data.job
+                        console.log(jobList)
+                        if (data) {
+                            if (jobList == null) {
+                                that.listJob = ''
+                            } else {
+                                that.listJob = jobList
+                            }
+                            that.magicComCid1 = data.company[0].c_id
+                            that.magicCom1Img = data.company[0].logo_icon
+                            that.magicCom1Text = data.company[0].c_name
+
+                            that.magicComCid2 = data.company[1].c_id
+                            that.magicCom2Img = data.company[1].logo_icon
+                            that.magicCom2Text = data.company[1].c_name
+                        }
+
+                    })
+
+                },
                 togle: function () {
                     // this.active = true;
                     var isBlck = document.querySelector('.bgBlack')
@@ -968,50 +986,7 @@
                         this.MenuListQyMenu();
                     }
                 },
-                // togle: function () {
-                //     // alert(2)
-                //     // this.active = true;
-                //     var isBlck=document.querySelector('.bgBlack')
-                //     if(isBlck.getAttribute("class")=='isDisplay'){
-                //         document.querySelector('.bgBlack').classList.remove('isDisplay');
-                //         console.log(document.querySelector('.bgBlack'))
-                //      }else {
-                //         var that = this;
-                //         that.active = 'magicAll';
-                //         document.querySelector('.bgBlack').classList.remove('isDisplay');
-                //         this.queryListRandom();
-                //     }
-                //
-                //
-                //
-                //
-                //     /*setTimeout(function () {
-                //         that.active = false;
-                //     }, 1500)*/
-                // },
-                // detailClick: function (index,job_id,item,search) {
-                //     this.index1 = index;
-                //     this.index2 = -1;
-                //     console.log("job_id",job_id)
-                //     positionDe(job_id,h_type,'1',search)
-                // },
-                // detailClick2: function (index,c_id) {
-                //     this.index2 = index;
-                //     this.index1 = -1;
-                //     console.log(c_id)
-                //     openNewWindow("companyInfo", "../home/companyInfo.html", {
-                //         cid: c_id
-                //     });
-                // },
-                // jobDetailClick : function (job_id,job_name){
-                //     console.log(job_id)
-                //     console.log(job_name)
-                //
-                //     positionDe(job_id,'1','1',job_name)
-                // },
-                // hideHandle: function () {
-                //     document.getElementById('subBox').classList.add('isDisplay');
-                // },
+
                 hideBg : function () {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');

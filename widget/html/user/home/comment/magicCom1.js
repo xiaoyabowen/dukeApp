@@ -3,8 +3,8 @@ function magicCom1Init(Vue) {
     var str = dataValue('user/home/comment/magicCom1.html')
 
     var bus = dataValue('user/home/comment/bus.js')
-    console.log(bus)
 
+    var magicBGheight
     apiready = function () {
 
         winWidth = api.winWidth;
@@ -26,7 +26,7 @@ function magicCom1Init(Vue) {
                     height : m_d + "px",
                 },
                 animate : false,
-
+                timeIndex : '',
                 magicCom2Img: '',
                 magicCom1Img: '',
                 magicCom2Text: '',
@@ -36,7 +36,7 @@ function magicCom1Init(Vue) {
 
                 job_id: '',
                 c_id: '',
-
+                activeAni:true,
 
                 listJob: [],
                 index: ''
@@ -44,6 +44,7 @@ function magicCom1Init(Vue) {
         },
         created: function() {
             this.OneCompanyFourJobMenu()
+            this.togle()
 
         },
         mounted :function (){
@@ -55,7 +56,12 @@ function magicCom1Init(Vue) {
             magicBox.style.width = bevelLength * 2 + "px"
             magicBox.style.height = bevelLength + "px"
             var rightYi = bevelLength
+
             magicBox.style.right = '-' + rightYi + "px"
+
+            magicBGheight = document.querySelector(".magicBGheight")
+            magicBGheight.style.height = m_d + "px"
+
             // 里面小盒子宽度
             for (var i =0;i<magicBtn.length ; i++){
                 magicBtn[i].style.width = m_d + "px"
@@ -93,6 +99,10 @@ function magicCom1Init(Vue) {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
                     this.OneCompanyFourJobMenu()
                 }
+                this.activeAni = true
+                setTimeout(function () {
+                    that.activeAni = false;
+                }, 1500)
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
@@ -133,17 +143,15 @@ function magicCom1Init(Vue) {
                         that.magicCom2Text = data.company[0].c_name
                         that.magicComCid2 = data.company[0].c_id
 
-                        /*store.state.obj.c_id = ''
-                        store.state.obj.c_name = ''
-                        store.state.obj.logo_icon = ''*/
 
 
                     }
                 })
             },
-            jobDetailClick : function (job_id,job_name){
+            jobDetailClick : function (job_id,job_name,index){
                 console.log("job_id",job_id)
                 console.log("job_name",job_name)
+                this.timeIndex = index;
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
@@ -158,8 +166,6 @@ function magicCom1Init(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-
-
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :localStorage.getItem("magic_id")},function (data) {
                     console.log("com1",data)
 
@@ -215,6 +221,7 @@ function magicCom1Init(Vue) {
 
                     }
                 });
+                that.OneCompanyFourJobMenu()
             },
         }
     }

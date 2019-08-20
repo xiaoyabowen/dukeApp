@@ -53,15 +53,27 @@
 .magic{
     /*position: relative;*/
 }
+.magicBtnPosi{
+    background: url("../image/posiBg.png") no-repeat center center;
+
+}
+.magicBtnPosiBor{
+    border: 0.04rem solid #ffffff;
+}
+.magicBtnCom{
+    background: url("../image/comBg.png") no-repeat center center;
+}
+
 .magicBtn{
-    background: #ffffff;
+
+    background-size: cover;
     margin-right: 5px;
-    border:1px solid rgba(99,139,255,1);
+    /*border:1px solid rgba(99,139,255,1);*/
     z-index: 997;
-    border-radius: 0.08rem;
+    border-radius: 0.1rem;
 }
 .magicBtnActive{
-    background: #638BFF;
+    /*background: #638BFF;*/
 }
 .magicSizeActive{
     color: #ffffff !important;
@@ -78,11 +90,30 @@
 .magicSubBox{
     transform: rotate(45deg);
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0.1rem;
 }
+.iconImgCom{
+    width: 0.72rem !important;
+    height: 0.72rem !important;
+    border-radius: 50%;
+    /*position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);*/
+}
+
 .magicSize{
-    line-height: 0.3rem;
-    font-size: 0.28rem;
-    color: #333333;
+
+    /*line-height: 0.3rem;*/
+    font-size: 0.26rem;
+    color: #ffffff;
     overflow : hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -96,6 +127,7 @@
 }
 
 .animation {
+    /*transform: rotateY(-45deg);*/
     animation: zoomOutLeft 2s;
     -ms-animation: zoomOutLeft 2s;
     -moz-animation: zoomOutLeft 2s;
@@ -110,6 +142,7 @@
         -webkit-transform: rotateY(0deg);
         -o-transform: rotateY(0deg);
     }
+
     100% {
         transform: rotateY(360deg);
         -ms-transform: rotateY(360deg);

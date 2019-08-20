@@ -2,6 +2,7 @@
 function magicCom2Init(Vue) {
     var str = dataValue('user/home/comment/magicCom2.html')
     var bus = dataValue('user/home/comment/bus.js')
+    var magicBGheight
     apiready = function () {
 
         winWidth = api.winWidth;
@@ -29,16 +30,17 @@ function magicCom2Init(Vue) {
                 magicCom1Text: '',
                 magicComCid1 : '',
                 magicComCid2 : '',
-
+                timeIndex:'',
                 job_id: '',
                 c_id: '',
-
+                activeAni:true,
                 listJob: [],
                 index: ''
             }
         },
         created: function() {
             this.OneCompanyFourJobMenu()
+            this.togle()
         },
         mounted :function (){
             var that = this
@@ -50,6 +52,10 @@ function magicCom2Init(Vue) {
             magicBox.style.height = bevelLength + "px"
             var rightYi = bevelLength
             magicBox.style.right = '-' + rightYi + "px"
+
+            magicBGheight = document.querySelector(".magicBGheight")
+            magicBGheight.style.height = m_d + "px"
+
             // 里面小盒子宽度
             for (var i =0;i<magicBtn.length ; i++){
                 magicBtn[i].style.width = m_d + "px"
@@ -86,7 +92,10 @@ function magicCom2Init(Vue) {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
                     this.OneCompanyFourJobMenu()
                 }
-
+                this.activeAni = true
+                setTimeout(function () {
+                    that.activeAni = false;
+                }, 1500)
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
@@ -123,9 +132,10 @@ function magicCom2Init(Vue) {
                     }
                 })
             },
-            jobDetailClick : function (job_id,job_name){
+            jobDetailClick : function (job_id,job_name,index){
                 console.log(job_id)
                 console.log(job_name)
+                this.timeIndex = index;
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
@@ -167,7 +177,7 @@ function magicCom2Init(Vue) {
                         },
                     }
                 });
-
+                that.OneCompanyFourJobMenu()
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;

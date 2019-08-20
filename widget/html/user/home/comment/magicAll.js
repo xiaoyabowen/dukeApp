@@ -15,7 +15,9 @@ function magicAllInit(Vue) {
     apiready = function () {
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2))
@@ -32,7 +34,7 @@ function magicAllInit(Vue) {
                     height: m_d + "px",
                 },
                 animate: false,
-
+                timeIndex : '',
                 magicCom2Img: '',
                 magicCom1Img: '',
                 magicCom2Text: '',
@@ -40,7 +42,7 @@ function magicAllInit(Vue) {
                 magicComCid1: '',
                 magicComCid2: '',
 
-
+                activeAni:true,
                 listJob: [],
                 index: ''
             }
@@ -95,12 +97,16 @@ function magicAllInit(Vue) {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
                     this.MenuListQyMenu();
                 }
+                this.activeAni = true
+                setTimeout(function () {
+                    that.activeAni = false;
+                }, 1500)
             },
-            jobDetailClick: function (job_id, job_name) {
+            jobDetailClick: function (job_id, job_name,index) {
                 console.log(job_id)
                 console.log(job_name)
-
-
+                this.timeIndex = index;
+                console.log("indexindex",this.timeIndex)
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {

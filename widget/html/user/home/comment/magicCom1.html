@@ -3,13 +3,14 @@
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <div class="magicBox">
 
-        <div class="magicBG cssFlex">
-            <div class="magicBtn" v-for="(item,index) in listJob" :key="index"
-                 @click="jobDetailClick(item.job_id,item.job_name)"
+        <div class="magicBG magicBGheight cssFlex">
+            <div class="magicBtn magicBtnPosi" v-for="(item,index) in listJob" :key="index"
+                 @click="jobDetailClick(item.job_id,item.job_name,index)"
+                 :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
                  v-bind:style="styles">
-                <div class="magicSubBox" v-bind:style="styles">
+                <div class="magicSubBox cssFlex" v-bind:style="styles">
                     <div class="magicSubBoxMain">
-                        <img :src="item.icon.split(',')[0]" class="iconImg" alt="person">
+                        <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
                         <div class="magicSize">{{item.job_name}}</div>
                     </div>
                 </div>
@@ -51,19 +52,20 @@
         </div>
         <div class="magicBG cssFlex">
 
-            <div class="magicBtn magicBtnActive" @click="magicCom1Click()">
-                <div class="magicSubBox">
+            <div class="magicBtn magicBtnCom magicBtnPosiBor"
+                >
+                <div class="magicSubBox cssFlex">
                     <div class="magicSubBoxMain">
                         <img :src="magicCom1Img" class="iconImg" alt="person">
-                        <div class="magicSize magicSizeActive">{{magicCom1Text}}</div>
+                        <!--<div class="magicSize magicSizeActive">{{magicCom1Text}}</div>-->
                     </div>
                 </div>
             </div>
-            <div class="magicBtn">
-                <div class="magicSubBox" @click="magicCom2Click()">
+            <div class="magicBtn  magicBtnCom" :class="activeAni ? 'animation' : '' ">
+                <div class="magicSubBox cssFlex" @click="magicCom2Click()">
                     <div class="magicSubBoxMain">
                         <img :src="magicCom2Img" class="iconImg" alt="person">
-                        <div class="magicSize">{{magicCom2Text}}</div>
+                        <!--<div class="magicSize">{{magicCom2Text}}</div>-->
                     </div>
                 </div>
             </div>

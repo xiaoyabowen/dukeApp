@@ -655,7 +655,7 @@
         console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://112.126.98.172:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://192.168.1.7:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -676,7 +676,7 @@
 
         api.ajax({
 
-            url: 'http://112.126.98.172:8000/SE4M/SE/Status/status',
+            url: 'http://192.168.1.7:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -730,7 +730,7 @@
 
             var dataD = data.querySearchHistory
             for (var i = 0; i < dataD.length; i++) {
-                historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].search + ',' + dataD[i].ms_type + ')">' + dataD[i].search + '</span>'
+                historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].ms_type + ')"  data-search="' + ret[i].S_Name + '">' + dataD[i].search + '</span>'
             }
             console.log(dataD.length)
             if (dataD.length == 0) {
@@ -758,7 +758,7 @@
                 var searchHtml = ''
                 var ret = ret.list
 
-                console.log("ret[i].S_name", ret[0].S_name)
+
                 console.log("list", ret)
                 for (var i = 0; i < ret.length; i++) {
                     searchHtml += '<div class="searchMain cssFlex" onclick="searchListClick(' + ret[i].S_Id + ',' + i + ',' + ret[i].type + ')"><div class="commonFont searchListText" data-search="' + ret[i].S_Name + '">' + ret[i].S_Name + '</div></div>'
@@ -797,10 +797,9 @@
         console.log(search)
         console.log(ms_type)
         var searchListText = document.querySelectorAll(".searchListText")
-        console.log(searchListText[search].getAttribute("data-search"))
         if (ms_type == 0) {
             openNewWindow("companyInfo", "./companyInfo.html", {
-                job_id: job_id,
+                c_id: s_id,
             });
         } else if (ms_type == 1) {
             openNewWindow("position", "./position.html", {
@@ -825,7 +824,7 @@
             openNewWindow("position", "./position.html", {
                 s_id: s_id,
                 // h_type: h_type,
-                search: search,
+                search: searchListText[search].getAttribute("data-search"),
                 ms_type: 0,   // 0 search   1 魔方 进入
             });
         }

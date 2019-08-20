@@ -54,6 +54,15 @@ function castTwoInit(Vue) {
                     }
                 });
             },
+            castFangClick : function () {    // 希腊房产
+                var that = this
+                api.sendEvent({
+                    name: 'fang',
+                    extra: {
+                        key: 'castThree',
+                    }
+                });
+            },
             castSixClick : function () {    // 农产品     第六个
                 var that = this
                 api.sendEvent({

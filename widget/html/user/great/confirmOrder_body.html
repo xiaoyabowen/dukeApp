@@ -152,7 +152,7 @@
                     <div class="con-pay-main-left cssFlex">
                         <img src="../../../image/great/gong.png" alt="gong" class="pay-gong">
                         <div class="con-pay-main-left-content">
-                            <div class="gong-name">工商银行储蓄卡（推荐）</div>
+                            <div class="gong-name">工商银行信用卡（推荐）</div>
                             <div class="gong-hui">满300元减20元</div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                     <div class="con-pay-main-left cssFlex">
                         <img src="../../../image/great/nong.png" alt="gong" class="pay-gong">
                         <div class="con-pay-main-left-content">
-                            <div class="con-pay-bank-name">农业银行储蓄卡</div>
+                            <div class="con-pay-bank-name">农业银行信用卡</div>
                         </div>
                     </div>
                     <div class="con-pay-main-right">
@@ -257,8 +257,8 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 
 <script>
     var orderInfo,
@@ -375,7 +375,7 @@
                                  }
                                  console.log(obj)
                                  api.ajax({
-                                     url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                     url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
                                      method: 'GET',
                                      dataType: 'text',
                                      timeout: 30,
@@ -454,7 +454,7 @@
                                     payType: "银联",
                                 }
                                 api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
@@ -566,7 +566,7 @@
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -579,7 +579,7 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://192.168.1.7:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
                                         // sandbox: true
 
 
@@ -651,7 +651,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
@@ -747,7 +747,7 @@
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -760,7 +760,7 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://192.168.1.7:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
                                         // sandbox: true
 
 
@@ -832,7 +832,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
