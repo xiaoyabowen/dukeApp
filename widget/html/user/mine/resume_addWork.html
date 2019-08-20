@@ -26,7 +26,7 @@
         <div class="middleMain">
             添加工作经历
         </div>
-        <div class="rightImgEdite"onclick="save()">
+        <div class="rightImgEdite" onclick="save()">
             保存
         </div>
     </div>
@@ -46,6 +46,7 @@
 
     //点击保存
     function save(){
+        console.log('这是保存工作经历')
         api.execScript({
             frameName: "resume_addWork_body",
             script: 'preservation()'

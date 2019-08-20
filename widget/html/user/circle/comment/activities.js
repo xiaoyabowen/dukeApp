@@ -71,14 +71,21 @@ function activitiesInit(Vue) {
                 console.log("activeObj",obj);
                 var that = this
                 if (that.content == "edit"){
-                    alert(12)
+                    // alert(12)
                     var obj = JSON.parse(sessionStorage.getItem('informationObj'));
 
                     console.log("12343",this.layedit.getContent(this.index));
+                    if(this.layedit.getContent(this.index) ===''){
+                        toast('活动详细信息不能为空');
+                        return;
+                    }
                     obj['details'] = this.layedit.getContent(this.index);
                     obj['status'] = 1;
                     obj['cir_status'] = 1;
                     obj['circle_id'] =that.circle_id;
+
+                    delete obj.img;
+                    delete obj.addressInput;
 
                     ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
                         console.log(data);
@@ -92,13 +99,19 @@ function activitiesInit(Vue) {
                         }
                     });
                 } else {
-                    alert(456)
                     var obj = JSON.parse(sessionStorage.getItem('informationObj'));
 
                     console.log(this.layedit.getContent(this.index));
+                    if(this.layedit.getContent(this.index) ===''){
+                        toast('活动详细信息不能为空');
+                        return;
+                    }
                     obj['details'] = this.layedit.getContent(this.index);
                     obj['status'] = 1;
                     obj['cir_status'] = 1;
+
+                    delete obj.img;
+                    delete obj.addressInput;
                     ajaxGetWithProgress(ActivecreateCircle, obj, function (data, err) {
                         console.log(data);
                         if (data.createCircle.return_info.status) {

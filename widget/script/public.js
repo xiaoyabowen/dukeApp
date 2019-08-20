@@ -710,6 +710,10 @@ function conver(limit){
 
 // 图片路劲去逗号
 function imgSrcFun(src) {
+    if (isStr(src)) {
+        console.error('src is\'t string');
+        return false
+    }
     return src.split(',')[0];
 }
 
@@ -1217,6 +1221,16 @@ function isNum(num) {
 
 function isArray(o) {
     return Object.prototype.toString.call(o) === '[object Array]';
+}
+
+/**
+ * 判断是否为字符串
+ * @author SnowRock
+ * @param o
+ * @returns {boolean}
+ */
+function isStr(o) {
+    return Object.prototype.toString.call(o) === '[object String]';
 }
 
 function isFunction(func) {

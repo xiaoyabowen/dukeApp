@@ -34,12 +34,28 @@ function informationInit(Vue) {
             this.person_id = localStorage.getItem('person_id');
             this.content = api.pageParam.content
             this.circle_id = api.pageParam.circle_id
-            if (this.content = "edit"){
+            if (this.content == "edit"){
                 this.CircleProfileAllinOne()
             }
         },
         mounted: function () {
-            var that = this
+            var that = this;
+            var informationInfo = JSON.parse(sessionStorage.getItem('informationObj'));
+            console.log(sessionStorage.getItem('informationObj'));
+            if (informationInfo && informationInfo !== '') {
+                that.img = informationInfo.img || '';
+                that.title = informationInfo.title || '';
+                that.name = informationInfo.cir_name || '';
+                that.phone = informationInfo.phone || '';
+                that.time_from = informationInfo.c_from || '';
+                that.time_to = informationInfo.c_to || '';
+                that.num = informationInfo.number || '';
+                that.end = informationInfo.endtime || '';
+                that.poster = informationInfo.poster || '';
+                that.code = informationInfo.code || '';
+                document.querySelector(".addressInput").value = informationInfo.addressInput || ''
+            }
+
             ajaxGetWithProgress(queryInvoice, {
                 person_id: that.person_id,
                 circle_id: that.circle_id,
@@ -78,7 +94,7 @@ function informationInit(Vue) {
                         that.num = that.item.number;
                         that.end = that.item.endtime;
 
-                        document.querySelector(".addressInput").value = that.item.shortname
+                        document.querySelector(".addressInput").value = that.item.shortname || ''
                         // that.queryApplyList();
                         // that.queryCommentSummary();
                     }
@@ -133,7 +149,6 @@ function informationInit(Vue) {
 
                             }
                         }, function (data, err) {
-
                             console.log("data",data);
                             if (data.code == 0) {
                                 that.poster = data.date.src.split(',')[0];
@@ -267,7 +282,9 @@ function informationInit(Vue) {
                     c_to: that.time_to,
                     number: that.num,
                     endtime: that.end,
+                    img: that.img,
                     adr_id: document.querySelector(".adr_id").value,
+                    addressInput: document.querySelector(".addressInput").value,
                     time : nowDate()
                 }
                 console.log(obj)
