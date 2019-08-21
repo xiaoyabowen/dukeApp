@@ -79,23 +79,23 @@
 
             <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="active == 'trip' ? 'active' : ''">基本信息</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="active == 'immigrant' ? 'active' : ''">希腊移民</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="active == 'comNatural' ? 'active' : ''">公司资质</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="active == 'uiNatural' ? 'active' : ''">设计师资质</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">基本信息</span></div>
+                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'activeType' : ''">希腊移民</span></div>
+                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'activeType' : ''">公司资质</span></div>
+                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'activeType' : ''">设计师资质</span></div>
                 </div>
 
-                <div id="trip" v-if="active == 'trip' && item.intPic">
+                <div id="trip" v-if="activeType == 'trip' && item.intPic">
                     <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
-                <div v-if="active == 'immigrant' && item.pic1">
+                <div v-if="activeType == 'immigrant' && item.pic1">
                     <img v-for="(pic, index) in picListpic1" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
 
-                <div v-if="active == 'comNatural' && item.pic2">
+                <div v-if="activeType == 'comNatural' && item.pic2">
                     <img v-for="(pic, index) in picListpic2" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
-                <div v-if="active == 'uiNatural' && item.pic3">
+                <div v-if="activeType == 'uiNatural' && item.pic3">
                     <img v-for="(pic, index) in picListpic3" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
             </div>
@@ -182,8 +182,6 @@
 
 
     <script src="../common/magicAll.js"></script>
-    <!--<script src="../common/magicCom1.js"></script>
-    <script src="../common/magicCom2.js"></script>-->
     <script src="../common/bus.js"></script>
 
 
@@ -198,11 +196,8 @@
 
         var winWidth,winHeight
         apiready = function () {
-            winWidth = api.winWidth;
-            winHeight = api.winHeight;
+
             var magicAll = magicAllInit(Vue);
-
-
             Vue.component('magicAll', magicAll);
 
 
@@ -210,9 +205,6 @@
             winHeight = api.winHeight;
             // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
             a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
-
-            console.log("a01_w",a01_w)
-            console.log("winWidth/2",winWidth/2)
 
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
@@ -223,7 +215,7 @@
             new Vue({
                 el: '#great',
                 data: {
-                    active: 'trip',
+                    activeType: 'trip',
                     item: {},
                     list: [],
                     len: 1,
@@ -237,15 +229,15 @@
                     att_id: '',
                     person_id: '',
                     hourseId: '',
-
-                    cid: '9',
+                    active:'magicAll',
+                    cid: '',
                     data: '',
                     username: '',
                     userphone: '',
                     userwx: '',
                     usermain: '',
                     showModal : false,
-
+                    listJob: [],
 
                 },
                 created: function () {
@@ -255,6 +247,7 @@
                     this.housequeryHouseSummary();
                 },
                 mounted: function () {
+                    var that = this
                     document.getElementById('great').classList.remove('isDisplay');
                     this.isDisplay = true;
                     //获得slider插件对象
@@ -264,6 +257,66 @@
                         },
                         autoplay:true,
                     });
+                    that.active = store.state.obj.magicCom;
+                    api.addEventListener({
+                        name: 'comCom1',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom1;
+
+                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'comCom2',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom2;
+
+                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'jobAll',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.hourseId = ret.value.key.cid
+                        that.housequeryHouseSummary()
+
+                    });
+
+                    magicBox = document.querySelector(".magicBox")
+                    bgBlack = document.querySelector(".bgBlack")
+
+                    magicBtn = document.getElementsByClassName("magicBtn")
+                    magicSubBox = document.getElementsByClassName("magicSubBox")
+                    iconImg = document.getElementsByClassName("iconImg")
+                    magicBox.style.width = bevelLength * 2 + "px"
+                    magicBox.style.height = bevelLength + "px"
+                    var rightYi = bevelLength
+                    magicBox.style.right = '-' + rightYi + "px"
+                    bgBlack.style.width =winWidth + "px"
+                    bgBlack.style.height =winHeight + "px"
+
+                    magicBGheight = document.querySelector(".magicBGheight")
+                    magicBGheight.style.height = m_d + "px"
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicBtn.length ; i++){
+                        magicBtn[i].style.width = m_d + "px"
+                        magicBtn[i].style.height = m_d + "px"
+                    }
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicSubBox.length ; i++){
+                        magicSubBox[i].style.width = m_d + "px"
+                        magicSubBox[i].style.height = m_d + "px"
+                    }
+                    // 图片宽度
+                    for (var i =0;i<iconImg.length ; i++){
+                        iconImg[i].style.width = m_d/2 + "px"
+                        iconImg[i].style.height = m_d/2 + "px"
+                    }
                 },
 
                 methods: {
@@ -285,9 +338,9 @@
                         });
                     },
                     // 切换tab
-                    activeHandle: function (active) {
-                        console.log(active)
-                        this.active = active;
+                    activeHandle: function (activeType) {
+                        console.log(activeType)
+                        this.activeType = activeType;
                     },
                     // 办理签证
                     // 收藏
@@ -362,13 +415,11 @@
                             }
                         })
                     },
-                    // 获取巨划算魔方数据
-
                     commodityList : function (){
                         var that = this
                         console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList",data)
+                            console.log("commodityList11",data)
                             var jobList = data.comList
                             console.log(jobList)
                             if (data) {
@@ -380,9 +431,17 @@
 
                                 that.magicComCid1 = data.Typelist[0].tid
                                 that.magicCom1Img = data.Typelist[0].pic
+                                if (data.Typelist[0].pic == null){
+                                    that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
                                 that.magicCom1Text = data.Typelist[0].cateory
 
                                 that.magicComCid2 = data.Typelist[1].tid
+
+
+                                if (data.Typelist[1].pic == null){
+                                    that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
                                 that.magicCom2Img = data.Typelist[1].pic
                                 that.magicCom2Text = data.Typelist[1].cateory
                             }
@@ -398,7 +457,7 @@
                             var that = this;
                             that.active = 'magicAll';
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            this.MenuListQyMenu();
+                            // this.MenuListQyMenu();
                         }
                     },
 

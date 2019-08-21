@@ -19,6 +19,7 @@
 
     <div class="Box">
         <div id="great" class="isDisplay">
+
             <div class="bgBlack" @click="hideBg()"></div>
             <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
             <keep-alive>
@@ -133,11 +134,8 @@
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
     <script src="../../../../script/swiper.min.js"></script>
-    <!--<script src="../common/magicCube.js"></script>-->
 
     <script src="../common/magicAll.js"></script>
-    <!--<script src="../common/magicCom1.js"></script>
-    <script src="../common/magicCom2.js"></script>-->
     <script src="../common/bus.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -147,11 +145,9 @@
     </script>
 
     <script>
-
+        var winWidth,winHeight
         apiready = function () {
-            // var magicCube = magicCubeInit(Vue);
-            // console.log(magicCube);
-            // Vue.component('magicCube', magicCube);
+
             var magicAll = magicAllInit(Vue);
             Vue.component('magicAll', magicAll);
 
@@ -160,8 +156,6 @@
             // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
             a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
 
-            console.log("a01_w",a01_w)
-            console.log("winWidth/2",winWidth/2)
 
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
@@ -224,6 +218,7 @@
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
                     this.tId = api.pageParam.tId;
+                    this.cid = api.pageParam.cid;
                     this.summary();
                 },
                 mounted: function () {
@@ -305,7 +300,7 @@
                     summary: function () {
                         var that = this;
                         ajaxGetWithProgress(summaryCommodityProFile, {
-                            cid: 99,
+                            cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
                             console.log(data);
@@ -400,7 +395,57 @@
                             }
                         });
 
-                    }
+                    },
+                    commodityList : function (){
+                        var that = this
+                        console.log("that.tId",that.tId)
+                        ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
+                            console.log("commodityList11",data)
+                            var jobList = data.comList
+                            console.log(jobList)
+                            if (data) {
+                                if (jobList == null) {
+                                    that.listJob = ''
+                                } else {
+                                    that.listJob = jobList
+                                }
+
+                                that.magicComCid1 = data.Typelist[0].tid
+                                that.magicCom1Img = data.Typelist[0].pic
+                                if (data.Typelist[0].pic == null){
+                                    that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
+                                that.magicCom1Text = data.Typelist[0].cateory
+
+                                that.magicComCid2 = data.Typelist[1].tid
+
+
+                                if (data.Typelist[1].pic == null){
+                                    that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
+                                that.magicCom2Img = data.Typelist[1].pic
+                                that.magicCom2Text = data.Typelist[1].cateory
+                            }
+                        })
+                    },
+                    togle: function () {
+                        // this.active = true;
+                        var isBlck = document.querySelector('.bgBlack')
+                        if (isBlck.getAttribute("class") == 'isDisplay') {
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            console.log(document.querySelector('.bgBlack'))
+                        } else {
+                            var that = this;
+                            that.active = 'magicAll';
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            // this.MenuListQyMenu();
+                        }
+                    },
+                    hideBg : function () {
+                        var that = this
+                        document.querySelector('.bgBlack').classList.add('isDisplay');
+                        that.active = ''
+                    },
                 }
             })
         }

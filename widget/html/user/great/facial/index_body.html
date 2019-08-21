@@ -158,9 +158,6 @@
             // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
             a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
 
-            console.log("a01_w",a01_w)
-            console.log("winWidth/2",winWidth/2)
-
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
             console.log("bevelLength",bevelLength)
@@ -227,8 +224,9 @@
                         name: 'jobAll',
                     }, function(ret, err) {
                         console.log("ret",ret);
-                        console.log("job_id",ret.value.key.job_id)
-                        positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                        // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                        that.cid = ret.value.key.cid
+                        that.commodityList()
 
                     });
 
@@ -386,7 +384,7 @@
                     },
                     // 获取巨划算魔方数据
 
-                   /* commodityList : function (){
+                    commodityList : function (){
                         var that = this
                         console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
@@ -436,7 +434,7 @@
                         var that = this
                         document.querySelector('.bgBlack').classList.add('isDisplay');
                         that.active = ''
-                    },*/
+                    },
                 }
             })
         }

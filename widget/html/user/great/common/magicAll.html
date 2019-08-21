@@ -4,9 +4,11 @@
     <div class="magicBox">
 
         <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
-            <div class="magicBtn magicBtnPosi " v-for="(item , index) in listJob" :key="index"
+            <div class="magicBtn magicBtnPosi"
+                 v-for="(item,index) in listJob" :key="index"
                  @click="jobDetailClick(item.cid,item.comName,index)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
+
                  v-bind:style="styles">
                 <div class="magicSubBox cssFlex" v-bind:style="styles">
                     <div class="magicSubBoxMain">
@@ -54,16 +56,16 @@
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
                 <div class="magicSubBox cssFlex">
                     <div class="magicSubBoxMain">
-                        <img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">
-                        <!--<div class="magicSize">{{magicCom1Text}}</div>-->
+                        <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
+                        <div class="magicSize">{{magicCom1Text}}</div>
                     </div>
                 </div>
             </div>
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' ">
                 <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
                     <div class="magicSubBoxMain">
-                        <img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">
-                        <!--<div class="magicSize">{{magicCom2Text}}</div>-->
+                        <!--<img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">-->
+                        <div class="magicSize">{{magicCom2Text}}</div>
                     </div>
                 </div>
             </div>

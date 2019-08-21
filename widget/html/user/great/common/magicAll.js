@@ -1,5 +1,5 @@
 function magicAllInit(Vue) {
-    var str = dataValue('user/home/comment/magicAll.html')
+    var str = dataValue('user/great/common/magicAll.html')
 
 
     apiready = function () {
@@ -34,6 +34,17 @@ function magicAllInit(Vue) {
 
                 activeAni:true,
                 listJob: [],
+                listJob1: [
+                    {
+                        name:"1"
+                    },
+                    {
+                        name:"1"
+                    },
+                    {
+                        name:"1"
+                    },
+                ],
                 index: '',
                 tId: '',
             }
@@ -46,16 +57,19 @@ function magicAllInit(Vue) {
         mounted: function () {
 
 
+            this.$watch("listJob",function (ret) {
+                console.log("retert",ret)
+            })
         },
 
         methods: {
             commodityList : function (){
+
                 var that = this
                 console.log("that.tId",that.tId)
                 ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
                     console.log("commodityList",data)
                     var jobList = data.comList
-                    console.log("jobListjobList",jobList)
                     if (data) {
                         if (jobList == null) {
                             that.listJob = ''
@@ -132,16 +146,16 @@ function magicAllInit(Vue) {
                 console.log("12",cid)
                 console.log("34",comName)
                 this.timeIndex = index;
-                /*console.log("indexindex",this.timeIndex)
+                // this.housequeryHouseSummary()
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
                         key: {
-                            job_id: job_id,
-                            job_name: job_name,
+                            cid: cid,
+                            comName: comName,
                         },
                     }
-                });*/
+                });
 
             },
             magicCom1Click: function () {  // 公司1
