@@ -289,12 +289,11 @@
         var title = list2.join(',');
 
         var is_open;
-
-        if (document.getElementById('btn').classList.contains('mui-active')) {
-            is_open = 0;
-        } else {
-            is_open = 1;
-        }
+        // if (document.getElementById('btn').classList.contains('mui-active')) {
+        //     is_open = 0;
+        // } else {
+        //     is_open = 1;
+        // }
 
         if (com_name == "请输入"){
             api.toast({
@@ -338,10 +337,11 @@
 
         console.log(params);
 
-
+        console.log(JSON.stringify(params));
         ajaxGetWithProgress(AddWork, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            console.warn(JSON.stringify(data));
+            console.warn(JSON.stringify(err));
             if (data.return_info.status) {
                 api.toast({
                     msg: '编辑工作经历成功'

@@ -236,16 +236,7 @@
                                     <p class="see-choose-hang" id="work">行业不限</p>
                                     <div class="seeSubTitle">自我描述</div>
                                     <div class="see-me-miao">
-                                        <div class="see-me-list cssFlex" id="p_title">
-                                            <span>个人能力</span>
-                                            <span>个人能力</span>
-                                            <span>个能力</span>
-                                            <span>个人力</span>
-                                            <span>个人能力</span>
-                                            <span>个人能</span>
-                                            <span>个人能力</span>
-                                            <span>个人能力</span>
-                                        </div>
+                                        <div class="see-me-list cssFlex" id="p_title"></div>
                                         <p class="see-me-text" id="p_tags">
                                             Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id
                                             tempor eros, at lobortis
@@ -287,13 +278,9 @@
                                     <div class="seeSubTitle">项目经历</div>
                                     <div class="see-product" id="project">
                                         <div class="see-product-box">
-                                            <div class="produvt-name">当当网APP</div>
-                                            <div class="produvt-date">2015.03-2017.02</div>
-                                            <div class="produvt-content">
-                                                当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网
-                                                APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当
-                                                当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计
-                                            </div>
+                                            <div class="produvt-name"></div>
+                                            <div class="produvt-date"></div>
+                                            <div class="produvt-content"></div>
                                         </div>
                                     </div>
                                     <div class="seeSubTitle">教育经历</div>
@@ -414,7 +401,7 @@
                 // listJob:[]
             },
             created: function () {
-                this.SmartMenu()
+                // this.SmartMenu()
                 this.togle()
             },
             mounted : function (){
@@ -536,8 +523,8 @@
                 // 公司名称 // 职位
                 if (working_his) {
                     var obj = working_his[0];
-                    document.getElementById('company').innerText = obj.com_name;
-                    document.getElementById('company_type').innerText = obj.position_type;
+                    document.getElementById('company').innerText = obj.com_name || '未填写';
+                    document.getElementById('company_type').innerText = obj.position_type || '未填写';
                 } else {
                     document.getElementById('company').innerText = '未填写';
                     document.getElementById('company_type').innerText = '未填写';
@@ -552,7 +539,7 @@
                 // 学历
                 if (education_his) {
                     var obj = education_his[0];
-                    document.getElementById('degree').innerText = obj.degree;
+                    document.getElementById('degree').innerText = obj.degree|| '未填写';
                 } else {
                     document.getElementById('degree').innerText = '未填写'
                 }
@@ -584,9 +571,11 @@
                     document.getElementById('p_tags').innerText = "未填写";
                 }
                 // 综合能力
+                console.warn('综合能力' + JSON.stringify(person_summary.p_title));
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
+                    console.warn('综合能力' + JSON.stringify(list));
                     var arr = [];
                     for (var i = 0; i < list.length; i++) {
                         var str = '<span>' + list[i] + '</span>';
@@ -617,17 +606,27 @@
                     // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
+                // console.warn(JSON.stringify(working_his));
+
                 // 工作经历
                 if (working_his) {
                     var workings = document.getElementById('workings');
                     var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
+                        var w_item = working_his[i];
+                        var com_name = w_item.com_name || '未填写';
+                        var position_type = w_item.position_type || '未填写';
+                        var w_from = w_item.w_from || '-- ';
+                        var position = w_item.position || '未填写';
+                        var c_note = w_item.c_note || '未填写';
+                        var w_to = w_item.w_to || ' -- ';
+
                         var str = '<div class="see-comlibox">\n' +
-                            '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                            '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                            '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                            '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                            '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
+                            '                                                <div class="jing-title">' + com_name + '</div>\n' +
+                            '                                                <div class="jing-position">' + position_type + '</div>\n' +
+                            '                                                <div class="jing-year"><span>' + w_from + '</span>至<span>' + w_to + '</span></div>\n' +
+                            '                                                <div class="jing-depart">所属部门：<span>' + position + '</span></div>\n' +
+                            '                                                <div class="jing-skill">' + c_note + '</div>\n' +
                             '\n' +
                             '                                            </div>';
                         arr.push(str);
@@ -642,13 +641,12 @@
                 if (education_his) {
                     var educations = document.getElementById('educations');
                     var arr = [];
-
                     for (var i = 0; i < education_his.length; i++) {
                         var str = '<div class="see-education cssFlex">\n' +
                             '                                               <div class="education-left">\n' +
-                            '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                            '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                            '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
+                            '                                                   <div class="education-name">' + (education_his[i].univ_name || '') + '</div>\n' +
+                            '                                                   <div class="education-edu"><span>' + (education_his[i].degree || '') + '</span> | <span>' + (education_his[i].major || '') + '</span></div>\n' +
+                            '                                                   <div class="education-date"><span>' + (education_his[i].e_from || '') + '</span>至<span>' + (education_his[i].e_to || '') + '</span></div>\n' +
                             '                                               </div>\n' +
                             '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
                             '                                           </div>';

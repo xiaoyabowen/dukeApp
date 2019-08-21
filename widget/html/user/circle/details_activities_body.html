@@ -303,7 +303,8 @@
                             that.item = data.circle_summary;
                             that.status = data.status;
                             that.count = data.Count;
-                            that.imgsrc = that.item.p_icon.split(',')[0];
+                            var list = imgSrcFun( that.item.p_icon);
+                            that.imgsrc = list?list:'';
                             // that.queryApplyList();
                             // that.queryCommentSummary();
                         }
