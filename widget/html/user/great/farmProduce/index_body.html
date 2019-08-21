@@ -47,18 +47,32 @@
                 </div>
 
 
-
+                <div class="peachTitle commonTitle">{{item.comName}}</div>
                 <div class="great_Price_List cssFlex">
                     <span class="great_Price">¥{{item.price}}</span>
                     <span class="great_Member">会员专享价: <span>{{item.priceh}}</span></span>
                     <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
                 </div>
                 <!--<div class="peachTitle commonTitle">新鲜多汁黄金水蜜桃</div>-->
-                <div class="peachTitle commonTitle">{{item.comName}}</div>
-                <div class="great_title">
+
+                <!--<div class="great_title">
                     {{item.summary}}
-                    <!--脆甜爽口 鲜嫩多汁 包邮 一箱12个装-->
+                    &lt;!&ndash;脆甜爽口 鲜嫩多汁 包邮 一箱12个装&ndash;&gt;
+                </div>-->
+                <div class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
+                    立即购买
                 </div>
+                <!--<div class="great_immediately">
+                    <div class="great_immediately_comtent cssFlex">
+                        <div class="commodity_collection cssFlex" @click="collectionHandle()">
+                            <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
+                            <span>收藏</span>
+                        </div>
+                        <div class="commodity_purchase cssFlex" @click="purchaseHandle()">
+                            <div>¥{{item.priceh}}立即购买</div>
+                        </div>
+                    </div>
+                </div>-->
             </div>
 
 
@@ -106,17 +120,7 @@
                      :src="imgSrc" alt="">
             </div>
 
-            <div class="great_immediately">
-                <div class="great_immediately_comtent cssFlex">
-                    <div class="commodity_collection cssFlex" @click="collectionHandle()">
-                        <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
-                        <span>收藏</span>
-                    </div>
-                    <div class="commodity_purchase cssFlex" @click="purchaseHandle()">
-                        <div>¥{{item.priceh}}立即购买</div>
-                    </div>
-                </div>
-            </div>
+
             <!--<magicCube></magicCube>-->
             <!--<component is="magicCube"></component>-->
         </div>
@@ -258,8 +262,9 @@
                         name: 'jobAll',
                     }, function(ret, err) {
                         console.log("ret",ret);
-                        console.log("job_id",ret.value.key.job_id)
-                        positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+
+                        that.cid = ret.value.key.cid
+                        that.summary()
 
                     });
 

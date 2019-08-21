@@ -64,6 +64,12 @@
 .magicBtnCom{
     background: url("../image/comBg.png") no-repeat center center;
 }
+.magicBtnPosiJu{
+    background: url("../image/juBgInfo.png") no-repeat center center;
+}
+.magicBtnComJu{
+    background: url("../image/juBgType.png") no-repeat center center;
+}
 
 .magicBtn{
 

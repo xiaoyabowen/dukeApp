@@ -4,7 +4,11 @@
     <div class="magicBox">
 
         <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
+<<<<<<< HEAD
             <div class="magicBtn magicBtnPosi"
+=======
+            <div class="magicBtn magicBtnPosiJu"
+>>>>>>> master
                  v-for="(item,index) in listJob" :key="index"
                  @click="jobDetailClick(item.cid,item.comName,index)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
@@ -53,7 +57,11 @@
             </div>-->
         </div>
         <div class="magicBG cssFlex">
+<<<<<<< HEAD
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
+=======
+            <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
+>>>>>>> master
                 <div class="magicSubBox cssFlex">
                     <div class="magicSubBoxMain">
                         <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
@@ -61,7 +69,11 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' ">
+=======
+            <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' ">
+>>>>>>> master
                 <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
                     <div class="magicSubBoxMain">
                         <!--<img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">-->

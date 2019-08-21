@@ -97,6 +97,7 @@ function magicAllInit(Vue) {
                     }
                 })
             },
+<<<<<<< HEAD
            /* MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
@@ -125,6 +126,8 @@ function magicAllInit(Vue) {
                 })
 
             },*/
+=======
+>>>>>>> master
             togle: function () {
                 // this.active = true;
                 var isBlck = document.querySelector('.bgBlack')
@@ -158,6 +161,7 @@ function magicAllInit(Vue) {
                 });
 
             },
+<<<<<<< HEAD
             magicCom1Click: function () {  // 公司1
                 var that = this;
                 that.commodityList()
@@ -220,6 +224,19 @@ function magicAllInit(Vue) {
 
                     }
                 });*/
+=======
+            magicCom1Click: function (tid) {  // 公司1
+                var that = this;
+                that.tId = tid
+                that.commodityList()
+
+            },
+            magicCom2Click: function (tid) {  // 公司2
+                var that = this;
+                that.tId = tid
+                that.commodityList()
+
+>>>>>>> master
             },
         }
     }

@@ -13,8 +13,6 @@ var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';*/
 
-
-
 var rootWindowName = "root";
 simpleVersion = true;
 
