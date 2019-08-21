@@ -773,3 +773,12 @@ img.info-img-right {
 .nonedisplay{
     display: none;
 }
+
+
+.juConImg {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.2rem;
+    margin-top: 0.1rem;
+}

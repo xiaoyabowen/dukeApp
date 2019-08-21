@@ -259,7 +259,7 @@
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
                     api.addEventListener({
-                        name: 'jobAll',
+                        name: 'jobAll'+that.tId,
                     }, function(ret, err) {
                         console.log("ret",ret);
                         that.cid = ret.value.key.cid

@@ -20,9 +20,76 @@
         <div id="great" class="isDisplay">
             <div class="bgBlack" @click="hideBg()"></div>
             <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-            <keep-alive>
-                <component :is="active"></component>
-            </keep-alive>
+            <div class="magicBox">
+
+                <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
+                    <div class="magicBtn magicBtnPosiJu"
+                         v-for="(item,index) in listJob" :key="index"
+                         @click="jobDetailClick(item.cid,item.comName,index)"
+                         :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
+
+                         v-bind:style="styles">
+                        <div class="magicSubBox cssFlex" v-bind:style="styles">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
+                                <div class="magicSize ">{{item.comName}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="magicBtn animation" @click="jobDetailClick(job_id1)">
+                        <div class="magicSubBox ">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob1Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob1Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn" @click="jobDetailClick(job_id2)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob2Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob2Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn" @click="jobDetailClick(job_id3)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob3Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob3Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magicBtn" @click="jobDetailClick(job_id4)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob4Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob4Text}}</div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="magicBG cssFlex">
+                    <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
+                        <div class="magicSubBox cssFlex">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
+                                <div class="magicSize">{{magicCom1Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' ">
+                        <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">-->
+                                <div class="magicSize">{{magicCom2Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="great_header">
                 <div class="great_header_banner">
@@ -132,7 +199,7 @@
     <script src="../../../../script/vuex.min.js"></script>
     <script src="../common/magicCube.js"></script>
 
-    <script src="../common/magicAll.js"></script>
+    <script src="./common/magicAll.js"></script>
     <!--<script src="../common/magicCom1.js"></script>
     <script src="../common/magicCom2.js"></script>-->
     <script src="../common/bus.js"></script>
@@ -190,13 +257,31 @@
                     cid: '',
                     tId: '',
                     active:'magicAll',
+
+
+                    styles: {
+                        //存放的是 动态修改的样式
+                        width: m_d + "px",// 内容标题总样式
+                        height: m_d + "px",
+                    },
+                    animate: false,
+                    timeIndex : '',
+                    magicCom2Img: '',
+                    magicCom1Img: '',
+                    magicCom2Text: '',
+                    magicCom1Text: '',
+                    magicComCid1: '',
+                    magicComCid2: '',
+                    activeAni:true,
+                    listJob: [],
+                    index: '',
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
                     this.tId = api.pageParam.tId;
                     this.cid = api.pageParam.cid;
                     this.summary();
-                    // this.commodityList();
+                    this.commodityList();
                 },
                 mounted: function () {
                     // document.getElementById('great').classList.remove('isDisplay');
@@ -229,7 +314,7 @@
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
                         console.log("ret",ret);
-
+                        alert("mianmo123")
                         // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
                         that.cid = ret.value.key.cid
                         that.summary()
@@ -389,14 +474,13 @@
 
                     },
                     // 获取巨划算魔方数据
-
                     commodityList : function (){
+
                         var that = this
                         console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
                             console.log("commodityList",data)
                             var jobList = data.comList
-                            console.log(jobList)
                             if (data) {
                                 if (jobList == null) {
                                     that.listJob = ''
@@ -405,9 +489,10 @@
                                 }
 
                                 that.magicComCid1 = data.Typelist[0].tid
-                                that.magicCom1Img = data.Typelist[0].pic
                                 if (data.Typelist[0].pic == null){
                                     that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }else{
+                                    that.magicCom1Img = data.Typelist[0].pic
                                 }
                                 that.magicCom1Text = data.Typelist[0].cateory
 
@@ -416,8 +501,9 @@
 
                                 if (data.Typelist[1].pic == null){
                                     that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }else{
+                                    that.magicCom1Img = data.Typelist[1].pic
                                 }
-                                that.magicCom2Img = data.Typelist[1].pic
                                 that.magicCom2Text = data.Typelist[1].cateory
                             }
                         })
@@ -432,14 +518,40 @@
                             var that = this;
                             that.active = 'magicAll';
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            // this.MenuListQyMenu();
+                            this.commodityList();
                         }
+                        this.activeAni = true
+                        setTimeout(function () {
+                            that.activeAni = false;
+                        }, 1500)
                     },
-
-                    hideBg : function () {
+                    jobDetailClick: function (cid, comName,index) {
                         var that = this
-                        document.querySelector('.bgBlack').classList.add('isDisplay');
-                        that.active = ''
+                        this.timeIndex = index;
+                        // this.housequeryHouseSummary()
+                        alert("mianmo")
+                        api.sendEvent({
+                            name: 'jobAll'+that.tId,
+                            extra: {
+                                key: {
+                                    cid: cid,
+                                    comName: comName,
+                                },
+                            }
+                        });
+
+                    },
+                    magicCom1Click: function (tid) {  // 公司1
+                        var that = this;
+                        that.tId = tid
+                        that.commodityList()
+
+                    },
+                    magicCom2Click: function (tid) {  // 公司2
+                        var that = this;
+                        that.tId = tid
+                        that.commodityList()
+
                     },
                 }
             })

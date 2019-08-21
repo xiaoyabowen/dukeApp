@@ -276,7 +276,7 @@
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
                     api.addEventListener({
-                        name: 'jobAll',
+                        name: 'jobAll'+that.tId,
                     }, function(ret, err) {
                         console.log("ret",ret);
                         that.ouId = ret.value.key.cid
@@ -405,6 +405,57 @@
                             type: 'tel_prompt',
                             number: '17600016895'
                         });
+                    },
+                    commodityList : function (){
+                        var that = this
+                        console.log("that.tId",that.tId)
+                        ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
+                            console.log("commodityList11",data)
+                            var jobList = data.comList
+                            console.log(jobList)
+                            if (data) {
+                                if (jobList == null) {
+                                    that.listJob = ''
+                                } else {
+                                    that.listJob = jobList
+                                }
+
+                                that.magicComCid1 = data.Typelist[0].tid
+                                that.magicCom1Img = data.Typelist[0].pic
+                                if (data.Typelist[0].pic == null){
+                                    that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
+                                that.magicCom1Text = data.Typelist[0].cateory
+
+                                that.magicComCid2 = data.Typelist[1].tid
+
+
+                                if (data.Typelist[1].pic == null){
+                                    that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }
+                                that.magicCom2Img = data.Typelist[1].pic
+                                that.magicCom2Text = data.Typelist[1].cateory
+                            }
+                        })
+                    },
+                    togle: function () {
+                        // this.active = true;
+                        var isBlck = document.querySelector('.bgBlack')
+                        if (isBlck.getAttribute("class") == 'isDisplay') {
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            console.log(document.querySelector('.bgBlack'))
+                        } else {
+                            var that = this;
+                            that.active = 'magicAll';
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            // this.MenuListQyMenu();
+                        }
+                    },
+
+                    hideBg : function () {
+                        var that = this
+                        document.querySelector('.bgBlack').classList.add('isDisplay');
+                        that.active = ''
                     },
                 }
             })

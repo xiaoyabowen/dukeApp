@@ -6,7 +6,7 @@
         <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
             <div class="magicBtn magicBtnPosiJu"
                  v-for="(item,index) in listJob" :key="index"
-                 @click="jobDetailClick(item.cid,item.comName,index)"
+                 @click="jobDetailClick(item.cid,item.comName,index,item.tId)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
 
                  v-bind:style="styles">

@@ -191,7 +191,7 @@
                         },
                         autoplay:true,
                     });
-
+                    var that = this
                     that.active = store.state.obj.magicCom;
                     api.addEventListener({
                         name: 'comCom1',
@@ -214,7 +214,7 @@
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
                     api.addEventListener({
-                        name: 'jobAll',
+                        name: 'jobAll'+that.tId,
                     }, function(ret, err) {
                         console.log("ret",ret);
                         that.cid = ret.value.key.cid
@@ -268,13 +268,13 @@
                                 that.att = data.att;
                                 that.att_id = data.att_id;
                                 that.total = data.total;
-
                                 that.data = data;
                                 if (that.item.intPic) {
-                                    that.picList = that.item.intPic.split(',')
+                                    that.picList = stringFun(that.item.intPic)
+
                                 }
                                 if (that.item.placard) {
-                                    that.imgs = that.item.placard.split(',');
+                                    that.imgs = stringFun(that.item.placard);
                                 }
                             }
                         });

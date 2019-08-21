@@ -55,7 +55,7 @@
 
                 <div class="posire">
                     <div class="tourism_title ellipsis">{{item.comName}}</div>
-                    <div class="juLisellBtn hourseLisellBtn commonFont cssFlex" @click="purchaseHandle()">
+                    <div class="juLisellBtn hourseLisellBtn commonFont cssFlex" @click="Consultation()">
                         我要咨询
                     </div>
                 </div>
@@ -283,10 +283,11 @@
                         localStorage.setItem("magic_img2",ret.value.key.logo_icon)
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
+                    console.log("that.tId1234",'jobAll'+that.tId)
                     api.addEventListener({
-                        name: 'jobAll',
+                        name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        // console.log("ret",ret);
                         that.hourseId = ret.value.key.cid
                         that.housequeryHouseSummary()
 
@@ -396,6 +397,7 @@
                             $('#dialog').fadeOut();
                         });
                     },
+
                     submitImg : function () {
                         var that = this
                         var obj = {
