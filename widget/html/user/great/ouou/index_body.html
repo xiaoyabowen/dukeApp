@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
     <link rel="stylesheet" href="../../../../css/modal.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
+    <link rel="stylesheet" href="../../../../css/mofang.css">
     <style>
         .tourism_main{
             background: #fff;
@@ -34,6 +35,11 @@
 
     <div class="Box">
         <div id="great" class="isDisplay">
+            <div class="bgBlack" @click="hideBg()"></div>
+            <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+            <keep-alive>
+                <component :is="active"></component>
+            </keep-alive>
             <div class="great_header">
 
                 <div class="great_header_banner swiper-container">
@@ -53,10 +59,17 @@
 
 
                 <div class="tourism_title">{{item.comName}}</div>
-                <div class="great_Price_List cssFlex">
-                    <span class="great_Price">¥{{item.priceRange}}</span>
-                    <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                <div class="posire">
+                    <div class="great_Price_List cssFlex">
+                        <span class="great_Price">¥{{item.priceRange}}</span>
+                        <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                    </div>
+                    <div class="ououIndex cssFlex">
+                        <div class="chatJuOuou" @click="callHandle()">客服咨询</div>
+                        <div class="sellJuOuou" @click="Consultation()"><i class="tripPrice isDisplay">0</i>立即购买</div>
+                    </div>
                 </div>
+
                 <div class="ouPersonDetail cssFlex" @click="tripDetail()">
                     <div class="ouPersonDetailText">
                         <div class="commonFont ouPersonLeft cssFlex">
@@ -79,28 +92,28 @@
 
             <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="active == 'trip' ? 'active' : ''">图文详情</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="active == 'immigrant' ? 'active' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="active == 'comNatural' ? 'active' : ''">行程描述</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="active == 'uiNatural' ? 'active' : ''">预订须知</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">图文详情</span></div>
+                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'activeType' : ''">费用说明</span></div>
+                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'activeType' : ''">行程描述</span></div>
+                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'activeType' : ''">预订须知</span></div>
                 </div>
 
-                <div id="trip" v-if="active == 'trip' && item.introduction">
+                <div id="trip" v-if="activeType == 'trip' && item.introduction">
                     <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
-                <div v-if="active == 'immigrant'">
+                <div v-if="activeType == 'immigrant'">
                     <img v-for="(pic, index) in picListpic1" :key="index" :src="pic.img" class="imgComDetail" alt="">
                 </div>
 
-                <div v-if="active == 'comNatural' && item.intPic">
+                <div v-if="activeType == 'comNatural' && item.intPic">
                     <img v-for="(pic, index) in picListpic2" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
-                <div v-if="active == 'uiNatural'">
+                <div v-if="activeType == 'uiNatural'">
                     <img v-for="(pic, index) in picListpic3" :key="index" :src="pic.img" class="imgComDetail" alt="">
                 </div>
             </div>
 
-            <div class="great_immediately">
+            <!--<div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
 
                     <div class="purchaseLeft cssFlex">
@@ -123,7 +136,7 @@
                         <div>￥<i class="tripPrice">0</i>立即购买</div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
             <!--<img src="../../../../image/bigWeigh/feiyong1.png" alt="">-->
             <!--<component is="magicCube"></component>-->
@@ -144,6 +157,8 @@
 
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
+    <script src="../common/magicAll.js"></script>
+    <script src="../common/bus.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -155,14 +170,27 @@
 
         var winWidth,winHeight,url
         apiready = function () {
+
+            var magicAll = magicAllInit(Vue);
+            Vue.component('magicAll', magicAll);
+            url = api.pageParam.url
+
             winWidth = api.winWidth;
             winHeight = api.winHeight;
-            url = api.pageParam.url
+            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+            a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+            // 斜边长
+            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+            console.log("bevelLength",bevelLength)
+            // width_d=(screen_w-20) *2/5 - 5;
+            m_d = (a01_w-10)*0.23-25;    // 100
+
             // getSrceenWH(winWidth,winHeight)
             new Vue({
                 el: '#great',
                 data: {
-                    active: 'trip',
+                    activeType: 'trip',
                     item: {},
                     list: [],
                     len: 1,
@@ -196,6 +224,7 @@
                     att_id: '',
                     person_id: '',
                     ouId: '',
+                    tId: '',
 
                     cid: '',
                     data: '',
@@ -204,15 +233,17 @@
                     userwx: '',
                     usermain: '',
                     showModal : false,
-
+                    active:'magicAll',
 
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
                     this.ouId = api.pageParam.ouId;
+                    this.tId = api.pageParam.tId;
                     this.querySummaryByidoloq();
                 },
                 mounted: function () {
+                    var that = this
                     document.getElementById('great').classList.remove('isDisplay');
                     this.isDisplay = true;
                     //获得slider插件对象
@@ -222,9 +253,67 @@
                         },
                         autoplay:true,
                     });
-                    
 
-                    
+                    that.active = store.state.obj.magicCom;
+                    api.addEventListener({
+                        name: 'comCom1',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom1;
+
+                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'comCom2',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom2;
+
+                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'jobAll',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.ouId = ret.value.key.cid
+                        that.querySummaryByidoloq()
+
+                    });
+
+                    magicBox = document.querySelector(".magicBox")
+                    bgBlack = document.querySelector(".bgBlack")
+
+                    magicBtn = document.getElementsByClassName("magicBtn")
+                    magicSubBox = document.getElementsByClassName("magicSubBox")
+                    iconImg = document.getElementsByClassName("iconImg")
+                    magicBox.style.width = bevelLength * 2 + "px"
+                    magicBox.style.height = bevelLength + "px"
+                    var rightYi = bevelLength
+                    magicBox.style.right = '-' + rightYi + "px"
+                    bgBlack.style.width =winWidth + "px"
+                    bgBlack.style.height =winHeight + "px"
+
+                    magicBGheight = document.querySelector(".magicBGheight")
+                    magicBGheight.style.height = m_d + "px"
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicBtn.length ; i++){
+                        magicBtn[i].style.width = m_d + "px"
+                        magicBtn[i].style.height = m_d + "px"
+                    }
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicSubBox.length ; i++){
+                        magicSubBox[i].style.width = m_d + "px"
+                        magicSubBox[i].style.height = m_d + "px"
+                    }
+                    // 图片宽度
+                    for (var i =0;i<iconImg.length ; i++){
+                        iconImg[i].style.width = m_d/2 + "px"
+                        iconImg[i].style.height = m_d/2 + "px"
+                    }
                 },
 
                 methods: {
@@ -248,9 +337,9 @@
                         });
                     },
                     // 切换tab
-                    activeHandle: function (active) {
-                        console.log(active)
-                        this.active = active;
+                    activeHandle: function (activeType) {
+                        console.log(activeType)
+                        this.activeType = activeType;
                     },
                     // 办理签证
                     // 收藏

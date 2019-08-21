@@ -270,7 +270,39 @@
 .great_header {
     margin-bottom: 0.2rem;
     background: #ffffff;
+    position: relative;
+    padding-bottom: 1.1rem;
 }
+.posire{
+    position: relative;
+    padding-bottom: 1.1rem;
+}
+
+.ououIndex{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.34rem;
+    position: absolute;
+    z-index: 999;
+}
+.chatJuOuou,.sellJuOuou{
+    width:2.9rem;
+    height:0.64rem;
+    line-height: 0.64rem;
+    text-align: center;
+    color: #ffffff;
+    border-radius:0.04rem;
+    font-size: 0.24rem;
+
+}
+.chatJuOuou{
+    background:rgba(99,139,255,1);
+    margin-right: 0.4rem;
+}
+.sellJuOuou{
+    background:rgba(255,163,0,1);
+}
+
 
 .great_header_banner {
     height: 3.68rem;
@@ -460,9 +492,9 @@
     width: 100%;
     height: 0.98rem;
     line-height: 0.98rem;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
     justify-content: space-between;
 }
 .purchaseLeft{
@@ -504,7 +536,24 @@
     justify-content: center;
     align-items: center;
 }
-
+.juLisellBtn{
+    width: 6.4rem;
+    height: 0.64rem;
+    line-height: 0.64rem;
+    background:rgba(255,163,0,1);
+    border-radius:0.04rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0.3rem;
+    bottom: 0.3rem;
+    color: #ffffff;
+    z-index:9999;
+}
+.hourseLisellBtn{
+    background:rgba(99,139,255,1) !important;
+}
 /*.commodity_purchase div {*/
     /*margin-top: 0.32rem;*/
 /*}*/

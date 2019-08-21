@@ -17,8 +17,13 @@
 
     <div class="Box">
         <div id="great" class="isDisplay">
-            <div class="great_header">
 
+            <div class="bgBlack" @click="hideBg()"></div>
+            <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+            <keep-alive>
+                <component :is="active"></component>
+            </keep-alive>
+            <div class="great_header">
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
@@ -35,11 +40,16 @@
 
 
 
-                <div class="tourism_title">{{item.comName}}</div>
+                <div class="tourism_title textOverflow">{{item.comName}}</div>
 
-                <div class="great_Price_List cssFlex">
-                    <span class="great_Price">¥{{item.price_y}}</span>
-                    <span class="great_Stock">商品已售: <span>{{total}}</span>张</span>
+                <div class="posire">
+                    <div class="great_Price_List cssFlex">
+                        <span class="great_Price">¥{{item.price_y}}</span>
+                        <span class="great_Stock">商品已售: <span>{{total}}</span>张</span>
+                    </div>
+                    <div class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
+                        立即购买
+                    </div>
                 </div>
 
                 <div class="tourism_con">
@@ -51,37 +61,40 @@
                     </div>
                     <div>出发日期: <span> {{item.departureDate}}</span></div>
                 </div>
+
+
+
             </div>
 
 
             <div class="tourism_main">
                 <div class="tourism_main_header">
-                    <div><span @click="activeHandle('trip')" :class="active == 'trip' ? 'active' : ''">行程路线</span></div>
-                    <div><span @click="activeHandle('cost')" :class="active == 'cost' ? 'active' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('other')" :class="active == 'other' ? 'active' : ''">其他说明</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">行程路线</span></div>
+                    <div><span @click="activeHandle('cost')" :class="activeType == 'cost' ? 'activeType' : ''">费用说明</span></div>
+                    <div><span @click="activeHandle('other')" :class="activeType == 'other' ? 'activeType' : ''">其他说明</span></div>
                 </div>
 
-                <div id="trip" v-if="active == 'trip' && item.intPic">
+                <div id="trip" v-if="activeType == 'trip' && item.intPic">
                     <img v-for="(pic, index) in picList" :key="index" :src="pic" alt="">
                 </div>
-                <cost v-if="active == 'cost'"></cost>
-                <other v-if="active == 'other'"></other>
+                <cost v-if="activeType == 'cost'"></cost>
+                <other v-if="activeType == 'other'"></other>
             </div>
 
-            <div class="great_immediately">
+            <!--<div class="great_immediately">
                 <div class="great_immediately_comtent cssFlex">
                     <div class="tourism_collection cssFlex" @click="collectionHandle()">
                         <img :src="att ? '../../../../image/circle/Collection2.png' : '../../../../image/circle/Collection1.png'" alt="">
                         <span>收藏</span>
                     </div>
-                    <!--<div class="tourism_visa">-->
-                        <!--办理签证-->
-                    <!--</div>-->
+                    &lt;!&ndash;<div class="tourism_visa">&ndash;&gt;
+                        &lt;!&ndash;办理签证&ndash;&gt;
+                    &lt;!&ndash;</div>&ndash;&gt;
                     <div class="tourism_purchase" @click="purchaseHandle()">
                         <span>立即购买</span>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
             <!--<component is="magicCube"></component>-->
         </div>
@@ -104,7 +117,8 @@
     <!--<script src="../common/magicCube.js"></script>-->
     <script src="./common/cost.js"></script>
     <script src="./common/other.js"></script>
-
+    <script src="../common/magicAll.js"></script>
+    <script src="../common/bus.js"></script>
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -125,11 +139,25 @@
 
             Vue.component('cost', cost);
             Vue.component('other', other);
+            var magicAll = magicAllInit(Vue);
+            Vue.component('magicAll', magicAll);
+            url = api.pageParam.url
+
+            winWidth = api.winWidth;
+            winHeight = api.winHeight;
+            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+            a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+            // 斜边长
+            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+            console.log("bevelLength",bevelLength)
+            // width_d=(screen_w-20) *2/5 - 5;
+            m_d = (a01_w-10)*0.23-25;    // 100
 
             new Vue({
                 el: '#great',
                 data: {
-                    active: 'trip',
+                    activeType: 'trip',
                     item: {},
                     list: [],
                     len: 1,
@@ -139,13 +167,16 @@
                     att: false,
                     att_id: '',
                     person_id: '',
-
-                    cid: '2',
+                    active:'magicAll',
+                    cid: '',
                     data: '',
+                    tId: '',
 
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
+                    this.cid = api.pageParam.cid;
+                    this.tId = api.pageParam.tId;
                     this.showTravel();
 
 
@@ -160,6 +191,68 @@
                         },
                         autoplay:true,
                     });
+
+                    that.active = store.state.obj.magicCom;
+                    api.addEventListener({
+                        name: 'comCom1',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom1;
+
+                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'comCom2',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom2;
+
+                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'jobAll',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.cid = ret.value.key.cid
+                        that.showTravel()
+
+                    });
+
+                    magicBox = document.querySelector(".magicBox")
+                    bgBlack = document.querySelector(".bgBlack")
+
+                    magicBtn = document.getElementsByClassName("magicBtn")
+                    magicSubBox = document.getElementsByClassName("magicSubBox")
+                    iconImg = document.getElementsByClassName("iconImg")
+                    magicBox.style.width = bevelLength * 2 + "px"
+                    magicBox.style.height = bevelLength + "px"
+                    var rightYi = bevelLength
+                    magicBox.style.right = '-' + rightYi + "px"
+                    bgBlack.style.width =winWidth + "px"
+                    bgBlack.style.height =winHeight + "px"
+
+                    magicBGheight = document.querySelector(".magicBGheight")
+                    magicBGheight.style.height = m_d + "px"
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicBtn.length ; i++){
+                        magicBtn[i].style.width = m_d + "px"
+                        magicBtn[i].style.height = m_d + "px"
+                    }
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicSubBox.length ; i++){
+                        magicSubBox[i].style.width = m_d + "px"
+                        magicSubBox[i].style.height = m_d + "px"
+                    }
+                    // 图片宽度
+                    for (var i =0;i<iconImg.length ; i++){
+                        iconImg[i].style.width = m_d/2 + "px"
+                        iconImg[i].style.height = m_d/2 + "px"
+                    }
+
                 },
                 methods: {
                     // 获取数据
@@ -171,13 +264,13 @@
                         }, function (data, err) {
                             console.log(data);
                             if (data.commTravel) {
-                                that.item = data.commTravel;
+                                that.item = data.commodity;
                                 that.att = data.att;
                                 that.att_id = data.att_id;
                                 that.total = data.total;
 
                                 that.data = data;
-                                if (that.item.int_pic) {
+                                if (that.item.intPic) {
                                     that.picList = that.item.intPic.split(',')
                                 }
                                 if (that.item.placard) {
@@ -187,8 +280,8 @@
                         });
                     },
                     // 切换tab
-                    activeHandle: function (active) {
-                        this.active = active;
+                    activeHandle: function (activeType) {
+                        this.activeType = activeType;
                     },
                     // 办理签证
                     // 收藏

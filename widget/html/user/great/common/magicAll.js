@@ -97,34 +97,6 @@ function magicAllInit(Vue) {
                     }
                 })
             },
-           /* MenuListQyMenu: function () {
-                var that = this
-                ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
-                    console.log("magicall", data)
-                    var jobList = data.job
-                    console.log(jobList)
-                    if (data) {
-                        if (jobList == null) {
-                            that.listJob = ''
-                        } else {
-                            that.listJob = jobList
-                        }
-
-
-                        that.magicComCid1 = data.company[0].c_id
-                        that.magicCom1Img = data.company[0].logo_icon
-                        that.magicCom1Text = data.company[0].c_name
-
-                        that.magicComCid2 = data.company[1].c_id
-                        that.magicCom2Img = data.company[1].logo_icon
-                        that.magicCom2Text = data.company[1].c_name
-
-
-                    }
-
-                })
-
-            },*/
             togle: function () {
                 // this.active = true;
                 var isBlck = document.querySelector('.bgBlack')
@@ -158,68 +130,17 @@ function magicAllInit(Vue) {
                 });
 
             },
-            magicCom1Click: function () {  // 公司1
+            magicCom1Click: function (tid) {  // 公司1
                 var that = this;
+                that.tId = tid
                 that.commodityList()
-                /*store.state.obj.c_id = that.magicComCid1
-                store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img
-                store.state.obj.magicCom =  'magicCom1'*/
 
-                /*var obj = {
-                    magicComCid1: that.magicComCid1,
-                    magicCom1Text: that.magicCom1Text,
-                    magicCom1Img: that.magicCom1Img,
-                    magicCom: 'magicCom1',
-                }
-
-
-
-                store.commit('upData', obj);
-
-                api.sendEvent({
-                    name: 'comCom1',
-                    extra: {
-                        key: {
-                            /!*c_id: that.magicComCid1,
-                            c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,*!/
-                            magicCom1: 'magicCom1'
-                        },
-                    }
-                });*/
             },
-            magicCom2Click: function () {  // 公司2
+            magicCom2Click: function (tid) {  // 公司2
                 var that = this;
-                // console.log("magicComCid2",that.magicComCid2)
+                that.tId = tid
                 that.commodityList()
-                /*store.state.obj.c_id = that.magicComCid2
-                store.state.obj.c_name = that.magicCom2Text
-                store.state.obj.logo_icon = that.magicCom2Img
-                store.state.obj.magicCom =  'magicCom2'*/
 
-                /*var obj = {
-                    magicComCid1: that.magicComCid2,
-                    magicCom1Text: that.magicCom2Text,
-                    magicCom1Img: that.magicCom2Img,
-                    magicCom: 'magicCom2',
-                }
-
-                store.commit('upData', obj);
-
-
-                api.sendEvent({
-                    name: 'comCom2',
-                    extra: {
-                        key: {
-                            /!*c_id: that.magicComCid2,
-                            c_name: that.magicCom2Text,
-                            logo_icon: that.magicCom2Img,*!/
-                            magicCom2: 'magicCom2'
-                        },
-
-                    }
-                });*/
             },
         }
     }
