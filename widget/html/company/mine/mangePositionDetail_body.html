@@ -79,7 +79,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 <script>
 
     var job_id, url, statusD;
@@ -102,6 +102,7 @@
                 posiDeAddress: '',
                 waeltList: [],
                 posiMain: '',
+                validForCompany: 0, // 公司审核状态
                 statusDetail: statusD,
             },
             created: function () {
@@ -113,29 +114,38 @@
                     var obj = {
                         job_id: job_id
                     }
-                    ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
-                        console.log(data)
-                        if (data) {
-                            that.posiName = data.job_name || ""
-                            that.posiYear = data.work_ex
-                            that.posiEdu = data.edu_ex
-                            that.posiType = data.nature
-                            that.posiPrice = data.ratio
-                            that.posiAddress = data.province + '-' + data.city + '-' + data.street
-                            that.posiDeAddress = data.shortname
-                            if (data.skills){
+                    var uid = localStorage.getItem("user").user_id;
+                    var params = {
+                        uid: uid
+                    }
+                    ajaxGetWithProgress(queryMyJobsCandidateNum, params, function (data, ret) {
+                        that.validForCompany = data.valid;
+                        console.log('gt_validForCompany:' + that.validForCompany);
+                        ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
+                            console.log(data)
+                            if (data) {
+                                that.posiName = data.job_name || ""
+                                that.posiYear = data.work_ex
+                                that.posiEdu = data.edu_ex
+                                that.posiType = data.nature
+                                that.posiPrice = data.ratio
+                                that.posiAddress = data.province + '-' + data.city + '-' + data.street
+                                that.posiDeAddress = data.shortname
+                                if (data.skills) {
 
-                                that.waeltList = stringFun(data.skills)
-                            } else{
-                                that.waeltList = ""
+                                    that.waeltList = stringFun(data.skills)
+                                } else {
+                                    that.waeltList = ""
+                                }
+
+                                that.posiMain = data.description
+                            } else {
+                                toast("请求失败")
                             }
-
-                            that.posiMain = data.description
-                        } else {
-                            toast("请求失败")
-                        }
-                        document.querySelector(".boxSub").classList.remove("isDisplay")
+                            document.querySelector(".boxSub").classList.remove("isDisplay")
+                        })
                     })
+
                 },
                 ICjobsJobProfile: function (status) {
                     var that = this
@@ -163,9 +173,15 @@
                     var obj = {
                         job_id: job_id,
                         status: status
+                    };
+                    // 再次发布职位时应当判断公司是否审核
+                    console.log('validForCompany:' + that.validForCompany);
+                    if (Number(that.validForCompany) === 1) {
+                        toast("公司还在审核中,暂无法发布");
+                        return;
                     }
                     ajaxGetWithProgress(ICjobsJobProfile, obj, function (data, ret) {
-                        console.log(data)
+                        console.log(data);
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

@@ -17,6 +17,18 @@
         .Box{
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
+        .upload_img{
+            width: 90px;
+            height: 90px;
+        }
+        #upload>ol{
+
+        }
+        #upload>ol>li{
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+        }
 
     </style>
 </head>
@@ -28,6 +40,12 @@
         <div class="w-sub-title commonFont">
             公司照片建议选择近景台前台或者其他办公环境，远景
             门口或者大楼。
+        </div>
+        <div id="upload">
+            <ol>
+                <li v-for="(i,j) in company_img_list" :key="j"><img :src="i" alt="公司背景图片" class="upload_img"></li>
+                <li v-if="company_img_list.length < 2"><img src="../../../image/company/uploadIn.png" alt="action" class="upload_img" @click="uploadFileByImg"></li>
+            </ol>
         </div>
 
         <div class="postSubBtn" @click="preservation()">保存</div>
@@ -63,7 +81,7 @@
         new Vue({
             el: '#app1',
             data: {
-
+                company_img_list: []
             },
             created: function () {
                 this.orgnizationPICBbycidlist()
@@ -72,6 +90,60 @@
 
             },
             methods: {
+                uploadFileByImg: function() {
+                    var vm = this;
+                    var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                    UIAlbumBrowser.open({
+                        max: 3,
+                        styles: {
+                            bg: '#fff',
+                            mark: {
+                                icon: '',
+                                position: 'bottom_left',
+                                size: 30
+                            },
+                            nav: {
+                                bg: 'rgba(0,0,0,0.6)',
+                                titleColor: '#fff',
+                                titleSize: 18,
+                                cancelColor: '#fff',
+                                cancelSize: 16,
+                                finishColor: '#fff',
+                                finishSize: 16
+                            }
+                        },
+                        rotation: true
+                    }, function(ret) {
+                        if (ret) {
+                            var imgListArr = {};
+                            var imgList = ret.list;
+                            for (var i=0;i<imgList.length;i++){
+                                imgListArr["file"+(i+1)] = imgList[i].thumbPath
+                            }
+                            api.ajax({
+                                // report : false,
+                                url:'http://112.126.98.172:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+
+                                    files: imgListArr,
+                                    // values: ret.list
+
+                                }
+                            }, function (data, err) {
+                                // >>>>>>
+                                var imgUrls = data.imgUrl.split(',') || [];
+                                console.log('图片列表:' + JSON.stringify(imgUrls));
+                                vm.company_img_list = imgUrls;
+                            });
+                        }
+                    });
+
+                },
                 orgnizationPICBbycidlist : function (){
                     if (index == 2){
                         var uid = localStorage.getItem("person_id")

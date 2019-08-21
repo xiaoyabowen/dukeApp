@@ -238,8 +238,8 @@
         console.log(obj)
         localStorage.setItem("username",document.getElementById("fillName").innerText)
         // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {
-        // ajaxGetWithProgress('http://112.126.98.172:8000/SE4M/addRecruiter', obj, function (data, err) {
-        ajaxGetWithProgress('http://112.126.98.172:8000/SE4M/addRecruiter', obj, function (data, err) {
+        // ajaxGetWithProgress('http://192.168.1.7:8000/SE4M/addRecruiter', obj, function (data, err) {
+        ajaxGetWithProgress('http://192.168.1.7:8000/SE4M/addRecruiter', obj, function (data, err) {
             if (data){
                 if (data.date == 1){
                     openNewWindow("postsPublish", "./postsPublish.html",{

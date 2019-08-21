@@ -146,7 +146,7 @@
                             var obj = {
                                 uid : localStorage.getItem("person_id")
                             }
-                            console.log(JSON.stringify(ret));
+                            console.log('上传图片'+JSON.stringify(ret));
                             //上传剪辑后的图像到服务器
                             api.ajax({
                                 // report : false,
@@ -165,14 +165,14 @@
                                 }
                             }, function (ret, err) {
                                 console.log(ret);
-                                prod_icon = document.querySelector(".addComProImg").src
-                                var pathImgImg = ret.imgUrl
+                                var prod_icon = document.querySelector(".addComProImg")
+                                var pathImgImg = ret.imgUrl;
                                 if (pathImgImg == ''){
-                                    prod_icon = '../../../image/company/comproImg.png'
+                                    prod_icon.src = '../../../image/company/comproImg.png'
                                 }else{
-                                    var pathImgData = pathImgImg.split(",")
-                                    console.log(pathImgData)
-                                    prod_icon = pathImgData[0]
+                                    var pathImgData = pathImgImg.split(",")[0]
+                                    // console.log(pathImgData)
+                                    prod_icon.src = pathImgData
                                 }
 
                                 api.hideProgress();

@@ -25,34 +25,14 @@
 <body class="commonBg">
 
 <div class="Box" id="app1">
-    <div class="colbox">
+    <div class="colbox" v-for="(item,key) in candidatesList" :key="key">
+
+<!--   需要重新进行匹配数据     -->
         <div class="colboxmain cssFlex">
             <img src="../../../image/mine/defalut.png" alt="d" class="colIMg">
             <div class="colINfo">
                 <div class="colinfobox cssFlex">
-                    <span class="colinfoboxName">张敏</span>
-                    <span class="colinfoboxPrice commonFont">10-15k</span>
-                </div>
-                <div class="coltext commonSub24">
-                    北京/11年/本科/33岁
-                </div>
-                <div class="colcomjob cssFlex ">
-                    <span class="colcom commonSub24">北京A公司信息技术有限公司</span>
-                    <span class="colposition commonSub24">运营经理</span>
-                </div>
-                <div class="colTime commonSub24">
-                    2015.03-至今
-                </div>
-            </div>
-        </div>
-        <div class="line20"></div>
-    </div>
-    <div class="colbox">
-        <div class="colboxmain cssFlex">
-            <img src="../../../image/mine/defalut.png" alt="d" class="colIMg">
-            <div class="colINfo">
-                <div class="colinfobox cssFlex">
-                    <span class="colinfoboxName">张敏</span>
+                    <span class="colinfoboxName">{{item.name}}</span>
                     <span class="colinfoboxPrice commonFont">10-15k</span>
                 </div>
                 <div class="coltext commonSub24">
@@ -97,27 +77,28 @@
         new Vue({
             el: '#app1',
             data: {
-
+                candidatesList:[]
             },
             created: function () {
-                // this.orgnizationPICBbycidlist()
+                this.orgnizationPICBbycidlist()
             },
             mounted : function (){
 
             },
             methods: {
-                /*orgnizationPICBbycidlist : function (){
+                orgnizationPICBbycidlist : function (){
                     if (index == 2){
                         var uid = localStorage.getItem("user").user_id
                         var obj = {
                             uid: uid
                         }
-                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
-                            console.log(data)
-                        })
+                        console.warn('数据未进行获取：CandidateCol_body.html')
+                        // ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
+                        //     console.log(data)
+                        // })
                     }
 
-                },*/
+                },
 
             }
         })
