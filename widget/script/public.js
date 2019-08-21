@@ -4,16 +4,16 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 
+/*
 var serverUrl = "http://192.168.1.7:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.7:8000/SE4M';
 var Domain = 'http://192.168.1.7:8088';
+*/
 
 
-/*
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-*/
 
 
 
@@ -65,6 +65,12 @@ var removeSearchHistory = serverUrl + "/UserProfile/removeSearchHistory";
 
 // 千里马  魔方
 var MenuListQyMenu = serverUrl + "/Menu/MenuListQ";
+// 巨划算  魔方
+var commodityList = Domain + "/CommodityProFile/commodityList";
+
+
+
+
 // 千里马  点击公司查询该公司下的四个职位和一个随机公司
 var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
 

@@ -14,6 +14,7 @@
     /*right: -292.742px;*/
     transform: rotate(-45deg);
     transform-origin: center bottom;
+    padding-top: 0.2rem;
     /* height: 6.20rem; */
     /* background: linear-gradient(to left top, rgba(99,139,255,0.3) 50%, transparent 50%); */
     /* background: linear-gradient(to left top, rgba(99,139,255,0.3) 50%, transparent 50%); */
@@ -93,7 +94,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 0.1rem;
+    /*padding: 0.1rem;*/
 }
 .iconImgCom{
     width: 0.72rem !important;
@@ -112,9 +113,10 @@
 .magicSize{
 
     /*line-height: 0.3rem;*/
-    font-size: 0.26rem;
+    font-size: 0.28rem;
     color: #ffffff;
     overflow : hidden;
+    line-height: 1.1;
     text-overflow: ellipsis;
     display: -webkit-box;
     display: -moz-box;
@@ -202,4 +204,11 @@
     }
 
 }
+
+/*巨划算 */
+
+
+
+
+
 

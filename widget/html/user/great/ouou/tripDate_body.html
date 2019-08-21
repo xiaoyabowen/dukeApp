@@ -152,6 +152,7 @@
 
 
                 cid:'',
+                ouId:'',
 
                 // 日历
                 getQueryYear: "",    // 年份
@@ -182,14 +183,15 @@
             },
             created: function () {
                 var that = this
-                this.queryPeopleAndCityoloq();
+
                 this.person_id = localStorage.getItem('user');
+                this.ouId = api.pageParam.ouId;
                 // 日历
                 this.getQueryYear = new Date().getFullYear() * 1;   // 年份
                 this.getQueryMonth = (new Date().getMonth() + 1) * 1; //月份
                 this.getQueryMonth1 = (new Date().getMonth() + 2) * 1;//月份
                 this.getQueryMonth2 = (new Date().getMonth() + 3) * 1;//月份
-
+                this.queryPeopleAndCityoloq();
                 this.showDate1(this.getQueryYear,this.getQueryMonth)
 
             },
@@ -222,9 +224,10 @@
                 queryPeopleAndCityoloq: function () {
                     var that = this
                     var obj = {
-                        cid: "14",
+                        cid: that.ouId,
                         pid: that.person_id
                     }
+                    console.log("ouIdouId",obj)
                     ajaxGetWithProgress(queryPeopleAndCityoloq, obj, function (data) {
                         console.log(data)
                         that.tripPersonList = data.travelPeople
@@ -239,14 +242,14 @@
                         pid: that.person_id,
                         name: that.name,
                         phone: that.phone,
-                        cid: that.cid,
+                        cid: that.ouId,
                         price: that.getPriceDefult * that.num,
                         sum: that.num,
                         peopleid: that.tripPersonId,
                         cityid: that.tripCityId,
                         day: that.day
                     }
-                    console.log(str)
+                    console.log("strstr",str)
                     if (that.name == ''){
                         toast("请填写联系人姓名")
                         return
@@ -264,12 +267,14 @@
                     ajaxGetWithProgress(createOrderoloq, str, function (data, err) {
                         console.log(data);
                         that.oId = data.oId
+                        localStorage.setItem("tripPhone",that.phone)
+
                         if (data.status) {
                             var frameName = name + "_body";
                             api.execScript({
                                 name:name,
                                 frameName: frameName,
-                                script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.oId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+'),'+JSON.stringify(that.phone)+''
+                                script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.oId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+')'
                             })
                             closeWin();
                         } else {
@@ -462,8 +467,13 @@
                             var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
                             console.log("valuePrice",valuePrice)
                             that.getPriceDefult = valuePrice
-
-                            $(this).addClass("activeTd").parent(".tdActive").siblings.children(".normal").removeClass("activeTd");
+                            if ( valuePrice!=='' ) {
+                                $('.tdActive').siblings().children().removeClass("activeTd");
+                                $(this).addClass("activeTd");
+                            }else{
+                                toast('请选择标有价格的正确日期');
+                            }
+                            $(this).addClass("activeTd").parent(".tdActive").siblings().children(".normal").removeClass("activeTd");
 
                         })
 
@@ -746,7 +756,7 @@
                                 var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
                                 that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
                                 that.getPriceDefult = valuePrice
-                                $(this).addClass("activeTd").parent(".tdActive").siblings.children(".normal").removeClass("activeTd");
+                                $(this).addClass("activeTd").parent(".tdActive").siblings().children(".normal").removeClass("activeTd");
 
                             })
 

@@ -67,7 +67,7 @@
                             <span class="tripNum">数量</span>
                             <span class="username isDisplay"></span>
                             <span class="userphone isDisplay"></span>
-                            <span class="ouId isDisplay"></span>
+                            <span class="ouIds isDisplay"></span>
                         </div>
                         <div class="commonSub24 ouPerson999">·全年保证出发·纯玩团·每周循环</div>
                     </div>
@@ -197,7 +197,7 @@
                     person_id: '',
                     ouId: '',
 
-                    cid: '9',
+                    cid: '',
                     data: '',
                     username: '',
                     userphone: '',
@@ -286,25 +286,28 @@
                             toast("请先选择出游人群等信息")
                             return
                         }
+
                         openNewWindow("confirmOrder", "../confirmOrder.html", {
-                            url: 'tourism',
+                            url: 'tourismouou',
                             urlIs : 'tourismouou',
                             OrderKey : '',
                             ououPrice: document.querySelector(".tripPrice").innerText,
                             item: that.item,
                             order: {
                                 num: that.total,
-                                cId: document.querySelector("ouId").innerText,
                                 summary: '',
                                 price: document.querySelector(".tripPrice").innerText,
                                 username: document.querySelector(".username").innerText,
                                 userphone: document.querySelector(".userphone").innerText,
+                                cId: document.querySelector(".ouIds").innerText,
                             }
                         })
                     },
                     tripDetail : function () {
+                        var that = this
                         openNewWindow("tripDate", "./tripDate.html",{
-                            name :'index'
+                            name :'index',
+                            ouId : that.ouId
                         });
                     },
                     // 唤起手机拨号功能
@@ -318,17 +321,17 @@
             })
         }
 
-        function tripValue(tripPerson,oId,tripCity,dateActive,num,price,username,userphone) {
-            console.log(oId)
+        function tripValue(tripPerson,oId,tripCity,dateActive,num,price,username) {
+            console.log("userphone",localStorage.getItem("tripPhone"))
 
-            document.querySelector(".ouId").innerText = oId
+            document.querySelector(".ouIds").innerText = oId
             document.querySelector(".tripPerson").innerText = tripPerson
             document.querySelector(".tripCity").innerText = tripCity
             document.querySelector(".tripTime").innerText = dateActive
             document.querySelector(".tripNum").innerText = num +'人'
             document.querySelector(".tripPrice").innerText = price
             document.querySelector(".username").innerText = username
-            document.querySelector(".userphone").innerText = userphone
+            document.querySelector(".userphone").innerText = localStorage.getItem("tripPhone")
         }
 
 

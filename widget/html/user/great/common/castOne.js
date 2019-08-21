@@ -22,7 +22,6 @@ function castOneInit(Vue) {
                     height: m_d + "rem",
                 },
 
-
                 imgs: [
                     {
                         imgSrc: '../../../image/bigWeigh/mianBan2.png'
