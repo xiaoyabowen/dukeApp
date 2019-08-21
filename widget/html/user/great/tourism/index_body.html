@@ -61,7 +61,7 @@
                     <div><span @click="activeHandle('other')" :class="active == 'other' ? 'active' : ''">其他说明</span></div>
                 </div>
 
-                <div id="trip" v-if="active == 'trip' && item.int_pic">
+                <div id="trip" v-if="active == 'trip' && item.intPic">
                     <img v-for="(pic, index) in picList" :key="index" :src="pic" alt="">
                 </div>
                 <cost v-if="active == 'cost'"></cost>
@@ -178,7 +178,7 @@
 
                                 that.data = data;
                                 if (that.item.int_pic) {
-                                    that.picList = that.item.int_pic.split(',')
+                                    that.picList = that.item.intPic.split(',')
                                 }
                                 if (that.item.placard) {
                                     that.imgs = that.item.placard.split(',');

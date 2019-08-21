@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>聊天</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../../css/greatCommon.css">
+    <style>
+        .searchClick {
+            right: 0.1rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+
+<div class="Box" id="home">
+
+
+
+
+    <!--魔方-->
+    <div id="app1" class="boxCost">
+        <div class="bgBlack" @click="hideBg()"></div>
+        <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+        <!--开始循环-->
+        <!--<div class="listCastBox">
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast0">
+                    <div class="daoboxCast ">
+                        <img src="../../../image/bigWeigh/lvyou.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">旅游</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast1">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/huazhuang.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">化妆品</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast2">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/fang.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">希腊房产</div>
+                    </div>
+                </div>
+            </div>
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast3">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/baoxian.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">保险</div>
+                    </div>
+                </div>
+            </div>
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast4">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/car.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">租车</div>
+                    </div>
+                </div>
+            </div>
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast5">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/nong.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">农产品</div>
+                    </div>
+                </div>
+            </div>
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast6">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/meirong.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">美容</div>
+                    </div>
+                </div>
+            </div>
+            &lt;!&ndash;固定的  优惠券  不动&ndash;&gt;
+            <div class="positionComCast positionRate">
+                <div class="xuanboxCast posiCast7">
+                    <div class="daoboxCast">
+                        <img src="../../../image/bigWeigh/car.png" class="iconImgCast" alt="person">
+                        <div class="CastText commonFont">洗车券
+                            免费得</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+        <!--切换 组件-->
+        <keep-alive>
+            <component :is="active"></component>
+        </keep-alive>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/swiper.min.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+<script src="common/castIndex.js"></script>
+<script src="common/castOne.js"></script>
+<script src="common/castTwo.js"></script>
+<script src="common/castThree.js"></script>
+<script src="common/castFour.js"></script>
+<script src="common/castOneOne.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
+<script>
+    var m_d,right,top
+    apiready = function () {
+
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+
+        if (winWidth > winHeight / 2){
+            m_d = "1.5"
+        }else {
+            m_d = "1.8"
+        }
+
+        /*xuanboxCast = document.getElementsByClassName("xuanboxCast")
+        daoboxCast = document.getElementsByClassName("daoboxCast")
+        console.log(xuanboxCast)
+        if (winWidth > winHeight / 2){
+            alert(1)
+            for (var i = 0; i < xuanboxCast.length; i++) {
+                xuanboxCast[i].style.width = "1.5rem"
+                xuanboxCast[i].style.height = "1.5rem"
+            }
+            for (var i = 0; i < daoboxCast.length; i++) {
+                daoboxCast[i].style.width = "1.5rem"
+                daoboxCast[i].style.height = "1.5rem"
+            }
+
+        }else {
+            homeBtnLr.style.width = "4.8rem"
+            for (var i = 0; i < homeBtnCom.length; i++) {
+                xuanboxCast[i].style.width = "1.8rem"
+                xuanboxCast[i].style.height = "1.8rem"
+            }
+            for (var i = 0; i < daoboxCast.length; i++) {
+                daoboxCast[i].style.width = "1.8rem"
+                daoboxCast[i].style.height = "1.8rem"
+            }
+        }*/
+
+        var castOne = castOneInit(Vue);
+        var castOneOne = castOneOneInit(Vue);
+        var castTwo = castTwoInit(Vue);
+        var castThree = castThreeInit(Vue);
+        var castFour = castFourInit(Vue);
+
+
+        Vue.component('castOne', castOne);
+        Vue.component('castOneOne', castOneOne);
+        Vue.component('castTwo', castTwo);
+        Vue.component('castThree', castThree);
+        Vue.component('castFour', castFour);
+
+
+
+        new Vue({
+            el: '#home',
+            data: {
+                isDisplay: false,
+                person_id: '',
+                active: 'castOne',
+                styles: {
+                    //存放的是 动态修改的样式
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+                stylesMove: {
+                    //存放的是 动态修改的样式
+                    right: m_d + "rem",// 内容标题总样式
+                    top: m_d + "rem",
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+                var that = this
+                // 第yi步
+                api.addEventListener({
+                    name: 'one',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castOneOne';
+
+                });
+                // 第二步
+                api.addEventListener({
+                    name: 'onCastOne',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castTwo';
+
+                });
+
+                // 第三步
+                api.addEventListener({
+                    name: 'fang',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castThree';
+
+                });
+
+                // 第六步
+                api.addEventListener({
+                    name: 'six',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castFour';
+
+                });
+
+
+
+                // 刷新
+
+                api.addEventListener({
+                    name: 'reloadFour',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castFour';
+                });
+                // 返回
+                api.addEventListener({
+                    name: 'returnBtnImg',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = 'castOne';
+
+                });
+
+
+
+            },
+            methods: {
+                togle : function () {
+                    toast("切换内容")
+                },
+
+            }
+        })
+
+
+    }
+
+
+    // apiready();
+
+
+</script>
+</body>
+</html>

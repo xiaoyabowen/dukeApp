@@ -1,17 +1,17 @@
 <div class="magicComBox">
 
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <div class="magicBox">
 
         <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
-            <div class="magicBtn magicBtnPosi " v-for="(item,index) in listJob" :key="index"
-                 @click="jobDetailClick(item.job_id,item.job_name,index)"
+            <div class="magicBtn magicBtnPosi " v-for="(item , index) in listJob" :key="index"
+                 @click="jobDetailClick(item.cid,item.comName,index)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
                  v-bind:style="styles">
                 <div class="magicSubBox cssFlex" v-bind:style="styles">
                     <div class="magicSubBoxMain">
                         <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
-                        <div class="magicSize ">{{item.job_name}}</div>
+                        <div class="magicSize ">{{item.comName}}</div>
                     </div>
                 </div>
             </div>

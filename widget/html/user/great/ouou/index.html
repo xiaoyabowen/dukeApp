@@ -45,8 +45,8 @@
         <span class="searchClick">GO</span>
     </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../../icon/back.png" onclick="closeWin()">
+        <div class="leftImgClose" onclick="mineGo()">
+            巨划算
         </div>
         <div class="middleMain">
             <!--Aquarius Villa－Glifada-->
@@ -86,6 +86,8 @@
         initFrameInWin(api.pageParam);
     }
 
-
+    function mineGo() {
+        openNewWindow("index", "../index.html")
+    }
 </script>
 </html>

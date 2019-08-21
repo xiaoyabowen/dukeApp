@@ -202,6 +202,10 @@ body, div, p, span, a, input, ul, li {
 .img-four {
     width: 0.48rem;
 }
+.img-com {
+    width: 0.36rem;
+    height: 0.4rem;
+}
 
 .img-five {
     width: 0.4rem;

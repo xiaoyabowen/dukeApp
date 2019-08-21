@@ -1,9 +1,11 @@
 /*巨划算 ===========================  魔方 */
 .boxCost{
     background: #f5f5f5;
+    /*background: red;*/
     /*position: relative;*/
     width: 100%;
-    min-height: calc(100vh - 0.48rem);
+    max-height: calc(100vh - 0.48rem);
+    overflow: auto;
 }
 .listCastBox{
     background: #f5f5f5;
@@ -44,7 +46,10 @@
     position: absolute;
     transform: rotate(-45deg);
     border-radius: 0.2rem;
-    background: #fff;
+    background: url("../image/bigWeigh/juBg.png") no-repeat center center;
+    background-size: 1.8rem 1.8rem;
+    /*background:red;*/
+
 }
 
 .daoboxCast{
@@ -52,13 +57,14 @@
     height: 1.8rem;
     transform: rotate(45deg);
     padding: 0.1rem 0;
+
 }
 
 .iconImgCast{
     display: block;
-    width: 0.92rem;
-    height: 0.92rem;
-    margin: 0 auto;
+    width: 0.64rem;
+    height: 0.64rem;
+    margin: 0.2rem auto 0;
 }
 
 
@@ -152,7 +158,7 @@
     color: #ffffff;
 }
 .CastText{
-    color: #333333;
+    color: #ffffff;
     height: auto;
     text-align: center;
     margin-top: 0.12rem;
@@ -236,7 +242,8 @@
 }
 
 .posiCast7FCC{
-    background: #FCC117;
+    background: url("../image/bigWeigh/juBgA.png") no-repeat center center;
+    background-size: 1.8rem 1.8rem;
 }
 .posiCast7FCC .CastText{
     color: #ffffff;
@@ -266,7 +273,7 @@
 }
 
 .great_header_banner {
-    height: 4.08rem;
+    height: 3.68rem;
 }
 
 .great_header_banner img {

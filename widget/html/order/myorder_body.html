@@ -194,10 +194,30 @@
                     </div>
 
                     <div class="comPrice commonTitle">
-                        <i class="priceColorWei">¥399</i>元
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元
                     </div>
                 </div>
             </div>
+
+            <!--  农产品  类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 5">
+
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元 <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+
+
+
             <!--面膜类型-->
             <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
                 实付：<i class="priceColor">¥{{item.priceAll}}</i>
