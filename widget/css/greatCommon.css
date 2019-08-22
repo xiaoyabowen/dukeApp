@@ -66,7 +66,10 @@
     height: 0.64rem;
     margin: 0.2rem auto 0;
 }
-
+.cariconImgCast  {
+    width: 0.8rem;
+    height: 0.6rem;
+}
 
 @keyframes zoomOutLeft {
     0% {
@@ -292,7 +295,7 @@
     text-align: center;
     color: #ffffff;
     border-radius:0.04rem;
-    font-size: 0.24rem;
+    font-size: 0.28rem;
 
 }
 .chatJuOuou{
@@ -550,6 +553,7 @@
     bottom: 0.3rem;
     color: #ffffff;
     z-index:9999;
+    font-size: 0.28rem !important;
 }
 .hourseLisellBtn{
     background:rgba(99,139,255,1) !important;

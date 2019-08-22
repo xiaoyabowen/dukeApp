@@ -56,7 +56,7 @@
         <div class="positionComCast positionRate" @click="juClick(1)">
             <div class="xuanboxCast posiCast1">
                 <div class="daoboxCast">
-                    <img src="../../../image/bigWeigh/huazhuangW.png" class="iconImgCast" alt="person">
+                    <img src="../../../image/bigWeigh/huazhuangA.png" class="iconImgCast" alt="person">
                     <div class="CastText commonFont">化妆品</div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
         <div class="positionComCast positionRate" @click="juClick(8)">
             <div class="xuanboxCast posiCast4">
                 <div class="daoboxCast">
-                    <img src="../../../image/bigWeigh/zucheW.png" class="iconImgCast" alt="person">
+                    <img src="../../../image/bigWeigh/zucheW.png" class="iconImgCast cariconImgCast" alt="person">
                     <div class="CastText commonFont">租车</div>
                 </div>
             </div>
@@ -152,6 +152,7 @@
                 isDisplay: false,
                 person_id: '',
                 active: '',
+                activeAni:true,
                 styles: {
                     //存放的是 动态修改的样式
                     width: m_d + "rem",// 内容标题总样式
@@ -186,6 +187,13 @@
 
             },
             methods: {
+                togle: function () {
+                    var that = this
+                    that.activeAni = true
+                    setTimeout(function () {
+                        that.activeAni = false;
+                    }, 1500)
+                },
                 juClick : function (tid) {
 
                     ajaxGetWithProgress(commodityList,{tid : tid },function (data) {

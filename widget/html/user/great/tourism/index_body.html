@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="../../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
+    <style>
+        .great_header{
+            ;
+        }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -23,7 +28,7 @@
             <keep-alive>
                 <component :is="active"></component>
             </keep-alive>
-            <div class="great_header">
+            <div class="great_header" style="padding-bottom: 0">
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">

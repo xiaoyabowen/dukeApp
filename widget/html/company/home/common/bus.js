@@ -7,7 +7,7 @@ var store = new Vuex.Store({
             job_id: '',
             job_name: '',
             job_icon: '',
-            magicCom: 'magicAll'
+            magicCom: 'magicComAll'
         }
     },
     mutations: {

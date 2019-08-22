@@ -52,7 +52,6 @@ function magicAllInit(Vue) {
         },
         mounted: function () {
 
-
         },
 
         methods: {

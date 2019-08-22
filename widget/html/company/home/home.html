@@ -104,51 +104,7 @@
     </style>
 </head>
 <body>
-<!--智能魔方菜单-->
-<!--
-<div id="app1" class="demobiox home isDisplay">
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
-        <div class="appMask" @click="hideHandle()">
 
-        </div>
-        <div class="borderBoxRote positionCom"
-             @click="detailClick(index,item.person_id)"
-             v-bind:class="['position'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list" :key="index">
-            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.p_name }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="borderBoxRote positionCom"
-             @click="detailClick2(index,item.job_id)"
-             v-bind:class="['position1'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list1" :key="index">
-            <div class="xuanbox" :class="index2== index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
-                </div>
-            </div>
-        </div>
-
-
-        &lt;!&ndash;<div class="cir_return positionCir" @click="hideHandle()">&ndash;&gt;
-            &lt;!&ndash;<img src="../../../icon/hidden2x.png" class="iconImg" alt="person">&ndash;&gt;
-            &lt;!&ndash;<span>隐藏</span>&ndash;&gt;
-        &lt;!&ndash;</div>&ndash;&gt;
-        &lt;!&ndash;<div class="cir_hide positionCir" @click="closeWin()">&ndash;&gt;
-            &lt;!&ndash;<img src="../../../icon/break2x.png" class="iconImg" alt="person">&ndash;&gt;
-            &lt;!&ndash;<span>返回</span>&ndash;&gt;
-        &lt;!&ndash;</div>&ndash;&gt;
-
-    </div>
-</div>
--->
 
 <div id="app1">
     <div class="bgBlack" @click="hideBg()"></div>
@@ -386,12 +342,17 @@
 
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+        console.log("a01_w",a01_w)
+        console.log("winWidth/2",winWidth/2)
 
         // 斜边长
-        bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+        console.log("bevelLength",bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w-10)*0.23-10;    // 100
+        m_d = (a01_w-10)*0.23-25;    // 100
 
         new Vue({
             el: '#app1',
@@ -406,23 +367,39 @@
             },
             mounted : function (){
                 var that = this
+                that.active = store.state.obj.magicCom;
                 api.addEventListener({
-                    name: 'positionAll',
+                    name: 'magicComAll',
                 }, function(ret, err) {
                     console.log("ret",ret);
-                    that.active = ret.value.key.magicPosition;
+                    that.active = ret.value.key.magicComAll;
 
+                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
-                    name: 'jobPosiAll',
+                    name: 'magicComPosiAll',
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicComPosiAll;
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'jobAll',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    console.log("job_id",ret.value.key.job_id)
+                    positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
 
                 });
 
                 magicBox = document.querySelector(".magicBox")
                 bgBlack = document.querySelector(".bgBlack")
+
                 magicBtn = document.getElementsByClassName("magicBtn")
                 magicSubBox = document.getElementsByClassName("magicSubBox")
                 iconImg = document.getElementsByClassName("iconImg")
@@ -432,6 +409,9 @@
                 magicBox.style.right = '-' + rightYi + "px"
                 bgBlack.style.width =winWidth + "px"
                 bgBlack.style.height =winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
                 // 里面小盒子宽度
                 for (var i =0;i<magicBtn.length ; i++){
                     magicBtn[i].style.width = m_d + "px"
@@ -447,7 +427,6 @@
                     iconImg[i].style.width = m_d/2 + "px"
                     iconImg[i].style.height = m_d/2 + "px"
                 }
-
             },
             methods: {
 
@@ -479,7 +458,8 @@
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');
                     that.active = ''
-                }
+                },
+
             }
         })
 
