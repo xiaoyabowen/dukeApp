@@ -22,8 +22,8 @@
             <img src="../../../icon/mine.png" onclick="mineGo()">
         </div>
 
-        <div class="middleMain">
-            <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
+        <div class="middleMain" onclick="historysClick()">
+            <input type="text" class="searchInput" placeholder="搜索公司/职位" readonly>
             <span class="searchClickGo">GO</span>
         </div>
         <div class="rightImgEdite">
@@ -56,7 +56,6 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-
     };
     function mineGo() {
 
@@ -107,5 +106,23 @@
         }
         openNewWindow("index", "../chat/index.html")
     }
+
+    function historysClick(){
+
+        api.execScript({
+            frameName: "position_body",
+            script: 'historysClick()'
+        })
+
+    }
+
+    /*searchinputTop = document.getElementById("search-inputTop")
+    searchinputTop.onclick = function (e) {
+        openNewWindow("historySearch", "./historySearch.html", {
+            // c_id: s_id,
+        });
+    }*/
+
+
 </script>
 </html>

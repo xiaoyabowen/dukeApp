@@ -91,13 +91,14 @@
             color: #666666;
             line-height: 0.36rem;
             height: 0.36rem;
+            margin-top: 0.3rem;
         }
     </style>
 </head>
 <body class="commonBg">
     <div class="Box">
         <div class="boxSub">
-            <p class="nowPhone">当前手机号：<span class="nowPhoneEdit">133****3020</span></p>
+
             <p class="Explain">修改成功后，简历与登录手机号将同步完成修改</p>
             <div class="login-input">
                 <div class="input-phone cssFlex">
@@ -142,9 +143,6 @@
                 return;
             }else if(!checkMobileNum(tel)){
                 toast("手机号码不正确");
-                return;
-            }else if(tel !== phoneLogin){
-                toast("手机号与当前手机号不符");
                 return;
             }
             var obj = {
@@ -195,6 +193,7 @@
             var params = {};
             params.code = $api.byId("yanzheng").value;
             params.phone = $api.byId("phone").value;
+            params.uid = localStorage.getItem("user");
             console.log(params)
             if (isBlack(params.phone)) {
                 toast('请输入手机号');
@@ -207,15 +206,16 @@
                 return;
             }
 
-            ajaxGetUser(verificationPhone, params, function (data, err) {
+            ajaxGetUser(updatePhone, params, function (data, err) {
                 api.hideProgress();
                 console.log(data)
                 if (data.data == true) {
-                    openNewWindow("editPhoneComfir", "./editPhoneComfir.html")
+                    // openNewWindow("setting", "../user/mine/setting.html")
                     // openNewWindow("setting", "setting.html")
-                    /*api.closeToWin({
+                    localStorage.setItem('phone',$api.byId("phone").value)
+                    api.closeToWin({
                         name: 'setting'
-                    });*/
+                    });
                 }else{
                     toast(data.msg)
                 }

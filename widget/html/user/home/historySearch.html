@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>首页</title>
+    <title>搜索</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css"/>
@@ -20,11 +20,12 @@
         }
         .contentBoxBox {
             height: calc(100vh - 1.4rem);
-            background: #638BFF;
+            background: #fff;
             /*padding: 0 !important;*/
             padding-bottom: 0.2rem !important;
             padding-top: 0 !important;
-
+            padding-left: 0.34rem;
+            padding-right: 0.34rem;
         }
 
         .posiCast7FCC {
@@ -125,8 +126,9 @@
         }
 
         .middleHeightTop {
-            height: 0.56rem;
+            height: 0.5rem;
             align-items: center;
+
         }
 
         #search-inputTop {
@@ -150,14 +152,12 @@
         }
 
         .searchBox {
-            position: fixed;
-            left: 0;
-            top: 1.8rem;
+
             background: rgba(255, 255, 255, 1);
-            z-index: 9999;
+
             width: 100%;
             height: calc(100vh - 1.4rem);
-            padding: 0.2rem 0.3rem;
+            padding: 1.4rem 0rem 0;
             overflow: scroll;
         }
 
@@ -236,24 +236,9 @@
             transform: rotate(-45deg);
         }
 
-        .homeJob {
 
-            margin: 0 auto;
-        }
-
-        .homeJu {
-            right: 0;
-
-        }
-
-        .homeCar {
-            position: relative;
-            margin: 0 auto;
-            top: -0.8rem;
-        }
-
-        .homeCircle {
-            left: 0;
+        .commonBg{
+            background: #ffffff !important;
         }
     </style>
 </head>
@@ -261,49 +246,93 @@
 <div id="topbar" class="display">
     <div class="headerBoxbg cssFlex">
         <div class="leftImgClose" style="margin-top: 0.2rem">
-            <img src="../../../icon/mine.png" onclick="mineGo()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleHeightTop cssFlex">
-            <input type="text" id="search-inputTop" placeholder="搜索公司/职位" readonly>
+            <input type="text" id="search-inputTop" placeholder="搜索公司/职位">
             <span class="search-Click">GO</span>
         </div>
         <div class="rightImgEdite">
-            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
+
 
         </div>
     </div>
 </div>
 
-<div class="contentBoxBox" id="app">
-    <div class="subcontentBoxBanner">
+<!--<div id="app1">
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <div class="magicBox">
 
-        <img src="../../../image/homeBanner.png" alt="banner" class="home-banner">
-        <!--<div class="footerBar cssFlex">
-            <div class="barLeft cssFlex" onclick="circle()">
-                <img src="../../../icon/quan.png" alt="quan 26 20">
-                <span>圈子</span>
-            </div>
-            <div class="barRight cssFlex" onclick="hua()">
-                <span>巨划算</span>
-                <img src="../../../icon/hua.png" alt="hua 20 16">
-            </div>
-            <div class="job-box" onclick="position()">
-                <img src="../../../icon/mine.png" alt="" class="mine-job-img">
-                <span class="mine-job-text">工作</span>
-            </div>
-        </div>-->
+        <div class="magicBG cssFlex">
 
-        <div class="homeBtn">
-            <img src="../../../image/homeJob.png" class="homeJob homeBtnCom none" alt="job" onclick="position()">
-            <div class="homeBtnLr cssFlex">
-                <img src="../../../image/homeCircle.png" class="homeCircle homeBtnCom" alt="job" onclick="circle()">
-                <img src="../../../image/homeJu.png" class="homeJu homeBtnCom" alt="job" onclick="hua()">
+            <div class="magicBtn posiCast7FCC">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img src="../../../image/bigWeigh/carHome.png" class="iconImg" alt="person">
+                        <div class="magicSize CastText">洗车券</div>
+                    </div>
+                </div>
             </div>
-            <img src="../../../image/homeCar.png" class="homeCar homeBtnCom" alt="job">
+            <div class="magicBtn">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain" @click="hua()">
+                        <img src="../../../image/bigWeigh/juHome.png" class="iconImg" alt="person">
+                        <div class="magicSize">巨划算</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="magicBtn">
+                <div class="magicSubBox" @click="circle()">
+                    <div class="magicSubBoxMain">
+                        <img src="../../../image/bigWeigh/circleHome.png" class="iconImg" alt="person">
+                        <div class="magicSize">圈子</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magicBtn">
+                <div class="magicSubBox" @click="position()">
+                    <div class="magicSubBoxMain">
+                        <img src="../../../image/bigWeigh/jobHome.png" class="iconImg" alt="person">
+                        <div class="magicSize">工作</div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-
-
+        <div class="magicBG cssFlex">
+            <div class="magicBtn">
+                <div class="magicSubBox" @click="jobDetail()">
+                    <div class="magicSubBoxMain">
+                        <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                        <div class="magicSize">运营经理</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn">
+                <div class="magicSubBox" @click="jobDetail1()">
+                    <div class="magicSubBoxMain">
+                        <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
+                        <div class="magicSize">市场品牌总监</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>-->
+<!--
+
+<div id="app1">
+    <keep-alive>
+        <component :is="homeAll"></component>
+    </keep-alive>
+</div>
+-->
+
+<div class="contentBoxBox" id="app">
 
     <!--搜索功能-->
     <div class="searchBox isDisplay">
@@ -348,7 +377,6 @@
 <script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-<!--<script src="./comment/homeAll.html"></script>-->
 <script>
     var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
     var jpush = null;
@@ -386,25 +414,6 @@
 
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
-        // 添加安卓退出按钮事件
-        api.addEventListener({
-            name: 'keyback'
-        }, function (ret, err) {
-            closeOnKeyBack();
-        });
-        var backButtonPress = 0;
-
-        function closeOnKeyBack() {
-            backButtonPress++;
-            if (backButtonPress > 1) {
-                closeApp();
-            } else {
-                api.toast({msg: '再按一次退出应用'});
-            }
-            setTimeout(function () {
-                backButtonPress = 0;
-            }, 1000);
-        }
 
         var JIMStr = localStorage.getItem("JIM")
         // JIMData = JSON.parse()
@@ -596,10 +605,6 @@
                 // openNewWindow("home", "./home.html")
             } else if (data.role_type == 2) {
                 openNewWindow("home", "../../company/home/home.html")
-            }else if (data.role_type == '') {
-                openNewWindow("loginComfir", "../../login/loginComfir.html",{
-                    phoneValue : data.phone_m
-                })
             }
             api.hideProgress();
 
@@ -651,10 +656,65 @@
     };
 
     searchinputTop = document.getElementById("search-inputTop")
-    searchinputTop.onclick = function (e) {
-        openNewWindow("historySearch", "./historySearch.html", {
-            // c_id: s_id,
-        });
+    searchinputTop.oninput = function (e) {
+        // 判断  浏览记录
+
+        ajaxGetWithProgress(querySearchHistory, {}, function (data) {
+            console.log("historyHtml", data)
+            var historyHtml = ''
+
+
+            var dataD = data.querySearchHistory
+            for (var i = 0; i < dataD.length; i++) {
+                historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].ms_type + ')"  data-search="' + dataD[i].S_Name + '">' + dataD[i].search + '</span>'
+            }
+            console.log(dataD.length)
+            if (dataD.length == 0) {
+                document.querySelector(".historyList").innerHTML = '暂无数据'
+                document.querySelector(".historyTitle").classList.add("isDisplay")
+            } else {
+                document.querySelector(".historyTitle").classList.remove("isDisplay")
+                document.querySelector(".historyList").innerHTML = historyHtml
+            }
+
+
+        })
+
+        // 搜索列表
+
+        if (searchinputTop.value == '') {
+            document.querySelector(".searchBox").classList.add("isDisplay")
+        } else {
+            document.querySelector(".searchBox").classList.remove("isDisplay")
+            var obj = {
+                search: searchinputTop.value
+            }
+            ajaxGetWithProgress(QueryUserSolr, obj, function (ret) {
+
+                var searchHtml = ''
+                var ret = ret.list
+
+
+                console.log("list", ret)
+                for (var i = 0; i < ret.length; i++) {
+                    searchHtml += '<div class="searchMain cssFlex" onclick="searchListClick(' + ret[i].S_Id + ',' + i + ',' + ret[i].type + ')"><div class="commonFont searchListText" data-search="' + ret[i].S_Name + '">' + ret[i].S_Name + '</div></div>'
+                }
+
+
+                console.log("ret.length", ret.length)
+                if (ret.length != 0) {
+                    document.querySelector(".searchList").innerHTML = searchHtml
+
+
+                } else {
+
+                    document.querySelector(".searchList").innerHTML = '暂无数据'
+                }
+            })
+
+        }
+
+
     }
 
     // 删除  浏览记录

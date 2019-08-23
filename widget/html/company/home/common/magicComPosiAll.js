@@ -132,8 +132,8 @@ function magicComPosiAllInit(Vue) {
             jobDetailClick: function (job_id, job_name,index) {
                 var that = this
                 that.timeIndex = index;
-                store.state.obj.job_id = that.magicComCid1
-                store.state.obj.job_name = that.magicCom1Text
+                store.state.obj.job_id = job_id
+                store.state.obj.job_name = job_name
                 store.state.obj.magicCom =  'magicComAll'
                 api.sendEvent({
                     name: 'magicComAll',

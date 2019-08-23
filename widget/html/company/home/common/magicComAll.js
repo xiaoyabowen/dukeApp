@@ -53,11 +53,14 @@ function magicComAllInit(Vue) {
             this.togle()
         },
         mounted: function () {
-
+            var that = this
+            that.myPositionText = store.state.obj.job_name
+            that.magicComCid2 = store.state.obj.job_id
+            console.log("myPositionText",that.myPositionText)
+            console.log("myPositionTextmagicComCid2",that.magicComCid2)
         },
 
         methods: {
-
             SmartMenuMenu: function () {
                 var that = this
                 ajaxGetWithProgress(SmartMenuMenu, {}, function (data) {
@@ -108,12 +111,12 @@ function magicComAllInit(Vue) {
                 }, 1500)
             },
             jobDetailClick: function (job_id, job_name,index) {
-                console.log(job_id)
-                console.log(job_name)
+                console.log("job_idjob_id",job_id)
+                console.log("job_namejob_name",job_name)
                 this.timeIndex = index;
-                console.log("indexindex",this.timeIndex)
                 api.sendEvent({
-                    name: 'jobAll',
+
+                    name: 'jobAllName',
                     extra: {
                         key: {
                             job_id: job_id,

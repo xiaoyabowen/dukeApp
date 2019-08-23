@@ -403,18 +403,17 @@
             localStorage.setItem('phone',phoneValue);
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
-            if (data.success == false) {
+            if (data.oneLogin == false) {
 
-                console.log(phoneValue)
                 openNewWindow("loginComfir", "./loginComfir.html",{
                     phoneValue : phoneValue
                 })
-            } else if (data.date == 1 && data.success == true){
+            } else if (data.date == 0 ){
 
                 openNewWindow("loginComfir", "./loginComfir.html",{
                     phone :phoneValue
                 })
-            } else{
+            }  else{
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){

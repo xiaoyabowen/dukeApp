@@ -371,7 +371,9 @@
                             })
                         } else if (data.msg == false){
                             toast("密码错误")
-                        } else{
+                        }  else if (data.msg == "该用户不存在"){
+                            toast("该用户不存在")
+                        }else{
                             localStorage.setItem('user',data.user_uid);
                             localStorage.setItem('person_id',data.user_uid);
                             if (data.role_type == 1){
@@ -413,55 +415,6 @@
             $('body').height(Height);
         });
     }
-    //参观
-   /* function goHome() {
-        // openNewWindow("home", "../user/home/home.html")
-
-        var params = {};
-        params.pwd = $api.byId("password").value;
-        params.phone = $api.byId("phone").value;
-        if (isBlack(params.phone)) {
-            toast('请输入手机号');
-            api.hideProgress();
-            return;
-        }
-        if (isBlack(params.pwd)) {
-            toast('请输入密码');
-            api.hideProgress();
-            return;
-        }
-        ajaxGetUser(LoginAndRegist, params, function (data, err) {
-            console.log("Logindata=",data)
-            api.hideProgress();
-            localStorage.setItem('user',data.user_uid);
-            localStorage.setItem('person_id',data.user_uid);
-            phoneValue = data.phone
-            localStorage.setItem('phone',phoneValue);
-            console.log(localStorage.getItem("user"))
-            // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
-            if (data.success == false) {
-
-                console.log(phoneValue)
-                openNewWindow("loginComfir", "./loginComfir.html",{
-                    phoneValue : phoneValue
-                })
-            } else if (data.date == 1 && data.success == true){
-
-                openNewWindow("loginComfir", "./loginComfir.html",{
-                    phone :phoneValue
-                })
-            } else{
-                if (data.role_type == 1){
-                    openNewWindow("home", "../user/home/home.html")
-                } else if (data.role_type == 2){
-                    openNewWindow("home", "../company/home/home.html")
-                }
-            }
-
-        });
-
-
-    }*/
 
     function returnPass() {
         openNewWindow("returnPass", "returnPass.html")
@@ -476,56 +429,6 @@
 
     }
 
-    /*function init() {
-        ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-            console.log("getSignatureJiGuang",data)
-            if (data) {
-                appkey = data.appkey
-                random_str = data.random_str
-                signature = data.signature
-                timestamp = data.timestamp
-
-                JIM.init({
-                    "appkey":appkey ,
-                    "random_str":random_str,
-                    "signature": signature,
-                    "timestamp": timestamp,
-                    "flag": 1
-
-                }).onSuccess(function (data) {
-                    console.log('success:' + JSON.stringify(data));
-                }).onFail(function (data) {
-                    console.log('error:' + JSON.stringify(data))
-                });
-
-            } else {
-                toast("连接失败")
-            }
-        })
-
-
-    }
-    function login(user_uid) {
-
-
-        JIM.login({
-            'username': user_uid + 'j',
-            'password': user_uid + 'j'
-        }).onSuccess(function (data) {
-
-
-            console.log('success:' + JSON.stringify(data));
-
-
-
-        }).onFail(function (data) {
-
-            console.log('error:' + JSON.stringify(data));
-        }).onTimeout(function (data) {
-            console.log('timeout:' + JSON.stringify(data));
-        });
-    }
-*/
 
 </script>
 </body>

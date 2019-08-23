@@ -39,12 +39,17 @@ img.followshare {
     padding-left: 0.4rem;
     margin-right: 0.3rem;
 }
+.commonTitlePoai{
+
+    position: relative;
+}
 .comTitle{
     padding: 0.48rem 0.4rem 0.12rem 0.4rem;
     background: #fff;
     border-top-left-radius: 0.08rem;
     border-top-right-radius: 0.08rem;
     justify-content: space-between;
+
 }
 .comintobox{
     justify-content: space-between;

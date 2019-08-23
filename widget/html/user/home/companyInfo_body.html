@@ -108,14 +108,6 @@
 </div>
 -->
 
-<div id="app1">
-    <div class="bgBlack" @click="hideBg()"></div>
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <keep-alive>
-        <component :is="active"></component>
-    </keep-alive>
-</div>
-
 <div class="contentBox">
     <div class="subBox isDisplay">
 
@@ -355,7 +347,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -370,10 +362,7 @@
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
-<script src="comment/magicAll.js"></script>
-<script src="comment/magicCom1.js"></script>
-<script src="comment/magicCom2.js"></script>
-<script src="comment/bus.js"></script>
+
 
 
 <script>
@@ -425,22 +414,19 @@
     apiready = function () {
 
 
-        var magicAll = magicAllInit(Vue);
-        var magicCom1 = magicCom1Init(Vue);
-        var magicCom2 = magicCom2Init(Vue);
-        Vue.component('magicAll', magicAll);
-        Vue.component('magicCom1', magicCom1);
-        Vue.component('magicCom2', magicCom2);
-
-
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+        console.log("a01_w",a01_w)
+        console.log("winWidth/2",winWidth/2)
 
         // 斜边长
-        bevelLength = Math.sqrt((a01_w * a01_w / 2 ))
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+        console.log("bevelLength",bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w-10)*0.23-10;    // 100
+        m_d = (a01_w-10)*0.23-25;    // 100
 
         api.addEventListener({
             name: 'keyback'
@@ -454,11 +440,13 @@
         uid = localStorage.getItem("person_id");
         console.log("c_idc_id",c_id)
         console.log("cidcid",cid)
+        if (cid){
+            companyId(cid)
+        }
         if (cid || c_id){
             document.querySelector(".comTitle").innerHTML == ''
-
             var obj = {
-                cid: cid || c_id,
+                cid: cid ,
                 person_id: uid
             }
             console.log(456,cid)
@@ -479,14 +467,14 @@
                 var DynamicList = data.DynamicList    //  公司动态
                 var attentionCompany = data.attentionCompany    //  关注状态
                 // if (welfare){
-                    var welData = welfare.split(",")
-                    console.log(1234,welData)
-                    for (var i = 0; i < welData.length; i++) {
-                        console.log(welData[i])
-                        infoListHtml += '<span>' + welData[i] + '</span>'
-                    }
-                    console.log(infoListHtml)
-                    document.querySelector(".infoList").innerHTML = infoListHtml
+                var welData = welfare.split(",")
+                console.log(1234,welData)
+                for (var i = 0; i < welData.length; i++) {
+                    console.log(welData[i])
+                    infoListHtml += '<span>' + welData[i] + '</span>'
+                }
+                console.log(infoListHtml)
+                document.querySelector(".infoList").innerHTML = infoListHtml
                 // }else {
                 //     document.querySelector(".infoList").innerHTML = ''
                 // }
@@ -495,7 +483,8 @@
                     // 公司头部
 
                     if(attentionCompany.att_status == 0){
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
+                        document.querySelector(".comTitle").
+                            innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
                             '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
                     }else if (attentionCompany.att_status == 1){
                         document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
@@ -915,7 +904,7 @@
                 }, function(ret, err) {
                     console.log("ret",ret);
                     console.log("job_id",ret.value.key.job_id)
-                    positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                    companyId(ret.value.key.job_id)
                 });
 
                 magicBox = document.querySelector(".magicBox")
@@ -996,6 +985,13 @@
             }
         })
     };
+
+    function historysClick() {
+        openNewWindow("historySearch", "./historySearch.html", {
+            // c_id: s_id,
+        });
+    }
+
 
     var flag = true;//
     function flowGuan(id,stauts) {

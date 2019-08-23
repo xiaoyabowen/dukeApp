@@ -534,6 +534,7 @@ textarea.textAreaCom {
 /*收藏的候选人*/
 .colboxmain.cssFlex {
     padding: 0.5rem 0.34rem 0.2rem;
+    position: relative;
 }
 img.colIMg {
     display: block;
@@ -549,9 +550,16 @@ img.colIMg {
     line-height: 0.66rem;
     justify-content: space-between;
     align-items: center;
+    /*width: ;*/
+}
+.coltext{
+    align-items: center;
 }
 .colinfoboxPrice{
     display: block;
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
     font-weight: 500 !important;
     color:rgba(99,139,255,1) !important;
 }

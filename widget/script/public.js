@@ -11,6 +11,7 @@ var localhostHref = 'http://192.168.1.7:8000/SE4M';
 var Domain = 'http://192.168.1.7:8088';
 
 
+
 // 测试服务器
 
 /*
@@ -88,6 +89,8 @@ var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
 
 // 伯乐  初次进入魔方
 var SmartMenuMenu = serverUrl + "/Menu/SmartMenu";
+// 伯乐  初次进入首页
+var QueryPersonRandomOne = serverUrl + "/JobProfile/QueryPersonRandomOne";
 
 // 伯乐   uid 随机五个我发布的职位
 var queryJobsByUidMenu = serverUrl + "/Menu/queryJobsByUidMenu";
@@ -225,8 +228,6 @@ var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 // 获取个人中心数据
 var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
 
-
-
 // 编辑个人中心
 var CreatePersonUserProfile = serverUrl + "/UserProfile/CreatePerson";
 // 编辑个人地址
@@ -290,6 +291,14 @@ var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 
 // 隐私设置 修改手机号
 var updatePhone = serverUrl + "/UserProfile/updatePhone";
+// 隐私设置 修改手机号
+var verificationPhone = serverUrl + "/UserProfile/verificationPhone";
+
+
+
+
+// 头像  修改  我的
+var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
 
 
 // 圈子活动列表
@@ -481,6 +490,8 @@ var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail";
 var UploadFlieTest = Domain + "/upload/UploadFlieTest";
 //伯乐创建简历  头像
 var uploadploadFlie = Domain + "/upload/UploadFlie";
+// qianlima  聚划算 收藏
+var QueryAttCommodity = Domain + "/CommodityProFile/QueryAttCommodity";
 
 
 //伯乐上传营业执照  头像
@@ -510,6 +521,8 @@ var UpdateStatus = serverUrl + "/EvaluateProfile/UpdateStatus";
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
 // 伯乐  点击我的
 var queryRecruiterSuccessJobProfile = serverUrl + "/JobProfile/queryRecruiterSuccess";
+// 伯乐  点击我的shoucang
+var QueryAttListUserProfile = serverUrl + "/UserProfile/QueryAttList";
 
 
 
@@ -728,10 +741,10 @@ function conver(limit){
 
 // 图片路劲去逗号
 function imgSrcFun(src) {
-    if (isStr(src)) {
+    /*if (isStr(src)) {
         console.error('src is\'t string');
         return false
-    }
+    }*/
     return src.split(',')[0];
 }
 

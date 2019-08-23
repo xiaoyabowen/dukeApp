@@ -6,10 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的订单</title>
-    <link rel="stylesheet" href="../../css/api.css"/>
-    <link rel="stylesheet" href="../../css/commonWin.css"/>
-    <link rel="stylesheet" href="../../css/myOrderCommon.css"/>
-    <link rel="stylesheet" href="../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/myOrderCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
     <style>
 
         .Box{
@@ -29,7 +29,7 @@
         <!--<div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
         <div  :class="listall.length == 0 ? '' : 'isDisplay'">
             <div class="notImg">
-                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+                <img src="../../../image/myfa.png" alt="du" class="notImgMy">
             </div>
             <div class="notMyConText">您没有相关浏览足迹！</div>
         </div>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <!--旅游   类型-->
+            <!--房产  类型-->
             <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"  v-show="item.tId == 3">
                 <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
                 <div class="comContent">
@@ -154,13 +154,14 @@
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
-<script type="text/javascript" src="../../script/api.js"></script>
-<script type="text/javascript" src="../../script/rem.js"></script>
-<script type="text/javascript" src="../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../script/public.js"></script>
-<script type="text/javascript" src="../../script/data.js"></script>
-<script type="text/javascript" src="../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
+
 
 <script>
     var uid,Htmlname;
@@ -190,43 +191,43 @@
 
             created: function () {
                 this.person_id = uid
-                this.Queryhistory()
+                this.QueryAttCommodity()
             },
             mounted : function (){
 
             },
             methods: {
-                Queryhistory : function (name,index) {
+                QueryAttCommodity : function (name,index) {
                     var that = this
                     that.active = name
                     var obj = {
                         pid : that.person_id
                     }
-                    ajaxGetWithProgress(Queryhistory,obj,function (data) {
-                        console.log("Queryhistory",data)
-                        that.listall = data.history;
+                    ajaxGetWithProgress(QueryAttCommodity,obj,function (data) {
+                        console.log("QueryAttCommodity",data)
+                        that.listall = data.AttCommodity;
                     })
                 },
 
                 //  商品详情
                 goodInfoClick : function (cid,tId) {
                     if (tId == 1){
-                        openNewWindow("index", "../user/great/facial/index.html",{
+                        openNewWindow("index", "./facial/index.html",{
                             cid : cid,
                             tId : tId,
                         })
                     } else if (tId == 2){
-                        openNewWindow("index", "../user/great/ouou/index.html",{
+                        openNewWindow("index", "./ouou/index.html",{
                             ouId : cid,
                             tId : tId,
                         });
                     }else if (tId == 3){
-                        openNewWindow("index", "../user/great/hourse/index.html",{
+                        openNewWindow("index", "./hourse/index.html",{
                             hourseId : cid,
                             tId : tId,
                         });
                     }else if (tId == 5){
-                        openNewWindow("index", "../user/great/farmProduce/index.html",{
+                        openNewWindow("index", "./farmProduce/index.html",{
                             cid : cid,
                             tId : tId,
                         });

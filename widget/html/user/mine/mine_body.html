@@ -38,7 +38,7 @@
                 </div>
                 <div class="mineInforight">
                     <div class="m-right-id">我是千里马</div>
-                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo">
+                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo" onclick="resume_editResume()">
                 </div>
             </div>
 
@@ -126,7 +126,7 @@
                     <img src="../../../image/mine/circle.png" alt="jianli" class="img-four">
                     <p>我的活动</p>
                 </li>
-                <li onclick="my_circle()">
+                <li onclick="my_conJu()">
                     <img src="../../../image/mine/JuCom.png" alt="jianli" class="img-com">
                     <p>我的收藏</p>
                 </li>
@@ -143,6 +143,10 @@
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script>
+
+        function reload (){
+            window.location.reload()
+        }
         apiready = function () {
             var user = localStorage.getItem("user");
             if (!user) {
@@ -250,6 +254,11 @@
         function my_circle() {
             openNewWindow("myActives", "../circle/myActives.html")
         }
+        // 我的活动
+        function my_conJu() {
+            openNewWindow("historyCom", "../great/historyCom.html")
+        }
+
         // 隐私设置
         function setting() {
             openNewWindow("shielding", "shielding.html")

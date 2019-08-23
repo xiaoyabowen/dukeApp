@@ -331,7 +331,7 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
+                    /*if (data.skills) {
                         var skills = data.skills.split(',');
                         var doms = []
                         for (var i = 0; i < skills.length; i++) {
@@ -341,7 +341,7 @@
                         document.getElementById('skills').innerHTML = doms.join('');
                     } else {
                         document.getElementById('skills').innerHTML = '';
-                    }
+                    }*/
 
                 }
             })
@@ -373,17 +373,7 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }
+
 
                 }
             })
@@ -422,17 +412,7 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }
+
                 }
             });
         }
@@ -623,7 +603,11 @@
 
     }
 
-
+    function historysClick() {
+        openNewWindow("historySearch", "./historySearch.html", {
+            // c_id: s_id,
+        });
+    }
 
     // 点击投递简历
     function sendResume() {

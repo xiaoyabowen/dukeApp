@@ -6,50 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
+    <title>我的订单</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
+
+    <style>
+        .headerBox{
+            justify-content: space-between;
+        }
+    </style>
+
 </head>
 <body>
-<div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
-    </div>
-    <div></div>-->
+<div id="topbar" class="cssFlex">
+
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWinMine()">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+        <div class="leftImgClose">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleMain">
-            编辑在线简历
+            我的收藏
         </div>
+        <div class="rightImgEdite">
 
+        </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-    var url
+
     apiready = function () {
         initFrameInWin(api.pageParam);
-        url = api.pageParam.url
-
     };
-
-    function closeWinMine() {
-        var frameName = url + "_body";
-        api.execScript({
-            name:url,
-            frameName: frameName,
-            script: 'reload()'
-        })
-        closeWin();
-    }
+    //点击保存
 
 </script>
 </html>
