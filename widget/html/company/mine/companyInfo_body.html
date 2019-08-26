@@ -277,7 +277,7 @@
         new Vue({
             el: '#app1',
             data: {
-                ComName: '未填写',     // 公司名称
+                ComName: '',     // 公司名称
                 ComContactor: '未填写', //  公司性质
                 ComScale: '未填写',
                 ComOrgType: '未填写',
@@ -336,8 +336,8 @@
                         var DynamicList = data.DynamicList  //企业空间
                         if (data) {
                             console.log("cvomInfoc_name",cvomInfo.c_name)
-                            that.ComName = cvomInfo.c_name
-                            console.log("ComName",that.ComName)
+                            that.ComName = cvomInfo.c_name;
+                            console.log("ComName",that.ComName);
                             console.log(document.querySelector(".comInfoTitle"))
                             that.ComContactor = cvomInfo.contactor || '未填写'
                             that.ComScale = cvomInfo.scale || '未填写'

@@ -547,8 +547,10 @@ var queryOrgnizationWelfare = serverUrl + "/OrgnizationProfile/queryOrgnizationW
 
 //  伯乐 完善我的公司  状态 高管  已填写  详细信息
 var queryOrgnizationSenior = serverUrl + "/OrgnizationProfile/queryOrgnizationSenior";
-//  伯乐 完善我的公司  状态 产品介绍已填写  详细信息
+//  伯乐 完善我的公司  状态 产品介绍已填写  列表信息
 var queryProductSummary = serverUrl + "/OrgnizationProfile/queryProductSummary";
+//  伯乐 完善我的公司  状态 产品介绍 已填写  列表详情 详细信息
+var queryOneProductSummary = serverUrl + "/OrgnizationProfile/queryOneProductSummary";
 
 
 //  伯乐 完善我的公司  状态 图片  已填写  详细信息
@@ -568,6 +570,9 @@ var createOrgnization = serverUrl + "/OrgnizationProfile/createOrgnization";
 var createCompanySummary = serverUrl + "/OrgnizationProfile/createCompanySummary";
 //  伯乐填写我的公司  产品介绍
 var addCompanyProduct = serverUrl + "/OrgnizationProfile/addCompanyProduct";
+//  伯乐填写我的公司  产品介绍
+var updateCompanyProduct = serverUrl + "/OrgnizationProfile/updateCompanyProduct";
+
 //  伯乐填写我的公司  公司福利
 var createCompanyWelfare = serverUrl + "/OrgnizationProfile/createCompanyWelfare";
 

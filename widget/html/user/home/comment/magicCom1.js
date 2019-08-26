@@ -158,6 +158,32 @@ function magicCom1Init(Vue) {
             magicCom1Click: function () {  // 公司1
                 var that = this;
                 that.togle()
+
+                /*var that = this
+
+                var obj = {
+                    magicComCid1: that.magicComCid1,
+                    magicCom1Text: that.magicCom1Text,
+                    magicCom1Img: that.magicCom1Img,
+                    magicCom: 'magicCom1',
+                }
+                store.commit('upData', obj);
+
+                api.sendEvent({
+                    name: 'comCom1',
+                    extra: {
+                        key: {
+                            /!*c_id: that.magicComCid2,
+                            c_name: that.magicCom2Text,
+                            logo_icon: that.magicCom2Img,*!/
+                            magicCom1: 'magicCom1'
+                        },
+
+                    }
+                });
+                that.OneCompanyFourJobMenu()*/
+
+
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;

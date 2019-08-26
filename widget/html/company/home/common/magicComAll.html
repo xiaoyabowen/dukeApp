@@ -59,7 +59,14 @@
                     </div>
                 </div>
             </div>
-            <div class="magicBtn magicBtnCom" v-if="myPositionText == '我的职位'">
+            <div class="magicBtn magicBtnCom">
+                <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                    <div class="magicSubBoxMain">
+                        <div class="magicSize">{{myPositionText}}</div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="magicBtn magicBtnCom" v-if="myPositionText == '我的职位'">
                 <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
                     <div class="magicSubBoxMain">
                         <div class="magicSize">{{myPositionText}}</div>
@@ -72,7 +79,7 @@
                         <div class="magicSize">{{myPositionText}}</div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 

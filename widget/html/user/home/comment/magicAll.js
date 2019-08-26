@@ -131,14 +131,16 @@ function magicAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-
+                store.state.obj.c_id = that.magicComCid1
+                store.state.obj.c_name = that.magicCom1Text
+                store.state.obj.logo_icon = that.magicCom1Img
+                // console.log("that.magicComCid1",that.magicComCid1)
                 var obj = {
                     magicComCid1: that.magicComCid1,
                     magicCom1Text: that.magicCom1Text,
                     magicCom1Img: that.magicCom1Img,
                     magicCom: 'magicCom1',
                 }
-
                 store.commit('upData', obj);
 
                 api.sendEvent({

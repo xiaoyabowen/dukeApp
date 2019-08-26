@@ -146,9 +146,9 @@ function magicCom2Init(Vue) {
                 console.log("that.magicComCid1",that.magicComCid1)
 
 
-                /*store.state.obj.c_id = that.magicComCid1
+                store.state.obj.c_id = that.magicComCid1
                 store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img*/
+                store.state.obj.logo_icon = that.magicCom1Img
 
                 var obj = {
                     magicComCid1: that.magicComCid1,

@@ -68,11 +68,13 @@
         .demobiox{
             z-index: 99;
         }
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
     </style>
 
 </head>
 <body class="commonBg">
-
 
 
 <div id="app1">
@@ -124,7 +126,7 @@
                                     <!--薪资 日期-->
                                     <div class="job-right cssFlex">
                                         <p class="moneyNum"><span id="ratio">20k-30K</span></p>
-                                        <img src="../../../icon/posiShare.png" alt="time" class="posiShare">
+                                        <img src="../../../icon/posiShare.png" alt="time" onclick="posiShareClick()" class="posiShare">
                                     </div>
 
                                 </div>
@@ -622,7 +624,9 @@
         //     uid: uid
         // });
     }
-
+    function posiShareClick() {
+        toast("暂无分享")
+    }
 </script>
 </body>
 </html>

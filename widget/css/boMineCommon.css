@@ -638,7 +638,48 @@ input.bingphoneInput {
     margin: 0 !important;
 }
 
+.product_hisbox{
+    margin-top: 0.3rem;
 
+}
+
+.infoProduct {
+    padding: 0 0 0 0.34rem;
+    margin-bottom: 0.2rem;
+}
+.infoProductPad{
+    padding: 0 !important;
+}
+img.pro-img {
+    display: inline-block;
+    width: 1rem !important;
+    height: 1rem;
+    /*flex: 1;*/
+    float: left;
+    margin-right: 0.28rem;
+}
+.seniorimg{
+    display: inline-block;
+    width: 1rem !important;
+    height: 1rem;
+    /*flex: 1;*/
+    float: left;
+    margin-right: 0.28rem;
+}
+.infoProductContent{
+    width: 6rem;
+}
+.infoProductContent>h5{
+    font-size: 0.28rem;
+    color: #333;
+    margin-bottom: 0.1rem;
+    line-height: 0.28rem;
+}
+.infoProductContent>p{
+    color: #333;
+    font-size: 0.24rem;
+    line-height: 0.28rem;
+}
 
 
 

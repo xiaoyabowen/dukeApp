@@ -32,37 +32,18 @@
     </style>
 </head>
 <body class="commonBg">
-
 <div class="Box" id="app1">
     <div class="boxSub isDisplay">
-        <div class="w-title commonTitle">产品介绍</div>
-        <div class="w-sub-title commonFont">
-            产品指的公司研发的网站、手机应用。
+        <div class="product_hisbox">
+            <div class="infoProduct infoProductPad clearfix" v-for="(item,index) in comProArr" :key="index" @click="productClick(item.pid)">
+                <img :src="item.prod_icon.split(',')[0]" alt="pro" class="pro-img">
+                <div class="infoProductContent">
+                    <h5>{{item.productname}}</h5>
+                    <p class="textOverflow">{{item.prod_tags}}</p>
+                </div>
+            </div>
+
         </div>
-
-        <div class="niceBox isDisplay">
-
-            <input type="text" v-model="productName" class="w-comurl-input commonFont" placeholder="产品标题">
-            <div class="subggestTitle commonFont">产品介绍</div>
-            <textarea cols="30" rows="10" class="textAreaCom" v-model="productMain" placeholder="公司的产品名称或者提供的服务名称"></textarea>
-            <img :src="productIcon" alt="pro" class="addComProImg"  @click="wuploadimg()">
-        </div>
-
-<!--
-
-
-        <div class="" v-if="indexNum == 2">
-
-            <input type="text" class="w-comurl-input commonFont" placeholder="产品标题"  :value="item.productname">
-            <div class="subggestTitle commonFont">产品介绍</div>
-            <textarea cols="30" rows="10" class="textAreaCom" :value="item.prod_tags" placeholder="公司的产品名称或者提供的服务名称"></textarea>
-            <img :src="item.prod_icon.split(',')[0]" alt="pro" class="addComProImg addComProImgFor" @click="wuploadimg+index()">
-        </div>
--->
-
-
-        <div class="postSubBtn" @click="preservation()">保存</div>
-
     </div>
 
 </div>
@@ -81,6 +62,9 @@
 <script src="../../../script/vue.min.js"></script>
 
 <script>
+    function loadCom (){
+        window.location.reload()
+    }
 
     var cid,uid,url,index;
     apiready = function () {
@@ -99,7 +83,7 @@
                 indexNum:1,
             },
             created: function () {
-                this.pid = api.pageParam.cid
+
                 this.queryProductSummary()
             },
             mounted : function (){
@@ -109,26 +93,43 @@
                 queryProductSummary : function (){
                     var that = this
                     document.querySelector(".boxSub").classList.remove("isDisplay")
-                    if (index == 2){
-                        var obj = {
-                            pid: cid,
-                        }
-                        ajaxGetWithProgress(queryOneProductSummary,obj,function (data,ret) {
-                            console.log("queryOneProductSummary",data)
+                    var uid = localStorage.getItem("person_id")
+                    var c_id = localStorage.getItem("com_id")
+                    var obj = {
+                        uid: uid,
+                        cid: c_id,
+                    }
+                    ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
+                        console.log("queryProductSummary",data)
+                        if (data){
+                            that.comProArr= data.product_his
 
+                        }
+                        api.hideProgress();
+                    })
+
+                    /*if (index == 2){
+                        that.indexNum = 2
+                        var uid = localStorage.getItem("person_id")
+                        var c_id = localStorage.getItem("com_id")
+                        var obj = {
+                            uid: uid,
+                            cid: c_id,
+                        }
+                        ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
+                            console.log("queryProductSummary",data)
                             if (data){
-                                document.querySelector(".niceBox").classList.remove("isDisplay")
-                                that.productName= data.productname;
-                                that.productMain= data.prod_tags;
-                                that.productIcon= imgSrcFun(data.prod_icon);
+                                that.comProArr= data.product_his
 
                             }
                             api.hideProgress();
                         })
 
                     }else if (index == 1){
+                        that.indexNum = 1
+
                         document.querySelector(".niceBox").classList.remove("isDisplay")
-                    }
+                    }*/
 
 
                 },
@@ -169,12 +170,14 @@
                                 }
                             }, function (ret, err) {
                                 console.log(ret);
+                                prod_icon = document.querySelector(".addComProImg").src
                                 var pathImgImg = ret.imgUrl
                                 if (pathImgImg == ''){
-                                    that.productIcon = '../../../image/company/comproImg.png'
+                                    prod_icon = '../../../image/company/comproImg.png'
                                 }else{
                                     var pathImgData = pathImgImg.split(",")
-                                    that.productIcon = pathImgData[0]
+                                    console.log(pathImgData)
+                                    prod_icon = pathImgData[0]
                                 }
 
                                 api.hideProgress();
@@ -191,59 +194,47 @@
                     var that = this
                     var c_id = localStorage.getItem("com_id")
 
-                    if (that.productName == ''){
+                    var suggestTitle = document.querySelector(".w-comurl-input").value
+                    var suggestText = document.querySelector(".textAreaCom").value
+                    var prod_icon = document.querySelector(".addComProImg").src
+
+                    if (suggestTitle == ''){
                         toast("请填写产品名字")
                         return
                     }
-                    if (that.productMain == ''){
+                    if (suggestText == ''){
                         toast("请填写产品详情")
                         return
                     }
-                    var obj
-                    if (index == 1){
-                        obj = {
-                            c_id : c_id,
-                            productname: that.productName,
-                            prod_tags: that.productMain,
-                            prod_icon: that.productIcon,
-                        }
-                        console.log(obj)
-                        ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
-                            console.log(data)
-                            if (data.return.status) {
-                                var frameName = url + "_body";
-                                api.execScript({
-                                    name:url,
-                                    frameName: frameName,
-                                    script: 'loadCom()'
-                                })
-                                closeWin();
-                            }
-                        })
-                    }else if (index == 2){
-                        obj = {
-                            pid : that.pid,
-                            productname: that.productName,
-                            prod_tags: that.productMain,
-                            prod_icon: that.productIcon,
-                        }
-                        console.log(obj)
-                        ajaxGetWithProgress(updateCompanyProduct,obj,function (data,ret) {
-                            console.log(data)
-                            if (data.return.status) {
-                                var frameName = url + "_body";
-                                api.execScript({
-                                    name:url,
-                                    frameName: frameName,
-                                    script: 'loadCom()'
-                                })
-                                closeWin();
-                            }
-                        })
+                    var obj = {
+                        c_id : c_id,
+                        productname: suggestTitle,
+                        prod_tags: suggestText,
+                        prod_icon: prod_icon,
                     }
-
-
+                    console.log(obj)
+                    ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
+                        console.log(data)
+                        if (data.return.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name:url,
+                                frameName: frameName,
+                                script: 'loadCom()'
+                            })
+                            closeWin();
+                        }
+                    })
                 },
+
+                productClick : function (pid) {
+                    openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
+                        url: 'whriteComSuggestlist',
+                        index:'2',
+                        cid : pid
+                    })
+                }
+
             }
         })
     };
