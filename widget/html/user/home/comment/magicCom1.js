@@ -85,10 +85,7 @@ function magicCom1Init(Vue) {
 
         methods: {
             togle : function() {
-                /*var that = this
-                that.magicComCid1 = store.state.obj.c_id
-                that.magicCom1Text = store.state.obj.c_name
-                that.magicCom1Img = store.state.obj.logo_icon*/
+
                 var isBlck=document.querySelector('.bgBlack')
                 if(isBlck.getAttribute("class")=='isDisplay'){
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
@@ -106,21 +103,7 @@ function magicCom1Init(Vue) {
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
-                /*api.addEventListener({
-                    name: 'comCom1',
-                }, function(ret, err) {
 
-                    console.log("comCom1",ret)
-                    that.magicComCid1 = ret.value.key.c_id
-                    that.magicCom1Text = ret.value.key.c_name
-                    that.magicCom1Img = ret.value.key.logo_icon
-
-
-                });*/
-                /*that.magicComCid1 = localStorage.getItem("magic_id")
-                that.magicCom1Text = localStorage.getItem("magic_name")
-                that.magicCom1Img = localStorage.getItem("magic_img")
-*/
                 that.magicComCid1 = store.state.obj.c_id
                 that.magicCom1Text = store.state.obj.c_name
                 that.magicCom1Img = store.state.obj.logo_icon
@@ -139,25 +122,33 @@ function magicCom1Init(Vue) {
                             that.listJob = jobList
                         }
 
-                        that.magicCom2Img =data.company[0].logo_icon
-                        that.magicCom2Text = data.company[0].c_name
-                        that.magicComCid2 = data.company[0].c_id
-
-
+                        if (data.company[1].logo_icon == ''){
+                            that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                        } else {
+                            that.magicCom2Img = data.company[1].logo_icon
+                        }
 
                     }
                 })
             },
-            jobDetailClick : function (job_id,job_name,index){
+            jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
                 console.log("job_id",job_id)
                 console.log("job_name",job_name)
                 this.timeIndex = index;
+
+
+                store.state.obj.company_c_id = company_c_id
+                store.state.obj.job_name = job_name
+                store.state.obj.job_type = job_type
+                store.state.obj.job_id = job_id
+
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
                         key: {
                             job_id : job_id,
                             job_name : job_name,
+                            magicCom: 'magicPosiDetail',
                         },
                     }
                 });
@@ -166,14 +157,10 @@ function magicCom1Init(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                that.OneCompanyFourJobMenu()
+                that.togle()
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-
-                /*store.state.obj.c_id = that.magicComCid2
-                store.state.obj.c_name = that.magicCom2Text
-                store.state.obj.logo_icon = that.magicCom2Img*/
 
                 var obj = {
                     magicComCid1: that.magicComCid2,

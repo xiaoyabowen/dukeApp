@@ -17,6 +17,9 @@
             -o-line-clamp: 3;
             line-clamp: 3;
         }
+        .Display{
+            display: block !important;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -27,7 +30,7 @@
         <div class="con-adr">
             <div class="con-adr-not cssFlex"
                  @click="adressHandle()"
-                 :class="order.adr == '' ? '' : 'isDisplay'">
+                 v-show="isDefult == false">
                 <div class="con-adr-not-left cssFlex">
                     <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
                     <span>手动添加收货地址</span>
@@ -36,7 +39,7 @@
             </div>
             <div class="con-adr-yes"
                  @click="adressHandle()"
-                 :class="order.adr != '' ? '' : 'isDisplay'">
+                 v-show="isDefult == true">
                 <div class="adr-yes-info cssFlex">
                     <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
                     <span class="adr-yes-name" id="name">{{order.adr.name}}</span>
@@ -55,7 +58,7 @@
         <div class="con-adr">
             <div class="con-adr-not cssFlex"
                  @click="adressHandle()"
-                 :class="order.adr == '' ? '' : 'isDisplay'">
+                 v-show="isDefult == false">
                 <div class="con-adr-not-left cssFlex">
                     <img src="../../../image/great/add.png" alt="add" class="adr-not-img">
                     <span>手动添加收货地址</span>
@@ -64,7 +67,7 @@
             </div>
             <div class="con-adr-yes"
                  @click="adressHandle()"
-                 :class="order.adr != '' ? '' : 'isDisplay'">
+                 v-show="isDefult == true">
                 <div class="adr-yes-info cssFlex">
                     <img src="../../../image/great/name.png" alt="" class="adr-yes-user">
                     <span class="adr-yes-name" id="name">{{order.adr.name}}</span>
@@ -142,7 +145,7 @@
                 <span class="conmain-h">购买数量</span>
                 <div class="mui-numbox">
                     <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
-                    <input class="mui-numbox-input" type="number" v-model="num"/>
+                    <input class="mui-numbox-input" type="number" v-model="num" readonly/>
                     <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
                 </div>
             </div>
@@ -153,7 +156,7 @@
                 <span class="conmain-h">购买数量</span>
                 <div class="mui-numbox">
                     <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
-                    <input class="mui-numbox-input" type="number" v-model="num"/>
+                    <input class="mui-numbox-input" type="number" v-model="num" readonly />
                     <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
                 </div>
             </div>
@@ -285,7 +288,7 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    isDefult: false,
+                    isDefult: '',
                     infoName: "",
                     infoPhone: "",
                     infoAdr: "",
@@ -309,9 +312,28 @@
                     this.tourismouou = api.pageParam.urlIs;
                     this.OrderKey = api.pageParam.OrderKey
                     this.ououPrice = api.pageParam.ououPrice
+
+                    if (api.pageParam.url){
+                        this.isDefult = api.pageParam.order.default
+                    } else{
+                        api.addEventListener({
+                            name: 'addressDefault',
+                        }, function(ret, err) {
+                            console.log("ret",ret);
+                            that.isDefult = ret.value.key.addressDefault;
+                        });
+                    }
+
+
+
+
                 },
                 mounted: function () {
+                    var that = this
                     document.getElementById('app').classList.remove('isDisplay');
+
+
+
                     // document.getElementById('ououPrice').innerText = this.ououPrice;
                 },
                 methods: {
@@ -324,18 +346,47 @@
                     },
                     // 增加商品
                     numboxAdd: function () {
-                        this.num++
-                        if (this.num > 10) {
-                            this.num = 10
+                        var that = this
+                        that.num++
+                        if (that.num > 10) {
+                            that.num = 10
                         }
+                        var obj
+                        if (that.active == 'facial' || that.active == 'farmProduce'){
+                            obj = {
+                                oId : api.pageParam.OrderKey,
+                                buyNum : that.num,
+                                price : that.item.priceh * that.num,
+                            }
+                        }
+
+                        console.log("AndPriceObj",obj)
+                        ajaxGetWithProgress(updateBuyNumAndPrice,obj,function (data) {
+                            console.log("updateBuyNumAndPrice",data)
+                        })
+
+
 
                     },
                     // 减少商品
                     numboxlit: function () {
-                        this.num--
-                        if (this.num < 1) {
-                            this.num = 1
+                        var that = this
+                        that.num--
+                        if (that.num < 1) {
+                            that.num = 1
                         }
+
+                        var obj = {
+                            oId : api.pageParam.OrderKey,
+                            buyNum : that.num,
+                            price : that.item.priceh * that.num,
+                        }
+                        console.log("AndPriceJianObj",obj)
+                        ajaxGetWithProgress(updateBuyNumAndPrice,obj,function (data) {
+                            console.log("updateBuyNumAndPrice",data)
+                        })
+
+
                     },
                     // 付款
                     payment: function () {
@@ -380,14 +431,14 @@
                                      pId: that.person_id,
                                      oId: that.OrderKey,
                                      buyNum: that.num,
-                                     price: that.item.price,
+                                     price: that.item.priceh,
                                      comName: that.item.comName,
                                      summary: that.item.summary,
                                      payType: "支付宝",
                                  }
                                  console.log(obj)
                                  api.ajax({
-                                     url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
+                                     url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
                                      method: 'GET',
                                      dataType: 'text',
                                      timeout: 30,
@@ -466,7 +517,7 @@
                                     payType: "银联",
                                 }
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
@@ -531,6 +582,10 @@
 
                             return;
                         }
+
+
+                        // 农产品类型
+
                         if (that.active == 'farmProduce') {
 
 
@@ -571,14 +626,14 @@
                                     pId: that.person_id,
                                     oId: that.OrderKey,
                                     buyNum: that.num,
-                                    price: that.item.price,
+                                    price: that.item.priceh,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -591,7 +646,7 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://192.168.1.7:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
                                         // sandbox: true
 
 
@@ -663,7 +718,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
@@ -752,14 +807,14 @@
                                     pId: that.person_id,
                                     oId: that.OrderKey,
                                     buyNum: that.num,
-                                    price: that.ououPrice,
+                                    price: that.item.price,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -772,7 +827,7 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://192.168.1.7:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
                                         // sandbox: true
 
 
@@ -844,7 +899,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,
@@ -942,7 +997,7 @@
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://112.126.98.172:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -955,7 +1010,7 @@
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
-                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://192.168.1.7:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                        // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
                                         // sandbox: true
 
 
@@ -1018,7 +1073,7 @@
                                     pId: that.person_id,
                                     oId: that.OrderKey,
                                     buyNum: that.num,
-                                    price: that.item.price,
+                                    price: that.ououPrice,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "银联",
@@ -1028,7 +1083,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://192.168.1.7:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll:false,

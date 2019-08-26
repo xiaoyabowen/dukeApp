@@ -53,8 +53,8 @@
             <!--Aquarius Villa－Glifada-->
             化妆品
         </div>
-        <img src="../../../../image/mine/juCon.png" class="juConImg" onclick="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../../image/mine/shou1.png" class="juConImg"  onclick="collectionHandle()" v-show="!att" alt="">
+        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
+        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
         <div class="rightImgEdite">
             <img class="oneImgRight" src="../../../../image/mine/share.png" alt="" >
 
@@ -79,33 +79,151 @@
 
 </body>
 <script type="text/javascript" src="../../../../script/api.js"></script>
-<script type="text/javascript" src="../../../../script/util.js"></script>
 <script type="text/javascript" src="../../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
 <script type="text/javascript" src="../../../../script/vue.min.js"></script>
 <script>
 
     apiready = function () {
         initFrameInWin(api.pageParam);
+        new Vue({
+            el: '#homeIndex',
+            data: {
+                activeComment: 1,
+                item: {},
+                list: [],
+                len: 1,
+                total: 0,
+                evalist: [],
+                evalist1: [],
+                evalist2: [],
+                evalist3: [],
+                imgs: [],
+                imgurl: '',
+                att: false,
+                att_id: '',
+                comName: '',
+                person_id: '',
+                cid: '',
+                tId: '',
+                active:'magicAll',
+            },
+            created: function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.tId = api.pageParam.tId;
+                this.cid = api.pageParam.cid;
+                this.summary();
+                // this.commodityList();
+            },
+            mounted: function () {
+                var that = this
+
+                api.addEventListener({
+                    name: 'jobAll'+that.tId,
+                }, function(ret, err) {
+                    console.log("ret",ret);
+
+                    // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                    that.cid = ret.value.key.cid
+                    that.summary()
+
+                });
+
+
+            },
+            methods: {
 
 
 
-    }
+                // 获取数据
+                summary: function () {
+                    var that = this;
+                    ajaxGetWithProgress(summary, {
+                        cid: that.cid,
+                        pid: that.person_id
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.Commodity) {
+                            that.item = data.Commodity;
+                            that.imgurl = that.item.placard.split(',')[0];
+                            // that.imgs = data.intpic;
+                            that.imgs = data.Commodity.intPic.split(',');
+                            that.total = data.total;
+                            that.att = data.att;
+                            that.att_id = data.att_id;
+                            that.comName = data.comName;
+                            document.getElementById('great').classList.remove('isDisplay');
+                        }
 
-    //点击保存
-    function collectionHandleActive(){
-        api.execScript({
-            frameName: "index_body",
-            script: 'collectionHandleActive()'
+                        if (data.commEvaluateAndPic) {
+                            var list = data.commEvaluateAndPic;
+                            that.list = list;
+                            for (var i = 0; i < list.length; i++) {
+                                var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
+                                if (num > 10) {
+                                    that.evalist1.push(list[i]);
+                                } else if (num > 5) {
+                                    that.evalist2.push(list[i]);
+                                } else if (num < 5) {
+                                    that.evalist3.push(list[i]);
+                                }
+                            }
+                            that.evalist = that.evalist1;
+                        }
+                    });
+                },
+
+                // 收藏
+                collectionHandle: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../../login/login.html");
+                        return;
+                    }
+                    var that = this;
+                    ajaxGet(collectComm, {
+                        id: that.att_id,
+                        ccStatus: 1,
+                    }, function(data,err){
+                        console.log(data);
+                        if (data.commcollect) {
+                            toast("已收藏")
+
+                            // window.location.reload()
+                        }
+                    });
+                    that.att = !that.att;
+                },
+                // 收藏
+                collectionHandleActive: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../../login/login.html");
+                        return;
+                    }
+                    var that = this;
+                    var obj = {
+                        id: that.att_id,
+                        ccStatus: 0,
+                    }
+                    console.log(obj)
+                    ajaxGet(collectComm, obj, function(data,err){
+                        console.log(data);
+                        if (data.commcollect) {
+                            toast("已取消收藏")
+                        }
+                    });
+                    that.att = !that.att;
+                },
+
+
+            }
         })
     }
-    function collectionHandle(){
-        api.execScript({
-            frameName: "index_body",
-            script: 'collectionHandle()'
-        })
-    }
+
+
     function mineGo() {
         openNewWindow("index", "../index.html")
     }

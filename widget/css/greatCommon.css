@@ -1547,6 +1547,7 @@ tourism_main img{
 }
 .hourse_main>div{
     width: 25% !important;
+    display: inline-block;
 }
 .tourism_main_header div {
     width: 32%;
@@ -1704,6 +1705,9 @@ ul#tabs>li{
     font-weight: 500;
 }
 
+
+
+
 .tr-person.cssFlex {
     justify-content: space-between;
     align-items: center;
@@ -1856,8 +1860,12 @@ textarea.textareaType {
     line-height:0.5rem;
 }
 .hourcePush{
-    margin:  0 0.3rem;
-    padding: 0.34rem 0;
+    margin:  0 0.3rem 0.04rem;
+    /*padding: 0.34rem 0;*/
+    height: 0.6rem;
+    line-height: 0.6rem;
+    align-items: center;
+
     color: #333333;
     border-bottom: 1px solid #EBEBEB;
 }

@@ -119,9 +119,20 @@
                 // 选择收货地址
                 linkHandle: function (name, phone, address, addrDetails,adrId) {
                     var url = api.pageParam.url
+                    api.sendEvent({
+                        name: 'addressDefault',
+                        extra: {
+                            key: {
+                                /*c_id: that.magicComCid2,
+                                c_name: that.magicCom2Text,
+                                logo_icon: that.magicCom2Img,*/
+                                addressDefault: 'true'
+                            },
+
+                        }
+                    });
                     var frameName = url + "_body";
                     if (url == 'confirmOrder') {
-                        console.log(123)
                         api.execScript({
                             name:url,
                             frameName: frameName,

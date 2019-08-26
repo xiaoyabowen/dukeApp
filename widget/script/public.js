@@ -5,30 +5,19 @@ var isCleanUser = false;
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 
 
-// 本地服务器
-var serverUrl = "http://192.168.1.7:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.7:8000/SE4M';
-var Domain = 'http://192.168.1.7:8088';
-
-
-
-// 测试服务器
-
 /*
-var serverUrl = "http://112.126.98.172:8071/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8071/SE4M';
-var Domain = 'http://112.126.98.172:8073';
-
+// 本地服务器
+var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.12:8000/SE4M';
+var Domain = 'http://192.168.1.12:8088';
 */
 
-
-/*
 
 // 正式服务器
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
-*/
+
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -78,11 +67,12 @@ var removeSearchHistory = serverUrl + "/UserProfile/removeSearchHistory";
 
 // 千里马  魔方
 var MenuListQyMenu = serverUrl + "/Menu/MenuListQ";
+// 千里马  点击详情
+var JobThreeOneCompanyMueu = serverUrl + "/Menu/JobThreeOneCompanyMueu";
+
+
 // 巨划算  魔方
 var commodityList = Domain + "/CommodityProFile/commodityList";
-
-
-
 
 // 千里马  点击公司查询该公司下的四个职位和一个随机公司
 var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
@@ -101,18 +91,17 @@ var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
 // 支付宝  支付  接口
 var payalipayUniform = Domain +'/pay/alipayUniform'
 
+// 确认订单 数量 加减
+var updateBuyNumAndPrice = Domain +'/reserve/updateBuyNumAndPrice'
+
+
 
 // 聊天
-
 var getSignatureJiGuang = serverUrl + "/JiGuang/getSignature";
-
-
 // 聊天
 var MessageListByUserName = serverUrl + "/JiGuang/MessageListByUserName";
 // 聊天
 var JMessagepush = serverUrl + "/JiGuang/JMessagepush";
-
-
 
 /*
 * 支付状态   orderStatus  0 未支付
@@ -560,8 +549,17 @@ var queryOrgnizationWelfare = serverUrl + "/OrgnizationProfile/queryOrgnizationW
 var queryOrgnizationSenior = serverUrl + "/OrgnizationProfile/queryOrgnizationSenior";
 //  伯乐 完善我的公司  状态 产品介绍已填写  详细信息
 var queryProductSummary = serverUrl + "/OrgnizationProfile/queryProductSummary";
+
+
 //  伯乐 完善我的公司  状态 图片  已填写  详细信息
 var orgnizationPICBbycidlist = serverUrl + "/OrgnizationProfile/orgnizationPICBbycidlist";
+
+
+//  伯乐 完善我的公司  公司相册 保存
+var addCompanyPic = serverUrl + "/OrgnizationProfile/addCompanyPic";
+
+//  伯乐 完善我的公司  公司相册  编辑 保存
+var UpdateCompanyPic = serverUrl + "/OrgnizationProfile/UpdateCompanyPic";
 
 
 //  伯乐填写我的公司基本信息

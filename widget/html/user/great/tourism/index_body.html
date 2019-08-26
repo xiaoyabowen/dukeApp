@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
     <style>
         .great_header{
-            ;
+
         }
     </style>
 </head>
@@ -74,9 +74,9 @@
 
             <div class="tourism_main">
                 <div class="tourism_main_header">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">行程路线</span></div>
-                    <div><span @click="activeHandle('cost')" :class="activeType == 'cost' ? 'activeType' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('other')" :class="activeType == 'other' ? 'activeType' : ''">其他说明</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">行程路线</span></div>
+                    <div><span @click="activeHandle('cost')" :class="activeType == 'cost' ? 'active' : ''">费用说明</span></div>
+                    <div><span @click="activeHandle('other')" :class="activeType == 'other' ? 'active' : ''">其他说明</span></div>
                 </div>
 
                 <div id="trip" v-if="activeType == 'trip' && item.intPic">
@@ -319,7 +319,7 @@
                             return;
                         }
                         var that = this;
-                        openNewWindow("tripDate", "./tripDate.html", {
+                        openNewWindow("tripDate", "tripDate.html", {
                             data: that.data
                         });
                     }

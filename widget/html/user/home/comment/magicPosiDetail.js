@@ -1,6 +1,6 @@
 
-function magicCom2Init(Vue) {
-    var str = dataValue('user/home/comment/magicCom2.html')
+function magicPosiDetailInit(Vue) {
+    var str = dataValue('user/home/comment/magicPosiDetail.html')
     var bus = dataValue('user/home/comment/bus.js')
     var magicBGheight
     apiready = function () {
@@ -30,6 +30,10 @@ function magicCom2Init(Vue) {
                 magicCom1Text: '',
                 magicComCid1 : '',
                 magicComCid2 : '',
+
+                company_c_id : '',
+                job_name : '',
+
                 timeIndex:'',
                 job_id: '',
                 c_id: '',
@@ -39,8 +43,11 @@ function magicCom2Init(Vue) {
             }
         },
         created: function() {
-            this.OneCompanyFourJobMenu()
-            this.togle()
+            var that = this
+            this.JobThreeOneCompanyMueu()
+
+
+            // this.togle()
         },
         mounted :function (){
             var that = this
@@ -72,7 +79,6 @@ function magicCom2Init(Vue) {
                 iconImg[i].style.height = m_d/2 + "px"
             }
 
-
         },
 
         methods: {
@@ -95,11 +101,7 @@ function magicCom2Init(Vue) {
             OneCompanyFourJobMenu : function () {
                 var that = this
 
-                that.magicComCid2 = store.state.obj.c_id
-                that.magicCom2Text = store.state.obj.c_name
-                that.magicCom2Img = store.state.obj.logo_icon
-
-                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid2},function (data) {
+                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
                     console.log("com2",data)
                     var jobList = data.job
                     if (data) {
@@ -109,15 +111,53 @@ function magicCom2Init(Vue) {
                             that.listJob = jobList
                         }
 
+                        that.magicCom1Img =data.company[0].logo_icon
+                        that.magicCom1Text = data.company[0].c_name
+                        that.magicComCid1 = data.company[0].c_id
+
+                    }
+                })
+            },
+
+            JobThreeOneCompanyMueu : function () {
+                var that = this
+                var obj ={
+                    cid : store.state.obj.company_c_id,
+                    job_name : store.state.obj.job_name,
+                    job_type : store.state.obj.job_type,
+                    job_id : store.state.obj.job_id,
+                }
+
+                console.log("objobThree",obj)
+                ajaxGetWithProgress(JobThreeOneCompanyMueu,obj,function (data) {
+                    console.log("JobThreeOneCompanyMueu",data)
+                    var jobList = data.job
+                    if (data) {
+                        if (jobList == null || jobList == ''){
+                            that.listJob = ''
+                        } else{
+                            that.listJob = jobList
+                        }
+                        that.magicComCid1 = data.company[0].c_id
                         if (data.company[0].logo_icon == ''){
                             that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                         } else {
                             that.magicCom1Img = data.company[0].logo_icon
                         }
+                        that.magicCom1Text = data.company[0].c_name
+                        that.magicComCid2 = data.company[1].c_id
+                        if (data.company[1].logo_icon == ''){
+                            that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                        } else {
+                            that.magicCom2Img = data.company[1].logo_icon
+                        }
+                        that.magicCom2Text = data.company[1].c_name
+
                     }
                 })
             },
             jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
+                var that = this
                 console.log("job_id",job_id)
                 console.log("job_name",job_name)
                 this.timeIndex = index;
@@ -128,6 +168,7 @@ function magicCom2Init(Vue) {
                 store.state.obj.job_type = job_type
                 store.state.obj.job_id = job_id
 
+                that.JobThreeOneCompanyMueu()
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {

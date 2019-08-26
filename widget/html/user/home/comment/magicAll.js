@@ -71,11 +71,18 @@ function magicAllInit(Vue) {
 
 
                         that.magicComCid1 = data.company[0].c_id
-                        that.magicCom1Img = data.company[0].logo_icon
+                        if (data.company[0].logo_icon == ''){
+                            that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                        } else {
+                            that.magicCom1Img = data.company[0].logo_icon
+                        }
                         that.magicCom1Text = data.company[0].c_name
-
                         that.magicComCid2 = data.company[1].c_id
-                        that.magicCom2Img = data.company[1].logo_icon
+                        if (data.company[1].logo_icon == ''){
+                            that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                        } else {
+                            that.magicCom2Img = data.company[1].logo_icon
+                        }
                         that.magicCom2Text = data.company[1].c_name
 
 
@@ -101,10 +108,14 @@ function magicAllInit(Vue) {
                     that.activeAni = false;
                 }, 1500)
             },
-            jobDetailClick: function (job_id, job_name,index) {
-                console.log(job_id)
-                console.log(job_name)
+            jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
+
                 this.timeIndex = index;
+                store.state.obj.company_c_id = company_c_id
+                store.state.obj.job_name = job_name
+                store.state.obj.job_type = job_type
+                store.state.obj.job_id = job_id
+
                 console.log("indexindex",this.timeIndex)
                 api.sendEvent({
                     name: 'jobAll',
@@ -112,6 +123,7 @@ function magicAllInit(Vue) {
                         key: {
                             job_id: job_id,
                             job_name: job_name,
+                            magicCom: 'magicPosiDetail',
                         },
                     }
                 });
@@ -119,10 +131,6 @@ function magicAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                /*store.state.obj.c_id = that.magicComCid1
-                store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img
-                store.state.obj.magicCom =  'magicCom1'*/
 
                 var obj = {
                     magicComCid1: that.magicComCid1,
@@ -130,8 +138,6 @@ function magicAllInit(Vue) {
                     magicCom1Img: that.magicCom1Img,
                     magicCom: 'magicCom1',
                 }
-
-
 
                 store.commit('upData', obj);
 
@@ -151,11 +157,6 @@ function magicAllInit(Vue) {
                 var that = this;
                 console.log("magicComCid2",that.magicComCid2)
 
-                /*store.state.obj.c_id = that.magicComCid2
-                store.state.obj.c_name = that.magicCom2Text
-                store.state.obj.logo_icon = that.magicCom2Img
-                store.state.obj.magicCom =  'magicCom2'*/
-
                 var obj = {
                     magicComCid1: that.magicComCid2,
                     magicCom1Text: that.magicCom2Text,
@@ -164,8 +165,6 @@ function magicAllInit(Vue) {
                 }
 
                 store.commit('upData', obj);
-
-
                 api.sendEvent({
                     name: 'comCom2',
                     extra: {

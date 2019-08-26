@@ -34,14 +34,8 @@
     <script>eruda.init();</script>
 </head>
 <body>
-<div id="topbar" class="cssFlex">
-    <!--<div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/back.png" onclick="closeWin()">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
-        <span class="searchClick">GO</span>
-    </div>-->
+<div id="topbar" class="cssFlex" id="homeIndex">
+
     <div class="headerBox cssFlex" onclick="mineGo()">
         <div class="leftImgClose">
             巨划算
@@ -49,27 +43,14 @@
         <div class="middleMain">
             旅游
         </div>
-        <img src="../../../../image/mine/juCon.png" class="juConImg" alt="">
+        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
+        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
         <div class="rightImgEdite cssFlex">
             <img class="oneImgRight" src="../../../../image/mine/share.png" alt="" >
         </div>
     </div>
 </div>
 
-<!--
-<div id="topbar" class="cssFlex">
-    <div class="home-left">
-        <img class="leftImgTop" src="../../../icon/mine.png">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        &lt;!&ndash;<span class="searchClick">GO</span>&ndash;&gt;
-    </div>
-    <div class="home-right">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
-</div>
--->
 
 </body>
 <script type="text/javascript" src="../../../../script/api.js"></script>
@@ -77,11 +58,114 @@
 <script type="text/javascript" src="../../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../../script/public.js"></script>
-<script type="text/javascript" src="../../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+<script type="text/javascript" src="../../../../script/vue.min.js"></script>
 <script>
 
     apiready = function () {
         initFrameInWin(api.pageParam);
+        new Vue({
+            el: '#homeIndex',
+            data: {
+
+                att: false,
+                att_id: '',
+                person_id: '',
+                cid: '',
+                data: '',
+                tId: '',
+
+            },
+            created: function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.cid = api.pageParam.cid;
+                this.tId = api.pageParam.tId;
+                this.showTravel();
+
+
+            },
+            mounted: function () {
+                var that = this
+                api.addEventListener({
+                    name: 'jobAll'+that.tId,
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.cid = ret.value.key.cid
+                    that.showTravel()
+
+                });
+
+            },
+            methods: {
+                // 获取数据
+                showTravel: function () {
+                    var that = this;
+                    ajaxGetWithProgress(showTravel, {
+                        cid: that.cid,
+                        pid: that.person_id
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.commTravel) {
+                            that.item = data.commodity;
+                            that.att = data.att;
+                            that.att_id = data.att_id;
+                            that.total = data.total;
+                            that.data = data;
+                            if (that.item.intPic) {
+                                that.picList = stringFun(that.item.intPic)
+
+                            }
+                            if (that.item.placard) {
+                                that.imgs = stringFun(that.item.placard);
+                            }
+                        }
+                    });
+                },
+                // 收藏
+                collectionHandle: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../../login/login.html");
+                        return;
+                    }
+                    var that = this;
+                    ajaxGet(collectComm, {
+                        id: that.att_id,
+                        ccStatus: 1,
+                    }, function(data,err){
+                        console.log(data);
+                        if (data.commcollect) {
+                            toast("已收藏")
+
+                            // window.location.reload()
+                        }
+                    });
+                    that.att = !that.att;
+                },
+                // 收藏
+                collectionHandleActive: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser){
+                        openNewWindow("login", "../../../login/login.html");
+                        return;
+                    }
+                    var that = this;
+                    var obj = {
+                        id: that.att_id,
+                        ccStatus: 0,
+                    }
+                    console.log(obj)
+                    ajaxGet(collectComm, obj, function(data,err){
+                        console.log(data);
+                        if (data.commcollect) {
+                            toast("已取消收藏")
+                            // window.location.reload()
+                        }
+                    });
+                    that.att = !that.att;
+                },
+            }
+        })
     }
 
     function mineGo() {

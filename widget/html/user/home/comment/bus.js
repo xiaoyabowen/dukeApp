@@ -5,6 +5,10 @@ var store = new Vuex.Store({
     state: {
         obj:{
             c_id: '',
+            company_c_id: '',
+            job_id: '',
+            job_name: '',
+            job_type: '',
             c_name: '',
             logo_icon: '',
             magicCom: 'magicAll',

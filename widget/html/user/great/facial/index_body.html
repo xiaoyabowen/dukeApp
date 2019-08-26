@@ -145,6 +145,7 @@
     </script>
 
     <script>
+        var att_id
         apiready = function () {
 
             var magicAll = magicAllInit(Vue);
@@ -285,6 +286,7 @@
                                 that.total = data.total;
                                 that.att = data.att;
                                 that.att_id = data.att_id;
+                                att_id = data.att_id;
                                 that.comName = data.comName;
                                 document.getElementById('great').classList.remove('isDisplay');
                             }
@@ -317,49 +319,7 @@
                         this.evalist = this.list;
                         this.len = this.list.length;
                     },
-                    // 收藏
-                    collectionHandle: function () {
-                        var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
-                            openNewWindow("login", "../../../login/login.html");
-                            return;
-                        }
-                        var that = this;
-                        ajaxGet(collectComm, {
-                            id: that.att_id,
-                            ccStatus: 1,
-                        }, function(data,err){
-                            console.log(data);
-                            if (data.commcollect) {
-                                // toast("编辑成功")
 
-                                window.location.reload()
-                            }
-                        });
-                        that.att = !that.att;
-                    },
-                    // 收藏
-                    collectionHandleActive: function () {
-                        var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
-                            openNewWindow("login", "../../../login/login.html");
-                            return;
-                        }
-                        var that = this;
-                        var obj = {
-                            id: that.att_id,
-                            ccStatus: 0,
-                        }
-                        console.log(obj)
-                        ajaxGet(collectComm, obj, function(data,err){
-                            console.log(data);
-                            if (data.commcollect) {
-                                // toast("编辑成功")
-                                window.location.reload()
-                            }
-                        });
-                        that.att = !that.att;
-                    },
                     // 立即购买
                     purchaseHandle: function () {
                         var uidUser = localStorage.getItem("user")
@@ -443,29 +403,6 @@
             })
         }
 
-        function collectionHandleActive() {
-            alert(1)
-            var uidUser = localStorage.getItem("user")
-            if (!uidUser){
-                openNewWindow("login", "../../../login/login.html");
-                return;
-            }
-            ajaxGet(collectComm, {
-                id: "false",
-                ccStatus: 1,
-            }, function(data,err){
-                console.log("12345",data);
-                if (data.commcollect) {
-                    // toast("编辑成功")
-
-                    window.location.reload()
-                }
-            });
-            // that.att = !that.att;
-        }
-        function collectionHandle() {
-            alert(2)
-        }
     </script>
 </body>
 </html>

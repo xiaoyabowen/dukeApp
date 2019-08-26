@@ -159,6 +159,7 @@
                 comPicture: '',
                 comSummary: '',
                 comSentior: '',
+                cid: '',
             },
             created: function () {
                 this.CompanySummaryIsPerfect()
@@ -175,6 +176,7 @@
                     ajaxGetWithProgress(CompanySummaryIsPerfect,obj,function (data,ret) {
                         console.log("finshCom",data)
                         if (data) {
+                            that.cid = data.cid
                             if (data.InformationPerfect){
                                 that.comInfomation = true
                             }else{
@@ -215,37 +217,43 @@
                 whriteComInfo : function (index) {
                     openNewWindow("whriteComInfo", "./whriteComInfo.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComPro : function (index) {
                     openNewWindow("whriteComPro", "./whriteComPro.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComWelfare : function (index) {
                     openNewWindow("whriteComWelfare", "./whriteComWelfare.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComImg : function (index) {
                     openNewWindow("whriteComImg", "./whriteComImg.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComSuggest : function (index) {
                     openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComMange : function (index) {
                     openNewWindow("whriteComMange", "./whriteComMange.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
             }

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
         span.adressInfo{
-            margin-right: 0.4rem;
+            margin-right: 0.3rem;
             font-size: 0.24rem;
         }
         .job-year {
@@ -191,7 +191,7 @@
                                 <span>五险一金</span>
                             </div>-->
                             <div class="infoProduct cssFlex" id="company" onclick="company()">
-                                <img src="../../../image/pro.png" alt="pro" class="pro-img">
+                                <img src="../../../image/pro.png" alt="pro" id="comLogoImg" class="pro-img">
                                 <div class="infoProductContent">
                                     <div id="c_id" style="display: none;"></div>
                                     <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
@@ -233,6 +233,7 @@
 <script src="comment/magicAll.js"></script>
 <script src="comment/magicCom1.js"></script>
 <script src="comment/magicCom2.js"></script>
+<script src="comment/magicPosiDetail.js"></script>
 <script src="comment/bus.js"></script>
 
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
@@ -252,10 +253,12 @@
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
         var magicCom2 = magicCom2Init(Vue);
+        var magicPosiDetail = magicPosiDetailInit(Vue);
 
         Vue.component('magicAll', magicAll);
         Vue.component('magicCom1', magicCom1);
         Vue.component('magicCom2', magicCom2);
+        Vue.component('magicPosiDetail', magicPosiDetail);
 
 
         winWidth = api.winWidth;
@@ -323,6 +326,7 @@
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
                     document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
@@ -331,17 +335,6 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    /*if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }*/
 
                 }
             })
@@ -364,6 +357,7 @@
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
@@ -403,6 +397,7 @@
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
@@ -444,26 +439,19 @@
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom1;
-
-                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
-                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'comCom2',
                 }, function(ret, err) {
                     console.log("ret",ret);
                     that.active = ret.value.key.magicCom2;
-
-                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'jobAll',
                 }, function(ret, err) {
                     console.log("ret",ret);
                     console.log("job_id",ret.value.key.job_id)
+                    that.active = ret.value.key.magicCom;
                     positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
 
                 });

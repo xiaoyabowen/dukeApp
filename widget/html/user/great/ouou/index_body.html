@@ -92,10 +92,10 @@
 
             <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">图文详情</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'activeType' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'activeType' : ''">行程描述</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'activeType' : ''">预订须知</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">图文详情</span></div>
+                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'active' : ''">费用说明</span></div>
+                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'active' : ''">行程描述</span></div>
+                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'active' : ''">预订须知</span></div>
                 </div>
 
                 <div id="trip" v-if="activeType == 'trip' && item.introduction">

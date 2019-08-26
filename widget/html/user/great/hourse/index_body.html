@@ -16,6 +16,7 @@
     <style>
         .tourism_main{
             background: #fff;
+            border-top: 0 !important;
         }
         .postSubBtn{
             width: 100%;
@@ -24,7 +25,10 @@
             display: block;
             width: 7rem;
         }
-
+        .great_header{
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -74,7 +78,7 @@
                         <span class="TermTwo commonSub24">面积/㎡</span>
                     </div>
                 </div>
-                <div class="hourcePush commonFont">
+                <div class="hourcePush commonFont cssFlex">
                     8月-10月份签约客户赠送1万欧元的家具包
                 </div>
 
@@ -84,12 +88,11 @@
 
             <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'activeType' : ''">基本信息</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'activeType' : ''">希腊移民</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'activeType' : ''">公司资质</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'activeType' : ''">设计师资质</span></div>
+                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">基本信息</span></div>
+                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'active' : ''">希腊移民</span></div>
+                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'active' : ''">公司资质</span></div>
+                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'active' : ''">设计师资质</span></div>
                 </div>
-
                 <div id="trip" v-if="activeType == 'trip' && item.intPic">
                     <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
@@ -104,42 +107,6 @@
                     <img v-for="(pic, index) in picListpic3" :key="index" :src="pic" class="imgComDetail" alt="">
                 </div>
             </div>
-
-
-            <!--<div class="great_immediately">
-                <div class="great_immediately_comtent cssFlex">
-                    <div class="tourism_collection cssFlex" @click="collectionHandle()">
-                        <img :src="att ? '../../../../image/circle/Collection2.png' : '../../../../image/circle/Collection1.png'" alt="">
-                        <span>收藏</span>
-                    </div>
-                    <div class="tourism_purchase tourismhourse" @click="purchaseHandle()">
-                        <span>我要资讯</span>
-                    </div>
-                </div>
-            </div>
--->
-
-            <!--<div class="great_immediately">
-                <div class="great_immediately_comtent cssFlex">
-                    &lt;!&ndash; <div class="commodity_collection" @click="collectionHandle()">
-                         <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
-                         <span>收藏</span>
-                     </div>&ndash;&gt;
-
-                    <div class="tourism_collection hoursecoll cssFlex" @click="collectionHandleActive()" v-show="att">
-                        <img src="../../../../image/great/Collection2x.png" alt="">
-                        <span>收藏</span>
-                    </div>
-                    <div class="tourism_collection hoursecoll cssFlex" @click="collectionHandle()" v-show="!att">
-                        <img src="../../../../image/great/Collection22x.png" alt="">
-                        <span>收藏</span>
-                    </div>
-
-                    <div class="commodity_purchase cssFlex tourismhourse" @click="Consultation()">
-                        <div>我要咨询</div>
-                    </div>
-                </div>
-            </div>-->
 
             <div id="dialogBg" @click="hiddialog()"></div>
             <div id="dialog" class="animated">
@@ -349,28 +316,6 @@
                         this.activeType = activeType;
                     },
                     // 办理签证
-                    // 收藏
-                    collectionHandle: function () {
-                        var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
-                            openNewWindow("login", "../../../login/login.html");
-                            return;
-                        }
-                        var that = this;
-                        ajaxGet(collectComm, {
-                            id: that.att_id,
-                            ccStatus: 1,
-                            pid: that.person_id,
-                            commId: that.item.cId
-                        }, function(data,err){
-                            console.log(data);
-                            if (data.commcollect) {
-                                toast("编辑成功")
-                                window.location.reload()
-                            }
-                        });
-                        that.att = !that.att;
-                    },
                     // 立即咨询
                     Consultation: function () {
                         $('#dialogBg').fadeIn(300);

@@ -140,6 +140,7 @@
 
 
                         var adrStatus = that.adrStatus
+
                         if (adrStatus == 1){
                             var str = {
                                 pId:that.person_id,
@@ -155,7 +156,6 @@
                                 if (data.status){
                                     var frameName = url + "_body";
                                     if (url == 'confirmOrder') {
-                                        console.log(123)
                                         api.execScript({
                                             name:url,
                                             frameName: frameName,
