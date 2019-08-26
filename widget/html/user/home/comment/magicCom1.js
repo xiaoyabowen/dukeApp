@@ -166,26 +166,7 @@ function magicCom1Init(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :localStorage.getItem("magic_id")},function (data) {
-                    console.log("com1",data)
-
-                    var jobList = data.job
-                    if (data) {
-                        if (jobList == null){
-                            that.listJob = ''
-                        } else{
-                            that.listJob = jobList
-                        }
-                        //
-                        //
-                        // that.magicComCid1 =localStorage.getItem("magic_id")
-                        // that.magicCom1Img =localStorage.getItem("magic_img")
-                        // that.magicCom1Text = localStorage.getItem("magic_name")
-                        // that.magicCom2Img =data.company[1].logo_icon
-                        // that.magicComCid2 =localStorage.getItem("magic_id2")
-                        // that.magicCom2Text = data.company[1].c_name
-                    }
-                })
+                git 
                 /*api.sendEvent({
                     name: 'com1',
                     extra: {
