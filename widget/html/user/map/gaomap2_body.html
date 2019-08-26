@@ -307,8 +307,8 @@
         }
         console.log(obj);
         api.showProgress();
-        // Ajax('get', 'http://112.126.98.172:8000/SE4M/SE/UserProfile/updateAddress', obj, function(data){
-        Ajax('get', 'http://112.126.98.172:8000/SE4M/SE/UserProfile/updateAddress', data, function(data){
+        // Ajax('get', 'http://192.168.1.12:8000/SE4M/SE/UserProfile/updateAddress', obj, function(data){
+        Ajax('get', 'http://192.168.1.12:8000/SE4M/SE/UserProfile/updateAddress', data, function(data){
             var msg = JSON.parse(data);
             console.log(data);
             if (msg.return.status){
