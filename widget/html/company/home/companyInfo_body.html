@@ -221,7 +221,7 @@
                         <span class="homepage">http://www.baidu.com</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
-                    <h4 class="productName productNamePad">工商信息</h4>
+                    <!--<h4 class="productName productNamePad">工商信息</h4>
                     <div class="gong-info">
                         <p>
                             公司全称：<span class="Name">百度在线网络技术（北京）有限公司</span>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="more-see">
                         查看更多
-                    </div>
+                    </div>-->
                     <!--面试 评价-->
                     <div class="starAsse cssFlex">
                         <div class="star_left cssFlex">
@@ -455,7 +455,7 @@
     var cid,uid;
     apiready = function () {
         cid = api.pageParam.cid;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         var obj = {
             cid: cid,
             person_id: uid
@@ -464,7 +464,7 @@
 
         var infoListHtml, product_hishtml, PIClistHtml,html2,html3;
         ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
-            console.log(data);
+            console.log("伯乐=",data);
             var dataSummary = data.Orgnization_summary
             var companySummary = data.companySummary.Result    //企查查  信息
             var PIClist = data.PIClist    //公司图片
@@ -483,13 +483,6 @@
             if (data) {
                 // 公司头部
 
-                    if(attentionCompany.att_status == 0){
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
-                        '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
-                    }else if (attentionCompany.att_status == 1){
-                        document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
-                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
-                    }
 
                 document.querySelector(".comTitle").innerHTML +=
                     '<div class="comintobox cssFlex">' +
@@ -588,8 +581,8 @@
                         '                                        </div>\n' +
                         '                                        <!--薪资 日期-->\n' +
                         '                                        <div class="job-right ">\n' +
-                        '                                            <p class="moneyNum">20k-30K</p>\n' +
-                        '                                            <p class="date-job" >4月17日</p>\n' +
+                        '                                            <p class="moneyNum">'+JobList[i].ratio+'</p>\n' +
+                        '                                            <p class="date-job" >'+filterTime1(JobList[i].open_time)+'</p>\n' +
                         '                                        </div>\n' +
                         '                                    </div>';
                 }
@@ -702,7 +695,7 @@
 
     var flag = true;//
     function flowGuan(id,stauts) {
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var obj = {
             person_id:uid,
             cid:cid,

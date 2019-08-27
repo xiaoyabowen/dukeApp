@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css" />
     <style>
         .resume_level2_content{
             height: 1.1rem;
@@ -49,11 +50,12 @@
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
     <script type="text/javascript" src="../../../script/vue.min.js"></script>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
-        var filesName,url,filesSize,filesTime,filesDocu
+        var filesName,url,filesSize,filesTime,filesDocu,name
         var num = document.querySelector('.resume_level2_num');
         apiready = function () {
             filesName = api.pageParam.filesName
@@ -61,13 +63,15 @@
             filesSize = api.pageParam.filesSize
             filesTime = api.pageParam.filesTime
             filesDocu = api.pageParam.filesDocu
-
+            name = api.pageParam.name
+            console.log(name)
 
             new Vue({
                 el: '#app1',
                 data: {
                     filesName:'',
                     filesSize:'',
+                    name:'',
                     filesTime :'',
                     email:''
                 },
@@ -82,13 +86,34 @@
                 methods: {
                     sendEmail : function (){
                         var that = this
-
-                        var uid = localStorage.getItem("user").user_id
-                        var obj = {
-                            email : that.email
+                        if (isBlack(that.email)){
+                            toast("请输入邮箱")
+                            return
+                        }else if (!checkEmail(that.email)){
+                            toast("请输入正确的邮箱格式")
+                            return
                         }
+                        var uid = localStorage.getItem("person_id")
+                        var obj = {
+                            email : that.email,
+                            resumeName : name,
+                            resume : filesDocu
+                        }
+                        console.log(obj)
                         ajaxGetWithProgress(SendResumeEmailUserProfile,obj,function (data,ret) {
-                            console.log("sendemail",data)
+                            if (data.date){
+                                mui.confirm('发送成功，请前往查看！', '提示',['确认','取消'], function (e) {
+                                    if (!e.index) {
+                                        var frameName = url + "_body";
+                                        api.execScript({
+                                            name:url,
+                                            frameName: frameName
+                                        })
+                                        closeWin();
+                                    }
+                                })
+
+                            }
                         })
                     },
 

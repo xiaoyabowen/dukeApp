@@ -1,0 +1,87 @@
+<div class="magicComBox">
+
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <div class="magicBox">
+
+        <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
+            <div class="magicBtn magicBtnPosi " v-for="(item,index) in listJob" :key="index"
+                 @click="jobDetailClick(item.person_id,item.p_name,index)"
+                 :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
+                 v-bind:style="styles">
+                <div class="magicSubBox cssFlex" v-bind:style="styles">
+                    <div class="magicSubBoxMain">
+                        <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
+                        <div class="magicSize ">{{item.p_name}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="magicBtn animation" @click="jobDetailClick(job_id1)">
+                <div class="magicSubBox ">
+                    <div class="magicSubBoxMain">
+                        <img :src="listJob1Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{listJob1Text}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn" @click="jobDetailClick(job_id2)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="listJob2Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{listJob2Text}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn" @click="jobDetailClick(job_id3)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="listJob3Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{listJob3Text}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magicBtn" @click="jobDetailClick(job_id4)">
+                <div class="magicSubBox">
+                    <div class="magicSubBoxMain">
+                        <img :src="listJob4Img" class="iconImg" alt="person">
+                        <div class="magicSize">{{listJob4Text}}</div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="magicBG cssFlex">
+            <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
+                <div class="magicSubBox cssFlex">
+                    <div class="magicSubBoxMain">
+                        <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
+                        <div class="magicSize">{{magicCom1Text}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn magicBtnCom">
+                <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                    <div class="magicSubBoxMain">
+                        <div class="magicSize">{{myPositionText}}</div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="magicBtn magicBtnCom" v-if="myPositionText == '我的职位'">
+                <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                    <div class="magicSubBoxMain">
+                        <div class="magicSize">{{myPositionText}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="magicBtn magicBtnCom" v-else>
+                <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                    <div class="magicSubBoxMain">
+                        <div class="magicSize">{{myPositionText}}</div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+
+</div>

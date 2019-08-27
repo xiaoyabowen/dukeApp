@@ -189,13 +189,22 @@
             margin: 0.5rem 0 0.66rem;
         }
         .threeLi>li{
-            width: 33%;
+            width:50%;
             text-align: center;
         }
         .threeLi>li>img{
-            display: inline-block;
+            display: block;
             width: 0.94rem;
             height: 0.94rem;
+            margin: 0 auto 0.12rem;
+
+        }
+        .threeLi>li>span{
+            height:0.36rem;
+            font-size:0.26rem;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:0.36rem;
         }
         p.agreeLink {
             padding-bottom: 0.8rem;
@@ -234,12 +243,11 @@
                 <ul class="cssFlex threeLi">
                     <li>
                         <img src="../../image/login/wechat.png" alt="weixin">
+                        <span>微信登陆</span>
                     </li>
                     <li>
-                        <img src="../../image/login/qq.png" alt="qq">
-                    </li>
-                    <li>
-                        <img src="../../image/login/weibo.png" alt="weibo">
+                        <img src="../../image/login/in.png" alt="qq">
+                        <span>领英登录</span>
                     </li>
                 </ul>
             </div>
@@ -258,7 +266,7 @@
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
-
+    var phoneValue
     apiready = function () {
 
         // var guide = api.require('guide');
@@ -269,26 +277,25 @@
         //     btnColor:'00FFFF',
         //     time :'2'
         // });
-        // 添加安卓退出按钮事件
-       /* api.addEventListener({
-            name: 'keyback'
-        }, function (ret, err) {
-            closeOnKeyBack();
-        });
-        var backButtonPress = 0;
-
-        function closeOnKeyBack() {
-            backButtonPress++;
-            if (backButtonPress > 1) {
-                closeApp();
-            } else {
-                api.toast({msg: '再按一次退出应用'});
-            }
-            setTimeout(function () {
-                backButtonPress = 0;
-            }, 1000);
-        }
-*/
+        // // 添加安卓退出按钮事件
+        // api.addEventListener({
+        //     name: 'keyback'
+        // }, function (ret, err) {
+        //     closeOnKeyBack();
+        // });
+        // var backButtonPress = 0;
+        //
+        // function closeOnKeyBack() {
+        //     backButtonPress++;
+        //     if (backButtonPress > 1) {
+        //         closeApp();
+        //     } else {
+        //         api.toast({msg: '再按一次退出应用'});
+        //     }
+        //     setTimeout(function () {
+        //         backButtonPress = 0;
+        //     }, 1000);
+        // }
         var Height = $(window).height();   //获取当前页面高度
         $(window).resize(function () {
             $('body').height(Height);
@@ -364,13 +371,13 @@
     // 登陆
     function login() {
         api.showProgress();
-        // api.closeWin({
-        //     name: "setUp"//防止从推出登录过来的时候  设置页面没关闭
-        // })
+        api.closeWin({
+            name: "setting"//防止从推出登录过来的时候  设置页面没关闭
+        })
         var params = {};
         params.code = $api.byId("password").value;
         params.phone = $api.byId("phone").value;
-        params.role_type = localStorage.getItem("role");
+        // params.role_type = localStorage.getItem("role");
         // params.token_type = "1";
         console.log(params)
         if (isBlack(params.phone)) {
@@ -389,69 +396,30 @@
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             console.log("Logindata=",data)
             api.hideProgress();
-            if (data.role_type == 1){
-                localStorage.setItem('user',JSON.stringify(data));
-                localStorage.setItem('person_id',data.user_uid);
-                localStorage.setItem('role_type',data.role_type);
-            } else if (data.role_type == 2){
-                localStorage.setItem('user',JSON.stringify(data));
-                localStorage.setItem('person_id',data.user_uid);
-                localStorage.setItem('role_type',data.role_type);
-                localStorage.setItem('com_id',data.c_id);
+            localStorage.setItem('user',data.user_uid);
+            localStorage.setItem('person_id',data.user_uid);
 
-            }
+            phoneValue = data.phone
+            localStorage.setItem('phone',phoneValue);
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
+            if (data.oneLogin == false) {
 
-            if (data.success == false) {
-                if (data.role_type == 1){
-                    openNewWindow("create_resume", "../user/mine/create_resume.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
-                }
-            } else if (data.date == 1){
-                if (data.role_type == 1){
-                    openNewWindow("create_resume", "../user/mine/create_resume.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("fillInfo", "../company/home/fillInfo.html")
-                }
-            } else if ( data.date == 2 ){
-                if (data.role_type == 1){
-                    openNewWindow("addWork", "../user/mine/addWork.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("postsPublish", "../company/home/postsPublish.html")
-                }
-            } else if (data.date == 3){
-                if (data.role_type == 1){
-                    openNewWindow("addEdution", "../user/mine/addEdution.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("companyEmailAuthen", "../company/home/companyEmailAuthen.html")
-                }
-            } else if (data.date == 4){
-                if (data.role_type == 1){
-                    openNewWindow("addProduct", "../user/mine/addProduct.html")
-                }else if (data.role_type == 2){
-                    openNewWindow("uploadLicense", "../company/home/uploadLicense.html")
-                }
-            } else if (data.date == 0){
-                if (data.role_type == 1){
-                    openNewWindow("home", "../user/home/home.html")
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phoneValue : phoneValue
+                })
+            } else if (data.date == 0 ){
 
-                }else if (data.role_type == 2){
-                    openNewWindow("home", "../company/home/home.html")
-                    // openNewWindow("editfillInfo", "../company/home/companyInfo.html")
-                    // openNewWindow("add_Subscription", "../company/mine/add_Subscription.html")
-                    // openNewWindow("companyInfo", "../company/mine/companyInfo.html")
-                }
-
-            } else{
+                openNewWindow("loginComfir", "./loginComfir.html",{
+                    phone :phoneValue
+                })
+            }  else{
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){
                     openNewWindow("home", "../company/home/home.html")
                 }
             }
-
 
         });
     }
@@ -462,7 +430,9 @@
         openNewWindow("home", "../user/home/home.html")
     }
     function passLogin() {
-        openNewWindow("passLogin", "passLogin.html")
+        openNewWindow("passLogin", "passLogin.html",{
+            url : "login"
+        })
     }
 
 </script>

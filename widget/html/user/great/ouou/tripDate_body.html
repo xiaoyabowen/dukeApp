@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>商品详情</title>
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../../../css/dataRili.css"/>
+    <style>
+        input[type=text] {
+            border: 0;
+            display: inline-block;
+            height: 0;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body class="commonBg">
+
+
+<div class="Box isDisplay" id="app">
+    <div class="boxSub">
+        <div class="tr-title">
+            出游人群
+        </div>
+        <div class="tripList cssFlex">
+            <span :class="comscaleActive == index ? 'listSpanActive':''"
+                  v-for="(item,index) in tripPersonList" :key="index"
+                  @click="tripPersonListClick(item,index)">
+                {{item.peopleType}}
+            </span>
+
+        </div>
+
+        <div class="tr-title">
+            出游城市
+        </div>
+        <div class="tripList cssFlex">
+            <span :class="cityActive == index ? 'listSpanActive':''"
+                  v-for="(item,index) in tripCityList" :key="index"
+                  @click="tripCityListClick(item,index)">
+                {{item.departureCity}}
+            </span>
+
+        </div>
+
+
+    </div>
+    <ul id="tabs" class="cssFlex">
+        <li class="activeTab">
+            <a href="javascript:;" title="tab1">
+                <p class="getQueryMonth tr-tab-title">{{getQueryMonth}}月</p>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;" title="tab2">
+                <p class="getQueryMonth tr-tab-title" @click="showDate2(getQueryMonth1)">{{getQueryMonth1}}月</p>
+            </a>
+        </li>
+        <li class="">
+            <a href="javascript:;" title="tab3">
+                <p class="getQueryMonth tr-tab-title" @click="showDate3()">{{getQueryMonth2}}月</p>
+            </a>
+        </li>
+    </ul>
+    <div id="content">
+        <div id="tab1" >
+            <div class="signincalendar">
+
+            </div>
+        </div>
+        <div id="tab2">
+            <div class="signincalendar2">
+
+            </div>
+        </div>
+        <div id="tab3">
+            <div class="signincalendar3">
+
+            </div>
+        </div>
+    </div>
+    <div class="boxSub">
+        <div class="tr-title">
+            选择数量
+        </div>
+        <div class="tr-person cssFlex">
+            <span class="tr-person-price">
+                成人（￥{{getPriceDefult}}）
+            </span>
+            <div class="mui-numbox">
+                <button class="mui-btn mui-numbox-btn-minus" type="button" @click="numboxlit()">-</button>
+                <input class="mui-numbox-input" type="number" v-model="num"/>
+                <button class="mui-btn mui-numbox-btn-plus" type="button" @click="numboxAdd()">+</button>
+            </div>
+        </div>
+        <div class="tr-title">
+            预定人信息
+        </div>
+        <div class="ReserveBox">
+            <div class="res-box cssFlex">
+                <span class="res-boxname"><i>*</i>联系人</span>
+                <input type="text" class="res-boxinput" v-model="name" placeholder="请填写联系人姓名">
+            </div>
+            <div class="res-box cssFlex">
+                <span class="res-boxname"><i>*</i>手机号</span>
+                <input type="text" class="res-boxinput" v-model="phone" placeholder="请填写手机号">
+            </div>
+        </div>
+    </div>
+    <div class="res-bottombox cssFlex">
+        <div class="res-bom-text">¥<i>{{getPriceDefult * num}}</i></div>
+        <div class="res-bom-text res-order-submit" @click="orderSubmit()">提交订单</div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/vue.min.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
+<script>
+    var name
+    apiready = function () {
+        name = api.pageParam.name
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isDefult: false,
+                person_id: "",
+                name: "zheng",
+                phone: "15901420459",
+                wx: "",
+                remark: "",
+                getPrice: "",
+                getPriceDefult: "",
+
+
+
+                cid:'',
+                ouId:'',
+
+                // 日历
+                getQueryYear: "",    // 年份
+                getQueryMonth: "",      //月份1
+                getQueryMonth1: "",     //月份2
+                getQueryMonth2: "",     //月份3
+                dataDateList: [],
+
+
+
+
+                num: 1,
+                dateActive: '',
+                data: {},
+                comscaleActive: '-1',
+                tripPerson: '',   //出游人群   选中的文字
+                tripPersonId: '',   //出游人群   选中的
+                tripPersonList: [],  //出游人群
+                cityActive: '-1',
+                tripCity: '',   // 出发城市   选中的文字
+                tripCityId: '',   // 出发城市   选中的
+                tripCityList: [], //出发城市
+                day: '',
+                month: '',
+                oId: '',
+
+
+            },
+            created: function () {
+                var that = this
+
+                this.person_id = localStorage.getItem('user');
+                this.ouId = api.pageParam.ouId;
+                // 日历
+                this.getQueryYear = new Date().getFullYear() * 1;   // 年份
+                this.getQueryMonth = (new Date().getMonth() + 1) * 1; //月份
+                this.getQueryMonth1 = (new Date().getMonth() + 2) * 1;//月份
+                this.getQueryMonth2 = (new Date().getMonth() + 3) * 1;//月份
+                this.queryPeopleAndCityoloq();
+                this.showDate1(this.getQueryYear,this.getQueryMonth)
+
+            },
+            mounted: function () {
+                var that = this;
+                document.getElementById('app').classList.remove('isDisplay');
+                    // JavaScript Document
+                $("#tabs li").click(function () {
+                    $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
+                    var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+                    $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+                });
+
+            },
+            methods: {
+                // 增加商品
+                numboxAdd: function () {
+                    this.num++
+                    if (this.num > 10) {
+                        this.num = 10
+                    }
+                },
+                // 减少商品
+                numboxlit: function () {
+                    this.num--
+                    if (this.num < 1) {
+                        this.num = 1
+                    }
+                },
+                queryPeopleAndCityoloq: function () {
+                    var that = this
+                    var obj = {
+                        cid: that.ouId,
+                        pid: that.person_id
+                    }
+                    console.log("ouIdouId",obj)
+                    ajaxGetWithProgress(queryPeopleAndCityoloq, obj, function (data) {
+                        console.log(data)
+                        that.tripPersonList = data.travelPeople
+                        that.cid = data.travelPeople[0].cid
+                        that.tripCityList = data.clist
+                    })
+                },
+                // 提交订单
+                orderSubmit: function () {
+                    var that = this
+                    var str = {
+                        pid: that.person_id,
+                        name: that.name,
+                        phone: that.phone,
+                        cid: that.ouId,
+                        price: that.getPriceDefult * that.num,
+                        sum: that.num,
+                        peopleid: that.tripPersonId,
+                        cityid: that.tripCityId,
+                        day: that.day
+                    }
+                    console.log("strstr",str)
+                    if (that.name == ''){
+                        toast("请填写联系人姓名")
+                        return
+                    }
+
+                    if (that.phone == ''){
+                        toast("请填写联系人手机号")
+                        return
+                    }
+
+                    if (that.getPriceDefult == ''){
+                        toast("请选择出游日期")
+                        return
+                    }
+                    ajaxGetWithProgress(createOrderoloq, str, function (data, err) {
+                        console.log(data);
+                        that.oId = data.oId
+                        localStorage.setItem("tripPhone",that.phone)
+
+                        if (data.status) {
+                            var frameName = name + "_body";
+                            api.execScript({
+                                name:name,
+                                frameName: frameName,
+                                script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.oId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+')'
+                            })
+                            closeWin();
+                        } else {
+                            api.toast({
+                                msg: '请求出错'
+                            });
+                        }
+                    });
+                },
+                // 出游人群
+                tripPersonListClick: function (item, index) {   //保险
+                    var that = this
+                    that.comscaleActive = index;
+                    that.tripPerson = item.peopleType;
+                    that.tripPersonId = item.ptypeId;
+                    if (that.tripCityId == '') {
+                        toast('请再次选择出发城市')
+                        return
+                    }
+
+                    if (that.tripPersonId != '' && that.tripCityId != ''){
+                        that.queryDateAndPriceoloq()
+                    }
+                },
+                // 出发城市
+                tripCityListClick: function (item, index) {   //保险
+                    var that = this
+                    if (that.tripPersonId == '') {
+                        toast('请先选择出游人群')
+                        return
+                    }
+
+                    var that = this
+                    that.cityActive = index;
+                    that.tripCity = item.departureCity;
+                    that.tripCityId = item.id;
+
+                    if (that.tripPersonId != '' && that.tripCityId != ''){
+                        that.queryDateAndPriceoloq()
+                    }
+
+                },
+
+                queryDateAndPriceoloq: function () {
+                    var that = this
+                    var obj = {
+                        peopleid: that.tripPersonId,
+                        cityid: that.tripCityId,
+                        day: that.day,
+                        month: that.month,
+                    }
+                    ajaxGetWithProgress(queryDateAndPriceoloq, obj, function (data) {
+                        that.dataDateList = data.month
+                        that.showDate1(that.getQueryYear,that.getQueryMonth)
+                    })
+                },
+                showDate1: function (getQueryYear,getQueryMonth) {
+                    var that = this
+
+                    var nstr = new Date(); // 获取当前日期
+                    var changedYear = getQueryYear; // 年份
+                    var changedMonth = getQueryMonth; // 月份
+
+                    that.month = getQueryMonth
+                    var dnow = nstr.getDate(); // 今日日期
+                    var n1str = new Date(changedYear, changedMonth, 1); // 当月第一天Date
+                    var initfirstday = n1str.getDay(); // 当月第一天星期几
+
+                    // 是否为闰年
+                    function is_leap(year) {
+                        return (year % 100 == 0 ? res = (year % 400 == 0 ? 1 : 0)
+                            : res = (year % 4 == 0 ? 1 : 0));
+                    }
+
+                    // 获取当月的天数
+                    function getMonthAllDay(month, year) {
+                        var m_days = new Array(31, 28 + is_leap(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+                        console.log(m_days)
+                        that.day = m_days[month]
+                        return m_days[month];
+                    }
+
+                    // 获得某年某月某日是星期几
+                    function getFirstWeekDay(year, month, day) {
+                        var date = new Date();
+                        date.setFullYear(year);
+                        date.setMonth(month);
+                        date.setDate(day);
+                        return date.getDay();
+                    }
+
+                    function daysOfMonth() {
+                        var MonthYear = $(".txt_Year").text()
+                        console.log(MonthYear)
+                        var MonthMonth = $(".txt_blue").text()
+                        // 获取到当前月份的全部日期
+                        let daysOfMonth = '';
+                        let fullYear = MonthYear;
+                        let month = MonthMonth;
+                        let lastDayOfMonth = new Date(fullYear, month, 0).getDate();
+                        for (var i = 1; i <= lastDayOfMonth; i++) {
+                            daysOfMonth += fullYear + '-' + month + '-' + i;
+                            daysOfMonth += ',';
+                        }
+                        ;
+                        activeDateStr = daysOfMonth.substring(0, daysOfMonth.lastIndexOf(','));
+                        return activeDateStr;
+                    }
+
+                    commChanged(that.getQueryYear, that.getQueryMonth)
+
+                    function commChanged(changedYear, changedMonth) {
+                        var changedMonth = changedMonth
+                        var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
+
+                        var allday = getMonthAllDay(parseInt(changedMonth) - 1, changedYear);       //获取当月的天数
+                        showCanledar(changedMonth, firstweekday, 1, allday, changedYear);
+                    }
+
+                    // 获得表格行数
+                    function requiredRows(allday, firstday) {
+                        var trstr = Math.ceil((allday + firstday) / 7);
+                        // alert("trstr"+trstr);
+                        return trstr;
+                    }
+
+                    /* 显示日历 */
+                    function showCanledar(month, firstday, dnow, allday, changedYear) {
+                        var rows = requiredRows(allday, firstday);
+                        var tb = "<table data-role='none' cellpadding='0px' cellspacing='3px' id='dates'>";
+                        tb += "<tr class='firsttr'><td colspan='7' class='heightTitle'>";
+                        tb += "</td></tr>";
+                        tb += "</tr>";
+                        tb += "<tr class='secondtr'>";
+                        tb += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
+                        tb += "</tr>";
+                        console.log("dataDateList", that.dataDateList.length)
+                        console.log("dataDateList", that.dataDateList)
+                        for (var i = 0; i < rows; i++) {
+                            tb += "<tr>";
+                            for (var k = 0; k < 7; k++) { // 表格每行的单元格
+                                var idx = i * 7 + k; // 单元格自然序列号
+                                var date_str = idx - firstday + 1; // 计算日期
+                                (date_str <= 0 || date_str > allday) ? tb += "<td style='background:#fff'> </td>" : tb += '<td class="tdActive ">\n'+
+
+                                    '<div class=" normal">\n' +
+                                    '                       <i class="normalNum">' + date_str + '</i> '
+                                if (that.dataDateList == '') {
+                                    tb += '                        <p class="price"><i class="priceNum"></i></p>\n'
+                                } else if (that.dataDateList[date_str] == '') {
+                                    tb += '                        <p class="price"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }  else if (that.dataDateList[date_str] == undefined) {
+                                    tb += '                        <p class="price isDisplay"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                } else {
+                                    tb += '                        <p class="price">¥<i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }
+                                // '                        <var class="sheng isDisplay">余 <i class="Surplus">8</i></var>\n' +
+                                tb += '\n' +
+                                    '                    </div>\n' +
+                                    '                </td>';
+
+
+                            }
+
+                            tb += "</tr>";
+                            // 表格的行结束
+                        }
+                        tb += "</table>"; // 表格结束
+                        $(".signincalendar").html(tb);
+
+
+
+                        var price = that.getPrice;
+
+                        // var normalIndex = $(".normal").eq((dateShows[2] - 1) * 1)
+                        // $(".priceNum").text(price)
+                        // normalIndex.addClass("activeTd")
+                        // normalIndex.children(".price").removeClass("isDisplay")
+                        // normalIndex.children(".sheng").removeClass("isDisplay")
+                    }
+
+                    var priceNumList = document.querySelectorAll(".normal")
+                    for (var i = 0;i<priceNumList.length;i++){
+                        priceNumList[i].index = i
+                        priceNumList[i].addEventListener("click",function (item,index) {
+                            var normalIndex = this.index
+                            console.log(normalIndex)
+                            that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
+                            // $(this).addClass("activeTd").siblings().removeClass("activeTd");
+                            var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
+                            console.log("valuePrice",valuePrice)
+                            that.getPriceDefult = valuePrice
+                            if ( valuePrice!=='' ) {
+                                $('.tdActive').siblings().children().removeClass("activeTd");
+                                $(this).addClass("activeTd");
+                            }else{
+                                toast('请选择标有价格的正确日期');
+                            }
+                            $(this).addClass("activeTd").parent(".tdActive").siblings().children(".normal").removeClass("activeTd");
+
+                        })
+
+                    }
+                    function getNewYear() {
+                        // alert("得到年");
+                        return $(".txt_Year").html()
+                    }
+
+                    // 获得下拉列表的月
+                    function getNewMonth() {
+                        // alert("得到月");
+                        return $(".txt_blue").html()
+                    }
+                },
+                showDate2 : function (){
+                    var that = this
+                    var nstr = new Date(); // 获取当前日期
+                    var changedYear = that.getQueryYear; // 年份
+                    var changedMonth = that.getQueryMonth1; // 月份
+                    var dnow = nstr.getDate(); // 今日日期
+                    var n1str = new Date(changedYear, changedMonth, 1); // 当月第一天Date
+                    var initfirstday = n1str.getDay(); // 当月第一天星期几
+
+                    // 是否为闰年
+                    function is_leap(year) {
+                        return (year % 100 == 0 ? res = (year % 400 == 0 ? 1 : 0)
+                            : res = (year % 4 == 0 ? 1 : 0));
+                    }
+
+                    // 获取当月的天数
+                    function getMonthAllDay(month, year) {
+                        var m_days = new Array(31, 28 + is_leap(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+
+                        that.day = m_days[month]
+                        return m_days[month];
+                    }
+
+                    // 获得某年某月某日是星期几
+                    function getFirstWeekDay(year, month, day) {
+                        var date = new Date();
+                        date.setFullYear(year);
+                        date.setMonth(month);
+                        date.setDate(day);
+                        return date.getDay();
+                    }
+
+                    function daysOfMonth() {
+                        var MonthYear = $(".txt_Year").text()
+                        console.log(MonthYear)
+                        var MonthMonth = $(".txt_blue").text()
+                        // 获取到当前月份的全部日期
+                        let daysOfMonth = '';
+                        let fullYear = MonthYear;
+                        let month = MonthMonth;
+                        let lastDayOfMonth = new Date(fullYear, month, 0).getDate();
+                        for (var i = 1; i <= lastDayOfMonth; i++) {
+                            daysOfMonth += fullYear + '-' + month + '-' + i;
+                            daysOfMonth += ',';
+                        }
+                        ;
+                        activeDateStr = daysOfMonth.substring(0, daysOfMonth.lastIndexOf(','));
+                        return activeDateStr;
+                    }
+
+                    commChanged(that.getQueryYear, that.getQueryMonth1)
+
+                    function commChanged(changedYear, changedMonth) {
+                        var changedMonth = changedMonth
+                        var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
+
+                        var allday = getMonthAllDay(parseInt(changedMonth) - 1, changedYear);       //获取当月的天数
+                        showCanledar(changedMonth, firstweekday, 1, allday, changedYear);
+                    }
+
+                    // 获得表格行数
+                    function requiredRows(allday, firstday) {
+                        var trstr = Math.ceil((allday + firstday) / 7);
+                        // alert("trstr"+trstr);
+                        return trstr;
+                    }
+
+                    /* 显示日历 */
+                    function showCanledar(month, firstday, dnow, allday, changedYear) {
+                        var rows = requiredRows(allday, firstday);
+                        var tb = "<table data-role='none' cellpadding='0px' cellspacing='3px' id='dates'>";
+                        tb += "<tr class='firsttr'><td colspan='7' class='heightTitle'>";
+                        tb += "</td></tr>";
+                        tb += "</tr>";
+                        tb += "<tr class='secondtr'>";
+                        tb += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
+                        tb += "</tr>";
+                        console.log("dataDateList", that.dataDateList.length)
+                        console.log("dataDateList", that.dataDateList)
+                        for (var i = 0; i < rows; i++) {
+                            tb += "<tr>";
+                            for (var k = 0; k < 7; k++) { // 表格每行的单元格
+                                var idx = i * 7 + k; // 单元格自然序列号
+                                var date_str = idx - firstday + 1; // 计算日期
+                                (date_str <= 0 || date_str > allday) ? tb += "<td style='background:#fff'> </td>" : tb += '<td class="tdActive ">\n'+
+
+                                    '<div class=" normal">\n' +
+                                    '                       <i class="normalNum">' + date_str + '</i> '
+                                if (that.dataDateList == '') {
+                                    tb += '                        <p class="price"><i class="priceNum"></i></p>\n'
+                                } else if (that.dataDateList[date_str] == '') {
+                                    tb += '                        <p class="price"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }  else if (that.dataDateList[date_str] == undefined) {
+                                    tb += '                        <p class="price isDisplay"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                } else {
+                                    tb += '                        <p class="price">¥<i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }
+                                // '                        <var class="sheng isDisplay">余 <i class="Surplus">8</i></var>\n' +
+                                tb += '\n' +
+                                    '                    </div>\n' +
+                                    '                </td>';
+
+
+                            }
+
+                            tb += "</tr>";
+                            // 表格的行结束
+                        }
+                        tb += "</table>"; // 表格结束
+                        $(".signincalendar2").html(tb);
+
+
+                        var priceNumList = document.querySelectorAll(".normal")
+                        for (var i = 0;i<priceNumList.length;i++){
+                            priceNumList[i].index = i
+                            priceNumList[i].addEventListener("click",function (item,index) {
+                                var normalIndex = this.index
+                                console.log(normalIndex)
+                                var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
+                                that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
+                                that.getPriceDefult = valuePrice
+                                $(this).addClass("activeTd").siblings().removeClass("activeTd");
+
+                            })
+
+                        }
+                        var price = that.getPrice;
+
+                        // var normalIndex = $(".normal").eq((dateShows[2] - 1) * 1)
+                        // $(".priceNum").text(price)
+                        // normalIndex.addClass("activeTd")
+                        // normalIndex.children(".price").removeClass("isDisplay")
+                        // normalIndex.children(".sheng").removeClass("isDisplay")
+                    }
+
+
+                    function getNewYear() {
+                        // alert("得到年");
+                        return $(".txt_Year").html()
+                    }
+
+                    // 获得下拉列表的月
+                    function getNewMonth() {
+                        // alert("得到月");
+                        return $(".txt_blue").html()
+                    }
+                },
+                showDate3 : function (){
+                    var that = this
+                    var nstr = new Date(); // 获取当前日期
+                    var changedYear = that.getQueryYear; // 年份
+                    var changedMonth = that.getQueryMonth2; // 月份
+                    var dnow = nstr.getDate(); // 今日日期
+                    var n1str = new Date(changedYear, changedMonth, 1); // 当月第一天Date
+                    var initfirstday = n1str.getDay(); // 当月第一天星期几
+
+                    // 是否为闰年
+                    function is_leap(year) {
+                        return (year % 100 == 0 ? res = (year % 400 == 0 ? 1 : 0)
+                            : res = (year % 4 == 0 ? 1 : 0));
+                    }
+
+                    // 获取当月的天数
+                    function getMonthAllDay(month, year) {
+                        var m_days = new Array(31, 28 + is_leap(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+                        that.day = m_days[month]
+                        return m_days[month];
+                    }
+
+                    // 获得某年某月某日是星期几
+                    function getFirstWeekDay(year, month, day) {
+                        var date = new Date();
+                        date.setFullYear(year);
+                        date.setMonth(month);
+                        date.setDate(day);
+                        return date.getDay();
+                    }
+
+                    function daysOfMonth() {
+                        var MonthYear = $(".txt_Year").text()
+                        console.log(MonthYear)
+                        var MonthMonth = $(".txt_blue").text()
+                        // 获取到当前月份的全部日期
+                        let daysOfMonth = '';
+                        let fullYear = MonthYear;
+                        let month = MonthMonth;
+                        let lastDayOfMonth = new Date(fullYear, month, 0).getDate();
+                        for (var i = 1; i <= lastDayOfMonth; i++) {
+                            daysOfMonth += fullYear + '-' + month + '-' + i;
+                            daysOfMonth += ',';
+                        }
+                        ;
+                        activeDateStr = daysOfMonth.substring(0, daysOfMonth.lastIndexOf(','));
+                        return activeDateStr;
+                    }
+
+                    commChanged(that.getQueryYear, that.getQueryMonth2)
+
+                    function commChanged(changedYear, changedMonth) {
+                        var changedMonth = changedMonth
+                        var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
+
+                        var allday = getMonthAllDay(parseInt(changedMonth) - 1, changedYear);       //获取当月的天数
+                        showCanledar(changedMonth, firstweekday, 1, allday, changedYear);
+                    }
+
+                    // 获得表格行数
+                    function requiredRows(allday, firstday) {
+                        var trstr = Math.ceil((allday + firstday) / 7);
+                        // alert("trstr"+trstr);
+                        return trstr;
+                    }
+
+                    /* 显示日历 */
+                    function showCanledar(month, firstday, dnow, allday, changedYear) {
+                        var rows = requiredRows(allday, firstday);
+                        var tb1 = "<table data-role='none' cellpadding='0px' cellspacing='3px' id='dates'>";
+                        tb1 += "<tr class='firsttr'><td colspan='7' class='heightTitle'>";
+                        tb1 += "</td></tr>";
+                        tb1 += "</tr>";
+                        tb1 += "<tr class='secondtr'>";
+                        tb1 += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
+                        tb1 += "</tr>";
+                        console.log("dataDateList", that.dataDateList.length)
+                        console.log("dataDateList", that.dataDateList)
+                        for (var i = 0; i < rows; i++) {
+                            tb1 += "<tr>";
+                            for (var k = 0; k < 7; k++) { // 表格每行的单元格
+                                var idx = i * 7 + k; // 单元格自然序列号
+                                var date_str = idx - firstday + 1; // 计算日期
+                                (date_str <= 0 || date_str > allday) ? tb1 += "<td style='background:#fff'> </td>" : tb1 += '<td class="tdActive ">\n'+
+
+                                    '<div class=" normal">\n' +
+                                    '                       <i class="normalNum">' + date_str + '</i> '
+                                if (that.dataDateList == '') {
+                                    tb1 += '                        <p class="price"><i class="priceNum"></i></p>\n'
+                                } else if (that.dataDateList[date_str] == '') {
+                                    tb1 += '                        <p class="price"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }  else if (that.dataDateList[date_str] == undefined) {
+                                    tb1 += '                        <p class="price isDisplay"><i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                } else {
+                                    tb1 += '                        <p class="price">¥<i class="priceNum">' + that.dataDateList[date_str] + '</i></p>\n'
+                                }
+                                // '                        <var class="sheng isDisplay">余 <i class="Surplus">8</i></var>\n' +
+                                tb1 += '\n' +
+                                    '                    </div>\n' +
+                                    '                </td>';
+
+
+                            }
+
+                            tb1 += "</tr>";
+                            // 表格的行结束
+                        }
+                        tb1 += "</table>"; // 表格结束
+                        $(".signincalendar3").html(tb1);
+
+
+                        var priceNumList = document.querySelectorAll(".normal")
+                        for (var i = 0;i<priceNumList.length;i++){
+                            priceNumList[i].index = i
+                            priceNumList[i].addEventListener("click",function (item,index) {
+                                var normalIndex = this.index
+                                console.log(normalIndex)
+                                var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
+                                that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
+                                that.getPriceDefult = valuePrice
+                                $(this).addClass("activeTd").parent(".tdActive").siblings().children(".normal").removeClass("activeTd");
+
+                            })
+
+                        }
+                        // var price = that.getPrice;
+
+                        // var normalIndex = $(".normal").eq((dateShows[2] - 1) * 1)
+                        // $(".priceNum").text(price)
+                        // normalIndex.addClass("activeTd")
+                        // normalIndex.children(".price").removeClass("isDisplay")
+                        // normalIndex.children(".sheng").removeClass("isDisplay")
+                    }
+
+
+                    function getNewYear() {
+                        // alert("得到年");
+                        return $(".txt_Year").html()
+                    }
+
+                    // 获得下拉列表的月
+                    function getNewMonth() {
+                        // alert("得到月");
+                        return $(".txt_blue").html()
+                    }
+
+
+
+
+                },
+
+
+
+
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>
+

@@ -6,10 +6,13 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <content src="html/login/homeChoose.html" />
-    <!--<content src="html/user/mine/create_resume.html" />-->
+    <!--<content src="html/login/homeChoose.html" />-->
+    <content src="html/user/home/home.html"/>
+    <!--<content src="html/company/home/home.html"/>-->
+    <!--<content src="html/order/myorder.html" />-->
     <!--<content src="html/login/passLogin.html" />-->
-    <!--<content src="html/login/login.html" />-->
+    <!--<content src="html/login/loginComfir.html" />-->
+
     <!--<content src="html/user/mine/mine.html" />-->
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
@@ -25,9 +28,29 @@
         <param name="ios_api_key" value="4091f06d6613a7ecefa0ad420d637212" />
     </feature>
 
-    <!--<feature name="wx">-->
-        <!--<param name="urlScheme" value="wxd0d84bbf23b4a0e4"/>-->
-        <!--<param name="apiKey" value="wxd0d84bbf23b4a0e4"/>-->
-        <!--<param name="apiSecret" value="a354f72aa1b4c2b8eaad137ac81434cd"/>-->
-    <!--</feature>-->
+    <feature name="wx">
+        <param name="urlScheme" value="wxdf5e81cc88d9dc86"/>
+        <param name="apiKey" value="wxdf5e81cc88d9dc86"/>
+        <param name="apiSecret" value="bebb46abfc0a660288e604067fa02ff6"/>
+    </feature>
+    <!--beecloud   支付-->
+    <!--<feature name="beecloud">
+        <param name="urlScheme" value="wxf1aa465362b4c8f1" />
+        <param name="bcAppID" value="6f4f5e56-a389-403e-ab5e-0485a89062ef" />
+        <param name="sandbox" value="false" />
+    </feature>-->
+
+    <!--支付寶 支付-->
+    <feature name="aliPayPlus">
+        <param name="urlScheme" value="aliPayPlusA6015404524948" />
+    </feature>
+    <!--推送-->
+    <feature name="ajpush">
+        <param name="app_key" value="2b54b81f8ec4d8bee3971108" />
+        <param name="channel" value="29a45b8537d8f51d104ef748" />
+    </feature>
+    <!--银联支付-->
+    <feature name="unionPay">
+        <param name="urlScheme" value="unionPayA6015404524948" />
+    </feature>
 </widget>

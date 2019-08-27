@@ -53,7 +53,7 @@
 
 </div>
 <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script>eruda.init();</script>-->
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -92,7 +92,7 @@
                 methods: {
                     QueryResumeUserProfile : function (){
                         var that = this
-                        var uids = JSON.parse(localStorage.getItem("user")).user_id
+                        var uids = localStorage.getItem("person_id")
                         console.log(uids)
                         var obj = {
                             uid : uids
@@ -128,7 +128,7 @@
                             fileBrowser.open(function(ret) {
                                 console.log(ret)
                                 if (ret) {
-                                    var uid = JSON.parse(localStorage.getItem("user")).user_id
+                                    var uid = localStorage.getItem("person_id")
                                     var obj = {
                                         uid : uid,
                                         resName : ret.name,

@@ -7,8 +7,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>我的订单</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../css/api.css" />
+    <link rel="stylesheet" href="../../css/commonWin.css" />
 
     <style>
         .headerBox{
@@ -22,7 +22,7 @@
 
     <div class="headerBox cssFlex">
         <div class="leftImgClose">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleMain">
             我的订单
@@ -34,13 +34,13 @@
 </div>
 
 </body>
-<script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
 <script>
 
     apiready = function () {
@@ -48,11 +48,5 @@
     };
     //点击保存
 
-    function save(){
-        api.execScript({
-            frameName: "whriteComInfo_body",
-            script: 'preservation()'
-        })
-    }
 </script>
 </html>

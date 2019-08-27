@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的订单</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+
+    <style>
+        .headerBox{
+            justify-content: space-between;
+        }
+    </style>
+
+</head>
+<body>
+<div id="topbar" class="cssFlex">
+
+    <div class="headerBox cssFlex">
+        <div class="leftImgClose">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
+        </div>
+        <div class="middleMain">
+            发表评价
+        </div>
+        <div class="rightImgEdite">
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
+<script>
+    var name
+    apiready = function () {
+        initFrameInWin(api.pageParam);
+        new Vue({
+            el: '#topbar',
+            data: {
+                name: ''
+            },
+
+            created: function () {
+
+            },
+            mounted : function (){
+
+            },
+            methods: {
+
+            }
+        })
+
+    };
+    //点击保存
+
+</script>
+</html>

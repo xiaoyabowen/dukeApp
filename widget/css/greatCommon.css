@@ -1,3 +1,267 @@
+/*巨划算 ===========================  魔方 */
+.boxCost{
+    background: #f5f5f5;
+    /*background: red;*/
+    /*position: relative;*/
+    width: 100%;
+    max-height: calc(100vh - 0.48rem);
+    overflow: auto;
+}
+.listCastBox{
+    background: #f5f5f5;
+    width: 100%;
+}
+.listBox{
+    position: relative;
+}
+.personCost{
+    display: block;
+    position: fixed;
+    right: 0.64rem;
+    bottom: 0.8rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    z-index: 111;
+}
+
+/*返回图片*/
+.returnBtn{
+    width: 1.1rem;
+    height: 1.1rem;
+    position: absolute;
+    left: 0.4rem;
+    top: 0.72rem;
+
+}
+.returnBtn>img{
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    z-index:111;
+}
+
+.xuanboxCast{
+    width: 1.8rem;
+    height: 1.8rem;
+    position: absolute;
+    transform: rotate(-45deg);
+    border-radius: 0.2rem;
+    background: url("../image/bigWeigh/juBg.png") no-repeat center center;
+    background-size: 1.8rem 1.8rem;
+    /*background:red;*/
+
+}
+
+.daoboxCast{
+    width: 1.8rem;
+    height: 1.8rem;
+    transform: rotate(45deg);
+    padding: 0.1rem 0;
+
+}
+
+.iconImgCast{
+    display: block;
+    width: 0.64rem;
+    height: 0.64rem;
+    margin: 0.2rem auto 0;
+}
+.cariconImgCast  {
+    width: 0.8rem;
+    height: 0.6rem;
+}
+
+@keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-moz-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+}
+
+@-webkit-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+
+@-o-keyframes zoomOutLeft {
+    0% {
+        transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+        -ms-transform: rotateY(360deg);
+        -moz-transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -o-transform: rotateY(360deg);
+    }
+
+}
+.animationCast {
+    animation: zoomOutLeft 2s;
+    -ms-animation: zoomOutLeft 2s;
+    -moz-animation: zoomOutLeft 2s;
+    -webkit-animation: zoomOutLeft 2s;
+    -o-animation: zoomOutLeft 2s;
+}
+
+
+
+.iconImgCastActive{
+    background:rgba(99,139,255,1);
+}
+.iconImgCastActivePro{
+    background:rgba(201,215,255,1);
+}
+.iconImgCastActive .CastText{
+    color: #ffffff;
+}
+.CastText{
+    color: #ffffff;
+    height: auto;
+    text-align: center;
+    margin-top: 0.12rem;
+}
+
+.posiCast0 {
+    right: 0.5rem;
+    top: 1rem;
+}
+.posiCast00{
+    right: 0.9rem;
+    top: 1rem
+}
+
+.posiCast1 {
+    top: 1rem;
+    right: 3.2rem;
+}
+.posiCast11 {
+    top: 1rem;
+    right: 3.2rem;
+}
+.posiCastTwo1{
+    background:rgba(99,139,255,1);
+}
+.posiCast2 {
+    top: 2.4rem;
+    right: 1.84rem;
+}
+.posiCast22 {
+    top: 2.2rem;
+    right: 2.04rem;
+}
+
+
+
+.posiCast3 {
+    top: 3.8rem;
+    right: 0.48rem;
+}
+.posiCast33 {
+    top: 3.4rem;
+    right: 0.9rem;
+}
+
+.posiCast4{
+    top: 2.4rem;
+    right: 4.6rem;
+}
+.posiCast44{
+    top: 2.2rem;
+    right: 4.4rem;
+}
+
+
+.posiCast5{
+    top: 3.8rem;
+    right: 3.2rem;
+}
+.posiCast55{
+    top: 3.4rem;
+    right: 3.2rem;
+}
+
+.posiCast6{
+    top: 5.2rem;
+    right: 1.8rem;
+}
+.posiCast66{
+    top: 4.6rem;
+    right: 2rem;
+}
+
+.posiCast7{
+    top: 5.2rem;
+    right: 4.57rem;
+}
+.posiCast77{
+    top: 4.6rem;
+    right:4.4rem;
+}
+
+.posiCast7FCC{
+    background: url("../image/bigWeigh/juBgA.png") no-repeat center center;
+    background-size: 1.8rem 1.8rem;
+}
+.posiCast7FCC .CastText{
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /*巨划算面膜==================开始*/
 #great {
@@ -9,10 +273,42 @@
 .great_header {
     margin-bottom: 0.2rem;
     background: #ffffff;
+    position: relative;
+    padding-bottom: 1.1rem;
+}
+.posire{
+    position: relative;
+    padding-bottom: 1.1rem;
 }
 
+.ououIndex{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.34rem;
+    position: absolute;
+    z-index: 999;
+}
+.chatJuOuou,.sellJuOuou{
+    width:2.9rem;
+    height:0.64rem;
+    line-height: 0.64rem;
+    text-align: center;
+    color: #ffffff;
+    border-radius:0.04rem;
+    font-size: 0.28rem;
+
+}
+.chatJuOuou{
+    background:rgba(99,139,255,1);
+    margin-right: 0.4rem;
+}
+.sellJuOuou{
+    background:rgba(255,163,0,1);
+}
+
+
 .great_header_banner {
-    height: 4.08rem;
+    height: 3.68rem;
 }
 
 .great_header_banner img {
@@ -191,50 +487,80 @@
 /*收藏和立即支付*/
 .great_immediately {
     width: 100%;
-    height: 1.5rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
 }
 
 .great_immediately_comtent {
     width: 100%;
-    height: 1.5rem;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    justify-content: space-between;
 }
-
+.purchaseLeft{
+    width: 50%;
+    border: 1px solid #638BFF;
+}
+.ousecollBor{
+    border-right:  1px solid #638BFF;
+}
 .commodity_collection {
-    width: 40%;
+    width: 50%;
     height: 100%;
     background: #638BFF;
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(255, 255, 255, 1);
-    line-height: 0.50rem;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .commodity_collection img {
     width: 0.44rem;
-    display: block;
-    margin: 0.3rem auto 0.1rem;
+    display: inline-block;
+    margin-right: 0.1rem;
 }
-
+.ousecoll img {
+    width: 0.44rem;
+    height: 0.44rem;
+    display: inline-block;
+    margin-right: 0.1rem;
+}
 .commodity_purchase {
-    flex: 1;
-    height: 100%;
+    width: 50%;
     background: #FFA300;
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(255, 255, 255, 1);
-    line-height: 0.50rem;
+    justify-content: center;
+    align-items: center;
+}
+.juLisellBtn{
+    width: 6.4rem;
+    height: 0.64rem;
+    line-height: 0.64rem;
+    background:rgba(255,163,0,1);
+    border-radius:0.04rem;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0.3rem;
+    bottom: 0.3rem;
+    color: #ffffff;
+    z-index:9999;
+    font-size: 0.28rem !important;
 }
-
-.commodity_purchase div {
-    margin-top: 0.32rem;
+.hourseLisellBtn{
+    background:rgba(99,139,255,1) !important;
 }
+/*.commodity_purchase div {*/
+    /*margin-top: 0.32rem;*/
+/*}*/
 
 /*巨划算面膜==================结束*/
 
@@ -313,6 +639,13 @@ div.isDisplay {
     }
 
 }
+.animation {
+    animation: zoomOutLeft 2s;
+    -ms-animation: zoomOutLeft 2s;
+    -moz-animation: zoomOutLeft 2s;
+    -webkit-animation: zoomOutLeft 2s;
+    -o-animation: zoomOutLeft 2s;
+}
 
 .demobiox {
     position: fixed;
@@ -332,7 +665,7 @@ div.isDisplay {
 }
 
 .person {
-    display: inline-block;
+    display: block;
     position: absolute;
     bottom: 0.12rem;
     right: 0.12rem;
@@ -341,17 +674,9 @@ div.isDisplay {
     z-index: 1111;
 }
 
-.animation {
-    animation: zoomOutLeft 2s;
-    -ms-animation: zoomOutLeft 2s;
-    -moz-animation: zoomOutLeft 2s;
-    -webkit-animation: zoomOutLeft 2s;
-    -o-animation: zoomOutLeft 2s;
-}
 
 .borderBoxRote {
     border: 0 !important;
-
 }
 
 .xuanbox {
@@ -553,10 +878,12 @@ transform: rotate(-45deg)
     font-size: 0.2rem;
 }
 
+
 .iconImg {
     width: 0.4rem;
     height: 0.4rem;
     border-radius: 50%;
+
     /*transform: rotate(-45deg);*/
     /*position: relative;*/
     /*left: -0.09rem;*/
@@ -572,7 +899,6 @@ transform: rotate(-45deg)
     text-align: center;
     font-size: 0.12rem;
     color: #666666;
-    text-align: center;
     -webkit-transform: rotate(-45deg) translateX(16%);
     -moz-transform: rotate(-45deg) translateX(16%);
     -ms-transform: rotate(-45deg) translateX(16%);
@@ -805,6 +1131,7 @@ img.adressNot {
 }
 .adress-info {
     margin: 0.28rem 0;
+    position: relative;
 }
 .adinfo-title.cssFlex {
     height: 0.45rem;
@@ -822,8 +1149,12 @@ span.adinfo-name {
 
 img.adinfo-dele {
     display: block;
-    width: 0.2rem;
-    height: 0.2rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    z-index:11;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .adre-adress {
     padding-bottom: 0.3rem;
@@ -1034,6 +1365,9 @@ img.con-title-img {
     height: 1.8rem;
     margin-right: 0.3rem;
 }
+.con-title-info{
+    width: 4.2rem;
+}
 .con-title.cssFlex {
     margin-bottom: 0.2rem;
 }
@@ -1132,20 +1466,23 @@ img.pay-gong {
     width: 100%;
     align-items: center;
 }
-
+.con-flex-left{
+    justify-content: center;
+    align-items: center;
+}
 .con-flex-left,.con-flex-right {
     width: 50%;
     text-align: center;
     color: #ffffff;
     background:rgba(99,139,255,1);
-    height: 1.5rem;
-    line-height: 1.5rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
 }
 .con-flex-left>div{
     line-height: 0.5rem;
 }
 .con-margintop{
-    margin-top: 0.2rem;
+    /*margin-top: 0.2rem;*/
 }
 .con-flex-right{
     background:rgba(255,163,0,1);
@@ -1154,16 +1491,16 @@ img.pay-gong {
 /*巨划算旅游=====================开始*/
 .tourism_title {
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(51,51,51,1);
+    height: 0.5rem;
     line-height: 0.50rem;
     padding-left: 0.33rem;
+    margin-top: 0.3rem;
 }
 
 .tourism_con {
     font-size: 0.28rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.40rem;
@@ -1190,7 +1527,13 @@ div.tourism_con_num div:first-child {
     font-size: 0.28rem;
     font-weight:500;
 }
-
+.tourism_main{
+    width: 100%;
+}
+tourism_main img{
+    display: block;
+    width: 100% !important;
+}
 .tourism_main_header {
     height: 0.99rem;
     line-height: 0.99rem;
@@ -1198,12 +1541,14 @@ div.tourism_con_num div:first-child {
     border-bottom: 1px solid #EBEBEB;
     background: #ffffff;
     font-size: 0.28rem;
-    font-family: PingFangSC-Regular;
     font-weight: 400;
     color: rgba(51,51,51,1);
     margin-bottom: 0.1rem;
 }
-
+.hourse_main>div{
+    width: 25% !important;
+    display: inline-block;
+}
 .tourism_main_header div {
     width: 32%;
     display: inline-block;
@@ -1268,42 +1613,48 @@ div.tourism_con_num div:first-child {
 .tourism_collection {
     flex: 25.5%;
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(99,139,255,1);
-    line-height: .5rem;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     background: #ffffff;
     border: 1px solid #638BFF;
 }
-
+.hoursecoll{
+    background: #ebebeb;
+}
+.ousecoll{
+    background: #fff;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.ousecoll span{
+    color: #638BFF !important;
+}
 .tourism_collection img {
     width: 0.4rem;
     height: 0.4rem;
     display: block;
-    margin: 0.29rem auto 0.07rem;
+    margin-right: 0.1rem;
 }
 
 .tourism_visa {
     flex: 37%;
-    line-height: 1.5rem;
+    line-height: 0.98rem;
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(255,255,255,1);
-    line-height: 1.5rem;
     text-align: center;
     background: #638BFF;
 }
 
 .tourism_purchase {
     flex: 74%;
-    line-height: 1.5rem;
+    line-height: 0.98rem;
     font-size: 0.36rem;
-    font-family: PingFangSC-Medium;
     font-weight: 500;
     color: rgba(255,255,255,1);
-    line-height: 1.5rem;
     text-align: center;
     background: #FFA300;
 }
@@ -1334,6 +1685,11 @@ ul#tabs{
 }
 ul#tabs>li{
     position: relative;
+    padding: 0 0.3rem;
+    
+}
+.activeTab p{
+    color: #638BFF !important;
 }
 .activeTab:after{
     content: "";
@@ -1348,6 +1704,9 @@ ul#tabs>li{
     transform: translateX(-50%);
     font-weight: 500;
 }
+
+
+
 
 .tr-person.cssFlex {
     justify-content: space-between;
@@ -1375,11 +1734,11 @@ ul#tabs>li{
     margin-right: 0.14rem;
 }
 .res-bottombox {
-    height: 1.2rem;
+    height: 0.98rem;
     background: rgba(255,163,0,1);
     width: 100%;
     color: #fff;
-    font-size: 0.48rem;
+    font-size: 0.38rem;
     align-items: center;
     position: fixed;
     left: 0;
@@ -1392,12 +1751,39 @@ ul#tabs>li{
 .res-bom-text {
     width: 50%;
     text-align: center;
-    height: 1.2rem;
-    line-height: 1.2rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
 }
 .res-order-submit{
     border-left: 1px solid #ebebeb;
 }
+.tripList{
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0.26rem 0 0.3rem;
+}
+.tripList>span{
+    display: block;
+    padding: 0 0.24rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+    height:0.64rem;
+    line-height: 0.64rem;
+    background:rgba(238,238,238,1);
+    border-radius:0.32rem;
+    color: #333333;
+    font-size: 0.28rem;
+    font-weight:400;
+}
+.listSpanActive{
+    background:#7195FF !important;
+    color: #fff !important;
+}
+
+
+
+
+
 
 /*申请  签证资料表*=======================================
  */
@@ -1443,5 +1829,81 @@ textarea.textareaType {
     color: #fff;
     margin: 0.3rem auto 0.7rem;
 }
+
+.peachTitle{
+    padding: 0 0.3rem;
+    margin-top: 0.16rem;
+}
+
+/*房产*/
+.hourseBox{
+    justify-content:space-between;
+    align-items: center;
+    padding: 0.16rem 0 0.34rem;
+    margin: 0  0.3rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+.hourseTerm{
+    width: 33.333%;
+    text-align: center;
+}
+.hourseTerm>span{
+    display: block;
+    color: #666666;
+}
+.TermOne{
+    margin-bottom: 0.08rem;
+    color: #638BFF !important;
+    font-size: 0.36rem;
+    font-weight:600;
+    height: 0.5rem;
+    line-height:0.5rem;
+}
+.hourcePush{
+    margin:  0 0.3rem 0.04rem;
+    /*padding: 0.34rem 0;*/
+    height: 0.6rem;
+    line-height: 0.6rem;
+    align-items: center;
+
+    color: #333333;
+    border-bottom: 1px solid #EBEBEB;
+}
+.tourismhourse{
+    background:rgba(99,139,255,1);
+    color: #ffffff;
+}
+.tourismou{
+    background:#FFA300;
+    color: #ffffff;
+}
+
+/*欧来欧去*/
+.ouPersonDetail{
+    padding: 0.26rem 0.3rem;
+    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #EAEAEA;
+    justify-content: space-between;
+    align-items: center;
+}
+.ouPersonDetailText{
+
+}
+.ouPersonLeft{
+    align-items: center;
+    margin-bottom: 0.16rem;
+}
+.ouPersonLeft>i{
+    color: #999999 !important;
+    margin-right: 0.1rem;
+}
+.ouPersonLeft>span{
+    color: #333333 !important;
+    margin-right: 0.1rem;
+}
+.ouPerson999{
+    color: #999999 !important;
+}
+
 
 

@@ -132,13 +132,14 @@
                     <!--<li class="li2" @click="hoursHandle()"><span>具体时间</span><span>{{mount}}</span></li>-->
                     <li class="li3" @click="userContact()"><span>联系人</span><span>{{userName}}</span></li>
                     <li class="li4" @click="userPhoneInput()"><span>联系电话</span><span>{{userPhone}}</span></li>
+                    <li class="li4" @click="userAdrInput()"><span>面试地点</span><span>{{userAdr}}</span></li>
                     <li class="li5">
-                        <span>面试地点</span><span></span>
+                        <span>详细地点</span><span></span>
                     </li>
                 </ul>
                 <div class="chat_main">
                     <textarea name="" id="text" cols="30" rows="10" v-model="jobAddress"></textarea>
-                    <div class="chat_main_btn" @click="sendPrelim()">发送</div>
+                    <div class="chat_main_btn" @click="sendPrelim()">确定</div>
                 </div>
             </div>
         </div>
@@ -147,14 +148,13 @@
 </div>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script type="text/javascript" src="../../../script/city.data-3.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 
 <script src="../../../script/vue.min.js"></script>
@@ -180,16 +180,22 @@
                 time: '',
                 mount: '',
                 app_id: '',
+                content: '',
                 name: '',
                 userName: '',
                 userPhone: '',
                 jobAddress: '',
+                userAdr: '',
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
                 this.app_id = api.pageParam.app_id;
                 this.name = api.pageParam.name;
+                this.content = api.pageParam.content;
                 this.itme = new Date().format('yyyy-MM-DD');
+                if (this.content == 'edit'){
+                    this.queryApplicationStatusEvaluateProfile()
+                }
 
             },
             mounted: function () {
@@ -201,6 +207,22 @@
                 tabHandle: function (name) {
                     this.active = name;
                 },
+
+                queryApplicationStatusEvaluateProfile :function(){
+                    var that = this;
+                    ajaxGetWithProgress(queryApplicationStatusEvaluateProfile,{app_id:that.app_id},function (data) {
+                        console.log("edit",data)
+                        var adrArr = stringFun(data.address)
+                        if (data){
+                            that.time = data.status_time || ""
+                            that.userName = data.ap_name
+                            that.userPhone = data.phone
+                            that.userAdr = adrArr[0]
+                            that.jobAddress = adrArr[1]
+                        }
+                    })
+                },
+
                 // 选择时间
                 timeHandle: function () {
                     var that = this
@@ -219,17 +241,18 @@
                         that.time = selectItems.text
                     })
                 },
-                /*hoursHandle : function () {
+                userAdrInput : function () {
                     var that = this
-                    var dtpicker = new mui.DtPicker({
-                        "type": "time",
-
+                    var picker = new mui.PopPicker({
+                        layer: 3
+                    });
+                    picker.setData(cityData3)
+                    picker.pickers[0].setSelectedIndex(0);
+                    picker.show(function(SelectedItem) {
+                        console.log(SelectedItem[0].text);
+                        that.userAdr = SelectedItem[0].text +'-'+ SelectedItem[1].text +'-'+ SelectedItem[2].text;
                     })
-                    dtpicker.show(function(e) {
-                        console.log(e);
-                        that.mount = e.value
-                    })
-                }*/
+                },
                 userContact : function (){
                     var that = this
                     mui.prompt('', '请填写姓名', '请填写姓名', ['确定', '取消'], function (e) {
@@ -258,27 +281,36 @@
                         status : "2",      //  2 初试
                         status_time : that.time,
                         status2 : "未接受",
-                        adr_id : that.jobAddress,
+                        adr_id : that.userAdr +','+ that.jobAddress,
                         app_id : that.app_id,
                     }
                     console.log(obj)
-                    ajaxGetWithProgress(UpdateStatus,obj,function (data,ret) {
+                    if (that.content == "edit"){
+                        ajaxGetWithProgress(UpdateInvitationEvaluateProfile,obj,function (data,ret) {
 
-                        console.log(data)
-                        if (data.return_info.status){
-                            toast("邀约成功")
-                            openNewWindow("resume", "./comment/resume.html")
-                            api.sendEvent({
-                                extra: {
-                                    key: 'activities',
+                            console.log(data)
+                            if (data.return.status){
+                                toast("修改成功")
+                                // openNewWindow("resume", "./comment/resume.html")
 
+                            } else {
+                                toast("修改失败")
+                            }
+                        })
+                    } else {
+                        ajaxGetWithProgress(UpdateStatus,obj,function (data,ret) {
 
-                                }
-                            });
-                        } else {
-                            toast("邀约失败")
-                        }
-                    })
+                            console.log(data)
+                            if (data.return_info.status){
+                                toast("邀约成功")
+                                // openNewWindow("resume", "./comment/resume.html")
+
+                            } else {
+                                toast("邀约失败")
+                            }
+                        })
+                    }
+
                 }
             }
         })

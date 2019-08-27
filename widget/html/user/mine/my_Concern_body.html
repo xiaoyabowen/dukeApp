@@ -93,14 +93,14 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
     apiready = function () {
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var obj = {
             person_id:uid
         }
         var my_ConcernHtml= ''
         ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
             console.log(data)
-            api.hideProgress();
+
             var conData = data.AttentionCompany
             if (conData == undefined){
                 document.querySelector(".notmy_Concern_main").style.display = "block"

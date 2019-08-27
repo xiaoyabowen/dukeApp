@@ -20,7 +20,7 @@
                     <img :src="item.poster" />
                 </div>
                 <!--内容区-->
-                <div class="mui-card-content circle_footer" @click="linkHandle(item.circle_id)">
+                <div class="mui-card-content circle_footer" @click="linkHandle(item.circle_id,item.cir_status)">
                     <div class="circle_title commonFont">{{item.title}}</div>
                     <div class="circle_tiem">活动时间: <span> {{item.c_from}}至{{item.c_to}}</span></div>
                     <div class="circle_city">活动地点: <span> {{item.province}}{{item.city}}{{item.street}}</span></div>
@@ -108,10 +108,12 @@
                     },
 
                     // 点击跳转到活动详情页
-                    linkHandle: function (circle_id) {
+                    linkHandle: function (circle_id,cir_status) {
+
                         console.log(circle_id)
                         openNewWindow("details_activities", "./details_activities.html", {
-                            circle_id: circle_id
+                            circle_id: circle_id,
+                            cir_status: cir_status,
                         })
                     },
 

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>修改手机号</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+
+        .login-unit input{
+            padding-left:0.2rem;
+            width: 100%;
+        }
+        input::-webkit-input-placeholder {
+            color: #B8B8B8;
+        }
+
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #B8B8B8;
+        }
+
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #B8B8B8;
+        }
+
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #B8B8B8;
+        }
+
+        .input-phone {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            /*margin-bottom: 20px;*/
+            background: url("../../../image/login/phone.png") no-repeat left center;
+            background-size: 0.32rem 0.48rem;
+            padding-left: 0.52rem;
+        }
+        .input-password{
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+            border-bottom: 1px solid #D4D4D4;
+            margin-bottom: 0.8rem;
+        }
+        #yanzheng{
+            width: 100%;
+        }
+        button.yanzheng {
+            display: inline-block;
+            min-width: 2.3rem;
+            padding: 0 0.4rem;
+            font-weight: 400;
+            font-size: 0.24rem;
+            color: #fff;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            margin-top: 0.28rem;
+            background:rgba(93,146,254,1);
+            border-radius:0.08rem;
+        }
+        .configEdit {
+            width: 100%;
+            height: 0.72rem;
+            background: rgba(99,139,255,1);
+            border-radius: 0.08rem;
+            line-height: 0.72rem;
+            text-align: center;
+            color: #fff;
+            font-size: 0.32rem;
+        }
+        p.nowPhone {
+            margin-top: 0.48rem;
+            font-size: 0.28rem;
+            font-weight: 400;
+            color: #666666;
+            line-height: 0.36rem;
+            height: 0.36rem;
+        }
+        p.Explain {
+            font-size: 0.28rem;
+            font-weight: 400;
+            color: #666666;
+            line-height: 0.36rem;
+            height: 0.36rem;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+    <div class="Box">
+        <div class="boxSub">
+
+            <p class="Explain">修改成功后，简历与登录手机号将同步完成修改</p>
+            <div class="login-input">
+                <div class="input-phone cssFlex">
+                    <span class="phone-top phone-img"></span>
+                    <input id="phone" type="number" placeholder="请输入您的手机号">
+                </div>
+                <div class="input-password cssFlex">
+                    <span class="phone-top yanz-img"></span>
+                    <input id="yanzheng" type="number" placeholder="请输入验证码">
+                    <button id="sms" class="yanzheng" onclick="getCode()">获取验证码</button>
+                </div>
+            </div>
+            <div class="configEdit"  onclick="login()">完成</div>
+        </div>
+
+    </div>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script type="text/javascript" src="../../../script/template-native.js"></script>
+    <script>
+        var phoneLogin
+        apiready = function () {
+            phoneLogin = localStorage.getItem('phone');
+            document.querySelector('.nowPhoneEdit').innerText = checkTelFour(phoneLogin)
+        };
+        /*************点击获取验证码***********/
+        var flag = true;//防止重复点击获取验证码
+        function getCode(){
+            if(!flag){
+                return;
+            }
+            tel = document.getElementById('phone').value;
+            if (isBlack(tel)) {
+                toast('请输入手机号');
+                api.hideProgress();
+                return;
+            }else if(!checkMobileNum(tel)){
+                toast("手机号码不正确");
+                return;
+            }
+            var obj = {
+                phone : tel
+            }
+            flag = false;
+            setTime();
+            ajaxGetUser(SendSmsCode,obj,function(ret,err) {
+                if (ret && ret.success ) {
+                    toast("获取成功，请注意查收！");
+                }else if(ret && !ret.success){
+                    if(ret){
+                        var msg = ret.msg || "网络连接错误，请稍后重试！";
+                        toast(msg);
+                    }else{
+                        var msg = err.msg || "网络连接错误，请稍后重试！";
+                        toast(msg);
+                    }
+                }
+            })
+        }
+
+        /*******************倒计时****************************/
+        function setTime(){
+            var time;
+            var sms = document.getElementById('sms');
+            time = time||59;
+            sms.innerHTML = time+"s";
+            var codeInterval = setInterval(function(){
+                if(time > 0){
+                    time--;
+                    sms.innerHTML = time+"s";
+                }else{
+                    sms.innerHTML = "获取验证码";
+                    clearInterval(codeInterval);
+                    flag = true;
+                }
+            },1000)
+        }
+        /*******************倒计时****************************/
+
+        // 登陆
+        function login() {
+            api.showProgress();
+            // api.closeWin({
+            //     name: "setUp"//防止从推出登录过来的时候  设置页面没关闭
+            // })
+            var params = {};
+            params.code = $api.byId("yanzheng").value;
+            params.phone = $api.byId("phone").value;
+            params.uid = localStorage.getItem("user");
+            console.log(params)
+            if (isBlack(params.phone)) {
+                toast('请输入手机号');
+                api.hideProgress();
+                return;
+            }
+            if (isBlack(params.code)) {
+                toast('请输入验证码');
+                api.hideProgress();
+                return;
+            }
+
+            ajaxGetUser(updatePhone, params, function (data, err) {
+                api.hideProgress();
+                console.log(data)
+                if (data.data == true) {
+                    // openNewWindow("setting", "../user/mine/setting.html")
+                    // openNewWindow("setting", "setting.html")
+                    localStorage.setItem('phone',$api.byId("phone").value)
+                    api.closeToWin({
+                        name: 'setting'
+                    });
+                }else{
+                    toast(data.msg)
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

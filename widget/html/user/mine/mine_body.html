@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <style>
 
+    </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 </head>
@@ -36,13 +38,13 @@
                 </div>
                 <div class="mineInforight">
                     <div class="m-right-id">我是千里马</div>
-                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo">
+                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo" onclick="resume_editResume()">
                 </div>
             </div>
 
             <!--我的沟通记录-->
             <div class="m-chat cssFlex">
-                <div class="m-chat-text">
+                <div class="m-chat-text" onclick="chatUser()">
                     <p class="tong-num" id="communicate">0</p>
                     <p class="tong-text">沟通过</p>
                 </div>
@@ -67,22 +69,30 @@
         <div class="F9Line"></div>
         <div class="boxSub mine-order">
             <h2 class="viewZhu">我的订单</h2>
-            <ul class="m-person-list  cssFlex" onclick="personOrder()">
-                <li>
+            <ul class="m-person-list  cssFlex">
+                <li onclick="personOrder()">
                     <img src="../../../image/mine/dingdan-22x.png" alt="jianli" class="img-one">
                     <p>全部订单</p>
                 </li>
-                <li>
+                <li onclick="notpayOrder()">
+                    <img src="../../../image/mine/notPay.png" alt="jianli" class="img-two">
+                    <p>待付款</p>
+                </li>
+                <li onclick="payOrder()">
                     <img src="../../../image/mine/Delivery2x.png" alt="jianli" class="img-two">
                     <p>已支付</p>
                 </li>
-                <li>
+                <li onclick="waitOrder()">
                     <img src="../../../image/mine/Harvesting2x.png" alt="jianli" class="img-three">
                     <p>待收货</p>
                 </li>
-                <li>
+                <li onclick="starOrder()">
                     <img src="../../../image/mine/evaluate2x.png" alt="jianli" class="img-four">
                     <p>待评价</p>
+                </li>
+                <li onclick="historySee()">
+                    <img src="../../../image/mine/historySee.png" alt="jianli" class="img-four">
+                    <p>我的足迹</p>
                 </li>
 
             </ul>
@@ -116,7 +126,10 @@
                     <img src="../../../image/mine/circle.png" alt="jianli" class="img-four">
                     <p>我的活动</p>
                 </li>
-
+                <li onclick="my_conJu()">
+                    <img src="../../../image/mine/JuCom.png" alt="jianli" class="img-com">
+                    <p>我的收藏</p>
+                </li>
             </ul>
 
         </div>
@@ -130,8 +143,12 @@
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script>
+
+        function reload (){
+            window.location.reload()
+        }
         apiready = function () {
-            var user = JSON.parse(localStorage.getItem('user'));
+            var user = localStorage.getItem("user");
             if (!user) {
                 api.hideProgress();
                 localStorage.clear();
@@ -139,7 +156,7 @@
                 return;
             }
             // 获取用户信息
-            var uid = user.user_uid;
+            var uid = user;
             // console.log(uid);
             ajaxGetWithProgress(QuerySummary, {
                 uid: uid
@@ -154,7 +171,7 @@
 
                 console.log(document.getElementById('p_icon'))
 
-                localStorage.setItem('person_id', uid);
+                // localStorage.setItem('person_id', uid);
             });
 
 
@@ -202,10 +219,15 @@
         function userCenter() {
             openNewWindow("userCenter", "userCenter.html")
         }
+        // 沟通过
+        function chatUser() {
+            openNewWindow("index", "../chat/index.html")
+        }
         // 我的面试
         function Interview() {
             openNewWindow("Interview", "Interview.html")
-        }// 已投递
+        }
+        // 已投递
         function myDelivery() {
             openNewWindow("myDelivery", "myDelivery.html")
         }// 录用
@@ -232,6 +254,11 @@
         function my_circle() {
             openNewWindow("myActives", "../circle/myActives.html")
         }
+        // 我的活动
+        function my_conJu() {
+            openNewWindow("historyCom", "../great/historyCom.html")
+        }
+
         // 隐私设置
         function setting() {
             openNewWindow("shielding", "shielding.html")
@@ -242,9 +269,50 @@
                 url : "resume_editResume"
             })
         }
+        // 全部订单
         function personOrder() {
-            toast("该功能正在开发中！！！")
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'all'
+            });
+            api.sendEvent({
+                name: 'myorder',
+                extra: {
+                    key: 'all',
+                }
+            });
         }
+        function notpayOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'notpay'
+            });
+            api.sendEvent({
+                name: 'myordernotpay',
+                extra: {
+                    key: 'notpay',
+                }
+            });
+        }
+        function payOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'pay'
+            });
+        }
+        function waitOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'wait'
+            });
+        }
+        function starOrder() {
+            openNewWindow("myorder", "../../order/myorder.html",{
+                activeName: 'star'
+            });
+        }
+        function historySee() {
+            openNewWindow("historyOrder", "../../order/historyOrder.html",{
+                activeName: 'historyOrder'
+            });
+        }
+
     </script>
 </body>
 </html>

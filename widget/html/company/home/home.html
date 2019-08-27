@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <!--<link rel="stylesheet" href="../../../css/commonWindow.css"/>-->
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/mofang.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
@@ -88,7 +87,7 @@
             text-align: center;
             font-size: 0.28rem;
             color: #ffffff;
-            background: rgba(99,139,255,1);
+            background: rgba(99, 139, 255, 1);
             border-radius: 0.08rem;
             position: fixed;
             bottom: 0.42rem;
@@ -98,62 +97,51 @@
             -ms-transform: translateX(-50%);
             -o-transform: translateX(-50%);
             transform: translateX(-50%);
-            z-index: 10000;
+            z-index: 88;
         }
+        #tabs>li>a{
+            font-size: 0.28rem !important;
+        }
+        .activeTab:after{
+            width: 0.9rem;
+        }
+        .activeTab>a{
+            color: rgba(99,139,255,1) !important;
+        }
+        .job-chatBox{
+            padding: 0 0.34rem !important;
+        }
+        .chatJob,.workJob{
+            width:43%;
 
+        }
+        .chatJob{
+            margin-left: 0.34rem;
+            margin-right: 0.4rem;
+        }
+        .workJob{
+            margin-right: 0.34rem;
+        }
     </style>
 </head>
 <body>
-<!--智能魔方菜单-->
-<div id="app1" class="demobiox home isDisplay">
+
+
+<div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
-        <div class="appMask" @click="hideHandle()">
-
-        </div>
-        <div class="borderBoxRote positionCom"
-             @click="detailClick(index,item.person_id)"
-             v-bind:class="['position'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list" :key="index">
-            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.p_name }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="borderBoxRote positionCom"
-             @click="detailClick2(index,item.job_id)"
-             v-bind:class="['position1'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list1" :key="index">
-            <div class="xuanbox" :class="index2== index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--<div class="cir_return positionCir" @click="hideHandle()">-->
-            <!--<img src="../../../icon/hidden2x.png" class="iconImg" alt="person">-->
-            <!--<span>隐藏</span>-->
-        <!--</div>-->
-        <!--<div class="cir_hide positionCir" @click="closeWin()">-->
-            <!--<img src="../../../icon/break2x.png" class="iconImg" alt="person">-->
-            <!--<span>返回</span>-->
-        <!--</div>-->
-
-    </div>
+    <keep-alive>
+        <component :is="active"></component>
+    </keep-alive>
 </div>
+
 
 <div id="topbar" class="display">
     <div class="headerBoxbg cssFlex">
         <div class="leftImgClose" style="margin-top: 0.2rem">
             <img src="../../../icon/mine.png" onclick="mineGo()">
         </div>
-        <div  class="middleHeightTop">
+        <div class="middleHeightTop">
             <input type="text" id="search-inputTop" placeholder="搜索地点/公司/职位">
             <span class="search-Click">GO</span>
         </div>
@@ -166,163 +154,250 @@
 
 <div class="contentBox pd commonBg">
     <div class="box isDisplay">
-        <div class="comTitle cssFlex">
-            <div class="comInfo see">
-                <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
-                <p class="comInfoCon">
-                    <span id="company">北京A公司信息技术有限公司</span>
-                    <span id="company_type">运营经理</span>
-                </p>
-                <p class="see-agod">
-                    <span id="working">11</span>年工作经验 / <span id="degree">本科</span> / <span id="age">33</span>岁
-                </p>
-                <p class="see-status" id="jobHuntingStatus">
-                    离职-随时到岗
-                </p>
+        <div class="commonTitlePoai">
+            <div class="comTitle cssFlex">
+                <div class="comInfosee">
+                    <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
+                    <p class="comInfoCon">
+                        <span id="company">北京A公司信息技术有限公司</span>
+                        <span id="company_type">运营经理</span>
+                    </p>
+                    <p class="see-agod">
+                        <span id="working">11</span>年工作经验 / <span id="degree">本科</span> / <span id="age">33</span>岁
+                    </p>
+                    <p class="see-status" id="jobHuntingStatus">
+                        离职-随时到岗
+                    </p>
+
+                </div>
+                <div class="comLogo comLogoSee">
+                    <img src="../../../image/comLogo.png" alt="comLogo">
+                </div>
+
             </div>
-            <div class="comLogo comLogoSee">
-                <img src="../../../image/comLogo.png" alt="comLogo">
+            <div class="job-chatBox cssFlex">
+                <div class="chatJob" onclick="chatJob()">聊一聊</div>
+                <div class="workJob" onclick="sendResume()">投递简历</div>
             </div>
         </div>
-        <div class="F9Line"></div>
+
         <!-- mui  滑动tab切换-->
-        <div class="mui-content">
-            <div id="slider" class="mui-slider">
-                <div id="sliderSegmentedControl"
-                     class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-                    <a class="mui-control-item" href="#item1mobile">
-                        在线简历
-                    </a>
-
-                    <a class="mui-control-item" href="#item3mobile">
-                        图片作品
-                    </a>
-                </div>
-
-                <div class="mui-slider-group">
-                    <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-                        <div id="scroll1" class="mui-scroll-wrapper">
-                            <div class="mui-scroll">
-                                <!--<ul class="mui-table-view">-->
-                                <!--<li class="mui-table-view-cell">-->
-                                <!--第一个选项卡子项-1-->
-                                <!--</li>-->
-                                <!--<li class="mui-table-view-cell">-->
-                                <!--第一个选项卡子项-2-->
-                                <!--</li>-->
-
-                                <!--</ul>-->
-                                <div class="see-xian-box">
-                                    <div class="seeSubTitle">求职期望</div>
-                                    <div class="see-hope cssFlex">
-                                        <p class="see-price">
-                                            <span class="see-gang" id="work_name">运营经理</span>
-                                            <span class="see-adress" id="int_city">北京</span>
-                                        </p>
-                                        <span class="see-price" id="pay">10-15k</span>
-                                    </div>
-                                    <p class="see-choose-hang" id="work">行业不限</p>
-                                    <div class="seeSubTitle">自我描述</div>
-                                    <div class="see-me-miao">
-                                        <div class="see-me-list cssFlex" id="p_title">
-                                            <span>个人能力</span>
-                                            <span>个人能力</span>
-                                            <span>个能力</span>
-                                            <span>个人力</span>
-                                            <span>个人能力</span>
-                                            <span>个人能</span>
-                                            <span>个人能力</span>
-                                            <span>个人能力</span>
-                                        </div>
-                                        <p class="see-me-text" id="p_tags">
-                                            Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id
-                                            tempor eros, at lobortis
-                                            augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec
-                                            accumsan
-                                            tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
-                                            nunc lorem.
-                                        </p>
-                                    </div>
-                                    <div class="seeSubTitle">工作经历</div>
-                                    <div class="see-comli" id="workings">
-                                        <div class="see-comlibox">
-                                            <div class="jing-title">北京A公司信息技术有限公司</div>
-                                            <div class="jing-position">运营经理</div>
-                                            <div class="jing-year">2015.03-至今</div>
-                                            <div class="jing-depart">所属部门：<span>运营部</span></div>
-                                            <div class="jing-skill">
-                                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
-                                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
-                                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
-                                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
-                                            </div>
-
-                                        </div>
-                                        <div class="see-comlibox">
-                                            <div class="jing-title">北京A公司信息技术有限公司</div>
-                                            <div class="jing-position">运营经理</div>
-                                            <div class="jing-year">2015.03-至今</div>
-                                            <div class="jing-depart">所属部门：<span>运营部</span></div>
-                                            <div class="jing-skill">
-                                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
-                                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
-                                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
-                                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="seeSubTitle">项目经历</div>
-                                    <div class="see-product" id="project">
-                                        <div class="see-product-box">
-                                            <div class="produvt-name">当当网APP</div>
-                                            <div class="produvt-date">2015.03-2017.02</div>
-                                            <div class="produvt-content">
-                                                当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网
-                                                APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计当当
-                                                当网APP设计当当当网APP设计当当当网APP设计当当当网APP设计
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="seeSubTitle">教育经历</div>
-                                    <div id="educations">
-                                        <div class="see-education cssFlex">
-                                            <div class="education-left">
-                                                <div class="education-name">北京理工大学</div>
-                                                <div class="education-edu">本科 | 营销管理</div>
-                                                <div class="education-date">2011年-2015年</div>
-                                            </div>
-                                            <img src="../../../image/mine/defalut.png" alt="defult"
-                                                 class="edcution-img">
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
+        <ul id="tabs" class="cssFlex">
+            <li class="activeTab"><a href="javascript:;" title="tab1">在线简历</a></li>
+            <li><a href="javascript:;" title="tab2">图片作品</a></li>
+        </ul>
+        <div id="content">
+            <div id="tab1" style="display: block;">
+                <div class="see-xian-box">
+                    <div class="seeSubTitle">求职期望</div>
+                    <div class="see-hope cssFlex">
+                        <p class="see-price">
+                            <span class="see-gang" id="work_name">运营经理</span>
+                            <span class="see-adress" id="int_city">北京</span>
+                        </p>
+                        <span class="see-price" id="pay">10-15k</span>
+                    </div>
+                    <p class="see-choose-hang" id="work">行业不限</p>
+                    <div class="seeSubTitle">自我描述</div>
+                    <div class="see-me-miao">
+                        <div class="see-me-list cssFlex" id="p_title"></div>
+                        <p class="see-me-text" id="p_tags">
+                            Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id
+                            tempor eros, at lobortis
+                            augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec
+                            accumsan
+                            tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
+                            nunc lorem.
+                        </p>
+                    </div>
+                    <div class="seeSubTitle">工作经历</div>
+                    <div class="see-comli" id="workings">
+                        <div class="see-comlibox">
+                            <div class="jing-title">北京A公司信息技术有限公司</div>
+                            <div class="jing-position">运营经理</div>
+                            <div class="jing-year">2015.03-至今</div>
+                            <div class="jing-depart">所属部门：<span>运营部</span></div>
+                            <div class="jing-skill">
+                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
+                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
+                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
+                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
                             </div>
+
+                        </div>
+                        <div class="see-comlibox">
+                            <div class="jing-title">北京A公司信息技术有限公司</div>
+                            <div class="jing-position">运营经理</div>
+                            <div class="jing-year">2015.03-至今</div>
+                            <div class="jing-depart">所属部门：<span>运营部</span></div>
+                            <div class="jing-skill">
+                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
+                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
+                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
+                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="seeSubTitle">项目经历</div>
+                    <div class="see-product" id="project">
+                        <div class="see-product-box">
+                            <div class="produvt-name"></div>
+                            <div class="produvt-date"></div>
+                            <div class="produvt-content"></div>
+                        </div>
+                    </div>
+                    <div class="seeSubTitle">教育经历</div>
+                    <div id="educations">
+                        <div class="see-education cssFlex">
+                            <div class="education-left">
+                                <div class="education-name">北京理工大学</div>
+                                <div class="education-edu">本科 | 营销管理</div>
+                                <div class="education-date">2011年-2015年</div>
+                            </div>
+                            <img src="../../../image/mine/defalut.png" alt="defult"
+                                 class="edcution-img">
                         </div>
                     </div>
 
-                    <div id="item3mobile" class="mui-slider-item mui-control-content">
-                        <div id="scroll3" class="mui-scroll-wrapper">
-                            <div class="mui-scroll">
-                                <div class="mui-loading">
-                                    <div class="mui-spinner">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
-
-
+            <div id="tab2" style="display:none;">
+                <div class="see-xian-img cssFlex">
+                    <img src="../../../image/pro.png" alt="pro">
+                    <img src="../../../image/pro.png" alt="pro">
+                    <img src="../../../image/pro.png" alt="pro">
+                    <img src="../../../image/pro.png" alt="pro">
+                    <img src="../../../image/pro.png" alt="pro">
+                </div>
+            </div>
         </div>
 
-        <div class="Have_a_chat_box">
+
+        <!-- <div class="mui-content">
+             <div id="slider" class="mui-slider">
+                 <div id="sliderSegmentedControl"
+                      class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                     <a class="mui-control-item" href="#item1mobile">
+                         在线简历
+                     </a>
+
+                     <a class="mui-control-item" href="#item3mobile">
+                         图片作品
+                     </a>
+                 </div>
+
+                 <div class="mui-slider-group">
+                     <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+                         <div id="scroll1" class="mui-scroll-wrapper">
+                             <div class="mui-scroll">
+                                 &lt;!&ndash;<ul class="mui-table-view">&ndash;&gt;
+                                 &lt;!&ndash;<li class="mui-table-view-cell">&ndash;&gt;
+                                 &lt;!&ndash;第一个选项卡子项-1&ndash;&gt;
+                                 &lt;!&ndash;</li>&ndash;&gt;
+                                 &lt;!&ndash;<li class="mui-table-view-cell">&ndash;&gt;
+                                 &lt;!&ndash;第一个选项卡子项-2&ndash;&gt;
+                                 &lt;!&ndash;</li>&ndash;&gt;
+
+                                 &lt;!&ndash;</ul>&ndash;&gt;
+                                 <div class="see-xian-box">
+                                     <div class="seeSubTitle">求职期望</div>
+                                     <div class="see-hope cssFlex">
+                                         <p class="see-price">
+                                             <span class="see-gang" id="work_name">运营经理</span>
+                                             <span class="see-adress" id="int_city">北京</span>
+                                         </p>
+                                         <span class="see-price" id="pay">10-15k</span>
+                                     </div>
+                                     <p class="see-choose-hang" id="work">行业不限</p>
+                                     <div class="seeSubTitle">自我描述</div>
+                                     <div class="see-me-miao">
+                                         <div class="see-me-list cssFlex" id="p_title"></div>
+                                         <p class="see-me-text" id="p_tags">
+                                             Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id
+                                             tempor eros, at lobortis
+                                             augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec
+                                             accumsan
+                                             tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
+                                             nunc lorem.
+                                         </p>
+                                     </div>
+                                     <div class="seeSubTitle">工作经历</div>
+                                     <div class="see-comli" id="workings">
+                                         <div class="see-comlibox">
+                                             <div class="jing-title">北京A公司信息技术有限公司</div>
+                                             <div class="jing-position">运营经理</div>
+                                             <div class="jing-year">2015.03-至今</div>
+                                             <div class="jing-depart">所属部门：<span>运营部</span></div>
+                                             <div class="jing-skill">
+                                                 1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
+                                                 2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
+                                                 3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
+                                                 4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
+                                             </div>
+
+                                         </div>
+                                         <div class="see-comlibox">
+                                             <div class="jing-title">北京A公司信息技术有限公司</div>
+                                             <div class="jing-position">运营经理</div>
+                                             <div class="jing-year">2015.03-至今</div>
+                                             <div class="jing-depart">所属部门：<span>运营部</span></div>
+                                             <div class="jing-skill">
+                                                 1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
+                                                 2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
+                                                 3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
+                                                 4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
+                                             </div>
+
+                                         </div>
+                                     </div>
+                                     <div class="seeSubTitle">项目经历</div>
+                                     <div class="see-product" id="project">
+                                         <div class="see-product-box">
+                                             <div class="produvt-name"></div>
+                                             <div class="produvt-date"></div>
+                                             <div class="produvt-content"></div>
+                                         </div>
+                                     </div>
+                                     <div class="seeSubTitle">教育经历</div>
+                                     <div id="educations">
+                                         <div class="see-education cssFlex">
+                                             <div class="education-left">
+                                                 <div class="education-name">北京理工大学</div>
+                                                 <div class="education-edu">本科 | 营销管理</div>
+                                                 <div class="education-date">2011年-2015年</div>
+                                             </div>
+                                             <img src="../../../image/mine/defalut.png" alt="defult"
+                                                  class="edcution-img">
+                                         </div>
+                                     </div>
+
+                                 </div>
+
+
+                             </div>
+                         </div>
+                     </div>
+
+                     <div id="item3mobile" class="mui-slider-item mui-control-content">
+                         <div id="scroll3" class="mui-scroll-wrapper">
+                             <div class="mui-scroll">
+                                 <div class="mui-loading">
+                                     <div class="mui-spinner">
+
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+
+
+         </div>-->
+
+        <div class="Have_a_chat_box" @click="HavechatClick()">
             <div class="Have_a_chat">
                 聊一聊
             </div>
@@ -335,15 +410,18 @@
 </body>
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
-
+<script src="../../../script/vuex.min.js"></script>
+<script src="../../../script/mui.min.js"></script>
+<script src="common/magicComAll.js"></script>
+<script src="common/magicPosition.js"></script>
+<script src="common/magicComPosiAll.js"></script>
+<script src="common/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
@@ -357,21 +435,187 @@
     $(document).on("click", ".componySize>li", function () {
         $(".modal-space").show()
     })
+    $("#tabs li").click(function () {
+        $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
+        var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+        $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+    });
 
     function closeMotal() {
         $(".modal-space").hide()
     }
 
-    var person_summary;
+    var person_summary, magicBox, winWidth, winHeight, a01_w, m_d, magicBtn, magicSubBox, iconImg,person_id;
 
     apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
+        person_id = api.pageParam.person_id
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        console.log("person_idperson_id",person_id)
+        var backButtonPress = 0;
+        if (person_id){
+            comValue(person_id)
+        }
+        var magicComAll = magicComAllInit(Vue);
+        Vue.component('magicComAll', magicComAll);
+        var magicPosition = magicPositionInit(Vue);
+        Vue.component('magicPosition', magicPosition);
+        var magicComPosiAll = magicComPosiAllInit(Vue);
+        Vue.component('magicComPosiAll', magicComPosiAll);
 
-        // 获取用户简历全部信息
-        ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+
+        console.log("a01_w", a01_w)
+        console.log("winWidth/2", winWidth / 2)
+
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
+        console.log("bevelLength", bevelLength)
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w - 10) * 0.23 - 25;    // 100
+
+        new Vue({
+            el: '#app1',
+            data: {
+                active: 'magicComAll',
+                person_id:'',
+                // listJob:[]
+            },
+            created: function () {
+                // this.SmartMenu()
+                this.togle()
+            },
+            mounted: function () {
+                var that = this
+                that.active = store.state.obj.magicCom;
+                that.person_id = api.pageParam.person_id
+                api.addEventListener({
+                    name: 'magicComAll',
+                }, function (ret, err) {
+                    console.log("ret", ret);
+                    that.active = ret.value.key.magicComAll;
+
+                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'magicComPosiAll',
+                }, function (ret, err) {
+                    console.log("ret", ret);
+                    that.active = ret.value.key.magicComPosiAll;
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'jobAllName',
+                }, function (ret, err) {
+                    console.log("ret", ret);
+                    console.log("job_id", ret.value.key.job_id)
+
+                    comValue(ret.value.key.job_id)
+                });
+                api.addEventListener({
+                    name: 'personHome',
+                }, function (ret, err) {
+                    comValue(ret.value.key.person_id)
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width = winWidth + "px"
+                bgBlack.style.height = winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
+                // 里面小盒子宽度
+                for (var i = 0; i < magicBtn.length; i++) {
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i = 0; i < magicSubBox.length; i++) {
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i = 0; i < iconImg.length; i++) {
+                    iconImg[i].style.width = m_d / 2 + "px"
+                    iconImg[i].style.height = m_d / 2 + "px"
+                }
+            },
+            methods: {
+                togle: function () {
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicComAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    }
+                },
+
+                // 更改简历数据
+                HavechatClick: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser) {
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    } else {
+                        openNewWindow("index", "../chat/index_body.html")
+                    }
+                },
+
+                hideBg: function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
+                },
+
+            }
+        })
+
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                closeApp();
+            } else {
+                api.toast({msg: '再按一次退出应用'});
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+
+        ajaxGetWithProgress(QueryPersonRandomOne, {}, function (data, err) {
+
             // alert(JSON.stringify(data));
-            // console.log(data);
+            console.log("datadata", data);
             if (data) {
                 document.querySelector('.box').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -392,8 +636,8 @@
                 // 公司名称 // 职位
                 if (working_his) {
                     var obj = working_his[0];
-                    document.getElementById('company').innerText = obj.com_name;
-                    document.getElementById('company_type').innerText = obj.position_type;
+                    document.getElementById('company').innerText = obj.com_name || '未填写';
+                    document.getElementById('company_type').innerText = obj.position_type || '未填写';
                 } else {
                     document.getElementById('company').innerText = '未填写';
                     document.getElementById('company_type').innerText = '未填写';
@@ -408,7 +652,7 @@
                 // 学历
                 if (education_his) {
                     var obj = education_his[0];
-                    document.getElementById('degree').innerText = obj.degree;
+                    document.getElementById('degree').innerText = obj.degree || '未填写';
                 } else {
                     document.getElementById('degree').innerText = '未填写'
                 }
@@ -440,9 +684,11 @@
                     document.getElementById('p_tags').innerText = "未填写";
                 }
                 // 综合能力
+
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
+                    console.warn('综合能力' + JSON.stringify(list));
                     var arr = [];
                     for (var i = 0; i < list.length; i++) {
                         var str = '<span>' + list[i] + '</span>';
@@ -451,7 +697,7 @@
                     tags.innerHTML = arr.join('');
                 }
                 // // 求职状态
-                if (Intention) {
+                /*if (Intention) {
                     var statusObj = {
                         '1': '离职-随时到岗',
                         '2': '在职-月内到岗',
@@ -459,7 +705,7 @@
                         '4': '在职-暂不考虑',
                     }
                     document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                }
+                }*/
                 // 求职期望
                 if (Intention) {
                     document.getElementById('work_name').innerText = Intention[0].work_name;
@@ -473,17 +719,27 @@
                     // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
+                // console.warn(JSON.stringify(working_his));
+
                 // 工作经历
                 if (working_his) {
                     var workings = document.getElementById('workings');
                     var arr = [];
                     for (var i = 0; i < working_his.length; i++) {
+                        var w_item = working_his[i];
+                        var com_name = w_item.com_name || '未填写';
+                        var position_type = w_item.position_type || '未填写';
+                        var w_from = w_item.w_from || '-- ';
+                        var position = w_item.position || '未填写';
+                        var c_note = w_item.c_note || '未填写';
+                        var w_to = w_item.w_to || ' -- ';
+
                         var str = '<div class="see-comlibox">\n' +
-                            '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                            '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                            '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                            '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                            '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
+                            '                                                <div class="jing-title">' + com_name + '</div>\n' +
+                            '                                                <div class="jing-position">' + position_type + '</div>\n' +
+                            '                                                <div class="jing-year"><span>' + w_from + '</span>至<span>' + w_to + '</span></div>\n' +
+                            '                                                <div class="jing-depart">所属部门：<span>' + position + '</span></div>\n' +
+                            '                                                <div class="jing-skill">' + c_note + '</div>\n' +
                             '\n' +
                             '                                            </div>';
                         arr.push(str);
@@ -498,13 +754,12 @@
                 if (education_his) {
                     var educations = document.getElementById('educations');
                     var arr = [];
-
                     for (var i = 0; i < education_his.length; i++) {
                         var str = '<div class="see-education cssFlex">\n' +
                             '                                               <div class="education-left">\n' +
-                            '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                            '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                            '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
+                            '                                                   <div class="education-name">' + (education_his[i].univ_name || '') + '</div>\n' +
+                            '                                                   <div class="education-edu"><span>' + (education_his[i].degree || '') + '</span> | <span>' + (education_his[i].major || '') + '</span></div>\n' +
+                            '                                                   <div class="education-date"><span>' + (education_his[i].e_from || '') + '</span>至<span>' + (education_his[i].e_to || '') + '</span></div>\n' +
                             '                                               </div>\n' +
                             '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
                             '                                           </div>';
@@ -539,6 +794,7 @@
                 }
 
             }
+
 
             // 联系方式 和 图片作品
             mui.init({
@@ -582,370 +838,260 @@
             })(mui);
         });
 
-        new Vue({
-            el: '#app1',
-            data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
-            },
-            created: function () {
-                this.SmartMenu()
-            },
-            methods: {
-                SmartMenu: function () {
-                    var that = this;
-                    var obj = {
-                        person_id : localStorage.getItem("user").user_id
+        console.log("user", localStorage.getItem("user"))
+
+
+
+    };
+    function comValue(person_id) {
+        // 获取用户简历全部信息
+        ajaxGetWithProgress(QueryPerson, {person_id:person_id}, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log("QueryPerson",data);
+            if (data) {
+                document.querySelector('.box').classList.remove('isDisplay');
+                var person_summary = data.person_summary;
+                var projects = data.projects;
+                var education_his = data.education_his;
+                var working_his = data.working_his;
+                var Intention = data.Intention;
+
+                // 电话 邮箱
+                if (person_summary) {
+                    person_summary = person_summary;
+                }
+
+                // 姓名
+                if (person_summary.p_name || person_summary.p_name != 'undefined') {
+                    document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
+                }
+                // 公司名称 // 职位
+                if (working_his) {
+                    var obj = working_his[0];
+                    document.getElementById('company').innerText = obj.com_name || '未填写';
+                    document.getElementById('company_type').innerText = obj.position_type || '未填写';
+                } else {
+                    document.getElementById('company').innerText = '未填写';
+                    document.getElementById('company_type').innerText = '未填写';
+                }
+                // 工作年限
+                if (person_summary.job_from_time) {
+                    var workingAge = ages(person_summary.job_from_time);
+                    document.getElementById('working').innerText = workingAge;
+                } else {
+                    document.getElementById('working').innerText = 0
+                }
+                // 学历
+                if (education_his) {
+                    var obj = education_his[0];
+                    document.getElementById('degree').innerText = obj.degree || '未填写';
+                } else {
+                    document.getElementById('degree').innerText = '未填写'
+                }
+                // 年龄
+                if (person_summary.b_birthday) {
+                    var age = ages(person_summary.b_birthday);
+                    document.getElementById('age').innerText = age;
+                } else {
+                    document.getElementById('age').innerText = 0
+                }
+
+                // 时间转换
+                function ages(str) {
+                    var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+                    if (r == null) return false;
+                    var d = new Date(r[1], r[3] - 1, r[4]);
+                    if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
+                        var Y = new Date().getFullYear();
+                        // return ("年龄   =   " + (Y - r[1]) + "   周岁");
+                        return (Y - r[1]);
                     }
-                    ajaxGet(SmartMenu, {}, function(data,err){
-                        console.log(data);
-                        document.getElementById('app1').classList.remove('isDisplay');
-                        that.list = data.PersonList;
-                        that.list1 = data.JobListByUidRomden;
-                        // console.log("thatlist-",that.list)
-                        // console.log(that.list1)
-                    });
-                },
-                togle: function () {
-                    document.getElementById('subBox').classList.remove('isDisplay');
-                    this.active = true;
-                    var that = this;
-                    that.SmartMenu();
-                    setTimeout(function () {
-                        that.active = false;
-                    }, 1500)
-                },
-                detailClick: function (index,id) {
-                    this.index1 = index;
-                    this.index2 = -1;
-                    console.log(id)
-                    ajaxGetWithProgress(QueryPerson, {
-                        person_id: id
-                    }, function (data, err) {
-                        // alert(JSON.stringify(data));
-                        // console.log(data);
-                        if (data) {
-                            document.querySelector('.box').classList.remove('isDisplay');
-                            var person_summary = data.person_summary;
-                            var projects = data.projects;
-                            var education_his = data.education_his;
-                            var working_his = data.working_his;
-                            var Intention = data.Intention;
+                    return ("输入的日期格式错误！");
+                }
 
-                            // 电话 邮箱
-                            if (person_summary) {
-                                person_summary = person_summary;
-                            }
-
-                            // 姓名
-                            if (person_summary.p_name || person_summary.p_name != 'undefined') {
-                                document.getElementById('p_name').innerText = person_summary.p_name || '未登录';
-                            }
-                            // 公司名称 // 职位
-                            if (working_his) {
-                                var obj = working_his[0];
-                                document.getElementById('company').innerText = obj.com_name;
-                                document.getElementById('company_type').innerText = obj.position_type;
-                            } else {
-                                document.getElementById('company').innerText = '未填写';
-                                document.getElementById('company_type').innerText = '未填写';
-                            }
-                            // 工作年限
-                            if (person_summary.job_from_time) {
-                                var workingAge = ages(person_summary.job_from_time);
-                                document.getElementById('working').innerText = workingAge;
-                            } else {
-                                document.getElementById('working').innerText = 0
-                            }
-                            // 学历
-                            if (education_his) {
-                                var obj = education_his[0];
-                                document.getElementById('degree').innerText = obj.degree;
-                            } else {
-                                document.getElementById('degree').innerText = '未填写'
-                            }
-                            // 年龄
-                            if (person_summary.b_birthday) {
-                                var age = ages(person_summary.b_birthday);
-                                document.getElementById('age').innerText = age;
-                            } else {
-                                document.getElementById('age').innerText = 0
-                            }
-
-                            // 时间转换
-                            function ages(str) {
-                                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-                                if (r == null) return false;
-                                var d = new Date(r[1], r[3] - 1, r[4]);
-                                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
-                                    var Y = new Date().getFullYear();
-                                    // return ("年龄   =   " + (Y - r[1]) + "   周岁");
-                                    return (Y - r[1]);
-                                }
-                                return ("输入的日期格式错误！");
-                            }
-
-                            // 自我介绍
-                            if (person_summary.p_tags) {
-                                document.getElementById('p_tags').innerText = person_summary.p_tags;
-                            } else {
-                                document.getElementById('p_tags').innerText = "未填写";
-                            }
-                            // 综合能力
-                            if (person_summary.p_title) {
-                                var tags = document.getElementById('p_title');
-                                var list = person_summary.p_title.split(',');
-                                var arr = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    var str = '<span>' + list[i] + '</span>';
-                                    arr.push(str);
-                                }
-                                tags.innerHTML = arr.join('');
-                            }
-                            // // 求职状态
-                            if (Intention) {
-                                var statusObj = {
-                                    '1': '离职-随时到岗',
-                                    '2': '在职-月内到岗',
-                                    '3': '在职-考虑机会',
-                                    '4': '在职-暂不考虑',
-                                }
-                                document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                            }
-                            // 求职期望
-                            if (Intention) {
-                                document.getElementById('work_name').innerText = Intention[0].work_name;
-                                document.getElementById('int_city').innerText = Intention[0].int_city;
-                                document.getElementById('work').innerText = Intention[0].work;
-                                var pays = Intention[0].pay.split('.');
-                                var pays2 = []
-                                pays.forEach(function (value) {
-                                    pays2.push(value + 'k')
-                                })
-                                // console.log(pays2);
-                                document.getElementById('pay').innerText = pays2.join('-');
-                            }
-                            // 工作经历
-                            if (working_his) {
-                                var workings = document.getElementById('workings');
-                                var arr = [];
-                                for (var i = 0; i < working_his.length; i++) {
-                                    var str = '<div class="see-comlibox">\n' +
-                                        '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                                        '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                                        '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                                        '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                                        '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
-                                        '\n' +
-                                        '                                            </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(workings)
-                                workings.innerHTML = dom;
-                            }
-                            // 教育经历
-                            if (education_his) {
-                                var educations = document.getElementById('educations');
-                                var arr = [];
-
-                                for (var i = 0; i < education_his.length; i++) {
-                                    var str = '<div class="see-education cssFlex">\n' +
-                                        '                                               <div class="education-left">\n' +
-                                        '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                                        '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                                        '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
-                                        '                                               </div>\n' +
-                                        '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(educations)
-                                educations.innerHTML = dom;
-                            }
-
-
-                            if (projects != null) {
-
-                                var project = document.getElementById('project');
-                                var arr = [];
-
-                                for (var i = 0; i < projects.length; i++) {
-                                    var str = '<div class="see-product-box">\n' +
-                                        '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
-                                        '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
-                                        '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
-                                        '                                           </div>';
-                                    arr.push(str);
-                                }
-
-                                var dom = arr.join('');
-                                // console.log(dom);
-                                // console.log(project)
-                                project.innerHTML = dom;
-                            }
-
-                        }
-
-                        // 联系方式 和 图片作品
-                        mui.init({
-                            swipeBack: false
-                        });
-                        (function ($) {
-                            $('.mui-scroll-wrapper').scroll({
-                                indicators: true //是否显示滚动条
-                            });
-                            var phone, email;
-                            phone = person_summary.phone_m || '未填写';
-                            email = person_summary.email || '未填写';
-
-
-                            var html3 = ' <div class="see-xian-img cssFlex">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                                '                                </div>';
-
-                            var item3 = document.getElementById('item3mobile');
-                            document.getElementById('slider').addEventListener('slide', function (e) {
-                                if (e.detail.slideNumber === 1) {
-                                    if (item3.querySelector('.mui-loading')) {
-                                        setTimeout(function () {
-                                            item3.querySelector('.mui-scroll').innerHTML = html3;
-                                        }, 500);
-                                    }
-                                }
-                            });
-                            var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-                            $('.mui-input-group').on('change', 'input', function () {
-                                if (this.checked) {
-                                    sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-                                    //force repaint
-                                    sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-                                }
-                            });
-                        })(mui);
-                    });
-                },
-                detailClick2: function (index,id) {
-                    this.index2 = index;
-                    this.index1 = -1;
-                    var that = this;
-                    console.log(id)
-                    if (!that.active) {
-                        this.active = true;
-                        ajaxGet(queryPersonList, {}, function(data,err){
-                            console.log(data);
-                            that.list = data.queryPersonList;
-                            // console.log(that.list)
-                            // console.log(that.list1)
-                            setTimeout(function () {
-                                that.active = false;
-                            }, 1500)
-                        });
+                // 自我介绍
+                if (person_summary.p_tags) {
+                    document.getElementById('p_tags').innerText = person_summary.p_tags;
+                } else {
+                    document.getElementById('p_tags').innerText = "未填写";
+                }
+                // 综合能力
+                console.warn('综合能力' + JSON.stringify(person_summary.p_title));
+                if (person_summary.p_title) {
+                    var tags = document.getElementById('p_title');
+                    var list = person_summary.p_title.split(',');
+                    console.warn('综合能力' + JSON.stringify(list));
+                    var arr = [];
+                    for (var i = 0; i < list.length; i++) {
+                        var str = '<span>' + list[i] + '</span>';
+                        arr.push(str);
                     }
-                },
-                hideHandle: function () {
-                    document.getElementById('subBox').classList.add('isDisplay');
-                },
-                // 更改简历数据
+                    tags.innerHTML = arr.join('');
+                }
+                // // 求职状态
+                if (Intention) {
+                    var statusObj = {
+                        '1': '离职-随时到岗',
+                        '2': '在职-月内到岗',
+                        '3': '在职-考虑机会',
+                        '4': '在职-暂不考虑',
+                    }
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
+                }
+                // 求职期望
+                if (Intention) {
+                    document.getElementById('work_name').innerText = Intention[0].work_name;
+                    document.getElementById('int_city').innerText = Intention[0].int_city;
+                    document.getElementById('work').innerText = Intention[0].work;
+                    var pays = Intention[0].pay.split('.');
+                    var pays2 = []
+                    pays.forEach(function (value) {
+                        pays2.push(value + 'k')
+                    })
+                    // console.log(pays2);
+                    document.getElementById('pay').innerText = pays2.join('-');
+                }
+                // console.warn(JSON.stringify(working_his));
+
+                // 工作经历
+                if (working_his) {
+                    var workings = document.getElementById('workings');
+                    var arr = [];
+                    for (var i = 0; i < working_his.length; i++) {
+                        var w_item = working_his[i];
+                        var com_name = w_item.com_name || '未填写';
+                        var position_type = w_item.position_type || '未填写';
+                        var w_from = w_item.w_from || '-- ';
+                        var position = w_item.position || '未填写';
+                        var c_note = w_item.c_note || '未填写';
+                        var w_to = w_item.w_to || ' -- ';
+
+                        var str = '<div class="see-comlibox">\n' +
+                            '                                                <div class="jing-title">' + com_name + '</div>\n' +
+                            '                                                <div class="jing-position">' + position_type + '</div>\n' +
+                            '                                                <div class="jing-year"><span>' + w_from + '</span>至<span>' + w_to + '</span></div>\n' +
+                            '                                                <div class="jing-depart">所属部门：<span>' + position + '</span></div>\n' +
+                            '                                                <div class="jing-skill">' + c_note + '</div>\n' +
+                            '\n' +
+                            '                                            </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(workings)
+                    workings.innerHTML = dom;
+                }
+                // 教育经历
+                if (education_his) {
+                    var educations = document.getElementById('educations');
+                    var arr = [];
+                    for (var i = 0; i < education_his.length; i++) {
+                        var str = '<div class="see-education cssFlex">\n' +
+                            '                                               <div class="education-left">\n' +
+                            '                                                   <div class="education-name">' + (education_his[i].univ_name || '') + '</div>\n' +
+                            '                                                   <div class="education-edu"><span>' + (education_his[i].degree || '') + '</span> | <span>' + (education_his[i].major || '') + '</span></div>\n' +
+                            '                                                   <div class="education-date"><span>' + (education_his[i].e_from || '') + '</span>至<span>' + (education_his[i].e_to || '') + '</span></div>\n' +
+                            '                                               </div>\n' +
+                            '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
+                            '                                           </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(educations)
+                    educations.innerHTML = dom;
+                }
+
+
+                if (projects != null) {
+
+                    var project = document.getElementById('project');
+                    var arr = [];
+
+                    for (var i = 0; i < projects.length; i++) {
+                        var str = '<div class="see-product-box">\n' +
+                            '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
+                            '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
+                            '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
+                            '                                           </div>';
+                        arr.push(str);
+                    }
+
+                    var dom = arr.join('');
+                    // console.log(dom);
+                    // console.log(project)
+                    project.innerHTML = dom;
+                }
 
             }
-        })
-    };
 
-    // mui.init({
-    //     swipeBack: false
-    // });
-    // (function ($) {
-    //     $('.mui-scroll-wrapper').scroll({
-    //         indicators: true //是否显示滚动条
-    //     });
-    //
-    //     var html3 = ' <div class="see-xian-img cssFlex">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-    //         '                                </div>';
-    //
-    //     var item3 = document.getElementById('item3mobile');
-    //     document.getElementById('slider').addEventListener('slide', function (e) {
-    //         if (e.detail.slideNumber === 1) {
-    //             if (item3.querySelector('.mui-loading')) {
-    //                 setTimeout(function () {
-    //                     item3.querySelector('.mui-scroll').innerHTML = html3;
-    //                 }, 500);
-    //             }
-    //         }
-    //     });
-    //     var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-    //     $('.mui-input-group').on('change', 'input', function () {
-    //         if (this.checked) {
-    //             sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-    //             //force repaint
-    //             sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-    //         }
-    //     });
-    // })(mui);
-
+        });
+    }
 
     // 跳转到我的
     function mineGo() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        var obj ={
-            uid : JSON.parse(localStorage.getItem("user")).user_id
+        var obj = {
+            uid: localStorage.getItem("person_id")
         }
         console.log(obj)
-        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            // alert(JSON.stringify(data))
-            if (data.date != 0) {
-                api.confirm({
-                    // title: 'testtitle',
-                    msg: '您还未完善简历，请继续完善',
-                    buttons: ['确定', '取消']
-                }, function(ret, err) {
-                    var index = ret.buttonIndex;
-                    if (index == 1){
+        ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function (data, err) {
+            console.log("homeData", data)
+            localStorage.setItem("com_id", data.c_id)
+            /*if (data.date == 1) {
+                mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
+                    console.log("mumiicomfir",e)
+                    if (e.index == 0){
                         openNewWindow("resume_editResume", "../mine/resume_editResume.html", {
                             url: 'home'
-                        });
+                        })
+                    }else if (e.index == 1){
+                        openNewWindow("mine", "../mine/mine.html")
                     }
-                });
+                })
                 return;
-            }else{
+            }else if (data.date == 2){
                 openNewWindow("mine", "../mine/mine.html")
+            }*/
+
+
+            if (data.date == 1) {
+                openNewWindow("fillInfo", "./fillInfo.html")
+            } else if (data.date == 2) {
+                openNewWindow("postsPublish", "./postsPublish.html")
+            } else if (data.date == 3) {
+                openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
+            } else if (data.date == 4) {
+                openNewWindow("uploadLicense", "./uploadLicense.html")
+            } else if (data.date == 0) {
+                openNewWindow("mine", "../mine/mine.html")
+
             }
+
+
         })
 
     }
+
     // 跳转到聊天页面
     function linkChat() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
-        }else {
+        } else {
             openNewWindow("index", "../chat/index_body.html")
         }
+
+
         /*var obj ={
-            uid : JSON.parse(localStorage.getItem("user")).user_id
+            uid : localStorage.getItem("user").user_id
         }
         console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {

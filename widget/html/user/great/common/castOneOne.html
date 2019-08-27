@@ -1,0 +1,95 @@
+<div class="listCastBox">
+
+
+    <img src="../../../image/duke-2.png" class="personCost" alt="personCost" @click="togle()">
+
+    <div class="great_header_banner swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
+                <img :src="imgSrc.imgSrc"/>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+
+    <div class="listBox">
+        <div class="returnBtn" @click="returnBtnClick()">
+            <img src="../../../image/bigWeigh/return.png" alt="fanhui" class="returnBTNImg">
+        </div>
+
+        <div class="positionComCast positionRate ">
+            <div class="xuanboxCast iconImgCastActive" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast00': 'posiCast0'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/lvyouA.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">旅游</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="positionComCast positionRate " @click="tourClick(14)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast11': 'posiCast1'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast " alt="person">
+                    <div class="CastText commonFont">欧洲红线</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="positionComCast positionRate" @click="tourClick(2)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast22': 'posiCast2'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip2.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">以色列</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate"  @click="tourClick(15)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast33': 'posiCast3'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">欧洲绿线</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="tourClick(19)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast44': 'posiCast4'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">欧洲橙线</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="tourClick(16)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast55': 'posiCast5'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">欧洲蓝线</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="tourClick(21)">
+            <div class="xuanboxCast iconImgCastActivePro" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast66': 'posiCast6'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/trip1.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">欧洲棕线</div>
+                </div>
+            </div>
+        </div>
+        <!--固定的  优惠券  不动-->
+        <div class="positionComCast positionRate" @click="castEightClick()">
+            <div class="xuanboxCast  posiCast7FCC" v-bind:style="styles" v-bind:style="styles" :class="(winWidth > winHeight / 2) ? 'posiCast77': 'posiCast7'">
+                <div class="daoboxCast" v-bind:style="styles">
+                    <img src="../../../image/bigWeigh/xicheW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">洗车券</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

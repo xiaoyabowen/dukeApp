@@ -47,7 +47,7 @@
         <div class="comon-mine-title">添加工作经历</div>
         <div class="resume_content">
             <div class="info-choose cssFlex" onclick="resume_Company()">
-                <span class="info-choose-name">公司名称</span>
+                <span class="info-choose-name"><i class="colorFE" style="color: #FE9114;">*</i>公司名称</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name birth_option" id="com_name">请输入</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
@@ -61,14 +61,14 @@
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="w_from()">
-                <span class="info-choose-name">入职时间</span>
+                <span class="info-choose-name"><i class="colorFE" style="color: #FE9114;">*</i>入职时间</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name entry_date" id="w_from">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
             <div class="info-choose cssFlex" onclick="w_to()">
-                <span class="info-choose-name">离职时间</span>
+                <span class="info-choose-name"><i class="colorFE" style="color: #FE9114;">*</i>离职时间</span>
                 <div class="info-choose-main cssFlex">
                     <span class="info-choose-main-name quit_date" id="w_to">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
@@ -97,7 +97,7 @@
             </div>
 
             <div class="info-choose heightAuto" onclick="resume_Work()">
-                <div class="info-choose-name" style="margin-top: 0.3rem">工作内容</div>
+                <div class="info-choose-name" style="margin-top: 0.3rem"><i class="colorFE" style="color: #FE9114;">*</i>工作内容</div>
 
                 <div class="info-choose cssFlex">
                     <span class="edit-topbot-content ellipsis" id="c_note">请输入</span>
@@ -124,12 +124,12 @@
                 </div>
             </div>
 
-            <div class="info-choose border0 cssFlex">
+            <!--<div class="info-choose border0 cssFlex">
                 <span class="info-choose-name">屏蔽该公司</span>
                 <div id="btn" class="mui-switch mui-switch-blue mui-switch-mini mui-active">
                     <div class="mui-switch-handle"></div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -289,21 +289,15 @@
         var title = list2.join(',');
 
         var is_open;
-
-        if (document.getElementById('btn').classList.contains('mui-active')) {
-            is_open = 0;
-        } else {
-            is_open = 1;
-        }
+        // if (document.getElementById('btn').classList.contains('mui-active')) {
+        //     is_open = 0;
+        // } else {
+        //     is_open = 1;
+        // }
 
         if (com_name == "请输入"){
             api.toast({
                 msg: '请填写公司名称'
-            });
-            return
-        }else if(com_type == "请选择"){
-            api.toast({
-                msg: '请选择公司行业'
             });
             return
         }else if(w_from == "请选择"){
@@ -316,14 +310,9 @@
                 msg: '请选择离职时间'
             });
             return
-        }else if(position_type == "请选择"){
+        }else if(c_note == "请输入"){
             api.toast({
-                msg: '请选择职位类型'
-            });
-            return
-        }else if(role == "请输入"){
-            api.toast({
-                msg: '请输入职位名称'
+                msg: '请输入工作内容'
             });
             return
         }
@@ -348,10 +337,11 @@
 
         console.log(params);
 
-
+        console.log(JSON.stringify(params));
         ajaxGetWithProgress(AddWork, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            console.warn(JSON.stringify(data));
+            console.warn(JSON.stringify(err));
             if (data.return_info.status) {
                 api.toast({
                     msg: '编辑工作经历成功'

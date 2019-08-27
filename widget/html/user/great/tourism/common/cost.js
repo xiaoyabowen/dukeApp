@@ -1,5 +1,5 @@
 function costInit(Vue) {
-    var str = dataValue('user/great/tourism/common/cost.html')
+    var str = dataValue('user/great/tourism/common/immigrant.html')
 
     return {
         template: str,

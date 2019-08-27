@@ -22,14 +22,31 @@
         }
 
         .popover_content {
-            /*width: 70%;*/
-            /*height: 3rem;*/
-            /*background: #ffffff;*/
+            width: 6.3rem;
+            height: 3rem;
+            background: #ffffff;
             border-radius: 0.08rem;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+        }
+
+        .details_content_main img {
+            max-width: 6.3rem;
+
+            margin: 0.1rem 0;
+        }
+
+        .details_content_main p {
+            text-align: center;
+            line-height: 0.4rem;
+            color: #333333;
+            font-size: 0.28rem;
+        }
+
+        #details {
+            padding-bottom: 1.1rem;
         }
     </style>
 </head>
@@ -41,7 +58,7 @@
             <div class="details_header_top">
                 <div class="details_header_img">
                     <img :src="item.poster" alt="">
-                    <!--<img src="http://192.168.1.10:8000/SE4M/ShowAvatar?person_id=1" alt="">-->
+                    <!--<img src="http://192.168.1.12:8000/SE4M/ShowAvatar?person_id=1" alt="">-->
                 </div>
                 <div class="details_header_title">
                     <div class="details_title_con textOverflow">
@@ -126,14 +143,17 @@
                             <!--<span>{{details.time}}</span>-->
                             <div>
                                 <span @click="comments2(details.comment_id, index)">{{details.commentByid ? details.commentByid.length : 0}}</span>
-                                <span @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 0">{{details.CommentZan || 0}}</span>
-                                <span class="active" @click="giveZan(details.status, details.comment_id, index)" v-if="details.status == 1">{{details.CommentZan}}</span>
+                                <span @click="giveZan(details.status, details.comment_id, index)"
+                                      v-if="details.status == 0">{{details.CommentZan || 0}}</span>
+                                <span class="active" @click="giveZan(details.status, details.comment_id, index)"
+                                      v-if="details.status == 1">{{details.CommentZan}}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="details_item_children">
-                        <div v-for="(child, c) in details.commentByid" :key="c" v-if="details.commentByid && c < details.total">
+                        <div v-for="(child, c) in details.commentByid" :key="c"
+                             v-if="details.commentByid && c < details.total">
                             <div class="details_item_children_top">
                                 <!--<img src="../../../image/pro.png" alt="">-->
                                 <img :src="child.p_icon.split(',')[0]" alt="">
@@ -145,17 +165,20 @@
                             </div>
                         </div>
 
-                        <div class="details_item_children_bottom" v-if="details.commentByid && details.commentByid.length > 1">
+                        <div class="details_item_children_bottom"
+                             v-if="details.commentByid && details.commentByid.length > 1">
                             <span>{{details.commentByid[1].p_name}}等人</span>
                             <span @click="repliesHandle(index)">共{{details.commentByid.length}}条回复</span>
                         </div>
 
-                        <div class="details_item_children_footer" v-if="details.commentByid && details.commentByid.length > 1">
+                        <div class="details_item_children_footer"
+                             v-if="details.commentByid && details.commentByid.length > 1">
                             <!--<span>6-18 23:13</span>-->
                             <span style="font-size: 0.22rem;margin-left: 0.05rem">
                                 {{ filterTime2(filterTime0(details.commentByid[details.commentByid.length-1].time)) }}
                             </span>
-                            <span @click="comments2(details.comment_id, index)"><img src="../../../image/circle/reply2x.png" alt=""></span>
+                            <span @click="comments2(details.comment_id, index)"><img
+                                    src="../../../image/circle/reply2x.png" alt=""></span>
                         </div>
                     </div>
                 </div>
@@ -167,13 +190,15 @@
         </div>
         <!--取消和编辑活动-->
         <div class="details_edit cssFlex" v-if="edit">
-            <div @click="clearActivities()">取消活动</div>
-            <div @click="editActivities()">编辑活动</div>
+            <div @click="clearActivities()" class="details_editCancel" v-if="cir_status == 1">取消活动</div>
+            <div @click="clearActivitiesAgain()" class="details_editCancel" v-if="cir_status == 0">再次发布</div>
+            <div @click="editActivities()" class="details_editEdit">编辑活动</div>
         </div>
 
         <!--评论输入框-->
         <div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">
-            <textarea v-model="textarea" @input="textInput()" autofocus="autofocus" maxlength=300 name="" id="" cols="30" rows="10"
+            <textarea v-model="textarea" @input="textInput()" autofocus="autofocus" maxlength=300 name="" id=""
+                      cols="30" rows="10"
                       placeholder="写评论"></textarea>
             <div class="num_total"><span>{{num}}</span>/300</div>
             <div><span @click="sendHandle()">发送</span></div>
@@ -214,8 +239,10 @@
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 <script>
+    var url
     apiready = function () {
-
+        url = api.pageParam.url
+        console.log(api.pageParam.cir_status)
         new Vue({
             el: '#details',
             data: {
@@ -227,6 +254,7 @@
                 status: 0,
                 person_id: '',
                 circle_id: '',
+                cir_status: '',
                 bac_id: null,
                 itemIndex: null,
                 edit: false,
@@ -239,11 +267,16 @@
                 textarea: '',
                 u_name: '',
                 phone: '',
+                province: '',
+                city: '',
+                street: '',
+                shortname: '',
                 popover: false,
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
                 this.circle_id = api.pageParam.circle_id;
+                this.cir_status = api.pageParam.cir_status;
                 this.edit = api.pageParam.edit;
                 this.CircleProfileAllinOne();
                 this.queryApplyList();
@@ -264,14 +297,14 @@
                         circle_id: that.circle_id
                     }, function (data, err) {
                         document.getElementById('box').className = '';
-                        console.log(123,data);
+                        console.log(123, data);
                         // alert(data);
                         if (data.circle_summary) {
                             that.item = data.circle_summary;
                             that.status = data.status;
                             that.count = data.Count;
-                            console.log(that.item);
-                            that.imgsrc = that.item.p_icon.split(',')[0];
+                            var list = imgSrcFun( that.item.p_icon);
+                            that.imgsrc = list?list:'';
                             // that.queryApplyList();
                             // that.queryCommentSummary();
                         }
@@ -299,7 +332,7 @@
                                     that.list.push(arr[i])
                                 }
                             }
-                        }else{
+                        } else {
 
                         }
 
@@ -329,6 +362,7 @@
                         that.user = data;
                     });
                 },
+
                 // 进入报名管理
                 signManage: function (circle_id) {
                     openNewWindow("sign-manage", "./sign-manage.html", {
@@ -493,7 +527,7 @@
                 focusHandle: function () {
                     // alert(123)
                     var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
+                    if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
                         return;
                     }
@@ -512,7 +546,7 @@
                 watchKeybord: function () {
                     var that = this
                     var oriWinHeight = window.innerHeight
-                    window.onresize = function() {
+                    window.onresize = function () {
                         // that.isKeybordAvail = true
                         let newHeight = window.innerHeight
 
@@ -552,7 +586,7 @@
                                         circle_id: that.item.circle_id
                                     },
                                 }
-                            }, function(data, err) {
+                            }, function (data, err) {
 
                                 // console.log(456)
                                 // console.log(data)
@@ -617,7 +651,7 @@
                 // 二级评论
                 comments2: function (bac_id, index) {
                     var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
+                    if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
                         return;
                     }
@@ -630,7 +664,7 @@
                 giveZan: function (status, comment_id, index) {
                     // console.log(comment_id);
                     var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
+                    if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
                         return;
                     }
@@ -645,8 +679,8 @@
                                     uid: that.person_id
                                 },
                             }
-                        }, function(data, err) {
-                            console.log(444,data)
+                        }, function (data, err) {
+                            console.log(444, data)
                             if (data.return_info.status) {
                                 that.list1[index].status = 1;
                                 that.list1[index].CommentZan++
@@ -664,7 +698,7 @@
                                     uid: that.person_id
                                 },
                             }
-                        }, function(data, err) {
+                        }, function (data, err) {
                             console.log(data)
                             if (data.return.status) {
                                 that.list1[index].status = 0;
@@ -679,7 +713,7 @@
                 // 点击报名
                 linkHandle: function () {
                     var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
+                    if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
                         return;
                     }
@@ -719,7 +753,8 @@
                             that.signStatus = '已报名'
                             openNewWindow("E_ticket", "./E_ticket.html", {
                                 circle_id: that.circle_id,
-                                person_id: that.item.person_id
+                                person_id: that.item.person_id,
+
                             })
                         }
 
@@ -734,14 +769,50 @@
                     var that = this;
                     mui.confirm('您确定要取消此活动吗?', function (e) {
                         if (e.index) {
-                            ajaxGetWithProgress(updateCircle, {
+                            var obj = {
                                 cir_status: 0,
+                                circle_id: that.circle_id,
+                            }
+                            console.log(obj)
+                            ajaxGetWithProgress(updateCircle, obj, function (data, err) {
+
+                                console.log(data);
+                                if (data.return.status) {
+                                    mui.toast('活动以取消');
+                                    var frameName = url + "_body";
+
+                                    api.execScript({
+                                        name: url,
+                                        frameName: frameName,
+                                        script: "reload()"
+                                    })
+                                    closeWin();
+                                }
+
+                            });
+                        }
+                    })
+                },
+                // 取消活动
+                clearActivitiesAgain: function () {
+                    var that = this;
+                    mui.confirm('您确定要再次发布此活动吗?', function (e) {
+                        if (e.index) {
+                            ajaxGetWithProgress(updateCircle, {
+                                cir_status: 1,
                                 circle_id: that.circle_id,
                             }, function (data, err) {
 
                                 console.log(data);
                                 if (data.return.status) {
-                                    mui.toast('活动以取消');
+                                    mui.toast('');
+                                    var frameName = url + "_body";
+
+                                    api.execScript({
+                                        name: url,
+                                        frameName: frameName,
+                                        script: "reload()"
+                                    })
                                     closeWin();
                                 }
 
@@ -752,7 +823,11 @@
                 },
                 // 编辑活动
                 editActivities: function () {
-
+                    var that = this
+                    openNewWindow("publishing_activities", "./publishing_activities.html",{
+                        content : 'edit',
+                        circle_id:that.circle_id
+                    })
                 }
             }
         })

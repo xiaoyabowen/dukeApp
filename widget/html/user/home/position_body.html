@@ -11,15 +11,25 @@
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
+    <link rel="stylesheet" href="../../../css/mofang.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-        span.adressInfo, .job-year {
-            margin-right: 10px;
+        span.adressInfo{
+            margin-right: 0.3rem;
+            font-size: 0.24rem;
+        }
+        .job-year {
+            margin-right: 0.56rem;
+            font-size: 0.24rem;
+            align-items: center;
         }
 
         img.hrImg {
             width: 40px !important;
             height: 40px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
         }
 
         .job-img-content {
@@ -58,67 +68,21 @@
         .demobiox{
             z-index: 99;
         }
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
     </style>
 
 </head>
 <body class="commonBg">
 
 
-<!--智能魔方菜单-->
-<div id="app1" class="demobiox isDisplay">
+<div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <div class="subBoxMO" id="subBox" v-bind:class="{ active: isHide}">
-        <div class="appMask" @click="hideHandle()">
-
-        </div>
-
-        <div class="borderBoxRote positionCom"
-             @click="detailClick(index,item.job_id)"
-             v-bind:class="['position'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list" :key="index">
-            <div class="xuanbox" :class="index1 == index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.p_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.job_name }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="borderBoxRote positionCom"
-             @click="detailClick2(index,item.c_id)"
-             v-bind:class="['position1'+index, active ? 'animation' : '']"
-             v-for="(item, index) in list1" :key="index">
-            <div class="xuanbox" :class="index2== index ? 'active' : ''">
-                <div class="daobox">
-                    <img v-bind:src="item.logo_icon.split(',')[0]" class="iconImg" alt="person">
-                    <div>{{ item.c_name }}</div>
-                </div>
-            </div>
-        </div>
-
-       <!-- <div class="cir_return positionCir" @click="hideHandle()">
-            <img src="../../../icon/hidden2x.png" class="iconImg" alt="person">
-
-            <span>隐藏</span>
-        </div>
-        <div class="cir_hide positionCir" @click="closeWin()">
-            <img src="../../../icon/break2x.png" class="iconImg" alt="person">
-            <span>返回</span>
-        </div>-->
-
-        <!--<div class="cir_mine positionCir">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>我的</span>
-        </div>
-        <div class="cir_return positionCir">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>返回</span>
-        </div>
-        <div class="cir_hide positionCir" @click="togleHide">
-            <img src="images/icon/person.png" class="iconImg" alt="person">
-            <span>隐藏</span>
-        </div>-->
-    </div>
+    <keep-alive>
+        <component :is="active"></component>
+    </keep-alive>
 </div>
 
 <div id="app">
@@ -156,18 +120,25 @@
                                     <img src="../../../image/comLogo.png" alt="comLogo">
                                 </div>
                             </div>-->
-                            <div class="jobBox cssFlex">
-                                <div class="job-left">
+                            <div class="jobBox ">
+                                <div class="job-left cssFlex">
                                     <h4 class="job-nameNm ellipsis" id="job_name">运营经理</h4>
-                                    <p class="adress-job">
-                                        <span class="adressInfo" id="city">北京-朝阳-望京</span>
-                                        <span class="job-year"><i id="work_ex">10</i></span>
-                                        <span id="edu_ex">本科</span>
-                                    </p>
+                                    <!--薪资 日期-->
+                                    <div class="job-right cssFlex">
+                                        <p class="moneyNum"><span id="ratio">20k-30K</span></p>
+                                        <img src="../../../icon/posiShare.png" alt="time" onclick="posiShareClick()" class="posiShare">
+                                    </div>
+
                                 </div>
-                                <!--薪资 日期-->
-                                <div class="job-right ">
-                                    <p class="moneyNum"><span id="ratio">20k-30K</span>k</p>
+
+                                <input type="hidden" id="job_id">
+                                <input type="hidden" id="puid">
+                                <div class="adress-job cssFlex">
+                                    <img src="../../../icon/adress.png" alt="time" class="ComTime">
+                                    <span class="adressInfo" id="city">北京-朝阳-望京</span>
+                                    <span class="job-year cssFlex"><img src="../../../icon/year.png" alt="date" class="dateCom"><i id="work_ex">10</i></span>
+                                    <img src="../../../icon/posiSee.png" alt="date" class="posiSee">
+                                    <span><i id="count">300</i>次浏览</span>
                                 </div>
                             </div>
                             <div class="F9Line"></div>
@@ -181,7 +152,6 @@
                                             <i>·</i>
                                             <span id="z_user_job">人力资源部经理</span>
                                         </p>
-
                                     </div>
                                     <img src="../../../icon/right.png" alt="right" class="link-right">
                                 </div>
@@ -211,7 +181,7 @@
                                     4、认同公司文化，具备良好的沟通协调能力和团队合作意识，责任心强，可以承受较大的工作压力。<br/>
                                 </p>
                             </div>
-                            <h4 class="productName">技能要求</h4>
+                            <!--<h4 class="productName">技能要求</h4>
                             <div class="skillList cssFlex" id="skills">
                                 <span>餐补</span>
                                 <span>五险一金</span>
@@ -221,9 +191,9 @@
                                 <span>五险一金</span>
                                 <span>五险一金</span>
                                 <span>五险一金</span>
-                            </div>
+                            </div>-->
                             <div class="infoProduct cssFlex" id="company" onclick="company()">
-                                <img src="../../../image/pro.png" alt="pro" class="pro-img">
+                                <img src="../../../image/pro.png" alt="pro" id="comLogoImg" class="pro-img">
                                 <div class="infoProductContent">
                                     <div id="c_id" style="display: none;"></div>
                                     <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
@@ -232,9 +202,9 @@
                                 </div>
                             </div>
 
-                            <div class="map-compony" id="container">
+                            <!--<div class="map-compony" id="container">
 
-                            </div>
+                            </div>-->
                         </div>
 
 
@@ -260,6 +230,14 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+<script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
+<script src="comment/magicAll.js"></script>
+<script src="comment/magicCom1.js"></script>
+<script src="comment/magicCom2.js"></script>
+<script src="comment/magicPosiDetail.js"></script>
+<script src="comment/bus.js"></script>
+
 <script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
@@ -270,15 +248,66 @@
     // console.log("card", card_el);
     // console.log("card height: "+card_el.style.height);
 
-    var job_id, cid, uid, ptoken;
+
+
+    var job_id, cid,jobId, uid, ptoken,s_id,h_type,magicBGheight,ms_type,search,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
     apiready = function () {
+        var magicAll = magicAllInit(Vue);
+        var magicCom1 = magicCom1Init(Vue);
+        var magicCom2 = magicCom2Init(Vue);
+        var magicPosiDetail = magicPosiDetailInit(Vue);
+
+        Vue.component('magicAll', magicAll);
+        Vue.component('magicCom1', magicCom1);
+        Vue.component('magicCom2', magicCom2);
+        Vue.component('magicPosiDetail', magicPosiDetail);
+
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+        console.log("a01_w",a01_w)
+        console.log("winWidth/2",winWidth/2)
+
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+        console.log("bevelLength",bevelLength)
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w-10)*0.23-25;    // 100
+
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
+
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                closeApp();
+            } else {
+                api.toast({msg: '再按一次退出应用'});
+            }
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
+        }
+
+
+
         job_id = api.pageParam.job_id;
+        h_type = api.pageParam.h_type;
+        ms_type = api.pageParam.ms_type;
+        search = api.pageParam.search;
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
-        console.log("user=",uidUser)
         if (job_id){
-            positionDe(job_id)
-            return;
+            console.log("biedeyemian",job_id)
+            console.log("biedeyemian",search)
+            positionDe(job_id,h_type,ms_type,search)
         }
         if (!uidUser){
             ajaxGetWithProgress(JobId, '', function (data, err) {
@@ -292,12 +321,14 @@
                     uid = data.uid;
                     ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
+                    document.getElementById('job_id').value = data.job_id ;
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
                     document.getElementById('z_user_job').innerText = data.z_user_job || '未填写';
@@ -306,17 +337,6 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }
 
                 }
             })
@@ -332,12 +352,14 @@
                     cid = data.c_id;
                     uid = data.uid;
                     ptoken = data.uid;
+                    jobId = data.job_id;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
@@ -347,26 +369,20 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }
+
 
                 }
             })
         }
-        function positionDe(jobId) {
-
+        function positionDe(job_id,h_type,ms_type,search) {
             var obj = {
-                job_id: jobId || job_id
+                uid : localStorage.getItem("user"),
+                job_id: job_id,
+                search : search,
+                h_type : h_type,
+                ms_type : ms_type,
             }
+            console.log("biedeyemina",obj)
             ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
                 // alert(JSON.stringify(data));
                 console.log("positiondata=",data);
@@ -379,10 +395,11 @@
                     ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
-                    document.getElementById('edu_ex').innerText = data.edu_ex || '未填写';
+                    document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
                     document.getElementById('user_name').innerText = data.p_name || '未填写';
-                    document.getElementById('hrImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('hrImg').src = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
+                    document.getElementById('comLogoImg').src = imgSrcFun(data.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/bdifhida5ahcyrkz.png';
                     document.getElementById('c_name').innerText = data.c_name || '未填写';
                     document.getElementById('c_name1').innerText = data.c_name || '未填写';
                     document.getElementById('financing').innerText = data.financing || '未填写';
@@ -392,83 +409,141 @@
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
                     document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
 
-                    if (data.skills) {
-                        var skills = data.skills.split(',');
-                        var doms = []
-                        for (var i = 0; i < skills.length; i++) {
-                            var str = '<span>'+ skills[i] +'</span>';
-                            doms.push(str);
-                        }
-                        document.getElementById('skills').innerHTML = doms.join('');
-                    } else {
-                        document.getElementById('skills').innerHTML = '';
-                    }
 
                 }
-
             });
         }
 
         new Vue({
             el: '#app1',
             data: {
-                list: [],
-                list1: [],
-                isHide: true,
-                active: false,
-                index1: -1,
-                index2: -1
+                active:'magicAll',
+                // 聊天
+                JIM : '',
+                pid_accept : '',         //接收消息者 username
+                pid_name : '',             //接收消息者 name
+                appkey : '',
+                random_str : '',
+                signature : '',
+                timestamp : '',
+                timeIndex : '',
             },
             created: function () {
-                this.queryListRandom()
+                this.togle()
+            },
+
+            mounted :  function (){
+                var that = this
+
+                that.active = store.state.obj.magicCom;
+                api.addEventListener({
+                    name: 'comCom1',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = ret.value.key.magicCom1;
+                });
+                api.addEventListener({
+                    name: 'comCom2',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    that.active = ret.value.key.magicCom2;
+                });
+                api.addEventListener({
+                    name: 'jobAll',
+                }, function(ret, err) {
+                    console.log("ret",ret);
+                    console.log("job_id",ret.value.key.job_id)
+                    that.active = ret.value.key.magicCom;
+                    positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+
+                });
+
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width =winWidth + "px"
+                bgBlack.style.height =winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
+                // 里面小盒子宽度
+                for (var i =0;i<magicBtn.length ; i++){
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i =0;i<magicSubBox.length ; i++){
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i =0;i<iconImg.length ; i++){
+                    iconImg[i].style.width = m_d/2 + "px"
+                    iconImg[i].style.height = m_d/2 + "px"
+                }
+
             },
             methods: {
-                queryListRandom: function () {
-                    var that = this;
-                    ajaxGetWithProgress(queryListRandom, {}, function (data, err) {
-                        console.log(data);
 
-                        that.list = data.job;
-                        that.list1 = data.company;
-                        // console.log(that.list)
-                        document.getElementById('app1').classList.remove('isDisplay');
-                    });
+                MenuListQyMenu: function () {
+                    var that = this
+                    ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
+                        console.log("magicall1234", data)
+                        var jobList = data.job
+                        console.log(jobList)
+                        if (data) {
+                            if (jobList == null) {
+                                that.listJob = ''
+                            } else {
+                                that.listJob = jobList
+                            }
+                            that.magicComCid1 = data.company[0].c_id
+                            that.magicCom1Img = data.company[0].logo_icon
+                            that.magicCom1Text = data.company[0].c_name
+
+                            that.magicComCid2 = data.company[1].c_id
+                            that.magicCom2Img = data.company[1].logo_icon
+                            that.magicCom2Text = data.company[1].c_name
+                        }
+
+                    })
+
                 },
                 togle: function () {
-                    document.getElementById('subBox').classList.remove('isDisplay');
-                    console.log(123)
-                    this.active = true;
-                    var that = this;
-                    this.queryListRandom();
-                    setTimeout(function () {
-                        that.active = false;
-                    }, 1500)
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        this.MenuListQyMenu();
+                    }
                 },
-                detailClick: function (index,job_id) {
-                    this.index1 = index;
-                    this.index2 = -1;
-                    console.log("job_id",job_id)
-                    positionDe(job_id)
+
+                hideBg : function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
                 },
-                detailClick2: function (index,c_id) {
-                    this.index2 = index;
-                    this.index1 = -1;
-                    console.log(c_id)
-                    openNewWindow("companyInfo", "../home/companyInfo.html", {
-                        cid: c_id
-                    });
-                },
-                hideHandle: function () {
-                    document.getElementById('subBox').classList.add('isDisplay');
-                }
+
 
             }
         })
-        var map = new AMap.Map("container", {
+        /*var map = new AMap.Map("container", {
             resizeEnable: true,
             zoom: 16
         });
-        map.clearMap();
+        map.clearMap();*/
 
     };
 
@@ -483,22 +558,46 @@
 
     function chatJob() {
         var uidUser = localStorage.getItem("user")
+        console.log(uidUser)
         if (!uidUser){
             openNewWindow("login", "../../login/login.html");
             return;
         }
 
-        toast("功能正在开发中")
-        return;
 
-        var token = localStorage.getItem('person_id');
-        openNewWindow("chat_Room", "../chat/chat_Room.html", {
-            token: token,
-            ptoken: ptoken,
-        });
+        var obj = {
+            ptoken : ptoken,
+            job_id : jobId,
+
+        }
+        console.log(obj)
+
+        ajaxGetWithProgress(addTopicLink,obj,function (data) {
+            console.log("addTopicLink",data)
+            if (data){
+                var token = localStorage.getItem('person_id');
+                openNewWindow("chat_Room", "../chat/chat_Room.html", {
+                    token: token,
+                    ptoken: ptoken,
+                    pid_name : document.getElementById('user_name').innerText,
+                    HtmlName: "position",
+                    job_id: jobId,
+                    pid_accept: data.date.pid_accept,
+                    pid_icon: data.date.pid_icon,
+                });
+            }
+        })
+
+
+
+
     }
 
-
+    function historysClick() {
+        openNewWindow("historySearch", "./historySearch.html", {
+            // c_id: s_id,
+        });
+    }
 
     // 点击投递简历
     function sendResume() {
@@ -525,7 +624,9 @@
         //     uid: uid
         // });
     }
-
+    function posiShareClick() {
+        toast("暂无分享")
+    }
 </script>
 </body>
 </html>

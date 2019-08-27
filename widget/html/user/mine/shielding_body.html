@@ -147,34 +147,7 @@
 
     // 刷新页面
     function reload() {
-        var person_id = localStorage.getItem('person_id');
-
-        // console.log(uid);
-        ajaxGetWithProgress(queryShieldCompany, {
-            person_id: person_id
-        }, function (data, err) {
-            // alert(JSON.stringify(data));
-            console.log(123, data);
-            if (data.ShieldCompany) {
-                var box = document.querySelector('.resume_expectations_content');
-                document.getElementById('shielding_num').innerText = data.ShieldCompany.length || 0;
-                var arr = [];
-                var list = data.ShieldCompany;
-                for (var i = 0; i < list.length; i++) {
-                    var str = '<div class="resume_expectations_item">\n' +
-                        '                    <div class="info-choose cssFlex">\n' +
-                        '                        <span class="info-choose-name">'+ list[i].c_name +'</span>\n' +
-                        '                        <div class="info-choose-main cssFlex" onclick="clearCompany('+ list[i].id +')">\n' +
-                        '                            <img src="../../../icon/mine/guanbi-32x.png" alt="right" class="info-img-right">\n' +
-                        '                        </div>\n' +
-                        '                    </div>\n' +
-                        '                </div>';
-                    arr.push(str);
-                }
-                box.innerHTML = arr.join(' ');
-            }
-
-        });
+        window.location.reload()
     }
 </script>
 </body>

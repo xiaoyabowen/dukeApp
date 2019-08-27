@@ -138,7 +138,7 @@
     apiready = function () {
         var proPageHtml = ''
         var  params = {}
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.person_id = uid
         ajaxGetWithProgress(queryHomePage, params, function (data, err) {
             console.log(data)

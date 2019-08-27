@@ -125,7 +125,7 @@
             请查收并填入下方。</div>
         <div class="authenBox cssFlex">
             <span>验证码：</span>
-            <input type="text" id="authenEmail" value="bowenru@163.com" placeholder="输入企业邮箱地址">
+            <input type="text" id="authenEmail" value="" placeholder="输入企业邮箱验证码">
         </div>
 
         <div class="postSubBtn" onclick="emailYz()">下一步</div>
@@ -145,7 +145,7 @@
     </div>
 </div>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
@@ -182,13 +182,12 @@
 
     // 认证
     function emailYz() {
-        var emaiInput = document.getElementById("emailInputA").value;
+        var emaiInput = document.getElementById("authenEmail").value;
         if (isBlack(emaiInput)){
             toast("验证码不能为空")
             return;
         }
         var obj = {
-
             email:content,
             code: emaiInput,
             c_id: localStorage.getItem("com_id")

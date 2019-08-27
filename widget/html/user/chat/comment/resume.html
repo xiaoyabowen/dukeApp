@@ -19,7 +19,7 @@
                     </div>
                     <div class="subscribed_item_user">
                         <div class="subscribed_item_user_img">
-                            <img :src="item.p_icon" alt="">
+                            <img :src="item.p_icon.split(',')[0]" alt="">
                         </div>
                         <div class="subscribed_item_user_name">
                             {{item.p_name}}·{{item.z_user_job}}
@@ -28,7 +28,7 @@
                 </div>
                 <div class="subscribed_item_right">
                     <div class="subscribed_item_range">
-                        {{item.ratio}}k
+                        {{item.ratio}}
                     </div>
                     <div class="subscribed_item_date">{{filterTime1(item.open_time)}}</div>
                 </div>

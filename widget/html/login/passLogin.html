@@ -197,13 +197,22 @@
             margin: 0.5rem 0 0.66rem;
         }
         .threeLi>li{
-            width: 33%;
+            width:50%;
             text-align: center;
         }
         .threeLi>li>img{
-            display: inline-block;
+            display: block;
             width: 0.94rem;
             height: 0.94rem;
+            margin: 0 auto 0.12rem;
+
+        }
+        .threeLi>li>span{
+            height:0.36rem;
+            font-size:0.26rem;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:0.36rem;
         }
         .login-title>img{
             display: block;
@@ -231,15 +240,15 @@
                     <span class="phone-top">+86</span>
                     <!--<input id="phone" type="number" placeholder="请输入您的手机号">-->
 
-                    <input id="phone" type="input" value="15901420537" placeholder="请输入您的手机号">
+                    <input id="phone" type="input" value="" placeholder="请输入您的手机号">
 
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="password" value="123" placeholder="请输入密码">
+                    <input id="password" type="password" value="" placeholder="请输入密码">
                     <img src="../../image/login/hide.png" alt="password show" id="passShow">
                 </div>
             </div>
-            <button class="login-href" onclick="goHome()">进入渡客</button>
+            <button class="login-href" @click="goHome()">进入渡客</button>
             <div class="passReturnBtn cssFlex">
                 <span class="subLogin" onclick="returnLogin()">验证码登陆</span>
                 <span class="subLogin" onclick="returnPass()">忘记密码？</span>
@@ -250,12 +259,11 @@
                 <ul class="cssFlex threeLi">
                     <li>
                         <img src="../../image/login/wechat.png" alt="weixin">
+                        <span>微信登陆</span>
                     </li>
                     <li>
-                        <img src="../../image/login/qq.png" alt="qq">
-                    </li>
-                    <li>
-                        <img src="../../image/login/weibo.png" alt="weibo">
+                        <img src="../../image/login/in.png" alt="qq">
+                        <span>领英登录</span>
                     </li>
                 </ul>
             </div>
@@ -265,7 +273,6 @@
     </div>
 </div>
 <script type="text/javascript" src="../../script/api.js"></script>
-<script type="text/javascript" src="../../script/util.js"></script>
 <script type="text/javascript" src="../../script/kv.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/user.js"></script>
@@ -274,6 +281,9 @@
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../script/data.js"></script>
+<script src="../../script/jmessage-sdk-web.2.6.0.min.js"></script>
+<script src="../../script/vue.min.js"></script>
+
 <script>
     // 点击是否查看密码
     var passId = document.getElementById('passShow');
@@ -288,11 +298,100 @@
             passInput.setAttribute("type","password")
         }
     })
-
+    var url,appkey,random_str,signature,timestamp,JIM
     apiready = function () {
+        url = api.pageParam.url
+
+        new Vue({
+            el: '#main',
+            data: {
+                personId :'',
+                // 聊天
+                JIM : '',
+                pid_accept : '',         //接收消息者 username
+                pid_name : '',             //接收消息者 name
+                appkey : '',
+                random_str : '',
+                signature : '',
+                timestamp : '',
+
+            },
+            created: function () {
+                // this.token = api.pageParam.token;
+
+                // this.getSignatureJiGuang();
+
+
+
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                goHome : function () {
+
+                    var that = this
+                    var params = {};
+                    params.pwd = $api.byId("password").value;
+                    params.phone = $api.byId("phone").value;
+                    if (isBlack(params.phone)) {
+                        toast('请输入手机号');
+                        api.hideProgress();
+                        return;
+                    }
+                    if (isBlack(params.pwd)) {
+                        toast('请输入密码');
+                        api.hideProgress();
+                        return;
+                    }
+                    ajaxGetUser(LoginAndRegist, params, function (data, err) {
+
+                        console.log("Logindata=",data)
+                        api.hideProgress();
+
+                        phoneValue = data.phone
+                        that.personId = data.user_uid
+                        // that.getSignatureJiGuang()
+                        localStorage.setItem('phone',phoneValue);
+
+                        console.log(localStorage.getItem("user"))
+                        // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
+                        if (data.success == false) {
+                            localStorage.setItem('user',data.user_uid);
+                            localStorage.setItem('person_id',data.user_uid);
+                            console.log(phoneValue)
+                            openNewWindow("loginComfir", "./loginComfir.html",{
+                                phoneValue : phoneValue
+                            })
+                        } else if (data.date == 1 && data.success == true){
+                            localStorage.setItem('user',data.user_uid);
+                            localStorage.setItem('person_id',data.user_uid);
+                            openNewWindow("loginComfir", "./loginComfir.html",{
+                                phone :phoneValue
+                            })
+                        } else if (data.msg == false){
+                            toast("密码错误")
+                        }  else if (data.msg == "该用户不存在"){
+                            toast("该用户不存在")
+                        }else{
+                            localStorage.setItem('user',data.user_uid);
+                            localStorage.setItem('person_id',data.user_uid);
+                            if (data.role_type == 1){
+                                openNewWindow("home", "../user/home/home.html")
+                            } else if (data.role_type == 2){
+                                openNewWindow("home", "../company/home/home.html")
+                            }
+                        }
+
+                    });
+                },
+
+            }
+        })
+
 
         //添加安卓退出按钮事件
-        /*api.addEventListener({
+        api.addEventListener({
             name: 'keyback'
         }, function (ret, err) {
             closeOnKeyBack();
@@ -309,56 +408,11 @@
             setTimeout(function () {
                 backButtonPress = 0;
             }, 1000);
-        }*/
+        }
 
         var Height = $(window).height();   //获取当前页面高度
         $(window).resize(function () {
             $('body').height(Height);
-        });
-    }
-    //参观
-    function goHome() {
-        // openNewWindow("home", "../user/home/home.html")
-        api.showProgress();
-        var params = {};
-        params.pwd = $api.byId("password").value;
-        params.phone = $api.byId("phone").value;
-        params.token_type = "2";
-        params.role_type = localStorage.getItem("role");
-        if (isBlack(params.phone)) {
-            toast('请输入手机号');
-            api.hideProgress();
-            return;
-        }
-        if (isBlack(params.pwd)) {
-            toast('请输入密码');
-            api.hideProgress();
-            return;
-        }
-        ajaxGetUser(LoginAndRegist, params, function (data, err) {
-            console.log(23434,data)
-
-            api.hideProgress();
-            if (data.success == false) {
-                toast("账户密码错误")
-            } else {
-                if (data.role_type == 1){
-                    localStorage.setItem('user',JSON.stringify(data));
-                    localStorage.setItem('person_id',data.user_uid);
-                    localStorage.setItem('role_type',data.role_type);
-                    openNewWindow("home", "../user/home/home.html")
-                } else if (data.role_type == 2){
-                    localStorage.setItem('user',JSON.stringify(data));
-                    localStorage.setItem('person_id',data.user_uid);
-                    localStorage.setItem('role_type',data.role_type);
-                    localStorage.setItem('com_id',data.c_id);
-                    openNewWindow("home", "../company/home/home.html")
-                    // openNewWindow("mangePosition", "../company/mine/mangePosition.html")
-                    // openNewWindow("subscribed_positions", "../company/mine/subscribed_positions.html")
-                }
-
-            }
-
         });
     }
 
@@ -366,7 +420,13 @@
         openNewWindow("returnPass", "returnPass.html")
     }
     function returnLogin() {
-        openNewWindow("login", "login.html")
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+        })
+        closeWin();
+
     }
 
 

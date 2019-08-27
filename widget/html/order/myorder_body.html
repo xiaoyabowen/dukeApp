@@ -9,91 +9,853 @@
     <link rel="stylesheet" href="../../css/api.css"/>
     <link rel="stylesheet" href="../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../css/myOrderCommon.css"/>
+    <link rel="stylesheet" href="../../css/mui.min.css">
     <style>
 
         .Box{
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
 
+
+
     </style>
 </head>
 <body class="commonBg">
 
 <div class="Box" id="app1">
+    <div class="resume_main">
+        <div class="resume_main_hander cssFlex">
+            <span @click="orderAll('all', 1)" :class="active == 'all' ? 'active' : ''">全部订单</span>
+            <span @click="orderNotPay('notpay',5)" :class="active == 'notpay' ? 'active' : ''">待付款</span>
+            <span @click="orderPay('pay',2)" :class="active == 'pay' ? 'active' : ''">待发货</span>
+            <span @click="orderWait('wait', 3)" :class="active == 'wait' ? 'active' : ''">待收货</span>
+            <span @click="orderStar('star', 4)" :class="active == 'star' ? 'active' : ''">待评价</span>
+        </div>
+    </div>
+    <div class="line20"></div>
+    <!--全部订单-->
+    <div class="new" v-show="active == 'all'">
+        <!--<div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listall.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
+        <div class="comBox" v-for="(item,index) in listall" :key="index">
+            <div class="comtile" v-show="item.orderStatus == 1">
+                <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 2">待收货</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 3">待评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 4">已评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 5">退款成功</span>
+            </div>
+
+            <div class="comtile" v-show="item.orderStatus == 0">
+                <span class="commonFont comtileText" v-show="item.orderStatus == 0">待付款</span>
+            </div>
+
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 1">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游   类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元
+                    </div>
+                </div>
+            </div>
+            <!--面膜类型-->
+            <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+                <i v-show="item.freight == 1">（免运费）</i>
+                <i v-show="item.freight == 2">（有运费）</i>
+            </div>
+            <div v-else></div>
+            <!--旅游   类型-->
+            <div class="comConPrice" v-show="item.tId == 2"  v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+            </div>
+            <div v-else></div>
+            <!--已支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
+                <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
+                <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
+                <!--<span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>-->
+            </div>
+
+            <!--未支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+            </div>
+
+            <!--待收货-->
+            <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
+                <div class="comGoodBtn margibottom cssFlex">
+                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
+                </div>
+                <div class="fareSpeed  commonFont">
+                    <i class="fareSpeedName">{{item.express}}：</i>
+                    到北京市【北京转运中心】
+                </div>
+            </div>
+
+            <!--待评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
+            </div>
+
+            <!--已评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+            </div>
+
+            <!--退款成功-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 5">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass">钱款去向</span>
+            </div>
 
 
-    <div class="boxSub">
+            <div class="line20"></div>
 
+        </div>
 
     </div>
+    <!--待支付-->
+    <div class="new" v-show="active == 'notpay'">
+        <!--<div :class="listnotpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listnotpay.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
+        <div class="comBox" v-for="(item,index) in listnotpay" :key="index">
+            <div class="comtile" v-show="item.orderStatus == 1">
+
+                <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 2">待收货</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 3">待评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 4">已评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 5">退款成功</span>
+
+            </div>
+
+            <div class="comtile" v-show="item.orderStatus == 0">
+                <span class="commonFont comtileText" v-show="item.orderStatus == 0">待付款</span>
+            </div>
+
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"   v-show="item.tId == 1">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游   类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元
+                    </div>
+                </div>
+            </div>
+
+            <!--  农产品  类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 5">
+
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}</i>元 <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--面膜类型-->
+            <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+                <i v-show="item.freight == 1">（免运费）</i>
+                <i v-show="item.freight == 2">（有运费）</i>
+            </div>
+            <div v-else></div>
+            <!--旅游   类型-->
+            <div class="comConPrice" v-show="item.tId == 2"  v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+            </div>
+            <div v-else></div>
+            <!--已支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
+                <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
+                <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
+            </div>
+
+            <!--未支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+            </div>
+
+            <!--待收货-->
+            <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
+                <div class="comGoodBtn margibottom cssFlex">
+                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+                    <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
+                </div>
+                <div class="fareSpeed  commonFont">
+                    <i class="fareSpeedName">{{item.express}}：</i>
+                    到北京市【北京转运中心】
+                </div>
+            </div>
+
+            <!--待评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
+            </div>
+
+            <!--已评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+            </div>
+
+            <!--退款成功-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 5">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass">钱款去向</span>
+            </div>
+
+
+            <div class="line20"></div>
+
+        </div>
+    </div>
+    <!--已支付-->
+    <div class="new" v-show="active == 'pay'">
+        <!--<div :class="listpay.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listpay.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
+        <div class="comBox" v-for="(item,index) in listpay" :key="index">
+            <div class="comtile" v-show="item.orderStatus == 1">
+
+                <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 2">待收货</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 3">待评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 4">已评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 5">退款成功</span>
+
+            </div>
+
+            <div class="comtile" v-show="item.orderStatus == 0">
+                <span class="commonFont comtileText" v-show="item.orderStatus == 0">待付款</span>
+            </div>
+
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"   v-show="item.tId == 1">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游   类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
+                <img :src="orderImg" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥399</i>元
+                    </div>
+                </div>
+            </div>
+            <!--面膜类型-->
+            <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+                <i v-show="item.freight == 1">（免运费）</i>
+                <i v-show="item.freight == 2">（有运费）</i>
+            </div>
+            <div v-else></div>
+            <!--旅游   类型-->
+            <div class="comConPrice" v-show="item.tId == 2"  v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+            </div>
+            <div v-else></div>
+            <!--已支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
+                <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
+                <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
+            </div>
+
+            <!--未支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+            </div>
+
+            <!--待收货-->
+            <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
+                <div class="comGoodBtn margibottom cssFlex">
+                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+                    <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
+                </div>
+                <div class="fareSpeed  commonFont">
+                    <i class="fareSpeedName">申通快递：</i>
+                    到北京市【北京转运中心】
+                </div>
+            </div>
+
+            <!--待评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
+            </div>
+
+            <!--已评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+            </div>
+
+            <!--退款成功-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 5">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass">钱款去向</span>
+            </div>
+
+
+            <div class="line20"></div>
+
+        </div>
+    </div>
+    <!--待收货-->
+    <div class="new" v-show="active == 'wait'">
+
+        <!--<div :class="listwait.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="listwait.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
+        <div class="comBox" v-for="(item,index) in listwait" :key="index">
+            <div class="comtile" v-show="item.orderStatus == 1">
+
+                <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 2">待收货</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 3">待评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 4">已评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 5">退款成功</span>
+
+            </div>
+
+            <div class="comtile" v-show="item.orderStatus == 0">
+                <span class="commonFont comtileText" v-show="item.orderStatus == 0">待付款</span>
+            </div>
+
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"   v-show="item.tId == 1">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游   类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥399</i>元
+                    </div>
+                </div>
+            </div>
+            <!--面膜类型-->
+            <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+                <i v-show="item.freight == 1">（免运费）</i>
+                <i v-show="item.freight == 2">（有运费）</i>
+            </div>
+            <div v-else></div>
+            <!--旅游   类型-->
+            <div class="comConPrice" v-show="item.tId == 2"  v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+            </div>
+            <div v-else></div>
+            <!--已支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
+                <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
+                <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
+            </div>
+
+            <!--未支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+            </div>
+
+            <!--待收货-->
+            <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
+                <div class="comGoodBtn margibottom cssFlex">
+                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+                    <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
+                </div>
+                <div class="fareSpeed  commonFont">
+                    <i class="fareSpeedName">{{item.express}}：</i>
+                    到北京市【北京转运中心】
+                </div>
+            </div>
+
+            <!--待评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
+            </div>
+
+            <!--已评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+            </div>
+
+            <!--退款成功-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 5">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass">钱款去向</span>
+            </div>
+
+
+            <div class="line20"></div>
+
+        </div>
+    </div>
+    <!--待评价-->
+    <div class="new" v-show="active == 'star'">
+        <!--<div :class="liststar.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
+        <div  :class="liststar.length == 0 ? '' : 'isDisplay'">
+            <div class="notImg">
+                <img src="../../image/myfa.png" alt="du" class="notImgMy">
+            </div>
+            <div class="notMyConText">您没有相关订单！</div>
+        </div>
+        <div class="comBox" v-for="(item,index) in liststar" :key="index">
+            <div class="comtile" v-show="item.orderStatus == 1">
+
+                <span class="commonFont comtileText" v-show="item.adrStatus == 1">买家已付款</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 2">待收货</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 3">待评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 4">已评价</span>
+                <span class="commonFont comtileText" v-show="item.adrStatus == 5">退款成功</span>
+
+            </div>
+
+            <div class="comtile" v-show="item.orderStatus == 0">
+                <span class="commonFont comtileText" v-show="item.orderStatus == 0">待付款</span>
+            </div>
+
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"   v-show="item.tId == 1">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游   类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"   v-show="item.tId = 2">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥399</i>元
+                    </div>
+                </div>
+            </div>
+            <!--面膜类型-->
+            <div class="comConPrice commonFont" v-show="item.tId == 1" v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+                <i v-show="item.freight == 1">（免运费）</i>
+                <i v-show="item.freight == 2">（有运费）</i>
+            </div>
+            <div v-else></div>
+            <!--旅游   类型-->
+            <div class="comConPrice" v-show="item.tId == 2"  v-if="item.orderStatus == 1">
+                实付：<i class="priceColor">¥{{item.priceAll}}</i>
+            </div>
+            <div v-else></div>
+            <!--已支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 1">
+                <span class="comBtnClass" @click="RemindClick(item.delStatus,item.bId)" v-show="item.delStatus == 0">提醒发货</span>
+                <span class="comBtnClass" v-show="item.delStatus == 1">已提醒发货</span>
+            </div>
+
+            <!--未支付-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+            </div>
+
+            <!--待收货-->
+            <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
+                <div class="comGoodBtn margibottom cssFlex">
+                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+                    <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
+                </div>
+                <div class="fareSpeed  commonFont">
+                    <i class="fareSpeedName">{{item.express}}：</i>
+                    到北京市【北京转运中心】
+                </div>
+            </div>
+
+            <!--待评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+                <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
+            </div>
+
+            <!--已评价-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <span class="comBtnClass" @click="againPayClick()">再次购买</span>
+            </div>
+
+            <!--退款成功-->
+            <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 5">
+                <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
+                <span class="comBtnClass">钱款去向</span>
+            </div>
+
+
+            <div class="line20"></div>
+
+
+            <div v-show="liststar.length <=0">暂无数据</div>
+
+        </div>
+    </div>
+
 
 </div>
 
 
 
-
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../script/vue.min.js"></script>
 
 <script>
-
-    var cid,uid,url,index;
+    var uid,Htmlname;
     apiready = function () {
-        cid = api.pageParam.cid;
-        url = api.pageParam.url;
-        index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        Htmlname = api.pageParam.activeName
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
+                person_id:'',
+                listall: [],
+                listpay: [],
+                listnotpay: [],
+                listwait: [],
+                liststar: [],
+                htmlname :Htmlname,
+                active: '',
+                status: 1,
+                orderImg: "../../image/chat/touxiangm.png",
+                payStatus:1,    //支付状态
+                goodsStatus:1,  //商品状态
+                fareStatus:1,    //  是否 有  运费状态
+                gootBtnStatus:1,    //  商品 按钮
 
             },
+
             created: function () {
-                this.orgnizationPICBbycidlist()
+                // this.active = Htmlname
+                this.htmlname = Htmlname
+                this.person_id = localStorage.getItem("person_id")
+                this.orderAll('all', 1)
+                if (this.htmlname = 'all'){
+
+                    api.addEventListener({
+                        name: 'myorder',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        this.orderAll('all', 1)
+
+                    });
+
+
+                }else if (this.htmlname = 'notpay'){
+                    api.addEventListener({
+                        name: 'myordernotpay',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        this.orderNotPay('notpay', 5)
+
+                    });
+
+
+                }else if (this.htmlname = 'pay'){
+                    this.orderPay('pay',2)
+                }else if (this.htmlname = 'wait'){
+                    this.orderWait('wait', 3)
+                }else if (this.htmlname = 'star'){
+
+                    this.orderStar('star', 4)
+                }
+
             },
             mounted : function (){
+                api.addEventListener({
+                    name: 'myorder',
+                }, function(ret, err) {
+                    console.log(ret);
 
+                    this.active = 'all';
+
+                });
+                api.addEventListener({
+                    name: 'myordernotpay',
+                }, function(ret, err) {
+                    console.log(ret);
+
+                    this.active = 'notpay';
+                    this.orderNotPay('notpay', 5)
+
+                });
             },
             methods: {
-                orgnizationPICBbycidlist : function (){
-                    if (index == 2){
-                        var uid = localStorage.getItem("user").user_id
-                        var obj = {
-                            uid: uid
-                        }
-                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
-                            console.log(data)
-                        })
-                    }
-
-                },
-                preservation: function () {
+                orderAll : function (name,index) {
                     var that = this
-                    var c_id = localStorage.getItem("com_id")
-
-
+                    that.active = name
                     var obj = {
-                        c_id : c_id,
-
+                        pid : that.person_id
                     }
-                    console.log(obj)
-                    ajaxGetWithProgress(createOrgnization,obj,function (data,ret) {
-                        console.log(data)
-                        if (data.return.status) {
-                            var frameName = url + "_body";
-                            api.execScript({
-                                name:url,
-                                frameName: frameName,
-                                script: apiready()
-                            })
-                            closeWin();
+                    ajaxGetWithProgress(allCommodityOrder,obj,function (data) {
+                        console.log("alldata",data)
+                        that.listall = data.Order;
+                    })
+                },
+                orderPay : function (name,index) {
+                    var that = this
+                    that.active = name
+                    var obj = {
+                        pid : that.person_id
+                    }
+                    ajaxGetWithProgress(queryPayOrderByPidCommodityProFile,obj,function (data) {
+                        console.log("paydata",data)
+                        that.listpay = data.PayOrder;
+                    })
+                },
+                orderNotPay : function (name,index) {
+                    var that = this
+                    that.active = name
+                    var obj = {
+                        pid : that.person_id
+                    }
+                    ajaxGetWithProgress(queryNoOrderByPidCommodityProFile,obj,function (data) {
+                        console.log("orderNotPay",data)
+                        that.listnotpay = data.NoOrder;
+                    })
+                },
+                orderWait : function (name,index) {
+                    var that = this
+                    that.active = name
+                    var obj = {
+                        pid : that.person_id
+                    }
+                    ajaxGetWithProgress(takeCommodityOrderCommodityProFile,obj,function (data) {
+                        console.log("orderWait",data)
+                        that.listwait = data.TakeOrder;
+                    })
+                },
+                orderStar : function (name,index) {
+                    var that = this
+                    that.active = name
+                    var obj = {
+                        pid : that.person_id
+                    }
+                    ajaxGetWithProgress(evaCommodityOrderCommodityProFile,obj,function (data) {
+                        console.log("orderStar",data)
+                        that.liststar = data.EvaOrder;
+                    })
+                },
+                //  商品详情
+                goodInfoClick : function (oId,cId,bId,adrStatus,tId) {
+                    var that = this
+                    openNewWindow("goodInfo", "goodInfo.html",{
+                        oId : oId,
+                        cId : cId,
+                        bId : bId,
+                        tId : tId,
+                        adrStatus : adrStatus,
+                    })
+                },
+                //  去付款
+                payGoClick : function (name,index) {
+                    var that = this
+                    toast("付款")
+                    /*openNewWindow("orderStar", "comment/orderStar.html",{
+                        name : "待收货"
+                    })*/
+                },
+                // 立即评价
+                starOrderClick : function (pId,cId,bId) {
+                    var that = this
+                    openNewWindow("orderStar", "comment/orderStar.html",{
+                        pId : pId,
+                        cId : cId,
+                        bId : bId,
+                        url : "myorder"
+                    })
+                },
+
+                //提醒发货
+                RemindClick :function (delStatus,bId) {
+                    var that = this
+                    var obj = {
+                        delStatus : 1,
+                        bId : bId,
+                    }
+                    ajaxGetWithProgress(CommodityProFileRemind,obj,function (data) {
+                        console.log("tixing",data)
+                        if (data) {
+                            toast("提醒成功")
+                            that.orderAll('all', 1)
                         }
+
+                    })
+                },
+                //确认收货
+                confirmClick :function (adrStatus,bId) {
+                    var that = this
+                    var obj = {
+                        adrStatus : 3,
+                        bId : bId,
+                    }
+                    ajaxGetWithProgress(CommodityProFileRemind,obj,function (data) {
+                        console.log("queren",data)
+                        if (data) {
+                            toast("确认收货成功")
+                            that.orderAll('all', 1)
+                        }
+
+                    })
+                },
+                //删除订单
+                delOrderClick :function (oId,bId) {
+                    var that = this
+                    var obj = {
+                        oid : oId,
+                        bid : bId,
+                    }
+                    ajaxGetWithProgress(deleteOrderCommodityProFile,obj,function (data) {
+                        console.log("删除",data)
+                        if (data) {
+                            toast("删除成功")
+                            that.orderAll('all', 1)
+                        }
+
                     })
                 },
             }

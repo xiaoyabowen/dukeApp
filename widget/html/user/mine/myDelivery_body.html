@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
+    <title>我的投递</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
@@ -173,7 +173,7 @@
     apiready = function () {
 
         var params = {}
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.person_id = uid
         ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
             console.log(res);
@@ -202,13 +202,13 @@
                         '                            <img src="../../../image/pro.png" alt="">\n' +
                         '                        </div>\n' +
                         '                        <div class="subscribed_item_user_name">\n' +
-                        '                            '+data[i].user_name+'·'+data[i].z_user_job+'\n' +
+                        '                            '+data[i].p_name+'·'+data[i].z_user_job+'\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                </div>\n' +
                         '                <div class="subscribed_item_right">\n' +
                         '                    <div class="subscribed_item_range">\n' +
-                        '                        '+data[i].ratio+'k\n' +
+                        '                        '+data[i].ratio+'\n' +
                         '                    </div>\n' +
                         '                    <div class="subscribed_item_date">'+data[i].open_time+'</div>\n' +
                         '                </div>\n' +

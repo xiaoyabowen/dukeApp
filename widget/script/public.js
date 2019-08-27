@@ -3,22 +3,25 @@ var isTest = false;
 var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
-var serverUrl = "http://192.168.1.4:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.4:8000/SE4M';
-var Domain = 'http://192.168.1.4:8088';
+
+
+// 本地服务器
+var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.12:8000/SE4M';
+var Domain = 'http://192.168.1.12:8088';
 
 
 /*
-
+// 正式服务器
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
 */
 
 
-
 var rootWindowName = "root";
 simpleVersion = true;
+
 
 //分享地址
 var shareNotice = "http://39.107.247.82:99/html/classNotice_detail_body.html?nid=";
@@ -32,15 +35,126 @@ function al(data) {
     }
 }
 
+//  市场上线
+var SendSmsCode = serverUrl + "/Status/status";
+
+
 // 接口    信息  列表
 
 var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
+
 
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
 var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
 
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
+// 账号密码登录
+var CreatePersonBasicUserProfile = serverUrl + "/UserProfile/CreatePersonBasic";
+// 判断是千里马还是伯乐
+var quRoleTypeUserProfile = serverUrl + "/Login/quRoleType";
+
+// 切换角色
+var suIdentityLogin = serverUrl + "/Login/suIdentity";
+// 千里马  home 搜索
+var QueryUserSolr = serverUrl + "/UserProfile/QueryUserSolr";
+// 伯乐  home 搜索
+var QueryRecruiteSolr = serverUrl + "/UserProfile/QueryRecruiteSolr";
+// 千里马 历史搜索
+var querySearchHistory = serverUrl + "/UserProfile/querySearchHistory";
+// 千里马 删除历史搜索
+var removeSearchHistory = serverUrl + "/UserProfile/removeSearchHistory";
+
+// 千里马  魔方
+var MenuListQyMenu = serverUrl + "/Menu/MenuListQ";
+// 千里马  点击详情
+var JobThreeOneCompanyMueu = serverUrl + "/Menu/JobThreeOneCompanyMueu";
+
+
+// 巨划算  魔方
+var commodityList = Domain + "/CommodityProFile/commodityList";
+
+// 千里马  点击公司查询该公司下的四个职位和一个随机公司
+var OneCompanyFourJobMenu = serverUrl + "/Menu/OneCompanyFourJob";
+
+// 伯乐  初次进入魔方
+var SmartMenuMenu = serverUrl + "/Menu/SmartMenu";
+// 伯乐  初次进入首页
+var QueryPersonRandomOne = serverUrl + "/JobProfile/QueryPersonRandomOne";
+
+// 伯乐   uid 随机五个我发布的职位
+var queryJobsByUidMenu = serverUrl + "/Menu/queryJobsByUidMenu";
+
+// 伯乐    job_name  点击职位随机查询五个人才
+var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
+
+// 支付宝  支付  接口
+var payalipayUniform = Domain +'/pay/alipayUniform'
+
+// 确认订单 数量 加减
+var updateBuyNumAndPrice = Domain +'/reserve/updateBuyNumAndPrice'
+
+
+
+// 聊天
+var getSignatureJiGuang = serverUrl + "/JiGuang/getSignature";
+// 聊天
+var MessageListByUserName = serverUrl + "/JiGuang/MessageListByUserName";
+// 聊天
+var JMessagepush = serverUrl + "/JiGuang/JMessagepush";
+
+/*
+* 支付状态   orderStatus  0 未支付
+*            1 支付    -- bill
+*                          adrStatus   0 待收货   1 待评价  2
+*
+*
+* */
+// 我的订单   全部订单
+var allCommodityOrder = Domain + "/CommodityProFile/allCommodityOrder";
+// 我的订单   已支付
+var queryPayOrderByPidCommodityProFile = Domain + "/CommodityProFile/queryPayOrderByPid";
+// 我的订单   待收货
+var takeCommodityOrderCommodityProFile = Domain + "/CommodityProFile/takeCommodityOrder";
+// 我的订单   待评价
+var evaCommodityOrderCommodityProFile = Domain + "/CommodityProFile/evaCommodityOrder";
+// 我的订单   待付款
+var queryNoOrderByPidCommodityProFile = Domain + "/CommodityProFile/queryNoOrderByPid";
+
+// 我的订单  提醒发货
+var CommodityProFileRemind = Domain + "/CommodityProFile/Remind";
+// 我的订单  删除订单
+var deleteOrderCommodityProFile = Domain + "/CommodityProFile/deleteOrder";
+// 我的订单  商品详情
+var OrderSummaryCommodityProFile = Domain + "/CommodityProFile/OrderSummary";
+
+// 我的订单  商品 评价
+var CommodityProFileEvaluation = Domain + "/CommodityProFile/Evaluation";
+// 我的订单  我的足迹
+var Queryhistory = Domain + "/CommodityProFile/Queryhistory";
+
+
+
+
+
+
+
+
+// 面试日程列表
+var queryInvitationList = serverUrl + "/EvaluateProfile/queryInvitationList";
+// 面试日程详情
+var queryInvitationSummary = serverUrl + "/EvaluateProfile/queryInvitationSummary";
+
+// 面试评价页面  显示的头像 名字 公司名 职务
+var queryEvaluateRecruiter = serverUrl + "/EvaluateProfile/queryEvaluateRecruiter";
+//     面试评价
+var createEvaluate = serverUrl + "/EvaluateProfile/createEvaluate";
+//     投递简历  卡片内容
+var queryJobTopicChatProFile = serverUrl + "/ChatProFile/queryJobTopic";
+//     投递简历
+var sendResume = serverUrl + "/UserProfile/sendResume";
+
+
 
 
 // 获取面试数量
@@ -93,7 +207,7 @@ var GetProjec = serverUrl + "/ProjectExperienceProfile/queryProjectExperienceByI
 var DeleteProjec = serverUrl + "/ProjectExperienceProfile/removeProjectExperience";
 
 // 查询求职期望
-var GetStatus = serverUrl + "/UserProfile/queryIntention";
+var GetStatus = serverUrl + "/UserProfile/queryIntentionById";
 // 修改求职期望
 var SetStatus = serverUrl + "/UserProfile/createIntention";
 
@@ -102,8 +216,9 @@ var EditStatus = serverUrl + "/UserProfile/editIntentionStatus";
 
 // 获取个人中心数据
 var QuerySummary = serverUrl + "/UserProfile/querySummaryPerson";
+
 // 编辑个人中心
-var UpdatePerson = serverUrl + "/UserProfile/updatePerson";
+var CreatePersonUserProfile = serverUrl + "/UserProfile/CreatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
@@ -165,6 +280,14 @@ var deleteHomePage = serverUrl + "/UserProfile/deleteHomePage";
 
 // 隐私设置 修改手机号
 var updatePhone = serverUrl + "/UserProfile/updatePhone";
+// 隐私设置 修改手机号
+var verificationPhone = serverUrl + "/UserProfile/verificationPhone";
+
+
+
+
+// 头像  修改  我的
+var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
 
 
 // 圈子活动列表
@@ -173,6 +296,10 @@ var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
 var createCircle = serverUrl + "/CircleProfile/createCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
+
+
+
+
 // 圈子活动详情
 // var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
 var CircleProfileAllinOne = serverUrl + "/CircleProfile/CircleProfileAllinOne";
@@ -221,7 +348,7 @@ var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
 // 圈子发布活动
 var ActivecreateCircle = serverUrl + "/CircleProfile/CreateCircle";
 // 意见反馈
-var addFeedback = localhostHref + "/addFeedback";
+var addFeedback = serverUrl + "/FeedbackFile/addFeedback";
 
 // 意见反馈  图片
 // var addFeedBackPic = localhostHref + "/addFeedBackPic";
@@ -229,9 +356,7 @@ var addFeedBackPic = localhostHref + "/Pic";
 
 
 // 圈子发布活动 编辑 图片
-
 var UploadPicCircle = Domain + "/upload/UploadPicCircle";
-
 
 
 //  创建简历  头像
@@ -245,13 +370,27 @@ var lookmeList = serverUrl + "/UserProfile/lookmeList";
 // 聊天-获取订阅号
 var addTopic = serverUrl + "/ChatProFile/addTopic";
 
+// 聊天-获取订阅号
+var addTopicLink = serverUrl + "/ChatProFile/addTopicLink";
+
+
+
+
 // 聊天-联系人列表
 var queryChatList = serverUrl + "/ChatProFile/queryChatList";
+// 聊天-联系人列表
+var queryChatListB = serverUrl + "/ChatProFile/queryChatListB";
 // 聊天-看过我
 var lookmeList = serverUrl + "/UserProfile/lookmeList";
 
 // 巨划算-面膜详情
 var summary = Domain + "/Mask/summary";
+
+// 巨划算-面膜详情
+var summaryCommodityProFile = Domain + "/CommodityProFile/summary";
+
+
+
 // 巨划算-商品收藏
 var collectComm = Domain + "/CommodityProFile/collectComm";
 // 巨划算-添加银行卡-验证银行卡
@@ -283,8 +422,11 @@ var deliveryShow = Domain + "/delivery/show";
 //  删除地址
 var deliveryDelete = Domain + "/delivery/delete";
 
-//  删除地址
+//  moren地址
 var deliverySetAddr = Domain + "/delivery/setAddr";
+
+//   修改 收货 地址
+var updateDeliveryAddress = Domain + "/reserve/updateDeliveryAddress";
 
 //  聚划算  旅游 提交订单
 var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
@@ -292,6 +434,28 @@ var createReserveAndOrder = Domain + "/reserve/createReserveAndOrder";
 
 //  聚划算
 var showVisaInformation = Domain + "/visa/showVisaInformation"
+
+//  聚划算 获取商品首页展示数据
+var commodityListCommodityProFile = Domain + "/CommodityProFile/commodityList"
+
+//  聚划算 希腊房产详情信息
+var housequeryHouseSummary = Domain + "/house/queryHouseSummary"
+
+//  聚划算 希腊房产详情信息
+var createHouseOrderhouse = Domain + "/house/createHouseOrder"
+
+//  聚划算 欧来欧去 查看欧来欧去详情
+var querySummaryByidoloq = Domain + "/oloq/querySummaryByid"
+//  聚划算 欧来欧去 获取该商品的类型和所有城市
+var queryPeopleAndCityoloq = Domain + "/oloq/queryPeopleAndCity"
+//  聚划算 欧来欧去 获取一个月所有的价格和日期
+var queryDateAndPriceoloq = Domain + "/oloq/queryDateAndPrice"
+
+//  聚划算 欧来欧去 点击提交订单，添加订单信息
+var createOrderoloq = Domain + "/oloq/createOrder"
+
+
+
 
 
 // 千里马  简历上传
@@ -303,19 +467,20 @@ var UpdateResumeNameUserProfile = serverUrl + "/UserProfile/UpdateResumeName";
 // 千里马  删除简历
 var deleteResumeNameUserProfile = serverUrl + "/UserProfile/deleteResume";
 // 千里马 发送简历至邮箱
-var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail ";
+var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail";
 
 
 
 // ================================================ 伯乐
 
 
-//  基本信息   上传图片
-var UploadPicon = Domain + "/upload/UploadPicon";
+
 // 发布活动上传图片
 var UploadFlieTest = Domain + "/upload/UploadFlieTest";
 //伯乐创建简历  头像
 var uploadploadFlie = Domain + "/upload/UploadFlie";
+// qianlima  聚划算 收藏
+var QueryAttCommodity = Domain + "/CommodityProFile/QueryAttCommodity";
 
 
 //伯乐上传营业执照  头像
@@ -330,6 +495,10 @@ var queryPersonList = serverUrl + "/JobProfile/queryPersonList";
 var lookJobsList = serverUrl + "/JobProfile/lookJobsList";
 // 伯乐-status=1 新简历 2初试3复试 4录用 5不合适
 var ResumeList = serverUrl + "/JobProfile/ResumeList";
+// 伯乐- 修改面试时间 查询
+var queryApplicationStatusEvaluateProfile = serverUrl + "/EvaluateProfile/queryApplicationStatus";
+// 伯乐- 修改面试时间 修改
+var UpdateInvitationEvaluateProfile = serverUrl + "/EvaluateProfile/UpdateInvitation";
 // 伯乐-查看简历详情
 var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 // 伯乐-消息撤回面试邀请
@@ -337,8 +506,14 @@ var UpdateStatus2 = serverUrl + "/EvaluateProfile/UpdateStatus2";
 // 伯乐-消息不合适
 var UpdateStatus = serverUrl + "/EvaluateProfile/UpdateStatus";
 
-// 公司填写信息
+// 千里马  点击我的
 var querySuccessLogin = serverUrl + "/Login/querySuccess";
+// 伯乐  点击我的
+var queryRecruiterSuccessJobProfile = serverUrl + "/JobProfile/queryRecruiterSuccess";
+// 伯乐  点击我的shoucang
+var QueryAttListUserProfile = serverUrl + "/UserProfile/QueryAttList";
+
+
 
 // 公司 我的 页面   获取  沟通过  数目
 var chatNumAndInvitation = serverUrl + "/JobProfile/chatNumAndInvitation";
@@ -372,10 +547,21 @@ var queryOrgnizationWelfare = serverUrl + "/OrgnizationProfile/queryOrgnizationW
 
 //  伯乐 完善我的公司  状态 高管  已填写  详细信息
 var queryOrgnizationSenior = serverUrl + "/OrgnizationProfile/queryOrgnizationSenior";
-//  伯乐 完善我的公司  状态 产品介绍已填写  详细信息
+//  伯乐 完善我的公司  状态 产品介绍已填写  列表信息
 var queryProductSummary = serverUrl + "/OrgnizationProfile/queryProductSummary";
+//  伯乐 完善我的公司  状态 产品介绍 已填写  列表详情 详细信息
+var queryOneProductSummary = serverUrl + "/OrgnizationProfile/queryOneProductSummary";
+
+
 //  伯乐 完善我的公司  状态 图片  已填写  详细信息
 var orgnizationPICBbycidlist = serverUrl + "/OrgnizationProfile/orgnizationPICBbycidlist";
+
+
+//  伯乐 完善我的公司  公司相册 保存
+var addCompanyPic = serverUrl + "/OrgnizationProfile/addCompanyPic";
+
+//  伯乐 完善我的公司  公司相册  编辑 保存
+var UpdateCompanyPic = serverUrl + "/OrgnizationProfile/UpdateCompanyPic";
 
 
 //  伯乐填写我的公司基本信息
@@ -384,6 +570,9 @@ var createOrgnization = serverUrl + "/OrgnizationProfile/createOrgnization";
 var createCompanySummary = serverUrl + "/OrgnizationProfile/createCompanySummary";
 //  伯乐填写我的公司  产品介绍
 var addCompanyProduct = serverUrl + "/OrgnizationProfile/addCompanyProduct";
+//  伯乐填写我的公司  产品介绍
+var updateCompanyProduct = serverUrl + "/OrgnizationProfile/updateCompanyProduct";
+
 //  伯乐填写我的公司  公司福利
 var createCompanyWelfare = serverUrl + "/OrgnizationProfile/createCompanyWelfare";
 
@@ -403,30 +592,104 @@ var ICjobsJobProfile = serverUrl + "/JobProfile/ICjobs";
 //  伯乐 添加订阅
 var addSubscriptionUserProfile= serverUrl + "/UserProfile/addSubscription";
 
-
-
-
-
-
-
-
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
 
+function getNowFormatDate() {
+    var d = new Date();
+
+    var year = d.getFullYear(); //获取年 
+
+    var month = d.getMonth();//获取月  
+    var day = d.getDay(); //获取当日
+    var hours = d.getHours()//获取小时
+    var minutes = d.getMinutes()//获取分钟
+    var miao = d.getSeconds()//获取秒
+    currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao
+    console.log(currentdate)
+    return currentdate;
+}
 
 
+//日期字符串转成时间戳
+//例如var date = '2015-03-05 17:59:00.0';
+function dateStrChangeTimeTamp(dateStr) {
+    dateStr = dateStr.substring(0, 18);
+    dateStr = dateStr.replace(/-/g, '/');
+    var timeTamp = new Date(dateStr).getTime();
+    return timesTamp
+}
 
 
+//把时间戳转成日期格式
+//例如 timeTamp = '1425553097';
+function formatTimeTamp(timeTamp){
+    var time = new Date(timeTamp*1000);
+    var date = ((time.getFullYear())  + "-" +
+        (time.getMonth() + 1) + "-" +
+        (time.getDate()) + " " +
+        (time.getHours()) + ":" +
+        (time.getMinutes()) + ":" +
+        (time.getSeconds()))
+    return date
+}
+/**
+ * 时间戳转化为年 月 日 时 分 秒
+ * number: 传入时间戳
+ * format：返回格式，支持自定义，但参数必须与formateArr里保持一致
+ */
+function formatTime(number,format) {
 
+    var formateArr  = ['Y','M','D','h','m','s'];
+    var returnArr   = [];
 
+    var date = new Date(number * 1000);
+    returnArr.push(date.getFullYear());
+    returnArr.push(formatNumber(date.getMonth() + 1));
+    returnArr.push(formatNumber(date.getDate()));
 
+    returnArr.push(formatNumber(date.getHours()));
+    returnArr.push(formatNumber(date.getMinutes()));
+    returnArr.push(formatNumber(date.getSeconds()));
 
+    for (var i in returnArr)
+    {
+        format = format.replace(formateArr[i], returnArr[i]);
+    }
+    return format;
+}
 
+//数据转化
+function formatNumber(n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+}
 
-
+// 获取当前时间
+function nowDate() {
+    var now = new Date();
+    var yy = now.getFullYear();      //年
+    var mm = now.getMonth() + 1;     //月
+    var dd = now.getDate();          //日
+    var hh = now.getHours();         //时
+    var ii = now.getMinutes();       //分
+    var ss = now.getSeconds();       //秒
+    var clock = yy + "-";
+    if(mm < 10) clock += "0";
+    clock += mm + "-";
+    if(dd < 10) clock += "0";
+    clock += dd + " ";
+    if(hh < 10) clock += "0";
+    clock += hh + ":";
+    if (ii < 10) clock += '0';
+    clock += ii + ":";
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return clock;
+}
 
 
 // 判断当前求职状态
@@ -481,6 +744,10 @@ function conver(limit){
 
 // 图片路劲去逗号
 function imgSrcFun(src) {
+    /*if (isStr(src)) {
+        console.error('src is\'t string');
+        return false
+    }*/
     return src.split(',')[0];
 }
 
@@ -535,15 +802,25 @@ function filterTime3(time) {
     var day = arr[2] + '日';
     return year + month + day;
 }
+// 手机号  后4位
+function telFourLast(urlString) {
+    if (urlString != "") {
+        tel = urlString.substr(urlString.length-4)
+        console.log(tel)
+        return tel
+    }
+}
+telFourLast("15901420539")
 
 
+
+// 手机号  中间4位 为 * 号
 function checkTelFour(urlString) {
     if (urlString != "") {
         tel = "" + urlString
         var reg = /(\d{3})\d{4}(\d{4})/;
         return tel.replace(reg, "$1****$2")
     }
-
 }
 
 function checkUrl(urlString) {
@@ -978,6 +1255,16 @@ function isNum(num) {
 
 function isArray(o) {
     return Object.prototype.toString.call(o) === '[object Array]';
+}
+
+/**
+ * 判断是否为字符串
+ * @author SnowRock
+ * @param o
+ * @returns {boolean}
+ */
+function isStr(o) {
+    return Object.prototype.toString.call(o) === '[object String]';
 }
 
 function isFunction(func) {

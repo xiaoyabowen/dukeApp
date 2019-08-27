@@ -12,6 +12,7 @@ function magicCubeInit(Vue) {
             company_c_id: 'tourism',
         },
     ]
+
     return {
         template: str,
         data: function () {
@@ -76,7 +77,8 @@ function magicCubeInit(Vue) {
             },
             hideHandle: function () {
                 document.getElementById('subBox').classList.add('isDisplay');
-            }
+            },
+
 
         }
     }

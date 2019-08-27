@@ -242,7 +242,7 @@
         var role = document.getElementById("role").innerText;
         var position = document.getElementById("position").innerText;
         var c_note = document.getElementById("c_note").innerText;
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         var person_id = uid;
 
         if (com_name == "请输入") {

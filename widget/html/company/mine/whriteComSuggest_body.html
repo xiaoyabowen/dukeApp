@@ -40,22 +40,25 @@
             产品指的公司研发的网站、手机应用。
         </div>
 
-        <div class="niceBox isDisplay"  v-if="indexNum == 1">
+        <div class="niceBox isDisplay">
 
-            <input type="text" class="w-comurl-input commonFont" placeholder="产品标题">
+            <input type="text" v-model="productName" class="w-comurl-input commonFont" placeholder="产品标题">
             <div class="subggestTitle commonFont">产品介绍</div>
-            <textarea cols="30" rows="10" class="textAreaCom" placeholder="公司的产品名称或者提供的服务名称"></textarea>
-            <img src="../../../image/company/comproImg.png" alt="pro" class="addComProImg"  @click="wuploadimg()">
+            <textarea cols="30" rows="10" class="textAreaCom" v-model="productMain" placeholder="公司的产品名称或者提供的服务名称"></textarea>
+            <img :src="productIcon" alt="pro" class="addComProImg"  @click="wuploadimg()">
         </div>
 
+<!--
 
-        <div class="" v-for="(item,index) in comProArr" :key="index" v-if="indexNum == 2">
+
+        <div class="" v-if="indexNum == 2">
 
             <input type="text" class="w-comurl-input commonFont" placeholder="产品标题"  :value="item.productname">
             <div class="subggestTitle commonFont">产品介绍</div>
             <textarea cols="30" rows="10" class="textAreaCom" :value="item.prod_tags" placeholder="公司的产品名称或者提供的服务名称"></textarea>
-            <img :src="item.prod_icon.split(',')[0]" alt="pro" class="addComProImg addComProImgFor">
+            <img :src="item.prod_icon.split(',')[0]" alt="pro" class="addComProImg addComProImgFor" @click="wuploadimg+index()">
         </div>
+-->
 
 
         <div class="postSubBtn" @click="preservation()">保存</div>
@@ -68,7 +71,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -84,16 +87,19 @@
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
-
+                productName:'',
+                productMain:'',
+                productIcon:'',
+                pid:'',
                 comProArr:[],
                 indexNum:1,
             },
             created: function () {
-
+                this.pid = api.pageParam.cid
                 this.queryProductSummary()
             },
             mounted : function (){
@@ -104,25 +110,23 @@
                     var that = this
                     document.querySelector(".boxSub").classList.remove("isDisplay")
                     if (index == 2){
-                        that.indexNum = 2
-                        var uid = localStorage.getItem("user").user_id
-                        var c_id = localStorage.getItem("com_id")
                         var obj = {
-                            uid: uid,
-                            cid: c_id,
+                            pid: cid,
                         }
-                        ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
-                            console.log(data)
+                        ajaxGetWithProgress(queryOneProductSummary,obj,function (data,ret) {
+                            console.log("queryOneProductSummary",data)
+
                             if (data){
-                                that.comProArr= data.product_his
+                                document.querySelector(".niceBox").classList.remove("isDisplay")
+                                that.productName= data.productname;
+                                that.productMain= data.prod_tags;
+                                that.productIcon= imgSrcFun(data.prod_icon);
 
                             }
                             api.hideProgress();
                         })
 
                     }else if (index == 1){
-                        that.indexNum = 1
-
                         document.querySelector(".niceBox").classList.remove("isDisplay")
                     }
 
@@ -144,14 +148,14 @@
 
                         if (ret) {
                             var obj = {
-                                uid : JSON.parse(localStorage.getItem('user')).user_uid
+                                uid : localStorage.getItem("person_id")
                             }
                             console.log(JSON.stringify(ret));
                             //上传剪辑后的图像到服务器
                             api.ajax({
                                 // report : false,
-                                // url: 'http://192.168.1.4:8088/upload/UploadFlie',
-                                url: 'http://192.168.1.4:8088/upload/UploadFlie',
+                                // url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                                url: 'http://192.168.1.12:8088/upload/UploadFlie',
                                 //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                 method: 'post',
                                 cache: 'false',
@@ -165,14 +169,12 @@
                                 }
                             }, function (ret, err) {
                                 console.log(ret);
-                                prod_icon = document.querySelector(".addComProImg").src
                                 var pathImgImg = ret.imgUrl
                                 if (pathImgImg == ''){
-                                    prod_icon = '../../../image/company/comproImg.png'
+                                    that.productIcon = '../../../image/company/comproImg.png'
                                 }else{
                                     var pathImgData = pathImgImg.split(",")
-                                    console.log(pathImgData)
-                                    prod_icon = pathImgData[0]
+                                    that.productIcon = pathImgData[0]
                                 }
 
                                 api.hideProgress();
@@ -189,37 +191,58 @@
                     var that = this
                     var c_id = localStorage.getItem("com_id")
 
-                    var suggestTitle = document.querySelector(".w-comurl-input").value
-                    var suggestText = document.querySelector(".textAreaCom").value
-                    var prod_icon = document.querySelector(".addComProImg").src
-
-                    if (suggestTitle == ''){
+                    if (that.productName == ''){
                         toast("请填写产品名字")
                         return
                     }
-                    if (suggestText == ''){
+                    if (that.productMain == ''){
                         toast("请填写产品详情")
                         return
                     }
-                    var obj = {
-                        c_id : c_id,
-                        productname: suggestTitle,
-                        prod_tags: suggestText,
-                        prod_icon: prod_icon,
-                    }
-                    console.log(obj)
-                    ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
-                        console.log(data)
-                        if (data.return.status) {
-                            var frameName = url + "_body";
-                            api.execScript({
-                                name:url,
-                                frameName: frameName,
-                                script: apiready()
-                            })
-                            closeWin();
+                    var obj
+                    if (index == 1){
+                        obj = {
+                            c_id : c_id,
+                            productname: that.productName,
+                            prod_tags: that.productMain,
+                            prod_icon: that.productIcon,
                         }
-                    })
+                        console.log(obj)
+                        ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
+                            console.log(data)
+                            if (data.return.status) {
+                                var frameName = url + "_body";
+                                api.execScript({
+                                    name:url,
+                                    frameName: frameName,
+                                    script: 'loadCom()'
+                                })
+                                closeWin();
+                            }
+                        })
+                    }else if (index == 2){
+                        obj = {
+                            pid : that.pid,
+                            productname: that.productName,
+                            prod_tags: that.productMain,
+                            prod_icon: that.productIcon,
+                        }
+                        console.log(obj)
+                        ajaxGetWithProgress(updateCompanyProduct,obj,function (data,ret) {
+                            console.log(data)
+                            if (data.return.status) {
+                                var frameName = url + "_body";
+                                api.execScript({
+                                    name:url,
+                                    frameName: frameName,
+                                    script: 'loadCom()'
+                                })
+                                closeWin();
+                            }
+                        })
+                    }
+
+
                 },
             }
         })

@@ -105,7 +105,7 @@
 </div>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -117,11 +117,12 @@
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script>
-    var job_id,url,statusD,loginAuthen;
+    var job_id,url,statusD,loginAuthen,company_c_id;
     apiready = function () {
         job_id = api.pageParam.job_id;
         url = api.pageParam.url;
         statusD = api.pageParam.status;
+        company_c_id = api.pageParam.company_c_id;
         loginAuthen = 3;
         var that = this
         var obj = {
@@ -418,7 +419,7 @@
 
 
 
-        var uid = JSON.parse(localStorage.getItem("user")).user_id
+        var uid = localStorage.getItem("person_id")
 
 
 
@@ -437,7 +438,8 @@
                 nature :nature,
                 status : '1',
                 job_id:job_id,
-                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,',
+                company_c_id : company_c_id
             }
             console.log(obj)
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
@@ -476,7 +478,8 @@
                 skills : skills,
                 nature :nature,
                 status : '2',
-                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,',
+                company_c_id : company_c_id
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 console.log(data)
@@ -513,14 +516,25 @@
                 nature :nature,
                 status : '2',
                 job_id:job_id,
-                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,'
+                icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,',
+                company_c_id : company_c_id
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 console.log(data)
                 if (data){
-                    if (data.return_info.status){
-                        toast("请求成功")
-                    }
+                    // if (data.return_info.status){
+                    //     toast("请求成功")
+                    // }
+                    mui.confirm('系统已存储请进行企业邮箱的认证', '认证',['确认','取消'], function (e) {
+                        if (!e.index) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name:url,
+                                frameName: frameName
+                            })
+                            closeWin();
+                        }
+                    })
                     if (!data.emailStatus){
                         openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
                     }else{

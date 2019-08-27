@@ -121,7 +121,7 @@
 </div>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -159,6 +159,7 @@
                 comPicture: '',
                 comSummary: '',
                 comSentior: '',
+                cid: '',
             },
             created: function () {
                 this.CompanySummaryIsPerfect()
@@ -168,13 +169,14 @@
                 CompanySummaryIsPerfect : function () {
 
                     var that = this
-                    var uid = localStorage.getItem("user").user_id
+                    var uid = localStorage.getItem("person_id")
                     var obj = {
                         uid:uid
                     }
                     ajaxGetWithProgress(CompanySummaryIsPerfect,obj,function (data,ret) {
                         console.log("finshCom",data)
                         if (data) {
+                            that.cid = data.cid
                             if (data.InformationPerfect){
                                 that.comInfomation = true
                             }else{
@@ -215,37 +217,49 @@
                 whriteComInfo : function (index) {
                     openNewWindow("whriteComInfo", "./whriteComInfo.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComPro : function (index) {
                     openNewWindow("whriteComPro", "./whriteComPro.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComWelfare : function (index) {
                     openNewWindow("whriteComWelfare", "./whriteComWelfare.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComImg : function (index) {
                     openNewWindow("whriteComImg", "./whriteComImg.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComSuggest : function (index) {
-                    openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
+                    /*openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
+                    })*/
+
+                    openNewWindow("whriteComSuggestlist", "./whriteComSuggestlist.html", {
+                        url: 'companyInfoFinsh',
+                        index:index,
+                        cid : this.cid
                     })
                 },
                 whriteComMange : function (index) {
                     openNewWindow("whriteComMange", "./whriteComMange.html", {
                         url: 'companyInfoFinsh',
-                        index:index
+                        index:index,
+                        cid : this.cid
                     })
                 },
             }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>面试日程详情</title>
+    <title>我的录用</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWindow.css"/>
     <link rel="stylesheet" href="../../../css/mineCommon.css"/>
@@ -123,13 +123,14 @@
                         '\n' +
                         '                <div class="inter-com cssFlex">\n' +
                         '                    <div class="cssFlex">\n' +
-                        '                        <img src="' + list[i].logo_icon + '" alt="com" class="inter-logo">\n' +
+                        '                        <img src="' + imgSrcFun(list[i].logo_icon) + '" alt="com" class="inter-logo">\n' +
                         '                        <div class="inter-com-name">\n' +
                         '                            <p class="inter-com-nameN">' + list[i].c_name + '</p>\n' +
                         '                            <p class="inter-com-money">' + list[i].job_name + ' <i class="inter-com-moneyCo">' + list[i].ratio + 'k</i></p>\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
-                        '                    <div class="inter-recall">' + list[i].summary + '</div>\n' +
+                        '                    <div class="inter-recall">录用</div>\n' +
+                        // '                    <div class="inter-recall">' + list[i].status2 + '</div>\n' +
                         '                </div>\n' +
                         '            </div>\n' +
                         '            <!--职位  导航  聊天 -->\n' +
@@ -151,7 +152,7 @@
                         '                <p>\n' +
                         '                    <img src="../../../image/mine/shijian.png" alt="shijian"class="inde-info-img">\n' +
                         '                    <span>\n' +
-                        '                        面试时间：\n' +
+                        '                        入职时间：\n' +
                         '                        <i>' + list[i].status_time + '</i>\n' +
                         '                    </span>\n' +
                         '                </p>\n' +
@@ -159,19 +160,19 @@
                         '                    <img src="../../../image/mine/userlist.png" alt="shijian"class="inde-info-img">\n' +
                         '                    <span>\n' +
                         '                        联系人：\n' +
-                        '                        <i><span>' + list[i].p_name + '</span> · <span>' + list[i].z_user_job + '</span></i>\n' +
+                        '                        <i><span>' + list[i].ap_name + '</span> · <span>' + list[i].z_user_job + '</span></i>\n' +
                         '                    </span>\n' +
                         '                </p>\n' +
                         '                <p>\n' +
                         '                    <img src="../../../image/mine/phone.png" alt="shijian"class="inde-info-img">\n' +
                         '                    <span>\n' +
                         '                        电话：\n' +
-                        '                        <i>' + list[i].phone_m + '</i>\n' +
+                        '                        <i>' + list[i].phone + '</i>\n' +
                         '                    </span>\n' +
                         '                </p>\n' +
                         '                <p>\n' +
                         '                    <img src="../../../image/mine/adress.png" alt="shijian"class="inde-info-img">\n' +
-                        '                    <span>' + city + '</span>\n' +
+                        '                    <span>' + stringFun(address)[0]+stringFun(address)[1] + '</span>\n' +
                         '                </p>\n' +
                         '            </div>\n' +
                         '            <!--<div class="inter-ping">面试评价</div>-->\n' +

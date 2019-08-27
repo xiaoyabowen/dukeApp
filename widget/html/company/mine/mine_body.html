@@ -125,7 +125,7 @@
                 methods: {
                     chatNumAndInvitation : function () {
                         var that = this
-                        var userObj = JSON.parse(localStorage.getItem("user"))
+                        var userObj = localStorage.getItem("user")
                         var uid = userObj.user_id
                         var obj = {
                             person_id:uid
@@ -133,11 +133,13 @@
                         console.log(obj)
                         ajaxGetWithProgress(chatNumAndInvitation,obj,function (data,ret) {
                             console.log(data)
+                            api.hideProgress();
                             if (data){
-                                that.ChatNum = data.ChatNum;
-                                that.mineNum = data.InvitationNum;
-                                that.mineName = data.p_name;
+                                that.ChatNum = data.ChatNum || "0";
+                                that.mineNum = data.InvitationNum || "0";
+                                that.mineName = data.p_name || "未填写";
                                 that.defultImg = imgSrcFun(data.p_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
+                                // that.defultImg = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png';
 
                             }
                         })

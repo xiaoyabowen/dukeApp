@@ -25,16 +25,16 @@
 
         <div class="adressBox isDisplay">
             <div class="adress-info"
-                 @click="linkHandle(item.name,item.phone,item.address,item.addrDetails)"
                  v-for="(item, index) in adressList" :key="index">
-                <div class="adinfo-title cssFlex">
+                <img src="../../../icon/delete.png" alt="de" class="adinfo-dele" @click="delAdr(item.adrId)">
+                <div class="adinfo-title cssFlex"@click="linkHandle(item.name,item.phone,item.address,item.addrDetails)">
                     <div class="adinfo-con">
                         <span class="adinfo-name">{{item.name}}</span>
                         <span class="adinfo-phone">{{item.phone}}</span>
                     </div>
-                    <img src="../../../icon/delete.png" alt="de" class="adinfo-dele" @click="delAdr(item.adrId)">
+
                 </div>
-                <div class="adre-adress ellipsis">
+                <div class="adre-adress ellipsis" @click="linkHandle(item.name,item.phone,item.address,item.addrDetails,item.adrId)">
                     <span class="adinfo-defult"  v-if="item.adrStatus == 1">默认</span>
                     <span  v-if="item.adrStatus == 0"></span>
                     {{item.address}}{{item.addrDetails}}
@@ -77,13 +77,9 @@
     <script>eruda.init();</script>
 
 <script>
-    function reloadAdr(){
-        // alert(2)
-        reload()
-    }
+
     function reloadAdrLoad(){
-        // alert(1)
-        reload()
+        window.location.reload()
     }
     apiready = function () {
 
@@ -121,15 +117,26 @@
             },
             methods:{
                 // 选择收货地址
-                linkHandle: function (name, phone, address, addrDetails) {
+                linkHandle: function (name, phone, address, addrDetails,adrId) {
                     var url = api.pageParam.url
+                    api.sendEvent({
+                        name: 'addressDefault',
+                        extra: {
+                            key: {
+                                /*c_id: that.magicComCid2,
+                                c_name: that.magicCom2Text,
+                                logo_icon: that.magicCom2Img,*/
+                                addressDefault: 'true'
+                            },
+
+                        }
+                    });
                     var frameName = url + "_body";
                     if (url == 'confirmOrder') {
-                        console.log(123)
                         api.execScript({
                             name:url,
                             frameName: frameName,
-                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+')'
+                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+','+JSON.stringify(adrId)+')'
                         })
                         closeWin();
                         return;
@@ -162,14 +169,18 @@
                     console.log(index)
 
                     mui.confirm('是否删除此地址吗?', function (e) {
-                        var str = {
-                            adrId:index,
+                        if (e.index == 1) {
+
+                            var str = {
+                                adrId:index,
+                            }
+                            ajaxGetWithProgress(deliveryDelete,str,function(res,err) {
+                                console.log(res);
+                                reload()
+                                api.toast({msg:"删除成功"})
+                            })
                         }
-                        ajaxGetWithProgress(deliveryDelete,str,function(res,err) {
-                            console.log(res);
-                            reload()
-                            api.toast({msg:"删除成功"})
-                        })
+
 
                     })
                     /*ajaxGetWithProgress(deliveryDelete, str, function (data, err) {

@@ -59,9 +59,11 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
-
+    var pid_name
     apiready = function () {
         initFrameInWin(api.pageParam);
+        pid_name = api.pageParam.pid_name;
+        document.querySelector(".ChatmiddleMainnam").innerText = pid_name
     }
 
 

@@ -102,7 +102,7 @@
                     <span>切换身份</span>
                 </div>
                 <div class="setting_active">
-                    <span class="setting_wanted">我要求职</span>
+                    <span class="setting_wanted">我要招人</span>
                     <img src="../../../icon/right.png" alt="" class="info-img-right">
                 </div>
             </li>
@@ -117,14 +117,13 @@
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/template-native.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 <script>
     var roleSTATUS = localStorage.getItem("role")
     if (roleSTATUS == 1){
@@ -133,7 +132,7 @@
         document.querySelector(".setting_wanted").innerHTML="我是招聘"
     }
     apiready = function () {
-        var user = JSON.parse(localStorage.getItem('user'));
+        var user = localStorage.getItem("user");
         console.log(user);
 
         var setting_ul = document.querySelector('.setting_ul');
@@ -187,7 +186,50 @@
 
     }
     function changejuese(){
-        openNewWindow("changejuese", "../../login/changejuese.html");
+        console.log("之前的是",localStorage.getItem('person_id'))
+        var uid = localStorage.getItem("person_id")
+        var obj = {
+            uid : uid
+        }
+
+        api.ajax({
+            url:suIdentityLogin,
+            method: 'get',
+            cache: 'false',
+            timeout: 30,
+            dataTpye: 'json',
+            data: {
+                values:obj
+            }
+        }, function (data, err) {
+            console.log("juese",data)
+            if (data.role_type == 2){
+                mui.confirm('切换至我是伯乐', '切换角色',['确认','取消'], function (e) {
+                    if (!e.index) {
+                        openNewWindow("home", "../../company/home/home.html");
+                        localStorage.setItem('person_id',data.user_uid);
+                        localStorage.setItem('user',data.user_uid);
+                    }
+                })
+            }
+            api.hideProgress();
+
+        });
+
+
+        // ajaxGetWithProgress(suIdentityLogin,obj,function (data,ret) {
+        //     console.log("juese",data)
+        //     if (data.role_type == 1){
+        //
+        //         openNewWindow("home", "../../company/home/home.html");
+        //
+        //         localStorage.setItem('person_id',data.user_uid);
+        //         console.log("之后的是",localStorage.getItem('person_id'))
+        //     }
+        // })
+
+
+        // openNewWindow("changejuese", "../../login/changejuese.html");
     }
     // 此处手动调用了js
     // apiready()

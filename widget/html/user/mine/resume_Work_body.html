@@ -56,18 +56,21 @@
     var url, content;
     apiready = function () {
         url = api.pageParam.url;
-        content = api.pageParam.content;
-
+        content = api.pageParam.content || '';
 
         type = api.pageParam.type;
         if (type == 1){
             text.value = '';
         } else{
+
             text.value = content;
         }
         mode = api.pageParam.mode;
         if (mode == undefined){
-            var newstr = content.replace(/<br\/>/g, "\r\n").replace(/<br\/>/g, "\n");
+            var newstr = '';
+            if ( content !== '' ) {
+                newstr = content.replace(/<br\/>/g, "\r\n").replace(/<br\/>/g, "\n");
+            }
             text.value = newstr || '';
         } else{
             text.value = '';

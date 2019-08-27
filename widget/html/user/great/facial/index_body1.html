@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>巨划算</title>
+    <link rel="stylesheet" href="../../../../css/api.css" />
+    <link rel="stylesheet" href="../../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../../css/greatCommon.css">
+    <link rel="stylesheet" href="../../../../css/mofang.css">
+</head>
+<body class="commonBg">
+
+
+    <div class="Box">
+
+        <div id="great" class="isDisplay">
+            <div class="bgBlack" @click="hideBg()"></div>
+            <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+            <div class="magicBox">
+
+                <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
+                    <div class="magicBtn magicBtnPosiJu"
+                         v-for="(item,index) in listJob" :key="index"
+                         @click="jobDetailClick(item.cid,item.comName,index)"
+                         :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
+
+                         v-bind:style="styles">
+                        <div class="magicSubBox cssFlex" v-bind:style="styles">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
+                                <div class="magicSize ">{{item.comName}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="magicBtn animation" @click="jobDetailClick(job_id1)">
+                        <div class="magicSubBox ">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob1Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob1Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn" @click="jobDetailClick(job_id2)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob2Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob2Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn" @click="jobDetailClick(job_id3)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob3Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob3Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="magicBtn" @click="jobDetailClick(job_id4)">
+                        <div class="magicSubBox">
+                            <div class="magicSubBoxMain">
+                                <img :src="listJob4Img" class="iconImg" alt="person">
+                                <div class="magicSize">{{listJob4Text}}</div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="magicBG cssFlex">
+                    <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' " @click="magicCom1Click(magicComCid1)">
+                        <div class="magicSubBox cssFlex">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
+                                <div class="magicSize">{{magicCom1Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="magicBtn magicBtnComJu" :class="activeAni ? 'animation' : '' ">
+                        <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                            <div class="magicSubBoxMain">
+                                <!--<img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">-->
+                                <div class="magicSize">{{magicCom2Text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="great_header">
+                <div class="great_header_banner">
+                    <!--<img :src="item.placard.split(',')[0]" alt="">-->
+                    <img :src="imgurl" alt="">
+                </div>
+
+                <div class="great_Price_List cssFlex">
+                    <span class="great_Price">¥{{item.price}}</span>
+                    <span class="great_Member">会员专享价: <span>{{item.priceh}}</span></span>
+                    <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
+                </div>
+
+                <div class="great_title">
+                    {{item.summary}}
+                </div>
+
+                <div class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
+                    立即购买
+                </div>
+
+            </div>
+
+
+            <div class="great_comments">
+                <div class="great_comments_title">
+                    <span>商品评价</span>
+                    <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
+                    <span @click="totalComment()">全部评价</span>
+                </div>
+
+                <div class="great_comments_content">
+                    <div class="great_comments_top">
+                        <span :class="activeComment == 1 ? 'activeComment' : ''" @click="commentsHandle(evalist1, 1)">好评</span>
+                        <span :class="activeComment == 2 ? 'activeComment' : ''" @click="commentsHandle(evalist2, 2)">中评</span>
+                        <span :class="activeComment == 3 ? 'activeComment' : ''" @click="commentsHandle(evalist3, 3)">差评</span>
+                    </div>
+
+                    <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
+                        <div class="great_comments_item_top cssFlex">
+                            <div><img :src="item.picon" alt=""></div>
+                            <div>
+                                <span>{{item.pname}}</span>
+                                <div>{{item.createTime}}</div>
+                            </div>
+                        </div>
+                        <div class="great_comments_item_con textOverflow">
+                            {{item.content}}
+                        </div>
+                        <div class="great_comments_item_img">
+                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
+                                 :class="i%3 === 0 ? 'right0' : ''"
+                                 :src="imgObj.pic" alt="">
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <!--<img class="right0" src="../../../image/pro.png" alt="">-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="great_details">
+                <img v-for="(imgSrc, i) in imgs" :key="i"
+                     :src="imgSrc" alt="">
+            </div>
+
+            <!--<div class="great_immediately">
+                <div class="great_immediately_comtent cssFlex">
+                   &lt;!&ndash; <div class="commodity_collection" @click="collectionHandle()">
+                        <img :src="att ? '../../../../image/great/Collection2x.png' : '../../../../image/great/Collection22x.png'" alt="">
+                        <span>收藏</span>
+                    </div>&ndash;&gt;
+
+                    <div class="commodity_collection cssFlex" @click="collectionHandleActive()" v-show="att">
+                        <img src="../../../../image/great/Collection2x.png" alt="">
+                        <span>收藏</span>
+                    </div>
+                    <div class="commodity_collection cssFlex" @click="collectionHandle()" v-show="!att">
+                        <img src="../../../../image/great/Collection22x.png" alt="">
+                        <span>收藏</span>
+                    </div>
+
+                    <div class="commodity_purchase cssFlex" @click="purchaseHandle()">
+                        <div>¥{{item.priceh}}</div>
+                        <span>立即购买</span>
+                    </div>
+                </div>
+            </div>-->
+            <!--<magicCube></magicCube>-->
+            <!--<component is="magicCube"></component>-->
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="../../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../../script/data.js"></script>
+
+    <script src="../../../../script/vue.min.js"></script>
+    <script src="../../../../script/vuex.min.js"></script>
+    <script src="../common/magicCube.js"></script>
+
+    <script src="./common/magicAll.js"></script>
+    <!--<script src="../common/magicCom1.js"></script>
+    <script src="../common/magicCom2.js"></script>-->
+    <script src="../common/bus.js"></script>
+
+
+
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+    <script>
+
+    </script>
+
+    <script>
+        apiready = function () {
+
+            var magicAll = magicAllInit(Vue);
+            /*var magicCom1 = magicCom1Init(Vue);
+            var magicCom2 = magicCom2Init(Vue);*/
+
+            Vue.component('magicAll', magicAll);
+            /*Vue.component('magicCom1', magicCom1);
+            Vue.component('magicCom2', magicCom2);*/
+
+
+            winWidth = api.winWidth;
+            winHeight = api.winHeight;
+            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+            a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+
+            // 斜边长
+            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+            console.log("bevelLength",bevelLength)
+            // width_d=(screen_w-20) *2/5 - 5;
+            m_d = (a01_w-10)*0.23-25;    // 100
+
+            new Vue({
+                el: '#great',
+                data: {
+                    activeComment: 1,
+                    item: {},
+                    list: [],
+                    len: 1,
+                    total: 0,
+                    evalist: [],
+                    evalist1: [],
+                    evalist2: [],
+                    evalist3: [],
+                    imgs: [],
+                    imgurl: '',
+                    att: false,
+                    att_id: '',
+                    comName: '',
+                    person_id: '',
+                    cid: '',
+                    tId: '',
+                    active:'magicAll',
+
+
+                    styles: {
+                        //存放的是 动态修改的样式
+                        width: m_d + "px",// 内容标题总样式
+                        height: m_d + "px",
+                    },
+                    animate: false,
+                    timeIndex : '',
+                    magicCom2Img: '',
+                    magicCom1Img: '',
+                    magicCom2Text: '',
+                    magicCom1Text: '',
+                    magicComCid1: '',
+                    magicComCid2: '',
+                    activeAni:true,
+                    listJob: [],
+                    index: '',
+                },
+                created: function () {
+                    this.person_id = localStorage.getItem('user');
+                    this.tId = api.pageParam.tId;
+                    this.cid = api.pageParam.cid;
+                    this.summary();
+                    this.commodityList();
+                },
+                mounted: function () {
+                    // document.getElementById('great').classList.remove('isDisplay');
+                    this.isDisplay = true;
+
+                    var that = this
+
+                    that.active = store.state.obj.magicCom;
+                    api.addEventListener({
+                        name: 'comCom1',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom1;
+
+                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'comCom2',
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        that.active = ret.value.key.magicCom2;
+
+                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                    });
+                    api.addEventListener({
+                        name: 'jobAll'+that.tId,
+                    }, function(ret, err) {
+                        console.log("ret",ret);
+                        alert("mianmo123")
+                        // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                        that.cid = ret.value.key.cid
+                        that.summary()
+
+                    });
+
+                    magicBox = document.querySelector(".magicBox")
+                    bgBlack = document.querySelector(".bgBlack")
+
+                    magicBtn = document.getElementsByClassName("magicBtn")
+                    magicSubBox = document.getElementsByClassName("magicSubBox")
+                    iconImg = document.getElementsByClassName("iconImg")
+                    magicBox.style.width = bevelLength * 2 + "px"
+                    magicBox.style.height = bevelLength + "px"
+                    var rightYi = bevelLength
+                    magicBox.style.right = '-' + rightYi + "px"
+                    bgBlack.style.width =winWidth + "px"
+                    bgBlack.style.height =winHeight + "px"
+
+                    magicBGheight = document.querySelector(".magicBGheight")
+                    magicBGheight.style.height = m_d + "px"
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicBtn.length ; i++){
+                        magicBtn[i].style.width = m_d + "px"
+                        magicBtn[i].style.height = m_d + "px"
+                    }
+                    // 里面小盒子宽度
+                    for (var i =0;i<magicSubBox.length ; i++){
+                        magicSubBox[i].style.width = m_d + "px"
+                        magicSubBox[i].style.height = m_d + "px"
+                    }
+                    // 图片宽度
+                    for (var i =0;i<iconImg.length ; i++){
+                        iconImg[i].style.width = m_d/2 + "px"
+                        iconImg[i].style.height = m_d/2 + "px"
+                    }
+                },
+                methods: {
+
+
+                    
+                    // 获取数据
+                    summary: function () {
+                        var that = this;
+                        ajaxGetWithProgress(summary, {
+                            cid: that.cid,
+                            pid: that.person_id
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.Commodity) {
+                                that.item = data.Commodity;
+                                that.imgurl = that.item.placard.split(',')[0];
+                                // that.imgs = data.intpic;
+                                that.imgs = data.Commodity.intPic.split(',');
+                                that.total = data.total;
+                                that.att = data.att;
+                                that.att_id = data.att_id;
+                                that.comName = data.comName;
+                                document.getElementById('great').classList.remove('isDisplay');
+                            }
+
+                            if (data.commEvaluateAndPic) {
+                                var list = data.commEvaluateAndPic;
+                                that.list = list;
+                                for (var i = 0; i < list.length; i++) {
+                                    var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
+                                    if (num > 10) {
+                                        that.evalist1.push(list[i]);
+                                    } else if (num > 5) {
+                                        that.evalist2.push(list[i]);
+                                    } else if (num < 5) {
+                                        that.evalist3.push(list[i]);
+                                    }
+                                }
+                                that.evalist = that.evalist1;
+                            }
+                        });
+                    },
+                    // 评论
+                    commentsHandle: function (evalist, i) {
+                        this.evalist = evalist;
+                        this.activeComment = i;
+                    },
+                    // 显示全部评论
+                    totalComment: function () {
+                        console.log(this.list);
+                        this.evalist = this.list;
+                        this.len = this.list.length;
+                    },
+                    // 收藏
+                    collectionHandle: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
+                        var that = this;
+                        ajaxGet(collectComm, {
+                            id: that.att_id,
+                            ccStatus: 1,
+                        }, function(data,err){
+                            console.log(data);
+                            if (data.commcollect) {
+                                // toast("编辑成功")
+
+                                window.location.reload()
+                            }
+                        });
+                        that.att = !that.att;
+                    },
+                    // 收藏
+                    collectionHandleActive: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
+                        var that = this;
+                        var obj = {
+                            id: that.att_id,
+                            ccStatus: 0,
+                        }
+                        console.log(obj)
+                        ajaxGet(collectComm, obj, function(data,err){
+                            console.log(data);
+                            if (data.commcollect) {
+                                // toast("编辑成功")
+                                window.location.reload()
+                            }
+                        });
+                        that.att = !that.att;
+                    },
+                    // 立即购买
+                    purchaseHandle: function () {
+                        var uidUser = localStorage.getItem("user")
+                        if (!uidUser){
+                            openNewWindow("login", "../../../login/login.html");
+                            return;
+                        }
+                        var that = this;
+                        ajaxGetWithProgress(createOrder, {
+                            pId: that.person_id,
+                            cId: that.cid
+                        }, function (data, err) {
+                            console.log("creat",data);
+                            if (data) {
+                                openNewWindow("confirmOrder", "../confirmOrder.html", {
+                                    item: that.item,
+                                    order: data,
+                                    url: 'facial',
+                                    OrderKey : data.OrderKey
+                                });
+                            }else {
+                                toast("请求失败")
+                            }
+                        });
+
+                    },
+                    // 获取巨划算魔方数据
+                    commodityList : function (){
+
+                        var that = this
+                        console.log("that.tId",that.tId)
+                        ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
+                            console.log("commodityList",data)
+                            var jobList = data.comList
+                            if (data) {
+                                if (jobList == null) {
+                                    that.listJob = ''
+                                } else {
+                                    that.listJob = jobList
+                                }
+
+                                that.magicComCid1 = data.Typelist[0].tid
+                                if (data.Typelist[0].pic == null){
+                                    that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }else{
+                                    that.magicCom1Img = data.Typelist[0].pic
+                                }
+                                that.magicCom1Text = data.Typelist[0].cateory
+
+                                that.magicComCid2 = data.Typelist[1].tid
+
+
+                                if (data.Typelist[1].pic == null){
+                                    that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                                }else{
+                                    that.magicCom1Img = data.Typelist[1].pic
+                                }
+                                that.magicCom2Text = data.Typelist[1].cateory
+                            }
+                        })
+                    },
+                    togle: function () {
+                        // this.active = true;
+                        var isBlck = document.querySelector('.bgBlack')
+                        if (isBlck.getAttribute("class") == 'isDisplay') {
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            console.log(document.querySelector('.bgBlack'))
+                        } else {
+                            var that = this;
+                            that.active = 'magicAll';
+                            document.querySelector('.bgBlack').classList.remove('isDisplay');
+                            this.commodityList();
+                        }
+                        this.activeAni = true
+                        setTimeout(function () {
+                            that.activeAni = false;
+                        }, 1500)
+                    },
+                    jobDetailClick: function (cid, comName,index) {
+                        var that = this
+                        this.timeIndex = index;
+                        // this.housequeryHouseSummary()
+                        alert("mianmo")
+                        api.sendEvent({
+                            name: 'jobAll'+that.tId,
+                            extra: {
+                                key: {
+                                    cid: cid,
+                                    comName: comName,
+                                },
+                            }
+                        });
+
+                    },
+                    magicCom1Click: function (tid) {  // 公司1
+                        var that = this;
+                        that.tId = tid
+                        that.commodityList()
+
+                    },
+                    magicCom2Click: function (tid) {  // 公司2
+                        var that = this;
+                        that.tId = tid
+                        that.commodityList()
+
+                    },
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>

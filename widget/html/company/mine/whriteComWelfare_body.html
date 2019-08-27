@@ -74,7 +74,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -92,7 +92,7 @@
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
@@ -159,7 +159,7 @@
             methods: {
                 queryOrgnizationWelfare : function (){
                     if (index == 2){
-                        var uid = localStorage.getItem("user").user_id
+                        var uid = localStorage.getItem("person_id")
                         var obj = {
                             uid: uid
                         }
@@ -218,7 +218,7 @@
                             api.execScript({
                                 name:url,
                                 frameName: frameName,
-                                script: apiready()
+                                script: 'loadCom()'
                             })
                             closeWin();
                         }

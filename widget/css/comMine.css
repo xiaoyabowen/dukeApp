@@ -126,7 +126,15 @@ img.info-img-defalut{
     margin: 0.68rem auto;
 }
 
-
+.changeJue{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    text-align: center;
+    color: #638BFF;
+    text-decoration:underline;
+    font-size: 0.24rem;
+    margin-top: -0.2rem;
+}
 
 
 

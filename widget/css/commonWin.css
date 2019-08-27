@@ -125,10 +125,7 @@ textarea{
     background: #fff;
     min-height: calc(100vh - 0.48rem);
     overflow: hidden;
-
-
     margin: 0.1rem 0.24rem 0 0.24rem;
-
     border-radius: 0.08rem;
 }
 .boxSub{
@@ -180,9 +177,10 @@ textarea{
 	position: relative;
 	display: none;
 	color:#fff;
-    background:
+    /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
-            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
+    background: #638BFF;
     height : 56px;
     line-height : 56px;
     font-size: 18px;
@@ -212,9 +210,10 @@ textarea{
     justify-content: space-between;
     padding: 0 0.34rem;
     align-items: center;
-    background:
+    /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
-            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);
+            linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
+    background: #638BFF;
 }
 .leftImgClose{
 
@@ -381,26 +380,27 @@ textarea{
     /*margin-bottom: -12px;*/
     /*height: calc(100vh - 28px);*/
 }
-.home-banner{
+/*.home-banner{
     display: block;
     width: 7rem;
     height: calc(100vh - 28px);
-    background-position: center top;
-    background-size: cover;
-}
+    !*background-position: center top;*!
+    !*background-size: cover;*!
+}*/
 
 /*发送邮箱*/
 .workCard{
-    height: 0.82rem;
-    background: rgba(255,255,255,1);
-    box-shadow: 0px 0px 0.15rem 0px rgba(0,0,0,0.27);
-    border-radius: 0.06rem;
-    padding: 0.34rem 0 0.34rem 0.3rem;
+    height: 1.5rem !important;
+    background: rgba(255,255,255,1) !important;
+    box-shadow: 0px 0px 0.15rem 0px rgba(0,0,0,0.27) !important;
+    border-radius: 0.06rem !important;
+    padding: 0.34rem 0 0.34rem 0.3rem !important;
 }
 img.workImgChange {
     display: inline-block;
     width: 0.66rem;
     margin-right: 0.2rem;
+    height: 0.82rem !important;
 }
 p.workname {
     height: 0.4rem;
@@ -534,7 +534,7 @@ div.isDisplay {
     right: 0.12rem;
     width: 1.10rem;
     height: 1.10rem;
-    z-index: 1111;
+    z-index: 99;
 }
 
 .animation {
@@ -683,7 +683,7 @@ div.isDisplay {
 
 .iconImg {
     width: 0.4rem;
-    width: 0.4rem;
+    height: 0.4rem;
     border-radius: 50%;
     /*transform: rotate(-45deg);*/
     /*position: relative;*/
@@ -764,6 +764,21 @@ img.info-img-right {
     background:rgba(249,249,249,1);
 }
 
+.colorFE{
+    display: block;
+    color: #FE9114 !important;
+}
 
 
+.nonedisplay{
+    display: none;
+}
 
+
+.juConImg {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.2rem;
+    margin-top: 0.1rem;
+}

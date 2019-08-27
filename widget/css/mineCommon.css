@@ -202,6 +202,10 @@ body, div, p, span, a, input, ul, li {
 .img-four {
     width: 0.48rem;
 }
+.img-com {
+    width: 0.36rem;
+    height: 0.4rem;
+}
 
 .img-five {
     width: 0.4rem;
@@ -1095,7 +1099,7 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-div.isDisplay {
+.isDisplay {
     display: none;
 }
 
@@ -2129,7 +2133,7 @@ i.ques-star {
     line-height: 0.78rem;
     text-align: center;
     color: #fff;
-    margin: 0 auto;
+    margin: 0 auto 0.3rem;
 }
 .ques-active{
     color:rgba(99,139,255,1);
@@ -2177,7 +2181,7 @@ i.ques-star {
 
 /*我的关注   缺省页*/
 .notmy_Concern_main,.my_Concern_main{
-    display: none;
+    display: block;
 }
 .notImg{
     width: 2.33rem;

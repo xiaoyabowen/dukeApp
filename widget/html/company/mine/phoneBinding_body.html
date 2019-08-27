@@ -79,7 +79,7 @@
 
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -98,7 +98,7 @@
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
-        uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {

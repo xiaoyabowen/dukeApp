@@ -124,11 +124,10 @@
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script type="text/javascript" src="../../../script/template-native.js"></script>
     <script>
+        var phoneLogin
         apiready = function () {
-            console.log(JSON.parse(localStorage.getItem('user')))
-            var phoneLogin = JSON.parse(localStorage.getItem('user')).phone;
+            phoneLogin = localStorage.getItem('phone');
             document.querySelector('.nowPhoneEdit').innerText = checkTelFour(phoneLogin)
-
         };
         /*************点击获取验证码***********/
         var flag = true;//防止重复点击获取验证码
@@ -143,6 +142,9 @@
                 return;
             }else if(!checkMobileNum(tel)){
                 toast("手机号码不正确");
+                return;
+            }else if(tel !== phoneLogin){
+                toast("手机号与当前手机号不符");
                 return;
             }
             var obj = {
@@ -184,7 +186,7 @@
         }
         /*******************倒计时****************************/
 
-// 登陆
+        // 登陆
         function login() {
             api.showProgress();
             // api.closeWin({
@@ -193,8 +195,6 @@
             var params = {};
             params.code = $api.byId("yanzheng").value;
             params.phone = $api.byId("phone").value;
-            params.role_type = localStorage.getItem("role");
-            params.token_type = "1";
             console.log(params)
             if (isBlack(params.phone)) {
                 toast('请输入手机号');
@@ -207,16 +207,17 @@
                 return;
             }
 
-            ajaxGetUser(updatePhone, params, function (data, err) {
+            ajaxGetUser(verificationPhone, params, function (data, err) {
                 api.hideProgress();
-                if (!data.return.status) {
-                    // openNewWindow("setting", "../user/mine/setting.html")
+                console.log(data)
+                if (data.data == true) {
+                    openNewWindow("editPhoneComfir", "./editPhoneComfir.html")
                     // openNewWindow("setting", "setting.html")
-                    api.closeToWin({
+                    /*api.closeToWin({
                         name: 'setting'
-                    });
+                    });*/
                 }else{
-                    api.toast({msg: '请求出错'});
+                    toast(data.msg)
                 }
             });
         }

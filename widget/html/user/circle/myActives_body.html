@@ -42,6 +42,11 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
+
+        function reload (){
+            window.location.reload()
+        }
+        var content
         apiready = function () {
             var myrelease = myreleaseInit(Vue);
             console.log(myrelease)

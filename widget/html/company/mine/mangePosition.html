@@ -46,10 +46,25 @@
     };
 
     function pushPoi() {
-        openNewWindow("postsPublish", "../home/postsPublish.html", {
-            url: 'mangePosition',
-            status:1
+        var uid = localStorage.getItem("user").user_id
+        var obj = {
+            uid: uid
+        }
+        ajaxGetWithProgress(queryMyJobsCandidateNum,obj,function (data,ret) {
+            console.log("zhiwei",data)
+            if (data.valid == 0){
+                openNewWindow("postsPublish", "../home/postsPublish.html", {
+                    url: 'mangePosition',
+                    status:1
+                })
+            }else if (data.valid == 1){
+                toast("公司还在审核中,暂无法发布")
+            }else {
+                toast("请求出错")
+            }
+
         })
+
     }
 </script>
 </html>

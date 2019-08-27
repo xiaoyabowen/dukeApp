@@ -26,30 +26,9 @@
 <script type="text/javascript" src="script/kv.js"></script>
 <script type="text/javascript" src="script/apiCloud.js"></script>
 <script>
+
     apiready = function () {
-        if($api.getStorage('loginInfo')){
-            api.openSlidLayout({
-                type: 'left',
-                leftEdge:  api.winWidth*0.2,
-                fixedPane: {
-                    name: 'fixed',
-                    url: 'html/fixed.html'
-                },
-                slidPane: {
-                    name: 'slide',
-                    url: 'html/slide.html'
-                }
-            }, function (ret) {
 
-            });
-
-        }else{
-            api.openWin({
-                name: 'login',
-                url: './html/login/login.html'
-            });
-
-        }
 
     }
 </script>

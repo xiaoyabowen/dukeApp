@@ -89,12 +89,13 @@
             top: 0.3rem;
         }
         .input-password {
-            width: 100%;
+            width: 6.8rem;
             height: 1rem;
             line-height: 1rem;
             color: #FFFFFF;
             box-sizing: border-box;
             margin-bottom: 0.1rem;
+            position: relative;
         }
 
         button.yanzheng {
@@ -106,9 +107,12 @@
             color: #fff;
             height: 0.6rem;
             line-height: 0.6rem;
-            margin-top: 0.28rem;
+            /*margin-top: 0.28rem;*/
             background:rgba(93,146,254,1);
             border-radius:0.08rem;
+            position: absolute;
+            right: 0;
+            top: 0.15rem;
         }
         .configBtn{
             padding: 0 18px;
@@ -154,7 +158,7 @@
             <div class="input-password cssFlex">
                 <span class="phone-top yanz-img"></span>
                 <input id="yanzheng" type="number" placeholder="请输入验证码">
-                <button class="yanzheng">获取验证码</button>
+                <button  id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
             </div>
         </div>
     </div>
@@ -190,6 +194,61 @@
     apiready = function () {
 
     };
+
+    /*************点击获取验证码***********/
+    var flag = true;//防止重复点击获取验证码
+    function getCode(){
+        if(!flag){
+            return;
+        }
+        tel = document.getElementById('phone').value;
+        if (isBlack(tel)) {
+            toast('请输入手机号');
+            api.hideProgress();
+            return;
+        }else if(!checkMobileNum(tel)){
+            toast("手机号码不正确");
+            return;
+        }
+        var obj = {
+            phone : tel
+        }
+        flag = false;
+        setTime();
+        ajaxGetUser(SendSmsCode,obj,function(ret,err) {
+            if (ret && ret.success ) {
+                toast("获取成功，请注意查收！");
+            }else if(ret && !ret.success){
+                if(ret){
+                    var msg = ret.msg || "网络连接错误，请稍后重试！";
+                    toast(msg);
+                }else{
+                    var msg = err.msg || "网络连接错误，请稍后重试！";
+                    toast(msg);
+                }
+            }
+        })
+    }
+
+    /*******************倒计时****************************/
+    function setTime(){
+        var time;
+        var sms = document.getElementById('sms');
+        time = time||59;
+        sms.innerHTML = time+"s";
+        var codeInterval = setInterval(function(){
+            if(time > 0){
+                time--;
+                sms.innerHTML = time+"s";
+            }else{
+                sms.innerHTML = "获取验证码";
+                clearInterval(codeInterval);
+                flag = true;
+            }
+        },1000)
+    }
+    /*******************倒计时****************************/
+
     function goHome() {
         openNewWindow("home", "../user/home/home.html")
     }

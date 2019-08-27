@@ -14,346 +14,507 @@
 <body class="commonBg">
 
 
-    <div class="Box" id="chat">
+<div class="Box" id="chat">
 
-        <div id="message">
-            <div class="reply">
-                <div class="time">05/22 06:30</div>
-                <div class="msg">
-                    <img src="../../../image/chat/touxiang.png" alt=""/>
-                    <span class="name">伯乐</span>
-                    <p>
-                        <i class="msg_input"></i>
-                        您好，请问对这个职位感兴趣吗？
-                    </p>
-                </div>
-            </div>
-            <div class="ask">
-                <div class="time">05/22 06:30</div>
-                <div class="msg">
-                    <img src="../../../image/chat/touxiangm.png" alt=""/>
-                    <!--<span class="name">千里马</span>-->
-                    <p>
-                        <i clas="msg_input"></i>
-                        您好，我想应聘贵公司的运营经理，
-                        期盼回复，谢谢！
-                    </p>
+    <div id="message">
+
+        <div class="ask">
+            <div class="time">05/22 06:30</div>
+            <div class="msg">
+                <img src="../../../image/chat/touxiangm.png" alt=""/>
+                <!--<span class="name">千里马</span>-->
+                <div class="defultCard">
+                    <div class="defultCardInfo">
+                        <div class="nowPos commonFont">当前沟通职位</div>
+                        <div class="nowPosBox cssFlex commonFont">
+                            <span class="nowPosName">{{job_name}}</span>
+                            <span class="nowPosPrice">{{ratio}}</span>
+                        </div>
+                        <div class="nowPosBox nowPosBoxCom cssFlex">
+                            <span class="nowPosCom">{{c_name}}</span>
+                            <span class="nowPosComSize">{{financing}}</span>
+                        </div>
+                        <div class="nowPosBox nowPosBoxComInfo cssFlex">
+                            <span class="nowPosAdr">{{address}}</span>
+                            <span class="nowPosYear">{{work_ex}}</span>
+                            <span class="nowPosComEdu">{{edu_ex}}</span>
+                        </div>
+                        <div class="conInfo cssFlex">
+                            <img :src="p_icon" alt="hr" class="conInfoIMg">
+                            <span>{{p_name}}·{{z_user_job}}</span>
+                        </div>
+                    </div>
+                    <div class="sendWord" @click="sendWordClick()" v-show="status == 2">发送简历</div>
+                    <div class="sendWord" v-show="status == 1">已发送</div>
                 </div>
             </div>
         </div>
 
-        <div id="footer">
-            <img src="../../../image/chat/hua.png" alt=""/>
-            <img src="../../../image/chat/xiaolian.png" alt=""/>
-            <input class="my-input" type="text" v-model="sendInput"/>
-            <p class="send" @click="sendHandle()">发送</p>
 
+        <div id="messageList">
+            <!--<div class="reply">-->
+            <!--<div class="time">05/22 06:30</div>-->
+            <!--<div class="msg">-->
+            <!--<img src="../../../image/chat/touxiang.png" alt=""/>-->
+            <!--<span class="name">伯乐</span>-->
+            <!--<p>-->
+            <!--<i class="msg_input"></i>-->
+            <!--您好，请问对这个职位感兴趣吗？-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ask">-->
+            <!--<div class="time">05/22 06:30</div>-->
+            <!--<div class="msg">-->
+            <!--<img src="../../../image/chat/touxiangm.png" alt=""/>-->
+            <!--<span class="name">千里马</span>-->
+            <!--<p>-->
+            <!--<i clas="msg_input"></i>-->
+            <!--您好，我想应聘贵公司的运营经理，-->
+            <!--期盼回复，谢谢！-->
+
+
+            <!--</p>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
-    <script type="text/javascript" src="../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
-    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/mui.min.js"></script>
-    <script type="text/javascript" src="../../../script/data.js"></script>
 
-    <script src="../../../script/paho-mqtt.min.js"></script>
-    <script src="../../../script/vue.min.js"></script>
-    <script src="../../../script/vuex.min.js"></script>
+    <div id="footer" class="cssFlex">
+        <img src="../../../image/chat/hua.png" alt=""/>
+        <img src="../../../image/chat/xiaolian.png" alt=""/>
+        <input class="my-input" type="text" v-model="sendInput"/>
+        <p class="send" @click="sendSingleMsg()">发送</p>
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    </div>
+</div>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+
+<script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
-    <script>
-        // //所有主题
-        // var allTopics = [
-        //     { "Topic": "/data/alarm", "Describe": "报警" },
-        //     { "Topic": "/data/message", "Describe": "消息" },
-        //     { "Topic": "/data/notify", "Describe": "通知" }
-        // ];
-        //
-        // //选中订阅主题
-        // var selectedTopics = [];
-        //
-        // //选中发布主题
-        // var currentTopic;
-        //
-        // //客户端选项
-        // var option = {
-        //     "ServerUri": "192.168.1.10",
-        //     "ServerPort": 61614,
-        //     "UserName": "admin",
-        //     "Password": "password",
-        //     "ClientId": "",
-        //     "TimeOut": 5,
-        //     "KeepAlive": 100,
-        //     "CleanSession": false,
-        //     "SSL":false
-        // }
-        //
-        // //客户端
-        // var client;
-        //
-        // //设置客户端标识
-        // option.ClientId = guid();
-        //
-        // console.log(Paho)
-        // client = new Paho.Client(option.ServerUri, option.ServerPort, option.ClientId);
-        // client.onConnectionLost = onConnectionLost; //绑定连接断开事件
-        // client.onMessageArrived = onMessageArrived; //绑定接收消息事件
-        // //连接服务端
-        // client.connect({
-        //     invocationContext: {
-        //         host: option.ServerUri,//IP地址
-        //         port: option.ServerPort,//端口号
-        //         path: client.path,
-        //         clientId: option.ClientId//标识
-        //     },
-        //     timeout: option.TimeOut,//连接超时时间
-        //     keepAliveInterval: option.KeepAlive,//心跳间隔
-        //     cleanSession: option.CleanSession,//是否清理Session
-        //     useSSL: option.SSL,//是否启用SSL
-        //     userName: option.UserName,  //用户名
-        //     password: option.Password,  //密码
-        //     onSuccess: onConnect,//连接成功回调事件
-        //     onFailure: onError//连接失败回调事件
-        // });
-        //
-        // //连接成功回调事件
-        // function onConnect() {
-        //     // Once a connection has been made, make a subscription and send a message.
-        //     console.log("连接成功了");
-        //     client.subscribe("yang");
-        //     var message = new Paho.Message("Hello");
-        //     message.destinationName = "/World";
-        //     client.send(message);
-        // };
-        // //连接失败回调事件
-        // function onError(e) {
-        //     console.log("连接失败：" + e)
-        // }
-        // //连接断开事件
-        // function onConnectionLost(responseObject) {
-        //     if (responseObject.errorCode !== 0)
-        //         console.log("onConnectionLost:"+responseObject.errorMessage);
-        // };
-        // //接收消息事件
-        // function onMessageArrived(message) {
-        //     console.log(message)
-        //     console.log("onMessageArrived:"+message.payloadString);
-        //     console.log("topic:"+message.topic);
-        //     // client.disconnect();
-        // };
-        //
-        // //生成GUID
-        // function guid() {
-        //     function S4() {
-        //         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        //     }
-        //     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-        // }
-    </script>
 
-    <script>
-        apiready = function () {
+<script>
+    var JIM,appkey,random_str,signature,timestamp,pid_accept
+    apiready = function () {
 
-            new Vue({
-                el: '#chat',
-                data: {
-                    isDisplay: false,
-                    active: 'contacts',
-                    list: [],
-                    //客户端选项
-                    option: {
-                        "ServerUri": "192.168.1.10",
-                        "ServerPort": 61614,
-                        "UserName": "admin",
-                        "Password": "password",
-                        "ClientId": "",
-                        "TimeOut": 5,
-                        "KeepAlive": 100,
-                        "CleanSession": false,
-                        "SSL": false
-                    },
-                    //选中订阅主题
-                    selectedTopics: [],
-                    //选中发布主题
-                    currentTopic: [],
-                    //客户端
-                    client: {},
-                    token: '',
-                    ptoken: '',
-                    t_key: '',
-                    canSend: false,
 
-                    sendInput: '',
-                    result: '',
-                    type: ''
+        new Vue({
+            el: '#chat',
+            data: {
+                isDisplay: false,
+                active: 'contacts',
+                list: [],
+                //客户端选项
+                option: {
+
                 },
-                created: function () {
-                    // this.token = api.pageParam.token;
-                    this.token = 1;
-                    // this.ptoken = api.pageParam.ptoken;
-                    this.ptoken = 2;
-                    this.t_key = api.pageParam.t_key;
+                job_id: '',
 
-                    this.addTopic();
-                },
-                mounted: function () {
-                    this.isDisplay = true;
-                    var that = this;
-                    $('#footer').on('keyup', 'input', function() {
-                        if ($(this).val().length > 0) {
-                            $(this).next().css('background', '#114F8E').prop('disabled', true);
-                            that.canSend = true;
-                        } else {
-                            $(this).next().css('background', '#ddd').prop('disabled', false);
-                            that.canSend = false;
+                sendInput: '',
+                result: '',
+                type: '',
+
+                job_name: '',
+                ratio: '',
+                c_name: '',
+                financing: '',
+                address: '',
+                work_ex: '',
+                edu_ex: '',
+                p_name: '',
+                p_icon: '',
+                z_user_job: '',
+                status:'',
+
+                // 聊天
+                JIM : '',
+                pid_accept : '',         //接收消息者 username
+                pid_name : '',             //接收消息者 name
+                appkey : '',
+                random_str : '',
+                signature : '',
+                timestamp : '',
+
+
+
+            },
+            created: function () {
+                // this.token = api.pageParam.token;
+
+                this.job_id = api.pageParam.job_id;
+                this.pid_accept = api.pageParam.pid_accept;           //
+                this.pid_name = api.pageParam.pid_name;
+                this.queryJobTopicChatProFile();
+                this.getSignatureJiGuang();
+
+
+
+            },
+            mounted: function () {
+
+
+
+                this.isDisplay = true;
+                var that = this;
+                $('#footer').on('keyup', 'input', function() {
+                    if ($(this).val().length > 0) {
+                        $(this).next().css('background', '#638BFF').prop('disabled', true);
+                        that.canSend = true;
+                    } else {
+                        $(this).next().css('background', '#ddd').prop('disabled', false);
+                        that.canSend = false;
+                    }
+                })
+                // $('#footer .send').click(that.send())
+                $("#footer .my-input").keydown(function(e){
+                    if(e.keyCode == 13){
+                        return that.sendSingleMsg();
+                    }
+                });
+
+
+
+
+
+            },
+            methods: {
+                queryJobTopicChatProFile : function() {
+                    var that = this
+                    var obj = {
+                        job_id : that.job_id
+                    }
+                    ajaxGetWithProgress(queryJobTopicChatProFile,obj,function (data) {
+                        console.log("cardChat",data)
+                        if (data){
+                            that.job_name = data.job_name
+                            that.ratio = data.ratio
+                            that.c_name = data.c_name
+                            that.financing = data.financing
+                            that.address = data.address
+                            that.work_ex = data.work_ex
+                            that.edu_ex = data.edu_ex
+                            that.p_name = data.p_name
+                            that.p_icon = imgSrcFun(data.p_icon)
+                            that.z_user_job = data.z_user_job
+                            that.status = data.status
                         }
                     })
-                    // $('#footer .send').click(that.send())
-                    $("#footer .my-input").keydown(function(e){
-                        if(e.keyCode == 13){
-                            return that.send();
-                        }
-                    });
-                    // var arr = ['你在想我么', '怎么不和我说话', '跟我聊会天吧'];
-                    // test()
-                    // function test() {
-                    //     $(arr).each(function(i) {
-                    //         setTimeout(function() {
-                    //             reply("../image/chat/touxiang.png", arr[i])
-                    //         }, sj() * 500)
-                    //     })
-                    // }
-
-                    // function reply(headSrc, str) {
-                    //     var html = "<div class='reply'><div class='msg'><img src=" + headSrc + " /><span class='name'>斜杠青年</span><p><i class='msg_input'></i>" + str + "</p></div></div>";
-                    //     return upView(html);
-                    // }
-                    // function ask(headSrc, str) {
-                    //     var html = "<div class='ask'><div class='msg'><img src=" + headSrc + " />" + "<p><i class='msg_input'></i>" + str + "</p></div></div>";
-                    //     return upView(html);
-                    // }
-                    // function upView(html) {
-                    //     var message = $('#message');
-                    //     message.append(html);
-                    //     return $('html,body').animate({
-                    //         scrollTop: message.outerHeight() - window.innerHeight
-                    //     }, 200);
-                    // }
-                    // function send(msg){
-                    //     if(canSend){
-                    //         let input = $("#footer .my-input");
-                    //         ask("../image/chat/touxiangm.png", input.val());
-                    //         input.val('');
-                    //         test();
-                    //     }
-                    // }
-                    // function sj() {
-                    //     return parseInt(Math.random() * 10)
-                    // }
                 },
-                methods: {
-                    // 发送
-                    sendHandle: function () {
-                        console.log(this.t_key);
-                        var html = "<div class='ask'><div class='msg'><img src='../image/chat/touxiang.png' />" + "<p><i class='msg_input'></i>" + this.sendInput + "</p></div></div>";
-                        var message = $('#message');
-                        message.append(html);
-                        $('html,body').animate({
-                            scrollTop: message.outerHeight() - window.innerHeight
-                        }, 200);
+                // 聊天获取 appkey random_str signature timestamp   初始化  JIM
+                getSignatureJiGuang : function () {
+                    var that = this
+                    ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
+                        console.log(data)
+                        if (data){
+                            that.appkey = data.appkey
+                            that.random_str = data.random_str
+                            that.signature = data.signature
+                            that.timestamp = data.timestamp
 
-                        var message = new Paho.Message(this.sendInput);
-                        message.destinationName = this.t_key;
-                        this.client.send(message);
+                            that.JIM =  new JMessage({debug:true})
+                            console.log("JIM",that.JIM)
+                            that.init()
 
-                    },
-                    // 获取订阅号id
-                    addTopic: function () {
-                        var that = this;
-                        ajaxGet(addTopic, {
-                            token: that.token,
-                            ptoken: that.ptoken,
-                            t_key: that.t_key,
-                        }, function (data, err) {
-                            console.log(data);
-                            if (data.My_Topic) {
-                                that.t_key = data.My_Topic.t_key;
-                                that.sendMQTT(that.t_key);
-                            }
-                        });
-                    },
-                    // 配置链接mqtt服务
-                    sendMQTT: function (){
-                        //设置客户端标识
-                        this.option.ClientId = this.guid();
-
-                        this.client = new Paho.Client(this.option.ServerUri, this.option.ServerPort, this.option.ClientId);
-                        this.client.onConnectionLost = this.onConnectionLost; //绑定连接断开事件
-                        this.client.onMessageArrived = this.onMessageArrived; //绑定接收消息事件
-                        //连接服务端
-                        this.client.connect({
-                            invocationContext: {
-                                host: this.option.ServerUri,//IP地址
-                                port: this.option.ServerPort,//端口号
-                                path: this.client.path,
-                                clientId: this.option.ClientId//标识
-                            },
-                            timeout: this.option.TimeOut,//连接超时时间
-                            keepAliveInterval: this.option.KeepAlive,//心跳间隔
-                            cleanSession: this.option.CleanSession,//是否清理Session
-                            useSSL: this.option.SSL,//是否启用SSL
-                            userName: this.option.UserName,  //用户名
-                            password: this.option.Password,  //密码
-                            onSuccess: this.onConnect,//连接成功回调事件
-                            onFailure: this.onError//连接失败回调事件
-                        });
-                    },
-                    //连接成功回调事件
-                    onConnect: function () {
-                        console.log("连接成功了",this.token, this.ptoken, this.t_key);
-                        this.client.subscribe(this.t_key);
-
-                    },
-                    //连接失败回调事件
-                    onError: function (e) {
-                        console.log("连接失败：" + e)
-                    },
-                    //连接断开事件
-                    onConnectionLost: function (responseObject) {
-                        if (responseObject.errorCode !== 0)
-                            console.log("onConnectionLost:" + responseObject.errorMessage);
-                    },
-                    //接收消息事件
-                    onMessageArrived: function (message) {
-                        console.log(message)
-                        console.log("onMessageArrived:" + message.payloadString);
-                        this.result = message.payloadString;
-                        var html = "<div class='ask'><div class='msg'><img src='../image/chat/touxiang.png' />" + "<p><i class='msg_input'></i>" + message.payloadString + "</p></div></div>";
-                        var message = $('#message');
-                        message.append(html);
-                        $('html,body').animate({
-                            scrollTop: message.outerHeight() - window.innerHeight
-                        }, 200);
-                        // 断开连接
-                        // this.client.disconnect();
-                    },
-                    //生成GUID
-                    guid: function () {
-                        function S4() {
-                            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+                        } else {
+                            toast("连接失败")
                         }
+                    })
+                },
 
-                        return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-                    }
-                }
-            })
-        }
+                init : function (){
+                    var that = this
+                    that.JIM.init({
+                        "appkey":that.appkey,
+                        "random_str":that.random_str,
+                        "signature":  that.signature,
+                        "timestamp":  that.timestamp,
+                        "flag": 1
 
-        // apiready();
-    </script>
+                    }).onSuccess(function(data) {
+                        console.log('success:', data);
+
+                        that.isConnect()
+                        that.isInit()
+                        that.login()
+                        that.onMsgReceive()
+                        // that.getConversation()
+                        // that.updateConversation()
+                        // appendToDashboard('success' + JSON.stringify(data));
+                    }).onFail(function(data) {
+                        console.log('error2:' ,data)
+                        // appendToDashboard('error: ' +JSON.stringify(data));
+                    });
+                },
+                // 获取连接状态
+                isConnect : function (){
+                    var that = this
+                    console.log('isConnect:',that.JIM.isConnect());
+                },
+                // 获取初始化状态
+                isInit : function (){
+                    var that = this
+                    console.log('isInit:',that.JIM.isInit());
+                },
+
+
+                // 登陆
+                login : function (){
+                    var that = this
+                    that.JIM.login({
+                        'username' : localStorage.getItem("person_id") + 'j',
+                        'password': localStorage.getItem("person_id") + 'j',
+                    }).onSuccess(function(data) {
+                        console.log('success:',data);
+                        // appendToDashboard(JSON.stringify(data));
+
+                        that.JIM.onMsgReceive(function(data) {
+                            data = JSON.stringify(data);
+                            console.log('1msg_receive:' + data);
+                            // appendToDashboard('msg_receive:' + data);
+
+                        });
+
+                        that.JIM.onEventNotification(function(data) {
+                            console.log('event_receive: ' + JSON.stringify(data));
+                            // appendToDashboard('event_receive: ' +JSON.stringify(data));
+                        });
+
+                        that.JIM.onSyncConversation(function(data) { //离线消息同步监听
+                            console.log( data);
+                            // 消息所有列表
+                            var allData = data
+                            // 先提取出 当前的 聊天室  的   personid  的  json
+                            var mapPersonid = {}
+                            // 返回新的数组
+                            var mapDest = []
+
+                            for (var i = 0; i < allData.length; i++) {
+                                var allData_i = allData[i]
+                                if(!mapPersonid[allData_i.from_username]){
+                                    mapDest.push({
+                                        from_username: allData_i.from_username,
+                                        item: allData_i.msgs
+                                    });
+                                    mapPersonid[mapDest.from_username] = allData_i;
+                                }else{
+                                    for(var j = 0; j < mapDest.length; j++){
+                                        var mapDestj = mapDest[j];
+                                        if(mapDestj.groupname== allData_i.from_username){
+                                            mapDestj.item.push(allData_i);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            console.log("mapDest",mapDest);
+
+                            for (var i = 0; i < mapDest.length; i++){
+                                if (mapDest[i].from_username == that.pid_accept + 'j'){
+                                    var newsList = mapDest[i].item
+                                    var messageListHtml = ''
+                                    for (var j = 0; j < newsList.length; j++){
+                                        if (newsList[j].content.target_id == that.pid_accept + 'j'){
+                                            messageListHtml += '<div class="ask">\n' +
+                                                '                <div class="time">'+formatTime(newsList[j].content.create_time,'h:m:s')+'</div>\n' +
+                                                '                <div class="msg">\n' +
+                                                '                    <img src="../../../image/chat/touxiangm.png" alt=""/>\n' +
+                                                '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
+                                                '                    <p>\n' +
+                                                '                        <i clas="msg_input"></i>\n' +
+                                                ''+newsList[j].content.msg_body.text+''+
+                                                '\n' +
+                                                '\n' +
+                                                '                    </p>\n' +
+                                                '                </div>\n' +
+                                                '            </div>'
+                                        }else{
+                                            messageListHtml += '<div class="reply">\n' +
+                                                '                <div class="time">'+formatTime(newsList[j].content.create_time,'h:m:s')+'</div>\n' +
+                                                '                <div class="msg">\n' +
+                                                '                    <img src="../../../image/chat/touxiang.png" alt=""/>\n' +
+                                                '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
+                                                '                    <p>\n' +
+                                                '                        <i class="msg_input"></i>\n' +
+                                                '                        '+newsList[j].content.msg_body.text+'\n' +
+                                                '                    </p>\n' +
+                                                '                </div>\n' +
+                                                '            </div>'
+
+                                        }
+                                    }
+                                    document.getElementById("messageList").innerHTML = messageListHtml
+                                }
+                            }
+
+                        });
+
+                        that.JIM.onUserInfUpdate(function(data) {
+                            console.log('onUserInfUpdate : ' + JSON.stringify(data));
+                            // appendToDashboard('onUserInfUpdate : ' +JSON.stringify(data));
+                        });
+
+                        that.JIM.onSyncEvent(function(data) {
+                            console.log('onSyncEvent : ' + JSON.stringify(data));
+                            // appendToDashboard('onSyncEvent : ' +JSON.stringify(data));
+                        });
+
+                        that.JIM.onMsgReceiptChange(function(data){
+                            alert("onMsgReceiptChange")
+                            console.log('onMsgReceiptChange : ',data);
+
+                        });
+
+                        that.JIM.onSyncMsgReceipt(function(data){
+                            console.log('onSyncMsgReceipt : ' + JSON.stringify(data));
+
+                        });
+
+                        that.JIM.onMutiUnreadMsgUpdate(function(data){
+                            console.log('onConversationUpdate : ' + JSON.stringify(data));
+
+                        });
+
+                        that.JIM.onTransMsgRec(function(data){
+                            console.log('onTransMsgRec : ' + JSON.stringify(data));
+                        });
+
+                        that.JIM.onRoomMsg (function(data){
+                            console.log('onRoomMsg  : ' + JSON.stringify(data));
+                        });
+
+
+
+                    }).onFail(function(data) {
+
+                        console.log('error:' + JSON.stringify(data));
+                    }).onTimeout(function(data) {
+                        console.log('timeout:' + JSON.stringify(data));
+                    });
+                },
+
+                sendSingleMsg : function () {
+                    var that = this
+                    console.log("sendInput",that.sendInput)
+                    that.JIM.sendSingleMsg({
+                        'target_username' : that.pid_accept + 'j',     //接收消息者 username
+                        'target_nickname' : that.pid_name,     //接收者的展示名
+                        'appkey' :  that.appkey,
+                        'content' : that.sendInput,
+                        'no_offline' : false,       //消息离线控制标志，false，默认值，保存离线消息；true，不保存离线消息
+                        'no_notification' : false,      //状态栏显示消息标志，false，默认值，状态栏显示消息；true，状态栏不显示消息
+                        'custom_notification':{'enabled':true,'title':'title','alert':'alert'},
+                        'need_receipt':true       //是否需要已读回执，需要:true 不需要:false
+                    }).onSuccess(function(data,msg) {
+                        console.log('success data:' ,data);
+                        console.log('succes msg:' ,msg);
+                        var html = '<div class="ask">\n' +
+                            '                <div class="time">05/22/ 06:30</div>\n' +
+                            '                <div class="msg">\n' +
+                            '                    <img src="../../../image/chat/touxiangm.png" alt=""/>\n' +
+                            '                    <span class="name">千里马</span>\n' +
+                            '                    <p>\n' +
+                            '                        <i clas="msg_input"></i>\n' +
+                            that.sendInput +
+                            '\n' +
+                            '\n' +
+                            '                    </p>\n' +
+                            '                </div>\n' +
+                            '            </div>'
+                        var message = $('#messageList');
+                        message.append(html);
+                        $('html,body').animate({
+                            scrollTop: message.outerHeight() - window.innerHeight
+                        }, 200);
+                        var obj = {
+                            // RegId : api.deviceId,
+                            RegId : '160a3797c870063ae8a',
+
+
+                            title : that.sendInput,
+                            del : that.sendInput
+                        }
+                        console.log("JMessagepushObj",obj)
+                        ajaxGetWithProgress(JMessagepush,obj,function (data) {
+                            console.log("JMessagepush",data)
+                        })
+                        that.sendInput = ''
+
+
+                    }).onFail(function(data) {
+                        console.log('error:' ,data);
+                        // appendToDashboard('error: ' +JSON.stringify(data));
+                    });
+                    that.onMsgReceive()
+
+                },
+
+                onMsgReceive : function (){
+                    var that = this
+                    that.JIM.onMsgReceive(function(data) {
+                        var dataValue = data.messages[0].content
+                        console.log('1msg_receive:', data);
+                        /*var html = '<div class="ask">\n' +
+                            '                <div class="time">'+formatTime(dataValue.create_time,'h:m:s')+'</div>\n' +
+                            '                <div class="msg">\n' +
+                            '                    <img src="../../../image/chat/touxiangm.png" alt=""/>\n' +
+                            '                    <span class="name">'+dataValue.target_name+'</span>\n' +
+                            '                    <p>\n' +
+                            '                        <i clas="msg_input"></i>\n' +
+                            ''+dataValue.msg_body.text+'' +
+                            '\n' +
+                            '\n' +
+                            '                    </p>\n' +
+                            '                </div>\n' +
+                            '            </div>'
+*/
+                        var html = '<div class="reply">\n' +
+                            '                <div class="time">'+formatTime(dataValue.create_time,'h:m:s')+'</div>\n' +
+                            '                <div class="msg">\n' +
+                            '                    <img src="../../../image/chat/touxiang.png" alt=""/>\n' +
+                            '                    <span class="name">'+dataValue.target_name+'</span>\n' +
+                            '                    <p>\n' +
+                            '                        <i class="msg_input"></i>\n' +
+                            '                        '+dataValue.msg_body.text+'\n' +
+                            '                    </p>\n' +
+                            '                </div>\n' +
+                            '            </div>'
+                        var message = $('#messageList');
+                        message.append(html);
+                        $('html,body').animate({
+                            scrollTop: message.outerHeight() - window.innerHeight
+                        }, 200);
+
+                    });
+                },
+                /*getConversation: function (){
+                    var that = this
+                    that.JIM.getConversation().onSuccess(function (data) {
+                        console.log('success123:',data);
+                    }).onFail(function (data) {
+                        console.log('error:', data);
+                    });
+                },*/
+
+
+            }
+        })
+
+
+
+    }
+
+    // apiready();
+</script>
 </body>
 </html>

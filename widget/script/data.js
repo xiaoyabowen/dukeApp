@@ -657,7 +657,7 @@ function ajaxGet(url, params, callBack) {
     // console.log(user)
     // params.token = user.token;
     // 测试用
-    var user = JSON.parse(localStorage.getItem('user'));
+    var user = localStorage.getItem('user');
     console.log(user);
     // alert(user);
     // if (!user) {
@@ -668,9 +668,9 @@ function ajaxGet(url, params, callBack) {
     // }
     // params.uid = '1';
     if (user) {
-        params.uid = user.user_uid;
+        params.uid = localStorage.getItem("person_id")
     }
-
+    api.hideProgress();
     console.log('token', params)
     api.ajax({
         url: url,
@@ -686,6 +686,7 @@ function ajaxGet(url, params, callBack) {
         data: {
             values: params
         }
+
     }, function (ret, err) {
 		if(ret&&ret.code == 400){
     		setTimeout(function(){

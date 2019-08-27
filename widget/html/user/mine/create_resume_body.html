@@ -130,14 +130,14 @@
             }, function(ret, err) {
                 if (ret) {
                     var obj = {
-                        uid : JSON.parse(localStorage.getItem('user')).user_uid
+                        uid : localStorage.getItem("person_id")
                     }
                     console.log(JSON.stringify(ret));
                     //上传剪辑后的图像到服务器
                     api.ajax({
                         // report : false,
-                        // url: 'http://192.168.1.4:8088/upload/UploadFlie',
-                        url: 'http://192.168.1.4:8088/upload/UploadFlie',
+                        // url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                        url: 'http://192.168.1.12:8088/upload/UploadFlie',
                         //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                         method: 'post',
                         cache: 'false',
@@ -286,7 +286,7 @@
         var adr_id = document.getElementById("adr_id").innerText
         var p_icon = document.querySelector(".info-img-defalut").src
 
-        var uid = JSON.parse(localStorage.getItem('user')).user_uid;
+        var uid = localStorage.getItem("person_id");
         params.p_icon = p_icon
         params.person_id = uid
         params.p_name = editName
