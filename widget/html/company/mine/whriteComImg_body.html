@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>公司相册</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css">
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
+    <style>
+
+        .Box {
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
+
+        .action {
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin: 0 auto 0.2rem;
+        }
+
+        #ul_box {
+            flex-wrap: wrap;
+
+        }
+
+        #ul_box > li {
+            width: 31%;
+            margin-right: 0.1rem;
+            margin-bottom: 0.1rem;
+            position: relative;
+        }
+
+        #ul_box > li img.imgMorActive {
+            width: 100%;
+            display: block;
+        }
+
+        .delImgAbo {
+
+            display: block;
+            width: 0.4rem;
+            height: 0.4rem;
+            position: absolute;
+            right: -0.1rem;
+            top: -0.1rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box" id="app1">
+    <div class="boxSub">
+        <div class="w-title commonTitle">公司相册</div>
+        <div class="w-sub-title commonFont">
+            公司照片建议选择近景台前台或者其他办公环境，远景
+            门口或者大楼。
+        </div>
+
+
+        <div class="update-box">
+            <!--<div class="update-box-title">上传凭证（不超过9张）</div>-->
+            <div class="resume_imgWorks_main">
+                <!--<div class="action"></div>-->
+                <img src="../../../image/company/uploadIn.png" alt="action" class="action" @click="imgMoreClick()">
+                <ul id="ul_box" class="cssFlex">
+
+                     <li v-for="(item,index) in retImgArr" :key="index">
+
+                         <img :src="item" class="imgMorActive" alt="img">
+                         <img src="../../../icon/delete.png" alt="de" class="delImgAbo" @click="delImgComCir(index)">
+                     </li>
+                    <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                    <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                    <!--<li><img src="../../../image/login/weibo.png" alt=""><span><i></i></span></li>-->
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="postSubBtn" @click="preservation()" v-show="index == 1">保存</div>
+        <div class="postSubBtn" @click="preservationEdit()" v-show="index == 2">保存</div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+<script src="../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script src="../../../script/vue.min.js"></script>
+
+<script>
+
+    var cid, uid, url, index;
+    apiready = function () {
+        /*cid = api.pageParam.cid;
+        url = api.pageParam.url;
+        index = api.pageParam.index;
+        uid = localStorage.getItem("person_id");*/
+        new Vue({
+            el: '#app1',
+            data: {
+                cid: '',
+                url: '',
+                id: '',
+                index: '',
+                retImgArr: [],
+                uid: localStorage.getItem("person_id"),
+            },
+            created: function () {
+                this.cid = api.pageParam.cid
+                this.url = api.pageParam.url
+                this.index = api.pageParam.index
+
+                this.orgnizationPICBbycidlist()
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                //添加选择图片
+                imgMoreClick: function () {
+                    var that = this
+                    var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                    UIAlbumBrowser.open({
+                        max: 9,
+                        styles: {
+                            bg: '#fff',
+                            mark: {
+                                icon: '',
+                                position: 'bottom_left',
+                                size: 30
+                            },
+                            nav: {
+                                bg: 'rgba(0,0,0,0.6)',
+                                titleColor: '#fff',
+                                titleSize: 18,
+                                cancelColor: '#fff',
+                                cancelSize: 16,
+                                finishColor: '#fff',
+                                finishSize: 16
+                            }
+                        },
+                        rotation: true
+                    }, function (ret) {
+                        if (ret) {
+
+                            imgListArr = {}
+                            var imgList = ret.list
+                            for (var i = 0; i < imgList.length; i++) {
+                                imgListArr["file" + i] = imgList[i].thumbPath
+                            }
+                            console.log("imgListArrFile",imgListArr)
+                            api.ajax({
+                                // report : false,
+                                url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+
+                                    files: imgListArr,
+                                    // values: ret.list
+
+                                }
+                            }, function (data, err) {
+
+                                console.log(data)
+                                picture = data.imgUrl
+                                var retImg = stringFun(data.imgUrl).join(",")
+                                console.log("retImg",retImg)
+                                var reg=/,$/gi;
+                                var retImgSub=retImg.replace(reg,"");
+                                console.log("retImgSub",stringFun(retImgSub))
+                                that.retImgArr = stringFun(retImgSub)
+                                console.log("retImgretImg",retImg.length)
+                            });
+
+
+
+                        }
+                    });
+                },
+                // 删除
+                delImgComCir: function (i) {
+                    var that = this
+                    that.retImgArr.splice(i, 1);
+
+                },
+                orgnizationPICBbycidlist: function () {
+                    var that = this
+                    if (that.index == 2) {
+                        var obj = {
+                            uid: that.uid,
+                            cid : that.cid
+                        }
+                        ajaxGetWithProgress(orgnizationPICBbycidlist, obj, function (data, ret) {
+                            console.log("orgnizationPICBbycidlist",data)
+                            if (data){
+                                that.retImgArr = data.pic.split(",")
+                                that.id = data.id
+                            }
+
+                        })
+                    }
+
+                },
+                preservation: function () {
+                    var that = this
+                    var obj = {
+                        pic: that.retImgArr.join(","),
+                        cid: that.cid,
+                    }
+                    console.log("preservation",obj)
+                    ajaxGetWithProgress(addCompanyPic, obj, function (data, ret) {
+                        console.log(data)
+                        if (data.return_info.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name: url,
+                                frameName: frameName,
+                                script: 'loadCom()'
+                            })
+                            closeWin();
+                        }
+                    })
+                },
+                preservationEdit: function () {
+                    var that = this
+                    var obj = {
+                        pic: that.retImgArr.join(","),
+                        id:that.id
+                    }
+                    console.log(obj)
+                    ajaxGetWithProgress(UpdateCompanyPic, obj, function (data, ret) {
+                        console.log(data)
+                        if (data.return.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name: url,
+                                frameName: frameName,
+                                script: 'loadCom()'
+                            })
+                            closeWin();
+                        }
+                    })
+                },
+
+            }
+        })
+    };
+
+    /*var action = document.querySelector('.action');
+    var ulBox = document.getElementById('ul_box');
+    var imgListArr
+
+    function imgMoreClick() {
+
+        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+        UIAlbumBrowser.open({
+            max: 9,
+            styles: {
+                bg: '#fff',
+                mark: {
+                    icon: '',
+                    position: 'bottom_left',
+                    size: 30
+                },
+                nav: {
+                    bg: 'rgba(0,0,0,0.6)',
+                    titleColor: '#fff',
+                    titleSize: 18,
+                    cancelColor: '#fff',
+                    cancelSize: 16,
+                    finishColor: '#fff',
+                    finishSize: 16
+                }
+            },
+            rotation: true
+        }, function (ret) {
+            if (ret) {
+
+                imgListArr = {}
+                var imgList = ret.list
+                for (var i = 0; i < imgList.length; i++) {
+                    imgListArr["file" + (i + 1)] = imgList[i].thumbPath
+                }
+
+                api.ajax({
+                    // report : false,
+                    url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+
+                        files: imgListArr,
+                        // values: ret.list
+
+                    }
+                }, function (data, err) {
+
+                    console.log(data)
+                    picture = data.imgUrl
+                    var retImg = stringFun(data.imgUrl)
+                    that
+                    /!*var ulBox = document.getElementById('ul_box');
+                    var ulBoxLi = ''
+                    // ulBoxLi +='<li class="action"></li>'
+                    for (var i = 0; i < retImg.length - 1; i++) {
+                        ulBoxLi += '<li><img src="' + retImg[i] + '" alt="" class="imgMorActive"><img src="../../../icon/delete.png" alt="de" class="delImgAbo" onclick="delImgComClick(' + i + ')"></li>'
+                    }
+                    ulBox.innerHTML = ulBoxLi*!/
+
+
+                });
+
+
+            }
+        });
+    }
+
+    function delImgComCir(index) {
+        console.log("imgListArr", imgListArr)
+
+        // imgListArr.splice(index,1);
+        var filex = "file" + index
+        console.log("filex", filex)
+        delete imgListArr.filex
+
+        console.log("imgListArrdelete", imgListArr)
+
+        var ulBox = document.getElementById('ul_box');
+        var ulBoxLi = ''
+        // ulBoxLi +='<li class="action"></li>'
+        for (var i = 0; i < imgListArr.length - 1; i++) {
+            ulBoxLi += '<li><img src="' + imgListArr[i] + '" alt="" class="imgMorActive"><img src="../../../icon/delete.png" alt="de" class="delImgAbo" onclick="delImgComClick(' + i + ')"></li>'
+        }
+        ulBox.innerHTML = ulBoxLi
+
+        var obj = {
+            pic: JSON.stringify(imgListArr),
+            cid: cid
+        }
+        ajaxGetWithProgress(addCompanyPicOrgnizationProfile, obj, function (data) {
+            console.log(data)
+        })
+    }
+
+    function delImgComClick(index) {
+        delImgComCir(index)
+    }*/
+</script>
+</body>
+</html>

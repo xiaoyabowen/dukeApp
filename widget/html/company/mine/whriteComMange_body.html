@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>高管介绍</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
+    <style>
+
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
+        .addComProImg{
+            display: block;
+            width: 2.2rem;
+            height: 2.2rem;
+            margin: 0.3rem 0 2.3rem;
+        }
+    </style>
+</head>
+<body class="commonBg">
+
+<div class="Box" id="app1">
+    <div class="boxSub">
+        <div class="w-title commonTitle">添加公司高管介绍</div>
+
+        <div class="formbox cssFlex">
+            <span class="formboxtitle commonFont">高管姓名：</span>
+            <input type="text" class="formboxInput" placeholder="高管姓名" v-model="mangeName">
+        </div>
+        <div class="formbox cssFlex">
+            <span class="formboxtitle commonFont">担任职务：</span>
+            <input type="text" class="formboxInput" placeholder="担任职务" v-model="mangePosition">
+        </div>
+
+        <textarea cols="30" rows="10" v-model="comproText" class="textAreaCom" placeholder="高管介绍可以填写学业或者职业履历，或者所负责的项目
+可以从以下几个方面来介绍：
+毕业于哪家知名学校？
+曾在XX公司担任XX岗位，有哪些辉煌业绩
+现任XX公司担任XX岗位，负责XX项目"></textarea>
+
+        <img :src="senior_icon" alt="manger" class="addComProImg" @click="wuploadimg()">
+        <div class="postSubBtn" @click="preservation()">保存</div>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/vue.min.js"></script>
+
+<script>
+
+    var cid,uid,url,index;
+    apiready = function () {
+        cid = api.pageParam.cid;
+        url = api.pageParam.url;
+        index = api.pageParam.index;
+        uid = localStorage.getItem("person_id");
+        new Vue({
+            el: '#app1',
+            data: {
+                mangeName:"",
+                mangePosition:"",
+                comproText:"",
+                senior_icon:"../../../image/company/commanger.png",
+            },
+            created: function () {
+                this.queryOrgnizationSenior()
+            },
+            mounted : function (){
+
+            },
+            methods: {
+                queryOrgnizationSenior : function (){
+                    var that = this
+                    if (index == 2){
+                        var uid = localStorage.getItem("person_id")
+                        var obj = {
+                            uid: uid
+                        }
+                        ajaxGetWithProgress(queryOrgnizationSenior,obj,function (data,ret) {
+                            console.log(data)
+                            if (data){
+                                that.mangeName = data.senior
+                                that.mangePosition = data.senior_position
+                                that.comproText = data.senior_bak
+                                that.senior_icon = imgSrcFun(data.senior_icon)
+                            }
+                        })
+                    }
+
+                },
+                wuploadimg : function () {
+                    var that = this
+                    api.getPicture({
+                        sourceType: 'library',
+                        encodingType: 'jpg',
+                        mediaValue: 'pic',
+                        destinationType: 'url',
+                        allowEdit: true,
+                        quality: 50,
+                        targetWidth: 100,
+                        targetHeight: 100,
+                        saveToPhotoAlbum: false
+                    }, function(ret, err) {
+
+                        if (ret) {
+                            var obj = {
+                                uid : localStorage.getItem("person_id")
+                            }
+                            console.log(JSON.stringify(ret));
+                            //上传剪辑后的图像到服务器
+                            api.ajax({
+                                // report : false,
+                                // url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                                url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+                                    files: {
+                                        file: ret.data
+                                    },
+                                    values:obj
+                                }
+                            }, function (ret, err) {
+                                console.log(ret);
+                                var pathImgImg = ret.imgUrl
+                                if (pathImgImg == ''){
+                                    that.senior_icon = '../../../image/company/commanger.png'
+                                }else{
+                                    var pathImgData = pathImgImg.split(",")
+                                    console.log(pathImgData)
+                                    that.senior_icon = pathImgData[0]
+                                }
+
+                                api.hideProgress();
+
+                            });
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+
+                    });
+                },
+                preservation: function () {
+                    var that = this
+                    var c_id = localStorage.getItem("com_id")
+
+                    if (that.mangeName == ''){
+                        toast("请填写高管姓名")
+                        return
+                    }
+                    if (that.mangePosition == ''){
+                        toast("请填写高管职位")
+                        return
+                    }
+                    if (that.comproText == ''){
+                        toast("请填写背景介绍")
+                        return
+                    }
+
+
+
+
+                    var obj = {
+                        c_id : c_id,
+                        senior : that.mangeName,
+                        senior_position : that.mangePosition,
+                        senior_bak : that.comproText,
+                        senior_icon : that.senior_icon,
+                    }
+                    console.log(obj)
+                    ajaxGetWithProgress(createCompanySenior,obj,function (data,ret) {
+                        console.log(data)
+                        if (data.return.status) {
+                            var frameName = url + "_body";
+                            api.execScript({
+                                name:url,
+                                frameName: frameName,
+                                script: 'loadCom()'
+                            })
+                            closeWin();
+                        }
+                    })
+                },
+            }
+        })
+    };
+
+</script>
+</body>
+</html>
