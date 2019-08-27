@@ -37,7 +37,7 @@
             <div class="goodInfoBox padding30">
 
                 <!--待收货 待评价-->
-                <div class="fareBox cssFlex" v-show="adrStatus == 2">
+                <!--<div class="fareBox cssFlex" v-show="adrStatus == 2">
                     <img src="../../image/mine/orderFare.png" alt="Delivery2x" class="DeliImg">
                     <div class="fareBoxMain">
                         <div class="fareBoxWhere commonFont textOverflow">客户已签收，提货点【熊猫快递幸
@@ -57,7 +57,7 @@
                         <div class="fareBoxTime commonSub24">2019-06-27</div>
                     </div>
                     <img src="../../icon/right.png" alt="right" class="info-img-right">
-                </div>
+                </div>-->
 
 
                 <div class="overGoods cssFlex">
@@ -71,6 +71,7 @@
                 </div>
             </div>
             <div class="line20"></div>
+            <!--面膜-->
             <div class="comMain cssFlex" v-show="tId == 1">
                 <img :src="orderImg" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
@@ -86,7 +87,23 @@
                     </div>
                 </div>
             </div>
+            <!--农产品-->
+            <div class="comMain cssFlex" v-show="tId == 5">
+                <img :src="orderImg" alt="orderImg" class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{com_name}}
+                    </div>
 
+                    <div class="comProTet textOverflow commonSub24">
+                        {{summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{dprice}}/件</i> <i class="commonFont">x{{buyNum}}</i>
+                    </div>
+                </div>
+            </div>
+            <!--旅游-->
             <div class="comMain cssFlex" v-show="tId == 2">
                 <img :src="orderImg" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
@@ -118,7 +135,7 @@
             <i v-show="freight == 2">（有运费）</i>
         </div>
 
-        <div class="phoneBO">
+        <div class="phoneBO" @click="callPhoneClick(fPhone)" v-show="tId == 5 && adrStatus == 2">
             拨打电话
         </div>
 
@@ -194,19 +211,19 @@
 
         <!--待收货-->
         <div class="comGoodBtn margibottom cssFlex" v-show="adrStatus == 2">
-            <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+            <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
             <span class="comBtnClass comBtnClassFE" @click="confirmClick(adrStatus,bId)">确认收货</span>
         </div>
         <!--已评价-->
         <div class="comGoodBtn margibottom cssFlex" v-show="adrStatus == 4">
             <span class="comBtnClass" @click="delOrderClick(bId,oId)">删除订单</span>
-            <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+            <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
             <span class="comBtnClass" @click="againPayClick()">再次购买</span>
         </div>
         <!--待评价-->
         <div class="comGoodBtn margibottom cssFlex" v-show="adrStatus == 3">
             <span class="comBtnClass" @click="delOrderClick(bId,oId)">删除订单</span>
-            <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+            <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
             <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             <span class="comBtnClass comBtnClassBF" @click="starOrderClick(pId,cId)">立即评价</span>
         </div>
@@ -214,7 +231,7 @@
         <!--代发货-->
         <div class="comGoodBtn margibottom cssFlex" v-show="adrStatus == 1">
 
-            <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+            <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
 
         </div>
     </div>
@@ -240,19 +257,19 @@
         bId = api.pageParam.bId
         cId = api.pageParam.cId
         oId = api.pageParam.oId
-        tId = api.pageParam.tId
+
         adrStatus = api.pageParam.adrStatus
         uid = localStorage.getItem("person_id");
         new Vue({
             el: '#app1',
             data: {
                 adrStatus: adrStatus,    //
-                tId: tId,    //
+                tId: '',    //
                 payStatus: 1,    //支付状态
                 goodsStatus: 1,    //支付状态
                 goodStatus: 1,    //支付状态
                 gootBtnStatus: 1,    //支付状态
-                orderImg: "../../image/chat/touxiangm.png",    //支付状态
+                orderImg: "",    //支付状态
                 shouName: '',
                 shouPhone: '',
                 shouAdress: '',
@@ -270,10 +287,12 @@
                 expressNum: '',
                 chufaCity: '',
                 chufaTime: '',
+                fPhone: '',
 
             },
 
             created: function () {
+                this.tId = api.pageParam.tId
                 this.OrderSummaryCommodityProFile()
             },
             mounted: function () {
@@ -300,21 +319,29 @@
                             /*that.shouName = data.adress.name || "未填写"
                             that.shouPhone = data.adress.phone || "未填写"
                             that.shouAdress = data.adress.address + data.adress.addrDetails*/
-                            that.com_name = data.comm.com_name || "未填写"
-                            that.summary = data.comm.summary || "未填写"
-                            that.dprice = data.comm.dprice || "未填写"
-                            that.buyNum = data.comm.buyNum || "未填写"
-                            that.priceAll = data.bills.priceAll || "未填写"
-                            that.freight = data.bills.freight || "未填写"
-                            that.orderId = data.bills.bId || "未填写"
-                            that.orderTime = data.bills.payTime || "未填写"
-                            that.orderPayType = data.bills.payType || "未填写"
-                            that.orderSendTime = data.bills.expressTime || "未填写"
-                            that.express = data.bills.expressCompany || "未填写"
-                            that.expressNum = data.bills.expressnum || "未填写"
-                            that.chufaCity = data.comm.departureCity || "未填写"
-                            that.chufaTime = data.comm.departureDate || "未填写"
-                            that.orderImg = imgSrcFun(data.comm.placard) || "../../image/chat/touxiangm.png"
+                            if (data.bills){
+                                that.priceAll = data.bills.priceAll || "未填写"
+                                that.freight = data.bills.freight || "未填写"
+                                that.orderId = data.bills.bId || "未填写"
+                                that.orderTime = data.bills.payTime || "未填写"
+                                that.orderPayType = data.bills.payType || "未填写"
+                                that.orderSendTime = data.bills.expressTime || "未填写"
+                                that.express = data.bills.expressCompany || "未填写"
+                                that.expressNum = data.bills.expressnum || "未填写"
+                                that.fPhone = data.bills.fPhone || "15901420539"
+                            }
+
+                            if (data.comm){
+                                that.com_name = data.comm.com_name || "未填写"
+                                that.summary = data.comm.summary || "未填写"
+                                that.dprice = data.comm.dprice || "未填写"
+                                that.buyNum = data.comm.buyNum || "未填写"
+                                that.chufaCity = data.comm.departureCity || "未填写"
+                                that.chufaTime = data.comm.departureDate || "未填写"
+                                console.log("data.comm.placard",data.comm.placard)
+                                that.orderImg = imgSrcFun(data.comm.placard) || "../../image/chat/touxiangm.png"
+                            }
+
                         }else {
                             toast("请求失败")
                         }
@@ -326,7 +353,13 @@
                         pId : pId,
                         cId : cId
                     })
-                }
+                },
+                callPhoneClick : function (fPhone) {
+                    api.call({
+                        type: 'tel_prompt',
+                        number: fPhone
+                    })
+                },
             }
         })
     };

@@ -368,11 +368,22 @@
                     Consultation: function () {
                         var that = this
                         if (document.querySelector(".tripPerson").innerText == "出游人群"){
-                            toast("请先选择出游人群等信息")
+
+                            mui.alert("请先选择出游人群等信息","提示","确定",function (ret) {
+                                openNewWindow("tripDate", "./tripDate.html",{
+                                    name :'index',
+                                    ouId : that.ouId
+                                });
+                            })
                             return
                         }
                         if (document.querySelector(".tripPrice").innerText == "0"){
-                            toast("请先选择出游人群等信息")
+                            mui.alert("请先选择出游人群等信息","提示","确定",function (ret) {
+                                openNewWindow("tripDate", "./tripDate.html",{
+                                    name :'index',
+                                    ouId : that.ouId
+                                });
+                            })
                             return
                         }
 
