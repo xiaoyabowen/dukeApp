@@ -310,7 +310,7 @@
                     this.order = api.pageParam.order;
                     this.active = api.pageParam.url;
                     this.tourismouou = api.pageParam.urlIs;
-                    this.OrderKey = api.pageParam.OrderKey
+                    // this.OrderKey = api.pageParam.OrderKey
                     this.ououPrice = api.pageParam.ououPrice
 
                     if (api.pageParam.url){
@@ -354,7 +354,7 @@
                         var obj
                         if (that.active == 'facial' || that.active == 'farmProduce'){
                             obj = {
-                                oId : api.pageParam.OrderKey,
+                                // oId : api.pageParam.OrderKey,
                                 buyNum : that.num,
                                 price : that.item.priceh * that.num,
                             }
@@ -377,7 +377,7 @@
                         }
 
                         var obj = {
-                            oId : api.pageParam.OrderKey,
+                            // oId : api.pageParam.OrderKey,
                             buyNum : that.num,
                             price : that.item.priceh * that.num,
                         }
@@ -429,7 +429,7 @@
                                  var obj = {
                                      cId:that.item.cId,
                                      pId: that.person_id,
-                                     oId: that.OrderKey,
+                                     // oId: that.OrderKey,
                                      buyNum: that.num,
                                      price: that.item.priceh,
                                      comName: that.item.comName,
@@ -509,7 +509,7 @@
                                 var obj = {
                                     cId :that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.item.price,
                                     comName: that.item.comName,
@@ -624,16 +624,18 @@
                                 var obj = {
                                     cId:that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.item.priceh,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
+                                    adrId : that.order.adr.name + ',' + that.order.adr.phone + ',' +that.order.adr.address+','+ that.order.adr.addrDetails
                                 }
                                 console.log(obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.12:8088/pay/alipayUniform',  //url+模块
+                                    // url: 'http://192.168.1.12:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://192.168.1.12:8088/pay/GoPayOrder',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -706,7 +708,7 @@
                                 var obj = {
                                     cId: that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.item.price,
                                     comName: that.item.comName,
@@ -805,7 +807,7 @@
                                 var obj = {
                                     cId:that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.item.price,
                                     comName: that.item.comName,
@@ -887,7 +889,7 @@
                                 var obj = {
                                     cId: that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.item.price,
                                     comName: that.item.comName,
@@ -988,7 +990,7 @@
                                 var obj = {
                                     cId:that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.ououPrice,
                                     comName: that.item.comName,
@@ -1071,7 +1073,7 @@
                                 var obj = {
                                     cId: that.item.cId,
                                     pId: that.person_id,
-                                    oId: that.OrderKey,
+                                    // oId: that.OrderKey,
                                     buyNum: that.num,
                                     price: that.ououPrice,
                                     comName: that.item.comName,
@@ -1168,7 +1170,7 @@
 
             var str = {
                 adrId : adrId,
-                oId : api.pageParam.OrderKey
+                // oId : api.pageParam.OrderKey
             }
             console.log(str)
             ajaxGetWithProgress(updateDeliveryAddress,str,function(res,err) {

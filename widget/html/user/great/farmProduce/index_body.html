@@ -387,7 +387,7 @@
                         console.log("qie",obj)
                         ajaxGetWithProgress(createOrder, obj, function (data, err) {
                             console.log("creat",data);
-                            if (data.date) {
+                            if (data) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {
                                     item: that.item,
                                     order: data,
