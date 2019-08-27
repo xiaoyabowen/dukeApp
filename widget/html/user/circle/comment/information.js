@@ -106,7 +106,7 @@ function informationInit(Vue) {
                 var that = this
                 var UIAlbumBrowser = api.require('UIAlbumBrowser');
                 UIAlbumBrowser.open({
-                    max: 1,
+                    max: 2,
                     styles: {
                         bg: '#fff',
                         mark: {
