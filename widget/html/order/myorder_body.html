@@ -70,6 +70,21 @@
                     </div>
                 </div>
             </div>
+            <!--面膜类型-->
+            <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 5">
+                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+                <div class="comContent">
+                    <div class="comProTet textOverflow commonFont">
+                        {{item.com_name}}
+                    </div>
+                    <div class="comProTet textOverflow commonSub24">
+                        {{item.summary}}
+                    </div>
+                    <div class="comPrice commonTitle">
+                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
+                    </div>
+                </div>
+            </div>
             <!--旅游   类型-->
             <div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
                 <img :src="orderImg" alt="orderImg"class="comLeftImg">
@@ -104,25 +119,25 @@
 
             <!--未支付-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.orderStatus == 0">
-                <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
+                <span class="comBtnClass comBtnClassBF" @click="payGoClick(item)">去付款</span>
             </div>
 
             <!--待收货-->
             <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
                 <div class="comGoodBtn margibottom cssFlex">
-                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                     <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
                 </div>
-                <div class="fareSpeed  commonFont">
+                <!--<div class="fareSpeed  commonFont">
                     <i class="fareSpeedName">{{item.express}}：</i>
                     到北京市【北京转运中心】
-                </div>
+                </div>-->
             </div>
 
             <!--待评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
                 <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
@@ -130,7 +145,7 @@
             <!--已评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             </div>
 
@@ -244,7 +259,7 @@
             <!--待收货-->
             <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
                 <div class="comGoodBtn margibottom cssFlex">
-                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                     <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
                     <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
                 </div>
@@ -257,7 +272,7 @@
             <!--待评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
                 <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
@@ -265,7 +280,7 @@
             <!--已评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             </div>
 
@@ -358,7 +373,7 @@
             <!--待收货-->
             <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
                 <div class="comGoodBtn margibottom cssFlex">
-                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                     <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
                     <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
                 </div>
@@ -371,7 +386,7 @@
             <!--待评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
                 <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
@@ -379,7 +394,7 @@
             <!--已评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             </div>
 
@@ -475,7 +490,7 @@
             <!--待收货-->
             <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
                 <div class="comGoodBtn margibottom cssFlex">
-                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                     <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
                     <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
                 </div>
@@ -488,7 +503,7 @@
             <!--待评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
                 <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
@@ -496,7 +511,7 @@
             <!--已评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             </div>
 
@@ -589,7 +604,7 @@
             <!--待收货-->
             <div class="comGoodBtnBox margibottom" v-show="item.adrStatus == 2">
                 <div class="comGoodBtn margibottom cssFlex">
-                    <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                    <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                     <span class="comBtnClass comBtnClassBF" @click="payGoClick()">去付款</span>
                     <span class="comBtnClass comBtnClassFE" @click="confirmClick(item.adrStatus,item.bId)">确认收货</span>
                 </div>
@@ -602,7 +617,7 @@
             <!--待评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 3">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
                 <span class="comBtnClass comBtnClassBF" @click="starOrderClick(item.pId,item.cId,item.bId)">立即评价</span>
             </div>
@@ -610,7 +625,7 @@
             <!--已评价-->
             <div class="comGoodBtn margibottom cssFlex" v-show="item.adrStatus == 4">
                 <span class="comBtnClass" @click="delOrderClick(item.bId,item.oId)">删除订单</span>
-                <span class="comBtnClass" @click="seeFareClick()">查看物流</span>
+                <!--<span class="comBtnClass" @click="seeFareClick()">查看物流</span>-->
                 <span class="comBtnClass" @click="againPayClick()">再次购买</span>
             </div>
 
@@ -792,9 +807,187 @@
                     })
                 },
                 //  去付款
-                payGoClick : function (name,index) {
+                payGoClick : function (item) {
                     var that = this
                     toast("付款")
+                    console.log("itemitem",item.bId)
+
+                    if (item.payType == '微信') {
+
+                        mui.alert('weixin', '提示', function (e) {
+                            console.log(e)
+                            if (e.index == 0) {
+
+                            }
+                        });
+
+                        return;
+                    } else if (item.payType == '支付宝') {
+                        var obj = {
+                            cId:item.cId,
+                            pId: item.person_id,
+                            bId: item.bId,
+                            buyNum: item.num,
+                            price: item.priceh,
+                            comName: item.comName,
+                            summary: item.summary,
+                            payType: "支付宝",
+                            adrId : item.adr.name + ',' + item.adr.phone + ',' +item.adr.address+','+ item.adr.addrDetails
+                        }
+                        console.log(obj)
+                        api.ajax({
+                            url: 'http://112.126.98.172:8088/pay/GoPayOrder',  //url+模块
+                            // url: 'http://112.126.98.172:8088/pay/GoPayOrder',  //url+模块
+                            method: 'GET',
+                            dataType: 'text',
+                            timeout: 30,
+                            data: {
+                                values: obj
+                            }
+                        }, function (ret, err) {
+                            //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
+                            console.log("自己处理订单信息以及签名过程请求:", ret);
+                            var aliPayPlus = api.require('aliPayPlus');
+                            aliPayPlus.payOrder({
+                                orderInfo: ret,
+                                // orderInfo: 'alipay_sdk=alipay-sdk-java-3.7.89.ALL&app_id=2019081266240052&biz_content={"body":"2332323",out_trade_no":"281085431578099714","product_code":"QUICK_MSECURITY_PAY","subject":"454545","timeout_express":"30m","total_amount":"1"}&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=http://112.126.98.172:8081/alipayChannel/pay/notice&return_url=https://m.alipay.com/Gk8NF23&sign=WcysA5e7KPGJf%2F35tNop8rXqxC5UEU8MhyaDNG8BLDZvX4HO07qYoVH5e7Gvao3EzIYmkRfULWcC1a4I%2BgOeAU3uccAar7qHGsnnTVB3fEgvPgO7rhypNEFpOU9P9csfIZdG6rRRJB64cV%2FChZtF7rmCg7NKs5FFLgZK2jdjKH2oEjRNh8apv%2BKUcHaXz9SGKcp3O99kWxGQ2sq3Zf8CMsFWnJeoekzxs%2BBmzB8wkwJZLWrRA%2FnsxfKw0Z5%2BhKCDE23Q3OPayK3hRWwTKLYlpiWNWFvO7tyJkYe52yw73MfJzRaOwjeE8IqR7nRGI7mvCp44ZRpolS8evAjZCS1hjA%3D%3D&sign_type=RSA2&timestamp=2019-08-12 23:33:09&version=1.0',
+                                // sandbox: true
+
+
+                            }, function (ret, err) {
+                                console.log(ret)
+                                var msg = ret.code
+
+                                if (msg == 9000) {
+                                    mui.alert('支付成功', '提示', function (e) {
+                                        if (e.index == 0) {
+                                            openNewWindow("myorder", "../../order/myorder.html");
+                                        }
+                                    });
+                                } else if (msg == 8000) {
+                                    mui.alert('正在处理中', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                } else if (msg == 4000) {
+                                    mui.alert('订单支付失败', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                } else if (msg == 5000) {
+                                    mui.alert('重复请求', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                } else if (msg == 6001) {
+                                    mui.alert('用户中途取消支付操作', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                } else if (msg == 6002) {
+                                    mui.alert('网络连接出错', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                } else if (msg == 6004) {
+                                    mui.alert('请查询商户订单的支付状态', '提示', function (e) {
+                                        if (e.index == 0) {
+
+                                        }
+                                    });
+                                }
+                            });
+                        });
+
+                        return;
+                    }else if (item.payType == '银联') {
+                        var unPay = api.require('unionPay');
+                        var obj = {
+                            cId:item.cId,
+                            pId: item.person_id,
+                            bId: item.bId,
+                            buyNum: item.num,
+                            price: item.priceh,
+                            comName: item.comName,
+                            summary: item.summary,
+                            payType: "银联",
+                            adrId : item.adr.name + ',' + item.adr.phone + ',' +item.adr.address+','+ item.adr.addrDetails
+                        }
+
+                        console.log(obj)
+
+
+                        api.ajax({
+                            url: 'http://112.126.98.172:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                            method: 'post',
+                            dataType: 'text',
+                            returnAll:false,
+                            timeout: 30,
+                            data: {
+                                values: obj
+                            }
+                        },function(ret,err){
+                            console.log("yinlian",ret)
+                            if (ret) {
+                                unPay.pay({
+                                    tn: ret,
+                                    devMode: true
+                                }, function(ret, err){
+                                    console.log("pay",ret)
+                                    if (ret.result == "success"){
+                                        mui.alert('支付成功', '提示', function (e) {
+                                            if (e.index == 0) {
+                                                openNewWindow("myorder", "../../order/myorder.html");
+                                            }
+                                        });
+                                    }else if (ret.result == "fail") {
+                                        mui.alert('支付失败', '提示', function (e) {
+                                            if (e.index == 0) {
+
+                                            }
+                                        });
+                                    }else if (ret.result == "cancel") {
+                                        mui.alert('用户取消支付', '提示', function (e) {
+                                            if (e.index == 0) {
+
+                                            }
+                                        });
+                                    }
+                                    // api.alert({msg:JSON.stringify(ret)});
+                                });
+                            }
+                        });
+
+                        return;
+                    }
+
+                    ajaxGetWithProgress(PayOrder, {
+                        pId: that.person_id,
+                        bank: that.bank
+                    }, function (data, err) {
+                        console.log(data);
+                        if (!data.date) {
+                            mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
+                                if (e.index) {
+                                    openNewWindow("addCards", "./addCards.html", {
+                                        url: 'confirmOrder',
+                                        bank: that.bank
+                                    });
+                                }
+                            }, 'div');
+                            return;
+                        }
+
+
+                    });
+
+                    return;
+
                     /*openNewWindow("orderStar", "comment/orderStar.html",{
                         name : "待收货"
                     })*/
