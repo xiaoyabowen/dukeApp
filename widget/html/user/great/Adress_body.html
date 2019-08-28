@@ -136,6 +136,7 @@
                         api.execScript({
                             name:url,
                             frameName: frameName,
+                            isDefult: "true",
                             script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+','+JSON.stringify(adrId)+')'
                         })
                         closeWin();

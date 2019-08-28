@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mineCommon.css" />
+    <style>
+
+    </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+</head>
+<body class="commonBg">
+    <div class="Box" id="homeIndex">
+        <div class="boxSub">
+
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script>
+
+        function reload (){
+            window.location.reload()
+        }
+        apiready = function () {
+            new Vue({
+                el: '#homeIndex',
+                data: {
+                    activeType: 'trip',
+                    item: {},
+
+                },
+                created: function () {
+
+                },
+                mounted: function () {
+
+
+                },
+                methods: {
+
+
+                }
+            })
+
+        };
+
+    </script>
+</body>
+</html>

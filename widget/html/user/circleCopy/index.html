@@ -6,34 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>订阅的职位</title>
+    <title>圈子</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
+        /*.headerBox > div {*/
+            /*font-size: 0.3rem;*/
+        /*}*/
 
-        .middleMain{
-            width: 5.2rem;
+        .middle_center {
+            /*font-size: 0.36rem;*/
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            color: rgba(255,255,255,1);
+            line-height: 0.50rem;
+            margin-left: 0.8rem;
         }
     </style>
 </head>
 <body>
 <div id="topbar" >
     <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
+        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
     </div>
-    <div>创建简历(http://112.126.98.172)</div>
+    <div>活动</div>
     <div class="right" onclick="save()">
-        下一步
+        + 发布活动
     </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWin()">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+        <div onclick="closeWin()">
+            首页
         </div>
-        <div class="middleMain">
-            创建简历（1/4）
+        <div class="middle_center">
+            活动
         </div>
-        <div class="rightImgEdite"onclick="save()">
-            下一步
+        <div onclick="save()">
+            + 发布活动
         </div>
     </div>
 </div>
@@ -49,12 +57,15 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-    //点击保存
+
+    //发布活动
     function save(){
-        api.execScript({
-            frameName: "create_resume_body",
-            script: 'preservation()'
-        })
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser || uidUser == 'undefined'){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("publishing_activities", "./publishing_activities.html")
     }
 </script>
 </html>

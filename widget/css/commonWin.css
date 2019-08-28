@@ -73,6 +73,7 @@ textarea{
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
 }
+/*单行省略*/
 .ellipsis{
     overflow: hidden;
     text-overflow:ellipsis;

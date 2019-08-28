@@ -1,0 +1,56 @@
+<div id="informationInit">
+    <div class="information_head" :style="styleObject" @click="upImg()">
+        <div class="information_head_add" v-if="!img" ></div>
+        <img :src="img" v-if="img" alt="">
+    </div>
+    <div class="information_content">
+
+        <div class="information_item cssFlex">
+            <label>活动标题</label>
+            <input type="text" v-model="title" maxlength=80 placeholder="不超过80个字">
+        </div>
+        <div class="information_item cssFlex">
+            <label>活动发起人</label>
+            <input type="text" v-model="name" maxlength=80 placeholder="姓名">
+        </div>
+        <div class="information_item cssFlex">
+            <label>发起人电话</label>
+            <input type="number" v-model="phone" maxlength=80 placeholder="请输入手机号码">
+        </div>
+        <div class="information_item cssFlex">
+            <label>输入验证码</label>
+            <input type="text" v-model="code" maxlength=10 placeholder="验证码">
+            <span id="sms" class="code" @click="getCode()">发送验证码</span>
+        </div>
+        <div class="information_item cssFlex" @click="activeAdr">
+
+            <label>活动地点</label>
+            <input type="text" class="addressInput" maxlength=80 placeholder="请输入活动的具体地址" readonly>
+            <input type="hidden" class="adr_id">
+        </div>
+        <div class="information_item cssFlex" @click="starTime">
+            <label>开始时间</label>
+            <input type="text" v-model="time_from" maxlength=80 placeholder="列: 2019-12-12 10:00" readonly>
+        </div>
+        <div class="information_item cssFlex" @click="endTime">
+            <label>结束时间</label>
+            <input type="text" v-model="time_to" maxlength=80 placeholder="列: 2019-12-12 18:00" readonly>
+        </div>
+        <div class="information_item cssFlex">
+            <label>活动人数</label>
+            <input type="number" v-model="num" maxlength=80 placeholder="不限">
+        </div>
+        <div class="information_item cssFlex" @click="upEndTime">
+            <label>报名截止时间</label>
+            <input type="text" v-model="end" maxlength=80 placeholder="列: 2019-12-12 18:00" readonly>
+        </div>
+
+        <div class="information_btn" @click="nextActive()">下一步</div>
+    </div>
+
+</div>
+
+<script>
+
+</script>
+
