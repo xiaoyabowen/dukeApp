@@ -9,40 +9,22 @@
     <title>圈子</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <style>
-        /*.headerBox > div {*/
-            /*font-size: 0.3rem;*/
-        /*}*/
-
-        .middle_center {
-            /*font-size: 0.36rem;*/
-            font-family: PingFangSC-Medium;
-            font-weight: 500;
-            color: rgba(255,255,255,1);
-            line-height: 0.50rem;
-            margin-left: 0.8rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
 <body>
 <div id="topbar" >
     <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
+        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
     </div>
-    <div>活动</div>
-    <div class="right" onclick="save()">
-        + 发布活动
-    </div>-->
+    <div>发布活动</div>-->
     <div class="headerBox cssFlex">
-        <div onclick="closeWin()">
-            首页
+        <div class="leftImgClose" onclick="closeWin()">
+            <img style="width: 16px;height: 20px;" class="imgBack" src="../../../icon/back.png">
         </div>
-        <div class="middle_center">
-            活动
+        <div class="middleMain">
+            发布活动
         </div>
-        <div onclick="save()">
-            + 发布活动
-        </div>
+        <div class="pubbtn" onclick="publishActivity()">保存</div>
     </div>
 </div>
 </body>
@@ -57,15 +39,9 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-
-    //发布活动
-    function save(){
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser || uidUser == 'undefined'){
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("publishing_activities", "./publishActivity.html")
+    function publishActivity(){
+      console.log('提交活动');
     }
+
 </script>
 </html>
