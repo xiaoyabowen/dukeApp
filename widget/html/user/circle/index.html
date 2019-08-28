@@ -10,38 +10,33 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
-        /*.headerBox > div {*/
-            /*font-size: 0.3rem;*/
-        /*}*/
-
-        .middle_center {
-            /*font-size: 0.36rem;*/
-            font-family: PingFangSC-Medium;
-            font-weight: 500;
-            color: rgba(255,255,255,1);
-            line-height: 0.50rem;
-            margin-left: 0.8rem;
+        .headerBox {
+            justify-content: space-between;
         }
+        .oneImgRight,.rightImgEdite {
+            width: 0.34rem;
+            height: 0.38rem;
+            margin-top: -0.6rem;
+        }
+        .rightImgEdite {
+            width: 0.3rem;
+            height: 0.3rem;
+        }
+
     </style>
 </head>
 <body>
 <div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
-    </div>
-    <div>活动</div>
-    <div class="right" onclick="save()">
-        + 发布活动
-    </div>-->
+
     <div class="headerBox cssFlex">
-        <div onclick="closeWin()">
+        <div onclick="mineGo()">
             首页
         </div>
         <div class="middle_center">
             活动
         </div>
-        <div onclick="save()">
-            + 发布活动
+        <div class="rightImgEdite">
+            <img class="oneImgRight" src="../../../image/mine/share.png" alt="" >
         </div>
     </div>
 </div>
@@ -58,7 +53,11 @@
         initFrameInWin(api.pageParam);
     };
 
+    function mineGo() {
+        openNewWindow("home", "../home/home.html")
+    }
     //发布活动
+
     function save(){
         var uidUser = localStorage.getItem("user")
         if (!uidUser || uidUser == 'undefined'){
