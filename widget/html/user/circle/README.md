@@ -4,6 +4,11 @@
 ```pre
 
 ├── index   // 活动
+├── activeDetail   // 活动详情
+├── signYesPer   // 已报名
+├── allDiscuss   // 全部评论
+├── ticket   // 电子票
+
 
 ├── publishActivity   // 发布活动
 
@@ -12,4 +17,7 @@
 ├── manActivity   // 管理活动
 
 ├── manPerson   // 人员管理
+
+
+
 ```

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>扫一扫</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/circleCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css"/>
+    <style>
+
+    </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+</head>
+<body>
+<div id="circle">
+    <div class="saoBox">
+        <div class="phoneYZ cssFlex">
+            <input type="number" v-model="phone" class="phoneYZInput" placeholder="手机号码验证" >
+            <div class="signBtn" @click="signBtnClick()">签到</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script>
+
+    function reload() {
+        window.location.reload()
+    }
+
+    apiready = function () {
+        new Vue({
+            el: '#circle',
+            data: {
+                phone : '',
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+
+            },
+            methods: {
+                signBtnClick : function () {
+                    var that = this
+                    if (!that.phone) {
+                        mui.toast('请填写手机号码');
+                        return;
+                    }else if(!checkMobileNum(that.phone)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                }
+            }
+        })
+
+    };
+
+</script>
+</body>
+</html>
