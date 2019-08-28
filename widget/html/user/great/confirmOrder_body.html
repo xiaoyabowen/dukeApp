@@ -286,8 +286,7 @@
 
 
         apiready = function () {
-            console.log(api.pageParam.item);
-            console.log(api.pageParam.order);
+            console.log("123",api.pageParam.item);
             console.log(api.pageParam.order);
 
             var app = new Vue({
@@ -317,7 +316,7 @@
                     this.tourismouou = api.pageParam.urlIs;
                     // this.OrderKey = api.pageParam.OrderKey
                     this.ououPrice = api.pageParam.ououPrice
-
+                    // this.isDefult = api.pageParam.isDefult
                     if (api.pageParam.url) {
                         this.isDefult = api.pageParam.order.default
                     } else {

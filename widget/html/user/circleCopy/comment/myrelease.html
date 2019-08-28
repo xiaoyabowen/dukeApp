@@ -1,0 +1,46 @@
+<div class="subsignBoxInfo">
+
+    <div class="notmy_Concern_main" v-if="showInfo ? '' : 'notDisplay'">
+        <div class="notImg">
+            <img src="../../../image/myfa.png" alt="du" class="notImgMy" >
+        </div>
+        <div class="notMyConText">暂无发布活动！</div>
+        <!--<div class=""></div>-->
+    </div>
+
+
+    <div class="rel-box" @click="linkHandle(item.circle_id,item.cir_status)" v-for="(item, index) in list" :key="index"  v-if="showInfo ? 'notDisplay' : ''">
+        <div class="rel-info cssFlex">
+            <img :src="item.p_icon.split(',')[0]" alt="hr" class="rel-info-img">
+            <div class="rel-info-info">
+                <div class="rel-infoname">{{item.p_name}}</div>
+                <div class="fel-infotime">
+                    {{item.time}}发布
+                </div>
+            </div>
+        </div>
+        <div class="rel-title-h2">
+            {{item.title}}
+        </div>
+        <div class="rel-imgbig">
+            <img :src="item.poster" alt="circle">
+        </div>
+        <div class="rel-comment">
+            <span class="commmentBox">
+                <i class="commentNum">{{item.CommentNum}}</i>评论
+            </span>
+            <span class="signYesBox">
+                <i class="signYesNum">{{item.PersonNum}}</i>
+                已报名
+            </span>
+        </div>
+        <div class="notSignActive" v-if="item.cir_status == 0">活动已取消</div>
+    </div>
+
+</div>
+
+
+<script>
+
+</script>
+

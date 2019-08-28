@@ -33,5 +33,9 @@
 ├── createPhone             // 创建简历 第一步 绑定手机号
 ├── Feedback             // 意见反馈
 ├── aboutDuke             // 关于我们
+├── mineAction             // 我的 个人中心  改版  
+
+
+
 
 ```
