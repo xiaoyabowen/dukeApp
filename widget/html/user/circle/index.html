@@ -14,9 +14,9 @@
             justify-content: space-between;
         }
         .oneImgRight,.rightImgEdite {
-            width: 0.34rem;
-            height: 0.38rem;
-            margin-top: -0.6rem;
+            width: 0.4rem;
+            height: 0.34rem;
+            margin-top: -0.8rem;
         }
         .rightImgEdite {
             width: 0.3rem;
@@ -35,8 +35,8 @@
         <div class="middle_center">
             活动
         </div>
-        <div class="rightImgEdite">
-            <img class="oneImgRight" src="../../../image/mine/share.png" alt="" >
+        <div class="rightImgEdite" onclick="signPushActive()">
+            <img class="oneImgRight" src="../../../image/circle/cirSign.png" alt="" >
         </div>
     </div>
 </div>
@@ -58,13 +58,14 @@
     }
     //发布活动
 
-    function save(){
+    function signPushActive(){
         var uidUser = localStorage.getItem("user")
         if (!uidUser || uidUser == 'undefined'){
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        openNewWindow("publishing_activities", "./publishActivity.html")
+        toast("发布活动入口")
+        // openNewWindow("publishing_activities", "./publishActivity.html")
     }
 </script>
 </html>

@@ -377,9 +377,7 @@ textarea{
 
 /*首页banner 样式*/
 .subcontentBoxBanner{
-    /*padding: 0 0.34rem;*/
-    /*margin-bottom: -12px;*/
-    /*height: calc(100vh - 28px);*/
+    /*background: #ffffff;*/
 }
 /*.home-banner{
     display: block;

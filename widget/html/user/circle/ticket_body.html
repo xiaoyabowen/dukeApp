@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>电子票</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/circleCommon.css"/>
+    <style>
+        #circle{
+            background: url("../../../image/circle/erImgBg.png") no-repeat;
+            background-size: 100% 100%;
+            min-height: calc(100vh - 0.58rem);
+            padding: 0.5rem 0.5rem 0 0.5rem;
+            width: 6.5rem;
+            margin-top: -0.1rem;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+</head>
+<body>
+<div id="circle">
+    <div class="ticketBox">
+        <div class="ticketBoxPad">
+            <div class="ticketTitle commonTitle">
+                出票成功
+            </div>
+            <div class="erWeima">
+
+            </div>
+            <div class="ticketSign commonFont">
+                签到时出示给主办方
+            </div>
+            <div class="ticketInfo commonFont">
+                <span>手机号：138888888</span>
+                <span>姓名：田女士</span>
+            </div>
+        </div>
+        <div class="detailtBtn" @click="detailClick()">活动详情</div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
+<script>
+
+    function reload() {
+        window.location.reload()
+    }
+
+    apiready = function () {
+        new Vue({
+            el: '#circle',
+            data: {
+                writeText : '',
+                userName : '',
+                userPhone : '',
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+
+            },
+            methods: {
+                detailClick : function () {
+                    var that = this
+                    openNewWindow("activeDetail", "./activeDetail.html")
+                },
+
+
+            }
+        })
+
+    };
+
+</script>
+</body>
+</html>

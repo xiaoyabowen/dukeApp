@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>全部评论</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/circleCommon.css"/>
+    <style>
+
+    </style>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+</head>
+<body>
+<div id="circle">
+    <div class="boxSub">
+        <div class="discussList discussListBor">
+            <div class="discussTitle cssFlex">
+                <div class="cssFlex discussInfo">
+                    <img src="../../../image/circle/actEditIcon.png" alt="">
+                    <span>微光</span>
+                </div>
+                <div class="discussTime commonFont">
+                    2019-04-27
+                </div>
+            </div>
+            <div class="discussText commonFont">
+                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
+            </div>
+        </div>
+        <div class="discussList discussListBor">
+            <div class="discussTitle cssFlex">
+                <div class="cssFlex discussInfo">
+                    <img src="../../../image/circle/actEditIcon.png" alt="">
+                    <span>微光</span>
+                </div>
+                <div class="discussTime commonFont">
+                    2019-04-27
+                </div>
+            </div>
+            <div class="discussText commonFont">
+                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
+            </div>
+        </div>
+        <div class="discussList discussListBor">
+            <div class="discussTitle cssFlex">
+                <div class="cssFlex discussInfo">
+                    <img src="../../../image/circle/actEditIcon.png" alt="">
+                    <span>微光</span>
+                </div>
+                <div class="discussTime commonFont">
+                    2019-04-27
+                </div>
+            </div>
+            <div class="discussText commonFont">
+                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
+<script>
+
+    function reload() {
+        window.location.reload()
+    }
+
+    apiready = function () {
+        new Vue({
+            el: '#circle',
+            data: {
+                writeText : '',
+                userName : '',
+                userPhone : '',
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+
+            },
+            methods: {
+                signUpBtnClick : function () {
+                    var that = this
+                    document.querySelector(".ModalHideCom").classList.remove("isDisplay")
+                    document.querySelector(".signModalBox").classList.remove("isDisplay")
+                },
+                ModalHideCom : function () {
+                    var that = this
+                    document.querySelector(".ModalHideCom").classList.add("isDisplay")
+                    document.querySelector(".signModalBox").classList.add("isDisplay")
+                },
+
+            }
+        })
+
+    };
+
+</script>
+</body>
+</html>
