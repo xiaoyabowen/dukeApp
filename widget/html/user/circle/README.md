@@ -8,6 +8,7 @@
 ├── signYesPer   // 已报名
 ├── allDiscuss   // 全部评论
 ├── ticket   // 电子票
+├── myActives   // 我的活动
 
 
 ├── publishActivity   // 发布活动

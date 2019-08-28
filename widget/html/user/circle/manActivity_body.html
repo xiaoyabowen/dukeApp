@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <div class="manActivity">
+    <div class="manActivity" id="circle">
         <div class="content">
             <div class="top cssFlex">
                 <div class="todaySignUp cssFlex">
@@ -94,13 +94,13 @@
         <div class="assign">
             <p>报名/签到</p>
             <div class="assignMain">
-              <div class="qrcode" style="border-right:0.02rem solid #e4e4e4">
+              <div class="qrcode" style="border-right:0.02rem solid #e4e4e4" @click="saosao()">
                 <div class="pic">
                   <img src="../../../image/circle/saoYzIcon.png" alt="">
                 </div>
                 <div class="txt">扫码验票</div>
               </div>
-              <div class="manage" onclick="toManPerson()">
+              <div class="manage" @click="toManPerson()">
                 <div class="pic">
                   <img src="../../../image/circle/perManIcon.png" alt="">
                 </div>
@@ -124,11 +124,34 @@
     <script src="../../../script/vuex.min.js"></script>
     <script>
         apiready = function () {
+            new Vue({
+                el: '#circle',
+                data: {
+                    writeText : '',
+                    userName : '',
+                    userPhone : '',
+                },
+                created: function () {
 
+                },
+                mounted: function () {
+
+
+                },
+                methods: {
+                    saosao : function () {
+                        var that = this
+                        openNewWindow("saosao", "./saosao.html")
+                    },
+                    toManPerson : function () {
+                        var that = this
+                        openNewWindow("manPerson", "./manPerson.html")
+                    },
+
+                }
+            })
         }
-        function toManPerson(){
-            openNewWindow('manPerson','./manPerson.html')
-        }
+
     </script>
 </body>
 </html>

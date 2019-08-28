@@ -29,14 +29,14 @@
 <div id="topbar" >
 
     <div class="headerBox cssFlex">
-        <div onclick="mineGo()">
-            首页
+        <div class="leftImgClose" onclick="closeWin()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middle_center">
             活动
         </div>
         <div class="rightImgEdite" onclick="signPushActive()">
-            <img class="oneImgRight" src="../../../image/circle/cirSign.png" alt="" >
+
         </div>
     </div>
 </div>
@@ -52,19 +52,6 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-
-    function mineGo() {
-        openNewWindow("home", "../home/home.html")
-    }
-    //发布活动
-
-    function signPushActive(){
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser || uidUser == 'undefined'){
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("publishActivity", "./publishActivity.html")
-    }
+    
 </script>
 </html>
