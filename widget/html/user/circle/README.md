@@ -5,7 +5,11 @@
 
 ├── index   // 活动
 
-├── publishActivity   // 活动头
+├── publishActivity   // 发布活动
 
-├── publishActivity_body   // 活动主体
+├── editActivityDetail   // 发布活动详情
+
+├── manActivity   // 管理活动
+
+├── manPerson   // 人员管理
 ```

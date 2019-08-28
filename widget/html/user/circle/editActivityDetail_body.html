@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
+</head>
+
+<body>
+    <div class="detailWrap">
+      <div class="intro">
+          <textarea id="activityIntro" placeholder="请输入活动介绍，建议500字以内" maxlength="500"></textarea>
+      </div>
+      <div class="pics">
+         <p>编辑活动详情图片（可添加长图，日程图等信息）</p>
+         <div class="activityPic">
+            <div class="picList">
+              <img src="../../../image/circle/editActiveImg.png" alt="">
+            </div>
+            <div class="picList">
+              <img src="../../../image/circle/editActiveImg.png" alt="">
+            </div>
+            <div class="picList">
+              <img src="../../../image/circle/editActiveImg.png" alt="">
+            </div>
+            <div class="picList">
+              <img src="../../../image/circle/editActiveImg.png" alt="">
+            </div>
+            <div class="picList">
+              <img src="../../../image/circle/editActiveImg.png" alt="">
+            </div>
+         </div>
+      </div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>
+    eruda.init();
+</script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script>
+    apiready = function() {
+
+    };
+
+    function publishActivity() {
+        console.log('保存详情');
+    }
+</script>
+
+</html>

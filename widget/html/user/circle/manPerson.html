@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,18 +12,13 @@
 </head>
 <body>
 <div id="topbar" >
-    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
-        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
-    </div>
-    <div>发布活动</div>-->
     <div class="headerBox cssFlex">
         <div class="leftImgClose" onclick="closeWin()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
-            发布活动
+            人员管理
         </div>
-        <div class="pubbtn" onclick="publishActivity()">保存</div>
     </div>
 </div>
 </body>
@@ -39,10 +33,7 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-    function publishActivity(){
-      // console.log('提交活动');
-      openNewWindow("manActivity", "./manActivity.html")
-    }
+
 
 </script>
 </html>

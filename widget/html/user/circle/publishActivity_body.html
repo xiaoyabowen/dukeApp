@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,11 +12,60 @@
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
-<body>
-    <div>
-      aaa
-    </div>
 
+<body>
+    <div id="informationInit">
+        <div class="information_head" style="styleObject" @click="upImg()">
+            <div class="information_head_add" v-if="!img"></div>
+            <img :src="img" v-if="img" alt="">
+        </div>
+        <div class="information_content">
+            <div class="information_item cssFlex">
+                <label>活动名称：</label>
+                <input type="text" v-model="title" maxlength=80 placeholder="请输入活动名称">
+            </div>
+            <div class="information_item cssFlex">
+                <label>主办人：</label>
+                <input type="text" v-model="name" maxlength=80 placeholder="请填写个人昵称或单位名称">
+            </div>
+            <div class="information_item cssFlex">
+                <label>联系电话：</label>
+                <input type="number" v-model="phone" maxlength=80 placeholder="请填写手机号码">
+            </div>
+            <div class="information_item cssFlex">
+                <label>活动标签：</label>
+                <input type="text" v-model="tag" maxlength=80 placeholder="如：免费/社交/美食">
+            </div>
+            <div class="information_item cssFlex">
+                <label>人数限制：</label>
+                <input type="text" v-model="num" placeholder="请填写数字，默认为无限">
+            </div>
+            <div class="information_item cssFlex" @click="startTime">
+                <label>活动开始时间：</label>
+                <input type="text" v-model="time_from" maxlength=80 placeholder="" readonly>
+                <span class="choice">请选择 ></span>
+            </div>
+            <div class="information_item cssFlex" @click="endTime">
+                <label>活动结束时间：</label>
+                <input type="text" v-model="time_to" maxlength=80 placeholder="" readonly>
+                <span class="choice">请选择 ></span>
+            </div>
+            <div class="information_item cssFlex" @click="address">
+                <label>活动地址：</label>
+                <input type="text" class="addressInput" maxlength=80 placeholder="请填写详细地址" readonly>
+                <input type="hidden" class="adr_id">
+                <span class="choice">请选择 ></span>
+            </div>
+            <div class="information_item cssFlex" @click="toActiveDetail">
+                <label>活动详情页和图片：</label>
+                <span class="choice">请选择 ></span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>
+        eruda.init();
+    </script>
     <script type="text/javascript" src="../../../script/api.js"></script>
     <script type="text/javascript" src="../../../script/apiCloud.js"></script>
     <script type="text/javascript" src="../../../script/public.js"></script>
@@ -27,9 +77,42 @@
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>
-     apiready = function () {
+        apiready = function() {
+            new Vue({
+                el: '#informationInit',
+                data: {
+                    img: '',
+                    title: '',
+                    name: '',
+                    phone: '',
+                    tag: '',
+                    num: '',
+                    time_from: '',
+                    time_to: '',
+                },
+                created: function() {
 
-     }
+                },
+                mounted: function() {
+
+                },
+                methods: {
+                    startTime: function() {
+
+                    },
+                    endTime: function() {
+
+                    },
+                    address: function() {
+
+                    },
+                    toActiveDetail: function() {
+                        openNewWindow("editActivityDetail", "./editActivityDetail.html")
+                    }
+                }
+            })
+        }
     </script>
 </body>
+
 </html>

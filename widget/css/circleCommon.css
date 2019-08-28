@@ -9,8 +9,429 @@
 
 
 /*leilei*/
-.pubbtn{
+/*.pubbtn{
   font-size: 0.28rem;
+}*/
+#informationInit {
+    width: 100%;
+    height: 100%;
 }
 
+.information_head {
+    width: 100%;
+    height: 100%;
+    height: 3.7rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.information_head_add {
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 0.08rem;
+    border: 0.03rem solid rgba(202, 202, 202, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.information_head > img {
+    width: 100%;
+    border-radius: 0.08rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: no-repeat;
+}
+
+.information_head_add:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 0.61rem;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_head_add:after {
+    content: '';
+    display: block;
+    width: 0.61rem;
+    height: 1px;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_content {
+    padding: 0 0.6rem 1.1rem;
+    background: #ffffff;
+}
+
+.information_content > .information_item {
+    height: 0.99rem;
+    line-height: 0.99rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    position: relative;
+}
+
+.information_content > .information_item label {
+    width: 4rem;
+}
+
+.information_content > .information_item input {
+    /*width: 4rem;*/
+    border: 0;
+    position: relative;
+    top: 0.16rem;
+    padding-left: 0;
+    font-size: 0.28rem;
+}
+
+.information_item .code {
+    display: block;
+    width: 2rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #ffffff;
+    background: #5D92FE;
+    border-radius: 0.08rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.information_btn {
+    height: 0.78rem;
+    line-height: 0.75rem;
+    text-align: center;
+    border-radius: 0.06rem;
+    background: #638BFF;
+    font-size: 0.3rem;
+    color: #ffffff;
+    margin: 0.66rem 0;
+}
+.activeties_btn{
+    margin: 0 0.34rem;
+}
+.choice{
+  display: inline-block;
+  height: 0.24rem;
+  font-size: 0.24rem;
+  color:#638BFF;
+  position: absolute;
+  right: 0.25rem;
+  top: 0;
+}
+.detailWrap .intro{
+  width: 6.9rem;
+  height: 3.48rem;
+  margin: 0 auto;
+  border:0.02rem solid #ebebeb;
+  border-radius: 0.08rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
+}
+.detailWrap #activityIntro{
+  width: 100%;
+  height: 100%;
+  outline: medium;
+  padding: 0.2rem;
+  box-sizing:border-box;
+}
+.detailWrap .pics{
+  width: 6.9rem;
+  margin: 0 auto;
+  border:0.02rem solid #ebebeb;
+  border-radius: 0.08rem;
+  padding: 0.2rem;
+  box-sizing:border-box;
+}
+.detailWrap{
+  /*text-align: center;*/
+}
+.detailWrap .pics p{
+  font-size: 0.24rem;
+  color: #333;
+  text-align: left;
+}
+.detailWrap .activityPic{
+  width: 5.69rem;
+  margin: 0 auto;
+}
+.detailWrap .picList{
+  width: 1.68rem;
+  height: 1.68rem;
+  display: inline-block;
+  margin-left: 0.1rem;
+  margin-top: 0.1rem;
+  box-sizing: border-box;
+}
+.detailWrap .picList img{
+  width: 100%;
+  height: 100%;
+}
+.manActivity{
+  background: #fff;
+}
+.manActivity .content{
+  width: 100%;
+  padding: 0.3rem;
+  background: #fff;
+}
+.manActivity .content .top {
+  justify-content: space-between;
+  align-items: center;
+}
+.manActivity .content .todaySignUp{
+  width: 3.26rem;
+  height: 1.3rem;
+  background:linear-gradient(246deg,rgba(253,207,96,1) 0%,rgba(255,121,0,1) 100%);
+  box-shadow:0px 0.02rem 0.08rem 0px rgba(214,153,38,0.43);
+  border-radius: 0.08rem;
+  justify-content: center;
+  align-items: center;
+}
+.manActivity .content .todaySignIn{
+  width: 3.26rem;
+  height: 1.3rem;
+  background:linear-gradient(50deg,rgba(23,136,254,1) 0%,rgba(143,120,255,1) 100%);
+  box-shadow:0px 0.02rem 0.08rem 0px rgba(79,161,197,0.53);
+  border-radius: 0.08rem;
+  justify-content: center;
+  align-items: center;
+}
+.manActivity .content .bot{
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+.manActivity .content .totalBrowser{
+  width: 2.1rem;
+  height: 1.3rem;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0.02rem 0.08rem 0px rgba(247,203,100,0.48);
+  border-radius:0.08rem;
+  justify-content: center;
+  align-items: center;
+}
+.manActivity .content .totalSignUp{
+  width: 2.1rem;
+  height: 1.3rem;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0.02px 0.08rem 0px rgba(96,145,249,0.57);
+  border-radius:0.08rem;
+  justify-content: center;
+  align-items: center;
+}
+.manActivity .content .totalSignIn{
+  width: 2.1rem;
+  height: 1.3rem;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0.02rem 0.08rem 0px rgba(255,149,149,0.49);
+  border-radius:0.08rem;
+  justify-content: center;
+  align-items: center;
+}
+.manActivity .today_img{
+  width: 0.48rem;
+  height: 0.46rem;
+  margin-right: 0.15rem;
+}
+.manActivity .today_img img{
+  width: 100%;
+  height: 100%;
+}
+.manActivity .datas p{
+  margin-bottom: 0;
+  color: #fff;
+}
+.manActivity .datas p.num{
+  font-size: 0.32rem;
+}
+
+.manActivity .total_img{
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.manActivity .total_img img{
+  width: 100%;
+  height: 100%;
+}
+.bot .datas p{
+  color: #666;
+  font-size: 0.22rem;
+}
+.bot .datas .num{
+  color: #333;
+  font-size: 0.28rem;
+}
+.colorbar{
+  height: 0.2rem;
+  background: #F9F9F9;
+}
+.manActivity .perpare{
+  padding: 0.3rem;
+}
+.manActivity .assign{
+  padding: 0.3rem;
+}
+.manActivity .perpare p{
+  color: #333;
+  font-size: 0.28rem;
+  font-weight: 500;
+}
+.manActivity .assign p{
+  color: #333;
+  font-size: 0.28rem;
+  font-weight: 500;
+}
+.manActivity .prepareMain{
+  /*justify-content: space-around;
+  align-items: center;*/
+}
+.manActivity .prepareMain>div{
+  width: 2.20rem;
+  height: 0.93rem;
+  display: inline-block;
+  text-align: center;
+}
+.manActivity .assignMain>div{
+  width: 2.20rem;
+  height: 0.93rem;
+  display: inline-block;
+  text-align: center;
+}
+.perpare .pic{
+  width: 0.54rem;
+  height: 0.54rem;
+  display: inline-block;
+}
+.assign .pic{
+  width: 0.54rem;
+  height: 0.54rem;
+  display: inline-block;
+}
+.perpare .pic img,.assign .pic img{
+  width: 100%;
+  height: 100%;
+}
+.assignMain>div, .prepareMain>div{
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.manActivity .txt{
+  font-size: 0.26rem;
+  color: #333;
+}
+.manPerson{
+  background: #fff;
+}
+.manPerson .tabs{
+  width: 100%;
+  font-size: 0.28rem;
+  color: #333;
+  height: 0.9rem;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 0.01rem solid #eaeaea;
+}
+.selectActives{
+  color: #638BFF;
+  position: relative;
+}
+.selectActives::after{
+  content: "";
+  width: 0.9rem;
+  height: 0.04rem;
+  background:#638BFF;
+  position: absolute;
+  bottom: -0.04rem;
+  left: 50%;
+  margin-left: -0.45rem;
+}
+.manPerson .conList{
+  width: 7.16rem;
+  margin: 0 auto;
+  box-shadow:0px 0px 0.08rem 0px rgba(0,0,0,0.18);
+  border-radius:0.08rem;
+  margin-top: 0.3rem;
+  padding: 0.32rem 0.37rem;
+}
+.manPerson .info{
+  justify-content: left;
+  align-items: center;
+}
+.manPerson .avatar{
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 0.34rem;
+}
+.manPerson .identity{
+  display: inline-block;
+  color: #333333;
+  font-size: 0.28rem;
+}
+.manPerson .avatar img{
+  width: 100%;
+  height: 100%;
+}
+.manPerson .status{
+  font-size: 0.28rem;
+  margin: 0.02rem 0;
+  color: #638BFF;
+}
+.manPerson .oprate{
+
+}
+.manPerson .oprate>div{
+  width: 1.7rem;
+  height: 0.64rem;
+  border-radius: 0.08rem;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 0.64rem;
+}
+.manPerson .oprate>div:nth-child(1){
+  background: #638BFF;
+  color: #fff;
+  margin-right: 0.02rem;
+}
+.manPerson .oprate>div:nth-child(2){
+  background: #FFBA3E;
+  color: #fff;
+}
+.manPerson .oprate>div:nth-child(3){
+  background: #fff;
+  border:0.02rem solid #638BFF;
+  color: #638BFF;
+  float: right;
+}
 /*leilei*/

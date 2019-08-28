@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div id="bindVue" class="manPerson">
+      <div class="tabs cssFlex">
+          <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all'] ">全部</div>
+          <div @click="changeTab('resolve')" :class="[tabFlag == 'resolve' ? 'selectActives' : '','resolve']">已签到</div>
+          <div @click="changeTab('unresolve')" :class="[tabFlag == 'unresolve' ? 'selectActives' : '','unresolve']">未签到</div>
+      </div>
+      <div class="tabContent">
+          <div class="content">
+              <div class="conList">
+                 <div class="info cssFlex">
+                   <div class="avatar">
+                     <img src="https://gss0.bdstatic.com/70cFfyinKgQIm2_p8IuM_a/daf/pic/item/d009b3de9c82d1583617cc768e0a19d8bd3e4264.jpg" alt="">
+                   </div>
+                   <div class="identity">
+                      <div class="name">你好我是</div>
+                      <div class="code">13567266662</div>
+                   </div>
+                 </div>
+                 <div class="status">未签到</div>
+                 <div class="oprate">
+                    <div>代签</div>
+                    <div>电话</div>
+                    <div>作废</div>
+                 </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>
+        eruda.init();
+    </script>
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/util.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script src="../../../script/vue.min.js"></script>
+    <script src="../../../script/vuex.min.js"></script>
+    <script>
+        apiready = function () {
+          new Vue({
+            el:'#bindVue',
+            data:{
+              tabFlag:'all',
+            },
+            mounted(){
+
+            },
+            methods:{
+              changeTab:function(type){
+                this.tabFlag = type;
+                
+              }
+            }
+          })
+        }
+
+    </script>
+</body>
+</html>
