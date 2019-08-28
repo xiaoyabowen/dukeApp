@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+        /*.headerBox > div {*/
+            /*font-size: 0.3rem;*/
+        /*}*/
+
+        .middle_center {
+            /*font-size: 0.36rem;*/
+            font-family: PingFangSC-Medium;
+            font-weight: 500;
+            color: rgba(255,255,255,1);
+            line-height: 0.50rem;
+            margin-left: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+<div id="topbar" >
+    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/mine.png">
+    </div>
+    <div>活动</div>
+    <div class="right" onclick="save()">
+        + 发布活动
+    </div>-->
+    <div class="headerBox cssFlex">
+        <div onclick="closeWin()">
+            首页
+        </div>
+        <div class="middle_center">
+            活动
+        </div>
+        <div onclick="save()">
+            + 发布活动
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script>
+
+    apiready = function () {
+        initFrameInWin(api.pageParam);
+    };
+
+    //发布活动
+    function save(){
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser || uidUser == 'undefined'){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("publishing_activities", "./publishing_activities.html")
+    }
+</script>
+</html>

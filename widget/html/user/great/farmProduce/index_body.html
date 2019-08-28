@@ -390,6 +390,7 @@
                             if (data) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {
                                     item: that.item,
+                                    isDefult: data.default,
                                     order: data,
                                     url: 'farmProduce',
                                     OrderKey : data.OrderKey

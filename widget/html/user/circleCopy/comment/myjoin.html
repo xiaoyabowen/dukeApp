@@ -1,0 +1,62 @@
+<div class="subsignBoxInfo">
+    <div class="notmy_Concern_main" >
+        <div class="notImg">
+            <img src="../../../image/myca.png" alt="du" class="notImgMy" v-if="showInfo ? 'notDisplay' : ''">
+        </div>
+        <div class="notMyConText">您还没有参加活动哦，快去寻找感兴趣的活动吧！</div>
+    </div>
+    <div class="rel-box join-rel-box" v-for="(item, index) in list" :key="index" v-if="showInfo ? '' : 'notDisplay'">
+        <div class="rel-info join-rel-info cssFlex">
+            <img :src="item.p_icon" alt="hr" class="rel-info-img">
+            <div class="rel-info-info">
+                <div class="rel-infoname">{{item.cir_name}}</div>
+                <div class="fel-infotime">
+                    {{item.c_from}}发布
+                </div>
+            </div>
+            <div class="join-active-status" v-if="item.cir_status == 0">已取消</div>
+        </div>
+        <div class="join-active cssFlex" @click="linkHandle(item.circle_id)">
+            <img :src="item.poster" alt="circle" class="join-img">
+            <div  class="join-main">
+                <div class="join-main-title">{{item.title}}</div>
+                <div class="join-main-active">
+                    活动时间：<i>{{item.c_from}}</i>
+                </div>
+                <div class="join-main-active">
+                    活动地点：<i>{{item.address}}</i>
+                </div>
+            </div>
+        </div>
+        <div class="line20"></div>
+        <div class="join-actde">
+            <div class="join-check cssFlex">
+                <span class="join-seedian" @click="checkETickets(item.circle_id)">查看电子票</span>
+                <span class="join-status join-status-dai" v-if="item.status == 0">待参加</span>
+                <span class="join-status join-status-dai status1" v-if="item.status == 1">已签到</span>
+                <span class="join-status join-status-dai status2" v-if="item.status == 2">已取消</span>
+            </div>
+            <div class="join-free">{{item.cost}}参加</div>
+            <div class="join-conct">
+                {{item.p_name}}   <i class="join-phone">{{item.phone}}</i>
+            </div>
+        </div>
+
+        <div class="join-confirm-btn cssFlex" v-if="item.status == 0 && item.cir_status != 0">
+            <div class="join-not-sign" @click="cancellation(item.id, index)">取消报名</div>
+            <div class="join-sign-active" @click="signHandle(item.id)">活动签到</div>
+        </div>
+
+        <div class="join-confirm-btn cssFlex" v-if="item.cir_status == 0">
+            <div class="join-not-sign" @click="cancellation(item.id, index)">取消报名</div>
+            <div class="join-sign-active" style="border: 1px solid #D6D6D6;background: #D6D6D6;color: #FFFFFF;">活动签到</div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+</script>
+

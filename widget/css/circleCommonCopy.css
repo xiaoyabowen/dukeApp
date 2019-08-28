@@ -1,0 +1,1251 @@
+.isDisplay {
+    display: none;
+}
+
+/*活动===========================开始*/
+#circle {
+    padding: 0.22rem 0.13rem;
+    width: 100%;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.circle_item {
+    margin-bottom: 0.35rem;
+    border-radius: 0.08rem;
+}
+
+/*#demo {*/
+    /*display: block;*/
+    /*height: calc(100vh - 0.28rem) !important;*/
+/*}*/
+.header_img {
+    width: 100%;
+    height: 3.44rem;
+    overflow: hidden;
+}
+
+.header_img img {
+    width: 100%;
+}
+
+.circle_footer {
+    width: 100%;
+    /*height: 2.38rem;*/
+    padding: 0 0.26rem;
+}
+
+.circle_title {
+    font-size: 0.28rem;
+    font-weight: 500;
+    height: auto !important;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.9rem;
+}
+
+.circle_tiem, .circle_city {
+    padding-left: 0.3rem;
+    font-size: 0.26rem;
+    color: #666666;
+    line-height: 0.4rem;
+    /*align-items: center;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.circle_tiem span, .circle_city span {
+    color: #333333;
+}
+
+.circle_tiem {
+    background: url("../image/circle/tiem2x.png") no-repeat left 0.05rem;
+    background-size: 0.26rem 0.26rem;
+}
+
+.circle_city {
+    background: url("../image/circle/city2x.png") no-repeat left 0.05rem;
+    background-size: 0.2rem 0.23rem;
+}
+
+.circle_bottom {
+    width: 100%;
+    align-items: center;
+    padding: 0 0.24rem 0.28rem 0;
+}
+
+.circle_sign {
+    flex: 1;
+    text-align: right;
+    margin-right: 0.1rem;
+    padding-right: 0.15rem;
+    border-right: 1px solid #EBEBEB;
+    line-height: 1;
+    color: #666666;
+}
+
+.circle_sign span {
+    color: #FF9B28;
+}
+
+.circle_collection {
+    width: 0.3rem;
+}
+
+/*活动内容*/
+.details_content {
+    margin: 0.2rem 0;
+    background: #ffffff;
+}
+
+.details_content_hear {
+    padding: 0.3rem 0.41rem;
+    font-size: 0.30rem;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(51,51,51,1);
+    line-height: 0.42rem;
+}
+
+.details_content_main {
+    padding: 0 0.37rem 0.47rem;
+    font-size: 0.28rem;
+}
+
+/*活动===========================结束*/
+
+/*发布活动========================开始*/
+.add_activities {
+
+}
+
+.add_activities_header {
+    width: 100%;
+    height: 0.92rem;
+    line-height: 0.92rem;
+    background: #ffffff;
+    font-size: 0.28rem;
+    color: #333333;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.add_activities_header div {
+    flex: 50%;
+    text-align: center;
+}
+
+.add_activities_header div span {
+    position: relative;
+}
+
+.add_activities_header div span.active {
+    color: #638BFF;
+}
+
+.add_activities_header div span.active:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0.04rem;
+    background: #638BFF;
+}
+
+#informationInit {
+    width: 100%;
+    height: 100%;
+}
+
+.information_head {
+    width: 100%;
+    height: 100%;
+    height: 4.36rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.information_head_add {
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 0.08rem;
+    border: 0.03rem solid rgba(202, 202, 202, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.information_head > img {
+    width: 100%;
+    border-radius: 0.08rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: no-repeat;
+}
+
+.information_head_add:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 0.61rem;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_head_add:after {
+    content: '';
+    display: block;
+    width: 0.61rem;
+    height: 1px;
+    background: #CACACA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.information_content {
+    padding: 0 0.6rem 1.1rem;
+    background: #ffffff;
+}
+
+.information_content > .information_item {
+    height: 0.99rem;
+    line-height: 0.99rem;
+    border-bottom: 1px solid #ebebeb;
+    align-items: center;
+    position: relative;
+}
+
+.information_content > .information_item label {
+    width: 4rem;
+}
+
+.information_content > .information_item input {
+    /*width: 4rem;*/
+    border: 0;
+    position: relative;
+    top: 0.16rem;
+    padding-left: 0;
+}
+
+.information_item .code {
+    display: block;
+    width: 2rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #ffffff;
+    background: #5D92FE;
+    border-radius: 0.08rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.information_btn {
+    height: 0.78rem;
+    line-height: 0.75rem;
+    text-align: center;
+    border-radius: 0.06rem;
+    background: #638BFF;
+    font-size: 0.3rem;
+    color: #ffffff;
+    margin: 0.66rem 0;
+}
+.activeties_btn{
+    margin: 0 0.34rem;
+}
+
+/*富文本用的css*/
+#article-body{
+    width: 100%;
+    min-height: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #444;
+}
+
+/*发布活动========================结束*/
+
+/*活动详情========================开始*/
+.details {
+    padding-bottom: 0.2rem;
+}
+
+.details_header {
+    margin-bottom: 0.2rem;
+}
+
+.details_header_top {
+    width: 7.5rem;
+    height: 6.33rem;
+    margin-bottom: 0.2rem;
+}
+
+.details_header_img {
+    width: 7.5rem;
+    height: 4.36rem;
+}
+
+.details_header_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.details_header_title {
+    width: 100%;
+    height: 1.97rem;
+    line-height: 0.5rem;
+    font-size: 0.36rem;
+    background: #ffffff;
+    padding: 0.33rem;
+}
+
+.details_title_con {
+    height: 1rem;
+}
+
+.details_sign {
+    font-size: 0.28rem;
+    color: #666666;
+}
+
+.details_sign span {
+    color: #FF9A26;
+}
+
+.details_header_content {
+    padding: 0 0.38rem;
+    background: #ffffff;
+}
+
+.details_header_content .circle_tiem, .details_header_content .circle_city {
+    height: 0.86rem;
+    line-height: 0.86rem;
+    color: #666666;
+    padding-right: 0.6rem;
+    border-bottom: 1px solid #EBEBEB;
+    background-position: left center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.details_header_content .circle_city.phone {
+    background: url("../image/circle/contacts2x.png") no-repeat left center;
+    background-size: 0.23rem 0.26rem;
+}
+
+.details_header_content .circle_city > img {
+    width: 0.38rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.details_comment_enrolled {
+    /*min-height: 2.64rem;*/
+    background: #ffffff;
+    margin: 0.2rem 0 0;
+    padding: 0 0.36rem;
+}
+
+.details_enrolled_top {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.28rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.details_enrolled_top > span:last-child {
+    color: #FF9A26;
+    font-weight: 500;
+    font-size: 0.28rem;
+    float: right;
+}
+
+.details_enrolled_content {
+    padding: 0.3rem 0;
+    /*justify-content: space-between;*/
+}
+
+.details_enrolled_item {
+    width: 0.76rem;
+    text-align: center;
+    color: #666666;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
+    padding: 0 0.1rem;
+}
+
+.details_enrolled_item > img {
+    width: 0.76rem;
+    height: 0.76rem;
+    border-radius: 50%;
+}
+.details_enrolled_item > span {
+    display: block;
+    height: 0.32rem;
+}
+.details_comment {
+    /*padding: 0 0.36rem;*/
+    background: #ffffff;
+    margin-top: 0.2rem;
+}
+
+.details_comment_title {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.28rem;
+    padding: 0 0.36rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.details_comment_top {
+    padding: 0.3rem 0.36rem;
+}
+
+.details_comment_top img {
+    width: 0.76rem;
+    border-radius: 50%;
+    margin-right: 0.15rem;
+    vertical-align: middle;
+}
+
+.details_comment_top > input[type="text"] {
+    width: 5.5rem;
+    height: 0.64rem;
+    font-size: 0.28rem;
+}
+
+.details_item_top {
+    padding: 0.2rem 0.36rem 0;
+    color: #666666;
+    font-size: 0.28rem;
+}
+
+.details_item_top img {
+    width: 0.76rem;
+    border-radius: 50%;
+    margin-right: 0.15rem;
+    vertical-align: middle;
+}
+
+.details_item_con {
+    padding-left: 1.55rem;
+    padding-right: 0.5rem;
+}
+
+.details_item_con p {
+    font-size: 0.28rem;
+    color: #666666;
+    margin: 0;
+}
+
+.details_item_bottom {
+    height: 0.88rem;
+    line-height: 0.88rem;
+    color: #666666;
+    font-size: 0.28rem;
+}
+
+.details_item_bottom > div {
+    float: right;
+}
+
+.details_item_bottom > div span {
+    padding-left: 0.4rem;
+}
+
+.details_item_bottom > div span:first-child {
+    background: url("../image/circle/commit2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+}
+
+.details_item_bottom > div span:last-child {
+    background: url("../image/circle/fabulous2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+    margin-left: 0.4rem;
+}
+
+.details_item_bottom > div span.active:last-child {
+    background: url("../image/circle/fabulous2x2x.png") no-repeat left center;
+    background-size: 0.3rem 0.3rem;
+    margin-left: 0.4rem;
+}
+
+.details_item_children {
+    padding: 0 0.4rem 0 1.55rem;
+    background: #F9F9F9;
+}
+
+.details_item_children_top {
+    padding: 0.23rem 0 0.1rem;
+}
+
+.details_item_children_top img {
+    width: 0.5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 0.2rem;
+    color: #666666;
+}
+
+.details_item_children_top span {
+    font-size: 0.28rem;
+    color: #666666;
+}
+
+.details_item_children_con {
+    padding-left: .8rem;
+    font-size: 0.22rem;
+}
+
+.details_item_children_con div {
+    line-height: 0.4rem;
+    color: #333333;
+}
+
+.details_item_children_con div > span {
+    color: #666666;
+}
+
+.details_item_children_bottom {
+    width: 5.5rem;
+    height: 0.52rem;
+    background: rgba(231,231,231,1);
+    /*margin-bottom: 0.2rem;*/
+    box-sizing: border-box;
+    padding: 0.07rem 0.2rem;
+    font-size: 0.22rem;
+    color: #999999;
+}
+
+.details_item_children_bottom span:last-child {
+    color: #638BFF;
+    margin-left: 0.45rem;
+}
+
+.details_item_children_footer {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #999999;
+    padding-left: .75rem;
+}
+
+.details_item_children_footer span:last-child {
+    float: right;
+}
+
+.details_item_children_footer img {
+    width: 0.2rem;
+}
+
+.details_comment_footer {
+    padding: 0.4rem 0.6rem 0.6rem;
+}
+
+.details_comment_footer_btn {
+    display: block;
+    width: 6.3rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight: 500;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+}
+
+.details_comment_box {
+    width: 100%;
+    height: 3.27rem;
+    padding: 0.2rem 0.24rem 0;
+    background: #F9F9F9;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.details_comment_box textarea {
+    height: 2rem;
+    margin: 0;
+}
+
+.num_total {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 1.2rem;
+}
+
+.num_total span {
+    color: #638BFF;
+}
+
+.details_comment_box div {
+    text-align: right;
+    color: #999999;
+    font-size: 0.28rem;
+    margin-top: 0.2rem;
+}
+
+/*zbw   活动详情  样式*/
+.notDataBox{
+    background: #ffffff;
+}
+.notData{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+}
+.maskImg{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+}
+.addMask{
+    margin: 0.3rem auto 0;
+    width:2.9rem;
+    height:0.68rem;
+    line-height: 0.68rem;
+    background:rgba(99,139,255,1);
+    border-radius:0.06rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight: 500;
+}
+.mui-popup mui-popup-in{
+    z-index: 999999;
+}
+/*底部弹框*/
+.bottom-medal{
+    width: 100%;
+    background-color: rgba(9, 9, 9, 0.63);
+    position: fixed;
+    left: 0;
+    bottom: -3rem;
+    z-index: 10;
+
+}
+.Mybottom-medal{
+    background: #fff;
+}
+
+.textMedal{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    /*left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);*/
+    z-index: 10;
+    border-radius: 0.08rem;
+}
+
+
+.myModel{
+    width: 7rem;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.08rem;
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+.btn-confrm{
+    justify-content:flex-end;
+}
+
+.medalTitle{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #333333;
+    font-size: 0.26rem;
+    text-align: center;
+}
+.modulList{
+    align-items: center;
+    padding: 0 0.3rem;
+}
+.modulListBox{
+    width: 1rem;
+    margin-right: 0.4rem;
+}
+.cancle{
+    margin: 0 0.3rem;
+    width: 100%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    color: #666666;
+    border-radius: 0.04rem;
+    text-align: center;
+    border: 1px solid #ebebeb;
+}
+/*   活动详情 文本框*/
+.activeAddImg{
+    display: block;
+}
+.textBox{
+    background: #ffffff;
+    padding: 0 0.2rem ;
+    position: relative;
+}
+.addText{
+    width:7rem;
+    margin: 0 auto;
+    height: 1.6rem;
+    border: 2px solid #5D92FE;
+    -webkit-border-radius: 0.06rem;
+    -moz-border-radius: 0.06rem;
+    border-radius: 0.06rem;
+    font-size: 0.28rem;
+    color: #333333;
+    font-weight: 400;
+    position: relative;
+}
+.imgAdd{
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 0.2rem auto;
+}
+.imgDel{
+    position: absolute;
+    left: 0.36rem;
+    bottom: 0.7rem;
+    display: block;
+    width: 0.2rem;
+    height: 0.2rem;
+}
+
+
+.details_edit {
+    height: 1.10rem;
+    line-height: 1.10rem;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    width: 7.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.details_editCancel {
+    width:  50%;
+    height: 1.10rem;
+    line-height: 1.10rem;
+    background: #FFA300 !important;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #ffffff;
+}
+
+.details_editEdit{
+    width: 50%;
+    height: 1.10rem;
+    line-height: 1.10rem;
+    font-size: 0.28rem;
+    text-align: center;
+    background: #638BFF;
+    color: #ffffff;
+}
+
+
+/*活动详情========================结束*/
+/*报名管理   zbw========================开始*/
+.signBox{
+
+    background: #ffffff;
+    padding: 0.32rem 0.4rem;
+}
+.signBoxInfo{
+    background: #ffffff;
+}
+
+.sign-list{
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EBEBEB;
+    padding:0.32rem 0;
+}
+.sign-list-person,.sign-status{
+    align-items: center;
+    position: relative;
+    padding-right: 0.3rem;
+}
+
+.sign-status > span {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: 0.12rem solid rgba(0,0,0,0);
+    border-top: 0.12rem solid #638BFF;
+    border-left: 0.12rem solid rgba(0,0,0,0);
+    border-right: 0.12rem solid rgba(0,0,0,0);
+    position: absolute;
+    top: 40%;
+    right: 0;
+}
+
+.sign-status > span.active {
+    border-bottom: 0.12rem solid #638BFF;
+    border-top: 0.12rem solid rgba(0,0,0,0);
+    top: 10%;
+}
+.sign-per-img{
+    display: inline-block;
+    width: 0.96rem;
+    height: 0.96rem;
+    margin-right: 0.26rem;
+
+}
+.sign-per-name{
+    font-size: 0.28rem;
+    color: #666;
+    font-weight: 400;
+}
+.sign-yes{
+    width: 1.2rem;
+    height: 0.42rem;
+    line-height: 0.42rem;
+    background:rgba(222,230,253,1);
+    border:0.02rem solid rgba(99,139,255,1);
+    border-radius:0.04rem;
+    font-size: 0.24rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    text-align: center;
+    margin-right: 0.28rem;
+}
+.person-infoup{
+    display: inline-block;
+    width: 0.22rem;
+    height: 0.14rem;
+
+}
+.sign-per-coontact{
+    padding: 0.2rem 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.sign-phone{
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.sign-note,.sign-call{
+    width: 1.4rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+    border:1px solid rgba(99,139,255,1);
+    font-size:0.24rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    padding-left: 0.5rem;
+}
+.sign-note{
+    background: url("../image/circle/commit2x.png") no-repeat 0.2rem center;
+    background-size: 0.28rem 0.24rem;
+    margin-right: 0.4rem;
+}
+.sign-call{
+    background: url("../image/circle/phone2x.png") no-repeat 0.2rem center;
+    background-size: 0.22rem 0.24rem;
+}
+.info-edit-btn{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    width: 100%;
+}
+.group-note,.group-email{
+    width: 50%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.28rem;
+    font-weight:500;
+    background:rgba(255,163,0,1);
+}
+.group-email{
+    background:rgba(99,139,255,1) !important;
+}
+
+
+/*报名管理   zbw========================结束*/
+/*我的活动   zbw========================开始*/
+/*我的发布====*/
+.subsignBoxInfo{
+    background: #ffffff;
+    padding: 0.34rem 0;
+}
+.rel-box{
+    display: block;
+    position: relative;
+    background:rgba(255,255,255,1);
+    box-shadow:0 0 0.08rem 0 rgba(0,0,0,0.28);
+    border-radius:0.08rem;
+    margin:0 0.34rem;
+    width: 6.8rem;
+    margin-bottom: 0.34rem;
+    padding-bottom: 0.2rem;
+}
+.rel-info{
+    padding: 0.12rem 0.2rem;
+    align-items: center;
+}
+.rel-info-img{
+    display: block;
+    width: 0.76rem;
+    height: 0.76rem;
+    margin-right: 0.24rem;
+}
+.rel-infoname,.fel-infotime{
+    height: 0.3rem;
+    line-height: 0.3rem;
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.06rem;
+}
+.fel-infotime{
+    color:rgba(153,153,153,1);
+    margin-bottom: 0 !important;
+}
+.rel-title-h2  {
+    padding-left: 0.2rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.2rem;
+}
+.rel-imgbig{
+    width: 100%;
+
+}
+.rel-imgbig>img{
+    display: block;
+    width: 100%;
+    height: 3.4rem;
+}
+.rel-comment{
+    margin: 0.18rem 0 0.2rem 0.2rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.commmentBox{
+    margin-right: 0.24rem;
+}
+.commentNum{
+    color:rgba(255,154,38,1);
+}
+.notSignActive{
+    position: absolute;
+    height:0.34rem;
+    line-height: 0.34rem;
+    text-align: center;
+    padding: 0 0.14rem;
+    background:rgba(238,238,238,1);
+    font-size: 0.22rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    right: 0.14rem;
+    top: 0.22rem;
+}
+
+/*我参加的* --====*/
+.join-rel-box{
+    /*padding: 0 0.2rem;*/
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+.join-rel-info{
+    position: relative;
+    margin-bottom: 0.2rem;
+    /*padding: 0 !important;*/
+}
+.join-active-status{
+    position: absolute;
+    right: 0.3rem;
+    top: 0.2rem;
+    height:0.42rem;
+    line-height: 0.42rem;
+    background:rgba(242,186,186,1);
+    border-radius:0.04rem;
+    text-align: center;
+    font-size: 0.24rem;
+    font-weight:500;
+    color:rgba(255,29,29,1);
+    padding: 0 0.14rem;
+}
+.join-active{
+    padding: 0 0.2rem 0.26rem 0.2rem;
+}
+.join-img{
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.2rem;
+
+}
+.join-main-title{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.28rem;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.5rem;
+}
+.join-main-active{
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-size: 0.24rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.line20{
+    height: 0.2rem;
+    width: 100%;
+    background:rgba(249,249,249,1);
+}
+.join-actde{
+    padding: 0 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.join-check{
+    justify-content: space-between;
+    align-items: center;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    margin: 0.2rem 0;
+}
+.join-seedian{
+    font-size: 0.28rem;
+    font-weight:400;
+    color:rgba(99,139,255,1);
+    width: 1.4rem;
+    text-decoration: underline;
+}
+.join-status{
+    font-size: 0.24rem;
+    font-weight:500;
+    padding: 0 0.14rem;
+}
+.join-status-dai{
+    color:rgba(99,139,255,1);
+    background:rgba(217,227,255,1);
+}
+.join-status-yes{
+    background:rgba(255,235,200,1);
+    color:rgba(255,163,0,1);
+}
+.join-status-not{
+    background:rgba(232,232,232,1);
+    color:rgba(102,102,102,1);
+}
+.join-free,.join-conct{
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-size: 0.24rem;
+
+    font-weight:400;
+    color:rgba(102,102,102,1);
+}
+.join-confirm-btn{
+    padding: 0 0.2rem;
+}
+.join-not-sign,.join-sign-active{
+    width: 48%;
+    height:0.66rem;
+    line-height: 0.66rem;
+    border-radius:0.04rem;
+    text-align: center;
+    font-size: 0.28rem;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    border:1px solid rgba(153,153,153,1);
+}
+.join-sign-active{
+    border:1px solid rgba(99,139,255,1);
+    color:rgba(99,139,255,1);
+    margin-left: 0.2rem;
+}
+
+.status1 {
+    background: #FFEBC8;
+    color: #FFA300;
+}
+
+.status2 {
+    background: #F2BABA;
+    color: #FF1D1D;
+}
+
+
+/*电子票==========================开始*/
+.E_ticket {
+    padding: 0.39rem 0.34rem 1rem;
+}
+
+.E_ticket_head {
+    padding-left: 0.04rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.E_ticket_head p {
+    color: #666666;
+    font-size: 0.28rem;
+}
+
+.E_ticket_head_title {
+    color: #666666;
+    font-size: 0.36rem;
+}
+
+.E_ticket_head_title p {
+    line-height: 1rem;
+}
+
+.E_ticket_QR_code {
+    padding-top: 0.6rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.E_ticket_QR_code p {
+    text-align: center;
+}
+
+.E_ticket_status {
+    width: 1.02rem;
+    height: 0.42rem;
+    line-height: 0.42rem;
+    text-align: center;
+    background: rgba(217,227,255,1);
+    border-radius: 0.04rem;
+    color: #638BFF;
+    font-size: 0.24rem;
+    margin: 0.24rem auto 0.3rem;
+}
+
+.E_ticket_bottom {
+    padding: 0.31rem 0.04rem;
+    align-items: center;
+}
+
+.E_ticket_bottom img {
+    width: 1.48rem;
+    height: 1.48rem;
+    margin-right: 0.2rem;
+}
+
+.E_ticket_bottom_title {
+    height: 50%;
+    font-size: 0.28rem;
+    color: #333333;
+}
+
+.E_ticket_bottom_time, .E_ticket_bottom_city {
+    font-size: 0.24rem;
+    color: #666666;
+}
+
+.E_ticket_bottom_btn {
+    width: 6.30rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    margin: 0.75rem auto;
+    background: rgba(99,139,255,1);
+    border-radius: 0.08rem;
+    color: #ffffff;
+    font-size: 0.3rem;
+    font-weight: 500;
+}
+/*电子票==========================结束*/
+
+
+/*我的活动   zbw========================结束*/
+
+/*我的关注   缺省页*/
+.notDisplay{
+    display: none;
+}
+.notImg{
+    width: 2.33rem;
+    height: 1.83rem;
+    margin: 2rem auto 0.6rem;
+
+}
+.notImgMy{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.notMyConText{
+    line-height: 0.4rem;
+    width: 4rem;
+    margin: 0 auto;
+    text-align: center;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    font-size: 0.28rem;
+}
+
