@@ -43,15 +43,17 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script>
-var url
+    var url;
+    // var preservation;
+    var app;
     apiready = function() {
-      url = api.pageParam.url
-
-        new Vue({
+        url = api.pageParam.url
+        console.log(url, '499999');
+        app = new Vue({
             el: '#detailWrap',
             data: {
-              imgList:[],
-              intro:'',
+                imgList: [],
+                intro: '',
             },
             methods: {
                 upimg: function() {
@@ -114,16 +116,20 @@ var url
     };
 
     function preservation() {
-        console.log('保存详情');
-        var index = 124
-        var frameName = url + "_body";
-        api.execScript({
-            name:url,
-            frameName: frameName,
-            script: 'tripValue(JSON.stringify('+index+'))'
-        })
-        closeWin();
-    }
+          // alert(1211111)
+          var data = {
+              imgList: app.imgList,
+              intro: app.intro
+          }
+          // console.log(data,'124')
+          var frameName = url + "_body";
+          api.execScript({
+              name: url,
+              frameName: frameName,
+              script: 'tripValue(' + JSON.stringify(data) + ')'
+          })
+          closeWin();
+      }
 </script>
 
 </html>

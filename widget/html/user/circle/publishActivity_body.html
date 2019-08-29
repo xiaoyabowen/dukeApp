@@ -90,8 +90,10 @@
 
     <script type="text/javascript" src="../../../script/city.data-3.js"></script>
     <script>
+        var app;
+        var detailData;
         apiready = function() {
-            new Vue({
+          app = new Vue({
                 el: '#informationInit',
                 data: {
                     img: '',
@@ -219,9 +221,32 @@
                 }
             })
         }
-        function tripValue(index) {
-          console.log(index);
+
+        function tripValue(data){
+          // console.log(data,'224')
+          detailData = data;
         }
+
+        function sendMsg(){
+            //调接口发送数据
+            var json = {
+              person_id:'', //发布人id
+              poster:'', //海报
+              title:app.title, //活动标题
+              cir_name:'', //主办人姓名
+              phone:'',//发布人电话
+              suggest:'',//活动标签
+              number:'',//人员限制
+              c_from:'',//活动开始时间
+              c_to:'',//活动结束时间
+              endtime:'',//报名截至时间
+              address:'',//活动地址
+              adrdetail:'',//活动详情地址
+              details:detailData.intro,//活动详情
+            }
+            console.log(json,'24777777');
+        }
+
     </script>
 </body>
 
