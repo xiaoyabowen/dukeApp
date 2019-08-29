@@ -212,10 +212,15 @@
                         })
                     },
                     toActiveDetail: function() {
-                        openNewWindow("editActivityDetail", "./editActivityDetail.html")
+                        openNewWindow("editActivityDetail", "./editActivityDetail.html",{
+                          url:"publishActivity"
+                        })
                     }
                 }
             })
+        }
+        function tripValue(index) {
+          console.log(index);
         }
     </script>
 </body>

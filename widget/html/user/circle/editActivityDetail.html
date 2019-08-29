@@ -25,7 +25,6 @@
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
@@ -37,7 +36,12 @@
     };
     function publishActivity(){
       console.log('保存详情');
+      api.execScript({
+          frameName: "publishActivity_body",
+          script: 'preservation()'
+      })
     }
+
 
 </script>
 </html>

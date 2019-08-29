@@ -43,7 +43,10 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script>
+var url
     apiready = function() {
+      url = api.pageParam.url
+
         new Vue({
             el: '#detailWrap',
             data: {
@@ -110,8 +113,16 @@
         })
     };
 
-    function publishActivity() {
+    function preservation() {
         console.log('保存详情');
+        var index = 124
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script: 'tripValue(JSON.stringify('+index+'))'
+        })
+        closeWin();
     }
 </script>
 
