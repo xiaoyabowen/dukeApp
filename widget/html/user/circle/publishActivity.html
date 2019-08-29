@@ -9,35 +9,22 @@
     <title>圈子</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <style>
-        .headerBox {
-            justify-content: space-between;
-        }
-        .oneImgRight,.rightImgEdite {
-            width: 0.34rem;
-            height: 0.38rem;
-            margin-top: -0.6rem;
-        }
-        .rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
 <body>
 <div id="topbar" >
-
+    <!--<div id="leftButton" tapmode="itemOn" onclick="closeWin()">
+        <img style="width: 30px;height: 30px;" src="../../../icon/back.png">
+    </div>
+    <div>发布活动</div>-->
     <div class="headerBox cssFlex">
-        <div onclick="mineGo()">
-            首页
+        <div class="leftImgClose" onclick="closeWin()">
+            <img style="width: 16px;height: 20px;" class="imgBack" src="../../../icon/back.png">
         </div>
-        <div class="middle_center">
-            活动
+        <div class="middleMain">
+            发布活动
         </div>
-        <div class="rightImgEdite">
-            <img class="oneImgRight" src="../../../image/mine/share.png" alt="" >
-        </div>
+        <div class="pubbtn" onclick="publishActivity()">保存</div>
     </div>
 </div>
 </body>
@@ -52,19 +39,9 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-
-    function mineGo() {
-        openNewWindow("home", "../home/home.html")
+    function publishActivity(){
+      console.log('提交活动');
     }
-    //发布活动
 
-    function save(){
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser || uidUser == 'undefined'){
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("publishing_activities", "./publishActivity.html")
-    }
 </script>
 </html>
