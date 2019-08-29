@@ -53,173 +53,58 @@
 </head>
 <body class="commonBg">
 <div class="Box isDisplay">
-    <div class="infoBoxSub">
-        <div class="info-label">
-            <a href="#popover">
-                <p class="info-label-title">
-                    我的标签
-                    <i class="label-remake">（所填内容用，格开为一个标签）</i>
-                </p>
-                <div class="info-label-choose cssFlex">
-                    <span class="info-label-name ellipsis" id="myTags">随性，喜欢简单，敢爱敢恨，欢简单，敢爱欢简单，敢爱萌萌哒，叛逆……</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </a>
-
-            <a href="#popover1">
-                <p class="info-label-title">
-                    我的兴趣
-                    <i class="label-remake">（所填内容用,格开为一个标签）</i>
-                </p>
-                <div class="info-label-choose cssFlex">
-                    <span class="info-label-name ellipsis" id="myInterest">跑步，羽毛球，拳击，效游，读书</span>
-                    <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                </div>
-            </a>
-
-        </div>
-        <div class="info-about">关于我</div>
-    </div>
-    <div class="F9LineEdit"></div>
-    <div class="infoBoxSub">
-
-        <!--请选择-->
-        <div class="info-choose cssFlex" onclick="user_p_name()">
-            <span class="info-choose-name ellipsis">账户名称</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="user_p_name">无</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-        <div class="info-choose cssFlex" onclick="user_age()">
-            <span class="info-choose-name ellipsis"><i class="colorFE" style="color: #FE9114;">*</i>年龄</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="user_age">请选择</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-        <div class="info-choose cssFlex" onclick="user_sex()">
-            <span class="info-choose-name">性别</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="user_sex">请选择</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-        <!--<div class="info-choose cssFlex">
-            <span class="info-choose-name">星座</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="info-picker-xing">请选择</span>
-                &lt;!&ndash;<img src="../../../icon/right.png" alt="right" class="info-img-right">&ndash;&gt;
-            </div>
-        </div>-->
-        <!--<div class="info-choose cssFlex">
-            <span class="info-choose-name">职业</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="Occupation">请填写</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>-->
-        <div class="info-choose cssFlex" onclick="user_jobTimeClick()">
-            <span class="info-choose-name ellipsis"><i class="colorFE" style="color: #FE9114;">*</i>开始工作的时间</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option" id="user_jobTime">请选择</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-        <div class="info-choose cssFlex" onclick="int_city()">
-            <span class="info-choose-name ellipsis"><i class="colorFE" style="color: #FE9114;">*</i>居住地</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="int_city">请填写</span>
-                <span class="isDisplay" id="adr_id">未选择</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-
-        <div class="info-choose cssFlex" onclick="emotion()">
-            <span class="info-choose-name ">情感状态</span>
-            <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name" id="emotion">请选择</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-        <!--人生观-->
-        <!--<div class="info-about">人生观</div>
-        <div onclick="love()">
-            <div class="info-about-sub">对爱情的看法</div>
-            <div class="info-label-choose info-label-cho cssFlex">
-                <span class="info-label-name ellipsis" id="love">经历许多，现在只想简简单单，相爱到老。</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-        <div onclick="cause()">
-            <div class="info-about-sub">对事业的看法</div>
-            <div class="info-label-choose info-label-cho cssFlex">
-                <span class="info-label-name ellipsis" id="cause">三十而立。</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-        <div onclick="life()">
-            <div class="info-about-sub">对生活的看法</div>
-            <div class="info-label-choose info-label-cho cssFlex">
-                <span class="info-label-name ellipsis" id="life">顺其自然</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-
-        <div class="my-dynamic cssFlex">
-            <span class="my-dynamic-name">我的动态</span>
-            <span class="my-dynamic-send">发布</span>
-        </div>
-        <div class='textarea-block my-dynamic-block'>
-            <textarea class="textarea-item my-dynamic-textarea" name="content" placeholder="请输入内容，不超过50字。"
-                      maxlength="500" spellcheck="false"></textarea>
-            <div class="textarea-count">
-                &lt;!&ndash;<span class="textareaInput">0</span>/<span class="textareaTotal">500</span>&ndash;&gt;
-            </div>
-        </div>
-        <div class="dynamic-link cssFlex">
-            <div class="dynamic-img cssFlex">
-                <img src="../../../image/mine/photo.png" alt="photo" class="dynamic-photo">
-                <span>照片</span>
-            </div>
-            <div class="dynamic-img cssFlex">
-                <img src="../../../image/mine/shipin.png" alt="photo" class="dynamic-photo">
-                <span>视频</span>
-            </div>
-            <div class="dynamic-img cssFlex" onclick="user_addLink()">
-                <img src="../../../image/mine/lianjie.png" alt="photo" class="dynamic-photo">
-                <span>链接</span>
-            </div>
-        </div>-->
-
-    </div>
+<div class="box-tob">
+<p>头像</p>
+ <img src="../../../image/tx.png" alt="img">
 </div>
-<div class="showText"></div>
+<div class="firm cssFlex">
+  <div class="xing">*</div>
+  <span>名字</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="firm cssFlex">
+    <div class="xing">*</div>
+  <span>所在位置</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="bun">
+  认证我的身份
+</div>
+<p class="qy">500多位企业家认证</p>
+<div class="heign1"></div>
 
-<div id="popover" class="mui-popover popover">
-    <div class="title">请填写标签名</div>
-    <textarea name="" id="text1" placeholder="所填内容用，格开为一个标签"></textarea>
-    <!--<input type="text" placeholder="所填内容用，格开为一个标签',['确定','取消']">-->
-    <div class="btn">
-        <span onclick="btn_hidden(0)">取消</span>
-        <span onclick="btn_hidden(1)">确定</span>
-    </div>
+<div class="firm cssFlex">
+  <span>所在公司</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="firm cssFlex">
+  <span>担任职务</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="heign1"></div>
+<div class="firm cssFlex">
+  <span>毕业院校</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="firm cssFlex">
+  <span>学历</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="firm cssFlex">
+  <span>所学专业</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="firm cssFlex">
+  <span>在校时间</span>
+  <input type="text" name="" class="firmInput"  placeholder="单行输入" >
+</div>
+<div class="heign1"></div>
+<div class="firm cssFlex">
+  <span>个人标签</span>
+  <input type="text" name="" class="firmInput"  placeholder="用几个字来形容下自己" >
 </div>
 
-<div id="popover1" class="mui-popover popover">
-    <div class="title">请填兴趣签名</div>
-    <textarea name="" id="text2" placeholder="所填内容用，格开为一个标签"></textarea>
-    <!--<input type="text" placeholder="所填内容用，格开为一个标签',['确定','取消']">-->
-    <div class="btn">
-        <span onclick="btn_hidden2(0)">取消</span>
-        <span onclick="btn_hidden2(1)">确定</span>
-    </div>
-</div>
+
 <script type="text/javascript" src="../../../script/api.js"></script>
 <!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/rem.js"></script>
