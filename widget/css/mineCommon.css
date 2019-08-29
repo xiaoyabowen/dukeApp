@@ -11,7 +11,9 @@ body, div, p, span, a, input, ul, li {
     width: 7rem;
 }
 
+
 /*我的*/
+
 .mineInfo {
     padding-top: 0.32rem;
     width: 6.32rem;
@@ -118,13 +120,15 @@ body, div, p, span, a, input, ul, li {
 }
 
 .m-img-logo {
-    display:block;
+    display: block;
     width: 1.3rem;
     height: 1.3rem;
     border-radius: 50%;
 }
 
+
 /*我的沟通记录*/
+
 .m-chat {
     justify-content: center;
     align-items: center;
@@ -168,19 +172,18 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-.m-person-list > li {
+.m-person-list>li {
     width: 25%;
     margin-bottom: 0.5rem;
 }
 
-.m-person-list > li > img {
+.m-person-list>li>img {
     display: block;
     margin: 0 auto;
     height: 0.42rem;
 }
 
-.m-person-list > li > p {
-
+.m-person-list>li>p {
     margin-top: 0.12rem;
     font-size: 0.22rem;
     color: #666666;
@@ -202,6 +205,7 @@ body, div, p, span, a, input, ul, li {
 .img-four {
     width: 0.48rem;
 }
+
 .img-com {
     width: 0.36rem;
     height: 0.4rem;
@@ -211,7 +215,9 @@ body, div, p, span, a, input, ul, li {
     width: 0.4rem;
 }
 
+
 /*上传附件简历*/
+
 .update-one, .update-two, .update-three {
     margin: 0.56rem auto 0.22rem;
     width: 2.3rem;
@@ -237,6 +243,7 @@ body, div, p, span, a, input, ul, li {
     line-height: 0.32rem;
     margin-bottom: 0.1rem;
 }
+
 
 /*附件简历重命名*/
 
@@ -281,7 +288,9 @@ body, div, p, span, a, input, ul, li {
     background: #EBEBEB;
 }
 
+
 /*已经上传附件简历*/
+
 .moreWork {
     height: 0.78rem;
     line-height: 0.78rem;
@@ -292,7 +301,7 @@ body, div, p, span, a, input, ul, li {
     justify-content: space-between;
 }
 
-.moreWork > span {
+.moreWork>span {
     font-size: 0.26rem;
     color: #fff;
 }
@@ -305,11 +314,10 @@ body, div, p, span, a, input, ul, li {
 }
 
 .jianliList {
-
     padding: 0 0.36rem;
 }
 
-.jianliList > .jianliListLi {
+.jianliList>.jianliListLi {
     padding: 0.2rem 0;
     justify-content: space-between;
     border-bottom: 1px solid #EBEBEB;
@@ -322,7 +330,7 @@ body, div, p, span, a, input, ul, li {
     margin-right: 0.42rem;
 }
 
-.resumeInfo > p {
+.resumeInfo>p {
     margin-bottom: 0 !important;
     line-height: 1.4;
 }
@@ -331,7 +339,6 @@ body, div, p, span, a, input, ul, li {
     font-size: 0.24rem;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
-
 }
 
 .resumeInfoSub {
@@ -365,8 +372,12 @@ body, div, p, span, a, input, ul, li {
     color: #fff;
 }
 
+
 /*信用卡申请功能开始*/
+
+
 /*信用卡列表页css*/
+
 .box {
     max-width: 7.5rem;
     height: 100%;
@@ -412,7 +423,7 @@ body, div, p, span, a, input, ul, li {
     border-right: 1px solid #cccccc;
 }
 
-.main_head > span:after {
+.main_head>span:after {
     content: '';
     display: inline-block;
     width: 0;
@@ -424,7 +435,7 @@ body, div, p, span, a, input, ul, li {
     transform: translateY(35%);
 }
 
-.main_head > span.active:after {
+.main_head>span.active:after {
     content: '';
     display: inline-block;
     width: 0;
@@ -465,11 +476,11 @@ body, div, p, span, a, input, ul, li {
     border-bottom: 1px solid #EBEBEB;
 }
 
-.item_title > a {
+.item_title>a {
     color: #666666;
 }
 
-.item_title > a:after {
+.item_title>a:after {
     content: '';
     display: inline-block;
     width: 0.15rem;
@@ -495,7 +506,7 @@ body, div, p, span, a, input, ul, li {
     height: 1.28rem;
 }
 
-.item_content_top_left > img {
+.item_content_top_left>img {
     width: 100%;
 }
 
@@ -523,7 +534,9 @@ body, div, p, span, a, input, ul, li {
     color: #ffffff;
 }
 
+
 /*蒙版*/
+
 .mask {
     width: 100%;
     height: calc(100% - 0.96rem);
@@ -561,7 +574,9 @@ body, div, p, span, a, input, ul, li {
     display: block;
 }
 
+
 /*信用卡详情页面css*/
+
 .details_top {
     text-align: center;
     padding: 0.35rem 0 0.22rem;
@@ -584,20 +599,20 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-.details_conter_left > div {
+.details_conter_left>div {
     color: #666666;
     margin-top: 0.05rem;
     display: flex;
     align-items: center;
 }
 
-.details_conter_left > div span {
+.details_conter_left>div span {
     margin-right: 0.2rem;
     margin-top: 0.1rem;
     /*vertical-align: bottom;*/
 }
 
-.details_conter_left > div img {
+.details_conter_left>div img {
     width: 0.4rem;
     margin: 0 0.05rem;
 }
@@ -671,7 +686,9 @@ body, div, p, span, a, input, ul, li {
     margin-top: 0.12rem;
 }
 
+
 /*信用卡申请页面css*/
+
 .apply_top {
     width: 2.2rem;
     height: 0.5rem;
@@ -718,16 +735,18 @@ body, div, p, span, a, input, ul, li {
     width: 1rem;
 }
 
-.apply_center li input {
-}
+.apply_center li input {}
 
 .apply_center li input::placeholder {
     color: #999999;
 }
 
+
 /*信用卡申请功能结束*/
 
+
 /*订阅页面开始*/
+
 .subscribed_main {
     padding: 0 0.45rem;
 }
@@ -746,17 +765,17 @@ body, div, p, span, a, input, ul, li {
     width: 4.6rem;
 }
 
-.subscribed_item_company > div:first-child {
+.subscribed_item_company>div:first-child {
     color: #333333;
     font-size: 0.22rem;
 }
 
-.subscribed_item_company > div:last-child {
+.subscribed_item_company>div:last-child {
     color: #666666;
     font-size: 0.2rem;
 }
 
-.subscribed_item_company > div {
+.subscribed_item_company>div {
     line-height: 1;
     margin: 0.15rem 0;
 }
@@ -797,7 +816,7 @@ body, div, p, span, a, input, ul, li {
     text-align: right;
 }
 
-.subscribed_main > div:last-child {
+.subscribed_main>div:last-child {
     border: 0.01rem solid #ffffff;
 }
 
@@ -829,9 +848,12 @@ body, div, p, span, a, input, ul, li {
     border-bottom-left-radius: 0.08rem;
 }
 
+
 /*订阅页面结束*/
 
+
 /*我的关注页面开始*/
+
 .my_Concern_item {
     padding: 0.4rem 0.45rem 0;
 }
@@ -873,18 +895,21 @@ body, div, p, span, a, input, ul, li {
     border-bottom: 0.01rem solid #EBEBEB;
 }
 
-.my_Concern_item > .subscribed_main_item {
+.my_Concern_item>.subscribed_main_item {
     border: 0.02rem solid #ffffff;
 }
 
+
 /*我的关注页面结束*/
 
+
 /*设置页面开始*/
+
 .setting_main {
     padding: 0 .35rem;
 }
 
-.setting_main ul > li {
+.setting_main ul>li {
     padding: 0.34rem 0;
     border-bottom: 0.02rem solid #EBEBEB;
     vertical-align: middle;
@@ -893,19 +918,19 @@ body, div, p, span, a, input, ul, li {
     align-items: center;
 }
 
-.setting_main ul > li div {
+.setting_main ul>li div {
     display: flex;
     align-items: center;
     color: #333333;
     font-size: 0.28rem;
 }
 
-.setting_main ul > li div:first-child img {
+.setting_main ul>li div:first-child img {
     width: 0.35rem;
     margin-right: 0.2rem;
 }
 
-.setting_main ul > li div:last-child img {
+.setting_main ul>li div:last-child img {
     width: 0.36rem;
 }
 
@@ -926,16 +951,19 @@ body, div, p, span, a, input, ul, li {
     margin-top: 1.3rem;
 }
 
+
 /*设置页面结束*/
 
+
 /*消息推送设置开始*/
+
 .iconPush {
     width: 100%;
     min-height: calc(100vh - 0.68rem);
     background: #F9F9F9;
 }
 
-.iconPush > div {
+.iconPush>div {
     padding: 0.3rem 0.35rem;
     font-size: 0.28rem;
     color: #666666;
@@ -943,21 +971,24 @@ body, div, p, span, a, input, ul, li {
     background: #ffffff;
 }
 
-.iconPush > div div {
+.iconPush>div div {
     display: inline-block;
     float: right;
     transform: translateY(-16%);
 }
 
-.iconPush > p {
+.iconPush>p {
     padding: 0 0.35rem;
     font-size: 0.2rem;
     color: #666666;
 }
 
+
 /*消息推送设置结束*/
 
+
 /*创建简历开始*/
+
 .resume_main {
     padding: 0.35rem 0.28rem;
 }
@@ -1013,9 +1044,12 @@ body, div, p, span, a, input, ul, li {
     margin-top: 0.7rem;
 }
 
+
 /*创建简历结束*/
 
+
 /*创建简历二级页面开始*/
+
 .resume_level2_main {
     padding: 0.3rem 0.33rem;
 }
@@ -1040,13 +1074,13 @@ body, div, p, span, a, input, ul, li {
     margin: 0;
 }
 
-.resume_level2_main > p {
+.resume_level2_main>p {
     padding-left: 0.06rem;
     font-size: 0.28rem;
     color: #999999;
 }
 
-.resume_level2_main > p .resume_level2_num {
+.resume_level2_main>p .resume_level2_num {
     color: #638BFF;
 }
 
@@ -1079,15 +1113,13 @@ body, div, p, span, a, input, ul, li {
     background: rgba(197, 0, 0, 0.8);
 }
 
-.resume_expectations_content {
-
-}
+.resume_expectations_content {}
 
 .resume_expectations_item {
     padding: 0.3rem 0.24rem;
 }
 
-.resume_expectations_item > p {
+.resume_expectations_item>p {
     font-size: 0.28rem;
     color: rgba(153, 153, 153, 1);
     margin: 0;
@@ -1103,8 +1135,12 @@ body, div, p, span, a, input, ul, li {
     display: none;
 }
 
+
 /*创建简历二级页面结束*/
+
+
 /*=============编辑信息=-====================zbw*/
+
 .infoBoxSub {
     padding: 0.1rem 0.34rem 0rem 0.34rem;
 }
@@ -1139,9 +1175,7 @@ img.info-img-right {
     height: 0.32rem;
 }
 
-
-
-.info-label-choose{
+.info-label-choose {
     justify-content: space-between;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #EBEBEB;
@@ -1236,7 +1270,9 @@ span.my-dynamic-send {
     margin-right: 0.1rem;
 }
 
+
 /*没有数据时显示*/
+
 .clear {
     text-align: center;
     font-size: 0.26rem;
@@ -1246,6 +1282,7 @@ span.my-dynamic-send {
 
 
 /*金卡vip*/
+
 .vip-authen {
     align-items: center;
     justify-content: center;
@@ -1253,12 +1290,12 @@ span.my-dynamic-send {
     padding: 0.7rem 0.62rem 0 0.62rem;
 }
 
-.vip-authen > li {
+.vip-authen>li {
     width: 33.33%;
     text-align: center;
 }
 
-.vip-authen > li > p {
+.vip-authen>li>p {
     font-size: 0.22rem;
     color: #666666;
     text-align: center;
@@ -1279,7 +1316,6 @@ span.my-dynamic-send {
 }
 
 .authen-become {
-
     font-size: 0.2rem;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
@@ -1291,7 +1327,6 @@ span.my-dynamic-send {
     height: 0.28rem;
     line-height: 0.28rem;
     text-align: center;
-
     font-size: 0.2rem;
     font-weight: 400;
     color: #fff !important;
@@ -1369,7 +1404,9 @@ span.authen-go {
     color: dodgerblue;
 }
 
+
 /*金卡VIP认证*/
+
 .au-title {
     height: 0.4rem;
     font-size: 0.28rem;
@@ -1395,7 +1432,7 @@ span.authen-go {
     margin: 0.26rem 0 0.32rem 0;
 }
 
-.au-name-input > span, .au-name-input-id > span {
+.au-name-input>span, .au-name-input-id>span {
     display: inline-block;
     width: 1.2rem;
     font-size: 0.28rem;
@@ -1463,7 +1500,9 @@ span.authen-go {
     margin: 0.32rem 0 0.6rem 0;
 }
 
+
 /*面试  日程*/
+
 .inter-box {
     padding-bottom: 0.3rem;
     border-bottom: 1px solid #ebebeb;
@@ -1494,12 +1533,10 @@ span.authen-go {
     width: 1.2rem;
     height: 0.46rem;
     border-radius: 0.04rem;
-
     line-height: 0.46rem;
     text-align: center;
     font-size: 0.28rem;
     font-weight: 400;
-
 }
 
 .inter-state-no {
@@ -1552,7 +1589,9 @@ p.inter-com-money {
     line-height: 0.8rem;
 }
 
+
 /*面试详情*/
+
 .inter-com-moneyCo {
     color: #638BFF;
     font-size: 0.28rem;
@@ -1570,10 +1609,9 @@ ul.inde-btn {
     border-bottom: 1px solid #ebebeb;
 }
 
-.inde-btn > li {
+.inde-btn>li {
     width: 1rem;
     margin-right: 0.3rem;
-
 }
 
 img.inde-img {
@@ -1581,7 +1619,7 @@ img.inde-img {
     width: 0.46rem;
 }
 
-.inde-btn > li > p {
+.inde-btn>li>p {
     width: 100%;
     height: 0.32rem;
     font-size: 0.24rem;
@@ -1590,7 +1628,9 @@ img.inde-img {
     line-height: 0.32rem;
 }
 
+
 /*详情信息*/
+
 .inde-info {
     padding: 0.26rem 0 0.3rem 0.22rem;
     border-bottom: 1px solid #ebebeb;
@@ -1601,10 +1641,9 @@ img.inde-img {
     width: 0.28rem;
     height: 0.28rem;
     margin-right: 0.2rem;
-
 }
 
-.inde-info > p {
+.inde-info>p {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
@@ -1625,7 +1664,9 @@ img.inde-img {
     margin-top: 0.3rem;
 }
 
+
 /*面试评价*/
+
 .st-box {
     margin-top: 0.2rem;
     margin-bottom: 0.34rem;
@@ -1682,7 +1723,9 @@ p.st-main-zhi {
     right: 0rem;
 }
 
+
 /*星级*/
+
 .mui-table-view:after {
     display: none !important;
 }
@@ -1730,7 +1773,9 @@ p.st-main-zhi {
     text-align: center;
 }
 
+
 /*职位下线*/
+
 .off-title {
     justify-content: space-between;
     height: 0.5rem;
@@ -1799,7 +1844,9 @@ img.off-com-img {
     font-weight: 500;
 }
 
+
 /*添加工作  简历    头部标题  公共*/
+
 .comon-mine-title {
     font-weight: 500;
     margin: 0.34rem 0 0.05rem;
@@ -1809,7 +1856,7 @@ img.off-com-img {
     flex-wrap: wrap;
 }
 
-.info-edit-skill > li {
+.info-edit-skill>li {
     width: 1.38rem;
     height: 0.34rem;
     line-height: 0.34rem;
@@ -1824,10 +1871,11 @@ img.off-com-img {
 .pingbi {
     justify-content: space-between;
     align-items: center;
-
 }
 
+
 /*个人中心*/
+
 .user-info {
     margin: 0.5rem 0 0.2rem;
     position: relative;
@@ -1872,7 +1920,7 @@ p.user-main-com {
     margin-bottom: 0.1rem;
 }
 
-.user-main-zhi > span {
+.user-main-zhi>span {
     display: inline-block;
     padding: 0 0.2rem;
     height: 0.34rem;
@@ -1915,32 +1963,30 @@ p.user-main-com {
     flex-wrap: wrap;
 }
 
-.label-list > span, .Interest-list > span {
+.label-list>span, .Interest-list>span {
     width: 1.3rem;
     height: 0.34rem;
     border-radius: 0.08rem;
-
     line-height: 0.34rem;
     text-align: center;
     font-size: 0.24rem;
-
     margin: 0 0.2rem 0.2rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.label-list > span {
+.label-list>span {
     border: 1px solid rgba(99, 139, 255, 1);
     color: rgba(99, 139, 255, 1);
 }
 
-.Interest-list > span {
+.Interest-list>span {
     border: 1px solid rgba(254, 145, 20, 1);
     color: rgba(254, 145, 20, 1);
 }
 
-.label-list > span:nth-of-type(3n), .Interest-list > span:nth-of-type(3n) {
+.label-list>span:nth-of-type(3n), .Interest-list>span:nth-of-type(3n) {
     margin-right: 0 !important;
 }
 
@@ -1950,13 +1996,13 @@ p.user-main-com {
     font-weight: 500;
 }
 
-.info-list > p {
+.info-list>p {
     color: #333333;
     height: 0.4rem;
     line-height: 0.4rem;
 }
 
-.info-list > p > span {
+.info-list>p>span {
     display: inline-block;
     width: 2rem;
     color: #999999;
@@ -1994,10 +2040,9 @@ p.user-main-com {
 
 .dyname-img {
     flex-wrap: wrap;
-
 }
 
-.dyname-img > img {
+.dyname-img>img {
     display: block;
     width: 1.88rem;
     height: 1.88rem;
@@ -2005,7 +2050,7 @@ p.user-main-com {
     border-radius: 0.08rem;
 }
 
-.dyname-img > img:nth-of-type(3n) {
+.dyname-img>img:nth-of-type(3n) {
     margin-right: 0;
 }
 
@@ -2041,7 +2086,9 @@ img.del-img-zan {
     margin: 0 0.1rem 0 0.3rem;
 }
 
+
 /*删除本条*/
+
 .dele-btn {
     width: 6.3rem;
     height: 0.78rem;
@@ -2064,103 +2111,121 @@ img.del-img-zan {
 
 
 /*意见反馈*/
-.ques-title,.update-box-title,.ques-contact-info{
+
+.ques-title, .update-box-title, .ques-contact-info {
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(102,102,102,1);
+    color: rgba(102, 102, 102, 1);
     line-height: 0.4rem;
     margin-bottom: 0.14rem;
 }
+
 i.ques-star {
     display: inline-block;
     margin-right: 0.16rem;
     font-weight: 400;
-    color: rgba(255,163,0,1);
+    color: rgba(255, 163, 0, 1);
     font-size: 0.28rem;
 }
+
 .ques-list.cssFlex {
     flex-wrap: wrap;
     margin-bottom: 0.3rem;
 }
+
 .ques-list-main {
     display: inline-block;
     height: 0.52rem;
     border-radius: 0.26rem;
-    border: 1px solid rgba(151,151,151,1);
+    border: 1px solid rgba(151, 151, 151, 1);
     line-height: 0.52rem;
     margin-right: 0.1rem;
     margin-bottom: 0.1rem;
     width: 1.34rem;
     text-align: center;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
     font-size: 0.24rem;
 }
-.ques-list-main:nth-of-type(4n){
+
+.ques-list-main:nth-of-type(4n) {
     margin-right: 0;
 }
-.ques-textarea{
+
+.ques-textarea {
     height: 1.6rem;
     line-height: 0.28rem !important;
     width: 100%;
 }
-.describeQues,.update-box{
+
+.describeQues, .update-box {
     border-radius: 0.04rem;
-    border: 0.02rem solid rgba(153,153,153,1);
+    border: 0.02rem solid rgba(153, 153, 153, 1);
     padding: 0.2rem;
     margin-bottom: 0.2rem;
 }
-.ques-contact-fang{
+
+.ques-contact-fang {
     width: 1.2rem;
     margin-right: 0.6rem;
-    font-weight:400;
-    color:rgba(153,153,153,1);
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
 }
-.ques-contact{
 
+.ques-contact {
     margin-top: 0.4rem;
 }
-.ques-contact-phone,.ques-contact-name{
-    font-weight:400;
-    color:rgba(102,102,102,1);
+
+.ques-contact-phone, .ques-contact-name {
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
 }
+
 .ques-submit {
     width: 6.3rem;
     height: 0.78rem;
-    background: rgba(99,139,255,1);
+    background: rgba(99, 139, 255, 1);
     border-radius: 0.08rem;
     line-height: 0.78rem;
     text-align: center;
     color: #fff;
     margin: 0 auto 0.3rem;
 }
-.ques-active{
-    color:rgba(99,139,255,1);
-    border:1px solid rgba(99,139,255,1);
+
+.ques-active {
+    color: rgba(99, 139, 255, 1);
+    border: 1px solid rgba(99, 139, 255, 1);
 }
+
+
 /*    ----------------------   zbw     --------      */
-.nowCompanyPany,.carefulTitle{
+
+.nowCompanyPany, .carefulTitle {
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
 }
-.nowCompanyPany{
+
+.nowCompanyPany {
     margin-top: 0.1rem;
 }
-.carefulTitle{
+
+.carefulTitle {
     margin: 0.3rem 0 0.2rem;
 }
-.carefulMain{
+
+.carefulMain {
     font-size: 0.28rem;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
     line-height: 0.4rem;
     margin-bottom: 0.1rem;
 }
-.carefulImgYing{
+
+.carefulImgYing {
     display: block;
     width: 2.9rem;
     margin: 0 auto;
@@ -2179,34 +2244,409 @@ i.ques-star {
     margin: 0.63rem auto;
 }
 
+
 /*我的关注   缺省页*/
-.notmy_Concern_main,.my_Concern_main{
+
+.notmy_Concern_main, .my_Concern_main {
     display: block;
 }
-.notImg{
+
+.notImg {
     width: 2.33rem;
     height: 1.83rem;
     margin: 2rem auto 0.6rem;
-
 }
-.notImgMy{
+
+.notImgMy {
     display: block;
     width: 100%;
     height: 100%;
 }
-.notMyConText{
+
+.notMyConText {
     line-height: 0.4rem;
     width: 4rem;
     margin: 0 auto;
     text-align: center;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
     font-size: 0.28rem;
 }
 
 
+/*userCenter_body.html*/
 
 
+/*{背景图}*/
+
+.boxTop {
+    width: 100%;
+    height: 3.5rem;
+}
+
+.boxTop img {
+    width: 100%;
+    height: 5rem;
+    background-size: cover;
+    /*position: relative;*/
+}
+
+.boxtb {
+    position: absolute;
+    width: 0.4rem;
+    height: 0.5rem;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+.boxtb img {
+    width: 0.22rem;
+    height: 0.28rem;
+}
+
+.boxtb p {
+    position: absolute;
+    width: 1rem;
+    top: -0.01rem;
+    left: 0.4rem;
+    color: #ffffff;
+    font-size: 0.28rem;
+}
+
+.boxBod {
+    position: absolute;
+    width: 4rem;
+    height: 4.5rem;
+    top: 0.3rem;
+    left: 1.8rem;
+}
+
+.boxbodt {
+    width: 2.2rem;
+    height: 2.2rem;
+    /*border: 1px solid black;*/
+    margin: 0 auto;
+}
+
+.boxbodt img {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.boxbodd {
+    width: 3rem;
+    height: 0.6rem;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 0.36rem;
+}
+
+.boxbodd img {
+    width: 1.44rem;
+    height: 0.34rem;
+    margin-left: 0.3rem;
+    margin-top: 0.03rem;
+}
+
+.boxwz {
+    width: 4rem;
+    height: 0.4rem;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 0.24rem;
+    text-align: center;
+}
+
+.boxboom {
+    width: 3rem;
+    height: 0.4rem;
+    margin-left: 1.4rem;
+    color: #ffffff;
+    font-size: 0.24rem;
+}
+
+.boxboom img {
+    width: 0.24rem;
+    height: 0.24rem;
+    margin-left: 0.1rem;
+    margin-top: 0.05rem;
+}
+
+.editbtn {
+    width: 1rem;
+    height: 0.5rem;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    position: absolute;
+    top: 0.5rem;
+    left: 6rem;
+    text-align: center;
+    line-height: 0.5rem;
+    border-radius: 0.1rem;
+    font-size: 0.24rem;
+}
+
+.box-body {
+    width: 100%;
+    height: 2.3rem;
+    position: relative;
+    padding-top: 0.10rem;
+}
+
+.experience {
+    margin-left: 0.4rem;
+    font-size: 0.32rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+}
+
+.site {
+    justify-content: space-between;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+.site img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.2rem;
+    margin-top: 0.3rem;
+}
+
+.position {
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    justify-content: space-between;
+}
+
+.position img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.2rem;
+    margin-top: 0.3rem;
+}
+
+.heign {
+    width: 100%;
+    height: 0.3rem;
+    background: #F9F9F9;
+}
+
+.box-body2 {
+    width: 100%;
+    height: 3.6rem;
+    position: relative;
+    padding-top: 0.2rem;
+}
+
+.education {
+    margin-left: 0.5rem;
+    font-size: 0.32rem;
+    margin-top: 0.2rem;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+}
+
+.school {
+    height: 0.8rem;
+    justify-content: space-between;
+    font-size: 0.28rem;
+    margin-top: 0.3rem;
+    border-bottom: 0.01rem solid #EBEBEB;
+    /*font-family:PingFangSC;*/
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+.school img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.2rem;
+}
+
+.date {
+    height: 0.8rem;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+    font-size: 0.28rem;
+    /*font-family:PingFangSC;*/
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    border-bottom: 0.01rem solid #EBEBEB;
+}
+
+.date img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.2rem;
+}
+
+.major {
+    height: 0.8rem;
+    margin-top: 0.3rem;
+    justify-content: space-between;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+}
+
+.major img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-left: 0.2rem;
+    /*margin-top: 0.2rem;*/
+}
+
+.box-body3 {
+    width: 100%;
+    height: 1.4rem;
+    margin-top: 0.3rem;
+    position: relative;
+}
+
+.biaoqian {
+    font-weight: 500;
+    margin-left: 0.4rem;
+    font-size: 0.32rem;
+    margin-top: 0.6rem;
+}
+
+.bq {
+    width: 100%;
+}
+
+.bq ul {
+    display: flex;
+    margin-top: 0.3rem;
+}
+
+.bq li {
+    flex: 1;
+    width: 1.08rem;
+    height: 0.52rem;
+    background: #EAEAEA;
+    border: 0.01rem solid #EAEAEA;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    line-height: 0.52rem;
+    font-size: 0.28rem;
+}
+
+.lin {
+    width: 0.04rem;
+    height: 0.3rem;
+    background: #638BFF;
+    left: 0.2rem;
+    border: 0.01rem solid #638BFF;
+    top: 0.17rem;
+    position: absolute;
+}
+
+.link {
+    width: 0.04rem;
+    height: 0.3rem;
+    background: #638BFF;
+    left: 0.22rem;
+    border: 0.01rem solid #638BFF;
+    top: 0.25rem;
+    position: absolute;
+}
+
+.line {
+    width: 0.04rem;
+    height: 0.3rem;
+    background: #638BFF;
+    left: 0.2rem;
+    border: 0.01rem solid #638BFF;
+    top: 0.08rem;
+    position: absolute;
+}
 
 
+/*editlnfo 编辑页面*/
 
+.box-tob {
+    width: 100%;
+    height: 1.9rem;
+    border-bottom: 0.01rem solid #EBEBEB;
+}
+
+.box-tob p {
+    font-size: 0.28rem;
+    margin-left: 0.3rem;
+    line-height: 1.9rem;
+    color: #333333;
+}
+
+.xing {
+  height: 1.09rem;
+    position: absolute;
+    left: 0.2rem;
+    line-height: 1.09rem;
+    top: 0;
+    /*margin-top: -0.055rem;*/
+    color: #FE9114;
+}
+
+.box-tob img {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.01rem;
+}
+
+.bun {
+    width: 4.94rem;
+    height: 0.68rem;
+    border: 0.01rem solid #638BFF;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    text-align: center;
+    line-height: 0.68rem;
+    color: #638BFF;
+    font-size: 0.28rem;
+    /*border-radius: 0.1rem;*/
+}
+
+.qy {
+    width: 100%;
+    text-align: center;
+    font-size: 0.26rem;
+    margin-top: 0.3rem;
+}
+
+.heign1 {
+    width: 100%;
+    height: 0.3rem;
+    background: #F9F9F9;
+}
+
+.firm {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.32rem 0.32rem 0.34rem;
+    border-bottom: 0.01rem solid #EBEBEB;
+    height: 1rem;
+    position: relative;
+}
+
+.firm span {
+    font-size: 0.28rem;
+    color: #333333;
+    /*margin-top: 0.3rem;*/
+    margin-left: 0.1rem;
+}
+
+.firm .firmInput {
+    width: 3.56rem;
+    height: 0.57rem;
+    margin-top: 0.4rem;
+    padding-left: 0.2rem;
+    /*text-indent: 0.01rem;*/
+}
