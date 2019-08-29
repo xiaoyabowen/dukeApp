@@ -78,9 +78,11 @@
                             <span class="tripCity">出发城市</span>
                             <span class="tripTime">时间</span>
                             <span class="tripNum">数量</span>
+                            <span class="tripNumNum isDisplay">数量</span>
                             <span class="username isDisplay"></span>
                             <span class="userphone isDisplay"></span>
                             <span class="ouIds isDisplay"></span>
+                            <span class="tdId isDisplay"></span>
                         </div>
                         <div class="commonSub24 ouPerson999">·全年保证出发·纯玩团·每周循环</div>
                     </div>
@@ -386,7 +388,7 @@
                             })
                             return
                         }
-
+                        console.log("uioiiophone",document.querySelector(".userphone").innerText)
                         openNewWindow("confirmOrder", "../confirmOrder.html", {
                             url: 'tourismouou',
                             urlIs : 'tourismouou',
@@ -394,12 +396,13 @@
                             ououPrice: document.querySelector(".tripPrice").innerText,
                             item: that.item,
                             order: {
-                                num: that.total,
+                                num: document.querySelector(".tripNumNum").innerText,
                                 summary: '',
                                 price: document.querySelector(".tripPrice").innerText,
                                 username: document.querySelector(".username").innerText,
                                 userphone: document.querySelector(".userphone").innerText,
-                                cId: document.querySelector(".ouIds").innerText,
+                                cId: that.ouId,
+                                tdId: document.querySelector(".tdId").innerText,
                             }
                         })
                     },
@@ -472,17 +475,21 @@
             })
         }
 
-        function tripValue(tripPerson,oId,tripCity,dateActive,num,price,username) {
+        function tripValue(tripPerson,tdId,tripCity,dateActive,num,price,username) {
             console.log("userphone",localStorage.getItem("tripPhone"))
 
-            document.querySelector(".ouIds").innerText = oId
+            // document.querySelector(".ouIds").innerText = oId
+            document.querySelector(".tdId").innerText = tdId
             document.querySelector(".tripPerson").innerText = tripPerson
             document.querySelector(".tripCity").innerText = tripCity
             document.querySelector(".tripTime").innerText = dateActive
             document.querySelector(".tripNum").innerText = num +'人'
+            document.querySelector(".tripNumNum").innerText = num
             document.querySelector(".tripPrice").innerText = price
             document.querySelector(".username").innerText = username
             document.querySelector(".userphone").innerText = localStorage.getItem("tripPhone")
+
+
         }
 
 

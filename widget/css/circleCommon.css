@@ -113,6 +113,33 @@
     left: 0.9rem;
     z-index: 7;
 }
+.allImg4{
+    left: 1.2rem;
+    z-index: 6;
+}
+.allImg5{
+    left: 1.5rem;
+    z-index: 5;
+}
+.allImg6{
+    left: 1.8rem;
+    z-index: 4;
+}
+.allImg7{
+    left: 2.1rem;
+    z-index: 3;
+}
+.allImg8{
+    left: 2.4rem;
+    z-index: 2;
+}
+.allImg9{
+    left: 2.7rem;
+    z-index: 1;
+}
+
+
+
 .cirSignUserNum{
     color:rgba(102,102,102,1);
 }

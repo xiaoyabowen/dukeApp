@@ -17,15 +17,14 @@
 </head>
 <body>
 <div id="circle">
-    <img src="../../../image/circle/circle01.png" alt="" class="deImg">
+    <img :src="poster" alt="" class="deImg">
     <div class="detailBox boxSub">
         <div class="detTitle commonTitle textOverflow">
-            迪卡侬五一免费欢乐泡泡泡迪卡侬五一免费
-            欢乐泡泡泡迪卡侬五一免费欢乐泡泡泡…
+            {{title}}
         </div>
         <div class="detailNum commonSub24">
-            <span class="detailNumSee">浏览2176次</span>
-            <span>收藏280次</span>
+            <span class="detailNumSee">浏览{{LookNum}}次</span>
+            <span>收藏{{AttNum}}次</span>
         </div>
     </div>
     <div class="line20"></div>
@@ -34,7 +33,7 @@
             <img src="../../../image/circle/tiem2x.png" alt="" class="tiem2x">
             <span class="detActTimeText">活动时间：</span>
             <span class="detActTimeInfo">
-                2019-04-16 11:00至2019-05-16 11:00
+                {{c_from}}至{{c_to}}
             </span>
         </div>
         <div class= "detActAddr cssFlex">
@@ -42,7 +41,7 @@
                 <img src="../../../image/circle/city2x.png" alt="" class="city2x">
                 <span class="detActTimeText">活动地点：</span>
                 <span class="detActTimeInfo">
-                北京市少年宫
+                {{address}}
             </span>
             </div>
             <img src="../../../image/circle/locationx.png" alt="locationx" class="locationx" @click="baiduditu()">
@@ -52,10 +51,10 @@
                 <img src="../../../image/circle/contacts2x.png" alt="" class="contacts2x">
                 <span class="detActTimeText">联系人：</span>
                 <span class="detActTimeInfo">
-                    18710103920
+                    {{phone}}
                 </span>
             </div>
-            <img src="../../../image/circle/phone2x.png" alt="locationx" class="locationx" @click="callHandle()">
+            <img src="../../../image/circle/phone2x.png" alt="locationx" class="locationx" @click="callHandle(phone)">
         </div>
     </div>
 
@@ -66,11 +65,12 @@
             <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
             <div class="dePerText">
                 <div class="dePerTextName">
-                    <span class="commonFont dePerTextNameName">爱吃鱼多陶先生</span>
-                    <img src="../../../image/circle/boyIcon.png" alt="bot" class="boyIcon">
+                    <span class="commonFont dePerTextNameName">{{p_name}}</span>
+                    <img src="../../../image/circle/boyIcon.png" v-show="p_sex == 1" alt="bot" class="boyIcon">
+                    <img src="../../../image/circle/girlIcon.png" v-show="p_sex == 2" alt="bot" class="boyIcon">
                 </div>
                 <div class="dePerTextPos">
-                    <span class="commonSub24 dePerTextPosName">互联网金融|工程师</span>
+                    <span class="commonSub24 dePerTextPosName">{{job_name}}</span>
                 </div>
             </div>
 
@@ -81,15 +81,15 @@
 
     <div class="line20"></div>
     <div class="cssFlex detSign boxSub" @click="signClick()">
-        <div class="detSignNum commonFont">已报名 123人</div>
+        <div class="detSignNum commonFont">已报名 {{BmCount}}人</div>
         <div class="detSignPerson cssFlex">
             <div class="deluserImgAll cssFlex">
-                <img class="" src="../../../image/circle/actEditIcon.png" alt="">
-                <img class="" src="../../../image/circle/allSeeIcon.png" alt="">
+                <img class="" v-for="(item,index) in CircleSummer" :key="index" :src="item.p_icon.split(',')[0]" alt="">
+                <!--<img class="" src="../../../image/circle/allSeeIcon.png" alt="">
                 <img class="" src="../../../image/circle/saoYzIcon.png" alt="">
                 <img class="" src="../../../image/circle/perManIcon.png" alt="">
                 <img class="" src="../../../image/circle/perManIcon.png" alt="">
-                <img class="" src="../../../image/circle/perManIcon.png" alt="">
+                <img class="" src="../../../image/circle/perManIcon.png" alt="">-->
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
@@ -147,8 +147,7 @@
         </div>
         <div class="detailMainBox">
             <div class="detailMainBoxText commonFont">
-                此外本次互动会有我们的跑步大神-兜兜亲自带队和大
-                家分享跑步的经验和技巧。
+                {{details}}
             </div>
             <div class="detailMainBoxImg">
                 <img src="../../../image/circle/circle01.png" alt="">
@@ -191,15 +190,70 @@
                 writeText : '',
                 userName : '',
                 userPhone : '',
+                circle_id : '',
+
+                poster : '',
+                title : '',
+                LookNum : '',
+                AttNum : '',
+                BmCount : '',
+                c_from : '',
+                c_to : '',
+                details : '',
+                address : '',
+                p_name : '',
+                phone : '',
+                job_name : '',
+                company_name : '',
+                p_sex : '',
+                CircleSummer : [],
+
+
+
             },
             created: function () {
-
+                this.circle_id = api.pageParam.circle_id
+                this.CircleProfileAllinOne()
             },
             mounted: function () {
 
 
             },
             methods: {
+                CircleProfileAllinOne : function (){
+                    var that = this;
+                    var obj = {
+                        circle_id : that.circle_id
+                    }
+                    ajaxGetWithProgress(CircleProfileAllinOne,obj,function (data) {
+                        console.log("CircleProfileAllinOne",data);
+                        var circleSummary =  data.circleSummary;
+                        if (data){
+                            that.poster = circleSummary.poster;
+                            that.title = circleSummary.title;
+                            that.title = circleSummary.title;
+                            that.c_from = circleSummary.c_from;
+                            that.c_to = circleSummary.c_to;
+                            that.details = circleSummary.details;
+                            that.address = circleSummary.address;
+                            that.p_name = circleSummary.p_name;
+                            that.phone = circleSummary.phone;
+                            that.job_name = circleSummary.job_name;
+                            that.company_name = circleSummary.company_name;
+                            that.p_sex = circleSummary.p_sex;
+                            that.CircleSummer = data.CircleSummer;
+
+
+
+                            that.LookNum = data.LookNum;
+                            that.AttNum = data.AttNum;
+                            that.BmCount = data.BmCount;
+
+                        } else {
+                            toast("请求失败")
+                        }
+                    })
+                },
                 signUpBtnClick : function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")
@@ -216,7 +270,9 @@
                 },
                 detStarAllClick : function () {
                     var that = this
-                    openNewWindow("allDiscuss", "./allDiscuss.html")
+                    openNewWindow("allDiscuss", "./allDiscuss.html",{
+                        circle_id : that.circle_id
+                    })
                 },
                 ticketClick : function () {
                     var that = this
@@ -224,6 +280,7 @@
                 },
                 // 唤起地图导航
                 baiduditu: function (lat, lon, address) {
+                    var that = this
                     var systemType = api.systemType;
                     var buttons = new Array();
                     var amap_installed = false;
@@ -270,7 +327,7 @@
                         return false;
                     }
 
-                    var address = address;
+                    var address = that.address;
                     var latbaidu = lat;
                     var lngbaidu = lon;
                     var latgaode = lat;
@@ -286,14 +343,14 @@
                                 if (amap_installed && bmap_installed) {
                                     if (systemType == 'ios') {
                                         api.openApp({
-                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                            iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + that.address + '&dev=0&t=3'
                                         }, function (ret, err) {
 
                                         });
                                     } else {
                                         api.openApp({
                                             androidPkg: 'android.intent.action.VIEW',
-                                            uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                            uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + that.address + '&dev=0&t=3'
                                         }, function (ret, err) {
 
                                         });
@@ -302,14 +359,14 @@
                                     if (amap_installed) {
                                         if (systemType == 'ios') {
                                             api.openApp({
-                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                                iosUrl: 'iosamap://path?sourceApplication=applicationName&sid=BGVIS1&did=BGVIS2&dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + that.address + '&dev=0&t=3'
                                             }, function (ret, err) {
 
                                             });
                                         } else {
                                             api.openApp({
                                                 androidPkg: 'android.intent.action.VIEW',
-                                                uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + address + '&dev=0&t=3'
+                                                uri: 'amapuri://route/plan/?dlat=' + latgaode + '&dlon=' + lnggaode + '&dname=' + that.address + '&dev=0&t=3'
                                             }, function (ret, err) {
 
                                             });
@@ -319,7 +376,7 @@
                                     if (bmap_installed) {
                                         if (systemType == 'ios') {
                                             api.openApp({
-                                                iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                                iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + that.address + '&mode=riding'
                                             }, function (ret, err) {
                                                 if (err) {
 
@@ -329,7 +386,7 @@
                                         } else {
                                             api.openApp({
                                                 androidPkg: 'android.intent.action.VIEW',
-                                                uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                                uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + that.address + '&mode=riding'
                                             }, function (ret, err) {
 
                                             });
@@ -341,7 +398,7 @@
                             case 2:
                                 if (systemType == 'ios') {
                                     api.openApp({
-                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                        iosUrl: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + that.address + '&mode=riding'
                                     }, function (ret, err) {
                                         if (err) {
                                             //alert(JSON.stringify(err));
@@ -351,7 +408,7 @@
                                 } else {
                                     api.openApp({
                                         androidPkg: 'android.intent.action.VIEW',
-                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + address + '&mode=riding'
+                                        uri: 'baidumap://map/direction?destination=latlng:' + latbaidu + ',' + lngbaidu + '|name:' + that.address + '&mode=riding'
                                     }, function (ret, err) {
                                         if (err) {
                                             //alert(JSON.stringify(err));
@@ -364,9 +421,10 @@
                 },
                 // 唤起手机拨号功能
                 callHandle: function (number) {
+                    var that = this
                     api.call({
                         type: 'tel_prompt',
-                        number: '15901420539'
+                        number: number
                     });
                 },
 

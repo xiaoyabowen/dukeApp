@@ -87,13 +87,23 @@
                 userPhone : '',
             },
             created: function () {
-
+                this.circle_id = api.pageParam.circle_id;
+                this.queryAllCommentCircleProfile();
             },
             mounted: function () {
 
 
             },
             methods: {
+                queryAllCommentCircleProfile : function (){
+                    var that = this
+                    var obj = {
+                        circle_id : that.circle_id
+                    }
+                    ajaxGetWithProgress(queryAllCommentCircleProfile,obj,function (data) {
+                        console.log("queryAllCommentCircleProfile",data)
+                    })
+                },
                 signUpBtnClick : function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")

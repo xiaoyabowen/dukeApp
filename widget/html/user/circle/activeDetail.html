@@ -57,8 +57,8 @@
             <!--Aquarius Villa－Glifada-->
             活动详情
         </div>
-        <img src="../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
+        <img src="../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att == 1" alt="">
+        <img src="../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="att == 0" alt="">
         <div class="rightImgEdite">
             <img class="oneImgRight" src="../../../image/mine/share.png" alt="" >
 
@@ -82,69 +82,32 @@
         new Vue({
             el: '#homeIndex',
             data: {
-                activeType: 'trip',
-                item: {},
-                list: [],
-                len: 1,
-                total: 0,
-                picList: [],
-                picListpic1: [],
-                picListpic2: [],
-                picListpic3: [],
-                imgs: [],
-                att: false,
-                att_id: '',
-                person_id: '',
-                hourseId: '',
-                active:'magicAll',
-                cid: '',
-                data: '',
-                username: '',
-                userphone: '',
-                userwx: '',
-                usermain: '',
-                showModal : false,
-                listJob: [],
-
+                circle_id : '',
+                att : false,
             },
             created: function () {
-                this.person_id = localStorage.getItem('person_id');
-                this.hourseId = api.pageParam.hourseId;
-                this.tId = api.pageParam.tId;
-                this.housequeryHouseSummary();
+                this.circle_id = api.pageParam.circle_id;
+                this.CircleProfileAllinOne()
             },
             mounted: function () {
-                var that = this
-
-                api.addEventListener({
-                    name: 'jobAll'+that.tId,
-                }, function(ret, err) {
-                    // console.log("ret",ret);
-                    that.hourseId = ret.value.key.cid
-                    that.housequeryHouseSummary()
-
-                });
 
             },
             methods: {
-                // 获取数据
-                housequeryHouseSummary: function () {
+                CircleProfileAllinOne : function (){
                     var that = this;
-                    ajaxGetWithProgress(housequeryHouseSummary, {
-                        cid: that.hourseId,
-                        pid: that.person_id
-                    }, function (data, err) {
-                        console.log(data);
-                        that.item = data.comm
-                        that.att = data.att;
-                        that.att_id = data.att_id;
-                        that.picList = stringFun(data.comm.intPic)
-                        that.picListpic1 = stringFun(data.comm.pic1)
-                        that.picListpic2 = stringFun(data.comm.pic2)
-                        that.picListpic3 = stringFun(data.comm.pic3)
-                        console.log(that.picList)
+                    var obj = {
+                        circle_id : that.circle_id
+                    }
+                    ajaxGetWithProgress(CircleProfileAllinOne,obj,function (data) {
+                        console.log("CircleProfileAllinOne",data);
+                        if (data){
+                            that.att = data.Att_status;
 
-                    });
+
+                        } else {
+                            toast("请求失败")
+                        }
+                    })
                 },
                 // 收藏
                 collectionHandle: function () {
@@ -154,14 +117,13 @@
                         return;
                     }
                     var that = this;
-                    ajaxGet(collectComm, {
-                        id: that.att_id,
+                    ajaxGet(addAttentionCircle, {
+                        circle_id: that.circle_id,
                         ccStatus: 1,
                     }, function(data,err){
                         console.log(data);
                         if (data.commcollect) {
                             toast("已收藏")
-
                             // window.location.reload()
                         }
                     });
@@ -176,11 +138,10 @@
                     }
                     var that = this;
                     var obj = {
-                        id: that.att_id,
+                        circle_id: that.circle_id,
                         ccStatus: 0,
                     }
-                    console.log(obj)
-                    ajaxGet(collectComm, obj, function(data,err){
+                    ajaxGet(addAttentionCircle, obj, function(data,err){
                         console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏")

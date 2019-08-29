@@ -178,6 +178,7 @@
                 day: '',
                 month: '',
                 oId: '',
+                tdId: '',     /// 旅行团id   确认价格
 
 
             },
@@ -238,18 +239,7 @@
                 // 提交订单
                 orderSubmit: function () {
                     var that = this
-                    var str = {
-                        pid: that.person_id,
-                        name: that.name,
-                        phone: that.phone,
-                        cid: that.ouId,
-                        price: that.getPriceDefult * that.num,
-                        sum: that.num,
-                        peopleid: that.tripPersonId,
-                        cityid: that.tripCityId,
-                        day: that.day
-                    }
-                    console.log("strstr",str)
+
                     if (that.name == ''){
                         toast("请填写联系人姓名")
                         return
@@ -264,9 +254,30 @@
                         toast("请选择出游日期")
                         return
                     }
+                    localStorage.setItem("tripPhone",that.phone)
+                    var str = {
+                        // pid: that.person_id,
+                        // name: that.name,
+                        // phone: that.phone,
+                        // cid: that.ouId,
+                        // price: that.getPriceDefult * that.num,
+                        // sum: that.num,
+                        peopleid: that.tripPersonId,
+                        cityid: that.tripCityId,
+                        day: that.day,
+                        month: that.month,
+                    }
+                    console.log("strstr",str)
+                    /*var frameName = name + "_body";
+                    api.execScript({
+                        name:name,
+                        frameName: frameName,
+                        script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.oId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+')'
+                    })
+                    closeWin();*/
                     ajaxGetWithProgress(createOrderoloq, str, function (data, err) {
-                        console.log(data);
-                        that.oId = data.oId
+                        console.log("createOrderoloq",data);
+                        that.tdId = data.TravelDate.tdId
                         localStorage.setItem("tripPhone",that.phone)
 
                         if (data.status) {
@@ -274,7 +285,7 @@
                             api.execScript({
                                 name:name,
                                 frameName: frameName,
-                                script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.oId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+')'
+                                script: 'tripValue('+JSON.stringify(that.tripPerson)+','+JSON.stringify(that.tdId)+','+JSON.stringify(that.tripCity)+','+JSON.stringify(that.dateActive)+','+JSON.stringify(that.num)+','+JSON.stringify(that.getPriceDefult * that.num)+','+JSON.stringify(that.name)+')'
                             })
                             closeWin();
                         } else {
