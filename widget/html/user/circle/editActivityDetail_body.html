@@ -13,30 +13,21 @@
 </head>
 
 <body>
-    <div class="detailWrap">
-      <div class="intro">
-          <textarea id="activityIntro" placeholder="请输入活动介绍，建议500字以内" maxlength="500"></textarea>
-      </div>
-      <div class="pics">
-         <p>编辑活动详情图片（可添加长图，日程图等信息）</p>
-         <div class="activityPic">
-            <div class="picList">
-              <img src="../../../image/circle/editActiveImg.png" alt="">
+    <div id='detailWrap' class="detailWrap">
+        <div class="intro">
+            <textarea v-model='intro' id="activityIntro" placeholder="请输入活动介绍，建议500字以内" maxlength="500"></textarea>
+        </div>
+        <div class="pics">
+            <p>编辑活动详情图片（可添加长图，日程图等信息）</p>
+            <div class="activityPic">
+                <div @click='upimg' class="picList" v-if='imgList.length>0' v-for='item in imgList'>
+                    <img :src='item.thumbPath' alt="">
+                </div>
+                <div v-if='imgList.length<6' @click='upimg' class="picList">
+                    <img src="../../../image/circle/editActiveImg.png" alt="">
+                </div>
             </div>
-            <div class="picList">
-              <img src="../../../image/circle/editActiveImg.png" alt="">
-            </div>
-            <div class="picList">
-              <img src="../../../image/circle/editActiveImg.png" alt="">
-            </div>
-            <div class="picList">
-              <img src="../../../image/circle/editActiveImg.png" alt="">
-            </div>
-            <div class="picList">
-              <img src="../../../image/circle/editActiveImg.png" alt="">
-            </div>
-         </div>
-      </div>
+        </div>
     </div>
 </body>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -49,9 +40,74 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
 <script>
     apiready = function() {
+        new Vue({
+            el: '#detailWrap',
+            data: {
+              imgList:[],
+              intro:'',
+            },
+            methods: {
+                upimg: function() {
+                    var that = this
+                    var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                    UIAlbumBrowser.open({
+                        max: 6,
+                        styles: {
+                            bg: '#fff',
+                            mark: {
+                                icon: '',
+                                position: 'bottom_left',
+                                size: 30
+                            },
+                            nav: {
+                                bg: 'rgba(0,0,0,0.6)',
+                                titleColor: '#fff',
+                                titleSize: 18,
+                                cancelColor: '#fff',
+                                cancelSize: 16,
+                                finishColor: '#fff',
+                                finishSize: 16
+                            }
+                        },
+                        rotation: true
+                    }, function(ret) {
+                        if (ret) {
+                            console.log("ret==", ret)
+                            that.imgList = ret.list;
+                            var obj = {
+                                uid: localStorage.getItem("user").user_id
+                            }
+                            api.ajax({
+                                // report : false,
+                                url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
+                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                method: 'post',
+                                cache: 'false',
+                                timeout: 30,
+                                dataTpye: 'json',
+                                data: {
+                                    files: {
+                                        file: that.img
+                                    },
+                                    values: obj
 
+                                }
+                            }, function(data, err) {
+                                console.log("data", data);
+                                if (data.code == 0) {
+
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+
+        })
     };
 
     function publishActivity() {

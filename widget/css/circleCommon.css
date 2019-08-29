@@ -616,7 +616,9 @@
     align-items: center;
     position: relative;
 }
-
+.information_content >  .location_item{
+  height: 1.7rem;
+}
 .information_content > .information_item label {
     width: 4rem;
 }
@@ -895,7 +897,7 @@
   height: 0.04rem;
   background:#638BFF;
   position: absolute;
-  bottom: -0.04rem;
+  bottom: -0.23rem;
   left: 50%;
   margin-left: -0.45rem;
 }
@@ -959,5 +961,58 @@
   border:0.02rem solid #638BFF;
   color: #638BFF;
   float: right;
+}
+#address .addressInput{
+  /*height: 0.5rem;*/
+  border:0.02rem solid rgba(235,235,235,1);
+  padding: 0;
+  padding-left: 0.2rem;
+  top: 0;
+}
+#address{
+  line-height: 0.7rem;
+}
+.pca{
+  position: relative;
+}
+.pca span{
+  position: absolute;
+  left: 1.8rem;
+  top: 0.04rem;
+  font-size: 0.28rem;
+  color: #000;
+  width: 3rem;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.btns{
+  margin-top: 0.1rem;
+}
+.btns .pubBtn button{
+  width:100%;
+  height: 0.78rem;
+  background: #638BFF;
+  color: #fff;
+  outline: none;
+  border: none;
+}
+.btns .editBtn button{
+  width: 3rem;
+  height: 0.78rem;
+
+}
+.btns .editBtn {
+  justify-content: space-between;
+  align-items: center;
+}
+.btns .editBtn button:nth-child(1) {
+  background:rgba(99,139,255,1);
+  color: #fff;
+}
+.btns .editBtn button:nth-child(2) {
+  /*background:rgba(99,139,255,1);*/
+  color: #638BFF;
+  border: 0.02rem solid #638BFF;
 }
 /*leilei*/
