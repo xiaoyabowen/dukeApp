@@ -16,7 +16,7 @@
 <body>
     <div id="bindVue" class="manPerson">
       <div class="tabs cssFlex">
-          <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all'] ">全部</div>
+          <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all']">全部</div>
           <div @click="changeTab('resolve')" :class="[tabFlag == 'resolve' ? 'selectActives' : '','resolve']">已签到</div>
           <div @click="changeTab('unresolve')" :class="[tabFlag == 'unresolve' ? 'selectActives' : '','unresolve']">未签到</div>
       </div>
@@ -68,7 +68,7 @@
             methods:{
               changeTab:function(type){
                 this.tabFlag = type;
-                
+
               }
             }
           })

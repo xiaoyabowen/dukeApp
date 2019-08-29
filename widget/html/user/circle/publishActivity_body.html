@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
 
@@ -38,27 +40,35 @@
             </div>
             <div class="information_item cssFlex">
                 <label>人数限制：</label>
-                <input type="text" v-model="num" placeholder="请填写数字，默认为无限">
+                <input type="number" v-model="num" placeholder="请填写数字，默认为无限">
             </div>
             <div class="information_item cssFlex" @click="startTime">
                 <label>活动开始时间：</label>
                 <input type="text" v-model="time_from" maxlength=80 placeholder="" readonly>
                 <span class="choice">请选择 ></span>
             </div>
-            <div class="information_item cssFlex" @click="endTime">
+            <div class="information_item  cssFlex" @click="endTime">
                 <label>活动结束时间：</label>
                 <input type="text" v-model="time_to" maxlength=80 placeholder="" readonly>
                 <span class="choice">请选择 ></span>
             </div>
-            <div class="information_item cssFlex" @click="address">
-                <label>活动地址：</label>
-                <input type="text" class="addressInput" maxlength=80 placeholder="请填写详细地址" readonly>
-                <input type="hidden" class="adr_id">
-                <span class="choice">请选择 ></span>
+            <div id='address' class="information_item location_item">
+                <div class="pca"><label>活动地址：</label> <span>{{selectAddress}}</span> </div>
+                <div><input type="text" class="addressInput" maxlength=80 v-model='detailAddress' placeholder="请填写详细地址"></div>
+                <span id='address_select' class="choice" @click="address">请选择 ></span>
             </div>
             <div class="information_item cssFlex" @click="toActiveDetail">
                 <label>活动详情页和图片：</label>
                 <span class="choice">请选择 ></span>
+            </div>
+            <div class='btns'>
+               <div class="pubBtn">
+                 <button>预览活动</button>
+               </div>
+               <!-- <div class="editBtn cssFlex">
+                 <button>预览活动</button>
+                 <button>暂停活动</button>
+               </div> -->
             </div>
         </div>
     </div>
@@ -71,24 +81,30 @@
     <script type="text/javascript" src="../../../script/public.js"></script>
     <script type="text/javascript" src="../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/mui.picker.js"></script>
+    <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+    <script type="text/javascript" src="../../../script/city.data-3.js"></script>
     <script type="text/javascript" src="../../../script/data.js"></script>
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
 
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script type="text/javascript" src="../../../script/city.data-3.js"></script>
     <script>
         apiready = function() {
             new Vue({
                 el: '#informationInit',
                 data: {
                     img: '',
-                    title: '',
-                    name: '',
-                    phone: '',
-                    tag: '',
-                    num: '',
-                    time_from: '',
-                    time_to: '',
+                    poster: '',//海报
+                    title: '',//活动名称
+                    name: '',//主办人
+                    phone: '',//联系电话
+                    tag: '',//标签
+                    num: '',//人数
+                    time_from: '',//开始时间
+                    time_to: '',//结束时间
+                    selectAddress:'',//选择地址
+                    detailAddress:'',//详细地址
                 },
                 created: function() {
 
@@ -97,14 +113,103 @@
 
                 },
                 methods: {
+                    upImg: function() {
+                        var that = this
+                        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                        UIAlbumBrowser.open({
+                            max: 1,
+                            styles: {
+                                bg: '#fff',
+                                mark: {
+                                    icon: '',
+                                    position: 'bottom_left',
+                                    size: 30
+                                },
+                                nav: {
+                                    bg: 'rgba(0,0,0,0.6)',
+                                    titleColor: '#fff',
+                                    titleSize: 18,
+                                    cancelColor: '#fff',
+                                    cancelSize: 16,
+                                    finishColor: '#fff',
+                                    finishSize: 16
+                                }
+                            },
+                            rotation: true
+                        }, function(ret) {
+                            if (ret) {
+                                console.log("ret==", ret)
+                                that.img = ret.list[0].thumbPath
+                                var obj = {
+                                    uid: localStorage.getItem("user").user_id
+                                }
+                                api.ajax({
+                                    // report : false,
+                                    url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
+                                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                                    method: 'post',
+                                    cache: 'false',
+                                    timeout: 30,
+                                    dataTpye: 'json',
+                                    data: {
+
+                                        files: {
+                                            file: that.img
+                                        },
+                                        values: obj
+
+                                    }
+                                }, function(data, err) {
+                                    console.log("data", data);
+                                    if (data.code == 0) {
+                                        that.poster = data.date.src.split(',')[0];
+                                    }
+                                });
+                            }
+                        });
+                    },
+
                     startTime: function() {
+                        var that = this
+                        var year = new Date().getFullYear();
+                        var mount = (new Date().getMonth()) + 2;
+                        var day = new Date().getDay();
+                        var dtpicker = new mui.DtPicker({
+                            type: "datetime", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date(year, mount, day) //设置开始日期
+                        });
+                        dtpicker.show(function(selectItems) {
+                            console.log(selectItems.text)
+                            that.time_from = selectItems.text
+                        })
 
                     },
                     endTime: function() {
-
+                        var that = this
+                        var year = new Date().getFullYear();
+                        var mount = (new Date().getMonth()) + 2;
+                        var day = new Date().getDay();
+                        var dtpicker = new mui.DtPicker({
+                            type: "datetime", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date(year, mount, day) //设置开始日期
+                        });
+                        dtpicker.show(function(selectItems) {
+                            console.log(selectItems.text)
+                            that.time_to = selectItems.text
+                        })
                     },
                     address: function() {
-
+                        var that = this;
+                        var picker = new mui.PopPicker({
+                            layer: 3
+                        });
+                        picker.setData(cityData3)
+                        picker.pickers[0].setSelectedIndex(0);
+                        picker.show(function(SelectedItem) {
+                            that.selectAddress = SelectedItem[0].text + SelectedItem[1].text +SelectedItem[2].text;
+                        })
                     },
                     toActiveDetail: function() {
                         openNewWindow("editActivityDetail", "./editActivityDetail.html")
