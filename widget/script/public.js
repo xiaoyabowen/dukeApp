@@ -5,18 +5,18 @@ var isCleanUser = false;
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 
 
-/*
 // 本地服务器
-var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.12:8000/SE4M';
-var Domain = 'http://192.168.1.12:8088';
-*/
+var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.24:8000/SE4M';
+var Domain = 'http://192.168.1.24:8088';
 
 
+/*
 // 正式服务器
 var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
+*/
 
 
 
@@ -301,11 +301,7 @@ var createCircle = serverUrl + "/CircleProfile/createCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
 
-
-
-
 // 圈子活动详情
-// var queryCircleByPersonId = serverUrl + "/CircleProfile/queryCircleByPersonId";
 var CircleProfileAllinOne = serverUrl + "/CircleProfile/CircleProfileAllinOne";
 // 圈子报名
 var joinCircle = serverUrl + "/CircleProfile/joinCircle";
@@ -325,6 +321,16 @@ var MassTexting = localhostHref + "/MassTexting";
 var queryMyJoinCirCle = serverUrl + "/CircleProfile/queryMyJoinCirCle";
 // 圈子 我的活动   我发布的
 var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPersonId";
+
+// 圈子 我的活动   我发布的
+var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
+
+
+
+
+
+
+
 
 // 获取评论数据
 var queryCommentSummary = serverUrl + "/CircleProfile/queryCommentSummary";
