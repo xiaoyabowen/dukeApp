@@ -52,6 +52,11 @@
                 <input type="text" v-model="time_to" maxlength=80 placeholder="" readonly>
                 <span class="choice">请选择 ></span>
             </div>
+            <div class="information_item  cssFlex" @click="lastTime">
+                <label>报名截止时间</label>
+                <input type="text" v-model="last_time" maxlength=80 placeholder="" readonly>
+                <span class="choice">请选择 ></span>
+            </div>
             <div id='address' class="information_item location_item">
                 <div class="pca"><label>活动地址：</label> <span>{{selectAddress}}</span> </div>
                 <div><input type="text" class="addressInput" maxlength=80 v-model='detailAddress' placeholder="请填写详细地址"></div>
@@ -62,13 +67,13 @@
                 <span class="choice">请选择 ></span>
             </div>
             <div class='btns'>
-               <div class="pubBtn">
-                 <button>预览活动</button>
-               </div>
-               <!-- <div class="editBtn cssFlex">
+                <div v-if='!isEdit' class="pubBtn">
+                    <button @click='toPreview'>预览活动</button>
+                </div>
+                <div v-if='isEdit' class="editBtn cssFlex">
                  <button>预览活动</button>
                  <button>暂停活动</button>
-               </div> -->
+               </div>
             </div>
         </div>
     </div>
@@ -91,30 +96,35 @@
     <script type="text/javascript" src="../../../script/city.data-3.js"></script>
     <script>
         var app;
-        var detailData;
+        var detailData = {};
 
         apiready = function() {
-
-          var circleId = api.pageParam;
-          console.log(circleId,'99999');
-
-          app = new Vue({
+            app = new Vue({
                 el: '#informationInit',
                 data: {
+                    isEdit:false,
+                    person_id: '',
                     img: '',
-                    poster: '',//海报
-                    title: '',//活动名称
-                    name: '',//主办人
-                    phone: '',//联系电话
-                    tag: '',//标签
-                    num: '',//人数
-                    time_from: '',//开始时间
-                    time_to: '',//结束时间
-                    selectAddress:'',//选择地址
-                    detailAddress:'',//详细地址
+                    poster: '', //海报
+                    title: '', //活动名称
+                    name: '', //主办人
+                    phone: '', //联系电话
+                    tag: '', //标签
+                    num: '', //人数
+                    time_from: '', //开始时间
+                    time_to: '', //结束时间
+                    last_time: '', //报名截止时间
+                    selectAddress: '', //选择地址
+                    detailAddress: '', //详细地址
                 },
                 created: function() {
+                    this.person_id = localStorage.getItem('person_id');
 
+                    var param = api.pageParam; //编辑逻辑
+                    if(param.circleId){
+                      this.isEdit = true;
+                      console.log(param.circleId,'124')
+                    }
                 },
                 mounted: function() {
 
@@ -152,7 +162,7 @@
                                 }
                                 api.ajax({
                                     // report : false,
-                                    url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
+                                    url: 'http://192.168.1.24:8088/upload/UploadFlieTest',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',
                                     cache: 'false',
@@ -207,6 +217,21 @@
                             that.time_to = selectItems.text
                         })
                     },
+                    lastTime: function() {
+                        var that = this
+                        var year = new Date().getFullYear();
+                        var mount = (new Date().getMonth()) + 2;
+                        var day = new Date().getDay();
+                        var dtpicker = new mui.DtPicker({
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date(year, mount, day) //设置开始日期
+                        });
+                        dtpicker.show(function(selectItems) {
+                            console.log(selectItems.text)
+                            that.last_time = selectItems.text
+                        })
+                    },
                     address: function() {
                         var that = this;
                         var picker = new mui.PopPicker({
@@ -215,43 +240,105 @@
                         picker.setData(cityData3)
                         picker.pickers[0].setSelectedIndex(0);
                         picker.show(function(SelectedItem) {
-                            that.selectAddress = SelectedItem[0].text + SelectedItem[1].text +SelectedItem[2].text;
+                            that.selectAddress = SelectedItem[0].text + SelectedItem[1].text + SelectedItem[2].text;
                         })
                     },
                     toActiveDetail: function() {
-                        openNewWindow("editActivityDetail", "./editActivityDetail.html",{
-                          url:"publishActivity"
+                        openNewWindow("editActivityDetail", "./editActivityDetail.html", {
+                            url: "publishActivity"
                         })
+                    },
+                    toPreview:function(){
+                      sendMsg(1);
                     }
                 }
             })
         }
 
-        function tripValue(data){
-          // console.log(data,'224')
-          detailData = data;
+        function tripValue(data) {
+            detailData = data;
         }
 
-        function sendMsg(){
+        function sendMsg(flag) {
             //调接口发送数据
             var json = {
-              person_id:'', //发布人id
-              poster:'', //海报
-              title:app.title, //活动标题
-              cir_name:'', //主办人姓名
-              phone:'',//发布人电话
-              suggest:'',//活动标签
-              number:'',//人员限制
-              c_from:'',//活动开始时间
-              c_to:'',//活动结束时间
-              endtime:'',//报名截至时间
-              address:'',//活动地址
-              adrdetail:'',//活动详情地址
-              details:detailData.intro,//活动详情
+                person_id: app.person_id, //发布人id
+                poster: app.poster, //海报
+                title: app.title, //活动标题
+                cir_name: app.name, //主办人姓名
+                phone: app.phone, //发布人电话
+                suggest: app.tag, //活动标签
+                number: app.num, //人员限制
+                c_from: app.time_from, //活动开始时间
+                c_to: app.time_to, //活动结束时间
+                endtime: app.last_time, //报名截至时间
+                address: app.selectAddress, //活动地址
+                adrdetail: app.detailAddress, //活动详情地址
+                details: detailData.intro ? detailData.intro : '', //活动详情
+                cost: detailData.imgs ? detailData.imgs : '', //活动图片
             }
-            console.log(json,'24777777');
-        }
+            var valadateJson = {
+                    poster: '封面',
+                    title: "活动标题",
+                    cir_name: "主办人",
+                    phone: '联系电话',
+                    suggest: '活动标签',
+                    number: '人数限制',
+                    c_from: '活动开始时间',
+                    c_to: '活动结束时间',
+                    endtime: '报名截止时间',
+                    address: '活动地址',
+                    adrdetail: '活动详细地址',
+                    details: '活动介绍',
+                    cost: '活动图片'
+                }
 
+            //验证：
+            //验证为空时处理
+            for (key in json) {
+                if (!json[key]) {
+                    toast('请填写' + valadateJson[key]);
+                    return 0;
+                }
+            }
+            //手机号验证
+            if(!checkMobileNum(json.phone)){
+                toast('请填写正确格式的手机号');
+                return 0;
+            }
+
+            //时间线验证
+            //1.活动开始时间 json.c_from
+            //2.活动结束时间 json.c_to
+            //3.报名截止时间 json.endtime
+            if(new Date(json.c_from).getTime() > new Date(json.c_to).getTime()){
+               toast('请保持活动开始时间于活动结束时间之前');
+               return 0;
+            }
+
+            if(new Date(json.endtime).getTime() > new Date(json.c_to).getTime()){
+                toast('请保持报名截止时间于活动结束时间之前');
+                return 0;
+            }
+
+            if(flag){ //flag存在表示预览 否则表示发布
+               //预览逻辑
+               toast('预览');
+               console.log(json,'预览')
+            }else{
+              //完成验证发布活动
+              ajaxGetWithProgress(createCircle, json, function(data, err) {
+                  if (data.return_info.status) {
+                      toast('活动发布成功');
+                      //成功逻辑...
+                  } else {
+                      toast('活动发布失败，请稍后重试');
+                      //失败逻辑
+                  }
+              });
+            }
+
+        }
     </script>
 </body>
 
