@@ -17,11 +17,9 @@
 
 <body>
     <div id="informationInit">
-<<<<<<< HEAD
-        <div class="information_head" :style="" @click="upImg()">
-=======
-        <div class="information_head" :style="styleObject" @click="upImg()">
->>>>>>> master
+
+        <div class="information_head" @click="upImg()">
+
             <div class="information_head_add" v-if="!img"></div>
             <img :src="img" v-if="img" alt="">
         </div>
@@ -75,17 +73,13 @@
                     <button @click='toPreview'>预览活动</button>
                 </div>
                 <div v-if='isEdit' class="editBtn cssFlex">
-<<<<<<< HEAD
+
                     <button @click='toPreview'>预览活动</button>
                     <button @click='changeStatus(status)'>{{status == 1 ? '正在售票' : '暂停活动'}}</button>
                     <!-- <button @click='changeStatus(status)' v-if='status == 0'>暂停活动</button> -->
 
                 </div>
-=======
-                 <button>预览活动</button>
-                 <button>暂停活动</button>
-               </div>
->>>>>>> master
+
             </div>
         </div>
     </div>
@@ -216,7 +210,7 @@
                                 }
                                 api.ajax({
                                     // report : false,
-                                    url: 'http://192.168.1.24:8088/upload/UploadFlieTest',
+                                    url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',
                                     cache: 'false',
