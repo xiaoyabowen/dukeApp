@@ -74,7 +74,7 @@
                   <div class="pic">
                     <img src="../../../image/circle/actEditIcon.png" alt="">
                   </div>
-                  <div class="txt">活动编辑</div>
+                  <div class="txt" @click='toEdit()'>活动编辑</div>
               </div>
               <div class="prelook" style="border-right:0.02rem solid #e4e4e4">
                 <div class="pic">
@@ -147,6 +147,11 @@
                         var that = this
                         openNewWindow("manPerson", "./manPerson.html")
                     },
+                    toEdit:function(id){ //编辑活动
+                        openNewWindow('publishActivity','./publishActivity.html',{
+                          circleId:id,
+                        })
+                    }
 
                 }
             })

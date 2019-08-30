@@ -92,7 +92,12 @@
     <script>
         var app;
         var detailData;
+
         apiready = function() {
+
+          var circleId = api.pageParam;
+          console.log(circleId,'99999');
+
           app = new Vue({
                 el: '#informationInit',
                 data: {
