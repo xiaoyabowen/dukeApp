@@ -329,11 +329,15 @@ var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPer
 // 圈子 我的活动   我发布的
 var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
 
+// 圈子 活动管理
+var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 
+// 圈子 人员管理 所有人员
+var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
 
+//圈子 人员管理 根据状态切换
 
-
-
+var querySignCirPerson = serverUrl + '/CircleProfile/querySignCirPerson';
 
 
 // 获取评论数据

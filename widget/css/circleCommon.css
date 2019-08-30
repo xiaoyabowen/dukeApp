@@ -47,6 +47,8 @@
     height: 0.46rem;
     margin-right: 0.1rem;
     margin-left: 0.1rem;
+    border-radius: 50%;
+    /*background-size: cover;*/
 }
 
 .cirMainTitleTime,.cirMainTitleAddr{
@@ -88,7 +90,7 @@
 }
 .userImgAll{
     position: relative;
-    height: 0.58rem;
+    /*height: 0.58rem;*/
     margin-bottom: 0.16rem;
 }
 .allImgCom{
@@ -96,6 +98,7 @@
     width: 0.6rem;
     height: 0.6rem;
     top: 0;
+    border-radius: 50%;
 }
 .allImg0{
     left: 0;
@@ -855,6 +858,7 @@
 .manActivity .total_img{
   width: 0.5rem;
   height: 0.5rem;
+  margin-right: 0.1rem;
 }
 .manActivity .total_img img{
   width: 100%;
@@ -864,9 +868,11 @@
   color: #666;
   font-size: 0.22rem;
 }
+
 .bot .datas .num{
   color: #333;
   font-size: 0.28rem;
+  margin-bottom: -0.1rem;
 }
 .colorbar{
   height: 0.2rem;

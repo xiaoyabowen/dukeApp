@@ -48,14 +48,30 @@
     var app;
     apiready = function() {
 
-        url = api.pageParam.url
-        console.log(url, '499999');
+        url = api.pageParam.url;
+        var details = api.pageParam.details;
+        var cost = api.pageParam.cost;
+        console.log(details,cost);
         app = new Vue({
             el: '#detailWrap',
             data: {
                 imgList: [],
                 intro: '',
                 imgs:'',
+            },
+            mounted(){
+              if(details && cost){ //编辑
+                this.intro = details;
+                this.imgs = cost;
+                var costArr = cost.split(',');
+                var arr = [];
+                for(var i = 0; i< costArr.length; i++){
+                  if(costArr[i].length > 0){
+                    arr.push({thumbPath:costArr[i]});
+                  }
+                }
+                this.imgList = arr;
+              }
             },
             methods: {
                 upimg: function() {
@@ -112,7 +128,7 @@
 
                                 }
                             }, function(data, err) {
-                                console.log("dataaaa", data);
+                                // console.log("dataaaa", data);
                                 if (data.code == 0) {
                                     that.imgs = data.imgUrl
                                 }

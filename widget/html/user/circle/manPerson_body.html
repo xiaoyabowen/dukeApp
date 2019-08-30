@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,36 +12,39 @@
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
     <style>
+
     </style>
 </head>
+
 <body>
     <div id="bindVue" class="manPerson">
-      <div class="tabs cssFlex">
-          <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all']">全部</div>
-          <div @click="changeTab('resolve')" :class="[tabFlag == 'resolve' ? 'selectActives' : '','resolve']">已签到</div>
-          <div @click="changeTab('unresolve')" :class="[tabFlag == 'unresolve' ? 'selectActives' : '','unresolve']">未签到</div>
-      </div>
-      <div class="tabContent">
-          <div class="content">
-              <div class="conList">
-                 <div class="info cssFlex">
-                   <div class="avatar">
-                     <img src="https://gss0.bdstatic.com/70cFfyinKgQIm2_p8IuM_a/daf/pic/item/d009b3de9c82d1583617cc768e0a19d8bd3e4264.jpg" alt="">
-                   </div>
-                   <div class="identity">
-                      <div class="name">你好我是</div>
-                      <div class="code">13567266662</div>
-                   </div>
-                 </div>
-                 <div class="status">未签到</div>
-                 <div class="oprate">
-                    <div>代签</div>
-                    <div>电话</div>
-                    <div>作废</div>
-                 </div>
-              </div>
-          </div>
-      </div>
+        <div class="tabs cssFlex">
+            <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all']">全部</div>
+            <div @click="changeTab('resolve')" :class="[tabFlag == 'resolve' ? 'selectActives' : '','resolve']">已签到</div>
+            <div @click="changeTab('unresolve')" :class="[tabFlag == 'unresolve' ? 'selectActives' : '','unresolve']">未签到</div>
+        </div>
+        <div class="tabContent">
+            <div class="content">
+                <div v-for='item in itemList' class="conList">
+                    <div class="info cssFlex">
+                        <div class="avatar">
+                            <img :src="cutImg(item.p_icon)" alt="">
+                        </div>
+                        <div class="identity">
+                            <div class="name">{{item.u_name}}</div>
+                            <div class="code">{{item.phone}}</div>
+                        </div>
+                    </div>
+                    <div v-if='item.status == 0' class="status">未签到</div>
+                    <div v-if='item.status == 1' class="status">已签到</div>
+                    <div class="oprate">
+                        <div @click='tosign(item.id)'>代签</div>
+                        <div @click='telePhone(item.phone)'>电话</div>
+                        <div @click='abolish()'>作废</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>
@@ -56,24 +60,79 @@
     <script src="../../../script/vue.min.js"></script>
     <script src="../../../script/vuex.min.js"></script>
     <script>
-        apiready = function () {
-          new Vue({
-            el:'#bindVue',
-            data:{
-              tabFlag:'all',
-            },
-            mounted(){
-
-            },
-            methods:{
-              changeTab:function(type){
-                this.tabFlag = type;
-
-              }
-            }
-          })
+        apiready = function() {
+            var circleId = api.pageParam.circleId;
+            new Vue({
+                el: '#bindVue',
+                data: {
+                    tabFlag: 'all',
+                    itemList: [],
+                },
+                mounted() {
+                    this.loadData()
+                },
+                methods: {
+                    cutImg: function(str) {
+                        return imgSrcFun(str);
+                    },
+                    loadData: function() {
+                        var that = this;
+                        ajaxGetWithProgress(queryAllCirPerson, {
+                            circle_id: circleId,
+                        }, function(data) {
+                            // console.log(data,'sss')
+                            if (data && data.cirPersonList && data.cirPersonList.length > 0) {
+                                that.itemList = data.cirPersonList;
+                            }
+                        })
+                    },
+                    changeTab: function(type) {
+                        this.tabFlag = type;
+                        // querySignCirPerson
+                        var status;
+                        if (type == 'resolve') {
+                            status = 1;
+                        } else if (type == 'unresolve') {
+                            status = 0;
+                        } else if (type == 'all') {
+                            this.loadData();
+                            return 0;
+                        }
+                        var that = this;
+                        ajaxGetWithProgress(querySignCirPerson, {
+                            circle_id: circleId,
+                            status,
+                        }, function(data) {
+                            // console.log(data,'99999')
+                            if (data && data.SignCirPersonList && data.SignCirPersonList.length > 0) {
+                                that.itemList = data.SignCirPersonList;
+                            }else{
+                              that.itemList = [];
+                            }
+                        })
+                    },
+                    tosign(id) {
+                        // editCircleStatus
+                        var that = this;
+                        ajaxGetWithProgress(editCircleStatus, {
+                            id
+                        }, function(data) {
+                            if (data.status) {
+                                toast('代签成功');
+                                that.loadData();
+                            }
+                        })
+                    },
+                    telePhone(phone) {
+                        api.call({
+                            type: 'tel_prompt',
+                            number: phone
+                        });
+                    }
+                }
+            })
         }
-
     </script>
 </body>
+
 </html>
