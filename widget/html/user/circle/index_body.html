@@ -15,7 +15,7 @@
 <div id="circle">
     <!--quanzi-->
     <div class="cirBox">
-        <div class="cirSubBox" @click="activeDetail(item.circle_id)" v-for="(item,index) in circleList" :key="index">
+        <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
                 <div class="cirMain">
@@ -26,7 +26,7 @@
                         {{item.cir_name}}
                     </div>
                     <div class="cirMainTitleTime commonSub24 cssFlex">
-                        活动时间：{{item.c_from}}
+                        活动时间：{{item.c_from.slice(5,7)}}-{{item.c_from.slice(8,10)}}~{{item.endtime.slice(5,7)}}-{{item.endtime.slice(8,10)}}
                     </div>
                     <div class="cirMainTitleAddr commonSub24 cssFlex">
                         活动地点：{{item.address.split('-')[1]}}-{{item.address.split('-')[2]}}
@@ -51,8 +51,8 @@
                         {{item.count}}人已报名
                     </div>
                 </div>
-                <div class="signUserBtn" v-show="item.MyCreate == false">立即报名</div>
-                <div class="signUserBtn signUserBtnMy" v-show="item.MyCreate == true">立即报名</div>
+                <div class="signUserBtnCom signUserBtn" v-show="item.MyCreate == false">立即报名</div>
+                <div class="signUserBtnCom signUserBtnMy" v-show="item.MyCreate == true">我的活动</div>
             </div>
         </div>
         <!--<div class="cirSubBox">
@@ -127,11 +127,18 @@
 
             },
             methods: {
-                activeDetail:function (circle_id) {
+                activeDetail:function (circle_id,MyCreate) {
                     var that = this
-                    openNewWindow("activeDetail", "./activeDetail.html",{
-                        circle_id : circle_id
-                    });
+                    if (MyCreate == true){
+                        openNewWindow("manActivity", "./manActivity.html",{
+                            circle_id : circle_id
+                        });
+                    } else {
+                        openNewWindow("activeDetail", "./activeDetail.html",{
+                            circle_id : circle_id
+                        });
+                    }
+
                 },
                 queryCircleList : function () {
                     var that = this

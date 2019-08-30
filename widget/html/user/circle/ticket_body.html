@@ -29,15 +29,15 @@
             <div class="ticketTitle commonTitle">
                 出票成功
             </div>
-            <div class="erWeima">
+            <div id="erWeima" class="erWeima">
 
             </div>
             <div class="ticketSign commonFont">
                 签到时出示给主办方
             </div>
             <div class="ticketInfo commonFont">
-                <span>手机号：138888888</span>
-                <span>姓名：田女士</span>
+                <span>手机号：{{userPhone}}</span>
+                <span>姓名：{{userName}}</span>
             </div>
         </div>
         <div class="detailtBtn" @click="detailClick()">活动详情</div>
@@ -49,10 +49,12 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../../script/qrcode.min.js"></script>
 <script>
 
     function reload() {
@@ -66,9 +68,11 @@
                 writeText : '',
                 userName : '',
                 userPhone : '',
+                circle_id : '',
             },
             created: function () {
-
+                this.circle_id = api.pageParam.circle_id;
+                this.queryInvoice()
             },
             mounted: function () {
 
@@ -77,9 +81,32 @@
             methods: {
                 detailClick : function () {
                     var that = this
-                    openNewWindow("activeDetail", "./activeDetail.html")
+                    openNewWindow("activeDetail", "./activeDetail.html",{
+                        circle_id : that.circle_id
+                    });
                 },
+                queryInvoice : function () {
+                    var that = this;
+                    var obj = {
+                        circle_id : that.circle_id,
+                    }
+                    ajaxGetWithProgress(queryInvoice,obj,function (data) {
+                        console.log("queryInvoice",data)
+                        if (data){
+                            var qrcode = new QRCode(document.getElementById("erWeima"), {
+                                width : 120,
+                                height : 120
+                            });
+                            qrcode.makeCode(data.invoice);
 
+                            that.userName = data.u_name;
+                            that.userPhone = data.phone;
+
+                        } else {
+                            toast("生成失败")
+                        }
+                    })
+                },
 
             }
         })

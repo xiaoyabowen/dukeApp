@@ -22,7 +22,11 @@
         <div class="phoneYZ cssFlex">
             <input type="number" v-model="phone" class="phoneYZInput" placeholder="手机号码验证" >
             <div class="signBtn" @click="signBtnClick()">签到</div>
+
+
+
         </div>
+        <div class="" @click="saosaoClick()">扫一扫</div>
     </div>
 
 </div>
@@ -65,7 +69,17 @@
                         toast("手机号码不正确");
                         return;
                     }
-                }
+                },
+                saosaoClick:function () {
+                    var FNScanner = api.require('FNScanner');
+                    FNScanner.open({
+                        autorotation: true
+                    }, function(ret, err) {
+                        if (ret) {
+                            console.log("FNScanner",ret)
+                        }
+                    });
+                },
             }
         })
 

@@ -115,51 +115,52 @@
                 // 收藏
                 collectionHandle: function () {
                     var that = this;
-                    alert(1)
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser){
                         openNewWindow("login", "../../../login/login.html");
                         return;
                     }
-                    alert(2)
                     var obj = {
                         circle_id: that.circle_id,
-                        uid : that.person_id
+                        uid : that.person_id,
+                        Att_status : 0,
                     }
                     console.log("objobj",obj)
-                    ajaxGet(addAttentionCircle, obj, function(data,err){
-                        alert(3)
-                        console.log(data);
-                        /*if (data.commcollect) {
+                    ajaxGetWithProgress(AttentionCircle, obj, function(data,err){
+
+                        console.log("AttentionCircl111e",data);
+                        if (data.data) {
                             toast("已收藏")
-                        }*/
+                            // window.location.reload()
+                        }
+
                     });
-                    alert(33)
                     that.att = !that.att;
                 },
                 // 收藏
                 collectionHandleActive: function () {
-                    alert(4)
+
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser){
                         openNewWindow("login", "../../../login/login.html");
                         return;
                     }
-                    alert(5)
+
                     var that = this;
                     var obj = {
                         circle_id: that.circle_id,
-                        uid : that.person_id
+                        uid : that.person_id,
+                        Att_status : 1,
                     }
                     console.log("objobj2",obj)
-                    alert(5)
-                    ajaxGet(removeAttentionCircle, obj, function(data,err){
-                        alert(6)
-                        console.log(data);
-                        /*if (data.commcollect) {
+                    ajaxGetWithProgress(AttentionCircle, obj, function(data,err){
+
+                        console.log("AttentionCircle",data);
+                        if (data.data) {
                             toast("已取消收藏")
                             // window.location.reload()
-                        }*/
+                        }
+
                     });
                     that.att = !that.att;
                 },

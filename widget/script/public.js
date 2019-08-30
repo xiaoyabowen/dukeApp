@@ -328,6 +328,10 @@ var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPer
 
 // 圈子 我的活动   我发布的
 var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
+// 圈子 已报名页面已报名人员的信息
+var queryAllSignPerson = serverUrl + "/CircleProfile/queryAllSignPerson";
+// 圈子 活动详情页的立即报名
+var joinCircleCircleProfile = serverUrl + "/CircleProfile/joinCircle";
 
 
 
@@ -338,15 +342,19 @@ var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
 
 // 获取评论数据
 var queryCommentSummary = serverUrl + "/CircleProfile/queryCommentSummary";
-// 评论活动
+// 评论活动  发表添加评论
 var addComment = serverUrl + "/CircleProfile/addComment";
 // 评论点赞
 var addLike = serverUrl + "/CircleProfile/addLike";
 // 取消评论点赞
 var removeLike = serverUrl + "/CircleProfile/removeLike";
 
+
+
 // 活动收藏
 var addAttentionCircle = serverUrl + "/CircleProfile/addAttentionCircle";
+// 活动收藏
+var AttentionCircle = serverUrl + "/CircleProfile/AttentionCircle";
 // 取消活动收藏
 var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 

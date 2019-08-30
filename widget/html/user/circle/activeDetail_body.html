@@ -61,8 +61,8 @@
     <div class="line20"></div>
 
     <div class="boxSub dePerBox cssFlex" @click="userClick()">
-        <div class="cssFlex">
-            <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
+        <div class="cssFlex dePerImgBopx">
+            <img class="dePerImg" :src="p_icon" alt="">
             <div class="dePerText">
                 <div class="dePerTextName">
                     <span class="commonFont dePerTextNameName">{{p_name}}</span>
@@ -70,7 +70,7 @@
                     <img src="../../../image/circle/girlIcon.png" v-show="p_sex == 2" alt="bot" class="boyIcon">
                 </div>
                 <div class="dePerTextPos">
-                    <span class="commonSub24 dePerTextPosName">{{job_name}}</span>
+                    <span class="commonSub24 dePerTextPosName">{{company_name}}|{{job_name}}</span>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
         <div class="detSignNum commonFont">已报名 {{BmCount}}人</div>
         <div class="detSignPerson cssFlex">
             <div class="deluserImgAll cssFlex">
-                <img class="" v-for="(item,index) in CircleSummer" :key="index" :src="item.p_icon.split(',')[0]" alt="">
+                <img class="" v-if="CircleSummer !== null" v-for="(item,index) in CircleSummer" :key="index" :src="item.p_icon.split(',')[0]" alt="">
                 <!--<img class="" src="../../../image/circle/allSeeIcon.png" alt="">
                 <img class="" src="../../../image/circle/saoYzIcon.png" alt="">
                 <img class="" src="../../../image/circle/perManIcon.png" alt="">
@@ -110,13 +110,14 @@
 
         <!--评论输入框-->
         <!--<div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">-->
-        <div class="details_comment_box cssFlex":class="comment_box ? '' : 'isDisplay'">
+        <div class="bgBlack" :class="comment_box ? '' : 'isDisplay'" @click="hideBg()"></div>
+        <div class="details_comment_box cssFlex" :class="comment_box ? '' : 'isDisplay'">
             <input type="text" class="writeText" @focus="focusHandle()" v-model="textarea" placeholder="快来写下你的评论吧…">
             <span class="sendBtN" @click="sendHandle()">发送</span>
         </div>
 
         <!--评论列表-->
-        <div class="discussList">
+        <div class="discussList" :class="CommentSta ? '' : 'isDisplay'">
             <div class="discussTitle cssFlex">
                 <div class="cssFlex discussInfo" @click="personClick(disPersonId)">
                     <img :src="disIcon" alt="">
@@ -145,12 +146,14 @@
             </div>
         </div>
     </div>
-    <div class="detailBomBtn cssFlex" :class="detailBom_box ? 'isDisplay' : ''">
-        <div class="ticketBtn" @click="ticketClick()">电子票</div>
+    <div class="detailBomBtn cssFlex isDisplay" :class="detailBom_box ? 'isDisplay' : ''">
+        <div class="ticketBtn" v-show="statusSign == 0" @click="signUpBtnClick()">电子票</div>
+        <div class="ticketBtn" @click="ticketClick()" v-show="statusSign == 1">电子票</div>
+        <div class="ticketBtn" @click="ticketClickNotSign()"v-show="statusSign == 2">电子票</div>
         <!--1 已报名  0  未报名  2 已结束  -->
         <div class="signUpBtn" v-show="statusSign == 0" @click="signUpBtnClick()">立即报名</div>
-        <div class="signUpBtn" v-show="statusSign == 1" @click="signUpBtnClick()">已报名</div>
-        <div class="signUpBtn" v-show="statusSign == 2" @click="signUpBtnClick()">已结束</div>
+        <div class="signUpBtn" v-show="statusSign == 1">已报名</div>
+        <div class="signUpBtn" v-show="statusSign == 2">已结束</div>
 
     </div>
     <div class="ModalHideCom isDisplay" @click="ModalHideCom()"></div>
@@ -160,7 +163,7 @@
             <input type="text" v-model="userName" placeholder="您的姓名" class="formInfoInput">
             <input type="text" v-model="userPhone" placeholder="您的电话" class="formInfoInput">
         </div>
-        <div class="formInfoBtn">提交</div>
+        <div class="formInfoBtn" @click="signUpSubmit()">提交</div>
     </div>
 </div>
 
@@ -185,23 +188,24 @@
 
                 comment_box : false,
                 detailBom_box : false,
-
-
+                CommentSta : false,
                 textarea : '',
                 userName : '',
                 userPhone : '',
                 circle_id : '',
+                person_id : '',
                 num :'',
                 poster : '',
                 title : '',
-                LookNum : '',
-                AttNum : '',
-                BmCount : '',
+                LookNum : '0',
+                AttNum : '0',
+                BmCount : '0',
                 c_from : '',
                 c_to : '',
                 details : '',
                 address : '',
                 p_name : '',
+                p_icon : '',
                 phone : '',
                 job_name : '',
                 company_name : '',
@@ -220,8 +224,9 @@
 
             },
             created: function () {
-                this.circle_id = api.pageParam.circle_id
-                this.CircleProfileAllinOne()
+                this.circle_id = api.pageParam.circle_id;
+                this.person_id = localStorage.getItem("user");
+                this.CircleProfileAllinOne();
             },
             mounted: function () {
 
@@ -237,7 +242,9 @@
                         console.log("CircleProfileAllinOne",data);
                         var circleSummary =  data.circleSummary;
                         var Comment =  data.Comment;
+                        console.log("Comment",Comment)
                         if (data){
+                            document.querySelector(".detailBomBtn").classList.remove("isDisplay")
                             that.poster = circleSummary.poster;
                             that.title = circleSummary.title;
                             // that.title = circleSummary.title;
@@ -246,17 +253,25 @@
                             that.details = circleSummary.details;
                             that.address = circleSummary.address;
                             that.p_name = circleSummary.p_name;
+                            that.p_icon = imgSrcFun(circleSummary.p_icon);
                             that.phone = circleSummary.phone;
                             that.job_name = circleSummary.job_name;
                             that.company_name = circleSummary.company_name;
                             that.p_sex = circleSummary.p_sex;
                             that.CircleSummer = data.CircleSummer;
 
-                            that.disPersonId = Comment.person_id
-                            that.disIcon = imgSrcFun(Comment.p_icon)
-                            that.disName = Comment.p_name
-                            that.disTime = Comment.time
-                            that.disContent = Comment.content
+
+                            if (Comment.p_name == undefined){
+                                that.CommentSta = false
+                            }else{
+                                that.CommentSta = true
+                                console.log(Comment.p_name)
+                                that.disPersonId = Comment.person_id
+                                that.disIcon = imgSrcFun(Comment.p_icon)
+                                that.disName = Comment.p_name
+                                that.disTime = Comment.time
+                                that.disContent = Comment.content
+                            }
 
                             that.LookNum = data.LookNum;
                             that.AttNum = data.AttNum;
@@ -272,15 +287,53 @@
                     var that = this
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")
                     document.querySelector(".signModalBox").classList.remove("isDisplay")
+
                 },
                 ModalHideCom : function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
                 },
+                signUpSubmit : function (){
+                    var that = this
+                    if (!that.userName){
+                        toast("请填写姓名")
+                        return
+                    }
+                    if (!that.userPhone) {
+                        toast('请填写手机号码');
+                        return;
+                    }else if(!checkMobileNum(that.userPhone)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+
+                    var obj = {
+                        circle_id : that.circle_id,
+                        person_id : that.person_id,
+                        u_name : that.userName,
+                        phone : that.userPhone,
+                    }
+                    ajaxGetWithProgress(joinCircleCircleProfile,obj,function (data) {
+                        console.log("joinCircleCircleProfile",data)
+                        if (data.return_info.status){
+                            toast("报名成功")
+                            that.userName = ''
+                            that.userPhone = ''
+
+                            document.querySelector(".ModalHideCom").classList.add("isDisplay")
+                            document.querySelector(".signModalBox").classList.add("isDisplay")
+                            that.CircleProfileAllinOne()
+                        } else {
+                            toast("报名失败")
+                        }
+                    })
+                },
                 signClick : function () {
                     var that = this
-                    openNewWindow("signYesPer", "./signYesPer.html")
+                    openNewWindow("signYesPer", "./signYesPer.html",{
+                        circle_id : that.circle_id
+                    })
                 },
                 personClick: function (){
                     toast("个人主页")
@@ -294,7 +347,12 @@
                 },
                 ticketClick : function () {
                     var that = this
-                    openNewWindow("ticket", "./ticket.html")
+                    openNewWindow("ticket", "./ticket.html",{
+                        circle_id : that.circle_id
+                    })
+                },
+                ticketClickNotSign : function () {
+                    toast("报名结束暂无法报名")
                 },
                 // 唤起地图导航
                 baiduditu: function (lat, lon, address) {
@@ -445,6 +503,7 @@
                         number: number
                     });
                 },
+
                 // 聚焦事件
                 focusHandle: function () {
                     var uidUser = localStorage.getItem("user")
@@ -453,14 +512,18 @@
                         return;
                     }
                     this.comment_box = true;
+                    this.detailBom_box = true;
+                },
+                hideBg: function () {
+                    this.comment_box = false;
+                    this.detailBom_box = false;
                 },
                 // 评论文本框input事件
                 textInput: function () {
-                    this.num = this.textarea.length;
+
                 },
                 // 发送
                 sendHandle: function () {
-                    // alert(123)
                     console.log(this.textarea);
                     if (!this.textarea) {
                         mui.toast('评论不能为空');
@@ -468,48 +531,24 @@
                     }
                     var that = this;
 
-                    /*ajaxGetWithProgress(addComment, {
+                    ajaxGetWithProgress(addComment, {
                         person_id: that.person_id,
                         circle_id: that.circle_id,
-                        content: that.textarea,
-                        bac_id: that.bac_id
+                        content: that.textarea
                     }, function (data, err) {
                         console.log(data);
                         if (data.return_info.status) {
-                            mui.toast('评论成功');
-
-                            api.ajax({
-                                url: queryCommentSummary,
-                                method: 'get',
-                                data: {
-                                    values: {
-                                        circle_id: that.item.circle_id
-                                    },
-                                }
-                            }, function (data, err) {
-
-                                // console.log(456)
-                                // console.log(data)
-                                if (data.comment) {
-                                    var arr = data.comment;
-                                    for (var i = 0; i < arr.length; i++) {
-                                        arr[i]['total'] = 1
-                                    }
-                                    that.list1 = arr;
-                                }
-                                that.bac_id = null;
-                                that.comment_box = false;
-                                that.textarea = '';
-                            });
+                            toast('评论成功');
+                            that.comment_box = false;
+                            that.detailBom_box = false;
+                            that.textarea = '';
+                            that.CircleProfileAllinOne()
                         } else {
-                            mui.toast('评论失败');
+                            toast('评论失败');
                         }
-                    });*/
+                    });
 
 
-                    that.bac_id = null;
-                    that.comment_box = false;
-                    that.textarea = '';
                 },
             }
         })
