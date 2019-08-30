@@ -301,7 +301,7 @@ var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
 // 圈子活动列表
 var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
 // 圈子添加活动
-var createCircle = serverUrl + "/CircleProfile/createCircle";
+var createCircle = serverUrl + "/CircleProfile/CreateCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
 

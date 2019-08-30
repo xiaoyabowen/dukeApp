@@ -55,7 +55,7 @@
             data: {
                 imgList: [],
                 intro: '',
-
+                imgs:'',
             },
             methods: {
                 upimg: function() {
@@ -85,28 +85,36 @@
                         if (ret) {
                             console.log("ret==", ret)
                             that.imgList = ret.list;
+
+                            var imgListArr = {}
+                            var imgList = ret.list;
+                            for (var i=0;i<imgList.length;i++){
+                                imgListArr["file"+(i+1)] = imgList[i].thumbPath;
+                            }
+
+                            console.log(imgListArr,'955');
+
                             var obj = {
                                 uid: localStorage.getItem("user").user_id
                             }
                             api.ajax({
                                 // report : false,
-                                url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
+                                url: 'http://192.168.1.24:8088/upload/UploadFlieTest',
+                                // url:'http://192.168.1.24:8088/upload/UploadFlie',
                                 //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                 method: 'post',
                                 cache: 'false',
                                 timeout: 30,
                                 dataTpye: 'json',
                                 data: {
-                                    files: {
-                                        file: that.img
-                                    },
+                                    files: imgListArr,
                                     values: obj
 
                                 }
                             }, function(data, err) {
-                                console.log("data", data);
+                                console.log("dataaaa", data);
                                 if (data.code == 0) {
-
+                                    that.imgs = data.imgUrl
                                 }
                             });
                         }
@@ -120,7 +128,7 @@
     function preservation() {
           // alert(1211111)
           var data = {
-              imgList: app.imgList,
+              imgs: app.imgs,
               intro: app.intro
           }
           // console.log(data,'124')
