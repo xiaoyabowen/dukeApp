@@ -17,7 +17,15 @@
 </head>
 <body>
 <div id="circle">
+<<<<<<< HEAD
     <div class="boxSub">
+=======
+    <div class="notSign" :class="comment_box ? '' : 'isDisplay'">
+        <img src="../../../image/SignNot.png" alt="sign" class="SignNotImg">
+        <div class="SignNotText commonFont">目前该活动没有评论，快去发表第一条评论吧！</div>
+    </div>
+    <div class="boxSub" :class="comment_box ? 'isDisplay' : ''">
+>>>>>>> master
         <div class="discussList discussListBor" v-for="(item,index) in commentList" :key="index">
             <div class="discussTitle cssFlex">
                 <div class="cssFlex discussInfo" @click="personClick(item.person_id)">
@@ -72,6 +80,7 @@
             data: {
                 writeText : '',
                 userName : '',
+                comment_box : false,
                 userPhone : '',
                 commentList : [],
             },
@@ -91,10 +100,15 @@
                     }
                     ajaxGetWithProgress(queryAllCommentCircleProfile,obj,function (data) {
                         console.log("queryAllCommentCircleProfile",data)
-                        if (data){
-                            that.commentList = data.commentList
+
+
+                        if (data.commentList == undefined){
+                            that.comment_box = true
+
                         }else {
-                            toast("请求失败")
+                            that.commentList = data.commentList
+                            that.comment_box = false
+
                         }
                     })
                 },

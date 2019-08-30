@@ -58,6 +58,7 @@
                 imgList: [],
                 intro: '',
                 imgs:'',
+
             },
             mounted(){
               if(details && cost){ //编辑
@@ -72,6 +73,7 @@
                 }
                 this.imgList = arr;
               }
+
             },
             methods: {
                 upimg: function() {
@@ -128,7 +130,9 @@
 
                                 }
                             }, function(data, err) {
+
                                 // console.log("dataaaa", data);
+
                                 if (data.code == 0) {
                                     that.imgs = data.imgUrl
                                 }

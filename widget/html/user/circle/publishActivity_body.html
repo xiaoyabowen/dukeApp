@@ -17,7 +17,11 @@
 
 <body>
     <div id="informationInit">
+<<<<<<< HEAD
         <div class="information_head" :style="" @click="upImg()">
+=======
+        <div class="information_head" :style="styleObject" @click="upImg()">
+>>>>>>> master
             <div class="information_head_add" v-if="!img"></div>
             <img :src="img" v-if="img" alt="">
         </div>
@@ -71,11 +75,17 @@
                     <button @click='toPreview'>预览活动</button>
                 </div>
                 <div v-if='isEdit' class="editBtn cssFlex">
+<<<<<<< HEAD
                     <button @click='toPreview'>预览活动</button>
                     <button @click='changeStatus(status)'>{{status == 1 ? '正在售票' : '暂停活动'}}</button>
                     <!-- <button @click='changeStatus(status)' v-if='status == 0'>暂停活动</button> -->
 
                 </div>
+=======
+                 <button>预览活动</button>
+                 <button>暂停活动</button>
+               </div>
+>>>>>>> master
             </div>
         </div>
     </div>
@@ -104,7 +114,9 @@
             app = new Vue({
                 el: '#informationInit',
                 data: {
+
                     isEdit: false,
+
                     person_id: '',
                     img: '',
                     poster: '', //海报
@@ -123,9 +135,16 @@
                     editCost: '', //编辑时的编辑图片
 
                     status: '', //活动状态暂停
+
                 },
                 created: function() {
+                    this.person_id = localStorage.getItem('person_id');
 
+                    var param = api.pageParam; //编辑逻辑
+                    if(param.circleId){
+                      this.isEdit = true;
+                      console.log(param.circleId,'124')
+                    }
                 },
                 mounted: function() {
                     this.getEditData();
@@ -276,6 +295,7 @@
                         picker.pickers[0].setSelectedIndex(0);
                         picker.show(function(SelectedItem) {
                             that.selectAddress = SelectedItem[0].text + SelectedItem[1].text + SelectedItem[2].text;
+
                         })
                     },
                     toActiveDetail: function(details, cost) {
@@ -308,7 +328,17 @@
                               }
                               that.status = aimStatus;
                             }
+
                         })
+                    },
+                    toActiveDetail: function() {
+                        openNewWindow("editActivityDetail", "./editActivityDetail.html", {
+                            url: "publishActivity"
+
+                        })
+                    },
+                    toPreview:function(){
+                      sendMsg(1);
                     }
                 }
             })
@@ -335,6 +365,7 @@
                 adrdetail: app.detailAddress, //活动详情地址
                 details: detailData.intro ? detailData.intro : '', //活动详情
                 cost: detailData.imgs ? detailData.imgs : '', //活动图片
+
             }
             var valadateJson = {
                 poster: '封面',
@@ -396,9 +427,10 @@
                         //失败逻辑
                     }
                 });
-            }
 
+            }
         }
+
     </script>
 </body>
 
