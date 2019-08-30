@@ -83,6 +83,7 @@
                             <span class="userphone isDisplay"></span>
                             <span class="ouIds isDisplay"></span>
                             <span class="tdId isDisplay"></span>
+                            <span class="tripPriceDan isDisplay"></span>
                         </div>
                         <div class="commonSub24 ouPerson999">·全年保证出发·纯玩团·每周循环</div>
                     </div>
@@ -388,7 +389,16 @@
                             })
                             return
                         }
-                        console.log("uioiiophone",document.querySelector(".userphone").innerText)
+                        /*var a = {
+                            num: document.querySelector(".tripNumNum").innerText,
+                            summary: '',
+                            price: document.querySelector(".tripPrice").innerText,
+                            username: document.querySelector(".username").innerText,
+                            userphone: document.querySelector(".userphone").innerText,
+                            cId: that.ouId,
+                            tdId: document.querySelector(".tdId").innerText,
+                        }
+                        console.log("uioiiaaaaaa",a)*/
                         openNewWindow("confirmOrder", "../confirmOrder.html", {
                             url: 'tourismouou',
                             urlIs : 'tourismouou',
@@ -399,6 +409,7 @@
                                 num: document.querySelector(".tripNumNum").innerText,
                                 summary: '',
                                 price: document.querySelector(".tripPrice").innerText,
+                                tripPriceDan: document.querySelector(".tripPriceDan").innerText,
                                 username: document.querySelector(".username").innerText,
                                 userphone: document.querySelector(".userphone").innerText,
                                 cId: that.ouId,
@@ -475,7 +486,7 @@
             })
         }
 
-        function tripValue(tripPerson,tdId,tripCity,dateActive,num,price,username) {
+        function tripValue(tripPerson,tdId,tripCity,dateActive,num,price,priceDan,username) {
             console.log("userphone",localStorage.getItem("tripPhone"))
 
             // document.querySelector(".ouIds").innerText = oId
@@ -486,6 +497,7 @@
             document.querySelector(".tripNum").innerText = num +'人'
             document.querySelector(".tripNumNum").innerText = num
             document.querySelector(".tripPrice").innerText = price
+            document.querySelector(".tripPriceDan").innerText = priceDan
             document.querySelector(".username").innerText = username
             document.querySelector(".userphone").innerText = localStorage.getItem("tripPhone")
 
