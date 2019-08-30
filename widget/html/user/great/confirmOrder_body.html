@@ -134,7 +134,7 @@
                         {{item.comName}}
                     </div>
                     <div class="conmain-price">
-                        ¥{{order.price}}
+                        ¥{{order.tripPriceDan}}x{{order.num}}
                     </div>
                 </div>
             </div>
@@ -286,8 +286,15 @@
 
 
         apiready = function () {
+            api.addEventListener({
+                name: 'addressDefault',
+            }, function (ret, err) {
+                console.log("ret", ret);
+                app.isDefult = ret.value.key.addressDefault;
+                app.isChange()
+            });
             console.log("123",api.pageParam.item);
-            console.log(api.pageParam.order);
+            console.log("order",api.pageParam.order);
 
             var app = new Vue({
                 el: '#app',
@@ -318,7 +325,7 @@
                     this.ououPrice = api.pageParam.ououPrice
 
                     // this.isDefult = api.pageParam.isDefult
-
+                    // this.queryDefaultAdr()
                     if (api.pageParam.url) {
                         this.isDefult = api.pageParam.order.default
                     } else {
@@ -330,17 +337,30 @@
                 mounted: function () {
                     var that = this
                     document.getElementById('app').classList.remove('isDisplay');
-                    api.addEventListener({
-                        name: 'addressDefault',
-                    }, function (ret, err) {
-                        console.log("ret", ret);
-                        this.isDefult = ret.value.key.addressDefault;
 
-                    });
 
                     // document.getElementById('ououPrice').innerText = this.ououPrice;
                 },
+                beforeUpdate : function (){
+
+                },
                 methods: {
+
+                    isChange : function (){
+                        var that = this
+                        that.queryDefaultAdr()
+                    },
+                    queryDefaultAdr : function () {
+                        var that = this
+                        var str = {
+                            pId:that.person_id,
+                        }
+                        ajaxGetWithProgress(queryDefaultAdr, str, function (data, err) {
+                            console.log("queryDefaultAdr",data);
+                            that.isDefult = data.default
+                            that.order = data
+                        });
+                    },
                     // 选择地址
                     adressHandle: function () {
                         openNewWindow("Adress", "./Adress.html", {
@@ -400,7 +420,6 @@
                             var name = document.getElementById('name').innerText;
                             var phone = document.getElementById('phone').innerText;
                             var address = document.getElementById('address').innerText;
-                            console.log(name, phone, address);
                             if (!address) {
                                 mui.confirm('是否添加收获地址', '您还未添加收货地址', function (e) {
                                     if (e.index) {
@@ -413,7 +432,6 @@
                                 return;
                             }
 
-                            console.log(that.bank)
                             if (!that.bank) {
                                 mui.toast('请选择支付方式');
                                 return;
@@ -438,10 +456,11 @@
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
-                                    // adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
-                                    adrId: name + ',' +phone + ',' + address
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: name + ',' +phone + ',' + address
                                 }
-                                console.log(obj)
+                                console.log("",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
@@ -520,7 +539,10 @@
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "银联",
-                                    adrId: name + ',' +phone + ',' + address
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: name + ',' +phone + ',' + address
+
                                 }
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
@@ -598,7 +620,6 @@
                             var name = document.getElementById('name').innerText;
                             var phone = document.getElementById('phone').innerText;
                             var address = document.getElementById('address').innerText;
-                            console.log(name, phone, address);
                             if (!address) {
                                 mui.confirm('是否添加收获地址', '您还未添加收货地址', function (e) {
                                     if (e.index) {
@@ -611,7 +632,6 @@
                                 return;
                             }
 
-                            console.log(that.bank)
                             if (!that.bank) {
                                 mui.toast('请选择支付方式');
                                 return;
@@ -626,7 +646,6 @@
 
                                 return;
                             } else if (that.bank == '支付宝') {
-
                                 var obj = {
                                     cId: that.item.cId,
                                     pId: that.person_id,
@@ -636,8 +655,9 @@
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
-                                    // adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
-                                    adrId: name + ',' +phone + ',' + address
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+
                                 }
                                 console.log("123345",obj)
                                 api.ajax({
@@ -721,11 +741,10 @@
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "银联",
-                                    adrId: name + ',' +phone + ',' + address
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: name + ',' +phone + ',' + address
                                 }
-
-                                console.log(obj)
-
 
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
@@ -821,9 +840,9 @@
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
-                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
                                 }
-                                console.log(obj)
+                                console.log("zhifubao",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
@@ -1002,7 +1021,8 @@
                                     pId: that.person_id,
                                     tdId: that.order.tdId,
                                     buyNum: that.order.num,
-                                    price: that.ououPrice,
+
+                                    price: that.order.tripPriceDan,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     name: that.order.username,

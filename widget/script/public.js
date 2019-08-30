@@ -226,6 +226,10 @@ var CreatePersonUserProfile = serverUrl + "/UserProfile/CreatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
+// 地址  默认地址
+var queryDefaultAdr = Domain + "/delivery/queryDefaultAdr";
+
+
 // 职位详情
 var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
 // 公司详情
