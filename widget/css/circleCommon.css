@@ -155,7 +155,9 @@
     font-weight:500;
     color:rgba(255,255,255,1);
 }
-
+.signUserBtnMy {
+    background:linear-gradient(133deg,rgba(255,183,66,1) 0%,rgba(255,142,81,1) 100%) !important;
+}
 
 /*圈子 活动 详情*/
 .deImg{
@@ -235,9 +237,13 @@
     width: 0.2rem;
     height: 0.2rem;
 }
+.dePerText{
+    margin-top: 0.1rem;
+}
 .dePerTextName{
     margin-top: -0.2rem;
 }
+
 .dePerTextNameName{
     font-weight:400;
     color:rgba(51,51,51,1);
@@ -285,10 +291,26 @@
 .writeBox{
     justify-content: space-between;
     align-items: center;
-}
-.writeBox{
     margin: 0.3rem 0;
 }
+
+
+.details_comment_box {
+    width: 100%;
+    height:0.98rem;
+    background: #F9F9F9;
+    padding: 0.2rem 0;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.sendBtN{
+    display: block;
+    margin-right: 0.2rem;
+}
+
 .writeText{
     width:5.9rem;
     height:0.64rem;
@@ -359,6 +381,9 @@
 .detailMainInfoRight{
     font-weight:400;
     color:rgba(102,102,102,1);
+}
+.detailMainBox{
+    margin-top: 0.3rem;
 }
 .detailMainBoxText{
     height: auto !important;

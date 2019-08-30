@@ -105,22 +105,29 @@
         <!--填写评论-->
         <div class="writeBox cssFlex">
             <img class="writeImg" src="../../../image/circle/actEditIcon.png" alt="">
-            <input type="text" class="writeText" v-model="writeText" placeholder="快来写下你的评论吧…">
+            <input type="text" class="writeText" @click="focusHandle()" readonly placeholder="快来写下你的评论吧…">
+        </div>
+
+        <!--评论输入框-->
+        <!--<div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">-->
+        <div class="details_comment_box cssFlex":class="comment_box ? '' : 'isDisplay'">
+            <input type="text" class="writeText" @focus="focusHandle()" v-model="textarea" placeholder="快来写下你的评论吧…">
+            <span class="sendBtN" @click="sendHandle()">发送</span>
         </div>
 
         <!--评论列表-->
         <div class="discussList">
             <div class="discussTitle cssFlex">
-                <div class="cssFlex discussInfo">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                    <span>微光</span>
+                <div class="cssFlex discussInfo" @click="personClick(disPersonId)">
+                    <img :src="disIcon" alt="">
+                    <span>{{disName}}</span>
                 </div>
                 <div class="discussTime commonFont">
-                    2019-04-27
+                    {{disTime}}
                 </div>
             </div>
             <div class="discussText commonFont">
-                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
+                {{disContent}}
             </div>
         </div>
     </div>
@@ -128,23 +135,7 @@
     <!--活动详情-->
     <div class="detailTextBox boxSub">
         <div class="commonFont detailTextTitle">活动详情</div>
-        <div class="detailMainTitle commonFont">迪卡侬1周年欢迎健康泡泡泡</div>
-        <div class="detailMainInfo cssFlex commonFont">
-            <span class="detailMainInfoLeft">参加内容：</span>
-            <span class="detailMainInfoRight">盘龙江边趣味跑</span>
-        </div>
-        <div class="detailMainInfo cssFlex commonFont">
-            <span class="detailMainInfoLeft">参加人员：</span>
-            <span class="detailMainInfoRight">盘龙江边趣味跑</span>
-        </div>
-        <div class="detailMainInfo cssFlex commonFont">
-            <span class="detailMainInfoLeft">报名建议：</span>
-            <span class="detailMainInfoRight">盘龙江边趣味跑</span>
-        </div>
-        <div class="detailMainInfo cssFlex commonFont">
-            <span class="detailMainInfoLeft">报名费用：</span>
-            <span class="detailMainInfoRight">盘龙江边趣味跑</span>
-        </div>
+
         <div class="detailMainBox">
             <div class="detailMainBoxText commonFont">
                 {{details}}
@@ -154,9 +145,13 @@
             </div>
         </div>
     </div>
-    <div class="detailBomBtn cssFlex">
+    <div class="detailBomBtn cssFlex" :class="detailBom_box ? 'isDisplay' : ''">
         <div class="ticketBtn" @click="ticketClick()">电子票</div>
-        <div class="signUpBtn" @click="signUpBtnClick()">立即报名</div>
+        <!--1 已报名  0  未报名  2 已结束  -->
+        <div class="signUpBtn" v-show="statusSign == 0" @click="signUpBtnClick()">立即报名</div>
+        <div class="signUpBtn" v-show="statusSign == 1" @click="signUpBtnClick()">已报名</div>
+        <div class="signUpBtn" v-show="statusSign == 2" @click="signUpBtnClick()">已结束</div>
+
     </div>
     <div class="ModalHideCom isDisplay" @click="ModalHideCom()"></div>
     <div class="signModalBox isDisplay">
@@ -187,11 +182,16 @@
         new Vue({
             el: '#circle',
             data: {
-                writeText : '',
+
+                comment_box : false,
+                detailBom_box : false,
+
+
+                textarea : '',
                 userName : '',
                 userPhone : '',
                 circle_id : '',
-
+                num :'',
                 poster : '',
                 title : '',
                 LookNum : '',
@@ -206,6 +206,14 @@
                 job_name : '',
                 company_name : '',
                 p_sex : '',
+                statusSign : '',
+                disPersonId : '',
+                disIcon : '',
+                disName : '',
+                disTime : '',
+                disContent : '',
+
+
                 CircleSummer : [],
 
 
@@ -228,10 +236,11 @@
                     ajaxGetWithProgress(CircleProfileAllinOne,obj,function (data) {
                         console.log("CircleProfileAllinOne",data);
                         var circleSummary =  data.circleSummary;
+                        var Comment =  data.Comment;
                         if (data){
                             that.poster = circleSummary.poster;
                             that.title = circleSummary.title;
-                            that.title = circleSummary.title;
+                            // that.title = circleSummary.title;
                             that.c_from = circleSummary.c_from;
                             that.c_to = circleSummary.c_to;
                             that.details = circleSummary.details;
@@ -243,11 +252,16 @@
                             that.p_sex = circleSummary.p_sex;
                             that.CircleSummer = data.CircleSummer;
 
-
+                            that.disPersonId = Comment.person_id
+                            that.disIcon = imgSrcFun(Comment.p_icon)
+                            that.disName = Comment.p_name
+                            that.disTime = Comment.time
+                            that.disContent = Comment.content
 
                             that.LookNum = data.LookNum;
                             that.AttNum = data.AttNum;
                             that.BmCount = data.BmCount;
+                            that.statusSign = data.status;
 
                         } else {
                             toast("请求失败")
@@ -267,6 +281,10 @@
                 signClick : function () {
                     var that = this
                     openNewWindow("signYesPer", "./signYesPer.html")
+                },
+                personClick: function (){
+                    toast("个人主页")
+                    // openNewWindow("signYesPer", "./signYesPer.html")
                 },
                 detStarAllClick : function () {
                     var that = this
@@ -427,7 +445,72 @@
                         number: number
                     });
                 },
+                // 聚焦事件
+                focusHandle: function () {
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser) {
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
+                    this.comment_box = true;
+                },
+                // 评论文本框input事件
+                textInput: function () {
+                    this.num = this.textarea.length;
+                },
+                // 发送
+                sendHandle: function () {
+                    // alert(123)
+                    console.log(this.textarea);
+                    if (!this.textarea) {
+                        mui.toast('评论不能为空');
+                        return;
+                    }
+                    var that = this;
 
+                    /*ajaxGetWithProgress(addComment, {
+                        person_id: that.person_id,
+                        circle_id: that.circle_id,
+                        content: that.textarea,
+                        bac_id: that.bac_id
+                    }, function (data, err) {
+                        console.log(data);
+                        if (data.return_info.status) {
+                            mui.toast('评论成功');
+
+                            api.ajax({
+                                url: queryCommentSummary,
+                                method: 'get',
+                                data: {
+                                    values: {
+                                        circle_id: that.item.circle_id
+                                    },
+                                }
+                            }, function (data, err) {
+
+                                // console.log(456)
+                                // console.log(data)
+                                if (data.comment) {
+                                    var arr = data.comment;
+                                    for (var i = 0; i < arr.length; i++) {
+                                        arr[i]['total'] = 1
+                                    }
+                                    that.list1 = arr;
+                                }
+                                that.bac_id = null;
+                                that.comment_box = false;
+                                that.textarea = '';
+                            });
+                        } else {
+                            mui.toast('评论失败');
+                        }
+                    });*/
+
+
+                    that.bac_id = null;
+                    that.comment_box = false;
+                    that.textarea = '';
+                },
             }
         })
 
