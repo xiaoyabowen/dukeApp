@@ -18,7 +18,22 @@
 <body>
 <div id="circle">
     <div class="boxSub">
-        <div class="discussList discussListBor">
+        <div class="discussList discussListBor" v-for="(item,index) in commentList" :key="index">
+            <div class="discussTitle cssFlex">
+                <div class="cssFlex discussInfo" @click="personClick(item.person_id)">
+                    <img :src="item.p_icon.split(',')[0]" alt="">
+                    <span>{{item.p_name}}</span>
+                </div>
+                <div class="discussTime commonFont">
+                    {{item.time}}
+                </div>
+            </div>
+            <div class="discussText commonFont">
+                {{item.content}}
+            </div>
+        </div>
+
+        <!--<div class="discussList discussListBor">
             <div class="discussTitle cssFlex">
                 <div class="cssFlex discussInfo">
                     <img src="../../../image/circle/actEditIcon.png" alt="">
@@ -31,35 +46,8 @@
             <div class="discussText commonFont">
                 据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
             </div>
-        </div>
-        <div class="discussList discussListBor">
-            <div class="discussTitle cssFlex">
-                <div class="cssFlex discussInfo">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                    <span>微光</span>
-                </div>
-                <div class="discussTime commonFont">
-                    2019-04-27
-                </div>
-            </div>
-            <div class="discussText commonFont">
-                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
-            </div>
-        </div>
-        <div class="discussList discussListBor">
-            <div class="discussTitle cssFlex">
-                <div class="cssFlex discussInfo">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                    <span>微光</span>
-                </div>
-                <div class="discussTime commonFont">
-                    2019-04-27
-                </div>
-            </div>
-            <div class="discussText commonFont">
-                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
-            </div>
-        </div>
+        </div>-->
+
     </div>
 
 </div>
@@ -85,6 +73,7 @@
                 writeText : '',
                 userName : '',
                 userPhone : '',
+                commentList : [],
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
@@ -102,6 +91,11 @@
                     }
                     ajaxGetWithProgress(queryAllCommentCircleProfile,obj,function (data) {
                         console.log("queryAllCommentCircleProfile",data)
+                        if (data){
+                            that.commentList = data.commentList
+                        }else {
+                            toast("请求失败")
+                        }
                     })
                 },
                 signUpBtnClick : function () {
@@ -113,6 +107,9 @@
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
+                },
+                personClick : function () {
+                    toast("个人主页")
                 },
 
             }

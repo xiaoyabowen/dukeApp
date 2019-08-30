@@ -17,7 +17,7 @@
 
 <body>
     <div id="informationInit">
-        <div class="information_head" style="styleObject" @click="upImg()">
+        <div class="information_head" :style="styleObject" @click="upImg()">
             <div class="information_head_add" v-if="!img"></div>
             <img :src="img" v-if="img" alt="">
         </div>
