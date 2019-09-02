@@ -325,8 +325,8 @@ var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPer
 // 圈子 我的活动   我发布的
 var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
 
-
-
+// 圈子 个人页面
+var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
 
 
 

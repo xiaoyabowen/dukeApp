@@ -59,8 +59,6 @@
  </div>
 <div class="heign"></div>
  <div class="box-body2">
-   <!-- <br>
-   <div class=""></div> -->
     <div class="link"></div>
     <b class="education">教育经历</b>
     <div class="school">
@@ -89,10 +87,6 @@
 
 
 
-
-
-
-
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -100,21 +94,46 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 <script>
-    var adr_id;
-    apiready = function () {
-        var uid = localStorage.getItem("person_id");
-        console.log(uid);
-        ajaxGetWithProgress(QuerySummary, {
+          var adr_id;
+          apiready = function() {
+              var uid = localStorage.getItem("person_id");
+              console.log(uid);
+
+             var app = new Vue({
+               el:'',
+               data:{
+                 name:'',
+                 sex:'',
+                 duty:'',
+               },
+               created(){
+
+               },
+               mounted(){
+
+               },
+               methods:{
+
+               }
+             })
+              ajaxGetWithProgress(queryCirclePersonMsgByPid,{
+                uid:uid,
+              },function(data){
+                  console.log(data)
+              })
+
+
+        ajaxGetWithProgress('', {
             uid: uid
         }, function (data, err) {
             // alert(JSON.stringify(data));
             console.log(data);
-            if (data.adr_id) {
-                adr_id = data.adr_id;
+                 adr_id = data.adr_id;
             }
 
             document.querySelector('.Box').classList.remove('isDisplay');
