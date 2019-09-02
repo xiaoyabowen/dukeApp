@@ -155,10 +155,9 @@
         <div class="ticketBtn" @click="ticketClickNotSign()"v-show="statusSign == 2">电子票</div>
         <!--1 已报名  0  未报名  2 已结束  -->
         <div class="signUpBtn" v-show="statusSign == 0" @click="signUpBtnClick()">立即报名</div>
+        <div class="signUpBtn" v-show="statusSign == 3" @click="signUpBtnLoginClick()">立即报名</div>
         <div class="signUpBtn" v-show="statusSign == 1">已报名</div>
         <div class="signUpBtn" v-show="statusSign == 2">已结束</div>
-
-
     </div>
     <div class="ModalHideCom isDisplay" @click="ModalHideCom()"></div>
     <div class="signModalBox isDisplay">
@@ -218,7 +217,7 @@
                 job_name : '',
                 company_name : '',
                 p_sex : '',
-                statusSign : '',
+                statusSign : '3',
                 disPersonId : '',
                 disIcon : '',
                 disName : '',
@@ -297,6 +296,13 @@
                 },
                 signUpBtnClick : function () {
                     var that = this
+
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser) {
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
+
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")
                     document.querySelector(".signModalBox").classList.remove("isDisplay")
 
@@ -308,6 +314,13 @@
                 },
                 signUpSubmit : function (){
                     var that = this
+
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser) {
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
+                    
                     if (!that.userName){
                         toast("请填写姓名")
                         return

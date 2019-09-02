@@ -51,9 +51,11 @@
             el: '#circle',
             data: {
                 phone : '',
+                circle_id : '',
             },
             created: function () {
-
+                this.circle_id = api.pageParam.circle_id
+                console.log("this.circle_id",this.circle_id)
             },
             mounted: function () {
 
@@ -69,14 +71,69 @@
                         toast("手机号码不正确");
                         return;
                     }
+                    var obj = {
+                        phone : that.phone,
+                        circle_id : that.circle_id
+                    }
+                    ajaxGetWithProgress(PhoneStatus,obj,function (data) {
+                        console.log("PhoneStatus",data)
+                        if (data){
+                            mui.alert('验证成功', '提示', function (e) {
+                                if (e.index == 0) {
+                                    openNewWindow("manPerson", "./manPerson.html",{
+                                        circleId : that.circle_id
+                                    });
+                                }
+                            });
+
+                        } else {
+                            toast("验证失败")
+                        }
+
+                    })
                 },
                 saosaoClick:function () {
+                    var that = this
                     var FNScanner = api.require('FNScanner');
                     FNScanner.open({
                         autorotation: true
                     }, function(ret, err) {
-                        if (ret) {
-                            console.log("FNScanner",ret)
+                        console.log("FNScanner",ret)
+                        if (ret.eventType == 'success') {
+                            var obj = {
+                                invoice : ret.content,
+                                circle_id : that.circle_id
+                            }
+                            ajaxGetWithProgress(invoiceStatus,obj,function (data) {
+                                console.log("invoiceStatus",data)
+                                if (data.status){
+                                    mui.alert('扫码成功', '提示', function (e) {
+                                        if (e.index == 0) {
+                                            openNewWindow("manPerson", "./manPerson.html",{
+                                                circleId : that.circle_id
+                                            });
+
+                                            api.sendEvent({
+                                                name: 'saosao',
+                                                extra: {
+                                                    key: {
+                                                        statusTicket : 1
+                                                    },
+                                                }
+                                            });
+
+                                        }
+                                    });
+                                }
+                            })
+                        }else if (ret.eventType == 'cancel'){
+                            toast("取消扫码")
+                        }else if (ret.eventType == 'cameraError'){
+                            toast("访问摄像头失败")
+                        }else if (ret.eventType == 'albumError'){
+                            toast("访问相册失败")
+                        }else if (ret.eventType == 'fail'){
+                            toast("扫码失败")
                         }
                     });
                 },

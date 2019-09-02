@@ -41,7 +41,7 @@
             </div>
             <div class="cirSignUser cssFlex">
                 <div class="cirSignUserLeft">
-                    <div class="userImgAll cssFlex">
+                    <div class="userImgAll cssFlex" :class="item.count == 0 ? 'isDisplay' : ''">
                         <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer" :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
                         <!--<img class="allImgCom allImg1" src="../../../image/circle/allSeeIcon.png" alt="">
                         <img class="allImgCom allImg2" src="../../../image/circle/saoYzIcon.png" alt="">
@@ -128,9 +128,10 @@
             },
             methods: {
                 activeMan:function (circle_id) { //活动管理
+                    console.log(circle_id)
                     var that = this;
                     openNewWindow("manActivity", "./manActivity.html",{
-                      circle_id:circle_id
+                      circle_id : circle_id
                     });
                 },
                 queryCircleList : function () {
