@@ -50,7 +50,7 @@
         <span class="searchClick">GO</span>
     </div>-->
     <div class="headerBox cssFlex" id="homeIndex">
-        <div class="leftImgClose" onclick="closeWin()">
+        <div class="leftImgClose" onclick="closeWinClick()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
@@ -73,10 +73,11 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
 <script>
+    var url
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-
+        url = api.pageParam.url
         new Vue({
             el: '#homeIndex',
             data: {
@@ -196,6 +197,14 @@
         openNewWindow("index", "../index.html")
 
     }
-
+    function closeWinClick() {
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script : 'reload()'
+        })
+        closeWin();
+    }
 </script>
 </html>

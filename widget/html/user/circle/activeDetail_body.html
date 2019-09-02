@@ -36,7 +36,7 @@
                 {{c_from}}至{{c_to}}
             </span>
         </div>
-        <div class= "detActAddr cssFlex">
+        <div class="detActAddr cssFlex">
             <div class="detActAddrLeft">
                 <img src="../../../image/circle/city2x.png" alt="" class="city2x">
                 <span class="detActTimeText">活动地点：</span>
@@ -84,7 +84,8 @@
         <div class="detSignNum commonFont">已报名 {{BmCount}}人</div>
         <div class="detSignPerson cssFlex">
             <div class="deluserImgAll cssFlex">
-                <img class="" v-if="CircleSummer !== null" v-for="(item,index) in CircleSummer" :key="index" :src="item.p_icon.split(',')[0]" alt="">
+                <img class="" v-if="CircleSummer !== null" v-for="(item,index) in CircleSummer" :key="index"
+                     :src="item.p_icon.split(',')[0]" alt="">
                 <!--<img class="" src="../../../image/circle/allSeeIcon.png" alt="">
                 <img class="" src="../../../image/circle/saoYzIcon.png" alt="">
                 <img class="" src="../../../image/circle/perManIcon.png" alt="">
@@ -152,7 +153,7 @@
     <div class="detailBomBtn cssFlex isDisplay" :class="detailBom_box ? 'isDisplay' : ''">
         <div class="ticketBtn" v-show="statusSign == 0" @click="signUpBtnClick()">电子票</div>
         <div class="ticketBtn" @click="ticketClick()" v-show="statusSign == 1">电子票</div>
-        <div class="ticketBtn" @click="ticketClickNotSign()"v-show="statusSign == 2">电子票</div>
+        <div class="ticketBtn" @click="ticketClickNotSign()" v-show="statusSign == 2">电子票</div>
         <!--1 已报名  0  未报名  2 已结束  -->
         <div class="signUpBtn" v-show="statusSign == 0" @click="signUpBtnClick()">立即报名</div>
         <div class="signUpBtn" v-show="statusSign == 3" @click="signUpBtnLoginClick()">立即报名</div>
@@ -168,8 +169,8 @@
         </div>
         <div class="formInfoBtn" @click="signUpSubmit()">提交</div>
     </div>
-</div>
 
+</div>
 
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -189,44 +190,43 @@
             el: '#circle',
             data: {
 
-                comment_box : false,
-                detailBom_box : false,
+                comment_box: false,
+                detailBom_box: false,
 
-                CommentSta : false,
+                CommentSta: false,
 
-                textarea : '',
-                userName : '',
-                userPhone : '',
-                circle_id : '',
+                textarea: '',
+                userName: '',
+                userPhone: '',
+                circle_id: '',
 
-                person_id : '',
+                person_id: '',
 
-                num :'',
-                poster : '',
-                title : '',
-                LookNum : '0',
-                AttNum : '0',
-                BmCount : '0',
-                c_from : '',
-                c_to : '',
-                details : '',
-                address : '',
-                p_name : '',
-                p_icon : '',
-                phone : '',
-                job_name : '',
-                company_name : '',
-                p_sex : '',
-                statusSign : '3',
-                disPersonId : '',
-                disIcon : '',
-                disName : '',
-                disTime : '',
-                disContent : '',
+                num: '',
+                poster: '',
+                title: '',
+                LookNum: '0',
+                AttNum: '0',
+                BmCount: '0',
+                c_from: '',
+                c_to: '',
+                details: '',
+                address: '',
+                p_name: '',
+                p_icon: '',
+                phone: '',
+                job_name: '',
+                company_name: '',
+                p_sex: '',
+                statusSign: '3',
+                disPersonId: '',
+                disIcon: '',
+                disName: '',
+                disTime: '',
+                disContent: '',
 
 
-                CircleSummer : [],
-
+                CircleSummer: [],
 
 
             },
@@ -240,19 +240,19 @@
 
             },
             methods: {
-                CircleProfileAllinOne : function (){
+                CircleProfileAllinOne: function () {
                     var that = this;
                     var obj = {
-                        circle_id : that.circle_id
+                        circle_id: that.circle_id
                     }
-                    ajaxGetWithProgress(CircleProfileAllinOne,obj,function (data) {
-                        console.log("CircleProfileAllinOne",data);
-                        var circleSummary =  data.circleSummary;
-                        var Comment =  data.Comment;
+                    ajaxGetWithProgress(CircleProfileAllinOne, obj, function (data) {
+                        console.log("CircleProfileAllinOne", data);
+                        var circleSummary = data.circleSummary;
+                        var Comment = data.Comment;
 
-                        console.log("Comment",Comment)
+                        console.log("Comment", Comment)
 
-                        if (data){
+                        if (data) {
                             document.querySelector(".detailBomBtn").classList.remove("isDisplay")
                             that.poster = circleSummary.poster;
                             that.title = circleSummary.title;
@@ -270,10 +270,9 @@
                             that.CircleSummer = data.CircleSummer;
 
 
-
-                            if (Comment.p_name == undefined){
+                            if (Comment.p_name == undefined) {
                                 that.CommentSta = false
-                            }else{
+                            } else {
                                 that.CommentSta = true
                                 console.log(Comment.p_name)
                                 that.disPersonId = Comment.person_id
@@ -294,7 +293,7 @@
                         }
                     })
                 },
-                signUpBtnClick : function () {
+                signUpBtnClick: function () {
                     var that = this
 
                     var uidUser = localStorage.getItem("user")
@@ -307,12 +306,12 @@
                     document.querySelector(".signModalBox").classList.remove("isDisplay")
 
                 },
-                ModalHideCom : function () {
+                ModalHideCom: function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
                 },
-                signUpSubmit : function (){
+                signUpSubmit: function () {
                     var that = this
 
                     var uidUser = localStorage.getItem("user")
@@ -320,28 +319,28 @@
                         openNewWindow("login", "../../login/login.html");
                         return;
                     }
-                    
-                    if (!that.userName){
+
+                    if (!that.userName) {
                         toast("请填写姓名")
                         return
                     }
                     if (!that.userPhone) {
                         toast('请填写手机号码');
                         return;
-                    }else if(!checkMobileNum(that.userPhone)){
+                    } else if (!checkMobileNum(that.userPhone)) {
                         toast("手机号码不正确");
                         return;
                     }
 
                     var obj = {
-                        circle_id : that.circle_id,
-                        person_id : that.person_id,
-                        u_name : that.userName,
-                        phone : that.userPhone,
+                        circle_id: that.circle_id,
+                        person_id: that.person_id,
+                        u_name: that.userName,
+                        phone: that.userPhone,
                     }
-                    ajaxGetWithProgress(joinCircleCircleProfile,obj,function (data) {
-                        console.log("joinCircleCircleProfile",data)
-                        if (data.return_info.status){
+                    ajaxGetWithProgress(joinCircleCircleProfile, obj, function (data) {
+                        console.log("joinCircleCircleProfile", data)
+                        if (data.return_info.status) {
                             toast("报名成功")
                             that.userName = ''
                             that.userPhone = ''
@@ -354,29 +353,30 @@
                         }
                     })
                 },
-                signClick : function () {
+                signClick: function () {
                     var that = this
-                    openNewWindow("signYesPer", "./signYesPer.html",{
-                        circle_id : that.circle_id
+                    openNewWindow("signYesPer", "./signYesPer.html", {
+                        circle_id: that.circle_id,
+                        url: 'activeDetail'
                     })
                 },
-                personClick: function (){
+                personClick: function () {
                     toast("个人主页")
                     // openNewWindow("signYesPer", "./signYesPer.html")
                 },
-                detStarAllClick : function () {
+                detStarAllClick: function () {
                     var that = this
-                    openNewWindow("allDiscuss", "./allDiscuss.html",{
-                        circle_id : that.circle_id
+                    openNewWindow("allDiscuss", "./allDiscuss.html", {
+                        circle_id: that.circle_id
                     })
                 },
-                ticketClick : function () {
+                ticketClick: function () {
                     var that = this
-                    openNewWindow("ticket", "./ticket.html",{
-                        circle_id : that.circle_id
+                    openNewWindow("ticket", "./ticket.html", {
+                        circle_id: that.circle_id
                     })
                 },
-                ticketClickNotSign : function () {
+                ticketClickNotSign: function () {
                     toast("报名结束暂无法报名")
                 },
                 // 唤起地图导航
