@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="bindVue" class="manPerson">
+    <div id="bindVue" class="manPerson" v-cloak>
         <div class="tabs cssFlex">
             <div @click='changeTab("all")' :class="[tabFlag == 'all' ? 'selectActives' : '','all']">全部</div>
             <div @click="changeTab('resolve')" :class="[tabFlag == 'resolve' ? 'selectActives' : '','resolve']">已签到</div>
@@ -35,7 +35,7 @@
                             <div class="code">{{item.phone}}</div>
                         </div>
                     </div>
-                    <div v-if='item.status == 0' class="status">未签到</div>
+                    <div v-if='item.status == 0' class="status status1">未签到</div>
                     <div v-if='item.status == 1' class="status">已签到</div>
                     <div class="oprate">
                         <div :class='[item.status == 1 ? "isSigned" : ""] ' @click='tosign(item.id,item.status)'>代签</div>
