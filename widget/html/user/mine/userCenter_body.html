@@ -26,6 +26,7 @@
     </style>
 </head>
 <body class="commonBg">
+<<<<<<< HEAD
 <div class="Box" id="circle" v-cloak>
     <div class="boxTop">
         <img src="../../../image/bjt.png" alt="img">
@@ -86,19 +87,231 @@
         </div>
     </div>
 </div>
+=======
+<div class="Box isDisplay">
+  <div class="boxTop">
+   <img src="../../../image/bjt.png" alt="img">
+   <div class="boxtb">
+     <img src="../../../image/tb1.png" alt="img"><p>北京</p>
+   </div>
+   <div class="boxBod">
+     <div class="boxbodt">
+       <img src="../../../image/tx.png" alt="img">
+     </div>
+     <div class="boxbodd">
+      田馥甄<img src="../../../image/jinka.png" alt="img">
+     </div>
+    <div class="boxwz">
+      xxx有限公司-财务总监
+    </div>
+    <div class="boxboom">
+     35岁<img src="../../../image/nuii.png" alt="img">
+    </div>
+   </div>
+ <div class="editbtn" onclick="editInfo()">编辑</div>
+
+ <div class="box-body">
+     <div class="lin"></div>
+    <b class="experience ">最新经历</b>
+    <div class="site">
+     <img src="../../../image/gongsi.png" alt="img">   北京A公司信息技术有限公司
+    </div>
+    <div class="position">
+     <img src="../../../image/zhiwei.png" alt="img">  运营经理
+    </div>
+ </div>
+<div class="heign"></div>
+ <div class="box-body2">
+   <!-- <br>
+   <div class=""></div> -->
+    <div class="link"></div>
+    <b class="education">教育经历</b>
+    <div class="school">
+     <img src="../../../image/xueli.png" alt="img">   北京大学   本科
+    </div>
+    <div class="date">
+     <img src="../../../image/nianf.png" alt="img">   2004.09-2008.06
+    </div>
+    <div class="major">
+     <img src="../../../image/zgiye.png" alt="img">   医学专业
+    </div>
+ </div>
+<div class="heign"></div>
+ <div class="box-body3">
+     <div class="line"></div>
+    <b class="biaoqian">个人标签</b>
+  <div class="bq">
+    <ul>
+      <li>投资</li>
+      <li>战略</li>
+      <li>兼职</li>
+    </ul>
+  </div>
+ </div>
+  </div>
+
+>>>>>>> 0a1a17e16b8bf5e5be82b6448ecf4ef9217fd741
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-<script src="../../../script/vue.min.js"></script>
-<script src="../../../script/vuex.min.js"></script>
+
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
+<<<<<<< HEAD
     var adr_id, url;
     apiready = function () {
+=======
+    var adr_id;
+    apiready = function () {
+        var uid = localStorage.getItem("person_id");
+        console.log(uid);
+        ajaxGetWithProgress(QuerySummary, {
+            uid: uid
+        }, function (data, err) {
+            // alert(JSON.stringify(data));
+            console.log(data);
+            if (data.adr_id) {
+                adr_id = data.adr_id;
+            }
+
+            document.querySelector('.Box').classList.remove('isDisplay');
+            if (data.p_icon) {
+                document.getElementById('p_icon').src = imgSrcFun(data.p_icon);
+            }
+
+            if (data.p_name) {
+                document.getElementById('p_name').innerText = data.p_name || '未登录';
+            }
+
+            document.getElementById('company').innerText = data.com_name || '未填写';
+            document.getElementById('city').innerText = data.city || '未填写';
+            document.getElementById('user_city').innerText = data.city || '未填写';
+            document.getElementById('position').innerText = data.position_type || '未填写';
+            document.getElementById('follow').innerText = data.follow || 0;
+            document.getElementById('browse').innerText = data.browse || 0;
+            document.getElementById('user_high').innerText = data.height || '未填写';
+            document.getElementById('user_weight').innerText = data.weight || '未填写';
+            document.getElementById('user_emotion').innerText = data.emotion || '未填写';
+
+
+            // 我的兴趣标签
+            if (data.p_hobby) {
+                var arr = data.p_hobby.split(',');
+                var arr1 = [];
+                for (var i = 0; i < arr.length; i++) {
+                    arr1.push('<span>' + arr[i] + '</span>')
+                }
+                var dom = arr1.join('');
+                document.getElementById('p_hobby').innerHTML = dom;
+            }
+
+            // 我的年龄,星座
+            if (data.p_birthday) {
+                var list = data.p_birthday.split('-');
+                console.log(list);
+                var constellation1 = WhatIsYourConstellation(list[0], list[1], list[2]);
+                document.getElementById('user_age').innerText = ages(data.p_birthday);
+                document.getElementById('user_constellation').innerText = constellation1
+            } else {
+                document.getElementById('user_age').innerText = '未填写';
+                document.getElementById('user_constellation').innerText = '未填写';
+            }
+            // 计算年龄
+            function ages(str) {
+                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+                if (r == null) return false;
+                var d = new Date(r[1], r[3] - 1, r[4]);
+                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
+                    var Y = new Date().getFullYear();
+                    // return ("年龄   =   " + (Y - r[1]) + "   周岁");
+                    return (Y - r[1]);
+                }
+                return ("输入的日期格式错误！");
+            }
+            //星座定义
+            function WhatIsYourConstellation(y, m, d) {
+                /*
+                判断日期有效性
+                1,3,5,7,8,10,12为31天
+                2月润年29，非润年28
+                4,6,9,11为30天
+                */
+                var daysInMonth = [31, 99, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                //检测年份
+                if (y < 1970 || y > 2099) return "年份不对";
+
+                //检测月份
+                if (m < 1 || m > 12) return "月份不对";
+
+                //检测日期
+                var mDays = daysInMonth[m - 1];
+                //如果是二月，要根据年份计算天数，不是二月时略过此计算
+                if (m == 2) {
+                    mDays = GetSpecialDays(y)
+                }
+
+                //判断日数据是不是在月份的有效天范围
+                if (d < 0 || d > mDays) return "月份不对";
+
+                var constellations = [
+                    {"Start": 121, "End": 220, "Name": "水平座"}, {"Start": 221, "End": 320, "Name": "双鱼座"},
+                    {"Start": 321, "End": 420, "Name": "白羊座"}, {"Start": 421, "End": 520, "Name": "金牛座"},
+                    {"Start": 521, "End": 620, "Name": "双子座"}, {"Start": 621, "End": 720, "Name": "巨蟹座"},
+                    {"Start": 721, "End": 820, "Name": "狮子座"}, {"Start": 821, "End": 920, "Name": "处女座"},
+                    {"Start": 921, "End": 1020, "Name": "天秤座"}, {"Start": 1021, "End": 1120, "Name": "天蝎座"},
+                    {"Start": 1121, "End": 1220, "Name": "射手座"}];
+                //好了，走到这一步，说明上面的验证都TM过了。
+                //这才判断是哪一个星座
+                //星座座标等于m*100 + d
+                var pos = m * 100 + Number(d);
+                // console.log(pos);
+                // for (var i in constellations) {
+                //     if (pos >= constellations[i].Start && pos <= constellations[i].End) {
+                //         console.log(123)
+                //         return constellations[i].Name;
+                //     }
+                // }
+                // console.log(constellations)
+                for (var i = 0; i < constellations.length; i++) {
+                    if (pos >= constellations[i].Start && pos <= constellations[i].End) {
+                        console.log(123)
+                        return constellations[i].Name;
+                    }
+                }
+            }
+            //根据年份计算二月天数
+            function GetSpecialDays(y) {
+                if (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) return 29;
+                return 28;
+            }
+
+            // 人生关
+            if (data.p_vol) {
+                var list = data.p_vol.split('||');
+                document.getElementById('love').innerText = list[0] || '未填写';
+                document.getElementById('cause').innerText = list[1] || '未填写';
+                document.getElementById('life').innerText = list[2] || '未填写';
+            }
+
+
+
+        });
+    };
+
+    function editInfo() {
+        openNewWindow("editInfo", "./editInfo.html", {
+            adr_id: adr_id
+        });
+    }
+
+    // 刷新数据
+    function reload () {
+>>>>>>> 0a1a17e16b8bf5e5be82b6448ecf4ef9217fd741
         var uid = localStorage.getItem("person_id");
         url = api.pageParam.url
         console.log(uid);
