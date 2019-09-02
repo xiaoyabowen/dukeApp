@@ -134,8 +134,6 @@ var CommodityProFileEvaluation = Domain + "/CommodityProFile/Evaluation";
 // 我的订单  我的足迹
 var Queryhistory = Domain + "/CommodityProFile/Queryhistory";
 
-
-
 // leilei
 
 
@@ -333,6 +331,10 @@ var queryAllSignPerson = serverUrl + "/CircleProfile/queryAllSignPerson";
 // 圈子 活动详情页的立即报名
 var joinCircleCircleProfile = serverUrl + "/CircleProfile/joinCircle";
 
+
+// 圈子 个人页面
+var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
+
 // 圈子 活动管理
 var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 
@@ -340,6 +342,7 @@ var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
 
 //圈子 人员管理 根据状态切换
+
 
 var querySignCirPerson = serverUrl + '/CircleProfile/querySignCirPerson';
 
