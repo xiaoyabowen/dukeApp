@@ -337,6 +337,8 @@ var joinCircleCircleProfile = serverUrl + "/CircleProfile/joinCircle";
 
 // 圈子 个人页面
 var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
+// 圈子 修改圈子个人中心信息
+var updateCirclePersonMsgByPid = serverUrl + '/CircleProfile/updateCirclePersonMsgByPid';
 
 
 // 圈子 活动管理

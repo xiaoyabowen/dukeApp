@@ -172,18 +172,18 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-.m-person-list>li {
+.m-person-list > li {
     width: 25%;
     margin-bottom: 0.5rem;
 }
 
-.m-person-list>li>img {
+.m-person-list > li > img {
     display: block;
     margin: 0 auto;
     height: 0.42rem;
 }
 
-.m-person-list>li>p {
+.m-person-list > li > p {
     margin-top: 0.12rem;
     font-size: 0.22rem;
     color: #666666;
@@ -301,7 +301,7 @@ body, div, p, span, a, input, ul, li {
     justify-content: space-between;
 }
 
-.moreWork>span {
+.moreWork > span {
     font-size: 0.26rem;
     color: #fff;
 }
@@ -317,7 +317,7 @@ body, div, p, span, a, input, ul, li {
     padding: 0 0.36rem;
 }
 
-.jianliList>.jianliListLi {
+.jianliList > .jianliListLi {
     padding: 0.2rem 0;
     justify-content: space-between;
     border-bottom: 1px solid #EBEBEB;
@@ -330,7 +330,7 @@ body, div, p, span, a, input, ul, li {
     margin-right: 0.42rem;
 }
 
-.resumeInfo>p {
+.resumeInfo > p {
     margin-bottom: 0 !important;
     line-height: 1.4;
 }
@@ -423,7 +423,7 @@ body, div, p, span, a, input, ul, li {
     border-right: 1px solid #cccccc;
 }
 
-.main_head>span:after {
+.main_head > span:after {
     content: '';
     display: inline-block;
     width: 0;
@@ -435,7 +435,7 @@ body, div, p, span, a, input, ul, li {
     transform: translateY(35%);
 }
 
-.main_head>span.active:after {
+.main_head > span.active:after {
     content: '';
     display: inline-block;
     width: 0;
@@ -476,11 +476,11 @@ body, div, p, span, a, input, ul, li {
     border-bottom: 1px solid #EBEBEB;
 }
 
-.item_title>a {
+.item_title > a {
     color: #666666;
 }
 
-.item_title>a:after {
+.item_title > a:after {
     content: '';
     display: inline-block;
     width: 0.15rem;
@@ -506,7 +506,7 @@ body, div, p, span, a, input, ul, li {
     height: 1.28rem;
 }
 
-.item_content_top_left>img {
+.item_content_top_left > img {
     width: 100%;
 }
 
@@ -599,20 +599,20 @@ body, div, p, span, a, input, ul, li {
     color: #333333;
 }
 
-.details_conter_left>div {
+.details_conter_left > div {
     color: #666666;
     margin-top: 0.05rem;
     display: flex;
     align-items: center;
 }
 
-.details_conter_left>div span {
+.details_conter_left > div span {
     margin-right: 0.2rem;
     margin-top: 0.1rem;
     /*vertical-align: bottom;*/
 }
 
-.details_conter_left>div img {
+.details_conter_left > div img {
     width: 0.4rem;
     margin: 0 0.05rem;
 }
@@ -735,7 +735,8 @@ body, div, p, span, a, input, ul, li {
     width: 1rem;
 }
 
-.apply_center li input {}
+.apply_center li input {
+}
 
 .apply_center li input::placeholder {
     color: #999999;
@@ -765,17 +766,17 @@ body, div, p, span, a, input, ul, li {
     width: 4.6rem;
 }
 
-.subscribed_item_company>div:first-child {
+.subscribed_item_company > div:first-child {
     color: #333333;
     font-size: 0.22rem;
 }
 
-.subscribed_item_company>div:last-child {
+.subscribed_item_company > div:last-child {
     color: #666666;
     font-size: 0.2rem;
 }
 
-.subscribed_item_company>div {
+.subscribed_item_company > div {
     line-height: 1;
     margin: 0.15rem 0;
 }
@@ -816,7 +817,7 @@ body, div, p, span, a, input, ul, li {
     text-align: right;
 }
 
-.subscribed_main>div:last-child {
+.subscribed_main > div:last-child {
     border: 0.01rem solid #ffffff;
 }
 
@@ -895,7 +896,7 @@ body, div, p, span, a, input, ul, li {
     border-bottom: 0.01rem solid #EBEBEB;
 }
 
-.my_Concern_item>.subscribed_main_item {
+.my_Concern_item > .subscribed_main_item {
     border: 0.02rem solid #ffffff;
 }
 
@@ -909,7 +910,7 @@ body, div, p, span, a, input, ul, li {
     padding: 0 .35rem;
 }
 
-.setting_main ul>li {
+.setting_main ul > li {
     padding: 0.34rem 0;
     border-bottom: 0.02rem solid #EBEBEB;
     vertical-align: middle;
@@ -918,19 +919,19 @@ body, div, p, span, a, input, ul, li {
     align-items: center;
 }
 
-.setting_main ul>li div {
+.setting_main ul > li div {
     display: flex;
     align-items: center;
     color: #333333;
     font-size: 0.28rem;
 }
 
-.setting_main ul>li div:first-child img {
+.setting_main ul > li div:first-child img {
     width: 0.35rem;
     margin-right: 0.2rem;
 }
 
-.setting_main ul>li div:last-child img {
+.setting_main ul > li div:last-child img {
     width: 0.36rem;
 }
 
@@ -963,7 +964,7 @@ body, div, p, span, a, input, ul, li {
     background: #F9F9F9;
 }
 
-.iconPush>div {
+.iconPush > div {
     padding: 0.3rem 0.35rem;
     font-size: 0.28rem;
     color: #666666;
@@ -971,13 +972,13 @@ body, div, p, span, a, input, ul, li {
     background: #ffffff;
 }
 
-.iconPush>div div {
+.iconPush > div div {
     display: inline-block;
     float: right;
     transform: translateY(-16%);
 }
 
-.iconPush>p {
+.iconPush > p {
     padding: 0 0.35rem;
     font-size: 0.2rem;
     color: #666666;
@@ -1074,13 +1075,13 @@ body, div, p, span, a, input, ul, li {
     margin: 0;
 }
 
-.resume_level2_main>p {
+.resume_level2_main > p {
     padding-left: 0.06rem;
     font-size: 0.28rem;
     color: #999999;
 }
 
-.resume_level2_main>p .resume_level2_num {
+.resume_level2_main > p .resume_level2_num {
     color: #638BFF;
 }
 
@@ -1113,13 +1114,14 @@ body, div, p, span, a, input, ul, li {
     background: rgba(197, 0, 0, 0.8);
 }
 
-.resume_expectations_content {}
+.resume_expectations_content {
+}
 
 .resume_expectations_item {
     padding: 0.3rem 0.24rem;
 }
 
-.resume_expectations_item>p {
+.resume_expectations_item > p {
     font-size: 0.28rem;
     color: rgba(153, 153, 153, 1);
     margin: 0;
@@ -1290,12 +1292,12 @@ span.my-dynamic-send {
     padding: 0.7rem 0.62rem 0 0.62rem;
 }
 
-.vip-authen>li {
+.vip-authen > li {
     width: 33.33%;
     text-align: center;
 }
 
-.vip-authen>li>p {
+.vip-authen > li > p {
     font-size: 0.22rem;
     color: #666666;
     text-align: center;
@@ -1432,7 +1434,7 @@ span.authen-go {
     margin: 0.26rem 0 0.32rem 0;
 }
 
-.au-name-input>span, .au-name-input-id>span {
+.au-name-input > span, .au-name-input-id > span {
     display: inline-block;
     width: 1.2rem;
     font-size: 0.28rem;
@@ -1609,7 +1611,7 @@ ul.inde-btn {
     border-bottom: 1px solid #ebebeb;
 }
 
-.inde-btn>li {
+.inde-btn > li {
     width: 1rem;
     margin-right: 0.3rem;
 }
@@ -1619,7 +1621,7 @@ img.inde-img {
     width: 0.46rem;
 }
 
-.inde-btn>li>p {
+.inde-btn > li > p {
     width: 100%;
     height: 0.32rem;
     font-size: 0.24rem;
@@ -1643,7 +1645,7 @@ img.inde-img {
     margin-right: 0.2rem;
 }
 
-.inde-info>p {
+.inde-info > p {
     height: 0.32rem;
     font-size: 0.24rem;
     font-weight: 400;
@@ -1856,7 +1858,7 @@ img.off-com-img {
     flex-wrap: wrap;
 }
 
-.info-edit-skill>li {
+.info-edit-skill > li {
     width: 1.38rem;
     height: 0.34rem;
     line-height: 0.34rem;
@@ -1920,7 +1922,7 @@ p.user-main-com {
     margin-bottom: 0.1rem;
 }
 
-.user-main-zhi>span {
+.user-main-zhi > span {
     display: inline-block;
     padding: 0 0.2rem;
     height: 0.34rem;
@@ -1963,7 +1965,7 @@ p.user-main-com {
     flex-wrap: wrap;
 }
 
-.label-list>span, .Interest-list>span {
+.label-list > span, .Interest-list > span {
     width: 1.3rem;
     height: 0.34rem;
     border-radius: 0.08rem;
@@ -1976,17 +1978,17 @@ p.user-main-com {
     white-space: nowrap;
 }
 
-.label-list>span {
+.label-list > span {
     border: 1px solid rgba(99, 139, 255, 1);
     color: rgba(99, 139, 255, 1);
 }
 
-.Interest-list>span {
+.Interest-list > span {
     border: 1px solid rgba(254, 145, 20, 1);
     color: rgba(254, 145, 20, 1);
 }
 
-.label-list>span:nth-of-type(3n), .Interest-list>span:nth-of-type(3n) {
+.label-list > span:nth-of-type(3n), .Interest-list > span:nth-of-type(3n) {
     margin-right: 0 !important;
 }
 
@@ -1996,13 +1998,13 @@ p.user-main-com {
     font-weight: 500;
 }
 
-.info-list>p {
+.info-list > p {
     color: #333333;
     height: 0.4rem;
     line-height: 0.4rem;
 }
 
-.info-list>p>span {
+.info-list > p > span {
     display: inline-block;
     width: 2rem;
     color: #999999;
@@ -2042,7 +2044,7 @@ p.user-main-com {
     flex-wrap: wrap;
 }
 
-.dyname-img>img {
+.dyname-img > img {
     display: block;
     width: 1.88rem;
     height: 1.88rem;
@@ -2050,7 +2052,7 @@ p.user-main-com {
     border-radius: 0.08rem;
 }
 
-.dyname-img>img:nth-of-type(3n) {
+.dyname-img > img:nth-of-type(3n) {
     margin-right: 0;
 }
 
@@ -2339,6 +2341,7 @@ i.ques-star {
     margin: 0 auto;
     color: #ffffff;
     font-size: 0.36rem;
+    align-items: center;
 }
 
 .boxbodd img {
@@ -2363,6 +2366,7 @@ i.ques-star {
     margin-left: 1.4rem;
     color: #ffffff;
     font-size: 0.24rem;
+    align-items: center;
 }
 
 .boxboom img {
@@ -2388,45 +2392,49 @@ i.ques-star {
 
 .box-body {
     width: 100%;
-    height: 2.3rem;
     position: relative;
-    padding-top: 0.10rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.4rem;
 }
 
 .experience {
+    display: block;
     margin-left: 0.4rem;
     font-size: 0.32rem;
-    margin-top: 0.5rem;
+    margin-bottom: 0.26rem;
     font-weight: 500;
     color: rgba(51, 51, 51, 1);
 }
 
 .site {
-    justify-content: space-between;
     font-size: 0.28rem;
     font-weight: 400;
+    height: 0.4rem;
     color: rgba(51, 51, 51, 1);
+    align-items: center;
+    margin-bottom: 0.3rem;
 }
 
 .site img {
     width: 0.3rem;
     height: 0.3rem;
     margin-left: 0.2rem;
-    margin-top: 0.3rem;
+    margin-right: 0.2rem;
 }
 
 .position {
     font-size: 0.28rem;
     font-weight: 400;
+    height: 0.4rem;
     color: rgba(51, 51, 51, 1);
-    justify-content: space-between;
+    align-items: center;
 }
 
 .position img {
     width: 0.3rem;
     height: 0.3rem;
     margin-left: 0.2rem;
-    margin-top: 0.3rem;
+    margin-right: 0.2rem;
 }
 
 .heign {
@@ -2437,15 +2445,13 @@ i.ques-star {
 
 .box-body2 {
     width: 100%;
-    height: 3.6rem;
     position: relative;
-    padding-top: 0.2rem;
+    padding-top: 0.35rem;
 }
 
 .education {
     margin-left: 0.5rem;
     font-size: 0.32rem;
-    margin-top: 0.2rem;
     font-weight: 500;
     color: rgba(51, 51, 51, 1);
 }
@@ -2454,11 +2460,9 @@ i.ques-star {
     height: 0.8rem;
     width: 6.6rem;
     margin-left: 0.2rem;
-    justify-content: space-between;
     font-size: 0.28rem;
-    margin-top: 0.3rem;
     border-bottom: 0.01rem solid #EBEBEB;
-    /*font-family:PingFangSC;*/
+    align-items: center;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
 }
@@ -2466,17 +2470,14 @@ i.ques-star {
 .school img {
     width: 0.3rem;
     height: 0.3rem;
-    /*margin-left: 0.2rem;*/
+    margin-right: 0.2rem;
 }
 
 .date {
-    height: 0.8rem;
-      width: 6.6rem;
-      margin-left: 0.2rem;
-    justify-content: space-between;
-    margin-top: 0.3rem;
+    height: 1.04rem;
+    margin-left: 0.2rem;
     font-size: 0.28rem;
-    /*font-family:PingFangSC;*/
+    align-items: center;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
     border-bottom: 0.01rem solid #EBEBEB;
@@ -2485,23 +2486,22 @@ i.ques-star {
 .date img {
     width: 0.3rem;
     height: 0.3rem;
-    /*margin-left: 0.2rem;*/
+    margin-right: 0.2rem;
 }
 
 .major {
-    height: 0.8rem;
-    margin-top: 0.3rem;
-    justify-content: space-between;
+    height: 1.04rem;
     font-size: 0.28rem;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
+    align-items: center;
 }
 
 .major img {
     width: 0.3rem;
     height: 0.3rem;
     margin-left: 0.2rem;
-    /*margin-top: 0.2rem;*/
+    margin-right: 0.2rem;
 }
 
 .box-body3 {
@@ -2522,23 +2522,22 @@ i.ques-star {
     width: 100%;
 }
 
-.bq ul {
-    display: flex;
-    margin-top: 0.3rem;
+.bqUl {
+    flex-wrap: wrap;
+    margin: 0.3rem 0.2rem 0;
 }
 
 .bq li {
-    flex: 1;
-    width: 1.08rem;
     height: 0.52rem;
     background: #EAEAEA;
     border: 0.01rem solid #EAEAEA;
-    margin-left: 0.15rem;
-    margin-right: 0.15rem;
-    border-radius: 0.3rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+    border-radius: 0.26rem;
     text-align: center;
     line-height: 0.52rem;
     font-size: 0.28rem;
+    padding: 0 0.26rem;
 }
 
 .lin {
@@ -2547,7 +2546,7 @@ i.ques-star {
     background: #638BFF;
     left: 0.2rem;
     border: 0.01rem solid #638BFF;
-    top: 0.17rem;
+    top: 0.42rem;
     position: absolute;
 }
 
@@ -2557,7 +2556,7 @@ i.ques-star {
     background: #638BFF;
     left: 0.22rem;
     border: 0.01rem solid #638BFF;
-    top: 0.25rem;
+    top: 0.42rem;
     position: absolute;
 }
 
@@ -2589,7 +2588,7 @@ i.ques-star {
 }
 
 .xing {
-  height: 1.09rem;
+    height: 1.09rem;
     position: absolute;
     left: 0.2rem;
     line-height: 1.09rem;
@@ -2655,13 +2654,14 @@ i.ques-star {
     height: 0.57rem;
     margin-top: 0.4rem;
     padding-left: 0.2rem;
-      font-size: 0.28rem;
-      color: #999999;
-    /*text-indent: 0.01rem;*/
+    font-size: 0.28rem;
+    color: #333333;
 }
-#firem{
-  border: none;
+
+#firem {
+    border: none;
 }
+
 /*#check{
     border: none;
 }
