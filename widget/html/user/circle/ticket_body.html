@@ -26,8 +26,11 @@
 <div id="circle">
     <div class="ticketBox">
         <div class="ticketBoxPad">
-            <div class="ticketTitle commonTitle">
+            <div class="ticketTitle commonTitle" v-show="statusTicket == 0">
                 出票成功
+            </div>
+            <div class="ticketTitle commonTitle" v-show="statusTicket == 1">
+                已签到
             </div>
             <div id="erWeima" class="erWeima">
 
@@ -62,17 +65,29 @@
     }
 
     apiready = function () {
-        new Vue({
+        api.addEventListener({
+            name: 'saosao',
+        }, function(ret, err) {
+            alert(1)
+            console.log("ret",ret);
+            app.statusTicket = ret.value.key.statusTicket;
+            console.log("that.statusTicket",that.statusTicket)
+
+        });
+
+        var app = new Vue({
             el: '#circle',
             data: {
                 writeText : '',
                 userName : '',
                 userPhone : '',
                 circle_id : '',
+                statusTicket : '0',
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
                 this.queryInvoice()
+
             },
             mounted: function () {
 
@@ -101,6 +116,7 @@
 
                             that.userName = data.u_name;
                             that.userPhone = data.phone;
+                            that.statusTicket = data.status;
 
                         } else {
                             toast("生成失败")
