@@ -116,6 +116,7 @@
     }
     apiready = function () {
 
+
         new Vue({
             el: '#circle',
             data: {
@@ -138,7 +139,8 @@
                     var that = this
                     if (MyCreate == true){
                         openNewWindow("manActivity", "./manActivity.html",{
-                            circle_id : circle_id
+                            circle_id : circle_id,
+                            url : "index"
                         });
                     } else {
                         openNewWindow("activeDetail", "./activeDetail.html",{

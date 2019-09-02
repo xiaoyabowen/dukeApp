@@ -671,11 +671,8 @@ function ajaxGet(url, params, callBack) {
     if (user) {
         params.uid = localStorage.getItem("person_id")
     }
-<<<<<<< HEAD
-    api.showProgress({});
-=======
+
     api.showProgress();
->>>>>>> b27300b1ff498a6e5e72ceed27fd0eaacc8f6a79
     console.log('token', params)
     api.ajax({
         url: url,

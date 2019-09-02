@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <style>
+        #circlepre {
+            background: #ffffff;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -134,8 +140,11 @@
           data.circle_id = param.circle_id;
           ajaxGetWithProgress(updateCircleSummary,data,function(data){
             if(data.status == true){
-              mui.alert('活动编辑成功');
-              // closeWin();
+                mui.alert('活动编辑成功', '提示', function (e) {
+                    if (e.index == 0) {
+                        closeWin();
+                    }
+                });
             }else{
               mui.alert('活动编辑失败，请稍后重试');
             }
@@ -144,9 +153,11 @@
           ajaxGetWithProgress(createCircle, data, function(data, err) {
             // console.log(data,'131');
               if (data.return_info.status) {
-                  mui.alert('活动发布成功');
-                  // closeWin();
-                  //成功逻辑...
+                  mui.alert('活动发布成功,请等待审核', '提示', function (e) {
+                      if (e.index == 0) {
+                          openNewWindow("index", "./index.html");
+                      }
+                  });
               } else {
                   mui.alert('活动发布失败，请稍后重试');
                   //失败逻辑

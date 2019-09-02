@@ -417,8 +417,12 @@
                   json.circle_id = app.circleId;
                   ajaxGetWithProgress(updateCircleSummary,json,function(data){
                     if(data.status == true){
-                      mui.alert('活动编辑成功');
-                      closeWin();
+                      // mui.alert('');
+                        mui.alert('活动编辑成功', '提示', function (e) {
+                            if (e.index == 0) {
+                                closeWin();
+                            }
+                        });
                     }else{
                       mui.alert('活动编辑失败，请稍后重试');
                     }
@@ -427,8 +431,11 @@
                   //完成验证发布活动
                   ajaxGetWithProgress(createCircle, json, function(data, err) {
                       if (data.return_info.status) {
-                          mui.alert('活动发布成功');
-                          closeWin();
+                          mui.alert('活动发布成功,请等待审核', '提示', function (e) {
+                              if (e.index == 0) {
+                                  openNewWindow("index", "./index.html");
+                              }
+                          });
                           //成功逻辑...
                       } else {
                           mui.alert('活动发布失败，请稍后重试');

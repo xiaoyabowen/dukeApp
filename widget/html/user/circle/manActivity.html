@@ -13,7 +13,7 @@
 <body>
 <div id="topbar" >
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWin()">
+        <div class="leftImgClose" onclick="closeWinClick()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
@@ -29,11 +29,20 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-
+    var url
     apiready = function () {
         initFrameInWin(api.pageParam);
+        url = api.pageParam.url
     };
-
+    function closeWinClick() {
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script : 'reload()'
+        })
+        closeWin();
+    }
 
 </script>
 </html>

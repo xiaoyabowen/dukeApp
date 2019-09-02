@@ -98,7 +98,7 @@
     </div>
     <div class="line20"></div>
     <!--评价-->
-    <div class="detStarBox boxSub">
+    <div class="detStarBox boxSub" v-show="!preViel">
         <div class="detStar cssFlex" @click="detStarAllClick()">
             <span class="detStarTitle commonFont">活动评价</span>
             <span class="detStarAll commonFont">全部评价</span>
@@ -144,13 +144,13 @@
             <div class="detailMainBoxText commonFont">
                 {{details}}
             </div>
-            <div class="detailMainBoxImg">
-                <img src="../../../image/circle/circle01.png" alt="">
+            <div v-for = 'item in costList' class="detailMainBoxImg">
+                <img :src="item" alt="">
             </div>
         </div>
     </div>
 
-    <div class="detailBomBtn cssFlex isDisplay" :class="detailBom_box ? 'isDisplay' : ''">
+    <div class="detailBomBtn cssFlex isDisplay" v-show="!preViel" :class="detailBom_box ? 'isDisplay' : ''">
         <div class="ticketBtn" v-show="statusSign == 0" @click="signUpBtnClick()">电子票</div>
         <div class="ticketBtn" @click="ticketClick()" v-show="statusSign == 1">电子票</div>
         <div class="ticketBtn" @click="ticketClickNotSign()" v-show="statusSign == 2">电子票</div>
@@ -189,7 +189,7 @@
         new Vue({
             el: '#circle',
             data: {
-
+                preViel : true,
                 comment_box: false,
                 detailBom_box: false,
 
@@ -225,14 +225,16 @@
                 disTime: '',
                 disContent: '',
 
-
+                costList:[],
                 CircleSummer: [],
 
 
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
+                this.preViel = api.pageParam.preViel;
                 this.person_id = localStorage.getItem("user");
+                // this.costList = deleteOnlyOne(this.cost.split(','));
                 this.CircleProfileAllinOne();
             },
             mounted: function () {
@@ -268,6 +270,7 @@
                             that.company_name = circleSummary.company_name;
                             that.p_sex = circleSummary.p_sex;
                             that.CircleSummer = data.CircleSummer;
+                            that.costList = deleteOnlyOne(circleSummary.cost.split(','));
 
 
                             if (Comment.p_name == undefined) {

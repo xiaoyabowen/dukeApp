@@ -6,174 +6,178 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>圈子</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css">
     <style>
     </style>
 </head>
 <body>
-    <div class="manActivity" id="circle">
-        <div class="content">
-            <div class="top cssFlex">
-                <div class="todaySignUp cssFlex">
-                    <div class="today_img">
-                      <img src="../../../image/circle/toSignIcon.png" alt="">
-                    </div>
-                    <div class="datas">
-                        <p class="num">{{items.dayCount}}</p>
-                        <p>今日报名</p>
-                    </div>
+<div class="manActivity" id="circle">
+    <div class="content">
+        <div class="top cssFlex">
+            <div class="todaySignUp cssFlex">
+                <div class="today_img">
+                    <img src="../../../image/circle/toSignIcon.png" alt="">
                 </div>
-                <div class="todaySignIn cssFlex">
-                  <div class="today_img">
-                    <img src="../../../image/circle/toQianIcon.png" alt="">
-                  </div>
-                  <div class="datas">
-                      <p class="num">{{items.dayNum}}</p>
-                      <p>今日签到</p>
-                  </div>
+                <div class="datas">
+                    <p class="num">{{items.dayCount}}</p>
+                    <p>今日报名</p>
                 </div>
             </div>
-            <div class="bot cssFlex">
-              <div class="totalBrowser cssFlex">
+            <div class="todaySignIn cssFlex">
+                <div class="today_img">
+                    <img src="../../../image/circle/toQianIcon.png" alt="">
+                </div>
+                <div class="datas">
+                    <p class="num">{{items.dayNum}}</p>
+                    <p>今日签到</p>
+                </div>
+            </div>
+        </div>
+        <div class="bot cssFlex">
+            <div class="totalBrowser cssFlex">
                 <div class="total_img">
-                  <img src="../../../image/circle/allSeeIcon.png" alt="">
+                    <img src="../../../image/circle/allSeeIcon.png" alt="">
                 </div>
                 <div class="datas">
                     <p class="num">{{items.lookNum}}</p>
                     <p>总浏览</p>
                 </div>
-              </div>
-              <div class="totalSignUp cssFlex">
+            </div>
+            <div class="totalSignUp cssFlex">
                 <div class="total_img">
-                  <img src="../../../image/circle/allSignIcon.png" alt="">
+                    <img src="../../../image/circle/allSignIcon.png" alt="">
                 </div>
                 <div class="datas">
                     <p class="num">{{items.count}}</p>
                     <p>总报名</p>
                 </div>
-              </div>
-              <div class="totalSignIn cssFlex">
+            </div>
+            <div class="totalSignIn cssFlex">
                 <div class="total_img">
-                  <img src="../../../image/circle/allQianIcon.png" alt="">
+                    <img src="../../../image/circle/allQianIcon.png" alt="">
                 </div>
                 <div class="datas">
                     <p class="num">{{items.num}}</p>
                     <p>总签到</p>
                 </div>
-              </div>
-            </div>
-        </div>
-        <div class="colorbar"></div>
-        <div class="perpare">
-            <p>筹备/邀请</p>
-            <div class="prepareMain">
-              <div class="edit" style="border-right:0.02rem solid #e4e4e4">
-                  <div class="pic">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                  </div>
-                  <div class="txt" @click='toEdit(circle_id)'>活动编辑</div>
-              </div>
-              <div @click = 'prelook' class="prelook" style="border-right:0.02rem solid #e4e4e4">
-                <div class="pic">
-                  <img src="../../../image/circle/detailYu.png" alt="">
-                </div>
-                <div class="txt">详情预览</div>
-              </div>
-              <div class="share ">
-                <div class="pic">
-                  <img src="../../../image/circle/shareIcon.png" alt="">
-                </div>
-                <div class="txt">社交分享</div>
-              </div>
-            </div>
-        </div>
-        <div class="colorbar"></div>
-        <div class="assign">
-            <p>报名/签到</p>
-            <div class="assignMain">
-              <div class="qrcode" style="border-right:0.02rem solid #e4e4e4" @click="saosao()">
-                <div class="pic">
-                  <img src="../../../image/circle/saoYzIcon.png" alt="">
-                </div>
-                <div class="txt">扫码验票</div>
-              </div>
-              <div class="manage" @click="toManPerson(circle_id)">
-                <div class="pic">
-                  <img src="../../../image/circle/perManIcon.png" alt="">
-                </div>
-                <div class="txt">人员管理</div>
-              </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>
-        eruda.init();
-    </script>
-    <script type="text/javascript" src="../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/mui.min.js"></script>
-    <script type="text/javascript" src="../../../script/data.js"></script>
-    <script src="../../../script/vue.min.js"></script>
-    <script src="../../../script/vuex.min.js"></script>
-    <script>
-        apiready = function () {
-            var circle_id = api.pageParam.circle_id;
-            // console.log(123,circle_id);
-            new Vue({
-                el: '#circle',
-                data: {
-                    circle_id:circle_id,
-                    items:{},
-                    writeText : '',
-                    userName : '',
-                    userPhone : '',
-                },
-                created: function () {
-                  var that = this;
-                  ajaxGetWithProgress(circleManageCount,{
-                      circle_id:circle_id
-                  },function(data){
-                      // console.log(data,123)
-                      if(data){
-                          that.items = data;
-                      }
-                  })
-                },
-                mounted: function () {
-
-                },
-                methods: {
-                    saosao : function () {
-                        var that = this
-                        openNewWindow("saosao", "./saosao.html",{
-                            circle_id:circle_id
-                        })
-                    },
-                    toManPerson : function (id) {
-                        var that = this
-                        openNewWindow("manPerson", "./manPerson.html",{
-                           circleId:id,
-                        })
-                    },
-                    toEdit:function(id){ //编辑活动
-                        openNewWindow('publishActivity','./publishActivity.html',{
-                          circleId:id,
-                        })
-                    },
-                    prelook:function(){
-                      mui.alert('功能正在开发中，敬请期待...')
+    <div class="colorbar"></div>
+    <div class="perpare">
+        <p>筹备/邀请</p>
+        <div class="prepareMain">
+            <div class="edit" style="border-right:0.02rem solid #e4e4e4">
+                <div class="pic">
+                    <img src="../../../image/circle/actEditIcon.png" alt="">
+                </div>
+                <div class="txt" @click='toEdit(circle_id)'>活动编辑</div>
+            </div>
+            <div @click='prelook(circle_id)' class="prelook" style="border-right:0.02rem solid #e4e4e4">
+                <div class="pic">
+                    <img src="../../../image/circle/detailYu.png" alt="">
+                </div>
+                <div class="txt">详情预览</div>
+            </div>
+            <div class="share ">
+                <div class="pic">
+                    <img src="../../../image/circle/shareIcon.png" alt="">
+                </div>
+                <div class="txt">社交分享</div>
+            </div>
+        </div>
+    </div>
+    <div class="colorbar"></div>
+    <div class="assign">
+        <p>报名/签到</p>
+        <div class="assignMain">
+            <div class="qrcode" style="border-right:0.02rem solid #e4e4e4" @click="saosao()">
+                <div class="pic">
+                    <img src="../../../image/circle/saoYzIcon.png" alt="">
+                </div>
+                <div class="txt">扫码验票</div>
+            </div>
+            <div class="manage" @click="toManPerson(circle_id)">
+                <div class="pic">
+                    <img src="../../../image/circle/perManIcon.png" alt="">
+                </div>
+                <div class="txt">人员管理</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>
+    eruda.init();
+</script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/util.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+<script>
+    apiready = function () {
+        var circle_id = api.pageParam.circle_id;
+        // console.log(123,circle_id);
+        new Vue({
+            el: '#circle',
+            data: {
+                circle_id: circle_id,
+                items: {},
+                writeText: '',
+                userName: '',
+                userPhone: '',
+            },
+            created: function () {
+                var that = this;
+                ajaxGetWithProgress(circleManageCount, {
+                    circle_id: circle_id
+                }, function (data) {
+                    // console.log(data,123)
+                    if (data) {
+                        that.items = data;
                     }
-                }
-            })
-        }
+                })
+            },
+            mounted: function () {
 
-    </script>
+            },
+            methods: {
+                saosao: function () {
+                    var that = this
+                    openNewWindow("saosao", "./saosao.html", {
+                        circle_id: circle_id
+                    })
+                },
+                toManPerson: function (id) {
+                    var that = this
+                    openNewWindow("manPerson", "./manPerson.html", {
+                        circleId: id,
+                    })
+                },
+                toEdit: function (id) { //编辑活动
+                    openNewWindow('publishActivity', './publishActivity.html', {
+                        circleId: id,
+                    })
+                },
+                prelook: function (id) {
+                    openNewWindow('activeDetail', './activeDetail.html', {
+                        circle_id: id,
+                        preViel : true
+                    })
+                    // mui.alert('功能正在开发中，敬请期待...')
+                }
+            }
+        })
+    }
+
+</script>
 </body>
 </html>
