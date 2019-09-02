@@ -656,6 +656,7 @@ function ajaxGet(url, params, callBack) {
     // var user = getUserInfo();
     // console.log(user)
     // params.token = user.token;
+
     // 测试用
     var user = localStorage.getItem('user');
     console.log(user);
@@ -670,7 +671,7 @@ function ajaxGet(url, params, callBack) {
     if (user) {
         params.uid = localStorage.getItem("person_id")
     }
-    api.hideProgress();
+    api.showProgress({});
     console.log('token', params)
     api.ajax({
         url: url,
@@ -782,7 +783,7 @@ function ajaxGetRelease(url, getData, callBack) {
 }
 function ajaxGetWithProgress(url, getData, callBack) {
 
-	api.showProgress({});
+
 	ajaxGet(url, getData, function(ret,err){
 		callBack(ret, err);
 		api.hideProgress();

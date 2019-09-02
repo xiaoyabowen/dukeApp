@@ -103,8 +103,9 @@
     <script>
         var app;
         var detailData = {};
-
+        var circle_id;
         apiready = function() {
+            circle_id = api.pageParam.circleId ? api.pageParam.circleId : '';
             app = new Vue({
                 el: '#informationInit',
                 data: {
@@ -161,7 +162,7 @@
                                     that.img = editJson.poster;
                                     that.poster = editJson.poster;
                                     that.title = editJson.title;
-                                    that.name = editJson.p_name;
+                                    that.name = editJson.cir_name;
                                     that.phone = editJson.phone;
                                     that.tag = editJson.suggest;
                                     that.num = editJson.number;
@@ -325,9 +326,6 @@
 
                         })
                     },
-                    toPreview: function() {
-                        sendMsg(1);
-                    }
                 }
             })
         }
@@ -407,12 +405,16 @@
 
             if (flag) { //flag存在表示预览 否则表示发布
                 //预览逻辑
-                mui.toast('预览');
+                // mui.toast('预览');
+                openNewWindow('preview','./preview.html',{
+                  json,
+                  circle_id:circle_id,
+                })
                 // console.log(json, '预览')
             } else {
                 if (app.isEdit) {
                   //编辑更新提交
-                    json.circle_id = app.circleId;
+                  json.circle_id = app.circleId;
                   ajaxGetWithProgress(updateCircleSummary,json,function(data){
                     if(data.status == true){
                       mui.alert('活动编辑成功');

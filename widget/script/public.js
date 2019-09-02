@@ -346,12 +346,7 @@ var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
 
 //圈子 人员管理 根据状态切换
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> master
 var querySignCirPerson = serverUrl + '/CircleProfile/querySignCirPerson';
 
 //圈子 二维码签到
@@ -1807,3 +1802,8 @@ function checkEmail(emailText) {
 //function showBackButton(){
 //	document.getElementById("leftButton").style.opacity = 1;
 //}
+//删除数组最后一个元素
+function deleteOnlyOne(arr){
+    arr.splice(arr.length-1,1);
+    return arr;
+}

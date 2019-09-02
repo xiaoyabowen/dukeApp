@@ -383,6 +383,9 @@
     padding: 0.23rem 0 0.26rem;
     border-bottom: 1px solid #ebebeb;
 }
+#circlepre .detailTextTitle{
+  height: 0.9rem;
+}
 .detailMainTitle{
     font-weight:500;
     color:rgba(51,51,51,1);

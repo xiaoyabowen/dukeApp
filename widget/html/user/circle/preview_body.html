@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>圈子</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/circleCommon.css">
+</head>
+
+<body>
+
+  <div id="circlepre" v-cloak>
+      <img :src="poster" alt="" class="deImg">
+      <div class="detailBox boxSub">
+          <div class="detTitle commonTitle textOverflow">
+              {{title}}
+          </div>
+      </div>
+      <div class="line20"></div>
+      <div class="boxSub">
+          <div class="detActTime cssFlex">
+              <img src="../../../image/circle/tiem2x.png" alt="" class="tiem2x">
+              <span class="detActTimeText">活动时间：</span>
+              <span class="detActTimeInfo">
+                  {{c_from}}至{{c_to}}
+              </span>
+          </div>
+          <div class= "detActAddr cssFlex">
+              <div class="detActAddrLeft">
+                  <img src="../../../image/circle/city2x.png" alt="" class="city2x">
+                  <span class="detActTimeText">活动地点：</span>
+                  <span class="detActTimeInfo">
+                  {{address}}
+              </span>
+              </div>
+              <!-- <img src="../../../image/circle/locationx.png" alt="locationx" class="locationx" @click="baiduditu()"> -->
+          </div>
+          <div class="detActUser cssFlex">
+              <div class="detActAddrLeft">
+                  <img src="../../../image/circle/contacts2x.png" alt="" class="contacts2x">
+                  <span class="detActTimeText">联系人：</span>
+                  <span class="detActTimeInfo">
+                      {{phone}}
+                  </span>
+              </div>
+              <!-- <img src="../../../image/circle/phone2x.png" alt="locationx" class="locationx" @click="callHandle(phone)"> -->
+          </div>
+      </div>
+
+      <div class="line20"></div>
+      <!--活动详情-->
+      <div class="detailTextBox boxSub">
+          <div class="commonFont detailTextTitle">活动详情</div>
+
+          <div class="detailMainBox">
+              <div class="detailMainBoxText commonFont">
+                  {{details}}
+              </div>
+              <div v-for = 'item in costList' class="detailMainBoxImg">
+                  <img :src="item" alt="">
+              </div>
+          </div>
+      </div>
+  </div>
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>
+        eruda.init();
+    </script>
+    <script type="text/javascript" src="../../../script/api.js"></script>
+    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../../script/public.js"></script>
+    <script type="text/javascript" src="../../../script/rem.js"></script>
+    <script type="text/javascript" src="../../../script/mui.min.js"></script>
+    <script type="text/javascript" src="../../../script/data.js"></script>
+    <script src="../../../script/vue.min.js"></script>
+    <script src="../../../script/vuex.min.js"></script>
+
+    <script type="text/javascript" src="../../../script/city.data-3.js"></script>
+    <script>
+      var data;
+      var param;
+      apiready = function(){
+        param = api.pageParam;
+        data = param.json;
+        var app = new Vue({
+          el:"#circlepre",
+          data:{
+            // p_sex:'',
+            // p_icon:"",
+            // job_name:"",
+            // company_name:'',
+            // p_name:"",
+
+            title:"",
+            poster:"",
+            c_from:'',
+            c_to:'',
+            address:'',
+            phone:"",
+
+            details:"",
+            cost:'',
+            costList:[],
+          },
+          mounted(){
+            console.log(data,'130');
+            this.title = data.title;
+            this.poster = data.poster;
+            this.c_from = data.c_from;
+            this.c_to = data.c_to;
+            this.address = data.address + data.adrdetail;
+            this.phone = data.phone;
+            this.details = data.suggest;
+            this.cost = data.cost;
+            this.costList = deleteOnlyOne(this.cost.split(','));
+            // deleteOnlyOne
+            // console.log(this.costList,'125');
+          },
+          methods:{
+
+          },
+        })
+      }
+      function sendPub(){
+        console.log(param);
+        if (param.circle_id) {
+          //编辑更新提交
+          data.circle_id = param.circle_id;
+          ajaxGetWithProgress(updateCircleSummary,data,function(data){
+            if(data.status == true){
+              mui.alert('活动编辑成功');
+              // closeWin();
+            }else{
+              mui.alert('活动编辑失败，请稍后重试');
+            }
+          })
+        }else{
+          ajaxGetWithProgress(createCircle, data, function(data, err) {
+            // console.log(data,'131');
+              if (data.return_info.status) {
+                  mui.alert('活动发布成功');
+                  // closeWin();
+                  //成功逻辑...
+              } else {
+                  mui.alert('活动发布失败，请稍后重试');
+                  //失败逻辑
+              }
+          });
+        }
+      }
+    </script>
+</body>
+
+</html>
