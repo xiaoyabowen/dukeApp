@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
 <body>
-<div id="circle">
+<div id="circle" v-cloak>
     <!--quanzi-->
     <div class="cirBox isDisplay">
         <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">

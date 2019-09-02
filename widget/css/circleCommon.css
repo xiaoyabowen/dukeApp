@@ -1062,6 +1062,9 @@
   margin: 0.02rem 0;
   color: #638BFF;
 }
+.manPerson .status1{
+  color: #FF6A77;
+}
 .manPerson .oprate{
 
 }
@@ -1169,5 +1172,40 @@
   line-height: 0.4rem;
   text-align: center;
   margin-top: 0.4rem;
+}
+
+#circle .tabs{
+  justify-content: space-around;
+  align-items: center;
+  height: 0.9rem;
+  border-bottom: 0.01rem solid #eaeaea;
+  font-size: 0.28rem;
+  color: #333;
+  position: fixed;
+  top: 0;
+  width:100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+#circle .actives{
+  color: #638BFF;
+  position: relative;
+}
+#circle .actives::after{
+  content: "";
+  width: 0.9rem;
+  height:0.04rem;
+  background: #638BFF;
+  position: absolute;
+  left: 50%;
+  margin-left: -0.45rem;
+  bottom: -0.2rem;
+  z-index: 9;
+}
+#circle .tabcontents{
+  margin-top: 1.1rem;
+}
+[v-cloak] {
+  display: none;
 }
 /*leilei*/
