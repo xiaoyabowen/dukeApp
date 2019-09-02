@@ -781,3 +781,9 @@ img.info-img-right {
     margin-right: 0.2rem;
     margin-top: 0.1rem;
 }
+
+[v-cloak] {
+    display: none;
+}
+
+

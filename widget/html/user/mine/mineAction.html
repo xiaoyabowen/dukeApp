@@ -7,27 +7,37 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>希腊房产</title>
-    <link rel="stylesheet" href="../../../../css/api.css" />
-    <link rel="stylesheet" href="../../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
         .headerBox {
             justify-content: space-between;
+            margin-top: -0.2rem;
         }
-        .oneImgRight,.rightImgEdite {
+
+        .oneImgRight, .rightImgEdite {
             width: 0.34rem;
             height: 0.38rem;
-            margin-top: -0.6rem;
+            margin-top: -0.8rem;
+        }
+
+        .juConImg {
+            margin-top: -0.1rem;
+            width: 0.4rem;
+            height: 0.4rem;
         }
 
         .rightImgEdite {
             width: 0.3rem;
             height: 0.3rem;
         }
-        .leftImgClose{
+
+        .leftImgClose {
             width: auto !important;
             text-align: left !important;
         }
-        .middleMain{
+
+        .middleMain {
             width: auto !important;
             text-align: center !important;
         }
@@ -45,45 +55,30 @@
         <span class="searchClick">GO</span>
     </div>-->
     <div class="headerBox cssFlex" id="homeIndex">
-        <div class="leftImgClose" onclick="closeWin()">
+        <div class="leftImgClose" onclick="closeWinClick()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
             <!--Aquarius Villa－Glifada-->
             个人中心
         </div>
-        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
+        <img src="../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att == 1"
+             alt="">
+        <img src="../../../image/mine/juCon.png" class="juConImg" @click="collectionHandle()" v-show="att == 0" alt="">
         <div class="rightImgEdite">
-            <img class="oneImgRight" src="../../../../image/mine/share.png" alt="" >
+            <img class="oneImgRight" src="../../../image/mine/share.png" alt="">
 
         </div>
     </div>
 </div>
 
-<!--
-<div id="topbar" class="cssFlex">
-    <div class="home-left">
-        <img class="leftImgTop" src="../../../icon/mine.png">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        &lt;!&ndash;<span class="searchClick">GO</span>&ndash;&gt;
-    </div>
-    <div class="home-right">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
-</div>
--->
-
 </body>
-<script type="text/javascript" src="../../../../script/api.js"></script>
-<script type="text/javascript" src="../../../../script/util.js"></script>
-<script type="text/javascript" src="../../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
-<script type="text/javascript" src="../../../../script/public.js"></script>
-<script type="text/javascript" src="../../../../script/data.js"></script>
-<script type="text/javascript" src="../../../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/vue.min.js"></script>
 <script>
 
     apiready = function () {
@@ -102,7 +97,7 @@
                 picListpic2: [],
                 picListpic3: [],
                 imgs: [],
-                att: false,
+                att: '0',
                 att_id: '',
                 person_id: '',
                 hourseId: '',

@@ -42,7 +42,7 @@
     <script>eruda.init();</script>
 </head>
 <body>
-<div id="circle">
+<div id="circle" v-cloak>
 
     <div class="notSign" :class="comment_box ? '' : 'isDisplay'">
         <img src="../../../image/SignNot.png" alt="sign" class="SignNotImg">
@@ -81,7 +81,7 @@
             <input type="text" v-model="userName" placeholder="您的姓名" class="formInfoInput">
             <input type="text" v-model="userPhone" placeholder="您的电话" class="formInfoInput">
         </div>
-        <div class="formInfoBtn">提交</div>
+        <div class="formInfoBtn" @click="submitSign()">提交</div>
     </div>
 
 </div>
@@ -108,11 +108,13 @@
                 userName : '',
                 userPhone : '',
                 circle_id : '',
+                person_id : '',
                 comment_box : false,
                 circlePerList : [],
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
+                this.person_id = localStorage.getItem("user");
                 this.queryAllSignPerson();
             },
             mounted: function () {
@@ -139,11 +141,55 @@
                     var that = this
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")
                     document.querySelector(".signModalBox").classList.remove("isDisplay")
+
+
+
                 },
                 ModalHideCom : function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
+                },
+                submitSign:function () {
+                    var that = this
+                    var uidUser = localStorage.getItem("user")
+                    if (!uidUser) {
+                        openNewWindow("login", "../../login/login.html");
+                        return;
+                    }
+
+                    if (!that.userName){
+                        toast("请填写姓名")
+                        return
+                    }
+                    if (!that.userPhone) {
+                        toast('请填写手机号码');
+                        return;
+                    }else if(!checkMobileNum(that.userPhone)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+
+                    var obj = {
+                        circle_id : that.circle_id,
+                        person_id : that.person_id,
+                        u_name : that.userName,
+                        phone : that.userPhone,
+                    }
+                    ajaxGetWithProgress(joinCircleCircleProfile,obj,function (data) {
+                        console.log("joinCircleCircleProfile",data)
+                        if (data.return_info.status){
+                            toast("报名成功")
+                            that.userName = ''
+                            that.userPhone = ''
+
+                            document.querySelector(".ModalHideCom").classList.add("isDisplay")
+                            document.querySelector(".signModalBox").classList.add("isDisplay")
+                            that.queryAllSignPerson()
+                        } else {
+                            toast("报名失败")
+                        }
+                    })
                 },
 
             }

@@ -17,20 +17,24 @@
     <script>eruda.init();</script>
 </head>
 <body>
-<div id="circle">
+<div id="circle" v-cloak>
     <div class="saoBox">
         <div class="phoneYZ cssFlex">
-            <input type="number" v-model="phone" class="phoneYZInput" placeholder="手机号码验证" >
+            <input type="number" v-model="phone" class="phoneYZInput" placeholder="手机号码验证">
             <div class="signBtn" @click="signBtnClick()">签到</div>
-
-
-
         </div>
-        <div class="" @click="saosaoClick()">扫一扫</div>
+
+        <img src="../../../image/circle/saoBg.png" alt="sao" class="saoBgImg"/>
+
+
+
+
     </div>
-
+    <div class="saoBtnBox cssFlex" @click="saosaoClick()">
+        <img src="../../../image/circle/sao.png" alt="sao">
+        扫码验票
+    </div>
 </div>
-
 
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -50,89 +54,88 @@
         new Vue({
             el: '#circle',
             data: {
-                phone : '',
-                circle_id : '',
+                phone: '',
+                circle_id: '',
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id
-                console.log("this.circle_id",this.circle_id)
+                console.log("this.circle_id", this.circle_id)
             },
             mounted: function () {
 
 
             },
             methods: {
-                signBtnClick : function () {
+                signBtnClick: function () {
                     var that = this
                     if (!that.phone) {
                         mui.toast('请填写手机号码');
                         return;
-                    }else if(!checkMobileNum(that.phone)){
+                    } else if (!checkMobileNum(that.phone)) {
                         toast("手机号码不正确");
                         return;
                     }
                     var obj = {
-                        phone : that.phone,
-                        circle_id : that.circle_id
+                        phone: that.phone,
+                        circle_id: that.circle_id
                     }
-                    ajaxGetWithProgress(PhoneStatus,obj,function (data) {
-                        console.log("PhoneStatus",data)
-                        if (data){
-                            mui.alert('验证成功', '提示', function (e) {
+                    ajaxGetWithProgress(PhoneStatus, obj, function (data) {
+                        console.log("PhoneStatus", data)
+                        if (data.status) {
+                            mui.alert('扫码成功', '提示', function (e) {
                                 if (e.index == 0) {
-                                    openNewWindow("manPerson", "./manPerson.html",{
-                                        circleId : that.circle_id
+                                    openNewWindow("manPerson", "./manPerson.html", {
+                                        circleId: that.circle_id
                                     });
                                 }
                             });
-
                         } else {
-                            toast("验证失败")
+                            mui.alert(data.msg, '提示', function (e) {
+                                if (e.index == 0) {
+
+                                }
+                            });
                         }
 
                     })
                 },
-                saosaoClick:function () {
+                saosaoClick: function () {
                     var that = this
                     var FNScanner = api.require('FNScanner');
                     FNScanner.open({
                         autorotation: true
-                    }, function(ret, err) {
-                        console.log("FNScanner",ret)
+                    }, function (ret, err) {
+                        console.log("FNScanner", ret)
                         if (ret.eventType == 'success') {
                             var obj = {
-                                invoice : ret.content,
-                                circle_id : that.circle_id
+                                invoice: ret.content,
+                                circle_id: that.circle_id
                             }
-                            ajaxGetWithProgress(invoiceStatus,obj,function (data) {
-                                console.log("invoiceStatus",data)
-                                if (data.status){
+                            ajaxGetWithProgress(invoiceStatus, obj, function (data) {
+                                console.log("invoiceStatus", data)
+                                if (data.status) {
                                     mui.alert('扫码成功', '提示', function (e) {
                                         if (e.index == 0) {
-                                            openNewWindow("manPerson", "./manPerson.html",{
-                                                circleId : that.circle_id
+                                            openNewWindow("manPerson", "./manPerson.html", {
+                                                circleId: that.circle_id
                                             });
-
-                                            api.sendEvent({
-                                                name: 'saosao',
-                                                extra: {
-                                                    key: {
-                                                        statusTicket : 1
-                                                    },
-                                                }
-                                            });
+                                        }
+                                    });
+                                } else {
+                                    mui.alert(data.msg, '提示', function (e) {
+                                        if (e.index == 0) {
 
                                         }
                                     });
                                 }
                             })
-                        }else if (ret.eventType == 'cancel'){
+                        } else if (ret.eventType == 'cancel') {
                             toast("取消扫码")
-                        }else if (ret.eventType == 'cameraError'){
+                        } else if (ret.eventType == 'cameraError') {
                             toast("访问摄像头失败")
-                        }else if (ret.eventType == 'albumError'){
+                        } else if (ret.eventType == 'albumError') {
                             toast("访问相册失败")
-                        }else if (ret.eventType == 'fail'){
+                        } else if (ret.eventType == 'fail') {
                             toast("扫码失败")
                         }
                     });

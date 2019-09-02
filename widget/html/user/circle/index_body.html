@@ -14,7 +14,7 @@
 <body>
 <div id="circle" v-cloak>
     <!--quanzi-->
-    <div class="cirBox">
+    <div class="cirBox isDisplay">
         <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
@@ -111,7 +111,11 @@
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 <script>
+    function reload() {
+        window.location.reload()
+    }
     apiready = function () {
+
         new Vue({
             el: '#circle',
             data: {
@@ -138,7 +142,8 @@
                         });
                     } else {
                         openNewWindow("activeDetail", "./activeDetail.html",{
-                            circle_id : circle_id
+                            circle_id : circle_id,
+                            url : "index"
                         });
                     }
 
@@ -150,7 +155,9 @@
                     }
                     ajaxGetWithProgress(queryCircleList,obj,function (data) {
                         console.log("queryCircleList",data)
+
                         if (data){
+                            document.querySelector(".cirBox").classList.remove("isDisplay")
                             that.circleList = data.Circlelist
                         } else {
                             toast("请求出错")
