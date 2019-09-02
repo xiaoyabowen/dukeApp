@@ -14,7 +14,7 @@
 <body>
 <div id="circle" v-cloak>
     <!--quanzi-->
-    <div class="cirBox isDisplay">
+    <div class="cirBox">
         <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
@@ -155,9 +155,7 @@
                     }
                     ajaxGetWithProgress(queryCircleList,obj,function (data) {
                         console.log("queryCircleList",data)
-
                         if (data){
-                            document.querySelector(".cirBox").classList.remove("isDisplay")
                             that.circleList = data.Circlelist
                         } else {
                             toast("请求出错")
