@@ -346,12 +346,7 @@ var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
 
 //圈子 人员管理 根据状态切换
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> master
 var querySignCirPerson = serverUrl + '/CircleProfile/querySignCirPerson';
 
 //圈子 二维码签到

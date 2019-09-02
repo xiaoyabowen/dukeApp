@@ -625,8 +625,32 @@
     font-size: 0.28rem;
     font-weight:400;
 }
+.saoBgImg{
+    display: block;
+    width: 5.22rem;
+    height: 4.26rem;
+    margin: 0.6rem auto 1.2rem;
 
-
+}
+.saoBtnBox{
+    justify-content: center;
+    align-items: center;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    border-radius: 0.08rem;
+    background:rgba(99,139,255,1);
+    width: 6.88rem;
+    margin: 0 auto;
+    font-size: 0.28rem;
+    color: #ffffff;
+    font-weight:400;
+}
+.saoBtnBox>img{
+    display: block;
+    width: 0.32rem;
+    height: 0.32rem;
+    margin-right: 0.3rem;
+}
 
 
 
