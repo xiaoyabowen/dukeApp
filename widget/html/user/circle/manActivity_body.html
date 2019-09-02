@@ -76,7 +76,7 @@
                   </div>
                   <div class="txt" @click='toEdit(circle_id)'>活动编辑</div>
               </div>
-              <div class="prelook" style="border-right:0.02rem solid #e4e4e4">
+              <div @click = 'prelook' class="prelook" style="border-right:0.02rem solid #e4e4e4">
                 <div class="pic">
                   <img src="../../../image/circle/detailYu.png" alt="">
                 </div>
@@ -164,8 +164,10 @@
                         openNewWindow('publishActivity','./publishActivity.html',{
                           circleId:id,
                         })
+                    },
+                    prelook:function(){
+                      mui.alert('功能正在开发中，敬请期待...')
                     }
-
                 }
             })
         }

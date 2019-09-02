@@ -51,7 +51,7 @@
         url = api.pageParam.url;
         var details = api.pageParam.details;
         var cost = api.pageParam.cost;
-        console.log(details,cost);
+        console.log(api.pageParam,'54444');
         app = new Vue({
             el: '#detailWrap',
             data: {
@@ -146,7 +146,6 @@
     };
 
     function preservation() {
-          // alert(1211111)
           var data = {
               imgs: app.imgs,
               intro: app.intro

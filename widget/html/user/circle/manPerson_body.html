@@ -25,7 +25,7 @@
         </div>
         <div class="tabContent">
             <div class="content">
-                <div v-for='item in itemList' class="conList">
+                <div v-if='itemList.length > 0' v-for='item in itemList' class="conList">
                     <div class="info cssFlex">
                         <div class="avatar">
                             <img :src="cutImg(item.p_icon)" alt="">
@@ -38,9 +38,23 @@
                     <div v-if='item.status == 0' class="status">未签到</div>
                     <div v-if='item.status == 1' class="status">已签到</div>
                     <div class="oprate">
-                        <div @click='tosign(item.id)'>代签</div>
+                        <div :class='[item.status == 1 ? "isSigned" : ""] ' @click='tosign(item.id,item.status)'>代签</div>
                         <div @click='telePhone(item.phone)'>电话</div>
                         <div @click='abolish()'>作废</div>
+                    </div>
+                </div>
+                <div v-if='itemList.length <= 0 'class="noData">
+                    <div class="nodatapic">
+                        <img src="../../../image/circle/manPer.png" alt="">
+                    </div>
+                    <div v-if="tabFlag == 'all'" class="nodatatxt">
+                      {{warnTxt.all}}
+                    </div>
+                    <div v-if="tabFlag == 'resolve'" class="nodatatxt">
+                      {{warnTxt.resolve}}
+                    </div>
+                    <div v-if="tabFlag == 'unresolve'" class="nodatatxt">
+                      {{warnTxt.unresolve}}
                     </div>
                 </div>
             </div>
@@ -67,6 +81,11 @@
                 data: {
                     tabFlag: 'all',
                     itemList: [],
+                    warnTxt:{
+                      all:'该活动还没有人参与哦，快去邀请你的朋友吧！',
+                      resolve:'该活动还没有人签到！',
+                      unresolve:'该活动还没有人未签到！',
+                    }
                 },
                 mounted() {
                     this.loadData()
@@ -111,14 +130,18 @@
                             }
                         })
                     },
-                    tosign(id) {
+                    tosign(id,status) {
+                        if(status == '1'){
+                          mui.alert('请勿重复签到');
+                          return 0;
+                        }
                         // editCircleStatus
                         var that = this;
                         ajaxGetWithProgress(editCircleStatus, {
                             id
                         }, function(data) {
                             if (data.status) {
-                                toast('代签成功');
+                                mui.toast('代签成功');
                                 that.loadData();
                             }
                         })

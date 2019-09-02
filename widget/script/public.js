@@ -4,19 +4,19 @@ var isCleanUser = false;
 
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 
-/*
+
 
 // 本地服务器
 var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.24:8000/SE4M';
 var Domain = 'http://192.168.1.24:8088';
 
-*/
+
 
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 
@@ -313,7 +313,7 @@ var joinCircle = serverUrl + "/CircleProfile/joinCircle";
 var queryInvoice = serverUrl + "/CircleProfile/queryInvoice";
 // 圈子活动签到
 var editCircleStatus = serverUrl + "/CircleProfile/editCircleStatus";
-// 圈子取消活动
+// 圈子暂停活动
 var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 
 // 圈子报名管理
@@ -353,6 +353,8 @@ var addLike = serverUrl + "/CircleProfile/addLike";
 // 取消评论点赞
 var removeLike = serverUrl + "/CircleProfile/removeLike";
 
+// 圈子 编辑后发布
+var updateCircleSummary = serverUrl + "/CircleProfile/updateCircleSummary";
 
 
 // 活动收藏

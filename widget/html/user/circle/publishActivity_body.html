@@ -55,7 +55,7 @@
                 <span class="choice">请选择 ></span>
             </div>
             <div class="information_item  cssFlex" @click="lastTime">
-                <label>报名截止时间</label>
+                <label>报名截止时间：</label>
                 <input type="text" v-model="last_time" maxlength=80 placeholder="" readonly>
                 <span class="choice">请选择 ></span>
             </div>
@@ -75,7 +75,7 @@
                 <div v-if='isEdit' class="editBtn cssFlex">
 
                     <button @click='toPreview'>预览活动</button>
-                    <button @click='changeStatus(status)'>{{status == 1 ? '正在售票' : '暂停活动'}}</button>
+                    <button @click='changeStatus(status)'>{{status == 1 ? '重新发布' : '暂停活动'}}</button>
                     <!-- <button @click='changeStatus(status)' v-if='status == 0'>暂停活动</button> -->
 
                 </div>
@@ -135,48 +135,49 @@
                     this.person_id = localStorage.getItem('person_id');
 
                     var param = api.pageParam; //编辑逻辑
-                    if(param.circleId){
-                      this.isEdit = true;
-                      console.log(param.circleId,'124')
+                    if (param.circleId) {
+                        this.isEdit = true;
+                        this.circleId = param.circleId;
+                        console.log(param.circleId, '124')
                     }
                 },
                 mounted: function() {
                     this.getEditData();
                 },
                 methods: {
-                    getEditData:function(){
-                      var that = this;
-                      this.person_id = localStorage.getItem('person_id');
+                    getEditData: function() {
+                        var that = this;
+                        this.person_id = localStorage.getItem('person_id');
 
-                      var param = api.pageParam; //编辑逻辑
-                      if (param.circleId) {
-                          this.isEdit = true;
-                          ajaxGetWithProgress(CircleProfileAllinOne, {
-                              circle_id: param.circleId
-                          }, function(data) {
-                              if (data && data.circleSummary) {
-                                console.log(data.circleSummary,'aaa')
-                                  var editJson = data.circleSummary;
-                                  that.img = editJson.poster;
-                                  that.poster = editJson.poster;
-                                  that.title = editJson.title;
-                                  that.name = editJson.p_name;
-                                  that.phone = editJson.phone;
-                                  that.tag = editJson.suggest;
-                                  that.num = editJson.number;
-                                  that.time_from = editJson.c_from;
-                                  that.time_to = editJson.c_to;
-                                  that.last_time = editJson.endtime;
-                                  that.selectAddress = editJson.address;
-                                  that.detailAddress = editJson.adrdetail;
-                                  that.editDetails = editJson.details;
-                                  that.editCost = editJson.cost;
-                                  that.status = editJson.cir_status;
-                                  // 1已暂停
-                                  // 0发布中
-                              }
-                          })
-                      }
+                        var param = api.pageParam; //编辑逻辑
+                        if (param.circleId) {
+                            this.isEdit = true;
+                            ajaxGetWithProgress(CircleProfileAllinOne, {
+                                circle_id: param.circleId
+                            }, function(data) {
+                                if (data && data.circleSummary) {
+                                    console.log(data.circleSummary, 'aaa')
+                                    var editJson = data.circleSummary;
+                                    that.img = editJson.poster;
+                                    that.poster = editJson.poster;
+                                    that.title = editJson.title;
+                                    that.name = editJson.p_name;
+                                    that.phone = editJson.phone;
+                                    that.tag = editJson.suggest;
+                                    that.num = editJson.number;
+                                    that.time_from = editJson.c_from;
+                                    that.time_to = editJson.c_to;
+                                    that.last_time = editJson.endtime;
+                                    that.selectAddress = editJson.address;
+                                    that.detailAddress = editJson.adrdetail;
+                                    that.editDetails = editJson.details;
+                                    that.editCost = editJson.cost;
+                                    that.status = editJson.cir_status;
+                                    // 1已暂停
+                                    // 0发布中
+                                }
+                            })
+                        }
                     },
                     upImg: function() {
                         var that = this
@@ -288,51 +289,44 @@
                         picker.setData(cityData3)
                         picker.pickers[0].setSelectedIndex(0);
                         picker.show(function(SelectedItem) {
-                            that.selectAddress = SelectedItem[0].text + SelectedItem[1].text + SelectedItem[2].text;
-
+                            that.selectAddress = SelectedItem[0].text +'-'+ SelectedItem[1].text +'-'+ SelectedItem[2].text;
                         })
                     },
                     toActiveDetail: function(details, cost) {
                         openNewWindow("editActivityDetail", "./editActivityDetail.html", {
                             url: "publishActivity",
-                            details,
-                            cost
+                            details:details,
+                            cost:cost
                         })
                     },
                     toPreview: function() {
                         sendMsg(1);
                     },
                     changeStatus(status) {
-                      var aimStatus;
-                      if(status == 0){
-                          aimStatus = 1;
-                      }else{
-                        aimStatus = 0;
-                      }
+                        var aimStatus;
+                        if (status == 0) {
+                            aimStatus = 1;
+                        } else {
+                            aimStatus = 0;
+                        }
                         var that = this;
                         ajaxGetWithProgress(updateCircle, {
                             circle_id: api.pageParam.circleId,
                             cir_status: aimStatus
                         }, function(data) {
                             if (data.status) {
-                              if(status == 0){
-                                alert('暂停活动成功');
-                              }else{
-                                alert('开始售票成功');
-                              }
-                              that.status = aimStatus;
+                                if (status == 0) {
+                                    mui.alert('暂停活动成功');
+                                } else {
+                                    mui.alert('开始售票成功');
+                                }
+                                that.status = aimStatus;
                             }
 
                         })
                     },
-                    toActiveDetail: function() {
-                        openNewWindow("editActivityDetail", "./editActivityDetail.html", {
-                            url: "publishActivity"
-
-                        })
-                    },
-                    toPreview:function(){
-                      sendMsg(1);
+                    toPreview: function() {
+                        sendMsg(1);
                     }
                 }
             })
@@ -361,6 +355,12 @@
                 cost: detailData.imgs ? detailData.imgs : '', //活动图片
 
             }
+
+            if(app.isEdit){ //编辑
+                json.details = app.editDetails;
+                json.cost = app.editCost
+            }
+
             var valadateJson = {
                 poster: '封面',
                 title: "活动标题",
@@ -381,13 +381,13 @@
             //验证为空时处理
             for (key in json) {
                 if (!json[key]) {
-                    toast('请填写' + valadateJson[key]);
+                    mui.toast('请填写' + valadateJson[key]);
                     return 0;
                 }
             }
             //手机号验证
             if (!checkMobileNum(json.phone)) {
-                toast('请填写正确格式的手机号');
+                mui.toast('请填写正确格式的手机号');
                 return 0;
             }
 
@@ -396,35 +396,46 @@
             //2.活动结束时间 json.c_to
             //3.报名截止时间 json.endtime
             if (new Date(json.c_from).getTime() > new Date(json.c_to).getTime()) {
-                toast('请保持活动开始时间于活动结束时间之前');
+                mui.toast('请保持活动开始时间于活动结束时间之前');
                 return 0;
             }
 
             if (new Date(json.endtime).getTime() > new Date(json.c_to).getTime()) {
-                toast('请保持报名截止时间于活动结束时间之前');
+                mui.toast('请保持报名截止时间于活动结束时间之前');
                 return 0;
             }
 
             if (flag) { //flag存在表示预览 否则表示发布
                 //预览逻辑
-                toast('预览');
-                console.log(json, '预览')
+                mui.toast('预览');
+                // console.log(json, '预览')
             } else {
-                //完成验证发布活动
-                ajaxGetWithProgress(createCircle, json, function(data, err) {
-                    if (data.return_info.status) {
-                        alert('活动发布成功');
-                        closeWin();
-                        //成功逻辑...
-                    } else {
-                        alert('活动发布失败，请稍后重试');
-                        //失败逻辑
+                if (app.isEdit) {
+                  //编辑更新提交
+                    json.circle_id = app.circleId;
+                  ajaxGetWithProgress(updateCircleSummary,json,function(data){
+                    if(data.status == true){
+                      mui.alert('活动编辑成功');
+                      closeWin();
+                    }else{
+                      mui.alert('活动编辑失败，请稍后重试');
                     }
-                });
-
+                  })
+                } else {
+                  //完成验证发布活动
+                  ajaxGetWithProgress(createCircle, json, function(data, err) {
+                      if (data.return_info.status) {
+                          mui.alert('活动发布成功');
+                          closeWin();
+                          //成功逻辑...
+                      } else {
+                          mui.alert('活动发布失败，请稍后重试');
+                          //失败逻辑
+                      }
+                  });
+                }
             }
         }
-
     </script>
 </body>
 
