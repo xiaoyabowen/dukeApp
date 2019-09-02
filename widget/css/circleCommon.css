@@ -47,6 +47,8 @@
     height: 0.46rem;
     margin-right: 0.1rem;
     margin-left: 0.1rem;
+    border-radius: 50%;
+    /*background-size: cover;*/
 }
 
 .cirMainTitleTime,.cirMainTitleAddr{
@@ -88,7 +90,7 @@
 }
 .userImgAll{
     position: relative;
-    height: 0.58rem;
+    /*height: 0.58rem;*/
     margin-bottom: 0.16rem;
 }
 .allImgCom{
@@ -96,6 +98,7 @@
     width: 0.6rem;
     height: 0.6rem;
     top: 0;
+    border-radius: 50%;
 }
 .allImg0{
     left: 0;
@@ -143,12 +146,10 @@
 .cirSignUserNum{
     color:rgba(102,102,102,1);
 }
-.signUserBtn{
+.signUserBtnCom{
     width:1.92rem;
     height:0.6rem;
     line-height: 0.6rem;
-    background:linear-gradient(133deg,rgba(55,108,250,1) 0%,rgba(117,81,255,1) 100%);
-    box-shadow:0px 2px 4px 0px rgba(72,101,252,1);
     border-radius:0.3rem;
     text-align: center;
     font-size: 0.28rem;
@@ -156,6 +157,22 @@
     color:rgba(255,255,255,1);
 }
 
+.signUserBtn{
+    background:linear-gradient(133deg,rgba(55,108,250,1) 0%,rgba(117,81,255,1) 100%);
+    box-shadow:0px 2px 4px 0px rgba(72,101,252,1);
+}
+.signUserBtnMy {
+    background:linear-gradient(133deg,rgba(255,183,66,1) 0%,rgba(255,142,81,1) 100%);
+    box-shadow:0px 2px 4px 0px rgba(252,155,72,1);
+}
+.bgBlack{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0,0,0,0.3);
+    left: 0;
+    top: 0;
+}
 
 /*圈子 活动 详情*/
 .deImg{
@@ -224,20 +241,26 @@
     justify-content: space-between;
     align-items: center;
 }
+.dePerImgBopx{
+    align-items: center;
+}
 .dePerImg{
     display: block;
     width: 0.8rem;
     height: 0.8rem;
     margin-right: 0.2rem;
+    border-radius: 50%;
 }
 .boyIcon{
     display: inline-block;
     width: 0.2rem;
     height: 0.2rem;
 }
+
 .dePerTextName{
     margin-top: -0.2rem;
 }
+
 .dePerTextNameName{
     font-weight:400;
     color:rgba(51,51,51,1);
@@ -262,6 +285,7 @@
     width: 0.6rem;
     height: 0.6rem;
     margin-right: 0.1rem;
+    border-radius: 50%;
 }
 .info-img-right{
     margin-left: 0.2rem;
@@ -285,10 +309,26 @@
 .writeBox{
     justify-content: space-between;
     align-items: center;
-}
-.writeBox{
     margin: 0.3rem 0;
 }
+
+
+.details_comment_box {
+    width: 100%;
+    height:0.98rem;
+    background: #F9F9F9;
+    padding: 0.2rem 0;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+.sendBtN{
+    display: block;
+    margin-right: 0.2rem;
+}
+
 .writeText{
     width:5.9rem;
     height:0.64rem;
@@ -319,6 +359,7 @@
     margin-right: 0.2rem;
     width: 0.76rem;
     height: 0.76rem;
+    border-radius: 50%;
 }
 .discussInfo>span{
     display: block;
@@ -359,6 +400,9 @@
 .detailMainInfoRight{
     font-weight:400;
     color:rgba(102,102,102,1);
+}
+.detailMainBox{
+    margin-top: 0.3rem;
 }
 .detailMainBoxText{
     height: auto !important;
@@ -472,6 +516,35 @@
 .signTimeText{
     color:rgba(102,102,102,1);
 }
+.SignNotImg{
+    display: block;
+    width: 2.2rem;
+    height: 1.8rem;
+    margin: 2.2rem auto 0.5rem;
+}
+.SignNotText{
+    width: 4.1rem;
+    margin: 0 auto;
+    height: auto !important;
+    color:rgba(102,102,102,1);
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+.SignNotBtn{
+    width:4.4rem;
+    height:0.78rem;
+    line-height: 0.78rem;
+    text-align: center;
+    margin: 0 auto;
+    color: #ffffff;
+    font-weight:500;
+    font-size: 0.28rem;
+    background:rgba(99,139,255,1);
+    border-radius:0.08rem;
+}
+
+
+
 
 /*电子票*/
 .ticketBox{
@@ -491,7 +564,7 @@
 .erWeima{
     width: 2.6rem;
     height: 2.6rem;
-    background: #ccc;
+    /*background: #ccc;*/
     margin: 0.54rem auto 0.36rem;
 }
 .ticketSign{
@@ -830,6 +903,7 @@
 .manActivity .total_img{
   width: 0.5rem;
   height: 0.5rem;
+  margin-right: 0.1rem;
 }
 .manActivity .total_img img{
   width: 100%;
@@ -839,9 +913,11 @@
   color: #666;
   font-size: 0.22rem;
 }
+
 .bot .datas .num{
   color: #333;
   font-size: 0.28rem;
+  margin-bottom: -0.1rem;
 }
 .colorbar{
   height: 0.2rem;
@@ -979,6 +1055,10 @@
   color: #fff;
   margin-right: 0.02rem;
 }
+/*.manPerson .oprate div.isSigned{
+  background: #ddd;
+  color: #fff;
+}*/
 .manPerson .oprate>div:nth-child(2){
   background: #FFBA3E;
   color: #fff;
@@ -1041,5 +1121,29 @@
   /*background:rgba(99,139,255,1);*/
   color: #638BFF;
   border: 0.02rem solid #638BFF;
+}
+.manPerson .noData{
+  width: 100%;
+
+}
+.manPerson .noData .nodatapic{
+  width: 2.2rem;
+  height: 1.8rem;
+  margin: 0 auto;
+  /*background: #eee;*/
+  margin-top: 1.35rem;
+}
+.manPerson .noData div img{
+  width: 100%;
+  height: 100%;
+}
+.manPerson .nodatatxt{
+  width: 4.09rem;
+  margin: 0 auto;
+  font-size: 0.28rem;
+  color: #666;
+  line-height: 0.4rem;
+  text-align: center;
+  margin-top: 0.4rem;
 }
 /*leilei*/

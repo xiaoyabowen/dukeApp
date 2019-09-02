@@ -17,8 +17,31 @@
 </head>
 <body>
 <div id="circle">
+<<<<<<< HEAD
     <div class="boxSub">
-        <div class="discussList discussListBor">
+=======
+    <div class="notSign" :class="comment_box ? '' : 'isDisplay'">
+        <img src="../../../image/SignNot.png" alt="sign" class="SignNotImg">
+        <div class="SignNotText commonFont">目前该活动没有评论，快去发表第一条评论吧！</div>
+    </div>
+    <div class="boxSub" :class="comment_box ? 'isDisplay' : ''">
+>>>>>>> master
+        <div class="discussList discussListBor" v-for="(item,index) in commentList" :key="index">
+            <div class="discussTitle cssFlex">
+                <div class="cssFlex discussInfo" @click="personClick(item.person_id)">
+                    <img :src="item.p_icon.split(',')[0]" alt="">
+                    <span>{{item.p_name}}</span>
+                </div>
+                <div class="discussTime commonFont">
+                    {{item.time}}
+                </div>
+            </div>
+            <div class="discussText commonFont">
+                {{item.content}}
+            </div>
+        </div>
+
+        <!--<div class="discussList discussListBor">
             <div class="discussTitle cssFlex">
                 <div class="cssFlex discussInfo">
                     <img src="../../../image/circle/actEditIcon.png" alt="">
@@ -31,35 +54,8 @@
             <div class="discussText commonFont">
                 据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
             </div>
-        </div>
-        <div class="discussList discussListBor">
-            <div class="discussTitle cssFlex">
-                <div class="cssFlex discussInfo">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                    <span>微光</span>
-                </div>
-                <div class="discussTime commonFont">
-                    2019-04-27
-                </div>
-            </div>
-            <div class="discussText commonFont">
-                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
-            </div>
-        </div>
-        <div class="discussList discussListBor">
-            <div class="discussTitle cssFlex">
-                <div class="cssFlex discussInfo">
-                    <img src="../../../image/circle/actEditIcon.png" alt="">
-                    <span>微光</span>
-                </div>
-                <div class="discussTime commonFont">
-                    2019-04-27
-                </div>
-            </div>
-            <div class="discussText commonFont">
-                据队友说你们组织的活动很好，早就想参加了，望你们的活动越办越好！
-            </div>
-        </div>
+        </div>-->
+
     </div>
 
 </div>
@@ -84,7 +80,9 @@
             data: {
                 writeText : '',
                 userName : '',
+                comment_box : false,
                 userPhone : '',
+                commentList : [],
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
@@ -102,6 +100,16 @@
                     }
                     ajaxGetWithProgress(queryAllCommentCircleProfile,obj,function (data) {
                         console.log("queryAllCommentCircleProfile",data)
+
+
+                        if (data.commentList == undefined){
+                            that.comment_box = true
+
+                        }else {
+                            that.commentList = data.commentList
+                            that.comment_box = false
+
+                        }
                     })
                 },
                 signUpBtnClick : function () {
@@ -113,6 +121,9 @@
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
+                },
+                personClick : function () {
+                    toast("个人主页")
                 },
 
             }

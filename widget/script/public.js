@@ -5,18 +5,18 @@ var isCleanUser = false;
 // var serverUrl = "http://192.168.1.22:8000/SE4M/SE/";
 
 
+
 // 本地服务器
 var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.24:8000/SE4M';
 var Domain = 'http://192.168.1.24:8088';
 
 
-/*
+
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
-*/
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 
@@ -226,6 +226,10 @@ var CreatePersonUserProfile = serverUrl + "/UserProfile/CreatePerson";
 // 编辑个人地址
 var UpdateAddress = serverUrl + "/UserProfile/updateAddress";
 
+// 地址  默认地址
+var queryDefaultAdr = Domain + "/delivery/queryDefaultAdr";
+
+
 // 职位详情
 var QueryJobSummary = serverUrl + "/JobProfile/queryJobSummary";
 // 公司详情
@@ -297,7 +301,7 @@ var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
 // 圈子活动列表
 var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
 // 圈子添加活动
-var createCircle = serverUrl + "/CircleProfile/createCircle";
+var createCircle = serverUrl + "/CircleProfile/CreateCircle";
 // 圈子添加活动地址
 var addAddress = serverUrl + "/CircleProfile/addAddress";
 
@@ -309,7 +313,7 @@ var joinCircle = serverUrl + "/CircleProfile/joinCircle";
 var queryInvoice = serverUrl + "/CircleProfile/queryInvoice";
 // 圈子活动签到
 var editCircleStatus = serverUrl + "/CircleProfile/editCircleStatus";
-// 圈子取消活动
+// 圈子暂停活动
 var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 
 // 圈子报名管理
@@ -324,25 +328,44 @@ var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPer
 
 // 圈子 我的活动   我发布的
 var queryAllCommentCircleProfile = serverUrl + "/CircleProfile/queryAllComment";
+// 圈子 已报名页面已报名人员的信息
+var queryAllSignPerson = serverUrl + "/CircleProfile/queryAllSignPerson";
+// 圈子 活动详情页的立即报名
+var joinCircleCircleProfile = serverUrl + "/CircleProfile/joinCircle";
 
+<<<<<<< HEAD
 // 圈子 个人页面
 var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
+=======
+// 圈子 活动管理
+var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 
+// 圈子 人员管理 所有人员
+var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
 
+//圈子 人员管理 根据状态切换
+>>>>>>> leilei
 
+var querySignCirPerson = serverUrl + '/CircleProfile/querySignCirPerson';
 
 
 // 获取评论数据
 var queryCommentSummary = serverUrl + "/CircleProfile/queryCommentSummary";
-// 评论活动
+// 评论活动  发表添加评论
 var addComment = serverUrl + "/CircleProfile/addComment";
 // 评论点赞
 var addLike = serverUrl + "/CircleProfile/addLike";
 // 取消评论点赞
 var removeLike = serverUrl + "/CircleProfile/removeLike";
 
+// 圈子 编辑后发布
+var updateCircleSummary = serverUrl + "/CircleProfile/updateCircleSummary";
+
+
 // 活动收藏
 var addAttentionCircle = serverUrl + "/CircleProfile/addAttentionCircle";
+// 活动收藏
+var AttentionCircle = serverUrl + "/CircleProfile/AttentionCircle";
 // 取消活动收藏
 var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 

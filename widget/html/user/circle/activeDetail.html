@@ -83,10 +83,12 @@
             el: '#homeIndex',
             data: {
                 circle_id : '',
+                person_id : '',
                 att : false,
             },
             created: function () {
                 this.circle_id = api.pageParam.circle_id;
+                this.person_id = localStorage.getItem("user");
                 this.CircleProfileAllinOne()
             },
             mounted: function () {
@@ -102,27 +104,33 @@
                         console.log("CircleProfileAllinOne",data);
                         if (data){
                             that.att = data.Att_status;
-
-
                         } else {
                             toast("请求失败")
                         }
                     })
                 },
+
+
+                // 1 关注了   0  未关注
                 // 收藏
                 collectionHandle: function () {
+                    var that = this;
+
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser){
                         openNewWindow("login", "../../../login/login.html");
                         return;
                     }
-                    var that = this;
-                    ajaxGet(addAttentionCircle, {
+                    var obj = {
                         circle_id: that.circle_id,
-                        ccStatus: 1,
-                    }, function(data,err){
-                        console.log(data);
-                        if (data.commcollect) {
+                        uid : that.person_id,
+                        Att_status : 0,
+                    }
+                    console.log("objobj",obj)
+                    ajaxGetWithProgress(AttentionCircle, obj, function(data,err){
+
+                        console.log("AttentionCircl111e",data);
+                        if (data.data) {
                             toast("已收藏")
                             // window.location.reload()
                         }
@@ -131,6 +139,7 @@
                 },
                 // 收藏
                 collectionHandleActive: function () {
+
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser){
                         openNewWindow("login", "../../../login/login.html");
@@ -139,14 +148,19 @@
                     var that = this;
                     var obj = {
                         circle_id: that.circle_id,
-                        ccStatus: 0,
+                        uid : that.person_id,
+                        Att_status : 1,
                     }
-                    ajaxGet(addAttentionCircle, obj, function(data,err){
-                        console.log(data);
-                        if (data.commcollect) {
+                    console.log("objobj2",obj)
+                    ajaxGetWithProgress(AttentionCircle, obj, function(data,err){
+
+                        console.log("AttentionCircle",data);
+                        if (data.data) {
                             toast("已取消收藏")
                             // window.location.reload()
                         }
+
+
                     });
                     that.att = !that.att;
                 },

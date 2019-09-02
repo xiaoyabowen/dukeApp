@@ -43,79 +43,45 @@
 </head>
 <body>
 <div id="circle">
-    <div class="signBox boxSub">
-        <div class="signList cssFlex">
+
+    <div class="notSign" :class="comment_box ? '' : 'isDisplay'">
+        <img src="../../../image/SignNot.png" alt="sign" class="SignNotImg">
+        <div class="SignNotText commonFont">还没有人报名哦，快去报名吧！</div>
+        <div class="SignNotBtn" @click="signUpBtnClick()">立即报名</div>
+    </div>
+    <div class="signBox boxSub" :class="comment_box ? 'isDisplay' : ''">
+
+        <div class="signList cssFlex" v-for="(item,index) in circlePerList" :key="index">
             <div class="cssFlex">
-                <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
+                <img class="dePerImg" :src="item.p_icon.split(',')[0]" alt="">
                 <div class="dePerText">
                     <div class="dePerTextName">
-                        <span class="commonSub24 dePerTextNameName">爱吃鱼多陶先生</span>
-                        <img src="../../../image/circle/boyIcon.png" alt="bot" class="boyIcon">
+                        <span class="commonSub24 dePerTextNameName">{{item.u_name}}</span>
+
+                        <img src="../../../image/circle/boyIcon.png" v-show="item.p_sex == 0" alt="bot" class="boyIcon">
+                        <img src="../../../image/circle/girlIcon.png" v-show="item.p_sex == 1" alt="bot" class="boyIcon">
                     </div>
                     <div class="dePerTextPos">
-                        <span class="dePerTextPosName">互联网金融|工程师</span>
+                        <span class="dePerTextPosName">{{item.company_name}}|{{item.job_name}}</span>
                     </div>
                 </div>
 
             </div>
             <div class="signTime cssFlex">
-                <span class="signTimeText commonSub24">12小时前</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
+                <span class="signTimeText commonSub24">{{item.time}}</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="signList cssFlex">
-            <div class="cssFlex">
-                <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
-                <div class="dePerText">
-                    <div class="dePerTextName">
-                        <span class="commonSub24 dePerTextNameName">爱吃鱼多陶先生</span>
-                        <img src="../../../image/circle/girlIcon.png" alt="bot" class="boyIcon">
-                    </div>
-                    <div class="dePerTextPos">
-                        <span class="dePerTextPosName">互联网金融|工程师</span>
-                    </div>
-                </div>
 
-            </div>
-            <div class="signTime cssFlex">
-                <span class="signTimeText commonSub24">12小时前</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
-            </div>
-        </div>
-        <div class="signList cssFlex">
-            <div class="cssFlex">
-                <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
-                <div class="dePerText">
-                    <div class="dePerTextName">
-                        <span class="commonSub24 dePerTextNameName">爱吃鱼多陶先生</span>
-                        <img src="../../../image/circle/boyIcon.png" alt="bot" class="boyIcon">
-                    </div>
-                    <div class="dePerTextPos">
-                        <span class="dePerTextPosName">互联网金融|工程师</span>
-                    </div>
-                </div>
+    </div>
 
-            </div>
-            <div class="signTime cssFlex">
-                <span class="signTimeText commonSub24">12小时前</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
-            </div>
+    <div class="ModalHideCom isDisplay" @click="ModalHideCom()"></div>
+    <div class="signModalBox isDisplay">
+        <img src="../../../image/circle/modalImg.png" alt="" class="modalImg">
+        <div class="formInfo">
+            <input type="text" v-model="userName" placeholder="您的姓名" class="formInfoInput">
+            <input type="text" v-model="userPhone" placeholder="您的电话" class="formInfoInput">
         </div>
-        <div class="signList cssFlex">
-            <div class="cssFlex">
-                <img class="dePerImg" src="../../../image/circle/actEditIcon.png" alt="">
-                <div class="dePerText">
-                    <div class="dePerTextName">
-                        <span class="commonSub24 dePerTextNameName">爱吃鱼多陶先生</span>
-                        <img src="../../../image/circle/boyIcon.png" alt="bot" class="boyIcon">
-                    </div>
-                    <div class="dePerTextPos">
-                        <span class="dePerTextPosName">互联网金融|工程师</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="signTime cssFlex">
-                <span class="signTimeText commonSub24">12小时前</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
-            </div>
-        </div>
+        <div class="formInfoBtn">提交</div>
     </div>
 
 </div>
@@ -141,15 +107,34 @@
                 writeText : '',
                 userName : '',
                 userPhone : '',
+                circle_id : '',
+                comment_box : false,
+                circlePerList : [],
             },
             created: function () {
-
+                this.circle_id = api.pageParam.circle_id;
+                this.queryAllSignPerson();
             },
             mounted: function () {
 
 
             },
             methods: {
+                queryAllSignPerson:function(){
+                    var that = this
+                    var obj = {
+                        circle_id : that.circle_id
+                    }
+                    ajaxGetWithProgress(queryAllSignPerson,obj,function (data) {
+                        console.log("queryAllSignPerson",data.signPersonList)
+                        if (data.signPersonList == undefined){
+                            that.comment_box = true
+                        } else{
+                            that.circlePerList = data.signPersonList
+                            that.comment_box = false
+                        }
+                    })
+                },
                 signUpBtnClick : function () {
                     var that = this
                     document.querySelector(".ModalHideCom").classList.remove("isDisplay")

@@ -19,7 +19,7 @@
 <div id="topbar" class="cssFlex">
     <div class="headerBox cssFlex">
         <div class="leftImgClose">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWinReturn()">
         </div>
         <div class="middleMain">
             收货地址
@@ -35,9 +35,33 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script>
-
+    var url
     apiready = function () {
+        url = api.pageParam.url
         initFrameInWin(api.pageParam);
+    }
+    function closeWinReturn() {
+        api.sendEvent({
+            name: 'addressDefault',
+            extra: {
+                key: {
+                    /*c_id: that.magicComCid2,
+                    c_name: that.magicCom2Text,
+                    logo_icon: that.magicCom2Img,*/
+                    addressDefault: 'true'
+                },
+
+            }
+        });
+        var frameName = url + "_body";
+        if (url == 'confirmOrder') {
+            api.execScript({
+                name:url,
+                frameName: frameName,
+                isDefult: "true",
+            })
+            closeWin();
+        }
     }
 
 

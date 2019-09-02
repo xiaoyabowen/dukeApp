@@ -22,7 +22,7 @@
                       <img src="../../../image/circle/toSignIcon.png" alt="">
                     </div>
                     <div class="datas">
-                        <p class="num">345</p>
+                        <p class="num">{{items.dayCount}}</p>
                         <p>今日报名</p>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <img src="../../../image/circle/toQianIcon.png" alt="">
                   </div>
                   <div class="datas">
-                      <p class="num">345</p>
+                      <p class="num">{{items.dayNum}}</p>
                       <p>今日签到</p>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                   <img src="../../../image/circle/allSeeIcon.png" alt="">
                 </div>
                 <div class="datas">
-                    <p class="num">345</p>
+                    <p class="num">{{items.lookNum}}</p>
                     <p>总浏览</p>
                 </div>
               </div>
@@ -51,7 +51,7 @@
                   <img src="../../../image/circle/allSignIcon.png" alt="">
                 </div>
                 <div class="datas">
-                    <p class="num">345</p>
+                    <p class="num">{{items.count}}</p>
                     <p>总报名</p>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                   <img src="../../../image/circle/allQianIcon.png" alt="">
                 </div>
                 <div class="datas">
-                    <p class="num">345</p>
+                    <p class="num">{{items.num}}</p>
                     <p>总签到</p>
                 </div>
               </div>
@@ -74,13 +74,13 @@
                   <div class="pic">
                     <img src="../../../image/circle/actEditIcon.png" alt="">
                   </div>
-                  <div class="txt">活动编辑</div>
+                  <div class="txt" @click='toEdit(circle_id)'>活动编辑</div>
               </div>
-              <div class="prelook" style="border-right:0.02rem solid #e4e4e4">
+              <div @click = 'prelook' class="prelook" style="border-right:0.02rem solid #e4e4e4">
                 <div class="pic">
                   <img src="../../../image/circle/detailYu.png" alt="">
                 </div>
-                <div class="txt">详情预算</div>
+                <div class="txt">详情预览</div>
               </div>
               <div class="share ">
                 <div class="pic">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="txt">扫码验票</div>
               </div>
-              <div class="manage" @click="toManPerson()">
+              <div class="manage" @click="toManPerson(circle_id)">
                 <div class="pic">
                   <img src="../../../image/circle/perManIcon.png" alt="">
                 </div>
@@ -124,18 +124,29 @@
     <script src="../../../script/vuex.min.js"></script>
     <script>
         apiready = function () {
+            var circle_id = api.pageParam.circle_id;
+            // console.log(123,circle_id);
             new Vue({
                 el: '#circle',
                 data: {
+                    circle_id:circle_id,
+                    items:{},
                     writeText : '',
                     userName : '',
                     userPhone : '',
                 },
                 created: function () {
-
+                  var that = this;
+                  ajaxGetWithProgress(circleManageCount,{
+                      circle_id:circle_id
+                  },function(data){
+                      // console.log(data,123)
+                      if(data){
+                          that.items = data;
+                      }
+                  })
                 },
                 mounted: function () {
-
 
                 },
                 methods: {
@@ -143,11 +154,20 @@
                         var that = this
                         openNewWindow("saosao", "./saosao.html")
                     },
-                    toManPerson : function () {
+                    toManPerson : function (id) {
                         var that = this
-                        openNewWindow("manPerson", "./manPerson.html")
+                        openNewWindow("manPerson", "./manPerson.html",{
+                           circleId:id,
+                        })
                     },
-
+                    toEdit:function(id){ //编辑活动
+                        openNewWindow('publishActivity','./publishActivity.html',{
+                          circleId:id,
+                        })
+                    },
+                    prelook:function(){
+                      mui.alert('功能正在开发中，敬请期待...')
+                    }
                 }
             })
         }

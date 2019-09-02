@@ -43,15 +43,37 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script>
-var url
+    var url;
+    // var preservation;
+    var app;
     apiready = function() {
-      url = api.pageParam.url
 
-        new Vue({
+        url = api.pageParam.url;
+        var details = api.pageParam.details;
+        var cost = api.pageParam.cost;
+        console.log(api.pageParam,'54444');
+        app = new Vue({
             el: '#detailWrap',
             data: {
-              imgList:[],
-              intro:'',
+                imgList: [],
+                intro: '',
+                imgs:'',
+
+            },
+            mounted(){
+              if(details && cost){ //编辑
+                this.intro = details;
+                this.imgs = cost;
+                var costArr = cost.split(',');
+                var arr = [];
+                for(var i = 0; i< costArr.length; i++){
+                  if(costArr[i].length > 0){
+                    arr.push({thumbPath:costArr[i]});
+                  }
+                }
+                this.imgList = arr;
+              }
+
             },
             methods: {
                 upimg: function() {
@@ -81,28 +103,38 @@ var url
                         if (ret) {
                             console.log("ret==", ret)
                             that.imgList = ret.list;
+
+                            var imgListArr = {}
+                            var imgList = ret.list;
+                            for (var i=0;i<imgList.length;i++){
+                                imgListArr["file"+(i+1)] = imgList[i].thumbPath;
+                            }
+
+                            console.log(imgListArr,'955');
+
                             var obj = {
                                 uid: localStorage.getItem("user").user_id
                             }
                             api.ajax({
                                 // report : false,
                                 url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
+                                // url:'http://112.126.98.172:8088/upload/UploadFlie',
                                 //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                 method: 'post',
                                 cache: 'false',
                                 timeout: 30,
                                 dataTpye: 'json',
                                 data: {
-                                    files: {
-                                        file: that.img
-                                    },
+                                    files: imgListArr,
                                     values: obj
 
                                 }
                             }, function(data, err) {
-                                console.log("data", data);
-                                if (data.code == 0) {
 
+                                // console.log("dataaaa", data);
+
+                                if (data.code == 0) {
+                                    that.imgs = data.imgUrl
                                 }
                             });
                         }
@@ -114,16 +146,19 @@ var url
     };
 
     function preservation() {
-        console.log('保存详情');
-        var index = 124
-        var frameName = url + "_body";
-        api.execScript({
-            name:url,
-            frameName: frameName,
-            script: 'tripValue(JSON.stringify('+index+'))'
-        })
-        closeWin();
-    }
+          var data = {
+              imgs: app.imgs,
+              intro: app.intro
+          }
+          // console.log(data,'124')
+          var frameName = url + "_body";
+          api.execScript({
+              name: url,
+              frameName: frameName,
+              script: 'tripValue(' + JSON.stringify(data) + ')'
+          })
+          closeWin();
+      }
 </script>
 
 </html>

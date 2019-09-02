@@ -80,113 +80,19 @@
         new Vue({
             el: '#homeIndex',
             data: {
-                activeType: 'trip',
-                item: {},
-                list: [],
-                len: 1,
-                total: 0,
-                picList: [],
-                picListpic1: [],
-                picListpic2: [],
-                picListpic3: [],
-                imgs: [],
-                att: false,
-                att_id: '',
+
                 person_id: '',
-                hourseId: '',
-                active:'magicAll',
-                cid: '',
-                data: '',
-                username: '',
-                userphone: '',
-                userwx: '',
-                usermain: '',
-                showModal : false,
-                listJob: [],
 
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
-                this.hourseId = api.pageParam.hourseId;
-                this.tId = api.pageParam.tId;
-                this.housequeryHouseSummary();
+
             },
             mounted: function () {
-                var that = this
-
-                api.addEventListener({
-                    name: 'jobAll'+that.tId,
-                }, function(ret, err) {
-                    // console.log("ret",ret);
-                    that.hourseId = ret.value.key.cid
-                    that.housequeryHouseSummary()
-
-                });
 
             },
             methods: {
-                // 获取数据
-                housequeryHouseSummary: function () {
-                    var that = this;
-                    ajaxGetWithProgress(housequeryHouseSummary, {
-                        cid: that.hourseId,
-                        pid: that.person_id
-                    }, function (data, err) {
-                        console.log(data);
-                        that.item = data.comm
-                        that.att = data.att;
-                        that.att_id = data.att_id;
-                        that.picList = stringFun(data.comm.intPic)
-                        that.picListpic1 = stringFun(data.comm.pic1)
-                        that.picListpic2 = stringFun(data.comm.pic2)
-                        that.picListpic3 = stringFun(data.comm.pic3)
-                        console.log(that.picList)
 
-                    });
-                },
-                // 收藏
-                collectionHandle: function () {
-                    var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
-                        openNewWindow("login", "../../../login/login.html");
-                        return;
-                    }
-                    var that = this;
-                    ajaxGet(collectComm, {
-                        id: that.att_id,
-                        ccStatus: 1,
-                    }, function(data,err){
-                        console.log(data);
-                        if (data.commcollect) {
-                            toast("已收藏")
-
-                            // window.location.reload()
-                        }
-                    });
-                    that.att = !that.att;
-                },
-                // 收藏
-                collectionHandleActive: function () {
-                    var uidUser = localStorage.getItem("user")
-                    if (!uidUser){
-                        openNewWindow("login", "../../../login/login.html");
-                        return;
-                    }
-                    var that = this;
-                    var obj = {
-                        id: that.att_id,
-                        ccStatus: 0,
-                    }
-                    console.log(obj)
-                    ajaxGet(collectComm, obj, function(data,err){
-                        console.log(data);
-                        if (data.commcollect) {
-                            toast("已取消收藏")
-                            // window.location.reload()
-                        }
-                    });
-                    that.att = !that.att;
-                },
 
             }
         })

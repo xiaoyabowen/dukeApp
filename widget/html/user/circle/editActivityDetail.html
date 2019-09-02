@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,18 +11,19 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/circleCommon.css">
 </head>
+
 <body>
-<div id="topbar" >
-    <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWin()">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+    <div id="topbar">
+        <div class="headerBox cssFlex">
+            <div class="leftImgClose" onclick="closeWin()">
+                <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
+            </div>
+            <div class="middleMain">
+                详情编辑
+            </div>
+            <div class="pubbtn" onclick="publishClick()">保存</div>
         </div>
-        <div class="middleMain">
-            详情编辑
-        </div>
-        <div class="pubbtn" onclick="publishActivity()">保存</div>
     </div>
-</div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -30,18 +31,16 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-
-    apiready = function () {
+    apiready = function() {
         initFrameInWin(api.pageParam);
     };
-    function publishActivity(){
-      console.log('保存详情');
-      api.execScript({
-          frameName: "publishActivity_body",
-          script: 'preservation()'
-      })
+
+    function publishClick() {
+        api.execScript({
+            frameName: "editActivityDetail_body",
+            script: 'preservation()'
+        })
     }
-
-
 </script>
+
 </html>
