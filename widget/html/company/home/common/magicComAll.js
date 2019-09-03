@@ -54,7 +54,7 @@ function magicComAllInit(Vue) {
         },
         mounted: function () {
             var that = this
-            that.myPositionText = store.state.obj.job_name
+            // that.myPositionText = store.state.obj.job_name
             that.magicComCid2 = store.state.obj.job_id
             console.log("myPositionText",that.myPositionText)
             console.log("myPositionTextmagicComCid2",that.magicComCid2)
