@@ -436,6 +436,20 @@
                     console.log(json,'432');
                   ajaxGetWithProgress(createCircle, json, function(data, err) {
                       if (data.return_info.status) {
+                        app.img = '';
+                        app.poster = ''; //海报
+                        app.title='';//活动标题
+                        app.name=''; //主办人姓名
+                        app.phone=''; //发布人电话
+                        app.tag='';//活动标签
+                        app.num=''; //人员限制
+                        app.time_from=''; //活动开始时间
+                        app.time_to=''; //活动结束时间
+                        app.last_time=''; //报名截至时间
+                        app.selectAddress=''; //活动地址
+                        app.detailAddress=''; //活动详情地址
+                        app.editDetails=''; //编辑时的详情
+                        app.editCost= ''; //编辑时的编辑图片
                           mui.alert('活动发布成功,请等待审核', '提示', function (e) {
                               if (e.index == 0) {
                                   // openNewWindow("index", "./index.html");
