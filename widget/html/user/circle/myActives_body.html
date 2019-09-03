@@ -19,7 +19,7 @@
       <div @click='changeTab("joy")' :class="[tabFlag == 'joy' ? 'actives' : '']">我参加的</div>
     </div>
     <div class="cirBox tabcontents">
-        <div class="cirSubBox" @click="activeMan(item.circle_id)" v-for="(item,index) in circleList" :key="index">
+        <div class="cirSubBox" @click="activeMan(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
                 <div class="cirMain">
@@ -92,12 +92,23 @@
 
             },
             methods: {
-                activeMan:function (circle_id) { //活动管理
+                activeMan:function (circle_id,MyCreate) { //活动管理
                     console.log(circle_id)
                     var that = this;
-                    openNewWindow("manActivity", "./manActivity.html",{
+                    /*openNewWindow("manActivity", "./manActivity.html",{
                       circle_id : circle_id
-                    });
+                    });*/
+                    if (MyCreate == true){
+                        openNewWindow("manActivity", "./manActivity.html",{
+                            circle_id : circle_id,
+                            url : "index"
+                        });
+                    } else {
+                        openNewWindow("activeDetail", "./activeDetail.html",{
+                            circle_id : circle_id,
+                            url : "index"
+                        });
+                    }
                 },
                 changeTab(flag){
                   this.tabFlag = flag;

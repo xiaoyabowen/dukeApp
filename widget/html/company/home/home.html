@@ -279,10 +279,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
         <div class="Have_a_chat_box" @click="HavechatClick()">
             <div class="Have_a_chat">
                 聊一聊
@@ -305,7 +301,7 @@
 <script src="../../../script/vuex.min.js"></script>
 <script src="../../../script/mui.min.js"></script>
 <script src="common/magicComAll.js"></script>
-<script src="common/magicPosition.js"></script>
+<!--<script src="common/magicPosition.js"></script>-->
 <script src="common/magicComPosiAll.js"></script>
 <script src="common/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -349,8 +345,6 @@
         }
         var magicComAll = magicComAllInit(Vue);
         Vue.component('magicComAll', magicComAll);
-        var magicPosition = magicPositionInit(Vue);
-        Vue.component('magicPosition', magicPosition);
         var magicComPosiAll = magicComPosiAllInit(Vue);
         Vue.component('magicComPosiAll', magicComPosiAll);
 
@@ -373,13 +367,12 @@
             data: {
                 active: 'magicComAll',
                 person_id:'',
-                // listJob:[]
             },
             created: function () {
-                // this.SmartMenu()
                 this.togle()
             },
             mounted: function () {
+
                 var that = this
                 that.active = store.state.obj.magicCom;
                 that.person_id = api.pageParam.person_id
@@ -408,7 +401,6 @@
                 }, function (ret, err) {
                     console.log("ret", ret);
                     console.log("job_id", ret.value.key.job_id)
-
                     comValue(ret.value.key.job_id)
                 });
                 api.addEventListener({
@@ -416,10 +408,8 @@
                 }, function (ret, err) {
                     comValue(ret.value.key.person_id)
 
-                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
+
                 magicBox = document.querySelector(".magicBox")
                 bgBlack = document.querySelector(".bgBlack")
 

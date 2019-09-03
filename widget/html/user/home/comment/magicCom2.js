@@ -1,7 +1,7 @@
 
 function magicCom2Init(Vue) {
     var str = dataValue('user/home/comment/magicCom2.html')
-    var bus = dataValue('user/home/comment/bus.js')
+    // var bus = dataValue('user/home/comment/bus.js')
     var magicBGheight
     apiready = function () {
 
@@ -108,7 +108,7 @@ function magicCom2Init(Vue) {
                         } else{
                             that.listJob = jobList
                         }
-
+                        that.magicComCid1 = data.company[0].c_id
                         if (data.company[0].logo_icon == ''){
                             that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                         } else {
@@ -145,10 +145,10 @@ function magicCom2Init(Vue) {
 
                 console.log("that.magicComCid1",that.magicComCid1)
 
-
+/*
                 store.state.obj.c_id = that.magicComCid1
                 store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img
+                store.state.obj.logo_icon = that.magicCom1Img*/
 
                 var obj = {
                     magicComCid1: that.magicComCid1,
@@ -166,7 +166,7 @@ function magicCom2Init(Vue) {
                             /*c_id: that.magicComCid1,
                             c_name: that.magicCom1Text,
                             logo_icon: that.magicCom1Img,*/
-                            magicCom1: 'magicCom1'
+                            magicCom1: 'magicCom2'
                         },
                     }
                 });

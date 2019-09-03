@@ -1,8 +1,7 @@
-
 function magicCom1Init(Vue) {
     var str = dataValue('user/home/comment/magicCom1.html')
 
-    var bus = dataValue('user/home/comment/bus.js')
+    // var bus = dataValue('user/home/comment/bus.js')
 
     var magicBGheight
     apiready = function () {
@@ -18,36 +17,36 @@ function magicCom1Init(Vue) {
     }
     return {
         template: str,
-        data: function() {
+        data: function () {
             return {
-                styles:{
+                styles: {
                     //存放的是 动态修改的样式
-                    width:m_d + "px",// 内容标题总样式
-                    height : m_d + "px",
+                    width: m_d + "px",// 内容标题总样式
+                    height: m_d + "px",
                 },
-                animate : false,
-                timeIndex : '',
+                animate: false,
+                timeIndex: '',
                 magicCom2Img: '',
                 magicCom1Img: '',
                 magicCom2Text: '',
                 magicCom1Text: '',
-                magicComCid1 : '',
-                magicComCid2 : '',
+                magicComCid1: '',
+                magicComCid2: '',
 
                 job_id: '',
                 c_id: '',
-                activeAni:true,
+                activeAni: true,
 
                 listJob: [],
                 index: ''
             }
         },
-        created: function() {
+        created: function () {
             this.OneCompanyFourJobMenu()
             this.togle()
 
         },
-        mounted :function (){
+        mounted: function () {
             var that = this
             magicBox = document.querySelector(".magicBox")
             magicBtn = document.getElementsByClassName("magicBtn")
@@ -63,19 +62,19 @@ function magicCom1Init(Vue) {
             magicBGheight.style.height = m_d + "px"
 
             // 里面小盒子宽度
-            for (var i =0;i<magicBtn.length ; i++){
+            for (var i = 0; i < magicBtn.length; i++) {
                 magicBtn[i].style.width = m_d + "px"
                 magicBtn[i].style.height = m_d + "px"
             }
             // 里面小盒子宽度
-            for (var i =0;i<magicSubBox.length ; i++){
+            for (var i = 0; i < magicSubBox.length; i++) {
                 magicSubBox[i].style.width = m_d + "px"
                 magicSubBox[i].style.height = m_d + "px"
             }
             // 图片宽度
-            for (var i =0;i<iconImg.length ; i++){
-                iconImg[i].style.width = m_d/2 + "px"
-                iconImg[i].style.height = m_d/2 + "px"
+            for (var i = 0; i < iconImg.length; i++) {
+                iconImg[i].style.width = m_d / 2 + "px"
+                iconImg[i].style.height = m_d / 2 + "px"
             }
 
             that.magicComCid1 = store.state.obj.c_id
@@ -84,13 +83,13 @@ function magicCom1Init(Vue) {
         },
 
         methods: {
-            togle : function() {
+            togle: function () {
 
-                var isBlck=document.querySelector('.bgBlack')
-                if(isBlck.getAttribute("class")=='isDisplay'){
+                var isBlck = document.querySelector('.bgBlack')
+                if (isBlck.getAttribute("class") == 'isDisplay') {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
                     console.log(document.querySelector('.bgBlack'))
-                }else {
+                } else {
                     var that = this;
                     that.active = 'magicCom1';
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
@@ -101,7 +100,7 @@ function magicCom1Init(Vue) {
                     that.activeAni = false;
                 }, 1500)
             },
-            OneCompanyFourJobMenu : function () {
+            OneCompanyFourJobMenu: function () {
                 var that = this
 
                 that.magicComCid1 = store.state.obj.c_id
@@ -109,31 +108,33 @@ function magicCom1Init(Vue) {
                 that.magicCom1Img = store.state.obj.logo_icon
 
 
-                console.log("store.state.obj.c_name1",store.state.obj.c_name)
+                console.log("store.state.obj.c_name1", store.state.obj.c_name)
 
-                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
-                    console.log("com1",data)
+                ajaxGetWithProgress(OneCompanyFourJobMenu, {cid: that.magicComCid1}, function (data) {
+                    console.log("com1", data)
 
                     var jobList = data.job
                     if (data) {
-                        if (jobList == null){
+                        api.hideProgress();
+                        if (jobList == null) {
                             that.listJob = ''
-                        } else{
+                        } else {
                             that.listJob = jobList
                         }
 
-                        if (data.company[1].logo_icon == ''){
+                        if (data.company[0].logo_icon == '') {
                             that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                         } else {
-                            that.magicCom2Img = data.company[1].logo_icon
+                            that.magicCom2Img = data.company[0].logo_icon
                         }
+
 
                     }
                 })
             },
-            jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
-                console.log("job_id",job_id)
-                console.log("job_name",job_name)
+            jobDetailClick: function (job_id, job_name, index, company_c_id, job_type) {
+                console.log("job_id", job_id)
+                console.log("job_name", job_name)
                 this.timeIndex = index;
 
 
@@ -146,8 +147,8 @@ function magicCom1Init(Vue) {
                     name: 'jobAll',
                     extra: {
                         key: {
-                            job_id : job_id,
-                            job_name : job_name,
+                            job_id: job_id,
+                            job_name: job_name,
                             magicCom: 'magicPosiDetail',
                         },
                     }
@@ -155,10 +156,14 @@ function magicCom1Init(Vue) {
 
 
             },
-            magicCom1Click: function () {  // 公司1
+            magicCom1Click: function (event) {  // 公司1
                 var that = this;
-                that.togle()
 
+                if(event) {
+                    event.stopPropagation ? event.stopPropagation(): event.cancelBubble = true;
+
+                }
+                that.togle()
                 /*var that = this
 
                 var obj = {
