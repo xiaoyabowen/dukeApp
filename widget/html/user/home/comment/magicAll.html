@@ -16,43 +16,11 @@
                 </div>
             </div>
 
-            <!--<div class="magicBtn animation" @click="jobDetailClick(job_id1)">
-                <div class="magicSubBox ">
-                    <div class="magicSubBoxMain">
-                        <img :src="listJob1Img" class="iconImg" alt="person">
-                        <div class="magicSize">{{listJob1Text}}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="magicBtn" @click="jobDetailClick(job_id2)">
-                <div class="magicSubBox">
-                    <div class="magicSubBoxMain">
-                        <img :src="listJob2Img" class="iconImg" alt="person">
-                        <div class="magicSize">{{listJob2Text}}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="magicBtn" @click="jobDetailClick(job_id3)">
-                <div class="magicSubBox">
-                    <div class="magicSubBoxMain">
-                        <img :src="listJob3Img" class="iconImg" alt="person">
-                        <div class="magicSize">{{listJob3Text}}</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="magicBtn" @click="jobDetailClick(job_id4)">
-                <div class="magicSubBox">
-                    <div class="magicSubBoxMain">
-                        <img :src="listJob4Img" class="iconImg" alt="person">
-                        <div class="magicSize">{{listJob4Text}}</div>
-                    </div>
-                </div>
-            </div>-->
         </div>
         <div class="magicBG cssFlex">
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' ">
-                <div class="magicSubBox cssFlex" @click="magicCom1Click(magicComCid1)">
+                <div class="magicSubBox cssFlex" @click="magicCom1Click($event)">
                     <div class="magicSubBoxMain">
                         <img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">
                         <!--<div class="magicSize">{{magicCom1Text}}</div>-->
@@ -60,7 +28,7 @@
                 </div>
             </div>
             <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' ">
-                <div class="magicSubBox cssFlex"  @click="magicCom2Click(magicComCid2)">
+                <div class="magicSubBox cssFlex"  @click="magicCom2Click($event)">
                     <div class="magicSubBoxMain">
                         <img :src="magicCom2Img" class="iconImg iconImgCom" alt="person">
                         <!--<div class="magicSize">{{magicCom2Text}}</div>-->

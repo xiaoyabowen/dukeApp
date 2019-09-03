@@ -38,7 +38,7 @@
             </div>
             <div class="information_item cssFlex">
                 <label>活动标签：</label>
-                <input type="text" v-model="tag" maxlength=80 placeholder="如：免费/社交/美食">
+                <input type="text" v-model="tag" maxlength=80 placeholder="如：免费,社交,美食">
             </div>
             <div class="information_item cssFlex">
                 <label>人数限制：</label>
@@ -210,6 +210,7 @@
                                 var obj = {
                                     uid: localStorage.getItem("user").user_id
                                 }
+                                api.showProgress();
                                 api.ajax({
                                     // report : false,
                                     url: 'http://112.126.98.172:8088/upload/UploadFlieTest',
@@ -228,6 +229,7 @@
                                     }
                                 }, function(data, err) {
                                     console.log("data", data);
+                                    api.hideProgress();
                                     if (data.code == 0) {
                                         that.poster = data.date.src.split(',')[0];
                                     }
@@ -429,6 +431,7 @@
                   })
                 } else {
                   //完成验证发布活动
+                    console.log(json,'432');
                   ajaxGetWithProgress(createCircle, json, function(data, err) {
                       if (data.return_info.status) {
                           mui.alert('活动发布成功,请等待审核', '提示', function (e) {

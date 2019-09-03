@@ -106,21 +106,7 @@ function magicCom1Init(Vue) {
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
-                /*api.addEventListener({
-                    name: 'comCom1',
-                }, function(ret, err) {
 
-                    console.log("comCom1",ret)
-                    that.magicComCid1 = ret.value.key.c_id
-                    that.magicCom1Text = ret.value.key.c_name
-                    that.magicCom1Img = ret.value.key.logo_icon
-
-
-                });*/
-                /*that.magicComCid1 = localStorage.getItem("magic_id")
-                that.magicCom1Text = localStorage.getItem("magic_name")
-                that.magicCom1Img = localStorage.getItem("magic_img")
-*/
                 that.magicComCid1 = store.state.obj.c_id
                 that.magicCom1Text = store.state.obj.c_name
                 that.magicCom1Img = store.state.obj.logo_icon

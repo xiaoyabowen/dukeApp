@@ -65,7 +65,7 @@
             <img class="dePerImg" :src="p_icon" alt="">
             <div class="dePerText">
                 <div class="dePerTextName">
-                    <span class="commonFont dePerTextNameName">{{p_name}}</span>
+                    <span class="commonFont dePerTextNameName">{{cir_name}}</span>
                     <img src="../../../image/circle/boyIcon.png" v-show="p_sex == 1" alt="bot" class="boyIcon">
                     <img src="../../../image/circle/girlIcon.png" v-show="p_sex == 2" alt="bot" class="boyIcon">
                 </div>
@@ -86,11 +86,7 @@
             <div class="deluserImgAll cssFlex">
                 <img class="" v-if="CircleSummer !== null" v-for="(item,index) in CircleSummer" :key="index"
                      :src="item.p_icon.split(',')[0]" alt="">
-                <!--<img class="" src="../../../image/circle/allSeeIcon.png" alt="">
-                <img class="" src="../../../image/circle/saoYzIcon.png" alt="">
-                <img class="" src="../../../image/circle/perManIcon.png" alt="">
-                <img class="" src="../../../image/circle/perManIcon.png" alt="">
-                <img class="" src="../../../image/circle/perManIcon.png" alt="">-->
+
             </div>
             <img src="../../../icon/right.png" alt="right" class="info-img-right">
         </div>
@@ -212,7 +208,7 @@
                 c_to: '',
                 details: '',
                 address: '',
-                p_name: '',
+                cir_name: '',
                 p_icon: '',
                 phone: '',
                 job_name: '',
@@ -263,7 +259,7 @@
                             that.c_to = circleSummary.c_to;
                             that.details = circleSummary.details;
                             that.address = circleSummary.address;
-                            that.p_name = circleSummary.p_name;
+                            that.cir_name = circleSummary.cir_name;
                             that.p_icon = imgSrcFun(circleSummary.p_icon);
                             that.phone = circleSummary.phone;
                             that.job_name = circleSummary.job_name;

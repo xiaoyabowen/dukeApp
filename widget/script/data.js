@@ -783,8 +783,6 @@ function ajaxGetRelease(url, getData, callBack) {
     });
 }
 function ajaxGetWithProgress(url, getData, callBack) {
-
-
 	ajaxGet(url, getData, function(ret,err){
 		callBack(ret, err);
 		api.hideProgress();

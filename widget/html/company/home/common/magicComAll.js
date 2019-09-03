@@ -68,7 +68,7 @@ function magicComAllInit(Vue) {
                     var jobList = data.PersonList
                     console.log("listJobjobList",jobList)
 
-                    console.log("jobList.length",jobList.length)
+                    // console.log("jobList.length",jobList.length)
                     if (data) {
                         if (jobList == null) {
                             that.listJob = ''
