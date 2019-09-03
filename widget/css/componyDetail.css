@@ -820,18 +820,24 @@ span.star_num,.star_all {
 .star-li div{
     text-align: right;
 }
+
 /*li{display: -webkit-box;width: 100%;margin-bottom: 0.26rem;height:0.4rem;line-height: 0.4rem;}
         li a{-webkit-box-flex: 1;display: block;font-size: 0.28rem;color: #333;}
         li div{-webkit-box-flex: 2;text-align: right;}*/
 
+/*leilei开始*/
+/*.rankTabsBg{
+  padding: 0;
+}*/
+#rankTabs{
+  width: 100%;
+  height: 0.9rem;
+  border-bottom: 0.01rem solid #eaeaea;
+  justify-content: space-around;
+  align-items: center;
+  background: red;
+}
 
 
 
-
-
-
-
-
-
-
-
+        /*leilei结束*/
