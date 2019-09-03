@@ -207,7 +207,7 @@ function magicPosiDetailInit(Vue) {
                             /*c_id: that.magicComCid1,
                             c_name: that.magicCom1Text,
                             logo_icon: that.magicCom1Img,*/
-                            magicCom1: 'magicCom1'
+                            magicCom1: 'magicCom2'
                         },
                     }
                 });

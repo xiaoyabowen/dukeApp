@@ -332,7 +332,7 @@
     apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
-        person_id = api.pageParam.person_id
+        person_id = localStorage.getItem("user")
         api.addEventListener({
             name: 'keyback'
         }, function (ret, err) {
@@ -564,7 +564,6 @@
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
-                    console.warn('综合能力' + JSON.stringify(list));
                     var arr = [];
                     for (var i = 0; i < list.length; i++) {
                         var str = '<span>' + list[i] + '</span>';
@@ -584,10 +583,10 @@
                 }*/
                 // 求职期望
                 if (Intention) {
-                    document.getElementById('work_name').innerText = Intention[0].work_name;
-                    document.getElementById('int_city').innerText = Intention[0].int_city;
-                    document.getElementById('work').innerText = Intention[0].work;
-                    var pays = Intention[0].pay.split('.');
+                    document.getElementById('work_name').innerText = Intention.work_name;
+                    document.getElementById('int_city').innerText = Intention.int_city;
+                    document.getElementById('work').innerText = Intention.work;
+                    var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
                         pays2.push(value + 'k')
@@ -792,7 +791,6 @@
                     document.getElementById('p_tags').innerText = "未填写";
                 }
                 // 综合能力
-                console.warn('综合能力' + JSON.stringify(person_summary.p_title));
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
@@ -805,7 +803,7 @@
                     tags.innerHTML = arr.join('');
                 }
                 // // 求职状态
-                if (Intention) {
+                /*if (Intention) {
                     var statusObj = {
                         '1': '离职-随时到岗',
                         '2': '在职-月内到岗',
@@ -813,13 +811,13 @@
                         '4': '在职-暂不考虑',
                     }
                     document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                }
+                }*/
                 // 求职期望
                 if (Intention) {
-                    document.getElementById('work_name').innerText = Intention[0].work_name;
-                    document.getElementById('int_city').innerText = Intention[0].int_city;
-                    document.getElementById('work').innerText = Intention[0].work;
-                    var pays = Intention[0].pay.split('.');
+                    document.getElementById('work_name').innerText = Intention.work_name;
+                    document.getElementById('int_city').innerText = Intention.int_city;
+                    document.getElementById('work').innerText = Intention.work;
+                    var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
                         pays2.push(value + 'k')

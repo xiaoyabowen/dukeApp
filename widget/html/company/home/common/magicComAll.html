@@ -3,7 +3,7 @@
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <div class="magicBox">
 
-        <div class="magicBG magicBGheight cssFlex" ref="boxMagic">
+        <div class="magicBG magicBGheight cssFlex">
             <div class="magicBtn magicBtnPosi " v-for="(item,index) in listJob" :key="index"
                  @click="jobDetailClick(item.person_id,item.p_name,index)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
