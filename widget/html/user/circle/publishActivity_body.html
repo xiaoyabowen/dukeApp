@@ -101,11 +101,13 @@
 
     <script type="text/javascript" src="../../../script/city.data-3.js"></script>
     <script>
-        var app;
+        var app,url;
         var detailData = {};
         var circle_id;
         apiready = function() {
+
             circle_id = api.pageParam.circleId ? api.pageParam.circleId : '';
+            url = api.pageParam.url
             app = new Vue({
                 el: '#informationInit',
                 data: {
@@ -450,7 +452,14 @@
                         app.editCost= ''; //编辑时的编辑图片
                           mui.alert('活动发布成功,请等待审核', '提示', function (e) {
                               if (e.index == 0) {
-                                  openNewWindow("index", "./index.html");
+                                  // openNewWindow("index", "./index.html");
+                                  var frameName = url + "_body";
+                                  api.execScript({
+                                      name:url,
+                                      frameName: frameName,
+                                      script: 'reload()'
+                                  })
+                                  closeWin();
                               }
                           });
                           //成功逻辑...

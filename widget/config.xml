@@ -17,7 +17,6 @@
     <preference name="iOS7StatusBarAppearance" value="true" />
     <preference name="debug" value="false" /> <!--调试模式 -->
     <preference name="launcher" value="true " />  <!--配置是否在桌面显示应用图标 -->
-    <preference name="autoUpdate" value="false" />
     <feature name="aMap">
         <param name="android_api_key" value="3eadfe73e2cdcad56b8e2c82b40378e9" />
         <param name="ios_api_key" value="4091f06d6613a7ecefa0ad420d637212" />
