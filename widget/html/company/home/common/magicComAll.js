@@ -1,16 +1,5 @@
 function magicComAllInit(Vue) {
     var str = dataValue('company/home/common/magicComAll.html')
-    /*var bus = Vue.use(Vuex);
-
-    console.log("bus",bus)
-    var obj = {
-        magicCom2: 'magicCom2'
-    }
-    bus.$emit("com1Value",obj)
-    console.log("bus",bus.$emit("com1Value",'1'))*/
-    // console.log("123",$store)
-
-
 
     apiready = function () {
         winWidth = api.winWidth;
@@ -128,10 +117,6 @@ function magicComAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                /*store.state.obj.c_id = that.magicComCid1
-                store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img
-                store.state.obj.magicCom =  'magicCom1'*/
 
                 var obj = {
                     magicComCid1: that.magicComCid1,
@@ -148,9 +133,6 @@ function magicComAllInit(Vue) {
                     name: 'comCom1',
                     extra: {
                         key: {
-                            /*c_id: that.magicComCid1,
-                            c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,*/
                             magicCom1: 'magicCom1'
                         },
                     }
@@ -162,7 +144,6 @@ function magicComAllInit(Vue) {
                     name: 'magicComPosiAll',
                     extra: {
                         key: {
-
                             magicComPosiAll: 'magicComPosiAll'
                         },
 

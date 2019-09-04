@@ -21,21 +21,21 @@ function magicPositionInit(Vue) {
                     height: m_d + "px",
                 },
                 animate: false,
-
+                timeIndex : '',
                 magicCom2Img: '',
                 magicCom1Img: '',
                 magicCom2Text: '',
                 magicCom1Text: '',
                 magicComCid1: '',
                 magicComCid2: '',
-
-
+                myPositionText : '我的职位',
+                activeAni:true,
                 listJob: [],
                 index: ''
             }
         },
         created: function () {
-            this.queryJobsByUidMenu()
+            this.queryPersonListMenu()
         },
         mounted: function () {
 
@@ -69,49 +69,34 @@ function magicPositionInit(Vue) {
 
         methods: {
 
-            queryJobsByUidMenu: function () {
+            queryPersonListMenu: function () {
                 var that = this
-                ajaxGetWithProgress(queryJobsByUidMenu, {}, function (data) {
-                    console.log("queryJobsByUidMenu", data)
-                    var jobList = data.Jobs
-                    // console.log("jobList",jobList)
-                    that.listJob = jobList
-                    // console.log("that.listJob",that.listJob)
-                    // // console.log(jobList.slice(jobList.length - 1))
-                    // // console.log(jobList.slice(0, -1))
-                    //
-                    // if (data) {
-                    //     if (jobList == null) {
-                    //         that.listJob = ''
-                    //     } else if (jobList.length == 5) {
-                    //         document.querySelector(".magicPosiAgin").classList.remove("isDisplay")
-                    //         // 截取 前 4个
-                    //         var jobList4 = jobList.slice(0, -1)
-                    //         // 最后一个
-                    //         var jobList1 = jobList.slice(jobList.length - 1)
-                    //         console.log("34",jobList1)
-                    //         that.listJob = jobList4
-                    //         console.log("112111",that.listJob)
-                    //
-                    //         that.personId = jobList1[0].person_id
-                    //         that.personText = jobList1[0].p_name
-                    //         that.personImg = imgSrcFun(jobList1[0].p_icon)
-                    //
-                    //     }  else {
-                    //         that.listJob = jobList
-                    //     }
-                    //
-                    //
-                    //     /* that.magicComCid1 = data.company[0].c_id
-                    //      that.magicCom1Img = data.company[0].logo_icon
-                    //      that.magicCom1Text = data.company[0].c_name
-                    //
-                    //      that.magicComCid2 = data.company[1].c_id
-                    //      that.magicCom2Img = data.company[1].logo_icon
-                    //      that.magicCom2Text = data.company[1].c_name*/
-                    //
-                    //
-                    // }
+                ajaxGetWithProgress(queryPersonListMenu, {job_type:store.state.obj.job_type}, function (data) {
+                    console.log("queryPersonListMenu", data)
+                    var jobList;
+                    if (data) {
+                        jobList = data.four
+                        that.listJob = jobList
+                        console.log("that.listJob",that.listJob)
+                        if (jobList == null) {
+                            that.listJob = ''
+                        } else if (jobList.length == 5) {
+                            document.querySelector(".magicPosiAgin").classList.remove("isDisplay")
+                            // 截取 前 4个
+                            var jobList4 = jobList.slice(0, -1)
+                            // 最后一个
+                            var jobList1 = jobList.slice(jobList.length - 1)
+                            that.listJob = jobList4
+
+                            that.personId = jobList1[0].person_id
+                            that.personText = jobList1[0].p_name
+                            that.personImg = imgSrcFun(jobList1[0].p_icon)
+
+                        }  else {
+                            that.listJob = jobList
+                        }
+
+                    }
 
                 })
 
@@ -128,27 +113,26 @@ function magicPositionInit(Vue) {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
                     this.MenuListQyMenu();
                 }
+                this.activeAni = true
+                setTimeout(function () {
+                    that.activeAni = false;
+                }, 1500)
             },
-            jobDetailClick: function (job_id, job_name,job_icon) {
-                console.log(job_id)
-                console.log(job_name)
-                console.log(job_icon)
+            jobDetailClick: function (job_id, job_name,index) {
 
-                store.state.obj.job_id = job_id
-                store.state.obj.job_name = job_name
-                store.state.obj.job_icon = imgSrcFun(job_icon)
+                console.log("job_idjob_id",job_id)
+                console.log("job_namejob_name",job_name)
+                this.timeIndex = index;
 
-                /*api.sendEvent({
+                api.sendEvent({
                     name: 'jobPosiAll',
                     extra: {
                         key: {
-                            magicComPosiAll: "magicComPosiAll",
                             job_id: job_id,
                             job_name: job_name,
-                            job_icon: imgSrcFun(job_icon),
                         },
                     }
-                });*/
+                });
 
             },
             magicCom1Click: function () {  // 公司1
@@ -169,24 +153,8 @@ function magicPositionInit(Vue) {
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                console.log(that.magicComCid2)
-
-                api.sendEvent({
-                    name: 'comCom2',
-                    extra: {
-                        key: {
-                            c_id: that.magicComCid2,
-                            c_name: that.magicCom2Text,
-                            logo_icon: that.magicCom2Img,
-                            magicCom2: 'magicCom2'
-                        },
-
-                    }
-                });
+                that.queryPersonListMenu()
             },
-            returnClick : function () {
-                var that = this;
-            }
         }
     }
 }
