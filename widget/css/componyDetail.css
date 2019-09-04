@@ -833,11 +833,101 @@ span.star_num,.star_all {
   width: 100%;
   height: 0.9rem;
   border-bottom: 0.01rem solid #eaeaea;
+  background: #fff;
+  margin-top: 0.5rem;
+  border-top-left-radius: 0.09rem;
+  border-top-right-radius: 0.09rem;
+  color:#353535;
+  font-size: 0.28rem;
+  box-shadow:0 0.04rem 0.04rem 0 rgba(0,0,0,0.09);
+  font-weight: 400;
+  position: relative;
+}
+#rankTabs .tabs{
   justify-content: space-around;
   align-items: center;
-  background: red;
+  height: 0.9rem;
+}
+#rankWrap{
+  padding-bottom: 0;
+}
+#rankNext{
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#rankTabs .rankContent{
+  width: 100%;
+  position: absolute;
+  top: 0.9rem;
+  z-index: 9999999;
+  background: #fff;
+  box-shadow:0 0.04rem 0.04rem 0 rgba(0,0,0,0.09);
+}
+#rankTabs .rankContent .command{
+    padding: 0.3rem;
+}
+#rankTabs .tabs>div{
+  width: 0.7rem;
+}
+#rankTabs .rankContent span{
+  width: 1.86rem;
+  height: 0.52rem;
+  background: #EAEAEA;
+  border-radius: 0.26rem;
+  text-align: center;
+  display: inline-block;
+  margin: 0.1rem 0.1rem 0.1rem 0.1rem;
+  line-height: 0.52rem;
+  color: #333333;
+  font-size: 0.28rem;
+  padding-top:0.05rem;
 }
 
+#rankTabs .rankContent span.selectedStatus{
+  background: #638BFF;
+  color: #fff;
+}
+
+#rankTabs .selectClass{
+  color: #638BFF;
+}
+#rankTabs .selectDown{
+  position: relative;
+}
+#rankTabs .selectDown::after{
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 0.12rem solid #638BFF;
+  border-right: 0.10rem solid #fff;
+  border-left: 0.10rem solid #fff;
+  border-bottom: 0.12rem solid #fff;
+  top:50%;
+  margin-top: -0.07rem;
+  right: 0;
+  margin-right:-0.06rem;
+}
+#rankTabs .selectUp{
+  position: relative;
+}
+#rankTabs .selectUp::after{
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 0.12rem solid #ffffff;
+  border-right: 0.10rem solid #fff;
+  border-left: 0.10rem solid #fff;
+  border-bottom: 0.12rem solid #638BFF;
+  top:50%;
+  margin-top: -0.2rem;
+  right: 0;
+  margin-right:-0.06rem;
+}
+.
 
 
-        /*leilei结束*/
+
+/*leilei结束*/
