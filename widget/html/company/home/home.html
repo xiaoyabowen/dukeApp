@@ -189,10 +189,10 @@
         </div>
 
         <!-- mui  滑动tab切换-->
-        <ul id="tabs" class="cssFlex">
+        <!--<ul id="tabs" class="cssFlex">
             <li class="activeTab"><a href="javascript:;" title="tab1">在线简历</a></li>
             <li><a href="javascript:;" title="tab2">图片作品</a></li>
-        </ul>
+        </ul>-->
         <div id="content">
             <div id="tab1" style="display: block;">
                 <div class="see-xian-box">
@@ -269,7 +269,7 @@
 
                 </div>
             </div>
-            <div id="tab2" style="display:none;">
+            <!--<div id="tab2" style="display:none;">
                 <div class="see-xian-img cssFlex">
                     <img src="../../../image/pro.png" alt="pro">
                     <img src="../../../image/pro.png" alt="pro">
@@ -277,7 +277,7 @@
                     <img src="../../../image/pro.png" alt="pro">
                     <img src="../../../image/pro.png" alt="pro">
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="Have_a_chat_box" @click="HavechatClick()">
             <div class="Have_a_chat">
@@ -301,7 +301,7 @@
 <script src="../../../script/vuex.min.js"></script>
 <script src="../../../script/mui.min.js"></script>
 <script src="common/magicComAll.js"></script>
-<!--<script src="common/magicPosition.js"></script>-->
+<script src="common/magicPosition.js"></script>
 <script src="common/magicComPosiAll.js"></script>
 <script src="common/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -317,11 +317,11 @@
     $(document).on("click", ".componySize>li", function () {
         $(".modal-space").show()
     })
-    $("#tabs li").click(function () {
+    /*$("#tabs li").click(function () {
         $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
         var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
         $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-    });
+    });*/
 
     function closeMotal() {
         $(".modal-space").hide()
@@ -347,6 +347,8 @@
         Vue.component('magicComAll', magicComAll);
         var magicComPosiAll = magicComPosiAllInit(Vue);
         Vue.component('magicComPosiAll', magicComPosiAll);
+        var magicPosition = magicPositionInit(Vue);
+        Vue.component('magicPosition', magicPosition);
 
         winWidth = api.winWidth;
         winHeight = api.winHeight;
@@ -397,11 +399,24 @@
                     localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
-                    name: 'jobAllName',
+                    name: 'magicPosition',
                 }, function (ret, err) {
                     console.log("ret", ret);
-                    console.log("job_id", ret.value.key.job_id)
+                    that.active = ret.value.key.magicComAll;
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'jobAllName',
+                }, function (ret, err) {
                     comValue(ret.value.key.job_id)
+                });
+                api.addEventListener({
+                    name: 'jobPosiAll',
+                }, function (ret, err) {
+                    comValue(ret.value.key.job_name)
                 });
                 api.addEventListener({
                     name: 'personHome',
@@ -589,7 +604,7 @@
                     var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
-                        pays2.push(value + 'k')
+                        pays2.push(value)
                     })
                     // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
@@ -794,7 +809,6 @@
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
-                    console.warn('综合能力' + JSON.stringify(list));
                     var arr = [];
                     for (var i = 0; i < list.length; i++) {
                         var str = '<span>' + list[i] + '</span>';
@@ -820,7 +834,7 @@
                     var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
-                        pays2.push(value + 'k')
+                        pays2.push(value)
                     })
                     // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');

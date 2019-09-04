@@ -7,16 +7,15 @@ var isCleanUser = false;
 
 
 // 本地服务器
-// var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
-// var localhostHref = 'http://192.168.1.24:8000/SE4M';
-// var Domain = 'http://192.168.1.24:8088';
+var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.24:8000/SE4M';
+var Domain = 'http://192.168.1.24:8088';
 
 
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
-
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 
@@ -87,7 +86,7 @@ var QueryPersonRandomOne = serverUrl + "/JobProfile/QueryPersonRandomOne";
 // 伯乐   uid 随机五个我发布的职位
 var queryJobsByUidMenu = serverUrl + "/Menu/queryJobsByUidMenu";
 
-// 伯乐    job_name  点击职位随机查询五个人才
+// 伯乐    job_name  job_type 点击职位随机查询五个人才
 var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
 
 // 支付宝  支付  接口

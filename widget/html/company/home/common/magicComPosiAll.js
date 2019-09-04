@@ -129,17 +129,18 @@ function magicComPosiAllInit(Vue) {
                     that.activeAni = false;
                 }, 1500)
             },
-            jobDetailClick: function (job_id, job_name,index) {
+            jobDetailClick: function (job_id, job_name,index,job_type) {
                 var that = this
                 that.timeIndex = index;
                 store.state.obj.job_id = job_id
                 store.state.obj.job_name = job_name
-                store.state.obj.magicCom =  'magicComAll'
+                store.state.obj.job_type = job_type
+                store.state.obj.magicCom =  'magicPosition'
                 api.sendEvent({
-                    name: 'magicComAll',
+                    name: 'magicPosition',
                     extra: {
                         key: {
-                            magicComAll: "magicComAll",
+                            magicComAll: "magicPosition",
                         },
                     }
                 });
@@ -177,16 +178,7 @@ function magicComPosiAllInit(Vue) {
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                api.sendEvent({
-                    name: 'magicComPosiAll',
-                    extra: {
-                        key: {
-
-                            magicComPosiAll: 'magicComPosiAll'
-                        },
-
-                    }
-                });
+                that.queryJobsByUidMenu()
             },
         }
     }

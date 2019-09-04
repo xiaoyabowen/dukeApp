@@ -7,6 +7,7 @@ var store = new Vuex.Store({
             job_id: '',
             job_name: '',
             job_icon: '',
+            job_type: '',
             magicCom: 'magicComAll'
         }
     },

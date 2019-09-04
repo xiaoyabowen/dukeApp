@@ -6,7 +6,7 @@
     <author email="developer@apicloud.com" href="https://www.apicloud.com">
         APICloud.SIR
     </author>
-    <!--<content src="html/login/homeChoose.html" />-->
+    <preference name="autoUpdate" value="true" />               <!--使用 apicloud 自动更新-->
     <content src="html/user/home/home.html"/>
     <permission name="camera" />
     <access origin="*" />
