@@ -118,22 +118,13 @@ function magicComAllInit(Vue) {
             magicCom1Click: function () {  // 公司1
                 var that = this;
 
-                var obj = {
-                    magicComCid1: that.magicComCid1,
-                    magicCom1Text: that.magicCom1Text,
-                    magicCom1Img: that.magicCom1Img,
-                    magicCom: 'magicCom1',
-                }
-
-
-
-                store.commit('upData', obj);
-
                 api.sendEvent({
-                    name: 'comCom1',
+                    name: 'jobAllName',
                     extra: {
                         key: {
-                            magicCom1: 'magicCom1'
+
+                            job_id: that.magicComCid1
+
                         },
                     }
                 });

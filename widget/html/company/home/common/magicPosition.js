@@ -89,8 +89,9 @@ function magicPositionInit(Vue) {
                             that.listJob = jobList4
 
                             that.personId = jobList1[0].person_id
+
                             that.personText = jobList1[0].p_name
-                            that.personImg = imgSrcFun(jobList1[0].p_icon)
+
 
                         }  else {
                             that.listJob = jobList
@@ -137,15 +138,11 @@ function magicPositionInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-
                 api.sendEvent({
-                    name: 'comCom1',
+                    name: 'jobAllName',
                     extra: {
                         key: {
-                            c_id: that.magicComCid1,
-                            c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,
-                            magicCom1: 'magicCom1'
+                            job_id: that.personId
                         },
                     }
                 });

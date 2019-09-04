@@ -17,10 +17,10 @@
             </div>
         </div>
         <div class="magicBG cssFlex">
-            <div class="magicBtn magicPosiAgin isDisplay" @click="magicCom1Click(magicComCid1)">
-                <div class="magicSubBox">
+            <div class="magicBtn magicPosiAgin magicBtnPosi isDisplay" :class="[activeAni ? 'animation' : '' ] " @click="magicCom1Click(magicComCid1)">
+                <div class="magicSubBox cssFlex" v-bind:style="styles">
                     <div class="magicSubBoxMain">
-                        <img :src="magicCom1Img" class="iconImg" alt="person">
+                        <!--<img :src="magicCom1Img" class="iconImg" alt="person">-->
                         <div class="magicSize">{{magicCom1Text}}</div>
                     </div>
                 </div>
