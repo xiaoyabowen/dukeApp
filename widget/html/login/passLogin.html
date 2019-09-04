@@ -370,10 +370,8 @@
                                 phone :phoneValue
                             })
                         } else if (data.msg == false){
-                            toast("密码错误")
-                        }  else if (data.msg == "该用户不存在"){
-                            toast("该用户不存在")
-                        }else{
+                            toast(data.message)
+                        } else{
                             localStorage.setItem('user',data.user_uid);
                             localStorage.setItem('person_id',data.user_uid);
                             if (data.role_type == 1){

@@ -147,31 +147,16 @@ function magicComPosiAllInit(Vue) {
 
             },
             magicCom1Click: function () {  // 公司1
-                var that = this;
-                /*store.state.obj.c_id = that.magicComCid1
-                store.state.obj.c_name = that.magicCom1Text
-                store.state.obj.logo_icon = that.magicCom1Img
-                store.state.obj.magicCom =  'magicCom1'*/
-
-                var obj = {
-                    magicComCid1: that.magicComCid1,
-                    magicCom1Text: that.magicCom1Text,
-                    magicCom1Img: that.magicCom1Img,
-                    magicCom: 'magicCom1',
-                }
-
-
-
-                store.commit('upData', obj);
-
+                var that = this
+                store.state.obj.job_id = that.magicComCid1
+                store.state.obj.job_name = that.magicCom1Text
+                store.state.obj.job_type = that.magicCom1Type
+                store.state.obj.magicCom =  'magicPosition'
                 api.sendEvent({
-                    name: 'comCom1',
+                    name: 'magicPosition',
                     extra: {
                         key: {
-                            /*c_id: that.magicComCid1,
-                            c_name: that.magicCom1Text,
-                            logo_icon: that.magicCom1Img,*/
-                            magicCom1: 'magicCom1'
+                            magicComAll: "magicPosition",
                         },
                     }
                 });
