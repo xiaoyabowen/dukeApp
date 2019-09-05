@@ -142,7 +142,7 @@
                 <div class="infobox">
                     <h4 class="productName productNamePad">公司官网</h4>
                     <div class="link-compony cssFlex">
-                        <a class="homepage">http://www.baidu.com</a>
+                        <a class="homepage" onclick="opnew()">http://www.baidu.com</a>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
 
@@ -741,6 +741,18 @@
             search: document.querySelector(".jobBox").getAttribute("data-search"),
             ms_type: 0,   // 0 search   1 魔方 进入
         })
+    }
+
+    function opnew() {
+        var homepage = document.querySelector(".homepage").innerHTML
+        api.openApp({
+            androidPkg: 'android.intent.action.VIEW',
+            mimeType: 'text/html',
+            uri: homepage
+        },function(ret,err){
+
+
+        });
     }
 
     var flag = true;//

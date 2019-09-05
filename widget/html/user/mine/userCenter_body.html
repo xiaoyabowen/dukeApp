@@ -100,8 +100,17 @@
 <script>eruda.init();</script>
 <script>
     var adr_id, url;
+
+
+
     apiready = function () {
         var uid = localStorage.getItem("person_id");
+
+        api.addEventListener({
+            name: 'editInfo',
+        }, function (ret, err) {
+            window.location.reload()
+        });
 
         console.log(uid);
 
@@ -163,7 +172,7 @@
                         api.hideProgress();
                         console.log("queryCirclePersonMsgByPid",data)
                         if (data){
-                            // that.item = data
+                            that.item = data
                             that.p_name = data.p_name || "未填写"
                             that.company_name = data.company_name || "未填写"
                             that.job_name = data.job_name || "未填写"
@@ -175,21 +184,7 @@
                             that.p_birthday = ages(data.p_birthday) + "岁"
                         }
                     });
-                    /*ajaxGetWithProgress(queryCirclePersonMsgByPid,obj, function (data) {
-                        console.log("queryCirclePersonMsgByPid",data)
-                        if (data){
-                            // that.item = data
-                            that.p_name = data.p_name || "未填写"
-                            that.company_name = data.company_name || "未填写"
-                            that.job_name = data.job_name || "未填写"
-                            that.edu_name = data.edu_name || "未填写"
-                            that.edu_level = data.edu_level || "未填写"
-                            that.edu_time = data.edu_time || "未填写"
-                            that.edu_type = data.edu_type || "未填写"
-                            that.p_title = stringFun(data.p_title)
-                            that.p_birthday = ages(data.p_birthday) + "岁"
-                        }
-                    })*/
+
                 },
                 editInfo :function () {
                     var that = this
