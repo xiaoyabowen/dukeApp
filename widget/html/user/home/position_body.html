@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="../../../css/mofang.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-        span.adressInfo{
+        span.adressInfo {
             margin-right: 0.3rem;
             font-size: 0.24rem;
         }
+
         .job-year {
             margin-right: 0.56rem;
             font-size: 0.24rem;
@@ -65,10 +66,12 @@
         p.posiSize {
             line-height: 20px !important;
         }
-        .demobiox{
+
+        .demobiox {
             z-index: 99;
         }
-        .Box{
+
+        .Box {
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
     </style>
@@ -96,37 +99,17 @@
 
             <div class="card" id='div_card'>
                 <div class="card-content">
-                    <div class="Box" >
+                    <div class="Box">
                         <div class="positionBox">
-                            <!--<div class="comTitle cssFlex">
-                                <div class="comInfo">
-                                    <h3 class="comInfoTitle">百度科技</h3>
-                                    <p class="comInfoCon">
-                                        <span>已上市</span><i>·</i>
-                                        <span>10000人以上</span><i>·</i>
-                                        <span>互联网</span>
-                                    </p>
-                                    <p class="timeInfo">
-                                        <img src="../../../icon/time.png" alt="time" class="ComTime">
-                                        <span>上午10:00</span>
-                                        <i>-</i>
-                                        <span class="marginR">下午18:00</span>
-                                        <img src="../../../icon/date.png" alt="date" class="dateCom">
-                                        <span class="marginR">双休</span>
-                                        <span>弹性工作</span>
-                                    </p>
-                                </div>
-                                <div class="comLogo">
-                                    <img src="../../../image/comLogo.png" alt="comLogo">
-                                </div>
-                            </div>-->
+
                             <div class="jobBox ">
                                 <div class="job-left cssFlex">
                                     <h4 class="job-nameNm ellipsis" id="job_name">运营经理</h4>
                                     <!--薪资 日期-->
                                     <div class="job-right cssFlex">
                                         <p class="moneyNum"><span id="ratio">20k-30K</span></p>
-                                        <img src="../../../icon/posiShare.png" alt="time" onclick="posiShareClick()" class="posiShare">
+                                        <img src="../../../icon/posiShare.png" alt="time" onclick="posiShareClick()"
+                                             class="posiShare">
                                     </div>
 
                                 </div>
@@ -136,7 +119,8 @@
                                 <div class="adress-job cssFlex">
                                     <img src="../../../icon/adress.png" alt="time" class="ComTime">
                                     <span class="adressInfo" id="city">北京-朝阳-望京</span>
-                                    <span class="job-year cssFlex"><img src="../../../icon/year.png" alt="date" class="dateCom"><i id="work_ex">10</i></span>
+                                    <span class="job-year cssFlex"><img src="../../../icon/year.png" alt="date"
+                                                                        class="dateCom"><i id="work_ex">10</i></span>
                                     <img src="../../../icon/posiSee.png" alt="date" class="posiSee">
                                     <span><i id="count">300</i>次浏览</span>
                                 </div>
@@ -176,18 +160,19 @@
                                     <div id="c_id" style="display: none;"></div>
                                     <h5 class="posiName" id="c_name1">云闪信(北京)信息科技有限公司</h5>
                                     <p class="textOverflow posiSize"><span id="financing">不需要融资</span>
-                                        <i>·</i><span id="scale">100-499人</span><i>·</i><span id="org_type">互联网</span></p>
+                                        <i>·</i><span id="scale">100-499人</span><i>·</i><span id="org_type">互联网</span>
+                                    </p>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
-
     </div>
-
-
 </div>
 
 
@@ -208,10 +193,8 @@
 <script src="comment/magicCom2.js"></script>
 <script src="comment/magicPosiDetail.js"></script>
 <script src="comment/bus.js"></script>
-
-<script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 
 <script>
     // var card_el=document.getElementById("card_main");
@@ -220,8 +203,8 @@
     // console.log("card height: "+card_el.style.height);
 
 
-
-    var job_id, cid,jobId, uid, ptoken,s_id,h_type,magicBGheight,ms_type,search,magicBox, winWidth, winHeight, a01_w, m_d, magicBtn,magicSubBox,iconImg;
+    var job_id, cid, jobId, uid, ptoken, s_id, h_type, magicBGheight, ms_type, search, magicBox, winWidth, winHeight,
+        a01_w, m_d, magicBtn, magicSubBox, iconImg;
     apiready = function () {
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
@@ -237,16 +220,16 @@
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+        a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
 
-        console.log("a01_w",a01_w)
-        console.log("winWidth/2",winWidth/2)
+        console.log("a01_w", a01_w)
+        console.log("winWidth/2", winWidth / 2)
 
         // 斜边长
-        bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-        console.log("bevelLength",bevelLength)
+        bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
+        console.log("bevelLength", bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w-10)*0.23-25;    // 100
+        m_d = (a01_w - 10) * 0.23 - 25;    // 100
 
         api.addEventListener({
             name: 'keyback'
@@ -268,21 +251,20 @@
         }
 
 
-
         job_id = api.pageParam.job_id;
         h_type = api.pageParam.h_type;
         ms_type = api.pageParam.ms_type;
         search = api.pageParam.search;
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
-        if (job_id){
-            console.log("biedey1111",job_id)
-            console.log("biedeyemian11111",search)
-            positionDe(job_id,h_type,ms_type,search)
+        if (job_id) {
+            console.log("biedey1111", job_id)
+            console.log("biedeyemian11111", search)
+            positionDe(job_id, h_type, ms_type, search)
         }
-        if (!uidUser){
+        if (!uidUser) {
             ajaxGetWithProgress(JobId, '', function (data, err) {
-                console.log(1,data)
+                console.log(1, data)
                 api.hideProgress();
                 if (data) {
                     var data = data.JobSummary
@@ -292,7 +274,7 @@
                     uid = data.uid;
                     ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
-                    document.getElementById('job_id').value = data.job_id ;
+                    document.getElementById('job_id').value = data.job_id;
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
                     document.getElementById('count').innerText = data.count || '未填写';
                     document.getElementById('ratio').innerText = data.ratio || '未填写';
@@ -306,18 +288,18 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
+                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
 
 
                 }
             })
-        }else{
+        } else {
             var uid = uidUser.user_uid;
-            ajaxGetWithProgress(JobId, {person_id:uid}, function (data, err) {
-                console.log(1,data)
+            ajaxGetWithProgress(JobId, {person_id: uid}, function (data, err) {
+                console.log(1, data)
                 if (data) {
                     var data = data.JobSummary
-                    console.log(556567,data)
+                    console.log(556567, data)
                     document.querySelector('.view').classList.remove('isDisplay');
 
                     cid = data.c_id;
@@ -338,25 +320,23 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
-
+                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
 
 
                 }
             })
         }
-        function positionDe(job_id,h_type,ms_type,search) {
+
+        function positionDe(job_id, h_type, ms_type, search) {
             var obj = {
-                uid : localStorage.getItem("user"),
+                uid: localStorage.getItem("user"),
                 job_id: job_id,
-                search : search,
-                h_type : h_type,
-                ms_type : ms_type,
+                search: search,
+                h_type: h_type,
+                ms_type: ms_type,
             }
-            console.log("biedeyemin222a",obj)
             ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
-                // alert(JSON.stringify(data));
-                console.log("positiondata=",data);
+                console.log("positiondata=", data);
                 api.hideProgress();
                 if (data) {
                     document.querySelector('.view').classList.remove('isDisplay');
@@ -378,7 +358,7 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province +'-'+ data.city +'-'+ data.street;
+                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
 
 
                 }
@@ -388,44 +368,44 @@
         new Vue({
             el: '#app1',
             data: {
-                active:'magicAll',
+                active: 'magicAll',
                 // 聊天
-                JIM : '',
-                pid_accept : '',         //接收消息者 username
-                pid_name : '',             //接收消息者 name
-                appkey : '',
-                random_str : '',
-                signature : '',
-                timestamp : '',
-                timeIndex : '',
+                JIM: '',
+                pid_accept: '',         //接收消息者 username
+                pid_name: '',             //接收消息者 name
+                appkey: '',
+                random_str: '',
+                signature: '',
+                timestamp: '',
+                timeIndex: '',
             },
             created: function () {
                 this.togle()
             },
 
-            mounted :  function (){
+            mounted: function () {
                 var that = this
 
                 that.active = store.state.obj.magicCom;
                 api.addEventListener({
                     name: 'comCom1',
-                }, function(ret, err) {
-                    console.log("ret",ret);
+                }, function (ret, err) {
+                    console.log("ret", ret);
                     that.active = ret.value.key.magicCom1;
                 });
                 api.addEventListener({
                     name: 'comCom2',
-                }, function(ret, err) {
-                    console.log("ret",ret);
+                }, function (ret, err) {
+                    console.log("ret", ret);
                     that.active = ret.value.key.magicCom2;
                 });
                 api.addEventListener({
                     name: 'jobAll',
-                }, function(ret, err) {
-                    console.log("ret",ret);
-                    console.log("job_id",ret.value.key.job_id)
+                }, function (ret, err) {
+                    console.log("ret", ret);
+                    console.log("job_id", ret.value.key.job_id)
                     that.active = ret.value.key.magicCom;
-                    positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
+                    positionDe(ret.value.key.job_id, '1', '1', ret.value.key.job_name)
                 });
 
                 magicBox = document.querySelector(".magicBox")
@@ -438,25 +418,25 @@
                 magicBox.style.height = bevelLength + "px"
                 var rightYi = bevelLength
                 magicBox.style.right = '-' + rightYi + "px"
-                bgBlack.style.width =winWidth + "px"
-                bgBlack.style.height =winHeight + "px"
+                bgBlack.style.width = winWidth + "px"
+                bgBlack.style.height = winHeight + "px"
 
                 magicBGheight = document.querySelector(".magicBGheight")
                 magicBGheight.style.height = m_d + "px"
                 // 里面小盒子宽度
-                for (var i =0;i<magicBtn.length ; i++){
+                for (var i = 0; i < magicBtn.length; i++) {
                     magicBtn[i].style.width = m_d + "px"
                     magicBtn[i].style.height = m_d + "px"
                 }
                 // 里面小盒子宽度
-                for (var i =0;i<magicSubBox.length ; i++){
+                for (var i = 0; i < magicSubBox.length; i++) {
                     magicSubBox[i].style.width = m_d + "px"
                     magicSubBox[i].style.height = m_d + "px"
                 }
                 // 图片宽度
-                for (var i =0;i<iconImg.length ; i++){
-                    iconImg[i].style.width = m_d/2 + "px"
-                    iconImg[i].style.height = m_d/2 + "px"
+                for (var i = 0; i < iconImg.length; i++) {
+                    iconImg[i].style.width = m_d / 2 + "px"
+                    iconImg[i].style.height = m_d / 2 + "px"
                 }
 
             },
@@ -500,7 +480,7 @@
                     }
                 },
 
-                hideBg : function () {
+                hideBg: function () {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');
                     that.active = ''
@@ -509,11 +489,6 @@
 
             }
         })
-        /*var map = new AMap.Map("container", {
-            resizeEnable: true,
-            zoom: 16
-        });
-        map.clearMap();*/
 
     };
 
@@ -529,27 +504,27 @@
     function chatJob() {
         var uidUser = localStorage.getItem("user")
         console.log(uidUser)
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
 
 
         var obj = {
-            ptoken : ptoken,
-            job_id : jobId,
+            ptoken: ptoken,
+            job_id: jobId,
 
         }
         console.log(obj)
 
-        ajaxGetWithProgress(addTopicLink,obj,function (data) {
-            console.log("addTopicLink",data)
-            if (data){
+        ajaxGetWithProgress(addTopicLink, obj, function (data) {
+            console.log("addTopicLink", data)
+            if (data) {
                 var token = localStorage.getItem('person_id');
                 openNewWindow("chat_Room", "../chat/chat_Room.html", {
                     token: token,
                     ptoken: ptoken,
-                    pid_name : document.getElementById('user_name').innerText,
+                    pid_name: document.getElementById('user_name').innerText,
                     HtmlName: "position",
                     job_id: jobId,
                     pid_accept: data.date.pid_accept,
@@ -557,8 +532,6 @@
                 });
             }
         })
-
-
 
 
     }
@@ -572,8 +545,8 @@
     // 点击投递简历
     function sendResume() {
         var uidUser = localStorage.getItem("user")
-        console.log(123,uidUser)
-        if (!uidUser){
+        console.log(123, uidUser)
+        if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
@@ -581,21 +554,124 @@
         return;
 
         var token = localStorage.getItem('user');
-        console.log(112211,token)
+        console.log(112211, token)
         openNewWindow("chat_Room", "../chat/chat_Room.html", {
             token: token,
             ptoken: ptoken,
         });
 
     }
+
     // 点击进入发布人主页
     function homePage() {
         // openNewWindow("companyInfo", "../home/companyInfo.html", {
         //     uid: uid
         // });
     }
+
     function posiShareClick() {
         toast("暂无分享")
+        var dialogBox = api.require('dialogBox');
+        dialogBox.actionMenu({
+            rect: {
+                h: 150
+            },
+            tapClose: true,
+            items: [
+                {
+                    text: '微信好友',
+                    icon: 'widget://image/wx.png'
+                },
+                {
+                    text: '微信朋友圈',
+                    icon: 'widget://image/pyq.png'
+                },
+                {
+                    text: 'QQ好友',
+                    icon: 'widget://image/qq.png'
+                },
+                {
+                    text: 'QQ空间',
+                    icon: 'widget://image/qqkj.png'
+                },
+                {
+                    text: '新浪微博',
+                    icon: 'widget://image/wb.png'
+                }
+            ],
+            styles: {
+                bg: '#FFF',
+                column: 5,
+                itemText: {
+                    color: '#000',
+                    size: 12,
+                    marginT: 8
+                },
+                itemIcon: {
+                    size: 40
+                }
+
+            }
+        }, function (ret) {
+            console.log("diable",ret)
+            /*if (ret.index == 0) {
+                var wx = api.require('wx');
+                wx.shareWebpage({
+                    apiKey: '',
+                    scene: 'session',// 单聊
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    thumb: 'widget://icon/icon.png',
+                    contentUrl:shareNotice + nid
+                }, function (ret, err) {
+                    if (ret.status) {
+                        toast('分享成功');
+                    } else {
+                        if (err.code == 2) {
+                            toast('分享失败')
+                        }
+                    }
+                });
+            } else if (ret.index == 1) {
+                var wx = api.require('wx');
+                wx.shareWebpage({
+                    apiKey: '',
+                    scene: 'timeline',// 朋友圈
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    thumb: 'widget://icon/icon.png',
+                    contentUrl: 'www.baidu.com?pid=' + 1
+                }, function (ret, err) {
+                    if (ret.status) {
+                        toast('分享成功');
+                    } else {
+                        if (err.code == 2) {
+                            toast('分享失败')
+                        }
+                    }
+                });
+            } else if (ret.index == 2) {
+                var qq = api.require('qq');
+                qq.shareNews({
+                    url: 'http://www.baidu.com',
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
+                    type: 'QFriend'
+                });
+            } else if (ret.index == 3) {
+                var qq = api.require('qq');
+                qq.shareNews({
+                    url: 'http://www.baidu.com',
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
+                    type: 'QZone'
+                });
+            } else if (ret.index == 4) { //微博
+                toast('微博登录正在开发中…')
+            }*/
+        });
     }
 </script>
 </body>

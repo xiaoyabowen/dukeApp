@@ -32,6 +32,7 @@ function magicComPosiAllInit(Vue) {
                 magicCom1Img: '',
                 magicCom2Text: '',
                 magicCom1Text: '',
+                magicCom1Type: '',
                 magicComCid1: '',
                 magicComCid2: '',
                 myPositionText : '我的职位',
@@ -99,6 +100,7 @@ function magicComPosiAllInit(Vue) {
 
                             that.magicComCid1 = jobList1[0].job_id
                             that.magicCom1Text = jobList1[0].job_name
+                            that.magicCom1Type = jobList1[0].job_type
 
 
                         }  else {
@@ -131,7 +133,7 @@ function magicComPosiAllInit(Vue) {
             },
             jobDetailClick: function (job_id, job_name,index,job_type) {
                 var that = this
-                that.timeIndex = index;
+                console.log("job_name",job_name)
                 store.state.obj.job_id = job_id
                 store.state.obj.job_name = job_name
                 store.state.obj.job_type = job_type
@@ -144,15 +146,16 @@ function magicComPosiAllInit(Vue) {
                         },
                     }
                 });
-
             },
             magicCom1Click: function () {  // 公司1
                 var that = this
+                console.log("that.magicCom1Type",that.magicCom1Type)
                 store.state.obj.job_id = that.magicComCid1
                 store.state.obj.job_name = that.magicCom1Text
                 store.state.obj.job_type = that.magicCom1Type
                 store.state.obj.magicCom =  'magicPosition'
                 api.sendEvent({
+
                     name: 'magicPosition',
                     extra: {
                         key: {

@@ -404,16 +404,21 @@
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
             if (data.oneLogin == false) {
-
                 openNewWindow("loginComfir", "./loginComfir.html",{
                     phoneValue : phoneValue
                 })
-            } else if (data.date == 0 ){
+            }  else if (data.date == 0 ){
 
                 openNewWindow("loginComfir", "./loginComfir.html",{
                     phone :phoneValue
                 })
-            }  else{
+            } else if (data.oneLogin == true) {
+                if (data.role_type == 1){
+                    openNewWindow("home", "../user/home/home.html")
+                } else if (data.role_type == 2){
+                    openNewWindow("home", "../company/home/home.html")
+                }
+            }else {
                 if (data.role_type == 1){
                     openNewWindow("home", "../user/home/home.html")
                 } else if (data.role_type == 2){

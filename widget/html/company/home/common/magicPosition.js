@@ -35,6 +35,7 @@ function magicPositionInit(Vue) {
             }
         },
         created: function () {
+            this.magicCom1Text = store.state.obj.job_name
             this.queryPersonListMenu()
         },
         mounted: function () {
@@ -71,6 +72,7 @@ function magicPositionInit(Vue) {
 
             queryPersonListMenu: function () {
                 var that = this
+                console.log("store.state.obj.job_name",store.state.obj.job_name)
                 ajaxGetWithProgress(queryPersonListMenu, {job_type:store.state.obj.job_type}, function (data) {
                     console.log("queryPersonListMenu", data)
                     var jobList;
@@ -89,9 +91,7 @@ function magicPositionInit(Vue) {
                             that.listJob = jobList4
 
                             that.personId = jobList1[0].person_id
-
                             that.personText = jobList1[0].p_name
-
 
                         }  else {
                             that.listJob = jobList
@@ -138,19 +138,19 @@ function magicPositionInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this;
-                api.sendEvent({
-                    name: 'jobAllName',
-                    extra: {
-                        key: {
-                            job_id: that.personId
-                        },
-                    }
-                });
-
+                that.queryPersonListMenu()
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                that.queryPersonListMenu()
+                api.sendEvent({
+                    name: 'magicComPosiAll',
+                    extra: {
+                        key: {
+                            magicComPosiAll: 'magicComPosiAll'
+                        },
+
+                    }
+                });
             },
         }
     }

@@ -4,7 +4,7 @@
     <div class="magicBox">
 
         <div class="magicBG magicBGheight cssFlex">
-            <div class="magicBtn magicBtnPosi " v-for="(item,index) in listJob" :key="index"
+            <div class="magicBtn magicBtnPosiZi " v-for="(item,index) in listJob" :key="index"
                  @click="jobDetailClick(item.job_id,item.job_name,index,item.job_type)"
                  :class="[timeIndex === index ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
                  v-bind:style="styles">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="magicBG cssFlex">
-            <div class="magicBtn magicBtnCom" :class="activeAni ? 'animation' : '' " @click="magicCom1Click()">
+            <div class="magicBtn magicBtnPosiZi" :class="activeAni ? 'animation' : '' " @click="magicCom1Click()">
                 <div class="magicSubBox cssFlex">
                     <div class="magicSubBoxMain">
                         <!--<img :src="magicCom1Img" class="iconImg iconImgCom" alt="person">-->
