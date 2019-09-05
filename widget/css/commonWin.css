@@ -23,7 +23,7 @@ html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparen
 
 .commonBg{
     /*background:linear-gradient(359deg,rgba(156,185,255,1) 0%,rgba(93,145,254,1) 100%);*/
-    background:#638BFF;
+    background: #638BFF;
     /*background:
             linear-gradient(rgba(156,185,255,1) 0, rgba(93,145,254,1) 0),
             linear-gradient(359deg,rgba(156,185,255,1) 100%,rgba(93,145,254,1) 0%);*/
@@ -94,7 +94,7 @@ textarea{
 
 /*内容盒子样式*/
 .contentBox{
-    padding: 0.4rem 0.28rem;
+    padding: 0.2rem 0.28rem;
     border-radius: 0.08rem;
 }
 .contentBox.pd {

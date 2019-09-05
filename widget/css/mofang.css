@@ -56,8 +56,11 @@
 }
 .magicBtnPosi{
     background: url("../image/posiBg.png") no-repeat center center;
-
 }
+.magicBtnPosiZi{
+    background: url("../image/posiZi.png") no-repeat center center;
+}
+
 .magicBtnPosiBor{
     border: 0.04rem solid #ffffff;
 }
