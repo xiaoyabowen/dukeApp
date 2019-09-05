@@ -51,7 +51,7 @@
     </div>
     <div class="signBox boxSub" :class="comment_box ? 'isDisplay' : ''">
 
-        <div class="signList cssFlex" v-for="(item,index) in circlePerList" :key="index">
+        <div class="signList cssFlex" v-for="(item,index) in circlePerList" :key="index" @click="signPersonClick(item.person_id)">
             <div class="cssFlex">
                 <img class="dePerImg" :src="item.p_icon.split(',')[0]" alt="">
                 <div class="dePerText">
@@ -67,7 +67,7 @@
                 </div>
 
             </div>
-            <div class="signTime cssFlex">
+            <div class="signTime cssFlex" @click="signPersonClick(item.person_id)">
                 <span class="signTimeText commonSub24">{{item.time}}</span><img src="../../../icon/rightL.png" alt="right" class="info-img-right">
             </div>
         </div>
@@ -149,6 +149,13 @@
                     var that = this
                     document.querySelector(".ModalHideCom").classList.add("isDisplay")
                     document.querySelector(".signModalBox").classList.add("isDisplay")
+                },
+                signPersonClick:function (personId){
+                    var that = this
+                    openNewWindow("userCenter", "../mine/userCenter.html",{
+                        person_id : personId,
+                        url :'signPerson'
+                    });
                 },
                 submitSign:function () {
                     var that = this

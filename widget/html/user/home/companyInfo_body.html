@@ -142,77 +142,11 @@
                 <div class="infobox">
                     <h4 class="productName productNamePad">公司官网</h4>
                     <div class="link-compony cssFlex">
-                        <span class="homepage">http://www.baidu.com</span>
+                        <a class="homepage">http://www.baidu.com</a>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
 
-                    <!--面试 评价-->
-                    <div class="starAsse cssFlex">
-                        <div class="star_left cssFlex">
-                            <span class="star_title">面试评价</span>
-                            <span class="star_num">（<i>34</i>条）</span>
-                        </div>
-                        <div class="star_right cssFlex">
-                            <span class="star_all">查看全部</span>
-                            <img src="../../../icon/right.png" alt="right" class="info-img-right">
-                        </div>
-                    </div>
 
-                    <div class="job-img-content cssFlex" onclick="homePage()">
-                        <img id="" src="../../../image/hr.png" alt="hr" class="hrImg">
-                        <div class="job-img-text">
-                            <p class="posiName" id="user_name">赵东东</p>
-                            <p class="job-name">
-                                面试职位：<i>高级经理</i>
-                            </p>
-
-                        </div>
-                        <div class="link-right">6月14日</div>
-                    </div>
-
-                    <!--星级评价-->
-                    <ul class="mui-table-view">
-                        <li class="star-li cssFlex">
-                            <a>公司工作环境</a>
-                            <div class="icons">
-                                <i data-index="1" class="mui-icon mui-icon-star"></i>
-                                <i data-index="2" class="mui-icon mui-icon-star"></i>
-                                <i data-index="3" class="mui-icon mui-icon-star"></i>
-                                <i data-index="4" class="mui-icon mui-icon-star"></i>
-                                <i data-index="5" class="mui-icon mui-icon-star"></i>
-                            </div>
-                        </li>
-                        <li class="star-li cssFlex">
-                            <a>HR服务态度</a>
-                            <div class="icons">
-                                <i data-index="1" class="mui-icon mui-icon-star"></i>
-                                <i data-index="2" class="mui-icon mui-icon-star"></i>
-                                <i data-index="3" class="mui-icon mui-icon-star"></i>
-                                <i data-index="4" class="mui-icon mui-icon-star"></i>
-                                <i data-index="5" class="mui-icon mui-icon-star"></i>
-                            </div>
-                        </li>
-                        <li class="star-li cssFlex">
-                            <a>面试官专业</a>
-                            <div class="icons">
-                                <i data-index="1" class="mui-icon mui-icon-star"></i>
-                                <i data-index="2" class="mui-icon mui-icon-star"></i>
-                                <i data-index="3" class="mui-icon mui-icon-star"></i>
-                                <i data-index="4" class="mui-icon mui-icon-star"></i>
-                                <i data-index="5" class="mui-icon mui-icon-star"></i>
-                            </div>
-                        </li>
-                        <li class="star-li cssFlex">
-                            <a>面试反馈率</a>
-                            <div class="icons">
-                                <i data-index="1" class="mui-icon mui-icon-star"></i>
-                                <i data-index="2" class="mui-icon mui-icon-star"></i>
-                                <i data-index="3" class="mui-icon mui-icon-star"></i>
-                                <i data-index="4" class="mui-icon mui-icon-star"></i>
-                                <i data-index="5" class="mui-icon mui-icon-star"></i>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
             <div id="tab2" style="display:none;">
@@ -359,42 +293,7 @@
                 }
                 var adressData = data.address
                 if (data) {
-                    // 公司头部
 
-                    /*if(attentionCompany.att_status == 0){
-                        alert(2)
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n'+'<div class="follow-btnbg" onclick="flowGuan('+ attentionCompany.id +',1)">已关注</div>\n'+
-                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
-                    }else if (attentionCompany.att_status == 1){
-                        alert(1)
-                        document.querySelector(".comTitle").innerHTML +='<div class="follow cssFlex">\n'+'<div class="follow-btn" onclick="flowGuan('+ attentionCompany.id +',0)">关注</div>\n'+
-                            '<img src="../../../icon/share.png" alt="share" class="followshare">\n'+'</div>'
-                    }
-
-                    document.querySelector(".comTitle").innerHTML += '111'
-
-                        '<div class="comintobox cssFlex" >' +
-                        '<div class="comInfo">' +
-                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                        '                    <p class="comInfoCon comInfoConMar">\n' +
-                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.org_type + '</span>\n' +
-                        '                    </p>\n' +
-                        '                    <p class="timeInfo cssFlex">\n' +
-                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                        '                        <span>' + dataSummary.s_time + '</span>\n' +
-                        '                        <i>-</i>\n' +
-                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                        '                    </p>\n' +
-                        '                </div>\n' +
-                        '                <div class="comLogo">\n' +
-                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                        '                </div>' +
-                        '                </div>'*/
                     // 公司标签
 
 
@@ -628,20 +527,6 @@
                             '                                            </div>'
                     }
                     document.querySelector(".PIClistBox").innerHTML = PIClistHtml
-
-
-                    /*// 工商信息
-                    document.querySelector(".Name").innerHTML = companySummary.Name
-                    document.querySelector(".OperName").innerHTML = companySummary.OperName
-                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
-                    document.querySelector(".RegistCapi").innerHTML = companySummary.RegistCapi
-                    document.querySelector(".StartDate").innerHTML = companySummary.StartDate
-                    document.querySelector(".Status").innerHTML = companySummary.Status
-                    document.querySelector(".Address").innerHTML = companySummary.Address
-                    document.querySelector(".CreditCode").innerHTML = companySummary.CreditCode
-                    document.querySelector(".Scope").innerHTML = companySummary.Scope*/
-
-
                     for (var i = 0; i < JobList.length; i++) {
                         html2 += '<div class="jobBox cssFlex" >\n' +
                             '                                        <div class="job-left">\n' +
@@ -888,25 +773,6 @@
         })
     }
 
-    // 星级评价
-    mui.init();
-    mui('.icons').on('click', 'i', function () {
-        var index = parseInt(this.getAttribute("data-index"));//获取当前元素的索引值
-        var parent = this.parentNode;//获取当前元素的父节点
-        var children = parent.children;//获取父节点下所有子元素
-        if (this.classList.contains("mui-icon-star")) {//判断当前节点列表中是否含有.mui-icon-star元素
-            for (var i = 0; i < index; i++) {//亮星
-                children[i].classList.remove('mui-icon-star');
-                children[i].classList.add('mui-icon-star-filled');
-            }
-        } else {//重置已经亮星的元素
-            for (var i = index; i < 5; i++) {
-                children[i].classList.add('mui-icon-star')
-                children[i].classList.remove('mui-icon-star-filled')
-            }
-        }
-        document.getElementById("info").innerHTML = parent.previousElementSibling.innerText + "：" + index + "星好评";
-    })
 </script>
 </body>
 </html>

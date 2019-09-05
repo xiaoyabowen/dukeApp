@@ -4,7 +4,7 @@
         <div class="resume_main_hander cssFlex">
             <span @click="activeHandle('new', 1)" :class="active == 'new' ? 'active' : ''">新简历</span>
             <span @click="interviewHandle('interview')" :class="active == 'interview' ? 'active' : ''">面试</span>
-            <span @click="offerHandle('offer', 4)" :class="active == 'offer' ? 'active' : ''">录用</span>
+            <!--<span @click="offerHandle('offer', 4)" :class="active == 'offer' ? 'active' : ''">录用</span>-->
             <span @click="noHandle('no', 5)" :class="active == 'no' ? 'active' : ''">不合适</span>
         </div>
         <!--新简历-->
@@ -104,7 +104,7 @@
                             <span class="job">{{item1[0].int_city}}/<span>{{ages(item1[0].w_from)}}</span>年/<span>{{item1[0].degree}}</span>/<span>{{ages(item1[0].p_birthday)}}</span>岁</span>
                             <div class="job">
                                 <span>{{item1[0].com_name}} </span>
-                                <span>&nbsp;&nbsp;{{item1[0].role}}</span>
+                                <span>{{item1[0].role}}</span>
                             </div>
                             <div class="job"><span>{{item1[0].w_from}}至{{item1[0].w_to}}</span></div>
                         </div>

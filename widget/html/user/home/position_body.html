@@ -406,6 +406,7 @@
                 console.log(1, data)
                 api.hideProgress();
                 if (data) {
+
                     var data = data.JobSummary
                     document.querySelector('.view').classList.remove('isDisplay');
 
@@ -740,7 +741,6 @@
     }
 
     function posiShareClick() {
-        toast("暂无分享")
         var dialogBox = api.require('dialogBox');
         dialogBox.actionMenu({
             rect: {
@@ -760,10 +760,11 @@
                     text: 'QQ好友',
                     icon: 'widget://image/qq.png'
                 },
-                {
+
+                /*{
                     text: 'QQ空间',
                     icon: 'widget://image/qqkj.png'
-                },
+                },*/
                 {
                     text: '新浪微博',
                     icon: 'widget://image/wb.png'
@@ -771,7 +772,7 @@
             ],
             styles: {
                 bg: '#FFF',
-                column: 5,
+                column: 4,
                 itemText: {
                     color: '#000',
                     size: 12,

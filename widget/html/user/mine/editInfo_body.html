@@ -62,15 +62,21 @@
         <span>名字</span>
         <input type="text" name="" class="firmInput" id="user_p_name" placeholder="单行输入">
     </div>
+    <div class="firm cssFlex">
+        <div class="xing">*</div>
+        <span>性别</span>
+        <input type="text" name="" class="firmInput" id="user_p_sex" placeholder="单行输入">
+    </div>
     <div class="firm cssFlex" onclick="int_city()">
         <div class="xing">*</div>
         <span>所在位置</span>
         <input type="text" name="" class="firmInput" readonly id="address" placeholder="单行输入">
     </div>
-    <div class="bun">
+
+    <!--<div class="bun">
         认证我的身份
     </div>
-    <p class="qy">500多位企业家认证</p>
+    <p class="qy">500多位企业家认证</p>-->
     <div class="heign1"></div>
 
     <div class="firm cssFlex">
@@ -133,10 +139,6 @@
         // console.log(uid);
         document.querySelector('.Box').classList.remove('isDisplay');
         document.getElementById('user_p_name').value = item.p_name || '未填写';
-
-        // document.getElementById('user_age').innerText = item.p_birthday || '';
-
-        // document.getElementById('user_sex').innerText = data.p_sex || '未选择';
 
         document.getElementById('company_name').value = item.company_name || '';
         document.getElementById('job_name').value = item.job_name || '';
@@ -297,7 +299,7 @@
         }
 
         console.log(obj);
-        ajaxGetWithProgress(CreatePersonUserProfile, obj, function (data, err) {
+        ajaxGetWithProgress(updateCirclePersonMsgByPid, obj, function (data, err) {
 
             // alert(JSON.stringify(data));
             console.log(12344, data);

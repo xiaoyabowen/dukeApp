@@ -435,7 +435,7 @@ i.semd-size {
 
 
 /*魔方开始*/
-div.isDisplay {
+.isDisplay {
     display: none;
 }
 
