@@ -6,18 +6,18 @@ var isCleanUser = false;
 
 
 
-/*
+
 // 本地服务器
 var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.24:8000/SE4M';
 var Domain = 'http://192.168.1.24:8088';
-*/
+
 
 
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 // 渡客正式服务器
@@ -97,6 +97,9 @@ var queryJobsByUidMenu = serverUrl + "/Menu/queryJobsByUidMenu";
 
 // 伯乐    job_name  job_type 点击职位随机查询五个人才
 var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
+
+// 伯乐 筛选框
+var filterScreen = serverUrl + "/Menu/Screen";
 
 // 支付宝  支付  接口
 var payalipayUniform = Domain +'/pay/alipayUniform'
@@ -387,6 +390,8 @@ var AttentionCircle = serverUrl + "/CircleProfile/AttentionCircle";
 // 取消活动收藏
 var removeAttentionCircle = serverUrl + "/CircleProfile/removeAttentionCircle";
 
+// 活动收藏列表
+var queryAttentionCircle = serverUrl + '/CircleProfile/queryAttentionCircle';
 
 // 查询屏蔽公司列表
 var queryShieldCompany = serverUrl + "/OrgnizationProfile/queryShieldCompany";

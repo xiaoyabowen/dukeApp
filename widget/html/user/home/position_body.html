@@ -74,6 +74,119 @@
         .Box {
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
+        /*leilei*/
+        .mui-popover{
+          position: fixed;
+          width: 6rem;
+          left: 50%;
+          top: 20%;
+          margin-left: -3rem;
+          z-index: 99999999;
+          border-radius: 0.08rem;
+        }
+  .wrap{
+    /*width: 5.7rem;*/
+    /*height: 6.0rem;*/
+    background: #fff;
+    /*position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -2.85rem;
+    margin-top: -3rem;*/
+    padding: 0.3rem 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 0.08rem
+}
+.con-pay-main-right input{
+    display: none
+}
+.con-pay-main-right label{
+    display: inline-block;
+    border: 1px solid #638BFF;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 50%;
+}
+/* .con-pay-main-right input:checked + label{
+    width: 0.36rem;
+    height: 0.36rem;
+    background: center center no-repeat, #638BFF;
+    background-size: 0.2rem 0.16rem;
+} */
+
+.active{
+    width: 0.36rem;
+    height: 0.36rem;
+    background: center center no-repeat, #638BFF;
+    background-size: 0.2rem 0.16rem;
+}
+
+.head_notice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.03rem;
+}
+.head_notice span:nth-child(1){
+    font-size: 0.38rem;
+    font-weight: 500;
+    color: #333;
+    margin-left: 0.3rem;
+}
+.head_notice span:nth-child(2){
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+}
+.head_notice span:nth-child(2) img{
+    width: 100%;
+    height: 100%;
+}
+.con-pay-content{
+    width: 4.46rem;
+    height: 1.13rem;
+    border: 0.02rem solid #eaeaea;
+}
+.pay_main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius:0.05rem;
+    padding: 0.2rem 0.15rem;
+}
+.con-pay-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.resume-type{
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: #666;
+}
+.resume-date{
+    font-size:0.2rem;
+    color: #666;
+}
+.right_side{
+    font-size: 0.24rem;
+    color: #666;
+}
+.btn{
+    font-size: 0.3rem;
+    color: #fff;
+    font-weight: 500;
+    width: 5.2rem;
+    height: 0.78rem;
+    line-height: 0.78rem;
+    margin: 0 auto;
+    background: #638BFF;
+    text-align: center;
+    border-radius:0.08rem;
+}
+        /*leilei*/
     </style>
 
 </head>
@@ -89,7 +202,6 @@
 </div>
 
 <div id="app">
-
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main safe-areas isDisplay">
         <!-- Page, data-name contains page name which can be used in callbacks -->
@@ -168,13 +280,40 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 </div>
 
+<div id="popover" class="mui-popover">
+  <div id='sendResume' class="wrap">
+        <div class="head_notice">
+            <span>确认投递简历</span>
+            <!-- <span><img src="../../../image/icon.jpg" alt=""></span> -->
+        </div>
+        <div>
+            <div class="pay_main" v-for='(item,index) in resumeList'>
+                <div  @click='selectResume(index)' class="con-pay-main-right">
+                    <input type="radio" value="农业" v-model="bank" class="myOrderHaveCheck" id="mode1"
+                        name="checkItem">
+                    <label :class=" [selectIndex == index ? 'active' : '' ]"
+                        for="mode1"></label>
+                </div>
+                <div class="con-pay-content">
+                    <div class="left-side">
+                        <div class='resume-type'>{{item.resumeType}}</div>
+                        <div class="resume-date">{{item.resumeDate}} 更新</div>
+                    </div>
+                    <div class="right_side">
+                        {{item.type}} 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click = 'deliveryResume()' class="btn">
+            确认投递
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -202,7 +341,7 @@
     // console.log("card", card_el);
     // console.log("card height: "+card_el.style.height);
 
-
+    mui.init();
     var job_id, cid, jobId, uid, ptoken, s_id, h_type, magicBGheight, ms_type, search, magicBox, winWidth, winHeight,
         a01_w, m_d, magicBtn, magicSubBox, iconImg;
     apiready = function () {
@@ -490,6 +629,36 @@
             }
         })
 
+        //leilei-Start
+        var app = new Vue({
+              el: '#sendResume',
+              data: {
+                  bank: '',
+                  selectIndex: 0,
+                  resumeList: [{
+                      resumeType: '在线简历',
+                      resumeDate: '2019.05.27',
+                      type: ''
+                  },
+                  {
+                      resumeType: '附件简历',
+                      resumeDate: '2019.07.27',
+                      type: ''
+                  }]
+              },
+              methods: {
+                  selectResume(index) {
+                    console.log('aaa')
+                    this.selectIndex = index;
+                  },
+                  deliveryResume(){
+                    //投递简历投递成功关闭弹窗
+
+                    mui('.mui-popover').popover('toggle')
+                  }
+              }
+          })
+        //leilei-End
     };
 
     // 点击进入公司详情页面
@@ -544,6 +713,7 @@
 
     // 点击投递简历
     function sendResume() {
+        mui('.mui-popover').popover('toggle');//show hide toggle
         var uidUser = localStorage.getItem("user")
         console.log(123, uidUser)
         if (!uidUser) {
@@ -673,6 +843,10 @@
             }*/
         });
     }
+</script>
+
+<script>
+
 </script>
 </body>
 </html>

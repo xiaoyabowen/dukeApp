@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
-    <link rel="stylesheet" href="../../../css/api.css"/>
-    <link rel="stylesheet" href="../../../css/commonWin.css"/>
-    <link rel="stylesheet" href="../../../css/mofang.css"/>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../css/mofang.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-
         /*.leftImgClose>img{
             display: inline-block;
             width: 0.5rem;
@@ -33,7 +33,7 @@
             font-size: 0px;
         }
 
-        .see-xian-img > img:nth-child(3n) {
+        .see-xian-img>img:nth-child(3n) {
             margin-right: 0;
         }
 
@@ -45,11 +45,11 @@
             font-size: 0.36rem;
         }
 
-        #tabs > li > a {
+        #tabs>li>a {
             font-size: 0.28rem !important;
         }
 
-        .activeTab > a {
+        .activeTab>a {
             color: rgba(99, 139, 255, 1) !important;
         }
 
@@ -57,9 +57,9 @@
             padding: 0 0.34rem !important;
         }
 
-        .chatJob, .workJob {
+        .chatJob,
+        .workJob {
             width: 43%;
-
         }
 
         .chatJob {
@@ -76,223 +76,205 @@
         }
     </style>
 </head>
+
 <body>
 
 
-<div id="app1">
-    <div class="bgBlack" @click="hideBg()"></div>
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <keep-alive>
-        <component :is="active"></component>
-    </keep-alive>
-</div>
+    <div id="app1">
+        <div class="bgBlack" @click="hideBg()"></div>
+        <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+        <keep-alive>
+            <component :is="active"></component>
+        </keep-alive>
+    </div>
 
 
-<div id="topbar" class="display">
-    <div class="headerBoxbg cssFlex">
-        <div class="leftImgClose" style="margin-top: 0.2rem">
-            <!--<img src="../../../icon/comHome.png" onclick="mineGo()">-->
-            <img src="../../../icon/mine.png" onclick="mineGo()">
-        </div>
-        <div class="middleMain">
-            人才
-        </div>
+    <div id="topbar" class="display">
+        <div class="headerBoxbg cssFlex">
+            <div class="leftImgClose" style="margin-top: 0.2rem">
+                <!--<img src="../../../icon/comHome.png" onclick="mineGo()">-->
+                <img src="../../../icon/mine.png" onclick="mineGo()">
+            </div>
+            <div class="middleMain">
+                人才
+            </div>
 
-        <!--<div class="middleHeightTop">
+            <!--<div class="middleHeightTop">
             <input type="text" id="search-inputTop" placeholder="搜索地点/公司/职位">
             <span class="search-Click">GO</span>
         </div>-->
-        <div class="rightImgEdite">
-            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
+            <div class="rightImgEdite">
+                <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
 
-        </div>
-    </div>
-</div>
-
-<div class="contentBox pd commonBg rankTabsBg" id="rankWrap">
-
-    <!-- leilei Start -->
-    <div id="rankTabs">
-        <div class="tabs cssFlex">
-            <div @click='changeStatus("recommand")' :class="[classFlag == 'recommand' ? 'selectClass':'','recommand']">
-                推荐
-            </div>
-            <div @click='changeStatus("actives")'
-                 :class="[classFlag == 'actives' ? 'selectClass':'','actives' , !activesUpDownFlag ? 'selectDown' : 'selectUp' ]">
-                活跃
-            </div>
-            <div @click='changeStatus("sallary")'
-                 :class="[classFlag == 'sallary' ? 'selectClass' : '' , 'sallary' ,!sallaryUpDownFlag ? 'selectDown' : 'selectUp']">
-                薪资
-            </div>
-            <div @click='changeStatus("education")'
-                 :class="[classFlag == 'education' ? 'selectClass' : '' , 'education',!educationUpDownFlag ? 'selectDown' : 'selectUp']">
-                学历
-            </div>
-            <div @click='changeStatus("age")'
-                 :class="[classFlag == 'age' ? 'selectClass' : '' , 'age', !ageUpDownFlag ? 'selectDown' : 'selectUp']">
-                年龄
-            </div>
-        </div>
-        <div class="rankContent" v-show='activesUpDownFlag'>
-            <div v-for='(item,index) in activesList1' class="command" :key='index'>
-                <div class="title">{{item.tagName}}</div>
-                <div class="contents">
-                    <span :class='[signactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
-                          v-for='(subItem,subIndex) in item.tagList'
-                          @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
-                </div>
-            </div>
-            <div v-for='(item,index) in activesList2' class="command" :key='index'>
-                <div class="title">{{item.tagName}}</div>
-                <div class="contents">
-                    <span :class='[updateactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
-                          v-for='(subItem,subIndex) in item.tagList'
-                          @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
-                </div>
-            </div>
-        </div>
-        <div class="rankContent" v-show='sallaryUpDownFlag'>
-            <div v-for='(item,index) in sallaryList' class="command" :key='index'>
-                <div class="title">{{item.tagName}}</div>
-                <div class="contents">
-                    <span :class='[sallaryselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
-                          v-for='(subItem,subIndex) in item.tagList' @click=sallaryloadData(subItem,subIndex)>{{subItem}}</span>
-                </div>
-            </div>
-        </div>
-        <div class="rankContent" v-show='educationUpDownFlag'>
-            <div v-for='(item,index) in educationList' class="command" :key='index'>
-                <div class="title">{{item.tagName}}</div>
-                <div class="contents">
-                    <span :class='[educationselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
-                          v-for='(subItem,subIndex) in item.tagList' @click=educationloadData(subItem,subIndex)>{{subItem}}</span>
-                </div>
-            </div>
-        </div>
-        <div class="rankContent" v-show='ageUpDownFlag'>
-            <div v-for='(item,index) in ageList' class="command" :key='index'>
-                <div class="title">{{item.tagName}}</div>
-                <div class="contents">
-                    <span :class='[ageselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
-                          v-for='(subItem,subIndex) in item.tagList'
-                          @click=ageloadData(subItem,subIndex)>{{subItem}}</span>
-                </div>
             </div>
         </div>
     </div>
-    <!-- leilei End -->
 
-    <div id='rankNext' class="box isDisplay">
-        <div class="commonTitlePoai">
-            <div class="comTitle cssFlex">
-                <div class="comInfosee">
-                    <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
-                    <p class="comInfoCon">
-                        <span id="company">北京A公司信息技术有限公司</span>
-                        <span id="company_type">运营经理</span>
-                    </p>
-                    <p class="see-agod">
-                        <span id="working">11</span>年工作经验 / <span id="degree">本科</span> / <span id="age">33</span>岁
-                    </p>
-                    <p class="see-status" id="jobHuntingStatus">
-                        离职-随时到岗
-                    </p>
+    <div class="contentBox pd commonBg rankTabsBg" id="rankWrap">
 
+        <!-- leilei Start -->
+        <div id="rankTabs">
+            <div class="tabs cssFlex">
+                <div @click='changeStatus("recommand")' :class="[classFlag == 'recommand' ? 'selectClass':'','recommand']">
+                    推荐
                 </div>
-                <div class="comLogo comLogoSee">
-                    <img src="../../../image/comLogo.png" alt="comLogo">
+                <div @click='changeStatus("actives")' :class="[classFlag == 'actives' ? 'selectClass':'','actives' , !activesUpDownFlag ? 'selectDown' : 'selectUp' ]">
+                    活跃
                 </div>
-
+                <div @click='changeStatus("sallary")' :class="[classFlag == 'sallary' ? 'selectClass' : '' , 'sallary' ,!sallaryUpDownFlag ? 'selectDown' : 'selectUp']">
+                    薪资
+                </div>
+                <div @click='changeStatus("education")' :class="[classFlag == 'education' ? 'selectClass' : '' , 'education',!educationUpDownFlag ? 'selectDown' : 'selectUp']">
+                    学历
+                </div>
+                <div @click='changeStatus("age")' :class="[classFlag == 'age' ? 'selectClass' : '' , 'age', !ageUpDownFlag ? 'selectDown' : 'selectUp']">
+                    年龄
+                </div>
             </div>
-            <div class="job-chatBox cssFlex">
-                <div class="chatJob" onclick="chatJob()">聊一聊</div>
-                <div class="workJob" onclick="sendResume()">投递简历</div>
+            <div class="rankContent" v-show='activesUpDownFlag'>
+                <div v-for='(item,index) in activesList1' class="command" :key='index'>
+                    <div class="title">{{item.tagName}}</div>
+                    <div class="contents">
+                        <span :class='[signactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
+                    </div>
+                </div>
+                <div v-for='(item,index) in activesList2' class="command" :key='index'>
+                    <div class="title">{{item.tagName}}</div>
+                    <div class="contents">
+                        <span :class='[updateactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rankContent" v-show='sallaryUpDownFlag'>
+                <div v-for='(item,index) in sallaryList' class="command" :key='index'>
+                    <div class="title">{{item.tagName}}</div>
+                    <div class="contents">
+                        <span :class='[sallaryselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=sallaryloadData(subItem,subIndex)>{{subItem}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rankContent" v-show='educationUpDownFlag'>
+                <div v-for='(item,index) in educationList' class="command" :key='index'>
+                    <div class="title">{{item.tagName}}</div>
+                    <div class="contents">
+                        <span :class='[educationselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=educationloadData(subItem,subIndex)>{{subItem}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rankContent" v-show='ageUpDownFlag'>
+                <div v-for='(item,index) in ageList' class="command" :key='index'>
+                    <div class="title">{{item.tagName}}</div>
+                    <div class="contents">
+                        <span :class='[ageselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=ageloadData(subItem,subIndex)>{{subItem}}</span>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- leilei End -->
 
-        <!-- mui  滑动tab切换-->
-        <!--<ul id="tabs" class="cssFlex">
+        <div id='rankNext' class="box isDisplay">
+            <div class="commonTitlePoai">
+                <div class="comTitle cssFlex">
+                    <div class="comInfosee">
+                        <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
+                        <p class="comInfoCon">
+                            <span id="company">北京A公司信息技术有限公司</span>
+                            <span id="company_type">运营经理</span>
+                        </p>
+                        <p class="see-agod">
+                            <span id="working">11</span>年工作经验 / <span id="degree">本科</span> / <span id="age">33</span>岁
+                        </p>
+                        <p class="see-status" id="jobHuntingStatus">
+                            离职-随时到岗
+                        </p>
+
+                    </div>
+                    <div class="comLogo comLogoSee">
+                        <img src="../../../image/comLogo.png" alt="comLogo">
+                    </div>
+
+                </div>
+                <div class="job-chatBox cssFlex">
+                    <div class="chatJob" onclick="chatJob()">聊一聊</div>
+                    <div class="workJob" onclick="sendResume()">投递简历</div>
+                </div>
+            </div>
+
+            <!-- mui  滑动tab切换-->
+            <!--<ul id="tabs" class="cssFlex">
             <li class="activeTab"><a href="javascript:;" title="tab1">在线简历</a></li>
             <li><a href="javascript:;" title="tab2">图片作品</a></li>
         </ul>-->
-        <div id="content">
-            <div id="tab1" style="display: block;">
-                <div class="see-xian-box">
-                    <div class="seeSubTitle">求职期望</div>
-                    <div class="see-hope cssFlex">
-                        <p class="see-price">
-                            <span class="see-gang" id="work_name">运营经理</span>
-                            <span class="see-adress" id="int_city">北京</span>
-                        </p>
-                        <span class="see-price" id="pay">10-15k</span>
-                    </div>
-                    <p class="see-choose-hang" id="work">行业不限</p>
-                    <div class="seeSubTitle">自我描述</div>
-                    <div class="see-me-miao">
-                        <div class="see-me-list cssFlex" id="p_title"></div>
-                        <p class="see-me-text" id="p_tags">
-                            Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id
-                            tempor eros, at lobortis
-                            augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec
-                            accumsan
-                            tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
-                            nunc lorem.
-                        </p>
-                    </div>
-                    <div class="seeSubTitle">工作经历</div>
-                    <div class="see-comli" id="workings">
-                        <div class="see-comlibox">
-                            <div class="jing-title">北京A公司信息技术有限公司</div>
-                            <div class="jing-position">运营经理</div>
-                            <div class="jing-year">2015.03-至今</div>
-                            <div class="jing-depart">所属部门：<span>运营部</span></div>
-                            <div class="jing-skill">
-                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
-                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
-                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
-                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
-                            </div>
+            <div id="content">
+                <div id="tab1" style="display: block;">
+                    <div class="see-xian-box">
+                        <div class="seeSubTitle">求职期望</div>
+                        <div class="see-hope cssFlex">
+                            <p class="see-price">
+                                <span class="see-gang" id="work_name">运营经理</span>
+                                <span class="see-adress" id="int_city">北京</span>
+                            </p>
+                            <span class="see-price" id="pay">10-15k</span>
+                        </div>
+                        <p class="see-choose-hang" id="work">行业不限</p>
+                        <div class="seeSubTitle">自我描述</div>
+                        <div class="see-me-miao">
+                            <div class="see-me-list cssFlex" id="p_title"></div>
+                            <p class="see-me-text" id="p_tags">
+                                Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id tempor eros, at lobortis augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec accumsan tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
+                                nunc lorem.
+                            </p>
+                        </div>
+                        <div class="seeSubTitle">工作经历</div>
+                        <div class="see-comli" id="workings">
+                            <div class="see-comlibox">
+                                <div class="jing-title">北京A公司信息技术有限公司</div>
+                                <div class="jing-position">运营经理</div>
+                                <div class="jing-year">2015.03-至今</div>
+                                <div class="jing-depart">所属部门：<span>运营部</span></div>
+                                <div class="jing-skill">
+                                    1.能独立完成web/app界面的视觉设计及banner图制作。 <br/> 2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。
+                                    <br/> 3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。
+                                    <br/> 4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
+                                </div>
 
-                        </div>
-                        <div class="see-comlibox">
-                            <div class="jing-title">北京A公司信息技术有限公司</div>
-                            <div class="jing-position">运营经理</div>
-                            <div class="jing-year">2015.03-至今</div>
-                            <div class="jing-depart">所属部门：<span>运营部</span></div>
-                            <div class="jing-skill">
-                                1.能独立完成web/app界面的视觉设计及banner图制作。 <br/>
-                                2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。<br/>
-                                3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。<br/>
-                                4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
                             </div>
+                            <div class="see-comlibox">
+                                <div class="jing-title">北京A公司信息技术有限公司</div>
+                                <div class="jing-position">运营经理</div>
+                                <div class="jing-year">2015.03-至今</div>
+                                <div class="jing-depart">所属部门：<span>运营部</span></div>
+                                <div class="jing-skill">
+                                    1.能独立完成web/app界面的视觉设计及banner图制作。 <br/> 2.熟悉web/APP的设计规范能独立完成web/app界面的视觉设计。
+                                    <br/> 3.及banner图制作，熟悉web/APP的设计规范能独立完成web/app界面。
+                                    <br/> 4.视觉设计及banner图制作，熟悉web/APP的设计规范能独立完成web/app。
+                                </div>
 
-                        </div>
-                    </div>
-                    <div class="seeSubTitle">项目经历</div>
-                    <div class="see-product" id="project">
-                        <div class="see-product-box">
-                            <div class="produvt-name"></div>
-                            <div class="produvt-date"></div>
-                            <div class="produvt-content"></div>
-                        </div>
-                    </div>
-                    <div class="seeSubTitle">教育经历</div>
-                    <div id="educations">
-                        <div class="see-education cssFlex">
-                            <div class="education-left">
-                                <div class="education-name">北京理工大学</div>
-                                <div class="education-edu">本科 | 营销管理</div>
-                                <div class="education-date">2011年-2015年</div>
                             </div>
-                            <img src="../../../image/mine/defalut.png" alt="defult"
-                                 class="edcution-img">
                         </div>
-                    </div>
+                        <div class="seeSubTitle">项目经历</div>
+                        <div class="see-product" id="project">
+                            <div class="see-product-box">
+                                <div class="produvt-name"></div>
+                                <div class="produvt-date"></div>
+                                <div class="produvt-content"></div>
+                            </div>
+                        </div>
+                        <div class="seeSubTitle">教育经历</div>
+                        <div id="educations">
+                            <div class="see-education cssFlex">
+                                <div class="education-left">
+                                    <div class="education-name">北京理工大学</div>
+                                    <div class="education-edu">本科 | 营销管理</div>
+                                    <div class="education-date">2011年-2015年</div>
+                                </div>
+                                <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
-            <!--<div id="tab2" style="display:none;">
+                <!--<div id="tab2" style="display:none;">
                 <div class="see-xian-img cssFlex">
                     <img src="../../../image/pro.png" alt="pro">
                     <img src="../../../image/pro.png" alt="pro">
@@ -301,15 +283,15 @@
                     <img src="../../../image/pro.png" alt="pro">
                 </div>
             </div>-->
-        </div>
-        <!--<div class="Have_a_chat_box" @click="HavechatClick()">
+            </div>
+            <!--<div class="Have_a_chat_box" @click="HavechatClick()">
             <div class="Have_a_chat">
                 聊一聊
             </div>
         </div>-->
 
+        </div>
     </div>
-</div>
 
 
 </body>
@@ -328,16 +310,17 @@
 <script src="common/magicComPosiAll.js"></script>
 <script src="common/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
 <script>
-
+    eruda.init();
+</script>
+<script>
     // swiper  轮播
+    var app1Vue;
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
     })
-
     // 模态框
-    $(document).on("click", ".componySize>li", function () {
+    $(document).on("click", ".componySize>li", function() {
         $(".modal-space").show()
     })
 
@@ -353,13 +336,13 @@
 
     var person_summary, magicBox, winWidth, winHeight, a01_w, m_d, magicBtn, magicSubBox, iconImg, person_id;
 
-    apiready = function () {
+    apiready = function() {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
         person_id = localStorage.getItem("user")
         api.addEventListener({
             name: 'keyback'
-        }, function (ret, err) {
+        }, function(ret, err) {
             closeOnKeyBack();
         });
         console.log("person_idperson_id", person_id)
@@ -385,26 +368,26 @@
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
         console.log("bevelLength", bevelLength)
-        // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w - 10) * 0.23 - 25;    // 100
+            // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w - 10) * 0.23 - 25; // 100
 
-        new Vue({
+         app1Vue = new Vue({
             el: '#app1',
             data: {
                 active: 'magicComAll',
                 person_id: '',
             },
-            created: function () {
+            created: function() {
                 this.togle()
             },
-            mounted: function () {
+            mounted: function() {
 
                 var that = this
                 that.active = store.state.obj.magicCom;
                 that.person_id = api.pageParam.person_id
                 api.addEventListener({
                     name: 'magicComAll',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
 
@@ -414,7 +397,7 @@
                 });
                 api.addEventListener({
                     name: 'magicComPosiAll',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComPosiAll;
 
@@ -424,7 +407,7 @@
                 });
                 api.addEventListener({
                     name: 'magicPosition',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
 
@@ -434,17 +417,17 @@
                 });
                 api.addEventListener({
                     name: 'jobAllName',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     comValue(ret.value.key.job_id)
                 });
                 api.addEventListener({
                     name: 'jobPosiAll',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     comValue(ret.value.key.job_name)
                 });
                 api.addEventListener({
                     name: 'personHome',
-                }, function (ret, err) {
+                }, function(ret, err) {
                     comValue(ret.value.key.person_id)
 
                 });
@@ -464,7 +447,7 @@
 
                 magicBGheight = document.querySelector(".magicBGheight")
                 magicBGheight.style.height = m_d + "px"
-                // 里面小盒子宽度
+                    // 里面小盒子宽度
                 for (var i = 0; i < magicBtn.length; i++) {
                     magicBtn[i].style.width = m_d + "px"
                     magicBtn[i].style.height = m_d + "px"
@@ -481,7 +464,7 @@
                 }
             },
             methods: {
-                togle: function () {
+                togle: function() {
                     // this.active = true;
                     var isBlck = document.querySelector('.bgBlack')
                     if (isBlck.getAttribute("class") == 'isDisplay') {
@@ -495,7 +478,7 @@
                 },
 
                 // 更改简历数据
-                HavechatClick: function () {
+                HavechatClick: function() {
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
@@ -505,7 +488,7 @@
                     }
                 },
 
-                hideBg: function () {
+                hideBg: function() {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');
                     that.active = ''
@@ -520,14 +503,16 @@
             if (backButtonPress > 1) {
                 closeApp();
             } else {
-                api.toast({msg: '再按一次退出应用'});
+                api.toast({
+                    msg: '再按一次退出应用'
+                });
             }
-            setTimeout(function () {
+            setTimeout(function() {
                 backButtonPress = 0;
             }, 1000);
         }
 
-        ajaxGetWithProgress(QueryPersonRandomOne, {}, function (data, err) {
+        ajaxGetWithProgress(QueryPersonRandomOne, {}, function(data, err) {
 
             // alert(JSON.stringify(data));
             console.log("datadata", data);
@@ -627,10 +612,10 @@
                     document.getElementById('work').innerText = Intention.work;
                     var pays = Intention.pay.split('.');
                     var pays2 = []
-                    pays.forEach(function (value) {
-                        pays2.push(value)
-                    })
-                    // console.log(pays2);
+                    pays.forEach(function(value) {
+                            pays2.push(value)
+                        })
+                        // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
                 // console.warn(JSON.stringify(working_his));
@@ -710,56 +695,16 @@
             }
 
 
-            // 联系方式 和 图片作品
-            mui.init({
-                swipeBack: false
-            });
-            (function ($) {
-                $('.mui-scroll-wrapper').scroll({
-                    indicators: true //是否显示滚动条
-                });
-                var phone, email;
-                phone = person_summary.phone_m || '未填写';
-                email = person_summary.email || '未填写';
-
-
-                var html3 = ' <div class="see-xian-img cssFlex">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                </div>';
-
-                var item3 = document.getElementById('item3mobile');
-                document.getElementById('slider').addEventListener('slide', function (e) {
-                    if (e.detail.slideNumber === 1) {
-                        if (item3.querySelector('.mui-loading')) {
-                            setTimeout(function () {
-                                item3.querySelector('.mui-scroll').innerHTML = html3;
-                            }, 500);
-                        }
-                    }
-                });
-                var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-                $('.mui-input-group').on('change', 'input', function () {
-                    if (this.checked) {
-                        sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-                        //force repaint
-                        sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-                    }
-                });
-            })(mui);
         });
-
-        console.log("user", localStorage.getItem("user"))
 
 
     };
 
     function comValue(person_id) {
         // 获取用户简历全部信息
-        ajaxGetWithProgress(QueryPerson, {person_id: person_id}, function (data, err) {
+        ajaxGetWithProgress(QueryPerson, {
+            person_id: person_id
+        }, function(data, err) {
             // alert(JSON.stringify(data));
             console.log("QueryPerson", data);
             if (data) {
@@ -857,10 +802,10 @@
                     document.getElementById('work').innerText = Intention.work;
                     var pays = Intention.pay.split('.');
                     var pays2 = []
-                    pays.forEach(function (value) {
-                        pays2.push(value)
-                    })
-                    // console.log(pays2);
+                    pays.forEach(function(value) {
+                            pays2.push(value)
+                        })
+                        // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
                 // console.warn(JSON.stringify(working_his));
@@ -952,7 +897,7 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function (data, err) {
+        ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function(data, err) {
             console.log("homeData", data)
             localStorage.setItem("com_id", data.c_id)
             if (data.date == 1) {
@@ -984,200 +929,32 @@
         }
 
     }
-</script>
-<!-- leileiStart -->
-<script>
 
-  var json = {
-    activeList1:[
-      {
-        tagName:'登录时间',
-        tagList:['最近一天','最近三天','最近一周','最近30天','30天以上']
-      },
 
-    ],
-    activeList2:[
-      {
-        tagName:'简历更新时间',
-        tagList:['最近一天','最近三天','最近一周','最近30天','30天以上'],
-      }
-    ],
-    salaryList:[
-      {
-        tagName:'月薪',
-        tagList:['10-15k','15-20k','20-30k','30-50k','50-100k','100k以上'],
-      }
-    ],
-    educationList:[
-      {
-        tagName:'学历',
-        tagList:['本科以下','本科','研究生','硕士','博士','博士后']
-      }
-    ],
-    ageList:[
-      {
-        tagName:'年龄',
-        tagList:['25岁以下','25-30岁','30-35岁','35-40岁','40-45岁','45-50岁']
-      }
-    ]
-  }
-
-  var app = new Vue({
-    el:'#rankTabs',
-    data:{
-      // itemList:[],
-      activesList1:json.activeList1,
-      activesList2:json.activeList2,
-      sallaryList:json.salaryList,
-      educationList:json.educationList,
-      ageList:json.ageList,
-
-      classFlag:'recommand',
-      activesUpDownFlag:false,
-      sallaryUpDownFlag:false,
-      educationUpDownFlag:false,
-      ageUpDownFlag:false,
-
-      signactivesselectedStatusIndex:'a',
-      updateactivesselectedStatusIndex:'a',
-      sallaryselectedStatusIndex:'a',
-      educationselectedStatusIndex:'a',
-      ageselectedStatusIndex:'a',
-    },
-    methods:{
-      changeStatus(type){
-        this.classFlag = type;
-        if(type == 'actives'){
-          // this.itemList = json.activeList;
-          this.activesUpDownFlag = !this.activesUpDownFlag;
-          this.sallaryUpDownFlag=false;
-          this.educationUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'sallary'){
-          // this.itemList = json.salaryList;
-          this.sallaryUpDownFlag = !this.sallaryUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.educationUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'education'){
-          // this.itemList = json.educationList;
-          this.educationUpDownFlag = !this.educationUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.sallaryUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'age'){
-          // this.itemList = json.ageList;
-          this.ageUpDownFlag = !this.ageUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.sallaryUpDownFlag=false;
-          this.educationUpDownFlag=false;
-        }else{
-          this.itemList = [];
-          this.closeTabCon();
-        }
-      },
-      closeTabCon(){
-        this.activesUpDownFlag=false;
-        this.sallaryUpDownFlag=false;
-        this.educationUpDownFlag=false;
-        this.ageUpDownFlag=false;
-      },
-      activesloadData(tag,item,index){
-        if(tag == '登录时间'){
-          this.signactivesselectedStatusIndex = index;
-        }else{
-          this.updateactivesselectedStatusIndex = index;
-        }
-        this.closeTabCon();
-        this.findItems();
-      },
-      sallaryloadData(item,index){
-        this.closeTabCon();
-        this.sallaryselectedStatusIndex = index;
-        this.findItems();
-      },
-      educationloadData(item,index){
-        this.closeTabCon();
-        this.educationselectedStatusIndex = index;
-        this.findItems();
-      },
-      ageloadData(item,index){
-        this.closeTabCon();
-        this.ageselectedStatusIndex = index;
-        this.findItems();
-      },
-      findItems(){
-        var signInOption,updateOption,sallaryOption,educationOption,ageOption;
-        if(typeof this.signactivesselectedStatusIndex == 'number'){
-            signInOption = this.activesList1[0].tagList[this.signactivesselectedStatusIndex];
-        }else{
-            signInOption = '';
-        }
-
-        if(typeof this.updateactivesselectedStatusIndex == 'number'){
-            updateOption = this.activesList2[0].tagList[this.updateactivesselectedStatusIndex];
-        }else{
-          updateOption = '';
-        }
-
-        if(typeof this.sallaryselectedStatusIndex == 'number'){
-            sallaryOption = this.sallaryList[0].tagList[this.sallaryselectedStatusIndex];
-        }else{
-          sallaryOption = '';
-        }
-
-        if(typeof this.educationselectedStatusIndex == 'number'){
-            educationOption = this.educationList[0].tagList[this.educationselectedStatusIndex];
-        }else{
-          educationOption = '';
-        }
-
-        if(typeof this.ageselectedStatusIndex == 'number'){
-           ageOption = this.ageList[0].tagList[this.ageselectedStatusIndex];
-        }else{
-          ageOption = '';
-        }
-
-        //调接口筛选
-        console.log(signInOption,updateOption,sallaryOption,educationOption,ageOption,'1178888');
-
-      }
-    },
-    mounted(){
-
+    //leilei 筛选
     var json = {
-        activeList1: [
-            {
+        activeList1: [{
                 tagName: '登录时间',
                 tagList: ['最近一天', '最近三天', '最近一周', '最近30天', '30天以上']
             },
 
-
         ],
-        activeList2: [
-            {
-                tagName: '简历更新时间',
-                tagList: ['最近一天', '最近三天', '最近一周', '最近30天', '30天以上'],
-            }
-        ],
-        salaryList: [
-            {
-                tagName: '月薪',
-                tagList: ['10-15k', '15-20k', '20-30k', '30-50k', '50-100k', '100k以上'],
-            }
-        ],
-        educationList: [
-            {
-                tagName: '学历',
-                tagList: ['本科以下', '本科', '研究生', '硕士', '博士', '博士后']
-            }
-        ],
-        ageList: [
-            {
-                tagName: '年龄',
-                tagList: ['25岁以下', '25-30岁', '30-35岁', '35-40岁', '40-45岁', '45-50岁']
-            }
-        ]
+        activeList2: [{
+            tagName: '简历更新时间',
+            tagList: ['最近一天', '最近三天', '最近一周', '最近30天', '30天以上'],
+        }],
+        salaryList: [{
+            tagName: '月薪',
+            tagList: ['10-15k', '15-20k', '20-30k', '30-50k', '50-100k', '100k以上'],
+        }],
+        educationList: [{
+            tagName: '学历',
+            tagList: ['本科以下', '本科', '研究生', '硕士', '博士', '博士后']
+        }],
+        ageList: [{
+            tagName: '年龄',
+            tagList: ['25岁以下', '25-30岁', '30-35岁', '35-40岁', '40-45岁', '45-50岁']
+        }]
     }
 
     var app = new Vue({
@@ -1201,6 +978,9 @@
             sallaryselectedStatusIndex: 'a',
             educationselectedStatusIndex: 'a',
             ageselectedStatusIndex: 'a',
+        },
+        mounted() {
+
         },
         methods: {
             changeStatus(type) {
@@ -1247,26 +1027,73 @@
                     this.updateactivesselectedStatusIndex = index;
                 }
                 this.closeTabCon();
+                this.findItems();
             },
             sallaryloadData(item, index) {
                 this.closeTabCon();
                 this.sallaryselectedStatusIndex = index;
+                this.findItems();
             },
             educationloadData(item, index) {
                 this.closeTabCon();
                 this.educationselectedStatusIndex = index;
+                this.findItems();
             },
             ageloadData(item, index) {
                 this.closeTabCon();
                 this.ageselectedStatusIndex = index;
+                this.findItems();
             },
+            findItems() {
+                var signInOption, updateOption, sallaryOption, educationOption, ageOption;
+                if (typeof this.signactivesselectedStatusIndex == 'number') {
+                    signInOption = this.activesList1[0].tagList[this.signactivesselectedStatusIndex];
+                } else {
+                    signInOption = '';
+                }
+
+                if (typeof this.updateactivesselectedStatusIndex == 'number') {
+                    updateOption = this.activesList2[0].tagList[this.updateactivesselectedStatusIndex];
+                } else {
+                    updateOption = '';
+                }
+
+                if (typeof this.sallaryselectedStatusIndex == 'number') {
+                    sallaryOption = this.sallaryList[0].tagList[this.sallaryselectedStatusIndex];
+                } else {
+                    sallaryOption = '';
+                }
+
+                if (typeof this.educationselectedStatusIndex == 'number') {
+                    educationOption = this.educationList[0].tagList[this.educationselectedStatusIndex];
+                } else {
+                    educationOption = '';
+                }
+
+                if (typeof this.ageselectedStatusIndex == 'number') {
+                    ageOption = this.ageList[0].tagList[this.ageselectedStatusIndex];
+                } else {
+                    ageOption = '';
+                }
+
+                var obj = {
+                    login_time: signInOption,
+                    job_type: '',
+                    intention_time: updateOption,
+                    degree: educationOption,
+                    pay: sallaryOption,
+                    age: ageOption,
+                }
+                api.sendEvent({
+                    name: 'filteRank',
+                    extra: {
+                        key: obj
+                    }
+                });
+                app1Vue.togle();
+            }
         },
-        mounted() {
-
-        }
     })
-
-
+    //leilei
 </script>
-<!-- leileiEnd -->
 </html>

@@ -77,7 +77,8 @@
 
 
 .comBox{
-    padding: 0.2rem 0 0.3rem;
+    padding-top: 0.2em;
+    /*margin-top: 0.2rem;*/
 }
 .comtile{
     margin-bottom: 0.1rem;
@@ -88,7 +89,9 @@
 }
 .comMain{
     padding-bottom: 0.22rem;
+    padding-top: 0.22rem;
     border-bottom: 1px solid #EBEBEB;
+    border-top: 1px solid #EBEBEB;
 }
 .comLeftImg{
     width: 1.8rem;
@@ -443,18 +446,199 @@ textarea.textAreaCom {
     color:rgba(102,102,102,1);
     font-size: 0.28rem;
 }
+#historyTabs{
+  width: 100%;
+  height: 0.9rem;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.28rem;
+  color: #333;
+  border-bottom: 0.02rem solid #EAEAEA;
+  font-weight: 400;
+}
+.historyTabsActive{
+  color: #638BFF;
+  position: relative;
+}
+.historyTabsActive::after{
+  content: "";
+  width: 0.9rem;
+  height: 0.04rem;
+  background: #638BFF;
+  position: absolute;
+  left: 50%;
+  margin-left: -0.45rem;
+  bottom: 0;
+  margin-bottom: -0.22rem;
+}
+/*圈子*/
+/*.cirBox{
+    margin: 0.3rem ;
+}*/
+.cirSubBox{
+    padding: 0.2rem;
+    background:rgba(255,255,255,1);
+    /*box-shadow:0 0 0.08rem 0 rgba(0,0,0,0.28);*/
+    margin-bottom: 0.3rem;
+    border-radius:0.08rem;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+}
+.cirSubBoxSub{
+    margin-bottom: 0.22rem;
+}
+.circleImg{
+    width:3.32rem;
+    height:2.34rem;
+
+    border-radius:0.08rem;
+    margin-right: 0.24rem;
+}
+.cirMain{
+    width: 3.1rem;
+
+}
+.cirMainTitle{
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    height: auto !important;
+    /*margin-bottom: 0.1rem;*/
+}
+.cirMainTitleUser{
+    height: 0.46rem;
+    line-height: 0.46rem;
+    align-items: center;
+    color:rgba(102,102,102,1);
+}
+.userInfoImg{
+    display: block;
+    width: 0.46rem;
+    height: 0.46rem;
+    margin-right: 0.1rem;
+    margin-left: 0.1rem;
+    border-radius: 50%;
+    /*background-size: cover;*/
+}
+
+.cirMainTitleTime,.cirMainTitleAddr{
+    color:rgba(102,102,102,1);
+    margin-bottom: 0.06rem;
+}
+
+.cirMainTitleNote{
+    align-items: center;
+}
+.cirMainTitleNote>span{
+    display: block;
+    width: 0.76rem;
+    height: 0.28rem;
+    line-height: 0.28rem;
+    color: #ffffff;
+    font-size: 0.2rem;
+    font-weight:400;
+    margin-right: 0.1rem;
+
+    border-radius:0.04rem;
+    text-align: center;
+}
+.spanNote0{
+    background:rgba(99,139,255,1);
+}
+.spanNote1{
+    background:rgba(255,183,66,1);
+}
+.spanNote2{
+    background:rgba(255,149,149,1);
+}
+.cirSignUser{
+    justify-content: space-between;
+    align-items: center;
+}
+.cirSignUserLeft{
+    /*height: 0.58rem;*/
+}
+.userImgAll{
+    position: relative;
+    height: 0.58rem;
+    margin-bottom: 0.16rem;
+}
+.allImgCom{
+    position: absolute;
+    width: 0.6rem;
+    height: 0.6rem;
+    top: 0;
+    border-radius: 50%;
+}
+.allImg0{
+    left: 0;
+    z-index: 10;
+}
+.allImg1{
+    left: 0.3rem;
+    z-index: 9;
+}
+.allImg2{
+    left: 0.6rem;
+    z-index: 8;
+}
+.allImg3{
+    left: 0.9rem;
+    z-index: 7;
+}
+.allImg4{
+    left: 1.2rem;
+    z-index: 6;
+}
+.allImg5{
+    left: 1.5rem;
+    z-index: 5;
+}
+.allImg6{
+    left: 1.8rem;
+    z-index: 4;
+}
+.allImg7{
+    left: 2.1rem;
+    z-index: 3;
+}
+.allImg8{
+    left: 2.4rem;
+    z-index: 2;
+}
+.allImg9{
+    left: 2.7rem;
+    z-index: 1;
+}
 
 
 
+.cirSignUserNum{
+    color:rgba(102,102,102,1);
+}
+.signUserBtnCom{
+    width:1.92rem;
+    height:0.6rem;
+    line-height: 0.6rem;
+    border-radius:0.3rem;
+    text-align: center;
+    font-size: 0.28rem;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.signUserBtn{
+    background:linear-gradient(133deg,rgba(55,108,250,1) 0%,rgba(117,81,255,1) 100%);
+    box-shadow:0px 2px 4px 0px rgba(72,101,252,1);
+}
+.signUserBtnMy {
+    background:linear-gradient(133deg,rgba(255,183,66,1) 0%,rgba(255,142,81,1) 100%);
+    box-shadow:0px 2px 4px 0px rgba(252,155,72,1);
+}
+.bgBlack{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0,0,0,0.3);
+    left: 0;
+    top: 0;
+}
