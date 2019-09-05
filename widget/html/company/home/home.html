@@ -1141,19 +1141,59 @@
           this.updateactivesselectedStatusIndex = index;
         }
         this.closeTabCon();
+        this.findItems();
       },
       sallaryloadData(item,index){
         this.closeTabCon();
         this.sallaryselectedStatusIndex = index;
+        this.findItems();
       },
       educationloadData(item,index){
         this.closeTabCon();
         this.educationselectedStatusIndex = index;
+        this.findItems();
       },
       ageloadData(item,index){
         this.closeTabCon();
         this.ageselectedStatusIndex = index;
+        this.findItems();
       },
+      findItems(){
+        var signInOption,updateOption,sallaryOption,educationOption,ageOption;
+        if(typeof this.signactivesselectedStatusIndex == 'number'){
+            signInOption = this.activesList1[0].tagList[this.signactivesselectedStatusIndex];
+        }else{
+            signInOption = '';
+        }
+
+        if(typeof this.updateactivesselectedStatusIndex == 'number'){
+            updateOption = this.activesList2[0].tagList[this.updateactivesselectedStatusIndex];
+        }else{
+          updateOption = '';
+        }
+
+        if(typeof this.sallaryselectedStatusIndex == 'number'){
+            sallaryOption = this.sallaryList[0].tagList[this.sallaryselectedStatusIndex];
+        }else{
+          sallaryOption = '';
+        }
+
+        if(typeof this.educationselectedStatusIndex == 'number'){
+            educationOption = this.educationList[0].tagList[this.educationselectedStatusIndex];
+        }else{
+          educationOption = '';
+        }
+
+        if(typeof this.ageselectedStatusIndex == 'number'){
+           ageOption = this.ageList[0].tagList[this.ageselectedStatusIndex];
+        }else{
+          ageOption = '';
+        }
+
+        //调接口筛选
+        console.log(signInOption,updateOption,sallaryOption,educationOption,ageOption,'1178888');
+
+      }
     },
     mounted(){
 
