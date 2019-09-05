@@ -378,7 +378,7 @@ img.pro-img {
     margin-bottom: 0.28rem;
     justify-content: space-between;
 }
-.link-compony>span{
+.link-compony>a{
     height: 0.4rem;
     font-size: 0.28rem;
     font-weight: 500;
@@ -576,11 +576,7 @@ span.main-right {
     height: 1rem;
     background: #fff;
     position: relative;
-    /*padding-bottom: 10px;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
     padding: 0rem 0 0.2rem 0.2rem;
-    /*z-index: 989;*/
 }
 .chatJob,.workJob{
     width:46%;
@@ -590,10 +586,10 @@ span.main-right {
     color: #fff;
     position: absolute;
     border-radius:0.04rem;
+    font-size: 0.24rem;
 }
 .chatJob{
     background:rgba(119,202,86,1);
-    margin-right: 20px;
     left: 0;
     z-index:999999;
 }
@@ -637,7 +633,7 @@ span.main-right {
 
 /*查看简历*/
 .see-xian-box {
-    padding: 0 0.26rem 0.58rem 0.26rem;
+    padding: 0rem 0.26rem 0.58rem 0.26rem;
 }
 .seeSubTitle {
     margin: 0.4rem 0 0.2rem 0;
@@ -931,3 +927,51 @@ span.star_num,.star_all {
 
 
 /*leilei结束*/
+.Have_a_chat_box {
+    height: 0.98rem;
+    background: #ffffff;
+}
+
+.Have_a_chat_main {
+    width: 100%;
+    height: 0.98rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    padding: 0.2rem;
+    align-items: center;
+    background: #ffffff;
+    border-top: 1px solid #EBEBEB;
+}
+
+.Have_a_chat_main div {
+    font-size: 0.24rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    height: 0.64rem;
+    line-height: 0.64rem;
+    text-align: center;
+    margin-right: 0.2rem;
+    border-radius: 0.04rem;
+
+}
+.Have_a_chat_main div:last-of-type{
+    margin-right: 0;
+}
+.Have_a_chat {
+    width: 1.76rem;
+    background:rgba(119,202,86,1);
+}
+.Inappropriate {
+    width: 1.76rem;
+    background:rgba(255,163,0,1);
+}
+.Interview {
+    width: 3.16rem;
+    background:rgba(99,139,255,1);
+}
+.Have_chat {
+    width: 3.16rem;
+    background:rgba(119,202,86,1);
+}

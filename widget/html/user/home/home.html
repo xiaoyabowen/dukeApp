@@ -322,25 +322,23 @@
 
 
 </body>
-<script src="https://cdn.bootcss.com/erud  a/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-
-
 <script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-<!--<script src="./comment/homeAll.html"></script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
 <script>
     var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
     var jpush = null;
     apiready = function () {
-
         var mam = api.require('mam');
         mam.checkUpdate(function(ret, err) {
             if (ret) {
@@ -614,7 +612,7 @@
         console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://112.126.98.172:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -639,7 +637,7 @@
 
         api.ajax({
 
-            url: 'http://112.126.98.172:8000/SE4M/SE/Status/status',
+            url: 'http://192.168.1.24:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -649,14 +647,17 @@
             }
         }, function (data, err) {
             console.log("ifqshang", data)
-
-            if (data.status == 0) {
-                document.querySelector(".homeJob").style.display = "block"
-                document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
-            } else if (data.status == 1) {
-                document.querySelector(".homeJob").style.display = "none"
-                document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
+            for (var i=0;i<data.data.length;i++){
+                if (data.data[i].version == "CS" && data.data[i].status == "0"){
+                    document.querySelector(".homeJob").style.display = "block"
+                    document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
+                }
+                /*if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
+                    document.querySelector(".homeJob").style.display = "none"
+                    document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
+                }*/
             }
+
             api.hideProgress();
 
         });

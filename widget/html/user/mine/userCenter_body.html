@@ -38,13 +38,15 @@
                 <img src="../../../image/tx.png" alt="img">
             </div>
             <div class="boxbodd cssFlex">
-                {{item.p_name}}<img src="../../../image/jinka.png" alt="img">
+                {{p_name}}
+                <!--<img src="../../../image/jinka.png" alt="img">-->
+
             </div>
-            <div class="boxwz">
-                {{item.company_name}}-{{item.job_name}}
+            <div class="boxwz cssFlex">
+                {{company_name}}-{{job_name}}
             </div>
             <div class="boxboom cssFlex">
-                {{item.p_birthday}}<img src="../../../image/nuii.png" alt="img">
+                {{p_birthday}}<img src="../../../image/nuii.png" alt="img">
             </div>
         </div>
         <div class="editbtn" @click="editInfo()">编辑</div>
@@ -53,10 +55,10 @@
             <div class="lin"></div>
             <b class="experience">最新经历</b>
             <div class="site cssFlex">
-                <img src="../../../image/gongsi.png" alt="img"> {{item.company_name}}
+                <img src="../../../image/gongsi.png" alt="img"> {{company_name}}
             </div>
             <div class="position cssFlex">
-                <img src="../../../image/zhiwei.png" alt="img"> {{item.job_name}}
+                <img src="../../../image/zhiwei.png" alt="img"> {{job_name}}
             </div>
         </div>
         <div class="heign"></div>
@@ -64,13 +66,13 @@
             <div class="link"></div>
             <b class="education">教育经历</b>
             <div class="school cssFlex">
-                <img src="../../../image/xueli.png" alt="img"> {{item.edu_name}} {{item.edu_level}}
+                <img src="../../../image/xueli.png" alt="img"> {{edu_name}} {{edu_level}}
             </div>
             <div class="date cssFlex">
-                <img src="../../../image/nianf.png" alt="img"> {{item.edu_time}}
+                <img src="../../../image/nianf.png" alt="img"> {{edu_time}}
             </div>
             <div class="major cssFlex">
-                <img src="../../../image/zgiye.png" alt="img"> {{item.edu_type}}
+                <img src="../../../image/zgiye.png" alt="img"> {{edu_type}}
             </div>
         </div>
         <div class="heign"></div>
@@ -100,21 +102,32 @@
     var adr_id, url;
     apiready = function () {
         var uid = localStorage.getItem("person_id");
-        url = api.pageParam.url
+
         console.log(uid);
 
         var app = new Vue({
             el: '#circle',
             data: {
+                url: '',
                 name: '',
+                person_id: '',
                 sex: '',
                 duty: '',
-
                 item : '',
                 p_title : '',
+                p_name : '',
+                company_name : '',
+                job_name : '',
+                p_birthday : '',
+                edu_name : '',
+                edu_level : '',
+                edu_time : '',
+                edu_type : '',
 
             },
             created() {
+                this.url = api.pageParam.url
+                this.person_id = api.pageParam.person_id
                 this.queryCirclePersonMsgByPid()
             },
             mounted() {
@@ -124,16 +137,59 @@
 
                 queryCirclePersonMsgByPid: function () {
                     var that = this
-                    var obj = {
-                        uid : localStorage.getItem("user")
+                    var obj
+                    if (that.url == "mine"){
+                        obj = {
+                            uid : localStorage.getItem("user")
+                        }
+                    }else if (that.url == "signPerson"){
+                        obj = {
+                            uid : that.person_id
+                        }
                     }
-                    ajaxGetWithProgress(queryCirclePersonMsgByPid,obj, function (data) {
+                    console.log("objobj",obj)
+                    api.ajax({
+                        // report : false,
+                        url: queryCirclePersonMsgByPid,
+                        //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                        method: 'get',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            values: obj
+                        }
+                    }, function(data, err) {
+                        api.hideProgress();
                         console.log("queryCirclePersonMsgByPid",data)
                         if (data){
-                            that.item = data
+                            // that.item = data
+                            that.p_name = data.p_name || "未填写"
+                            that.company_name = data.company_name || "未填写"
+                            that.job_name = data.job_name || "未填写"
+                            that.edu_name = data.edu_name || "未填写"
+                            that.edu_level = data.edu_level || "未填写"
+                            that.edu_time = data.edu_time || "未填写"
+                            that.edu_type = data.edu_type || "未填写"
                             that.p_title = stringFun(data.p_title)
+                            that.p_birthday = ages(data.p_birthday) + "岁"
                         }
-                    })
+                    });
+                    /*ajaxGetWithProgress(queryCirclePersonMsgByPid,obj, function (data) {
+                        console.log("queryCirclePersonMsgByPid",data)
+                        if (data){
+                            // that.item = data
+                            that.p_name = data.p_name || "未填写"
+                            that.company_name = data.company_name || "未填写"
+                            that.job_name = data.job_name || "未填写"
+                            that.edu_name = data.edu_name || "未填写"
+                            that.edu_level = data.edu_level || "未填写"
+                            that.edu_time = data.edu_time || "未填写"
+                            that.edu_type = data.edu_type || "未填写"
+                            that.p_title = stringFun(data.p_title)
+                            that.p_birthday = ages(data.p_birthday) + "岁"
+                        }
+                    })*/
                 },
                 editInfo :function () {
                     var that = this

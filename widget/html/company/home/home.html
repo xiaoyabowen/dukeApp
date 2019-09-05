@@ -54,7 +54,7 @@
         }
 
         .job-chatBox {
-            padding: 0 0.34rem !important;
+            /*padding: 0 0.34rem !important;*/
         }
 
         .chatJob, .workJob {
@@ -207,15 +207,11 @@
             </div>
             <div class="job-chatBox cssFlex">
                 <div class="chatJob" onclick="chatJob()">聊一聊</div>
-                <div class="workJob" onclick="sendResume()">投递简历</div>
+                <div class="workJob" onclick="sendResume()">收藏简历</div>
             </div>
         </div>
 
-        <!-- mui  滑动tab切换-->
-        <!--<ul id="tabs" class="cssFlex">
-            <li class="activeTab"><a href="javascript:;" title="tab1">在线简历</a></li>
-            <li><a href="javascript:;" title="tab2">图片作品</a></li>
-        </ul>-->
+
         <div id="content">
             <div id="tab1" style="display: block;">
                 <div class="see-xian-box">
@@ -302,11 +298,6 @@
                 </div>
             </div>-->
         </div>
-        <!--<div class="Have_a_chat_box" @click="HavechatClick()">
-            <div class="Have_a_chat">
-                聊一聊
-            </div>
-        </div>-->
 
     </div>
 </div>
@@ -710,49 +701,7 @@
             }
 
 
-            // 联系方式 和 图片作品
-            mui.init({
-                swipeBack: false
-            });
-            (function ($) {
-                $('.mui-scroll-wrapper').scroll({
-                    indicators: true //是否显示滚动条
-                });
-                var phone, email;
-                phone = person_summary.phone_m || '未填写';
-                email = person_summary.email || '未填写';
-
-
-                var html3 = ' <div class="see-xian-img cssFlex">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                    <img src="../../../image/pro.png" alt="pro">\n' +
-                    '                                </div>';
-
-                var item3 = document.getElementById('item3mobile');
-                document.getElementById('slider').addEventListener('slide', function (e) {
-                    if (e.detail.slideNumber === 1) {
-                        if (item3.querySelector('.mui-loading')) {
-                            setTimeout(function () {
-                                item3.querySelector('.mui-scroll').innerHTML = html3;
-                            }, 500);
-                        }
-                    }
-                });
-                var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-                $('.mui-input-group').on('change', 'input', function () {
-                    if (this.checked) {
-                        sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-                        //force repaint
-                        sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-                    }
-                });
-            })(mui);
         });
-
-        console.log("user", localStorage.getItem("user"))
 
 
     };
@@ -988,170 +937,12 @@
 <!-- leileiStart -->
 <script>
 
-  var json = {
-    activeList1:[
-      {
-        tagName:'登录时间',
-        tagList:['最近一天','最近三天','最近一周','最近30天','30天以上']
-      },
-
-    ],
-    activeList2:[
-      {
-        tagName:'简历更新时间',
-        tagList:['最近一天','最近三天','最近一周','最近30天','30天以上'],
-      }
-    ],
-    salaryList:[
-      {
-        tagName:'月薪',
-        tagList:['10-15k','15-20k','20-30k','30-50k','50-100k','100k以上'],
-      }
-    ],
-    educationList:[
-      {
-        tagName:'学历',
-        tagList:['本科以下','本科','研究生','硕士','博士','博士后']
-      }
-    ],
-    ageList:[
-      {
-        tagName:'年龄',
-        tagList:['25岁以下','25-30岁','30-35岁','35-40岁','40-45岁','45-50岁']
-      }
-    ]
-  }
-
-  var app = new Vue({
-    el:'#rankTabs',
-    data:{
-      // itemList:[],
-      activesList1:json.activeList1,
-      activesList2:json.activeList2,
-      sallaryList:json.salaryList,
-      educationList:json.educationList,
-      ageList:json.ageList,
-
-      classFlag:'recommand',
-      activesUpDownFlag:false,
-      sallaryUpDownFlag:false,
-      educationUpDownFlag:false,
-      ageUpDownFlag:false,
-
-      signactivesselectedStatusIndex:'a',
-      updateactivesselectedStatusIndex:'a',
-      sallaryselectedStatusIndex:'a',
-      educationselectedStatusIndex:'a',
-      ageselectedStatusIndex:'a',
-    },
-    methods:{
-      changeStatus(type){
-        this.classFlag = type;
-        if(type == 'actives'){
-          // this.itemList = json.activeList;
-          this.activesUpDownFlag = !this.activesUpDownFlag;
-          this.sallaryUpDownFlag=false;
-          this.educationUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'sallary'){
-          // this.itemList = json.salaryList;
-          this.sallaryUpDownFlag = !this.sallaryUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.educationUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'education'){
-          // this.itemList = json.educationList;
-          this.educationUpDownFlag = !this.educationUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.sallaryUpDownFlag=false;
-          this.ageUpDownFlag=false;
-        }else if(type == 'age'){
-          // this.itemList = json.ageList;
-          this.ageUpDownFlag = !this.ageUpDownFlag;
-          this.activesUpDownFlag=false;
-          this.sallaryUpDownFlag=false;
-          this.educationUpDownFlag=false;
-        }else{
-          this.itemList = [];
-          this.closeTabCon();
-        }
-      },
-      closeTabCon(){
-        this.activesUpDownFlag=false;
-        this.sallaryUpDownFlag=false;
-        this.educationUpDownFlag=false;
-        this.ageUpDownFlag=false;
-      },
-      activesloadData(tag,item,index){
-        if(tag == '登录时间'){
-          this.signactivesselectedStatusIndex = index;
-        }else{
-          this.updateactivesselectedStatusIndex = index;
-        }
-        this.closeTabCon();
-        this.findItems();
-      },
-      sallaryloadData(item,index){
-        this.closeTabCon();
-        this.sallaryselectedStatusIndex = index;
-        this.findItems();
-      },
-      educationloadData(item,index){
-        this.closeTabCon();
-        this.educationselectedStatusIndex = index;
-        this.findItems();
-      },
-      ageloadData(item,index){
-        this.closeTabCon();
-        this.ageselectedStatusIndex = index;
-        this.findItems();
-      },
-      findItems(){
-        var signInOption,updateOption,sallaryOption,educationOption,ageOption;
-        if(typeof this.signactivesselectedStatusIndex == 'number'){
-            signInOption = this.activesList1[0].tagList[this.signactivesselectedStatusIndex];
-        }else{
-            signInOption = '';
-        }
-
-        if(typeof this.updateactivesselectedStatusIndex == 'number'){
-            updateOption = this.activesList2[0].tagList[this.updateactivesselectedStatusIndex];
-        }else{
-          updateOption = '';
-        }
-
-        if(typeof this.sallaryselectedStatusIndex == 'number'){
-            sallaryOption = this.sallaryList[0].tagList[this.sallaryselectedStatusIndex];
-        }else{
-          sallaryOption = '';
-        }
-
-        if(typeof this.educationselectedStatusIndex == 'number'){
-            educationOption = this.educationList[0].tagList[this.educationselectedStatusIndex];
-        }else{
-          educationOption = '';
-        }
-
-        if(typeof this.ageselectedStatusIndex == 'number'){
-           ageOption = this.ageList[0].tagList[this.ageselectedStatusIndex];
-        }else{
-          ageOption = '';
-        }
-
-        //调接口筛选
-        console.log(signInOption,updateOption,sallaryOption,educationOption,ageOption,'1178888');
-
-      }
-    },
-    mounted(){
-
     var json = {
         activeList1: [
             {
                 tagName: '登录时间',
                 tagList: ['最近一天', '最近三天', '最近一周', '最近30天', '30天以上']
             },
-
 
         ],
         activeList2: [
@@ -1202,6 +993,9 @@
             educationselectedStatusIndex: 'a',
             ageselectedStatusIndex: 'a',
         },
+        mounted() {
+
+        },
         methods: {
             changeStatus(type) {
                 this.classFlag = type;
@@ -1247,23 +1041,61 @@
                     this.updateactivesselectedStatusIndex = index;
                 }
                 this.closeTabCon();
+                this.findItems();
             },
             sallaryloadData(item, index) {
                 this.closeTabCon();
                 this.sallaryselectedStatusIndex = index;
+                this.findItems();
             },
             educationloadData(item, index) {
                 this.closeTabCon();
                 this.educationselectedStatusIndex = index;
+                this.findItems();
             },
             ageloadData(item, index) {
                 this.closeTabCon();
                 this.ageselectedStatusIndex = index;
+                this.findItems();
             },
-        },
-        mounted() {
+            findItems() {
+                var signInOption, updateOption, sallaryOption, educationOption, ageOption;
+                if (typeof this.signactivesselectedStatusIndex == 'number') {
+                    signInOption = this.activesList1[0].tagList[this.signactivesselectedStatusIndex];
+                } else {
+                    signInOption = '';
+                }
 
-        }
+                if (typeof this.updateactivesselectedStatusIndex == 'number') {
+                    updateOption = this.activesList2[0].tagList[this.updateactivesselectedStatusIndex];
+                } else {
+                    updateOption = '';
+                }
+
+                if (typeof this.sallaryselectedStatusIndex == 'number') {
+                    sallaryOption = this.sallaryList[0].tagList[this.sallaryselectedStatusIndex];
+                } else {
+                    sallaryOption = '';
+                }
+
+                if (typeof this.educationselectedStatusIndex == 'number') {
+                    educationOption = this.educationList[0].tagList[this.educationselectedStatusIndex];
+                } else {
+                    educationOption = '';
+                }
+
+                if (typeof this.ageselectedStatusIndex == 'number') {
+                    ageOption = this.ageList[0].tagList[this.ageselectedStatusIndex];
+                } else {
+                    ageOption = '';
+                }
+
+                //调接口筛选
+                console.log(signInOption, updateOption, sallaryOption, educationOption, ageOption, '1178888');
+
+            }
+        },
+
     })
 
 
