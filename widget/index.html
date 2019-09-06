@@ -29,7 +29,36 @@
 
     apiready = function () {
 
+        var uid = localStorage.getItem("person_id")
+        var obj = {
+            uid: uid
+            // uid : '12346'
+        }
+        console.log("user", localStorage.getItem("user"))
+        api.ajax({
 
+            url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
+            method: 'get',
+            cache: 'false',
+            timeout: 30,
+            dataTpye: 'json',
+            data: {
+                values: obj
+            }
+        }, function (data, err) {
+            console.log("ifq", data)
+            if (data.role_type == 1) {
+                // openNewWindow("home", "./home.html")
+            } else if (data.role_type == 2) {
+                openNewWindow("home", "../../company/home/home.html")
+            }else if (data.role_type == '') {
+                openNewWindow("loginComfir", "../../login/loginComfir.html",{
+                    phoneValue : data.phone_m
+                })
+            }
+            api.hideProgress();
+
+        });
     }
 </script>
 </body>

@@ -61,7 +61,7 @@ h3.comInfoTitle {
     height: 0.48rem;
     line-height: 0.48rem;
     font-size: 0.46rem ;
-    font-weight: 600;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     margin-bottom: 0.12rem;
 }
@@ -210,7 +210,7 @@ div#content {
 
 
 .jobBox {
-    padding: 0.24rem 0  0.32rem;
+    padding: 0.24rem 0.3rem  0.32rem;
     justify-content: space-between;
     /*border-bottom: 1px solid #EBEBEB;*/
 }
@@ -638,7 +638,7 @@ span.main-right {
     margin: 0.4rem 0 0.2rem 0;
     color: rgba(51,51,51,1);
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight:500;
 }
 .see-hope {
     justify-content: space-between;
@@ -705,7 +705,7 @@ see-comlibox:last-of-type{
 .jing-title,.produvt-name {
     height: 0.4rem;
     font-size: 0.28rem;
-    font-weight: bold;
+    font-weight: 500;
     color: rgba(51,51,51,1);
     line-height: 0.4rem;
     margin-bottom: 0.06rem;

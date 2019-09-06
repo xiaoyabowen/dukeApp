@@ -556,6 +556,11 @@ var QueryAttCommodity = Domain + "/CommodityProFile/QueryAttCommodity";
 var OrgnizationProfileUploadBusiness = serverUrl + "/OrgnizationProfile/UploadBusiness";
 // 伯乐-魔方推送
 var SmartMenu = serverUrl + "/JobProfile/SmartMenu";
+// 伯乐- 简历收藏  取消 收藏
+var attentionPerson = serverUrl + "/UserProfile/AttentionOrCancelPerson";
+
+
+
 // 伯乐-简历详情
 var QueryPerson = serverUrl + "/JobProfile/QueryPerson";
 // 伯乐-根据职位查询简历
@@ -1834,3 +1839,114 @@ function deleteOnlyOne(arr){
     arr.splice(arr.length-1,1);
     return arr;
 }
+
+
+
+function posiShareClick() {
+    var dialogBox = api.require('dialogBox');
+    dialogBox.actionMenu({
+        rect: {
+            h: 150
+        },
+        tapClose: true,
+        items: [
+            {
+                text: '微信好友',
+                icon: 'widget://image/wx.png'
+            },
+            {
+                text: '微信朋友圈',
+                icon: 'widget://image/pyq.png'
+            },
+            {
+                text: 'QQ好友',
+                icon: 'widget://image/qq.png'
+            },
+
+            /*{
+                text: 'QQ空间',
+                icon: 'widget://image/qqkj.png'
+            },*/
+            {
+                text: '新浪微博',
+                icon: 'widget://image/wb.png'
+            }
+        ],
+        styles: {
+            bg: '#FFF',
+            column: 4,
+            itemText: {
+                color: '#000',
+                size: 12,
+                marginT: 8
+            },
+            itemIcon: {
+                size: 40
+            }
+
+        }
+    }, function (ret) {
+        console.log("diable",ret)
+        if (ret.index == 0) {
+            var wx = api.require('wx');
+            wx.shareWebpage({
+                apiKey: '',
+                scene: 'session',// 单聊
+                title: '我爱渡客！',
+                description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
+                thumb: 'widget://icon/dukelogo.png',
+                contentUrl: 'www.baidu.com'
+            }, function (ret, err) {
+                console.log("share",ret)
+                if (ret.status) {
+                    toast('分享成功');
+                } else {
+                    if (err.code == 2) {
+                        toast('分享失败')
+                    }
+                }
+            });
+        } else if (ret.index == 1) {
+            var wx = api.require('wx');
+            wx.shareWebpage({
+                apiKey: '',
+                scene: 'timeline',// 朋友圈
+                title: '我爱渡客！',
+                description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
+                thumb: 'widget://icon/icon.png',
+                contentUrl: 'www.baidu.com'
+            }, function (ret, err) {
+                if (ret.status) {
+                    toast('分享成功');
+                } else {
+                    if (err.code == 2) {
+                        toast('分享失败')
+                    }
+                }
+            });
+        } /*else if (ret.index == 2) {
+                var qq = api.require('qq');
+                qq.shareNews({
+                    url: 'http://www.baidu.com',
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
+                    type: 'QFriend'
+                });
+            } else if (ret.index == 3) {
+                var qq = api.require('qq');
+                qq.shareNews({
+                    url: 'http://www.baidu.com',
+                    title: '我爱网拍！',
+                    description: '我发现了一件大宝贝，快来看看啊！',
+                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
+                    type: 'QZone'
+                });
+            } else if (ret.index == 4) { //微博
+                toast('微博登录正在开发中…')
+            }*/
+    });
+}
+
+
+

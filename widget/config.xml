@@ -8,6 +8,7 @@
     </author>
     <preference name="autoUpdate" value="true" />               <!--使用 apicloud 自动更新-->
     <preference name="smartUpdate" value="true" />               <!--使用 apicloud 自动更新完成之后  进行  热重启-->
+    <!--<content src="index.html"/>-->
     <content src="html/user/home/home.html"/>
     <permission name="camera" />
     <access origin="*" />
@@ -23,10 +24,11 @@
         <param name="ios_api_key" value="4091f06d6613a7ecefa0ad420d637212" />
     </feature>
 
+
     <feature name="wx">
-        <param name="urlScheme" value="wxdf5e81cc88d9dc86"/>
-        <param name="apiKey" value="wxdf5e81cc88d9dc86"/>
-        <param name="apiSecret" value="bebb46abfc0a660288e604067fa02ff6"/>
+        <param name="urlScheme" value="wx9a92052d07ef404d"/>
+        <param name="apiKey" value="wx9a92052d07ef404d"/>
+        <param name="apiSecret" value="3e6aaa4be193ba74319134c12bdd3353"/>
     </feature>
 
     <!--支付寶 支付-->
