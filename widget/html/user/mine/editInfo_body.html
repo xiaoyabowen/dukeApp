@@ -118,6 +118,15 @@
         <span>个人标签</span>
         <input type="text" name="" class="firmInput" id="p_title" placeholder="用几个字来形容下自己">
     </div>
+    <div class="firm cssFlex" onclick="workingStart()">
+        <span>工作开始时间</span>
+        <input type="text" name="" class="firmInput" readonly id="workingStart" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="email()">
+        <span>邮箱</span>
+        <input type="text" name="" class="firmInput" id="email" placeholder="单行输入">
+    </div>
+    <!-- <div style='height:100px'></div> -->
 </div>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -225,6 +234,24 @@
 
         })
     }
+
+
+    //工作开始时间
+    function workingStart(){
+      var dtpicker = new mui.DtPicker(
+          {
+              type: "date", //设置日历初始视图模式
+              beginDate: new Date(1950, 04, 25), //设置开始日期
+              endDate: new Date() //设置开始日期
+          }
+      );
+      dtpicker.show(function (selectItems) {
+          // $(".birth_option").val(selectItems.text)
+          document.getElementById("workingStart").value = selectItems.text
+
+      })
+    }
+
     // jeishu 工作的时间
     function fillAge() {
         var dtpicker = new mui.DtPicker(
@@ -302,7 +329,6 @@
     // 点击保存执行方法
     function preservation() {
         var person_id = localStorage.getItem('person_id');
-
         var p_name = document.getElementById('user_p_name').value;
         var p_sex = document.getElementById('user_p_sex').value;
         var p_birthday = document.getElementById('user_age').value;
@@ -314,14 +340,15 @@
         var edu_Etime = document.getElementById('edu_Etime').value;
         var edu_type = document.getElementById('edu_type').value;
 
-
-
+        var job_from_time = document.getElementById('workingStart').value;
+        var p_title = document.getElementById('p_title').value;
+        var address = document.getElementById('address').value;
+        var email = document.getElementById('email').value;
 
         if (p_name == "") {
             toast("请填写姓名")
             return
         }
-
 
         if (p_sex == "") {
             toast("请选择性别")
@@ -344,6 +371,10 @@
             edu_level: edu_level,
             edu_time : edu_Stime +"-"+edu_Etime,
             edu_type: edu_type,
+            job_from_time:job_from_time, //工作开始时间
+            p_title:p_title,//标签
+            address:address,//地址
+            email:email,//电邮
         }
 
         console.log(obj);

@@ -210,7 +210,7 @@ div#content {
 
 
 .jobBox {
-    padding: 0.24rem 0  0.32rem;
+    padding: 0.24rem 0.3rem  0.32rem;
     justify-content: space-between;
     /*border-bottom: 1px solid #EBEBEB;*/
 }

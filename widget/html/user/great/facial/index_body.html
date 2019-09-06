@@ -269,7 +269,7 @@
                 methods: {
 
 
-                    
+
                     // 获取数据
                     summary: function () {
                         var that = this;
@@ -277,7 +277,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data);
+                            console.log(data,'280000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];

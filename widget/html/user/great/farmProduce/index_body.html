@@ -59,9 +59,14 @@
                     {{item.summary}}
                     &lt;!&ndash;脆甜爽口 鲜嫩多汁 包邮 一箱12个装&ndash;&gt;
                 </div>-->
-                <div class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
+                <div v-if="item.comStatus == '售卖'" class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
                     立即购买
                 </div>
+
+                <div v-else class="juLisellBtn commonFont cssFlex" style='background:#ACACAC'>
+                    补货中...
+                </div>
+
                 <!--<div class="great_immediately">
                     <div class="great_immediately_comtent cssFlex">
                         <div class="commodity_collection cssFlex" @click="collectionHandle()">
@@ -307,7 +312,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data);
+                            console.log(data,'3100000000000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgsBanner = data.intpic;
@@ -405,7 +410,7 @@
                         var that = this
                         console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList11",data)
+                            console.log("commodityList11啊啊啊啊",data)
                             var jobList = data.comList
                             console.log(jobList)
                             if (data) {

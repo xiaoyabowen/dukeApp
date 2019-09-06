@@ -300,12 +300,12 @@
                 </div>
                 <div class="con-pay-content">
                     <div class="left-side">
-                        <div class='resume-type'>{{item.resumeType}}</div>
-                        <div class="resume-date">{{item.resumeDate}} 更新</div>
+                        <div class='resume-type'>{{item.res_name}}</div>
+                        <div class="resume-date">{{item.time}} 更新</div>
                     </div>
-                    <div class="right_side">
+                    <!-- <div class="right_side">
                         {{item.type}}
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -344,6 +344,8 @@
     mui.init();
     var job_id, cid, jobId, uid, ptoken, s_id, h_type, magicBGheight, ms_type, search, magicBox, winWidth, winHeight,
         a01_w, m_d, magicBtn, magicSubBox, iconImg;
+        var cn_name;
+        var job_name;
     apiready = function () {
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
@@ -414,6 +416,8 @@
                     uid = data.uid;
                     // console.log(uid,'ppppp');
                     ptoken = data.uid;
+                    cn_name = data.c_name;
+                    job_name = data.job_name;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('job_id').value = data.job_id;
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
@@ -447,7 +451,9 @@
                     uid = data.uid;
                     console.log(uid,'ppp')
                     ptoken = data.uid;
+                    cn_name = data.c_name;
                     jobId = data.job_id;
+                    job_name = data.job_name;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
                     document.getElementById('count').innerText = data.count || '未填写';
@@ -486,6 +492,8 @@
                     cid = data.c_id;
                     uid = data.uid;
                     ptoken = data.uid;
+                    cn_name = data.c_name;
+
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
                     document.getElementById('count').innerText = data.count || '未填写';
@@ -637,16 +645,7 @@
               data: {
                   bank: '',
                   selectIndex: 0,
-                  resumeList: [{
-                      resumeType: '在线简历',
-                      resumeDate: '2019.05.27',
-                      type: ''
-                  },
-                  {
-                      resumeType: '附件简历',
-                      resumeDate: '2019.07.27',
-                      type: ''
-                  }],
+                  resumeList: [],
                   uid:'',
               },
               mounted(){
@@ -659,19 +658,43 @@
                     var that = this;
                     ajaxGetWithProgress(QueryResumeUserProfile,{uid:that.uid},function(data){
                       console.log(data,'resume');
-                      if(data){
-                          alert('请先去上传简历');
+                      if(data && data.QueryResume && data.QueryResume.length > 0){
+                          that.resumeList = data.QueryResume;
+                          console.log(that.resumeList,'aaaaa')
+                      }else{
+                        // mui.alert('请先去添加个人附件简历')
+                        // mui.alert('请先去添加个人附件简历')
                       }
                     })
                   },
                   selectResume(index) {
                     console.log('aaa')
                     this.selectIndex = index;
+
                   },
                   deliveryResume(){
                     //投递简历投递成功关闭弹窗
 
-                    mui('.mui-popover').popover('toggle')
+                    var resume = this.resumeList[this.selectIndex].docu;
+                    var resumeName = this.resumeList[this.selectIndex].res_name;
+                    var uid = this.resumeList[this.selectIndex].uid;
+                      console.log(jobId,uid,cn_name,job_name,'677');
+                    ajaxGetWithProgress(SendResumeTo,{
+                      c_name:cn_name,//公司名称
+                      job_name:job_name, // 职位名称
+                      resume:resume,// 简历路径
+                      resumeName:resumeName, //简历名称
+                      job_id:jobId,//职位id
+                      uid:uid,//用户id
+                    },function(data){
+                        if(data.success){
+                          mui('.mui-popover').popover('toggle')
+                          mui.alert('简历投递成功')
+                        }else{
+                          mui.alert('网络错误，请稍后重试')
+                          mui('.mui-popover').popover('toggle')
+                        }
+                    })
                   }
               }
           })

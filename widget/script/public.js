@@ -537,6 +537,8 @@ var UpdateResumeNameUserProfile = serverUrl + "/UserProfile/UpdateResumeName";
 var deleteResumeNameUserProfile = serverUrl + "/UserProfile/deleteResume";
 // 千里马 发送简历至邮箱
 var SendResumeEmailUserProfile = serverUrl + "/UserProfile/SendResumeEmail";
+// 发送简历
+var SendResumeTo = serverUrl + '/UserProfile/SendResumeTo';
 
 
 
