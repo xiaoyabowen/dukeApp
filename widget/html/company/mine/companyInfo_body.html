@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/mui.min.css">
-    <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
         .Box{
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
@@ -36,12 +35,14 @@
             font-weight: 400;
             color: rgba(153, 153, 153, 1) !important;
         }
-
+        img.ComTime{
+            width: 0.27rem;
+        }
     </style>
 </head>
 <body class="commonBg">
 
-<div class="Box" id="app1">
+<div class="Box" id="app1" v-cloak>
     <div class="boxSub isDisplay">
         <div class="comTitle" id="comTitleId">
             <div class="comintobox cssFlex">
@@ -98,13 +99,7 @@
                                 <p class="textOverflow">{{item.prod_tags}}</p>
                             </div>
                         </div>
-                        <!--<div class="infoProduct infoProductPad clearfix">
-                            <img src="../../../image/pro.png" alt="pro" class="pro-img">
-                            <div class="infoProductContent">
-                                <h5>百度本地广告直通车</h5>
-                                <p class="textOverflow">百度本地直通车：本地生活服务精准营销（百度移动端、百度糯米等多平台精准营销智能落地页网盟聚居资源…… <i>详情</i></p>
-                            </div>
-                        </div>-->
+
                     </div>
 
                     <h4 class="productName productNamePad">高管介绍</h4>
@@ -115,36 +110,13 @@
                             <p class="textOverflow seniorinfo">{{ComSeniorBak}}</p>
                         </div>
                     </div>
-                    <h4 class="productName productNamePad">公司照片</h4>
-                    <div class="swiper-container infoProductPad">
-                        <div class="swiper-wrapper PIClistBox">
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow01.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow02.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow01.png" alt="img">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="../../../image/babyShow02.png" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="productName productNamePad">公司地址</h4>
 
                 </div>
 
-                <div class="map-compony" id="container">
 
-                </div>
-                <div class="info">
-                    <!--点击地图上的点标记，打开所添加的自定义信息窗体-->
-                </div>
                 <div class="infobox">
                     <h4 class="productName productNamePad">公司官网</h4>
-                    <div class="link-compony cssFlex">
+                    <div class="link-compony cssFlex" @click="opnew()">
                         <span class="homepage">{{ComUrl}}</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
@@ -198,21 +170,7 @@
 </div>
 <!--   企业空间 模态框   -->
 <div class="modal-space modal-news" onclick="closeMotal()">
-    <!--<div class="subspace subspaceNew">-->
-    <!--<img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">
-    <h5 class="spaceTitle">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑？</h5>
-    <p class="spaceSubTitle">童济仕汽车评论 xxxx年xx月xx日 </p>
-    <p class="spaceContent">上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵
-        手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手
-        百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是
-        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-        车企企频繁牵手百度，背后到底是
-        什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：
-        车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车展观察：车企频繁牵手百度，背后到底是什么逻辑上海车展观察：车
-        企频繁牵手百度，背后到底是什么逻辑上海车展观察：车企
-    </p>
--->
-    <!--</div>-->
+
 </div>
 
 
@@ -221,21 +179,15 @@
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
-<script src="http://webapi.amap.com/maps?v=1.4.15&key=0615a1a43121ec125e0727d7b366d899"></script>
 <script src="../../../script/vue.min.js"></script>
 
 <script>
-    // swiper  轮播
-    var mySwiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-    })
+
 
     // 公司模态框
     $(document).on("click", ".more-see", function () {
@@ -293,7 +245,7 @@
                 ComSenior: '未填写',
                 ComSeniorPos: '未填写',
                 ComSeniorBak: '未填写',
-                ComSeniorLogo: 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png',
+                ComSeniorLogo: '',
                 ComProList: [],  //产品介绍
                 ComJobList: [],  //再照职位
                 ComDynamicList: [],  //企业空间
@@ -308,11 +260,7 @@
                     var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
                     $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
                 });
-                var map = new AMap.Map("container", {
-                    resizeEnable: true,
-                    zoom: 16
-                });
-                map.clearMap();
+
             },
             methods: {
                 queryMyOrgProfileAllinOne: function () {
@@ -354,7 +302,7 @@
                             that.ComSenior = cvomInfo.senior || '未填写'
                             that.ComSeniorPos = cvomInfo.senior_position || '未填写'
                             that.ComSeniorBak = cvomInfo.senior_bak || '未填写'
-                            that.ComSeniorLogo = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png' || imgSrcFun(cvomInfo.senior_icon)
+                            that.ComSeniorLogo =  cvomInfo.senior_icon || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                             that.ComProList = cvomproduct || '未填写'
                             that.ComJobList = JobList || '未填写'
                             that.ComDynamicList = DynamicList || '未填写'
@@ -362,7 +310,18 @@
                             toast("请求失败")
                         }
                     })
-                }
+                },
+                opnew : function () {
+                    var that = this;
+                    api.openApp({
+                        androidPkg: 'android.intent.action.VIEW',
+                        mimeType: 'text/html',
+                        uri: that.ComUrl
+                    },function(ret,err){
+
+
+                    });
+                },
             }
         })
     };

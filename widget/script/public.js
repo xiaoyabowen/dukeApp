@@ -36,8 +36,8 @@ var Domain = 'http://112.126.98.172:8088';
 var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
 var localhostHref = 'http://59.110.231.40:25121/SE4M';
 var Domain = 'http://59.110.231.40:25122';
-*/
 
+*/
 
 
 
