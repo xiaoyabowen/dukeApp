@@ -12,6 +12,8 @@ function magicComAllInit(Vue) {
         bevelLength = Math.sqrt((a01_w * a01_w / 2))
             // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w - 10) * 0.23 - 10; // 100;
+        magicBGheight = document.querySelector(".magicBGheight")
+        magicBGheight.style.height = m_d + "px"
 
     }
 

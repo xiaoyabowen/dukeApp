@@ -759,6 +759,7 @@
 
             });
         }
+
         var flag = true; //
         function flowGuan(id, stauts) {
             var uid = localStorage.getItem("person_id");
@@ -767,6 +768,7 @@
                 cid: cid,
                 att_status: stauts,
                 id: id
+
             }
             ajaxGetWithProgress(attentionCompanyByCid, obj, function(data, err) {
                 console.log(data)

@@ -14,12 +14,10 @@
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
-        /*.leftImgClose>img{
-            display: inline-block;
-            width: 0.5rem;
-            height: 0.44rem;
+
+        .box{
+            margin-bottom: 0.2rem !important;
         }
-*/
 
         .mui-slider .mui-slider-group .mui-slider-item img {
             width: 2rem;
@@ -177,6 +175,7 @@
             <div class="comTitle cssFlex">
                 <div class="comInfosee">
                     <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
+                    <span id="personId " class="isDisplay"></span>
                     <p class="comInfoCon">
                         <span id="company">北京A公司信息技术有限公司</span>
                         <span id="company_type">运营经理</span>
@@ -196,19 +195,20 @@
             </div>
             <div class="job-chatBox cssFlex">
                 <div class="chatJob" onclick="chatJob()">聊一聊</div>
-                <div class="workJob" onclick="sendResume()">投递简历</div>
+                <div class="workJob collection isDisplay" onclick="collectionHandle()">收藏简历</div>
+                <div class="workJob collectionHand isDisplay" onclick="collectionHandleActive()">取消收藏</div>
             </div>
         </div>
 
-        <!-- mui  滑动tab切换-->
-        <!--<ul id="tabs" class="cssFlex">
-        <li class="activeTab"><a href="javascript:;" title="tab1">在线简历</a></li>
-        <li><a href="javascript:;" title="tab2">图片作品</a></li>
-    </ul>-->
+
+
         <div id="content">
             <div id="tab1" style="display: block;">
                 <div class="see-xian-box">
                     <div class="seeSubTitle">求职期望</div>
+
+                    <div class=""></div>
+
                     <div class="see-hope cssFlex">
                         <p class="see-price">
                             <span class="see-gang" id="work_name">运营经理</span>
@@ -268,27 +268,15 @@
                                 <div class="education-edu">本科 | 营销管理</div>
                                 <div class="education-date">2011年-2015年</div>
                             </div>
-                            <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">
+                            <!--<img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">-->
                         </div>
                     </div>
 
                 </div>
             </div>
-            <!--<div id="tab2" style="display:none;">
-            <div class="see-xian-img cssFlex">
-                <img src="../../../image/pro.png" alt="pro">
-                <img src="../../../image/pro.png" alt="pro">
-                <img src="../../../image/pro.png" alt="pro">
-                <img src="../../../image/pro.png" alt="pro">
-                <img src="../../../image/pro.png" alt="pro">
-            </div>
-        </div>-->
+
         </div>
-        <!--<div class="Have_a_chat_box" @click="HavechatClick()">
-        <div class="Have_a_chat">
-            聊一聊
-        </div>
-    </div>-->
+
 
     </div>
 </div>
@@ -301,7 +289,6 @@
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
-<script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 <script src="../../../script/mui.min.js"></script>
@@ -314,21 +301,11 @@
     eruda.init();
 </script>
 <script>
-    // swiper  轮播
-    var app1Vue;
-    var mySwiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-    })
+
     // 模态框
     $(document).on("click", ".componySize>li", function() {
         $(".modal-space").show()
     })
-
-    /*$("#tabs li").click(function () {
-        $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
-        var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-        $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-    });*/
 
     function closeMotal() {
         $(".modal-space").hide()
@@ -391,9 +368,7 @@
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
 
-                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
-                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
+
                 });
                 api.addEventListener({
                     name: 'magicComPosiAll',
@@ -401,19 +376,12 @@
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComPosiAll;
 
-                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'magicPosition',
                 }, function(ret, err) {
                     console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
-
-                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                 });
                 api.addEventListener({
                     name: 'jobAllName',
@@ -523,7 +491,15 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
+                $("#personId").html(data.person_summary.person_id)
+                if (data.attPerson){
+                    document.querySelector(".collection").classList.add("isDisplay")
+                    document.querySelector(".collectionHand").classList.remove("isDisplay")
+                }else{
+                    document.querySelector(".collection").classList.remove("isDisplay")
+                    document.querySelector(".collectionHand").classList.add("isDisplay")
 
+                }
                 // 电话 邮箱
                 if (person_summary) {
                     person_summary = person_summary;
@@ -557,8 +533,9 @@
                     document.getElementById('degree').innerText = '未填写'
                 }
                 // 年龄
-                if (person_summary.b_birthday) {
-                    var age = ages(person_summary.b_birthday);
+                if (person_summary.p_birthday) {
+
+                    var age = ages(person_summary.p_birthday);
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0
@@ -595,21 +572,17 @@
                     }
                     tags.innerHTML = arr.join('');
                 }
-                // // 求职状态
-                /*if (Intention) {
-                    var statusObj = {
-                        '1': '离职-随时到岗',
-                        '2': '在职-月内到岗',
-                        '3': '在职-考虑机会',
-                        '4': '在职-暂不考虑',
-                    }
-                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                }*/
+
                 // 求职期望
                 if (Intention) {
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
-                    document.getElementById('work').innerText = Intention.work;
+                    if (Intention.work == ''){
+                        document.getElementById('work').innerText = Intention.work;
+                    } else{
+                        document.getElementById('work').innerText = '未填写';
+                    }
+
                     var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function(value) {
@@ -660,7 +633,7 @@
                             '                                                   <div class="education-edu"><span>' + (education_his[i].degree || '') + '</span> | <span>' + (education_his[i].major || '') + '</span></div>\n' +
                             '                                                   <div class="education-date"><span>' + (education_his[i].e_from || '') + '</span>至<span>' + (education_his[i].e_to || '') + '</span></div>\n' +
                             '                                               </div>\n' +
-                            '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
+                            // '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
                             '                                           </div>';
                         arr.push(str);
                     }
@@ -785,16 +758,7 @@
                     }
                     tags.innerHTML = arr.join('');
                 }
-                // // 求职状态
-                /*if (Intention) {
-                    var statusObj = {
-                        '1': '离职-随时到岗',
-                        '2': '在职-月内到岗',
-                        '3': '在职-考虑机会',
-                        '4': '在职-暂不考虑',
-                    }
-                    document.getElementById('jobHuntingStatus').innerText = statusObj[Intention[0].status];
-                }*/
+
                 // 求职期望
                 if (Intention) {
                     document.getElementById('work_name').innerText = Intention.work_name;
@@ -850,7 +814,7 @@
                             '                                                   <div class="education-edu"><span>' + (education_his[i].degree || '') + '</span> | <span>' + (education_his[i].major || '') + '</span></div>\n' +
                             '                                                   <div class="education-date"><span>' + (education_his[i].e_from || '') + '</span>至<span>' + (education_his[i].e_to || '') + '</span></div>\n' +
                             '                                               </div>\n' +
-                            '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
+                            // '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
                             '                                           </div>';
                         arr.push(str);
                     }
@@ -1092,5 +1056,50 @@
         },
     })
     //leilei
+
+    // zbw star
+    // 收藏
+     function collectionHandle() {
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../../login/login.html");
+            return;
+        }
+        ajaxGet(attentionPerson, {
+            uid: localStorage.getItem("user"),
+            person_id: $("#personId").html(),
+        }, function(data,err){
+            console.log(data);
+            api.showProgress();
+            /*if (data.commcollect) {
+                toast("已收藏")
+
+                // window.location.reload()
+            }*/
+        });
+    }
+    // 收藏
+    function collectionHandleActive() {
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser){
+            openNewWindow("login", "../../../login/login.html");
+            return;
+        }
+        console.log(obj)
+        ajaxGet(attentionPerson, {
+            uid: localStorage.getItem("user"),
+            person_id: $("#personId").html(),
+        }, function(data,err){
+            console.log(data);
+            api.showProgress();
+            /*if (data.commcollect) {
+                toast("已收藏")
+
+                // window.location.reload()
+            }*/
+        });
+    }
+    // zbw end
+
 </script>
 </html>
