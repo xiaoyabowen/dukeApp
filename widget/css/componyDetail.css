@@ -210,7 +210,6 @@ div#content {
 
 
 .jobBox {
-    margin: 0 0.4rem 0 0.32rem;
     padding: 0.24rem 0  0.32rem;
     justify-content: space-between;
     /*border-bottom: 1px solid #EBEBEB;*/
@@ -429,7 +428,7 @@ span.right-next {
 }
 
 ul.componySize {
-    padding: 4px 12px 0;
+    /*padding: 4px 12px 0;*/
 }
 .componySize>li{
     padding: 10px 0;

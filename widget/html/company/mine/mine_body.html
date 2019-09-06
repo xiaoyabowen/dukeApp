@@ -13,7 +13,7 @@
 </head>
 <body  class="commonBg">
 
-<div class="Box" id="mine">
+<div class="Box" id="mine" v-cloak>
     <div class="roleDiv">
         <div class="roleDivChos">我是伯乐</div>
     </div>
@@ -98,6 +98,10 @@
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
+
+        function reload(){
+            window.location.reload()
+        }
 
         apiready = function () {
 

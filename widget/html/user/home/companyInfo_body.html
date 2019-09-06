@@ -755,35 +755,7 @@
         });
     }
 
-    var flag = true;//
-    function flowGuan(id, stauts) {
-        var uid = localStorage.getItem("person_id");
-        var obj = {
-            person_id: uid,
-            cid: cid,
-            att_status: stauts,
-            id: id
-        }
-        ajaxGetWithProgress(attentionCompanyByCid, obj, function (data, err) {
-            console.log(data)
-            if (data) {
 
-                /*if(attentionCompany.att_status == 0){
-                    api.toast({
-                        msg: '编辑教育经历成功'
-                    });
-                }else if(attentionCompany.att_status == 0){
-                    api.toast({
-                        msg: '编辑教育经历成功'
-                    });
-                }*/
-                api.toast({
-                    msg: '编辑成功'
-                });
-                reload();
-            }
-        })
-    }
 
 </script>
 </body>
