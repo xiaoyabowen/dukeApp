@@ -138,6 +138,7 @@
                 this.url = api.pageParam.url
                 this.person_id = api.pageParam.person_id
                 this.queryCirclePersonMsgByPid()
+                // console.log(api.pageParam,'14111');
             },
             mounted() {
 
@@ -152,6 +153,7 @@
                             uid : localStorage.getItem("user")
                         }
                     }else if (that.url == "signPerson"){
+                        // document.querySelector('.editbtn').style.display == 'none';
                         obj = {
                             uid : that.person_id
                         }

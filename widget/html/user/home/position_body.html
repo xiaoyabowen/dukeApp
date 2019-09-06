@@ -304,7 +304,7 @@
                         <div class="resume-date">{{item.resumeDate}} 更新</div>
                     </div>
                     <div class="right_side">
-                        {{item.type}} 
+                        {{item.type}}
                     </div>
                 </div>
             </div>
@@ -412,6 +412,7 @@
 
                     cid = data.c_id;
                     uid = data.uid;
+                    // console.log(uid,'ppppp');
                     ptoken = data.uid;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('job_id').value = data.job_id;
@@ -434,7 +435,7 @@
                 }
             })
         } else {
-            var uid = uidUser.user_uid;
+            uid = uidUser.user_uid;
             ajaxGetWithProgress(JobId, {person_id: uid}, function (data, err) {
                 console.log(1, data)
                 if (data) {
@@ -444,6 +445,7 @@
 
                     cid = data.c_id;
                     uid = data.uid;
+                    console.log(uid,'ppp')
                     ptoken = data.uid;
                     jobId = data.job_id;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
@@ -522,7 +524,6 @@
             created: function () {
                 this.togle()
             },
-
             mounted: function () {
                 var that = this
 
@@ -645,9 +646,24 @@
                       resumeType: '附件简历',
                       resumeDate: '2019.07.27',
                       type: ''
-                  }]
+                  }],
+                  uid:'',
+              },
+              mounted(){
+                var uid = localStorage.getItem("user");
+                this.uid = uid;
+                this.loadData();
               },
               methods: {
+                  loadData(){
+                    var that = this;
+                    ajaxGetWithProgress(QueryResumeUserProfile,{uid:that.uid},function(data){
+                      console.log(data,'resume');
+                      if(data){
+                          alert('请先去上传简历');
+                      }
+                    })
+                  },
                   selectResume(index) {
                     console.log('aaa')
                     this.selectIndex = index;
@@ -666,6 +682,17 @@
     function company() {
         openNewWindow("companyInfo", "../home/companyInfo.html", {
             cid: cid
+        });
+    }
+
+
+
+
+    // 点击进入发布人主页
+    function homePage() {
+        openNewWindow("userCenter", "../mine/userCenter.html", {
+            person_id: uid,
+            url:'signPerson'
         });
     }
 
@@ -721,7 +748,12 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        toast("功能正在开发中")
+
+
+
+
+
+        // toast("功能正在开发中")
         return;
 
         var token = localStorage.getItem('user');
@@ -733,12 +765,7 @@
 
     }
 
-    // 点击进入发布人主页
-    function homePage() {
-        // openNewWindow("companyInfo", "../home/companyInfo.html", {
-        //     uid: uid
-        // });
-    }
+
 
     function posiShareClick() {
         var dialogBox = api.require('dialogBox');
