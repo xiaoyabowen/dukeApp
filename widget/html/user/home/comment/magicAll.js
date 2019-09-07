@@ -41,7 +41,7 @@ function magicAllInit(Vue) {
                 magicCom1Text: '',
                 magicComCid1: '',
                 magicComCid2: '',
-
+                job_type : '',
                 activeAni:true,
                 listJob: [],
                 index: ''
@@ -51,12 +51,13 @@ function magicAllInit(Vue) {
             this.MenuListQyMenu()
         },
         mounted: function () {
-          // console.log(575757575);
-          //  api.addEventListener({
-          //      name: 'searchType'
-          //  }, function(ret, err){
-          //     console.log(ret,'575757575')
-          //  });
+            var that = this
+            api.addEventListener({
+                name: 'historySearch',
+            }, function (ret, err) {
+                that.job_type = ret.value.key.value;
+                that.MenuListQyMenu()
+            });
 
         },
 
@@ -64,7 +65,7 @@ function magicAllInit(Vue) {
 
             MenuListQyMenu: function () {
                 var that = this
-                ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
+                ajaxGetWithProgress(MenuListQyMenu, {job_type:that.job_type}, function (data) {
                     console.log("magicall", data)
                     var jobList = data.job
                     console.log(jobList)

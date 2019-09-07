@@ -243,7 +243,7 @@
             <div class="three-login">
                 <h4>使用第三方登录</h4>
                 <ul class="cssFlex threeLi">
-                    <li>
+                    <li onclick="weixin_login()">
                         <img src="../../image/login/wechat.png" alt="weixin">
                         <span>微信登陆</span>
                     </li>
@@ -268,9 +268,10 @@
 <script type="text/javascript" src="../../script/public.js"></script>
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
-    var phoneValue
-    apiready = function () {
 
+    var code,accessToken,dynamicToken,openId,phoneValue,wx;
+    apiready = function () {
+        wx = api.require('wx');
         // var guide = api.require('guide');
         // guide.openGuidePage({
         //     imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
@@ -302,10 +303,99 @@
         $(window).resize(function () {
             $('body').height(Height);
         });
-        // var role = api.pageParam.role;
-        // $api.byId("role").innerHTML = role
+
+
+
+
+
 
     }
+
+
+    function weixin_login(){
+
+        //判断是否安装微信
+        wx.isInstalled(function(ret, err) {
+            if (ret.installed) {
+                //alert('当前设备已安装微信客户端');
+                //登录授权（用于实现第三方登录）
+                wx.auth({
+                    apiKey : ''
+                }, function(ret, err) {
+                    console.log("登录授权1",ret)
+                    if (ret.status) {
+                        code = ret.code;
+                        wx.getToken({
+                            apiKey : '',
+                            apiSecret : '',
+                            code : code
+                        },function(ret, err) {
+                            console.log("getToken成功",ret)
+                            if (ret.status) {
+                                accessToken = ret.accessToken;
+                                dynamicToken = ret.dynamicToken;
+                                openId = ret.openId;
+
+                                api.showProgress({
+                                    style: 'default',
+                                    animationType: 'fade',
+                                    title: '授权成功',
+                                    text: '绑定处理中...',
+                                    modal: true
+                                });
+
+                                //获取用户信息（需要获取 accessToken 成功）
+                                wx.getUserInfo({
+                                    accessToken: accessToken,
+                                    openId: openId
+                                }, function(ret, err) {
+                                    console.log("getUserInfo",ret)
+                                    console.log("openid",ret.openid)
+                                    if (ret.status) {
+                                        api.hideProgress();
+                                        // 第三方登录
+                                        // WXbindAccount(ret.openid);
+
+                                    } else {
+                                        alert(err.code);
+                                    }
+                                });
+                            } else {
+                                console.log("error",ret)
+                                //判断accessToken是否 过期，调用此接口刷新 accessToken
+                                if(err.code == 1){
+                                    wx.refreshToken({
+                                        apiKey: '',
+                                        dynamicToken:dynamicToken
+                                    }, function(ret, err) {
+                                        if (ret.status) {
+                                            console.log("errorerror",ret)
+                                        } else {
+                                            alert(err.code);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        if(err.code == -1){
+                            toast("未知错误");
+                        }else if(err.code == 1){
+                            toast("用户取消");
+                        }else if(err.code == 2){
+                            toast("用户拒绝授权");
+                        }else if(err.code == 3){
+                            toast("当前设备未安装微信客户端");
+                        }
+
+                    }
+                });
+            } else {
+                toast('当前设备未安装微信客户端');
+            }
+        });
+    }
+
 
     /*************点击获取验证码***********/
     var flag = true;//防止重复点击获取验证码
@@ -381,7 +471,6 @@
         params.phone = $api.byId("phone").value;
         // params.role_type = localStorage.getItem("role");
         // params.token_type = "1";
-        console.log(params)
         if (isBlack(params.phone)) {
             toast('请输入手机号');
             api.hideProgress();
@@ -396,7 +485,6 @@
             return;
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
-            console.log("Logindata=",data)
             api.hideProgress();
             localStorage.setItem('user',data.user_uid);
             localStorage.setItem('person_id',data.user_uid);

@@ -94,21 +94,6 @@
             vertical-align: center;
         }
 
-        .mine-job-img {
-            display: block;
-            width: 0.5rem;
-            height: 0.56rem;
-            margin: 0.2rem auto 0.1rem;
-        }
-
-        .mine-job-text {
-            display: block;
-            height: 0.4rem;
-            line-height: 0.4rem;
-            width: 100%;
-            font-size: 0.24rem;
-        }
-
         .subcontentBoxBanner {
             width: 7rem;
             height: calc(100vh - 1.4rem);
@@ -163,19 +148,6 @@
 
         .searchList {
             padding: 0.2rem 0;
-        }
-
-        .searchMain {
-            height: 0.8rem;
-            line-height: 0.8rem;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #ebebeb;
-            margin-top: 0.1rem;
-        }
-
-        .commonFont {
-            color: #666666;
         }
 
         .historyTitle {
@@ -682,7 +654,7 @@
     searchinputTop = document.getElementById("search-inputTop")
     searchinputTop.onclick = function (e) {
         openNewWindow("historySearch", "./historySearch.html", {
-            // c_id: s_id,
+            url: "home",
         });
     }
 

@@ -283,6 +283,7 @@ p.moneyNum {
     color: rgba(92,145,253,1);
     line-height: 0.48rem;
     margin: 0.24rem 0.3rem 0.2rem 0;
+    max-width: 2rem;
 }
 
 

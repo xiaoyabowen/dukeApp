@@ -1898,10 +1898,10 @@ function posiShareClick() {
             wx.shareWebpage({
                 apiKey: '',
                 scene: 'session',// 单聊
-                title: '我爱渡客！',
+                title: '渡客免费猎头！',
                 description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
                 thumb: 'widget://icon/dukelogo.png',
-                contentUrl: 'www.baidu.com'
+                contentUrl: 'http://m.anzhi.com/app_7ce8_com.bowenru.xxq.html'
             }, function (ret, err) {
                 console.log("share",ret)
                 if (ret.status) {
@@ -1917,10 +1917,10 @@ function posiShareClick() {
             wx.shareWebpage({
                 apiKey: '',
                 scene: 'timeline',// 朋友圈
-                title: '我爱渡客！',
+                title: '渡客免费猎头！',
                 description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
                 thumb: 'widget://icon/icon.png',
-                contentUrl: 'www.baidu.com'
+                contentUrl: 'http://m.anzhi.com/app_7ce8_com.bowenru.xxq.html'
             }, function (ret, err) {
                 if (ret.status) {
                     toast('分享成功');
@@ -1930,26 +1930,18 @@ function posiShareClick() {
                     }
                 }
             });
-        } /*else if (ret.index == 2) {
-                var qq = api.require('qq');
+        } else if (ret.index == 2) {
+                /*var qq = api.require('qq');
                 qq.shareNews({
                     url: 'http://www.baidu.com',
                     title: '我爱网拍！',
                     description: '我发现了一件大宝贝，快来看看啊！',
                     imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
                     type: 'QFriend'
-                });
+                });*/
+                toast('qq登录正在开发中…')
             } else if (ret.index == 3) {
-                var qq = api.require('qq');
-                qq.shareNews({
-                    url: 'http://www.baidu.com',
-                    title: '我爱网拍！',
-                    description: '我发现了一件大宝贝，快来看看啊！',
-                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
-                    type: 'QZone'
-                });
-            } else if (ret.index == 4) { //微博
                 toast('微博登录正在开发中…')
-            }*/
+            }
     });
 }

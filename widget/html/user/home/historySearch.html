@@ -15,9 +15,11 @@
         .OneImgRight {
             margin-top: 0.1rem;
         }
-        .none{
+
+        .none {
             display: none;
         }
+
         .contentBoxBox {
             height: calc(100vh - 1.4rem);
             background: #fff;
@@ -237,7 +239,7 @@
         }
 
 
-        .commonBg{
+        .commonBg {
             background: #ffffff !important;
         }
     </style>
@@ -250,7 +252,7 @@
         </div>
         <div class="middleHeightTop cssFlex">
             <input type="text" id="search-inputTop" placeholder="搜索公司/职位">
-            <span onclick = 'toWorkPage()' class="search-Click">GO</span>
+            <span onclick='toWorkPage()' class="search-Click">GO</span>
         </div>
         <div class="rightImgEdite">
 
@@ -259,78 +261,6 @@
     </div>
 </div>
 
-<!--<div id="app1">
-    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-    <div class="magicBox">
-
-        <div class="magicBG cssFlex">
-
-            <div class="magicBtn posiCast7FCC">
-                <div class="magicSubBox">
-                    <div class="magicSubBoxMain">
-                        <img src="../../../image/bigWeigh/carHome.png" class="iconImg" alt="person">
-                        <div class="magicSize CastText">洗车券</div>
-                    </div>
-                </div>
-            </div>
-            <div class="magicBtn">
-                <div class="magicSubBox">
-                    <div class="magicSubBoxMain" @click="hua()">
-                        <img src="../../../image/bigWeigh/juHome.png" class="iconImg" alt="person">
-                        <div class="magicSize">巨划算</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="magicBtn">
-                <div class="magicSubBox" @click="circle()">
-                    <div class="magicSubBoxMain">
-                        <img src="../../../image/bigWeigh/circleHome.png" class="iconImg" alt="person">
-                        <div class="magicSize">圈子</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="magicBtn">
-                <div class="magicSubBox" @click="position()">
-                    <div class="magicSubBoxMain">
-                        <img src="../../../image/bigWeigh/jobHome.png" class="iconImg" alt="person">
-                        <div class="magicSize">工作</div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="magicBG cssFlex">
-            <div class="magicBtn">
-                <div class="magicSubBox" @click="jobDetail()">
-                    <div class="magicSubBoxMain">
-                        <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
-                        <div class="magicSize">运营经理</div>
-                    </div>
-                </div>
-            </div>
-            <div class="magicBtn">
-                <div class="magicSubBox" @click="jobDetail1()">
-                    <div class="magicSubBoxMain">
-                        <img src="../../../image/mine/attclight.png" class="iconImg" alt="person">
-                        <div class="magicSize">市场品牌总监</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-<!--
-
-<div id="app1">
-    <keep-alive>
-        <component :is="homeAll"></component>
-    </keep-alive>
-</div>
--->
 
 <div class="contentBoxBox" id="app">
 
@@ -365,301 +295,78 @@
 
 </body>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 
-
-<script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
 <script>
-    var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
-    var jpush = null;
+    var searchinputTop,url;
+
     apiready = function () {
 
-        jpush = api.require('push');
-        // console.log(jpush)
-        // function initJPush(){
+        url = api.pageParam.url
 
-
-        jpush.bind({
-            userName:'testName',
-            userId:'testId'
-        },function(ret,err){
-            console.log("jpush.bind",ret)
-            if(ret.status){
-                // api.alert({msg:'绑定成功'});
-            }else{
-                // api.alert({msg:err.msg});
-            }
-        });
-
-
-        //设置监听
-        jpush.setListener(
-            function(ret,err){
-                console.log("jpush.setListener",ret)
-                if(ret){
-                    api.alert({msg:ret.data});
-                }
-            }
-        );
-        // }
-
-
+        console.log("url",url)
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
 
-        var JIMStr = localStorage.getItem("JIM")
-        // JIMData = JSON.parse()
-        console.log(JIMStr)
-
-        /*var homeAll = homeAllInit(Vue);
-        console.log(homeAll)
-        Vue.component('homeAll', homeAll);*/
-        winWidth = api.winWidth;
-        winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        // 首页 4个按钮  适配
-        homeBtnCom = document.getElementsByClassName("homeBtnCom")
-        homeBtnLr = document.querySelector(".homeBtnLr")
-        if (winWidth > winHeight / 2) {
-            homeBtnLr.style.width = "3.8rem"
-            for (var i = 0; i < homeBtnCom.length; i++) {
-                homeBtnCom[i].style.width = "1.5rem"
-                homeBtnCom[i].style.height = "1.5rem"
-            }
-
-        } else {
-            homeBtnLr.style.width = "4.8rem"
-            for (var i = 0; i < homeBtnCom.length; i++) {
-                homeBtnCom[i].style.width = "1.9rem"
-                homeBtnCom[i].style.height = "1.9rem"
-            }
-        }
-
-        console.log("homeUser", localStorage.getItem('user'))
-        // 斜边长
-        bevelLength = Math.sqrt((a01_w * a01_w / 2))
-        // width_d=(screen_w-20) *2/5 - 5;
-        m_d = (a01_w - 10) * 0.23 - 10;    // 100
-
-        api.addEventListener({
-            name: 'keyback'
-        }, function (ret, err) {
-            closeOnKeyBack();
-        });
-
-        new Vue({
-            el: '#app1',
-            data: {
-                // active: 'homeAll',
-                // 聊天
-                JIM: '',
-                pid_accept: '',         //接收消息者 username
-                pid_name: '',             //接收消息者 name
-                appkey: '',
-                random_str: '',
-                signature: '',
-                timestamp: '',
-            },
-            created: function () {
-                // this.getSignatureJiGuang()
-                var that = this
-                // that.JIM = JIMStr
-                // console.log(that.JIM)
-                // that.isConnect()
-                // console.log("JIMisConnect",that.JIM.isConnect())
-                that.getSignatureJiGuang()
-            },
-            mounted: function () {
-                var that = this
-                magicBox = document.querySelector(".magicBox")
-                magicBtn = document.getElementsByClassName("magicBtn")
-                magicSubBox = document.getElementsByClassName("magicSubBox")
-                iconImg = document.getElementsByClassName("iconImg")
-                magicBox.style.width = bevelLength * 2 + "px"
-                magicBox.style.height = bevelLength + "px"
-                var rightYi = bevelLength
-                magicBox.style.right = '-' + rightYi + "px"
-                // 里面小盒子宽度
-                for (var i = 0; i < magicBtn.length; i++) {
-                    magicBtn[i].style.width = m_d + "px"
-                    magicBtn[i].style.height = m_d + "px"
-                }
-                // 里面小盒子宽度
-                for (var i = 0; i < magicSubBox.length; i++) {
-                    magicSubBox[i].style.width = m_d + "px"
-                    magicSubBox[i].style.height = m_d + "px"
-                }
-                // 图片宽度
-                for (var i = 0; i < iconImg.length; i++) {
-                    iconImg[i].style.width = m_d / 2 + "px"
-                    iconImg[i].style.height = m_d / 2 + "px"
-                }
-
-            },
-            methods: {
-
-                togle: function () {
-                    toast("切换内容")
-                },
-                position: function () {
-                    openNewWindow("position", "./position.html", {
-                        url: 'home',
-                    });
-                },
-                hua: function () {
-                    openNewWindow("index", "../great/index.html")
-                },
-                circle: function () {
-                    openNewWindow("index", "../circle/index.html")
-                },
-                jobDetail: function () {
-                    openNewWindow("position", "./position.html", {
-                        job_id: 23,
-                        url: 'home',
-                    })
-                },
-                jobDetail1: function () {
-                    openNewWindow("position", "./position.html", {
-                        job_id: 59,
-                        url: 'home',
-                    })
-                },
-                peack: function () {
-                    openNewWindow("index", "../great/farmProduce/index.html")
-                },
-
-
-                // 聊天获取 appkey random_str signature timestamp   初始化  JIM
-                getSignatureJiGuang: function () {
-                    var that = this
-                    ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                        console.log(data)
-                        if (data) {
-                            that.appkey = data.appkey
-                            that.random_str = data.random_str
-                            that.signature = data.signature
-                            that.timestamp = data.timestamp
-
-                            that.JIM = new JMessage({debug: true})
-                            console.log("JIM", that.JIM)
-                            that.init()
-
-                        } else {
-                            toast("连接失败")
-                        }
-                    })
-                },
-
-                init: function () {
-                    var that = this
-                    that.JIM.init({
-                        "appkey": that.appkey,
-                        "random_str": that.random_str,
-                        "signature": that.signature,
-                        "timestamp": that.timestamp,
-                        "flag": 1
-
-                    }).onSuccess(function (data) {
-                        console.log('success:', data);
-
-                    }).onFail(function (data) {
-                        console.log('error2:', data)
-                    });
-                },
-
-
-            }
-
-
-        })
-        // test()
-        wx = api.require('wx');
-        // initFrameInWin(api.pageParam);
-        var uid = localStorage.getItem("person_id")
-        var obj = {
-            uid: uid
-            // uid : '12346'
-        }
-        console.log("user", localStorage.getItem("user"))
-        api.ajax({
-
-            url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
-            method: 'get',
-            cache: 'false',
-            timeout: 30,
-            dataTpye: 'json',
-            data: {
-                values: obj
-            }
-        }, function (data, err) {
-            console.log("ifq", data)
-            if (data.role_type == 1) {
-                // openNewWindow("home", "./home.html")
-            } else if (data.role_type == 2) {
-                openNewWindow("home", "../../company/home/home.html")
-            }
-            api.hideProgress();
-
-        });
-
-        api.ajax({
-
-            url: 'http://192.168.1.24:8000/SE4M/SE/Status/status',
-            method: 'get',
-            cache: 'false',
-            timeout: 30,
-            dataTpye: 'json',
-            data: {
-                values: {}
-            }
-        }, function (data, err) {
-            console.log("ifqshang", data)
-
-            if (data.status == 0) {
-                document.querySelector(".homeJob").style.display = "block"
-                document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
-            } else if (data.status == 1) {
-                document.querySelector(".homeJob").style.display = "none"
-                document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
-            }
-            api.hideProgress();
-
-        });
-        /*var guide = api.require('guide');
-        // alert(WelcomePage)
-        guide.openGuidePage({
-            imgs: ['widget://image/guide/1.png', 'widget://image/guide/2.png', 'widget://image/guide/3.png'],
-            point_normal:'widget://image/guide/point_normal@2x.png',
-            point_select:'widget://image/guide/point_select@2x.png',
-            btnColor:'00FFFF',
-            btnLabel:'进入应用',
-            btnW:120,
-            btnH: 33,
-            time:'2',
-            hideStatusBar:false
-        });*/
 
     }
 
     //点击Go按钮
-    function toWorkPage(){
-      openNewWindow("position", "./position.html", {
-          value: document.querySelector('#search-inputTop').value,
-      });
+    function toWorkPage() {
+
+        api.sendEvent({
+            name: 'historySearchSui',
+            extra: {
+                key: {
+
+                },
+            }
+        });
+
+        if (url = "home"){
+            openNewWindow("position", "./position.html");
+            api.sendEvent({
+                name: 'historySearch',
+                extra: {
+                    key: {
+                        value: document.querySelector('#search-inputTop').value,
+                    },
+                }
+            });
+        }else{
+            api.sendEvent({
+                name: 'historySearch',
+                extra: {
+                    key: {
+                        value: document.querySelector('#search-inputTop').value,
+                    },
+                }
+            });
+
+            var frameName = url + "_body";
+            api.execScript({
+                name:url,
+                frameName: frameName
+            })
+            closeWin();
+
+        }
+
+
+
     }
 
     function getRegistrationId(ret) {
 
         var registrationId = ret;
-        console.log("registrationId  回调 结果",registrationId)
+        console.log("registrationId  回调 结果", registrationId)
     };
 
     searchinputTop = document.getElementById("search-inputTop")
@@ -773,75 +480,5 @@
         }
     }
 
-    function mineGo() {
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser) {
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-
-        var obj = {
-
-            uid: localStorage.getItem("person_id")
-        }
-
-        // console.log(obj)
-        ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            // console.log("homeData",data)
-            if (data.date == 1) {
-
-                mui.confirm('您还未完善资料', '', ['确认', '取消'], function (e) {
-                    console.log("mumiicomfir", e)
-                    if (e.index == 0) {
-                        openNewWindow("resume_editResume", "../mine/resume_editResume.html")
-                    } else if (e.index == 1) {
-                        openNewWindow("mine", "../mine/mine.html")
-                    }
-                })
-                return;
-            } else if (data.date == 2) {
-                openNewWindow("mine", "../mine/mine.html")
-            } else if (data.date == 3) {
-                var phoneValue = localStorage.getItem("phone")
-                openNewWindow("loginComfir", "../../login/loginComfir.html", {
-                    phoneValue: phoneValue
-                })
-            }
-        })
-        // openNewWindow("Feedback", "../mine/Feedback.html")
-    }
-
-    // 跳转到聊天页面
-    function linkChat() {
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser) {
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("index", "../chat/index.html")
-    }
-
-    // 圈子
-    function circle() {
-        openNewWindow("index", "../circle/index.html")
-        /* openNewWindow("demo", "./demo.html", {
-             url: 'home',
-         });*/
-    }
-
-    // 工作
-    function position() {
-        openNewWindow("position", "./position.html", {
-            url: 'home',
-        });
-
-    }
-
-    // 巨划算
-    function hua() {
-
-        openNewWindow("index", "../great/index.html")
-        // openNewWindow("tripDate", "../great/ouou/tripDate.html")
-    }
 
 </script>
