@@ -223,7 +223,7 @@
                                         <img src="../../../icon/posiShare.png" alt="time" onclick="posiShareClick()"
                                              class="posiShare">
                                     </div>
-                                    
+
                                 </div>
 
                                 <input type="hidden" id="job_id">
@@ -300,16 +300,13 @@
                 </div>
                 <div class="con-pay-content">
                     <div class="left-side">
-<<<<<<< HEAD
                         <div class='resume-type'>{{item.res_name}}</div>
                         <div class="resume-date">{{item.time}} 更新</div>
-=======
-                        <div class='resume-type'>{{item.resumeType}}</div>
-                        <div class="resume-date">{{item.resumeDate}} 更新</div>
+                        <!-- <div class='resume-type'>{{item.resumeType}}</div>
+                        <div class="resume-date">{{item.resumeDate}} 更新</div> -->
                     </div>
                     <div class="right_side">
                         {{item.type}}
->>>>>>> master
                     </div>
                     <!-- <div class="right_side">
                         {{item.type}}
@@ -380,6 +377,18 @@
         // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w - 10) * 0.23 - 25;    // 100
 
+//leileiStart
+        var searchValue = api.pageParam.value;
+
+        console.log(searchValue,'388888866');
+        api.sendEvent({
+            name: 'searchType',
+            extra: {
+                searchValue:searchValue
+            }
+        });
+
+//leileiEnd
         api.addEventListener({
             name: 'keyback'
         }, function (ret, err) {

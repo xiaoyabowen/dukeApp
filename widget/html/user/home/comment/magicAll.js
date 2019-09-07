@@ -51,6 +51,12 @@ function magicAllInit(Vue) {
             this.MenuListQyMenu()
         },
         mounted: function () {
+          // console.log(575757575);
+          //  api.addEventListener({
+          //      name: 'searchType'
+          //  }, function(ret, err){
+          //     console.log(ret,'575757575')
+          //  });
 
         },
 

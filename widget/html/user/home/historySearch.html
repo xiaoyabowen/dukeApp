@@ -250,7 +250,7 @@
         </div>
         <div class="middleHeightTop cssFlex">
             <input type="text" id="search-inputTop" placeholder="搜索公司/职位">
-            <span class="search-Click">GO</span>
+            <span onclick = 'toWorkPage()' class="search-Click">GO</span>
         </div>
         <div class="rightImgEdite">
 
@@ -647,6 +647,13 @@
             hideStatusBar:false
         });*/
 
+    }
+
+    //点击Go按钮
+    function toWorkPage(){
+      openNewWindow("position", "./position.html", {
+          value: document.querySelector('#search-inputTop').value,
+      });
     }
 
     function getRegistrationId(ret) {
