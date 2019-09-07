@@ -453,11 +453,12 @@
                         // var companySummary = data.companySummary.Result    //企查查  信息
                     var PIClist = data.PIClist //公司图片
                     var product_his = data.product_his //产品介绍
-                    var welfare = dataSummary.welfare //公司图片
+                    var welfare = dataSummary.welfare ? dataSummary.welfare : ''; //公司福利
                     var JobList = data.JobList //  zaizhao 职位
                     var DynamicList = data.DynamicList //  公司动态
                     var attentionCompany = data.attentionCompany //  关注状态
                         // 公司标签
+                        console.log(welfare,'aaa')
                     var welData = welfare.split(",")
                     for (var i = 0; i < welData.length; i++) {
                         infoListHtml += '<span>' + welData[i] + '</span>'
@@ -466,6 +467,7 @@
                     var adressData = data.address
                     if (data) {
                         // 公司头部
+                        console.log(data,'公司头部')
                         api.hideProgress();
                         if (attentionCompany.att_status == 0) {
                             document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
@@ -501,7 +503,7 @@
 
                         document.querySelector(".job-text").innerHTML = dataSummary.summary //公司介绍
                             // 产品介绍
-                        if (product_his.length != 0) {
+                        if (product_his && product_his.length != 0) {
                             for (var i = 0; i < product_his.length; i++) {
                                 product_hishtml += '<div class="infoProduct cssFlex">\n' +
                                     '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
@@ -524,14 +526,16 @@
                         document.querySelector(".homepage").innerHTML = dataSummary.homepage
 
                         // 公司照片
-
-                        for (var i = 0; i < PIClist.length; i++) {
-                            PIClistHtml += '<div class="swiper-slide">\n' +
-                                // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
-                                '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
-                                '                                            </div>'
+                        if(PIClist && PIClist.length > 0){
+                          for (var i = 0; i < PIClist.length; i++) {
+                              PIClistHtml += '<div class="swiper-slide">\n' +
+                                  // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
+                                  '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
+                                  '                                            </div>'
+                          }
+                          document.querySelector(".PIClistBox").innerHTML = PIClistHtml
                         }
-                        document.querySelector(".PIClistBox").innerHTML = PIClistHtml
+
                         for (var i = 0; i < JobList.length; i++) {
                             html2 += '<div class="jobBox cssFlex" >\n' +
                                 '                                        <div class="job-left">\n' +
@@ -560,21 +564,21 @@
                         }
 
                         document.getElementById("tab2").innerHTML = html2
+                        if(DynamicList && DynamicList.length>0){
+                          for (var i = 0; i < DynamicList.length; i++) {
+                              html3 +=
+                                  '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
+                                  '                                            <h4 class="sizeTitle">\n' +
+                                  '                                                ' + DynamicList[i].title + '\n' +
+                                  '                                            </h4>\n' +
+                                  '                                            <p>\n' +
+                                  '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
+                                  '                                            </p>\n' +
+                                  '                                        </li>';
+                          }
 
-                        for (var i = 0; i < DynamicList.length; i++) {
-                            html3 +=
-                                '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
-                                '                                            <h4 class="sizeTitle">\n' +
-                                '                                                ' + DynamicList[i].title + '\n' +
-                                '                                            </h4>\n' +
-                                '                                            <p>\n' +
-                                '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                        </li>';
+                          document.querySelector(".componySize").innerHTML = html3
                         }
-
-                        document.querySelector(".componySize").innerHTML = html3
-
                     }
 
 
@@ -773,23 +777,41 @@
             ajaxGetWithProgress(attentionCompanyByCid, obj, function(data, err) {
                 console.log(data)
                 if (data) {
-                  // if(document.querySelector('.follow-btn') && document.querySelector('.follow-btn').innerHTML == '关注'){
-                  //     document.querySelector('.follow-btn').innerHTML = '已关注';
-                  // }else{
-                  //   document.querySelector('.follow-btn').innerHTML = '关注';
-                  // }
-                  //
-                  // if(document.querySelector('.follow-btnbg') && document.querySelector('.follow-btnbg').innerHTML == '已关注'){
-                  //   document.querySelector('.follow-btnbg').innerHTML = '关注';
-                  // }else{
-                  //   document.querySelector('.follow-btnbg').innerHTML = '已关注';
-                  // }
+                  if(document.querySelector('.follow-btn')){
+                    if(document.querySelector('.follow-btn') && document.querySelector('.follow-btn').innerHTML == '关注'){
+                        document.querySelector('.follow-btn').innerHTML = '已关注';
+                        document.querySelector('.follow-btn').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
+                        document.querySelector('.follow-btn').style.color='#fff';
+                        document.querySelector('.follow-btn').style.backgroundSize= '0.16rem 0.16rem';
+                        // background: url("../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)
+                    }else{
+                      document.querySelector('.follow-btn').innerHTML = '关注';
+                      document.querySelector('.follow-btn').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
+                      document.querySelector('.follow-btn').style.color='rgba(99,139,255,1)';
+                      document.querySelector('.follow-btn').style.backgroundSize= '0.16rem 0.16rem';
+                    }
+                  }else{
+                    if(document.querySelector('.follow-btnbg') && document.querySelector('.follow-btnbg').innerHTML == '已关注'){
+                      document.querySelector('.follow-btnbg').innerHTML = '关注';
+                      document.querySelector('.follow-btnbg').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
+                      document.querySelector('.follow-btnbg').style.color='rgba(99,139,255,1)';
+                      document.querySelector('.follow-btnbg').style.backgroundSize= '0.16rem 0.16rem';
+                    }else{
+                      document.querySelector('.follow-btnbg').innerHTML = '已关注';
+                      document.querySelector('.follow-btnbg').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
+                      document.querySelector('.follow-btnbg').style.color='#fff';
+                      document.querySelector('.follow-btnbg').style.backgroundSize= '0.16rem 0.16rem';
+                    }
+                  }
+
+
+
                   api.toast({
                       msg: '编辑成功'
                   });
-
+                  // reload()
                 }
-                // reload()
+
             })
         }
     </script>

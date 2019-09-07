@@ -64,6 +64,10 @@ h3.comInfoTitle {
     font-weight: 500;
     color: rgba(51,51,51,1);
     margin-bottom: 0.12rem;
+    width:4rem;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 p.comInfoCon,.see-agod,.see-status{

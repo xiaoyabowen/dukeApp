@@ -408,6 +408,8 @@
             }, 1000);
         }
 
+//
+        console.log(api.pageParam,'41222222');
 
         job_id = api.pageParam.job_id;
         h_type = api.pageParam.h_type;
@@ -415,11 +417,7 @@
         search = api.pageParam.search;
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
-        if (job_id) {
-            console.log("biedey1111", job_id)
-            console.log("biedeyemian11111", search)
-            positionDe(job_id, h_type, ms_type, search)
-        }
+
         if (!uidUser) {
             ajaxGetWithProgress(JobId, '', function (data, err) {
                 console.log(1, data)
@@ -450,9 +448,17 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
-
-
+                    var cityStr = '';
+                    if(data.province){
+                      cityStr += data.province;
+                    }
+                    if(data.city){
+                      cityStr += '-' + data.city;
+                    }
+                    if(data.street){
+                      cityStr += '-' + data.street;
+                    }
+                    document.getElementById('city').innerText = cityStr;
                 }
             })
         } else {
@@ -485,9 +491,18 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
 
-
+                    var cityStr = '';
+                    if(data.province){
+                      cityStr += data.province;
+                    }
+                    if(data.city){
+                      cityStr += '-' + data.city;
+                    }
+                    if(data.street){
+                      cityStr += '-' + data.street;
+                    }
+                    document.getElementById('city').innerText = cityStr;
                 }
             })
         }
@@ -525,7 +540,17 @@
                     document.getElementById('description').innerHTML = data.description || '未填写';
                     document.getElementById('scale').innerText = data.scale || '未填写';
                     document.getElementById('org_type').innerText = data.org_type || '未填写';
-                    document.getElementById('city').innerText = data.province + '-' + data.city + '-' + data.street;
+                    var cityStr = '';
+                    if(data.province){
+                      cityStr += data.province;
+                    }
+                    if(data.city){
+                      cityStr += '-' + data.city;
+                    }
+                    if(data.street){
+                      cityStr += '-' + data.street;
+                    }
+                    document.getElementById('city').innerText = cityStr;
 
 
                 }
@@ -550,6 +575,14 @@
                 this.togle()
             },
             mounted: function () {
+              //搜索进入开始
+              if (job_id) {
+                  console.log("biedey1111", job_id)
+                  console.log("biedeyemian11111", search)
+                  positionDe(job_id, h_type, ms_type, search);
+                  // return;
+              }
+              //搜索进入结束
                 var that = this
 
                 that.active = store.state.obj.magicCom;

@@ -481,7 +481,6 @@
         }
 
         ajaxGetWithProgress(QueryPersonRandomOne, {}, function(data, err) {
-
             // alert(JSON.stringify(data));
             console.log("datadata", data);
             if (data) {
@@ -536,6 +535,7 @@
                 if (person_summary.p_birthday) {
 
                     var age = ages(person_summary.p_birthday);
+                    console.log(age,'年龄')
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0
@@ -721,8 +721,8 @@
                     document.getElementById('degree').innerText = '未填写'
                 }
                 // 年龄
-                if (person_summary.b_birthday) {
-                    var age = ages(person_summary.b_birthday);
+                if (person_summary.p_birthday) {
+                    var age = ages(person_summary.p_birthday);
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0
