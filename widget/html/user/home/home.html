@@ -580,7 +580,7 @@
         console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://112.126.98.172:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -605,7 +605,7 @@
 
         api.ajax({
 
-            url: 'http://192.168.1.24:8000/SE4M/SE/Status/status',
+            url: 'http://112.126.98.172:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -709,17 +709,17 @@
 
     function mineGo() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser) {
+        console.log("localStorage.getItem",uidUser)
+        if (!uidUser || uidUser == undefined) {
             openNewWindow("login", "../../login/login.html");
             return;
         }
 
         var obj = {
-
             uid: localStorage.getItem("person_id")
         }
 
-        // console.log(obj)
+
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
             // console.log("homeData",data)
             if (data.date == 1) {

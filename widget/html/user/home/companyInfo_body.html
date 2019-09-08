@@ -471,10 +471,10 @@
                         api.hideProgress();
                         if (attentionCompany.att_status == 0) {
                             document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
-                                '<img src="../../../icon/share.png" alt="share" class="followshare">\n' + '</div>'
+                                '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
                         } else if (attentionCompany.att_status == 1) {
                             document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
-                                '<img src="../../../icon/share.png" alt="share" class="followshare">\n' + '</div>'
+                                '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
                         }
                         document.querySelector(".comTitle").innerHTML +=
                             '<div class="comintobox cssFlex">' +

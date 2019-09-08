@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../../css/api.css">
+    <link rel="stylesheet" href="../../css/commonWin.css">
+    <title>wx登录</title>
+    <style>
+        #topbar, .headerBoxbg {
+            background: rgba(249, 249, 249, 1);
+            color: #333333;
+        }
+
+        .lcSubBoxInput {
+            padding: 0 0.34rem 0.55rem;
+        }
+
+        .lcBoxmain {
+            justify-content: space-between;
+            align-items: center;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            border-bottom: 1px solid #D4D4D4;
+        }
+
+        input.lcBoxInput {
+            display: block;
+            text-align: right;
+            width: 2.2rem;
+            color: #D4D4D4 !important;
+
+        }
+
+        img.logoUser {
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .commonFont > i {
+            display: inline-block;
+            color: #FFA300;
+            margin-right: 0.1rem;
+            font-size: 0.28rem;
+            font-weight: 400;
+        }
+
+        .pasBox.cssFlex {
+            align-items: center;
+            width: 2.2rem;
+        }
+
+        .passImg {
+            display: inline-block;
+            width: 0.34rem;
+            height: 0.24rem;
+        }
+
+        input.lcBoxInputPass {
+            width: 1.6rem;
+            color: #D4D4D4;
+            margin-right: 0.2rem;
+            font-size: 0.28rem;
+            text-align: right;
+        }
+
+        input.lcBoxInput::-webkit-input-placeholder {
+            font-size: 0.28rem;
+            color: #D4D4D4;
+        }
+
+        input.lcBoxInputPass::-webkit-input-placeholder {
+            font-size: 0.28rem;
+            color: #D4D4D4;
+        }
+
+        .chosMain.cssFlex {
+            justify-content: center;
+            align-items: center;
+            margin: 1.3rem auto 1rem;
+            width: 100%;
+        }
+
+        .chosContent {
+            width: 50%;
+            text-align: center;
+        }
+
+        img.chosImg {
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0 auto 0.14rem;
+        }
+
+        span.chosContentText {
+            color: rgba(93, 146, 254, 1);
+            display: block;
+            text-decoration: underline;
+        }
+
+        .chosContentTextActive {
+            color: #304AB3 !important;
+        }
+
+
+        .commBtnBottom {
+            width: 6.8rem;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            color: #ffffff;
+            border-radius: 0.12rem;
+            background: rgba(93, 146, 254, 1);
+            font-size: 0.36rem;
+            font-weight: 400;
+            margin-top: 1rem;
+        }
+
+        .yzLeft {
+            align-items: center;
+        }
+
+        .yzLeft > input {
+            text-align: left;
+        }
+
+        .setYz {
+            height: 0.6rem;
+            background: rgba(93, 146, 254, 1);
+            border-radius: 0.08rem;
+            width: 2.04rem;
+            text-align: center;
+            line-height: 0.6rem;
+            color: #fff;
+            font-size: 0.28rem;
+            font-weight: 400;
+
+        }
+    </style>
+
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
+
+</head>
+<body>
+<div id="topbar" class="display">
+    <div class="headerBoxbg cssFlex">
+        <div class="leftImgClose">
+
+        </div>
+        <div class="middleHeight">
+            绑定手机号
+        </div>
+        <div class="rightImgEdite">
+
+        </div>
+    </div>
+</div>
+
+<div class="lcBox" id="app1">
+    <div class="lcSubBoxInput">
+        <div class="lcBoxmain cssFlex">
+            <span class="commonFont"><i>*</i>手机号</span>
+            <input type="text" class="lcBoxInput" v-model="userPhone" placeholder="请填写手机号">
+        </div>
+        <div class="lcBoxmain cssFlex">
+            <div class="yzLeft cssFlex">
+                <span class="commonFont"><i>*</i></span>
+                <input type="text" class="lcBoxInput" v-model="userPhoneYz" placeholder="请填写验证码">
+            </div>
+            <div class="setYz" id="sms" @click="getCode()">获取验证码</div>
+        </div>
+
+
+        <div class="commBtnBottom" @click="dukeIn()">下一步</div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/rem.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script>
+    var phoneValue, p_icon,
+        apiready = function () {
+            var header = $api.dom('#topbar');
+            $api.fixStatusBar(header);
+            new Vue({
+                el: '#app1',
+                data: {
+                    flag: true,//防止重复点击获取验证码
+                    getUserInfoWx:'',
+                    userPhone: '',
+                    userPhoneYz: '',
+
+                },
+                created: function () {
+                    console.log(api.pageParam.getUserInfoWx,"getUserInfoWx")
+                    this.getUserInfoWx = api.pageParam.getUserInfoWx
+                },
+                mounted: function () {
+
+                },
+                methods: {
+
+                    getCode: function () {
+                        var that = this
+                        if (!that.flag) {
+                            return;
+                        }
+                        tel = that.userPhone;
+                        if (isBlack(tel)) {
+                            toast('请输入手机号');
+                            api.hideProgress();
+                            return;
+                        } else if (!checkMobileNum(tel)) {
+                            toast("手机号码不正确");
+                            return;
+                        }
+                        var obj = {
+                            phone: tel
+                        }
+                        that.flag = false;
+                        that.setTime();
+                        ajaxGetUser(SendSmsCode, obj, function (ret, err) {
+                            if (ret && ret.success) {
+                                toast("获取成功，请注意查收！");
+                            } else if (ret && !ret.success) {
+                                if (ret) {
+                                    var msg = ret.msg || "网络连接错误，请稍后重试！";
+                                    toast(msg);
+                                } else {
+                                    var msg = err.msg || "网络连接错误，请稍后重试！";
+                                    toast(msg);
+                                }
+                            }
+                        })
+                    },
+                    setTime : function (){
+                        var that = this
+                        var time;
+                        var sms = document.getElementById('sms');
+                        time = time||59;
+                        sms.innerHTML = time+"s";
+                        var codeInterval = setInterval(function(){
+                            if(time > 0){
+                                time--;
+                                sms.innerHTML = time+"s";
+                            }else{
+                                sms.innerHTML = "获取验证码";
+                                clearInterval(codeInterval);
+                                that.flag = true;
+                            }
+                        },1000)
+                    },
+                    dukeIn: function () {
+                        var that = this
+
+                        if (that.userPhone == '') {
+                            toast("请输入手机号！");
+                            return;
+                        }
+                        if (that.userPhoneYz == '') {
+                            toast("请输入验证码！");
+                            return;
+                        }
+
+
+                        var obj = {
+                            chat_id :that.getUserInfoWx.openid,
+                            phone :that.userPhone,
+                            code :that.userPhoneYz,
+                        }
+
+                        console.log(obj)
+                        ajaxGetWithProgress(ChatBound, obj, function (data) {
+                            console.log("ChatBound",data)
+                            api.hideProgress();
+                            if (data.bound == true) {
+                                localStorage.setItem('user',data.user_id);
+                                localStorage.setItem('person_id',data.user_id);
+                                if (data.role_type == 1){
+                                    openNewWindow("home", "../user/home/home.html")
+                                } else if (data.role_type == 2){
+                                    openNewWindow("home", "../company/home/home.html")
+                                }
+                            }if (data.bound == false) {
+
+                                phoneValue = that.userPhone
+                                localStorage.setItem('phone',phoneValue);
+                                openNewWindow("loginComfir", "./loginComfir.html",{
+                                    getUserInfoWx: that.getUserInfoWx,
+                                    phoneValue: phoneValue,
+                                    url : 'wxPhone'
+                                })
+                            }if (data.data == false) {
+                                toast(data.msg)
+                            }
+
+                        })
+
+                    },
+                }
+            })
+        }
+</script>
+</body>
+</html>
