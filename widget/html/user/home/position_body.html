@@ -361,6 +361,7 @@
     // card_el.style.height=csreen_height-80+"px";
     // console.log("card", card_el);
     // console.log("card height: "+card_el.style.height);
+    // window.reload();
 
     mui.init();
     var job_id, cid, jobId, uid, ptoken, s_id, h_type, magicBGheight, ms_type, search, magicBox, winWidth, winHeight,
@@ -395,7 +396,6 @@
 
 //leileiStart
         var searchValue = api.pageParam.value;
-
         console.log(searchValue, '388888866');
         api.sendEvent({
             name: 'searchType',
@@ -845,6 +845,7 @@
     }
 
     function historysClick() {
+        api.closeWin();
         openNewWindow("historySearch", "./historySearch.html", {
             url: 'position'
         });
@@ -854,7 +855,6 @@
     function sendResume() {
         mui('.mui-popover').popover('toggle');//show hide toggle
         var uidUser = localStorage.getItem("user")
-        console.log(123, uidUser)
         if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
@@ -865,7 +865,6 @@
         return;
 
         var token = localStorage.getItem('user');
-        console.log(112211, token)
         openNewWindow("chat_Room", "../chat/chat_Room.html", {
             token: token,
             ptoken: ptoken,
