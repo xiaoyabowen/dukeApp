@@ -307,7 +307,7 @@
             <!-- <span><img src="../../../image/icon.jpg" alt=""></span> -->
         </div>
         <div>
-            <div class="pay_main" v-for='(item,index) in resumeList'>
+            <div v-if='resumeList.length > 0' class="pay_main" v-for='(item,index) in resumeList'>
                 <div @click='selectResume(index)' class="con-pay-main-right">
                     <input type="radio" value="农业" v-model="bank" class="myOrderHaveCheck" id="mode1"
                            name="checkItem">
@@ -329,9 +329,16 @@
                     </div> -->
                 </div>
             </div>
+            <div v-if='resumeList.length <=0 ' class="pay_main">
+               您暂时还没有附件简历哦！
+            </div>
         </div>
-        <div @click='deliveryResume()' class="btn">
+
+        <div v-if='resumeList.length > 0' @click='deliveryResume()' class="btn">
             确认投递
+        </div>
+        <div v-else @click='toUploadResume()' class="btn">
+            快去上传吧
         </div>
     </div>
 </div>
@@ -756,6 +763,10 @@
                     console.log('aaa')
                     this.selectIndex = index;
 
+                },
+                toUploadResume(){
+                    openNewWindow("workUp", "../mine/workUp.html");
+                    mui('.mui-popover').popover('toggle');
                 },
                 deliveryResume() {
                     //投递简历投递成功关闭弹窗

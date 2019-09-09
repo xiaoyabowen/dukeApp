@@ -205,7 +205,8 @@
 
         .homeBtnCom {
             display: block;
-            transform: rotate(-45deg);
+            transform: rotate(0deg);
+            transform: scale(1.35);
         }
 
         .homeJob {
@@ -615,17 +616,18 @@
             }
         }, function (data, err) {
             console.log("ifqshang", data)
-            for (var i=0;i<data.data.length;i++){
-                if (data.data[i].version == "CS" && data.data[i].status == "0"){
-                    document.querySelector(".homeJob").style.display = "block"
-                    document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
-                }
-                /*if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
-                    document.querySelector(".homeJob").style.display = "none"
-                    document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
-                }*/
+            if(data && data.length > 0){
+              for (var i=0;i<data.data.length;i++){
+                  if (data.data[i].version == "CS" && data.data[i].status == "0"){
+                      document.querySelector(".homeJob").style.display = "block"
+                      document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
+                  }
+                  /*if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
+                      document.querySelector(".homeJob").style.display = "none"
+                      document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
+                  }*/
+              }
             }
-
             api.hideProgress();
 
         });

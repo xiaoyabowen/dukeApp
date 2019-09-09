@@ -72,6 +72,17 @@
         .contentBox {
             background: #638BFF !important;
         }
+        .see-hope>div>span:nth-child(1){
+          color: #666666;
+          font-size: 0.28rem;
+        }
+        .see-hope>div>span:nth-child(2){
+          color: #333;
+          font-size: 0.28rem;
+        }
+        #pay{
+          color: #638BFF;
+        }
     </style>
 </head>
 
@@ -209,14 +220,30 @@
 
                     <div class=""></div>
 
-                    <div class="see-hope cssFlex">
-                        <p class="see-price">
+                    <div class="see-hope">
+                        <!-- <p class="see-price">
                             <span class="see-gang" id="work_name">运营经理</span>
                             <span class="see-adress" id="int_city">北京</span>
                         </p>
-                        <span class="see-price" id="pay">10-15k</span>
+                        <span class="see-price" id="pay">10-15k</span> -->
+                        <div>
+                          <span>应聘岗位:</span>
+                          <span class="see-gang" id="work_name"></span>
+                        </div>
+                        <div>
+                          <span>期望薪资:</span>
+                          <span class="see-price" id="pay"></span>
+                        </div>
+                        <div>
+                          <span>工作地址:</span>
+                          <span class="see-adress" id="int_city"></span>
+                        </div>
+                        <div>
+                          <span>目前状态:</span>
+                          <span class="see-choose-hang" id="work"</span>
+                        </div>
                     </div>
-                    <p class="see-choose-hang" id="work">行业不限</p>
+                    <!-- <p class="see-choose-hang" id="work">行业不限</p> -->
                     <div class="seeSubTitle">自我描述</div>
                     <div class="see-me-miao">
                         <div class="see-me-list cssFlex" id="p_title"></div>
@@ -575,12 +602,13 @@
 
                 // 求职期望
                 if (Intention) {
+                  console.log(Intention,'')
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
                     if (Intention.work == ''){
-                        document.getElementById('work').innerText = Intention.work;
+                        // document.getElementById('work').innerText = Intention.work;
                     } else{
-                        document.getElementById('work').innerText = '未填写';
+                        // document.getElementById('work').innerText = '未填写';
                     }
 
                     var pays = Intention.pay.split('.');
@@ -688,6 +716,20 @@
                 var working_his = data.working_his;
                 var Intention = data.Intention;
 
+                if(person_summary.i_status == '1'){
+                    //离职-随时到岗
+                    document.querySelector('#work').innerHTML = '离职-随时到岗';
+                }else if(person_summary.i_status == '2'){
+                    document.querySelector('#work').innerHTML = '在职-月内到岗';
+                   //在职-月内到岗
+                }else if(person_summary.i_status == '3'){
+                    document.querySelector('#work').innerHTML = '在职-考虑机会';
+                  //在职-考虑机会
+                }else if(person_summary.i_status == '4'){
+                    document.querySelector('#work').innerHTML = '在职-暂不考虑';
+                  //在职-暂不考虑
+                }
+
                 // 电话 邮箱
                 if (person_summary) {
                     person_summary = person_summary;
@@ -761,9 +803,10 @@
 
                 // 求职期望
                 if (Intention) {
+                    console.log(Intention,'7800')
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
-                    document.getElementById('work').innerText = Intention.work;
+                    // document.getElementById('work').innerText = Intention.work;
                     var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function(value) {
