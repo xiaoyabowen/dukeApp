@@ -49,7 +49,7 @@
                 {{p_birthday}}<img src="../../../image/nuii.png" alt="img">
             </div>
         </div>
-        <div class="editbtn" @click="editInfo()">编辑</div>
+        <div v-if='isEdit' class="editbtn" @click="editInfo()">编辑</div>
 
         <div class="box-body">
             <div class="lin"></div>
@@ -132,6 +132,7 @@
                 edu_level : '',
                 edu_time : '',
                 edu_type : '',
+                isEdit:true,
 
             },
             created() {
@@ -157,6 +158,8 @@
                         obj = {
                             uid : that.person_id
                         }
+
+                        that.isEdit = false;
                     }
                     console.log("objobj",obj)
                     api.ajax({

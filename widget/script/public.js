@@ -829,7 +829,12 @@ function imgSrcFun(src) {
 
 // 字符串 转数组
 function stringFun(string) {
+  if(string.indexOf(',')>-1){
     return string.split(',');
+  }else{
+    return string;
+  }
+
 }
 
 // 数组转 字符传
