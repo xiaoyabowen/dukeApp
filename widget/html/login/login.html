@@ -508,6 +508,7 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             api.hideProgress();
+            console.log("LoginAndRegist",data)
             localStorage.setItem('user',data.user_uid);
             localStorage.setItem('person_id',data.user_uid);
 

@@ -47,7 +47,9 @@
             display: block;
             color: #638BFF;
         }
-
+        .Box{
+            margin-bottom: 0.3rem;
+        }
 
     </style>
 </head>
@@ -71,6 +73,16 @@
         <div class="xing">*</div>
         <span>年龄</span>
         <input type="text" name="" class="firmInput" id="user_age" readonly placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="workingStart()">
+        <div class="xing">*</div>
+        <span>工作开始时间</span>
+        <input type="text" name="" class="firmInput" readonly id="workingStart" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex">
+        <div class="xing">*</div>
+        <span>邮箱</span>
+        <input type="text" name="" class="firmInput" id="email" placeholder="单行输入">
     </div>
     <div class="firm cssFlex" onclick="int_city()">
         <div class="xing">*</div>
@@ -118,14 +130,7 @@
         <span>个人标签</span>
         <input type="text" name="" class="firmInput" id="p_title" placeholder="用几个字来形容下自己">
     </div>
-    <div class="firm cssFlex" onclick="workingStart()">
-        <span>工作开始时间</span>
-        <input type="text" name="" class="firmInput" readonly id="workingStart" placeholder="单行输入">
-    </div>
-    <div class="firm cssFlex" onclick="email()">
-        <span>邮箱</span>
-        <input type="text" name="" class="firmInput" id="email" placeholder="单行输入">
-    </div>
+
     <!-- <div style='height:100px'></div> -->
 </div>
 
@@ -359,7 +364,17 @@
             toast("请选择年龄")
             return
         }
-
+        if (job_from_time == "") {
+            toast("请填写工作开始时间")
+            return
+        }
+        if (email == "") {
+            toast("请填写邮箱")
+            return
+        }else if (!checkEmail(email)){
+            toast("请填写正确的邮箱")
+            return
+        }
         var obj = {
             person_id: person_id,
             p_name: p_name,

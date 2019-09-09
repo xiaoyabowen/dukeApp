@@ -242,9 +242,12 @@
                 created: function () {
 
                     this.phone = phone;
-                    this.getUserInfoWx = api.pageParam.getUserInfoWx;
-                    this.logoCom = api.pageParam.getUserInfoWx.headimgurl || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
-                    this.logoUser = api.pageParam.getUserInfoWx.headimgurl || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/q9ej4b0i96jy58c8.png'
+                    if (api.pageParam.getUserInfoWx){
+                        this.getUserInfoWx = api.pageParam.getUserInfoWx;
+                        this.logoCom = api.pageParam.getUserInfoWx.headimgurl || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                        this.logoUser = api.pageParam.getUserInfoWx.headimgurl || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/q9ej4b0i96jy58c8.png'
+                    }
+
                     this.userPhone = checkTelFour(phone)
                     this.userName = '渡客' + telFourLast(phone)
                 },
@@ -273,8 +276,8 @@
                                 //上传剪辑后的图像到服务器
                                 api.ajax({
                                     // report : false,
-                                    // url: 'http://112.126.98.172:8088/upload/UploadFlie',
-                                    url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                                    // url: 'http://192.168.1.24:8088/upload/UploadFlie',
+                                    url: 'http://192.168.1.24:8088/upload/UploadFlie',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',
                                     cache: 'false',
@@ -327,8 +330,8 @@
                                 //上传剪辑后的图像到服务器
                                 api.ajax({
                                     // report : false,
-                                    // url: 'http://112.126.98.172:8088/upload/UploadFlie',
-                                    url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                                    // url: 'http://192.168.1.24:8088/upload/UploadFlie',
+                                    url: 'http://192.168.1.24:8088/upload/UploadFlie',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',
                                     cache: 'false',

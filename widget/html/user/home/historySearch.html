@@ -377,19 +377,25 @@
             console.log("historyHtml", data)
             var historyHtml = ''
 
-
+            api.hideProgress();
             var dataD = data.querySearchHistory
-            for (var i = 0; i < dataD.length; i++) {
-                historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].ms_type + ')"  data-search="' + dataD[i].S_Name + '">' + dataD[i].search + '</span>'
+            if (dataD.length == undefined){
+
+            } else{
+                for (var i = 0; i < dataD.length; i++) {
+                    historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].ms_type + ')"  data-search="' + dataD[i].S_Name + '">' + dataD[i].search + '</span>'
+                }
+                console.log(dataD.length)
+                if (dataD.length == 0) {
+                    document.querySelector(".historyList").innerHTML = '暂无数据'
+                    document.querySelector(".historyTitle").classList.add("isDisplay")
+                } else {
+                    document.querySelector(".historyTitle").classList.remove("isDisplay")
+                    document.querySelector(".historyList").innerHTML = historyHtml
+                }
             }
-            console.log(dataD.length)
-            if (dataD.length == 0) {
-                document.querySelector(".historyList").innerHTML = '暂无数据'
-                document.querySelector(".historyTitle").classList.add("isDisplay")
-            } else {
-                document.querySelector(".historyTitle").classList.remove("isDisplay")
-                document.querySelector(".historyList").innerHTML = historyHtml
-            }
+
+
 
 
         })
@@ -433,6 +439,7 @@
 
     // 删除  浏览记录
     function delHistoryClick() {
+
         ajaxGetWithProgress(removeSearchHistory, {}, function (data) {
             console.log(data)
             if (data.return.status) {
@@ -463,8 +470,8 @@
 
     function historyClick(s_id, search, ms_type) {
         console.log(s_id)
-        console.log(search)
-        console.log(ms_type)
+        var searchListText = document.querySelectorAll(".searchListText")
+
         if (ms_type == 1) {
             openNewWindow("companyInfo", "./companyInfo.html", {
                 job_id: job_id,
@@ -474,7 +481,8 @@
             openNewWindow("position", "./position.html", {
                 s_id: s_id,
                 // h_type: h_type,
-                search: searchListText[search].getAttribute("data-search"),
+                // search: searchListText[search].getAttribute("data-search"),
+                search:"经理",
                 ms_type: 0,   // 0 search   1 魔方 进入
             });
         }
