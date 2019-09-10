@@ -10,71 +10,63 @@
     <link rel="stylesheet" href="../../../../css/api.css" />
     <link rel="stylesheet" href="../../../../css/commonWin.css" />
     <style>
-        .headerBox {
-            justify-content: space-between;
-        }
-        .oneImgRight,.rightImgEdite {
-             width: 0.34rem;
-             height: 0.38rem;
-            margin-top: -0.6rem;
-         }
-
-        .rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
-        }
-        .leftImgClose{
-            width: auto !important;
-            text-align: left !important;
-        }
-        .middleMain{
-            width: auto !important;
-            text-align: center !important;
-        }
+    /*头部leileiStart*/
+    .headerBox{
+      justify-content: space-between;
+      align-items: center;
+    }
+    .left{
+      width: 33.3%;
+    }
+    .middle{
+      width: 33.3%;
+      text-align: center;
+    }
+    .right{
+      width: 33.3%;
+      display: flex;
+      justify-content: flex-end;
+      /*align-items: center;*/
+    }
+    .right .pics{
+       width: 0.38rem;
+       height: 0.36rem;
+      /*background: red;*/
+      position: relative;
+    }
+    .right .shoucang{
+      margin-right: 0.1rem;
+    }
+    .right .pics img{
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /*头部leileiEnd*/
     </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 </head>
 <body>
-<div id="topbar" class="cssFlex">
-    <!--<div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/back.png" onclick="closeWin()">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
-        <span class="searchClick">GO</span>
-    </div>-->
-    <div class="headerBox cssFlex" id="homeIndex">
-        <div class="leftImgClose" onclick="mineGo()">
-            巨划算
-        </div>
-        <div class="middleMain">
-            <!--Aquarius Villa－Glifada-->
-            房产
-        </div>
-        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
-        <div class="rightImgEdite">
-            <img class="oneImgRight" src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
+  <div id="topbar" class="cssFlex">
+      <div class="headerBox cssFlex" id="homeIndex">
+          <div class='left'>巨划算</div>
+          <div class='middle'>房产</div>
+          <div class="right">
+            <div class="shoucang pics">
+                <img src="../../../../image/mine/shou1.png" @click="collectionHandleActive()" v-show="att" alt="">
+                <img src="../../../../image/mine/juCon.png" @click="collectionHandle()" v-show="!att" alt="">
+            </div>
+            <div class="fenxiang pics">
+                <img src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
+            </div>
+          </div>
 
-        </div>
-    </div>
-</div>
-
-<!--
-<div id="topbar" class="cssFlex">
-    <div class="home-left">
-        <img class="leftImgTop" src="../../../icon/mine.png">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        &lt;!&ndash;<span class="searchClick">GO</span>&ndash;&gt;
-    </div>
-    <div class="home-right">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
-</div>
--->
+      </div>
+  </div>
 
 </body>
 <script type="text/javascript" src="../../../../script/api.js"></script>
@@ -144,7 +136,7 @@
                         cid: that.hourseId,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data);
+                        console.log(data,'139999999999');
                         that.item = data.comm
                         that.att = data.att;
                         that.att_id = data.att_id;

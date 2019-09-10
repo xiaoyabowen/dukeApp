@@ -27,7 +27,11 @@
 <div class="Box" id="app1">
     <div class="colbox" v-for="(item,index) in cadidate" :key="index" @click="candiClick(item.person_id)">
         <div class="colboxmain cssFlex">
-            <img :src="item.p_icon.split(',')[0]" alt="d" class="colIMg">
+            <img
+            :src="item.p_icon.split(',')[0]"
+            alt="d"
+            class="colIMg"
+            >
             <div class="colINfo">
                 <div class="colinfobox cssFlex">
                     <span class="colinfoboxName">{{item.p_name}}</span>

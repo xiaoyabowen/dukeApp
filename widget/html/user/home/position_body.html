@@ -114,13 +114,6 @@
             border-radius: 50%;
         }
 
-        /* .con-pay-main-right input:checked + label{
-            width: 0.36rem;
-            height: 0.36rem;
-            background: center center no-repeat, #638BFF;
-            background-size: 0.2rem 0.16rem;
-        } */
-
         .active {
             width: 0.36rem;
             height: 0.36rem;
@@ -681,7 +674,7 @@
                 MenuListQyMenu: function () {
                     var that = this
                     ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
-                        console.log("magicall1234", data)
+                        console.log("MenuListQyMenu1111111111111111111111111", data)
                         var jobList = data.job
                         console.log(jobList)
                         if (data) {
@@ -856,15 +849,15 @@
     }
 
     function historysClick() {
-        api.closeWin();
         openNewWindow("historySearch", "./historySearch.html", {
             url: 'position'
         });
+        api.closeWin();
     }
 
     // 点击投递简历
     function sendResume() {
-        mui('.mui-popover').popover('toggle');//show hide toggle
+
         var uidUser = localStorage.getItem("user")
         if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
@@ -873,13 +866,13 @@
 
 
         // toast("功能正在开发中")
-        return;
-
-        var token = localStorage.getItem('user');
-        openNewWindow("chat_Room", "../chat/chat_Room.html", {
-            token: token,
-            ptoken: ptoken,
-        });
+        mui('.mui-popover').popover('toggle');//show hide toggle
+        // return;
+        // var token = localStorage.getItem('user');
+        // openNewWindow("chat_Room", "../chat/chat_Room.html", {
+        //     token: token,
+        //     ptoken: ptoken,
+        // });
 
     }
 

@@ -242,17 +242,13 @@
         </div>
         <div class="rightImgEdite">
             <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
-
         </div>
     </div>
 </div>
 
 <div class="contentBoxBox" id="app">
     <div class="subcontentBoxBanner">
-
         <img src="../../../image/homeBanner.png" alt="banner" class="home-banner">
-
-
         <div class="homeBtn">
             <img src="../../../image/homeJob.png" class="homeJob homeBtnCom none" alt="job" onclick="position()">
             <div class="homeBtnLr cssFlex">
@@ -261,8 +257,6 @@
             </div>
             <img src="../../../image/homeCar.png" class="homeCar homeBtnCom" alt="job">
         </div>
-
-
     </div>
 
     <!--搜索功能-->
@@ -284,9 +278,6 @@
 
         <!--展示列表-->
         <div class="searchList" id="result">
-            <!--<div class="searchMain cssFlex">-->
-            <!--<div class="jobRatio commonFont">15-30k</div>-->
-            <!--</div>-->
         </div>
 
     </div>
@@ -414,7 +405,7 @@
         winHeight = api.winHeight;
         a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
         // 首页 4个按钮  适配
-        homeBtnCom = document.getElementsByClassName("homeBtnCom")
+        homeBtnCom = document.getElementsByClassName("homeBtnCom");
         homeBtnLr = document.querySelector(".homeBtnLr")
         if (winWidth > winHeight / 2) {
             homeBtnLr.style.width = "3.8rem"
@@ -465,33 +456,33 @@
                 // console.log("JIMisConnect",that.JIM.isConnect())
                 that.getSignatureJiGuang()
             },
-            mounted: function () {
-                var that = this
-                magicBox = document.querySelector(".magicBox")
-                magicBtn = document.getElementsByClassName("magicBtn")
-                magicSubBox = document.getElementsByClassName("magicSubBox")
-                iconImg = document.getElementsByClassName("iconImg")
-                magicBox.style.width = bevelLength * 2 + "px"
-                magicBox.style.height = bevelLength + "px"
-                var rightYi = bevelLength
-                magicBox.style.right = '-' + rightYi + "px"
-                // 里面小盒子宽度
-                for (var i = 0; i < magicBtn.length; i++) {
-                    magicBtn[i].style.width = m_d + "px"
-                    magicBtn[i].style.height = m_d + "px"
-                }
-                // 里面小盒子宽度
-                for (var i = 0; i < magicSubBox.length; i++) {
-                    magicSubBox[i].style.width = m_d + "px"
-                    magicSubBox[i].style.height = m_d + "px"
-                }
-                // 图片宽度
-                for (var i = 0; i < iconImg.length; i++) {
-                    iconImg[i].style.width = m_d / 2 + "px"
-                    iconImg[i].style.height = m_d / 2 + "px"
-                }
-
-            },
+            // mounted: function () {
+            //     var that = this
+            //     magicBox = document.querySelector(".magicBox")
+            //     magicBtn = document.getElementsByClassName("magicBtn")
+            //     magicSubBox = document.getElementsByClassName("magicSubBox")
+            //     iconImg = document.getElementsByClassName("iconImg")
+            //     magicBox.style.width = bevelLength * 2 + "px"
+            //     magicBox.style.height = bevelLength + "px"
+            //     var rightYi = bevelLength
+            //     magicBox.style.right = '-' + rightYi + "px"
+            //     // 里面小盒子宽度
+            //     for (var i = 0; i < magicBtn.length; i++) {
+            //         magicBtn[i].style.width = m_d + "px"
+            //         magicBtn[i].style.height = m_d + "px"
+            //     }
+            //     // 里面小盒子宽度
+            //     for (var i = 0; i < magicSubBox.length; i++) {
+            //         magicSubBox[i].style.width = m_d + "px"
+            //         magicSubBox[i].style.height = m_d + "px"
+            //     }
+            //     // 图片宽度
+            //     for (var i = 0; i < iconImg.length; i++) {
+            //         iconImg[i].style.width = m_d / 2 + "px"
+            //         iconImg[i].style.height = m_d / 2 + "px"
+            //     }
+            //
+            // },
             methods: {
 
                 togle: function () {
@@ -564,11 +555,7 @@
                         console.log('error2:', data)
                     });
                 },
-
-
             }
-
-
         })
         // test()
         wx = api.require('wx');

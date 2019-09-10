@@ -121,32 +121,41 @@ function magicAllInit(Vue) {
                 this.timeIndex = index;
 
                 if (tid == 1){
+
                     openNewWindow("index", "../facial/index.html", {
                         cid: cid,
                         tId: tid,
                     })
 
+
                 }else if (tid == 2) {
+
                     openNewWindow("index", "../ouou/index.html", {
                         ouId: cid,
                         tId: tid,
                     })
+
                 }else if (tid == 3) {
+
                     openNewWindow("index", "../hourse/index.html", {
                         hourseId: cid,
                         tId: tid,
                     })
                 }else if (tid == 4) {
+
                     openNewWindow("index", "../ouou/index.html", {
                         cid: cid,
                         tId: tid,
                     })
+
                 }else if (tid == 5) {
+
                     openNewWindow("index", "../farmProduce/index.html", {
                         cid: cid,
                         tId: tid,
                     })
                 }
+
 
                 // this.housequeryHouseSummary()
                 api.sendEvent({

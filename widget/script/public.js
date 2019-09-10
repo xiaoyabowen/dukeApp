@@ -9,18 +9,15 @@ var isCleanUser = false;
 
 // 本地服务器
 
-/*
 var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.24:8000/SE4M';
 var Domain = 'http://192.168.1.24:8088';
-*/
-
 
 
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 
@@ -816,16 +813,11 @@ function conver(limit){
 
 // 图片路劲去逗号
 function imgSrcFun(src) {
-    // if (isStr(src)) {
-    //     console.error('src is\'t string');
-    //     return false
-    // }
     if(src.indexOf(',')>-1){
         return src.split(',')[0];
     }else{
       return src
     }
-
 }
 
 // 字符串 转数组

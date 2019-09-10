@@ -12,6 +12,7 @@
     <style>
         .headerBox {
             justify-content: space-between;
+            /*position: relative;*/
         }
         .oneImgRight,.rightImgEdite {
             width: 0.34rem;
@@ -28,54 +29,70 @@
             text-align: left !important;
         }
         .middleMain{
+            /*position: relative;*/
             width: auto !important;
             text-align: center !important;
+            /*left:50%;*/
+
         }
+        /*头部leileiStart*/
+        .headerBox{
+          justify-content: space-between;
+          align-items: center;
+        }
+        .left{
+          width: 33.3%;
+        }
+        .middle{
+          width: 33.3%;
+          text-align: center;
+        }
+        .right{
+          width: 33.3%;
+          display: flex;
+          justify-content: flex-end;
+          /*align-items: center;*/
+        }
+        .right .pics{
+           width: 0.38rem;
+           height: 0.36rem;
+          /*background: red;*/
+          position: relative;
+        }
+        .right .shoucang{
+          margin-right: 0.1rem;
+        }
+        .right .pics img{
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        /*头部leileiEnd*/
     </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
 </head>
 <body>
 <div id="topbar" class="cssFlex">
-    <!--<div id="leftButton" tapmode="itemOn">
-        <img class="leftImgTop" src="../../../icon/back.png" onclick="closeWin()">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
-        <span class="searchClick">GO</span>
-    </div>-->
-
     <div class="headerBox cssFlex" id="homeIndex">
-        <div class="leftImgClose" onclick="mineGo()">
-            巨划算
+        <div class='left'>巨划算</div>
+        <div class='middle'>化妆品</div>
+        <div class="right">
+          <div class="shoucang pics">
+              <img src="../../../../image/mine/shou1.png" @click="collectionHandleActive()" v-show="att" alt="">
+              <img src="../../../../image/mine/juCon.png" @click="collectionHandle()" v-show="!att" alt="">
+          </div>
+          <div class="fenxiang pics">
+              <img src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
+          </div>
         </div>
-        <div class="middleMain">
-            <!--Aquarius Villa－Glifada-->
-            化妆品
-        </div>
-        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
-        <div class="rightImgEdite">
-            <img class="oneImgRight" src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
 
-        </div>
     </div>
 </div>
 
-<!--
-<div id="topbar" class="cssFlex">
-    <div class="home-left">
-        <img class="leftImgTop" src="../../../icon/mine.png">
-    </div>
-    <div class="home-middle">
-        <input type="text" class="searchInput" placeholder="搜索地点/公司/职位">
-        &lt;!&ndash;<span class="searchClick">GO</span>&ndash;&gt;
-    </div>
-    <div class="home-right">
-        <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
-    </div>
-</div>
--->
 
 </body>
 <script type="text/javascript" src="../../../../script/api.js"></script>
@@ -127,16 +144,13 @@
 
                     // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
                     that.cid = ret.value.key.cid
-                    that.summary()
+                    // that.summary()
 
                 });
 
 
             },
             methods: {
-
-
-
                 // 获取数据
                 summary: function () {
                     var that = this;
@@ -154,7 +168,7 @@
                             that.att = data.att;
                             that.att_id = data.att_id;
                             that.comName = data.comName;
-                            document.getElementById('great').classList.remove('isDisplay');
+                            // document.getElementById('great').classList.remove('isDisplay');
                         }
 
                         if (data.commEvaluateAndPic) {

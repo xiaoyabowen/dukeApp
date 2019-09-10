@@ -128,11 +128,12 @@
         }
 
         .middleHeightTop {
-            height: 0.5rem;
+            height: 0.56rem;
             align-items: center;
 
         }
 
+        /*leilei Start*/
         #search-inputTop {
             display: block;
             width: 4.25rem;
@@ -146,13 +147,14 @@
             background: url("../../../icon/search.png") no-repeat 0.48rem center, rgba(255, 255, 255, 1);
             background-size: 0.26rem 0.26rem;
             margin-bottom: 0 !important;
+            margin-top: 0.02rem;
         }
 
         #search-inputTop::-webkit-input-placeholder {
             font-size: 0.28rem;
             line-height: 0.32rem;
         }
-
+        /*leilei End*/
         .searchBox {
 
             background: rgba(255, 255, 255, 1);
@@ -238,7 +240,6 @@
             transform: rotate(-45deg);
         }
 
-
         .commonBg {
             background: #ffffff !important;
         }
@@ -247,16 +248,14 @@
 <body class="commonBg">
 <div id="topbar" class="display">
     <div class="headerBoxbg cssFlex">
-        <div class="leftImgClose" style="margin-top: 0.2rem">
+        <div class="leftImgClose">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
         </div>
         <div class="middleHeightTop cssFlex">
-            <input type="text" id="search-inputTop" placeholder="搜索公司/职位">
+            <input type="text" id="search-inputTop" autofocus="autofocus" placeholder="搜索公司/职位">
             <span onclick='toWorkPage()' class="search-Click">GO</span>
         </div>
         <div class="rightImgEdite">
-
-
         </div>
     </div>
 </div>
@@ -308,13 +307,11 @@
     var searchinputTop,url;
 
     apiready = function () {
-
         url = api.pageParam.url
 
         console.log("url",url)
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
-
 
     }
 
