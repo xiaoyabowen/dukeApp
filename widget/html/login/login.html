@@ -17,16 +17,18 @@
             height: 100%;
 
         }
-        .login-title{
+
+        .login-title {
             width: 100%;
             margin: 1.04rem 0 0.4rem 0;
-            height:0.6rem;
-            font-size:0.42rem;
-            font-weight:500;
-            color:rgba(255,255,255,1);
-            line-height:0.6rem;
+            height: 0.6rem;
+            font-size: 0.42rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.6rem;
             text-align: center;
         }
+
         .login-unit {
             width: 100%;
             padding-left: 0.74rem;
@@ -62,7 +64,6 @@
             color: #FFFFFF;
             display: block;
         }
-
 
 
         .visitor-login > a {
@@ -117,22 +118,13 @@
             margin-bottom: 0.4rem;
             align-items: center;
         }
+
         span.phone-top {
             display: inline-block;
             margin-right: 0.32rem;
             position: relative;
         }
-        /*span.phone-top::after{
-            display: block;
-            content: '';
-            position: absolute;
-            background: url("../../image/login/up.png") no-repeat;
-            background-size: 0.2rem 0.12rem;
-            width: 0.2rem;
-            height: 0.12rem;
-            left: 0.62rem;
-            top: 0.46rem;
-        }*/
+
         .input-password {
             width: 100%;
             height: 1rem;
@@ -149,7 +141,7 @@
             padding: 0 0.4rem;
             font-weight: 400;
             font-size: 0.3rem;
-            color: rgba(114,159,255,1);
+            color: rgba(114, 159, 255, 1);
             background: #fff;
             border-radius: 0.1rem;
             height: 0.6rem;
@@ -163,56 +155,63 @@
             display: inline-block;
             width: 100%;
             height: 0.8rem;
-            background: rgba(255,255,255,1);
+            background: rgba(255, 255, 255, 1);
             border-radius: 0.5rem;
             line-height: 0.8rem;
             font-size: 0.32rem;
             font-weight: 400;
-            color: rgba(116,160,255,1);
+            color: rgba(116, 160, 255, 1);
             margin-bottom: 0.32rem;
             outline: medium;
         }
+
         p.subLogin {
             text-align: right;
             text-decoration: underline;
         }
-        .three-login{
+
+        .three-login {
             margin-top: 2.9rem;
         }
-        .three-login>h4,.agreeLink{
-            height:0.4rem;
-            font-size:0.28rem;
-            font-weight:400;
-            color:rgba(99,139,255,1);
-            line-height:0.4rem;
+
+        .three-login > h4, .agreeLink {
+            height: 0.4rem;
+            font-size: 0.28rem;
+            font-weight: 400;
+            color: rgba(99, 139, 255, 1);
+            line-height: 0.4rem;
             text-align: center;
         }
-        .threeLi{
+
+        .threeLi {
             margin: 0.5rem 0 0.66rem;
         }
-        .threeLi>li{
-            width:50%;
+
+        .threeLi > li {
+            width: 50%;
             text-align: center;
         }
-        .threeLi>li>img{
+
+        .threeLi > li > img {
             display: block;
             width: 0.94rem;
             height: 0.94rem;
             margin: 0 auto 0.12rem;
 
         }
-        .threeLi>li>span{
-            height:0.36rem;
-            font-size:0.26rem;
-            font-weight:400;
-            color:rgba(51,51,51,1);
-            line-height:0.36rem;
+
+        .threeLi > li > span {
+            height: 0.36rem;
+            font-size: 0.26rem;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 0.36rem;
         }
+
         p.agreeLink {
             padding-bottom: 0.8rem;
         }
     </style>
-
 
 
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
@@ -235,7 +234,7 @@
                 </div>
                 <div class="input-password cssFlex">
                     <input id="password" type="number" value="" placeholder="请输入验证码">
-                    <button id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
+                    <button id="sms" class="yanzheng" onclick="getCode()">获取验证码</button>
                 </div>
             </div>
             <button class="login-href" onclick="login()">进入渡客</button>
@@ -260,7 +259,6 @@
 </div>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/util.js"></script>
-<script type="text/javascript" src="../../script/kv.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/user.js"></script>
 <script type="text/javascript" src="../../script/data.js"></script>
@@ -269,7 +267,7 @@
 <script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
 <script>
 
-    var code,accessToken,dynamicToken,openId,phoneValue,wx,getUserInfoWx;
+    var code, accessToken, dynamicToken, openId, phoneValue, wx, getUserInfoWx;
     apiready = function () {
         wx = api.require('wx');
         // var guide = api.require('guide');
@@ -305,32 +303,28 @@
         });
 
 
-
-
-
-
     }
 
 
-    function weixin_login(){
+    function weixin_login() {
 
         //判断是否安装微信
-        wx.isInstalled(function(ret, err) {
+        wx.isInstalled(function (ret, err) {
             if (ret.installed) {
                 //alert('当前设备已安装微信客户端');
                 //登录授权（用于实现第三方登录）
                 wx.auth({
-                    apiKey : ''
-                }, function(ret, err) {
-                    console.log("登录授权1",ret)
+                    apiKey: ''
+                }, function (ret, err) {
+                    console.log("登录授权1", ret)
                     if (ret.status) {
                         code = ret.code;
                         wx.getToken({
-                            apiKey : '',
-                            apiSecret : '',
-                            code : code
-                        },function(ret, err) {
-                            console.log("getToken成功",ret)
+                            apiKey: '',
+                            apiSecret: '',
+                            code: code
+                        }, function (ret, err) {
+                            console.log("getToken成功", ret)
                             if (ret.status) {
                                 accessToken = ret.accessToken;
                                 dynamicToken = ret.dynamicToken;
@@ -348,8 +342,8 @@
                                 wx.getUserInfo({
                                     accessToken: accessToken,
                                     openId: openId
-                                }, function(ret, err) {
-                                    console.log("getUserInfo",ret)
+                                }, function (ret, err) {
+                                    console.log("getUserInfo", ret)
                                     getUserInfoWx = ret
                                     if (ret.status) {
                                         api.hideProgress();
@@ -363,15 +357,15 @@
                                     }
                                 });
                             } else {
-                                console.log("error",ret)
+                                console.log("error", ret)
                                 //判断accessToken是否 过期，调用此接口刷新 accessToken
-                                if(err.code == 1){
+                                if (err.code == 1) {
                                     wx.refreshToken({
                                         apiKey: '',
-                                        dynamicToken:dynamicToken
-                                    }, function(ret, err) {
+                                        dynamicToken: dynamicToken
+                                    }, function (ret, err) {
                                         if (ret.status) {
-                                            console.log("errorerror",ret)
+                                            console.log("errorerror", ret)
                                         } else {
                                             alert(err.code);
                                         }
@@ -380,13 +374,13 @@
                             }
                         });
                     } else {
-                        if(err.code == -1){
+                        if (err.code == -1) {
                             toast("未知错误");
-                        }else if(err.code == 1){
+                        } else if (err.code == 1) {
                             toast("用户取消");
-                        }else if(err.code == 2){
+                        } else if (err.code == 2) {
                             toast("用户拒绝授权");
-                        }else if(err.code == 3){
+                        } else if (err.code == 3) {
                             toast("当前设备未安装微信客户端");
                         }
 
@@ -400,19 +394,19 @@
 
     function WXbindAccount(openid) {
         var obj = {
-            p_name : getUserInfoWx.nickname,
-            p_icon : getUserInfoWx.headimgurl,
-            chat_id : openid,
+            p_name: getUserInfoWx.nickname,
+            p_icon: getUserInfoWx.headimgurl,
+            chat_id: openid,
         }
-        ajaxGetWithProgress(ChatLogin,obj,function (data) {
-            console.log("ChatLogin",data)
-            if (data.date == false){
+        ajaxGetWithProgress(ChatLogin, obj, function (data) {
+            console.log("ChatLogin", data)
+            if (data.date == false) {
                 openNewWindow("loginComfirWx", "./loginComfirWx.html", {
                     getUserInfoWx: getUserInfoWx
                 })
-            } else{
-                localStorage.setItem('user',data.user_id);
-                localStorage.setItem('person_id',data.user_id);
+            } else {
+                localStorage.setItem('user', data.user_id);
+                localStorage.setItem('person_id', data.user_id);
                 openNewWindow("home", "../user/home/home.html")
             }
         })
@@ -421,8 +415,8 @@
 
     /*************点击获取验证码***********/
     var flag = true;//防止重复点击获取验证码
-    function getCode(){
-        if(!flag){
+    function getCode() {
+        if (!flag) {
             return;
         }
         tel = document.getElementById('phone').value;
@@ -430,23 +424,23 @@
             toast('请输入手机号');
             api.hideProgress();
             return;
-        }else if(!checkMobileNum(tel)){
+        } else if (!checkMobileNum(tel)) {
             toast("手机号码不正确");
             return;
         }
         var obj = {
-            phone : tel
+            phone: tel
         }
         flag = false;
         setTime();
-        ajaxGetUser(SendSmsCode,obj,function(ret,err) {
-            if (ret && ret.success ) {
+        ajaxGetUser(SendSmsCode, obj, function (ret, err) {
+            if (ret && ret.success) {
                 toast("获取成功，请注意查收！");
-            }else if(ret && !ret.success){
-                if(ret){
+            } else if (ret && !ret.success) {
+                if (ret) {
                     var msg = ret.msg || "网络连接错误，请稍后重试！";
                     toast(msg);
-                }else{
+                } else {
                     var msg = err.msg || "网络连接错误，请稍后重试！";
                     toast(msg);
                 }
@@ -455,30 +449,31 @@
     }
 
     /*******************倒计时****************************/
-    function setTime(){
+    function setTime() {
         var time;
         var sms = document.getElementById('sms');
-        time = time||59;
-        sms.innerHTML = time+"s";
-        var codeInterval = setInterval(function(){
-            if(time > 0){
+        time = time || 59;
+        sms.innerHTML = time + "s";
+        var codeInterval = setInterval(function () {
+            if (time > 0) {
                 time--;
-                sms.innerHTML = time+"s";
-            }else{
+                sms.innerHTML = time + "s";
+            } else {
                 sms.innerHTML = "获取验证码";
                 clearInterval(codeInterval);
                 flag = true;
             }
-        },1000)
+        }, 1000)
     }
+
     /*******************倒计时****************************/
 
 
     //无动画关闭此页面
-    function closeThisWin(){
+    function closeThisWin() {
         api.closeWin({
             name: api.winName,
-            animation:{type:"none"}
+            animation: {type: "none"}
         });
     }
 
@@ -497,7 +492,7 @@
             toast('请输入手机号');
             api.hideProgress();
             return;
-        }else if(!checkMobileNum(params.phone)){
+        } else if (!checkMobileNum(params.phone)) {
             toast("手机号码不正确");
             return;
         }
@@ -508,33 +503,41 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             api.hideProgress();
-            console.log("LoginAndRegist",data)
-            localStorage.setItem('user',data.user_uid);
-            localStorage.setItem('person_id',data.user_uid);
+            console.log("LoginAndRegist", data)
 
-            phoneValue = data.phone
-            localStorage.setItem('phone',phoneValue);
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
-            if (data.oneLogin == false) {
-                openNewWindow("loginComfir", "./loginComfir.html",{
-                    phoneValue : phoneValue
+            if (data.msg == false) {
+                toast(data.message)
+            } else if (data.oneLogin == false) {
+                openNewWindow("loginComfir", "./loginComfir.html", {
+                    phoneValue: phoneValue
                 })
-            }  else if (data.date == 0 ){
+            } else if (data.date == 0) {
 
-                openNewWindow("loginComfir", "./loginComfir.html",{
-                    phone :phoneValue
+                openNewWindow("loginComfir", "./loginComfir.html", {
+                    phone: phoneValue
                 })
             } else if (data.oneLogin == true) {
-                if (data.role_type == 1){
+                localStorage.setItem('user', data.user_uid);
+                localStorage.setItem('person_id', data.user_uid);
+
+                phoneValue = data.phone
+                localStorage.setItem('phone', phoneValue);
+                if (data.role_type == 1) {
                     openNewWindow("home", "../user/home/home.html")
-                } else if (data.role_type == 2){
+                } else if (data.role_type == 2) {
                     openNewWindow("home", "../company/home/home.html")
                 }
-            }else {
-                if (data.role_type == 1){
+            } else {
+                localStorage.setItem('user', data.user_uid);
+                localStorage.setItem('person_id', data.user_uid);
+
+                phoneValue = data.phone
+                localStorage.setItem('phone', phoneValue);
+                if (data.role_type == 1) {
                     openNewWindow("home", "../user/home/home.html")
-                } else if (data.role_type == 2){
+                } else if (data.role_type == 2) {
                     openNewWindow("home", "../company/home/home.html")
                 }
             }
@@ -543,13 +546,13 @@
     }
 
 
-
     function goHome() {
         openNewWindow("home", "../user/home/home.html")
     }
+
     function passLogin() {
-        openNewWindow("passLogin", "passLogin.html",{
-            url : "login"
+        openNewWindow("passLogin", "passLogin.html", {
+            url: "login"
         })
     }
 

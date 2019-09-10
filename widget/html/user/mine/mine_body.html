@@ -16,20 +16,17 @@
     <script>eruda.init();</script>
 </head>
 <body class="commonBg">
-    <div class="Box">
+    <div class="Box ">
         <div class="boxSub">
             <!--我的信息-->
             <div class="mineInfo cssFlex">
                 <div class="mineInfoleft">
                     <h3 class="m-name" style="font-weight: 500" onclick="resume_editResume()">未登录</h3>
-                    <!--<p class="m-conpony-name ellipsis" id="com_name">北京达达世界网络技术有限公司</p>-->
                     <p class="m-conpony-name ellipsis" id="com_name">未填写</p>
                     <p class="timeInfo cssFlex">
                         <img src="../../../image/mine/adress.png" alt="time" class="m-adressimg">
-                        <!--<span class="m-adress" id="province">北京</span>-->
                         <span class="m-adress" id="province">未定位</span>
                         <img src="../../../image/mine/work.png" alt="date" class="m-zhiweiimg">
-                        <!--<span class="m-zhiwei" id="position_type">运营经理</span>-->
                         <span class="m-zhiwei" id="position_type">未填写</span>
                         <!--<img src="../../../image/mine/vipicon.png" alt="date" class="m-vipimg">-->
                         <!--<span class="m-vip">金卡会员</span>-->
@@ -56,14 +53,7 @@
                     <p class="tong-num" id="statusNum">0</p>
                     <p class="tong-text">已投递</p>
                 </div>
-                <!--<div class="m-chat-text" onclick="myOffer()">
-                    <p class="tong-num" id="myOfferTotal">0</p>
-                    <p class="tong-text">录用</p>
-                </div>
-                <div class="m-chat-text">
-                    <p class="tong-num">0</p>
-                    <p class="tong-text">积分</p>
-                </div>-->
+
             </div>
         </div>
         <div class="F9Line"></div>
@@ -164,56 +154,22 @@
             }, function (data, err) {
                 // alert(JSON.stringify(data));
                 console.log(123, data);
-                document.querySelector('.m-name').innerText = data.p_name || '未登录';
-                document.getElementById('com_name').innerText = data.com_name || '未填写';
-                document.getElementById('province').innerText = data.province || '未定位';
-                document.getElementById('position_type').innerText = data.position_type || '未填写';
-                document.getElementById('p_icon').src = data.p_icon.split(',')[0];
-
-                console.log(document.getElementById('p_icon'))
-
+                var dataA = data.querySummary
+                document.querySelector('.m-name').innerText = dataA.p_name || '未登录';
+                document.getElementById('com_name').innerText = dataA.company_name || '未填写';
+                document.getElementById('province').innerText = dataA.address || '未定位';
+                document.getElementById('position_type').innerText = dataA.job_name || '未填写';
+                document.getElementById('p_icon').src = dataA.p_icon.split(',')[0];
+                // 查询沟通数量
+                document.getElementById('communicate').innerText = data.chatNum || 0;
+                // 获取面试机会
+                document.getElementById('interview').innerText = data.InterviewNum || 0;
+                ///查询投递简历的个数
+                document.getElementById('statusNum').innerText = data.sendCount || 0;
                 // localStorage.setItem('person_id', uid);
             });
 
 
-            var person_id = localStorage.getItem('person_id');
-
-            var obj = {person_id: person_id};
-
-            // 查询沟通数量
-            ajaxGetWithProgress(GetCommunicate, obj, function (data, err) {
-                console.log(data);
-                if (data.count) {
-                    document.getElementById('communicate').innerText = data.count || 0;
-                }
-            });
-
-            // 获取面试机会
-            ajaxGetWithProgress(GetInterview, obj, function (data, err) {
-                console.log(data);
-                if (data.count) {
-                    document.getElementById('interview').innerText = data.count || 0;
-                }
-            });
-
-            // 查询投递简历的个数
-            ajaxGetWithProgress(GetStatusNum, obj, function (data, err) {
-                console.log(data);
-                if (data.count) {
-                    document.getElementById('statusNum').innerText = data.count || 0;
-                }
-            });
-
-            // 录用个数
-            ajaxGetWithProgress(QueryApplicationStatus4List, {
-                person_id: person_id
-            }, function (data, err) {
-                // alert(JSON.stringify(data));
-                console.log(data);
-                if (data.queryApplicationStatus4List) {
-                    document.getElementById('myOfferTotal').innerText = data.queryApplicationStatus4List.length;
-                }
-            });
 
         };
         // 我的个人主页

@@ -186,7 +186,7 @@
             <div class="comTitle cssFlex">
                 <div class="comInfosee">
                     <h3 class="comInfoTitle comInfoTitleMar" id="p_name">张敏</h3>
-                    <span id="personId " class="isDisplay"></span>
+
                     <p class="comInfoCon">
                         <span id="company">北京A公司信息技术有限公司</span>
                         <span id="company_type">运营经理</span>
@@ -208,6 +208,7 @@
                 <div class="chatJob" onclick="chatJob()">聊一聊</div>
                 <div class="workJob collection isDisplay" onclick="collectionHandle()">收藏简历</div>
                 <div class="workJob collectionHand isDisplay" onclick="collectionHandleActive()">取消收藏</div>
+                <div id="personId" class="isDisplay"></div>
             </div>
         </div>
 
@@ -517,6 +518,7 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
+                console.log("data.person_summary.person_id",data.person_summary.person_id)
                 $("#personId").html(data.person_summary.person_id)
                 if (data.attPerson){
                     document.querySelector(".collection").classList.add("isDisplay")
@@ -588,7 +590,6 @@
                     document.getElementById('p_tags').innerText = "未填写";
                 }
                 // 综合能力
-
                 if (person_summary.p_title) {
                     var tags = document.getElementById('p_title');
                     var list = person_summary.p_title.split(',');
@@ -1114,11 +1115,14 @@
         }, function(data,err){
             console.log(data);
             api.showProgress();
-            /*if (data.commcollect) {
-                toast("已收藏")
-
-                // window.location.reload()
-            }*/
+            if (data){
+                api.hideProgress();
+                if (data.status){
+                   toast("收藏成功")
+                    document.querySelector(".collection").classList.remove("isDisplay")
+                    document.querySelector(".collectionHand").classList.add("isDisplay")
+                }
+            }
         });
     }
     // 收藏
@@ -1135,11 +1139,14 @@
         }, function(data,err){
             console.log(data);
             api.showProgress();
-            /*if (data.commcollect) {
-                toast("已收藏")
-
-                // window.location.reload()
-            }*/
+            if (data){
+                api.hideProgress();
+                if (data.status){
+                    toast("取消收藏")
+                    document.querySelector(".collection").classList.add("isDisplay")
+                    document.querySelector(".collectionHand").classList.remove("isDisplay")
+                }
+            }
         });
     }
     // zbw end
