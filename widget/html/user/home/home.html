@@ -288,7 +288,6 @@
 </body>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
@@ -303,6 +302,7 @@
     var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
     var jpush = null;
     apiready = function () {
+        dateStrChangeTimeTamp("2015-03-05 17:59:00.0")
         var mam = api.require('mam');
         mam.checkUpdate(function(ret, err) {
             if (ret) {
@@ -561,10 +561,16 @@
         wx = api.require('wx');
         // initFrameInWin(api.pageParam);
         var uid = localStorage.getItem("person_id")
-        var obj = {
-            uid: uid
-            // uid : '12346'
+        var obj;
+        if (uid == null){
+
+        }else{
+            obj = {
+                uid: uid
+                // uid : '12346'
+            }
         }
+
         console.log("user", localStorage.getItem("user"))
         api.ajax({
 
@@ -703,10 +709,16 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-
-        var obj = {
-            uid: localStorage.getItem("person_id")
+        var obj;
+        if (uidUser == null){
+            openNewWindow("login", "../../login/login.html")
+        }else{
+            obj = {
+                uid: localStorage.getItem("person_id")
+                // uid : '12346'
+            }
         }
+
 
 
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {

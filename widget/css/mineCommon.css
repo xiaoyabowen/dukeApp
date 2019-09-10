@@ -75,7 +75,7 @@ body, div, p, span, a, input, ul, li {
 }
 
 .m-adress, .m-zhiwei {
-    margin-right: 0.26rem;
+    margin-right: 0.1rem;
     width: 1rem;
     text-overflow: ellipsis;
     white-space: nowrap;

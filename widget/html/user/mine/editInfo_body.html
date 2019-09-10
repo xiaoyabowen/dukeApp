@@ -57,7 +57,7 @@
 <div class="Box isDisplay">
     <div class="box-tob">
         <p>头像</p>
-        <img src="../../../image/tx.png" alt="img">
+        <img src="../../../image/tx.png" alt="img" class="p_iconImg">
     </div>
     <div class="firm cssFlex">
         <div class="xing">*</div>
@@ -68,6 +68,7 @@
         <div class="xing">*</div>
         <span>性别</span>
         <input type="text" name="" class="firmInput" id="user_p_sex" readonly placeholder="单行输入">
+        <input type="hidden" name="" class="firmInput" id="user_p_sexValue" >
     </div>
     <div class="firm cssFlex" onclick="fillAge()">
         <div class="xing">*</div>
@@ -159,15 +160,26 @@
         // console.log(uid);
         document.querySelector('.Box').classList.remove('isDisplay');
         document.getElementById('user_p_name').value = item.p_name || '未填写';
+        if (item.p_sex == '1'){
+            document.getElementById('user_p_sex').value ='男';
+            document.getElementById('user_p_sexValue').value ='1';
+        } else if (item.p_sex == '2'){
+            document.getElementById('user_p_sex').value ='女';
+            document.getElementById('user_p_sexValue').value ='2';
+        }
+        document.getElementById('user_age').value = item.p_birthday || '';
+        document.getElementById('workingStart').value = item.job_from_time  || '';
+        document.getElementById('email').value = item.email  || '';
+        document.getElementById('address').value = item.address  || '';
+        document.getElementById('edu_Stime').value = item.edu_from  || '';
+        document.getElementById('edu_Etime').value = item.edu_to || '';
 
         document.getElementById('company_name').value = item.company_name || '';
         document.getElementById('job_name').value = item.job_name || '';
 
         document.getElementById('edu_name').value = item.edu_name || '';
-        document.getElementById('edu_name').value = item.edu_name || '';
         document.getElementById('edu_level').value = item.edu_level || '';
         document.getElementById('edu_type').value = item.edu_type || '';
-        // document.getElementById('edu_time').value = item.edu_time || '';
         document.getElementById('p_title').value = item.p_title || '';
 
 
@@ -189,7 +201,7 @@
         picker.pickers[0].setSelectedValue('1', "男");
         picker.show(function (SelectedItem) {
             document.getElementById('user_p_sex').value = SelectedItem[0].text;
-
+            document.getElementById('user_p_sexValue').value = SelectedItem[0].value;
         })
 
     }
@@ -330,12 +342,73 @@
         })
     }
 
+    // 上传头像
+    var file = document.querySelector('.p_iconImg');
+    file.onclick = function (){
+        api.getPicture({
+            sourceType: 'library',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            destinationType: 'url',
+            allowEdit: true,
+            quality: 50,
+            targetWidth: 100,
+            targetHeight: 100,
+            saveToPhotoAlbum: false
+        }, function(ret, err) {
+            if (ret) {
+                var obj = {
+                    uid : localStorage.getItem("user")
+                }
+                console.log("datadret",ret);
+                //上传剪辑后的图像到服务器
+                api.ajax({
+                    url: 'http://192.168.1.24:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+                        files: {
+                            file: ret.data
+                        },
+                        values:obj
+                    }
+                }, function (ret, err) {
+                    console.log(123,ret);
+                    var pathImgImg = ret.imgUrl
+                    if (pathImgImg == ''){
+                        document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                    }else{
+                        var pathImgData = pathImgImg.split(",")
+                        console.log(pathImgData)
+                        document.querySelector(".p_iconImg").src = pathImgData[0]
 
+                        ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]+','},function (data) {
+                            if (data.return.status){
+                                toast("修改成功")
+                            } else {
+                                toast("修改失败")
+                            }
+                        })
+
+
+                    }
+
+                    api.hideProgress();
+
+                });
+            } else {
+                console.log(JSON.stringify(err));
+            }
+        });
+    }
     // 点击保存执行方法
     function preservation() {
         var person_id = localStorage.getItem('person_id');
         var p_name = document.getElementById('user_p_name').value;
-        var p_sex = document.getElementById('user_p_sex').value;
+        var p_sex = document.getElementById('user_p_sexValue').value;
         var p_birthday = document.getElementById('user_age').value;
         var company_name = document.getElementById('company_name').value;
         var job_name = document.getElementById('job_name').value;
@@ -344,7 +417,6 @@
         var edu_Stime = document.getElementById('edu_Stime').value;
         var edu_Etime = document.getElementById('edu_Etime').value;
         var edu_type = document.getElementById('edu_type').value;
-
         var job_from_time = document.getElementById('workingStart').value;
         var p_title = document.getElementById('p_title').value;
         var address = document.getElementById('address').value;
@@ -384,7 +456,8 @@
             job_name: job_name,
             edu_name: edu_name,
             edu_level: edu_level,
-            edu_time : edu_Stime +"-"+edu_Etime,
+            edu_from: edu_Stime,
+            edu_to: edu_Etime,
             edu_type: edu_type,
             job_from_time:job_from_time, //工作开始时间
             p_title:p_title,//标签
@@ -395,16 +468,13 @@
         console.log(obj);
         ajaxGetWithProgress(updateCirclePersonMsgByPid, obj, function (data, err) {
 
-            console.log(12344, data);
             if (data.return.status) {
-
                 api.sendEvent({
                     name: 'editInfo',
                     extra: {
                         key: {}
                     }
                 });
-
                 api.execScript({
                     name: 'userCenter',
                     frameName: url + "_body",

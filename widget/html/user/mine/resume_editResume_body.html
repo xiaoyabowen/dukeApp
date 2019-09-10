@@ -545,7 +545,7 @@
                         console.log(pathImgData)
                         document.querySelector(".p_iconImg").src = pathImgData[0]
 
-                        ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]},function (data) {
+                        ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]+','},function (data) {
                             if (data.return.status){
                                 toast("修改成功")
                             } else {

@@ -14,6 +14,7 @@ var localhostHref = 'http://192.168.1.24:8000/SE4M';
 var Domain = 'http://192.168.1.24:8088';
 
 
+
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 // var localhostHref = 'http://112.126.98.172:8000/SE4M';
@@ -48,7 +49,6 @@ function al(data) {
     } else {
     }
 }
-
 
 
 // 接口    信息  列表
@@ -176,9 +176,6 @@ var sendResume = serverUrl + "/UserProfile/sendResume";
 
 
 
-
-// 获取面试数量
-var GetInterview = serverUrl + "/UserProfile/queryInterviewSum";
 // 获取面试列表
 var QueryApplicationStatusList = serverUrl + "/EvaluateProfile/queryApplicationStatusList";
 
@@ -666,7 +663,7 @@ var addRecruiter = localhostHref + "/addRecruiter";
 
 
 
-
+// 获取 年月日 时分秒
 function getNowFormatDate() {
     var d = new Date();
 
@@ -677,7 +674,7 @@ function getNowFormatDate() {
     var hours = d.getHours()//获取小时
     var minutes = d.getMinutes()//获取分钟
     var miao = d.getSeconds()//获取秒
-    currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao
+    currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao;
     console.log(currentdate)
     return currentdate;
 }
@@ -685,10 +682,12 @@ function getNowFormatDate() {
 
 //日期字符串转成时间戳
 //例如var date = '2015-03-05 17:59:00.0';
+
 function dateStrChangeTimeTamp(dateStr) {
     dateStr = dateStr.substring(0, 18);
     dateStr = dateStr.replace(/-/g, '/');
-    var timeTamp = new Date(dateStr).getTime();
+    var timesTamp = new Date(dateStr).getTime();
+    console.log("timeTamp",timesTamp)
     return timesTamp
 }
 
