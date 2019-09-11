@@ -112,25 +112,38 @@
     <script>
         var att_id
         apiready = function () {
+// 添加安卓退出按钮事件
+            api.addEventListener({
+                name: 'keyback'
+            }, function (ret, err) {
+                closeOnKeyBack();
+            });
+            var backButtonPress = 0;
+
+            function closeOnKeyBack() {
+                backButtonPress++;
+                if (backButtonPress > 1) {
+                    openNewWindow("index", "../index.html");
+                } else {
+
+                }
+                setTimeout(function () {
+                    backButtonPress = 0;
+                }, 1000);
+            }
 
             var magicAll = magicAllInit(Vue);
-            /*var magicCom1 = magicCom1Init(Vue);
-            var magicCom2 = magicCom2Init(Vue);*/
 
             Vue.component('magicAll', magicAll);
-            /*Vue.component('magicCom1', magicCom1);
-            Vue.component('magicCom2', magicCom2);*/
-
 
             winWidth = api.winWidth;
             winHeight = api.winHeight;
-            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+
             // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
             a01_w = winWidth;
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
             console.log("bevelLength",bevelLength)
-            // width_d=(screen_w-20) *2/5 - 5;
             m_d = (a01_w-10)*0.23-25;    // 100
 
             new Vue({

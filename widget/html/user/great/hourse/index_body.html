@@ -168,7 +168,26 @@
 
         var winWidth,winHeight
         apiready = function () {
-            
+            // 添加安卓退出按钮事件
+            api.addEventListener({
+                name: 'keyback'
+            }, function (ret, err) {
+                closeOnKeyBack();
+            });
+            var backButtonPress = 0;
+
+            function closeOnKeyBack() {
+                backButtonPress++;
+                if (backButtonPress > 1) {
+                    openNewWindow("index", "../index.html");
+                } else {
+
+                }
+                setTimeout(function () {
+                    backButtonPress = 0;
+                }, 1000);
+            }
+
             var magicAll = magicAllInit(Vue);
             Vue.component('magicAll', magicAll);
 

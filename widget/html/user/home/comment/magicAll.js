@@ -1,14 +1,5 @@
 function magicAllInit(Vue) {
     var str = dataValue('user/home/comment/magicAll.html')
-    /*var bus = Vue.use(Vuex);
-
-    console.log("bus",bus)
-    var obj = {
-        magicCom2: 'magicCom2'
-    }
-    bus.$emit("com1Value",obj)
-    console.log("bus",bus.$emit("com1Value",'1'))*/
-    // console.log("123",$store)
 
 
 
