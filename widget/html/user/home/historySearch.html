@@ -407,7 +407,7 @@
                 search: searchinputTop.value
             }
             ajaxGetWithProgress(QueryUserSolr, obj, function (ret) {
-
+  console.log("list", ret)
                 var searchHtml = ''
                 var ret = ret.list
 
@@ -454,6 +454,7 @@
         if (ms_type == 0) {
             openNewWindow("companyInfo", "./companyInfo.html", {
                 c_id: s_id,
+                // ms_type:0,
             });
         } else if (ms_type == 1) {
             openNewWindow("position", "./position.html", {

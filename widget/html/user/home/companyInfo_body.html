@@ -258,19 +258,29 @@
                 closeOnKeyBack();
             });
 
-
+            console.log(api.pageParam,'2616111');
             cid = api.pageParam.cid;
             c_id = api.pageParam.c_id;
             uid = localStorage.getItem("person_id");
             if (cid) {
                 companyId(cid)
             }
+              console.log(cid,'2699999',c_id)
             if (cid || c_id) {
-                document.querySelector(".comTitle").innerHTML == ''
+                document.querySelector(".comTitle").innerHTML == '';
                 var obj = {
-                    cid: cid,
-                    person_id: uid
+                    person_id: uid,
+                    ms_type:0,
                 }
+
+                if(cid){
+                  obj.cid = cid;
+                }
+
+                if(c_id){
+                  obj.cid = c_id;
+                }
+
                 var infoListHtml = ''
 
                 var PIClistHtml = ''
@@ -296,7 +306,42 @@
                     } else {
                         document.querySelector(".infoList").innerHTML = ''
                     }
-                    var adressData = data.address
+                    var adressData = data.address;
+
+                    // 公司头部
+                    if (attentionCompany.att_status == 0) {
+                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
+                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+                    } else if (attentionCompany.att_status == 1) {
+                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
+                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+                    }
+                    document.querySelector(".comTitle").innerHTML +=
+                        '<div class="comintobox cssFlex">' +
+                        '<div class="comInfo">' +
+                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
+                        '                    <p class="comInfoCon comInfoConMar">\n' +
+                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
+                        '                        <span>' + dataSummary.org_type + '</span>\n' +
+                        '                    </p>\n' +
+                        '                    <p class="timeInfo cssFlex">\n' +
+                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
+                        '                        <span>' + dataSummary.s_time + '</span>\n' +
+                        '                        <i>-</i>\n' +
+                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
+                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
+                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
+                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
+                        '                    </p>\n' +
+                        '                </div>\n' +
+                        '                <div class="comLogo">\n' +
+                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
+                        '                </div>' +
+                        '                </div>'
+
+                    //公司头部
+
                     if (data) {
 
                         // 公司标签
@@ -436,6 +481,7 @@
 
 
             function companyId(c_id) {
+                // alert(123);
                 document.querySelector(".comTitle").innerHTML == ''
                 var obj = {
                     cid: c_id,
@@ -536,7 +582,8 @@
                           document.querySelector(".PIClistBox").innerHTML = PIClistHtml
                         }
 
-                        for (var i = 0; i < JobList.length; i++) {
+                        if(JobList && JobList.length > 0){
+                          for (var i = 0; i < JobList.length; i++) {
                             html2 += '<div class="jobBox cssFlex" >\n' +
                                 '                                        <div class="job-left">\n' +
                                 '                                            <h4 class="job-nameNm">' + JobList[i].job_name + '</h4>\n' +
@@ -562,7 +609,7 @@
                                 '                                        </div>\n' +
                                 '                                    </div>';
                         }
-
+                        }
                         document.getElementById("tab2").innerHTML = html2
                         if(DynamicList && DynamicList.length>0){
                           for (var i = 0; i < DynamicList.length; i++) {
