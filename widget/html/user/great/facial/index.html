@@ -78,7 +78,7 @@
 <body>
 <div id="topbar" class="cssFlex">
     <div class="headerBox cssFlex" id="homeIndex">
-        <div class='left'>巨划算</div>
+        <div class='left' onclick="mineGo()">巨划算</div>
         <div class='middle'>化妆品</div>
         <div class="right">
           <div class="shoucang pics">
@@ -197,15 +197,14 @@
                         return;
                     }
                     var that = this;
-                    ajaxGet(collectComm, {
+                    ajaxGetWithProgress(collectComm, {
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        console.log(data);
+                      // api.hideProgress();
+                        console.log(data,'2065555');
                         if (data.commcollect) {
                             toast("已收藏")
-
-                            // window.location.reload()
                         }
                     });
                     that.att = !that.att;
@@ -223,7 +222,8 @@
                         ccStatus: 0,
                     }
                     console.log(obj)
-                    ajaxGet(collectComm, obj, function(data,err){
+                    ajaxGetWithProgress(collectComm, obj, function(data,err){
+                        // api.hideProgress();
                         console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏")

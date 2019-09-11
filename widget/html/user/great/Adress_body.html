@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/greatCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css"/>
+    <style media="screen">
+      .ad-defult{
+        align-items: center;
+      }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -38,28 +43,24 @@
                     <span class="adinfo-defult"  v-if="item.adrStatus == 1">默认</span>
                     <span  v-if="item.adrStatus == 0"></span>
                     {{item.address}}{{item.addrDetails}}
-                    <!--{{item.addrDetails}}-->
                 </div>
                 <div class="adres-edit cssFlex">
                     <div class="ad-defult cssFlex">
-                        <input type="radio" class="myOrderHaveCheck" id="mode0"  @click="defultAdr(item.adrId)" name="checkItem">
-                        <label for="mode0"></label>
-                        <span v-if="item.adrStatus == 0">设为默认</span>
+                        <span v-if="item.adrStatus == 0">
+                          <input type="radio" class="myOrderHaveCheck" id="mode0"  @click="defultAdr(item.adrId)" name="checkItem">
+                          <label style='vertical-align:middle' for="mode0"></label>
+                          设为默认
+                        </span>
                         <span v-if="item.adrStatus == 1">已设为默认</span>
                     </div>
                     <div class="ad-edit-btn cssFlex">
                         <div class="ad-editBtn" @click="editAdr(item.adrId,index)">编辑</div>
-                        <!--<div class="ad-topBtn">置顶</div>-->
                     </div>
                 </div>
             </div>
             <div class="addAdressbtn" @click="addAdress()">新增地址</div>
         </div>
-
-
     </div>
-
-
 </div>
 
 
