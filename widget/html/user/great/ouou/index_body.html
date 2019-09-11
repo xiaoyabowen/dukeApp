@@ -115,34 +115,6 @@
                     <img v-for="(pic, index) in picListpic3" :key="index" :src="pic.img" class="imgComDetail" alt="">
                 </div>
             </div>
-
-            <!--<div class="great_immediately">
-                <div class="great_immediately_comtent cssFlex">
-
-                    <div class="purchaseLeft cssFlex">
-                        <div class=" ousecoll ousecollBor cssFlex" @click="collectionHandleActive()" v-show="att">
-                            <img src="../../../../image/great/Collection2x.png" alt="">
-                            <span>收藏</span>
-                        </div>
-                        <div class=" ousecoll ousecollBor cssFlex" @click="collectionHandle()" v-show="!att">
-                            <img src="../../../../image/great/Collection22x.png" alt="">
-                            <span>收藏</span>
-                        </div>
-                        <div class=" ousecoll cssFlex" @click="callHandle()">
-                            <img src="../../../../image/mine/phone.png" alt="">
-                            <span>客服</span>
-                        </div>
-
-
-                    </div>
-                    <div class="commodity_purchase cssFlex tourismou" @click="Consultation()">
-                        <div>￥<i class="tripPrice">0</i>立即购买</div>
-                    </div>
-                </div>
-            </div>-->
-
-            <!--<img src="../../../../image/bigWeigh/feiyong1.png" alt="">-->
-            <!--<component is="magicCube"></component>-->
         </div>
     </div>
 
@@ -173,6 +145,25 @@
 
         var winWidth,winHeight,url
         apiready = function () {
+// 添加安卓退出按钮事件
+            api.addEventListener({
+                name: 'keyback'
+            }, function (ret, err) {
+                closeOnKeyBack();
+            });
+            var backButtonPress = 0;
+
+            function closeOnKeyBack() {
+                backButtonPress++;
+                if (backButtonPress > 1) {
+                    openNewWindow("index", "../index.html");
+                } else {
+
+                }
+                setTimeout(function () {
+                    backButtonPress = 0;
+                }, 1000);
+            }
 
             var magicAll = magicAllInit(Vue);
             Vue.component('magicAll', magicAll);
