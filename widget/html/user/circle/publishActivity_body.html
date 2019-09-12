@@ -141,7 +141,7 @@
                     if (param.circleId) {
                         this.isEdit = true;
                         this.circleId = param.circleId;
-                        console.log(param.circleId, '124')
+                        //console.log(param.circleId, '124')
                     }
                 },
                 mounted: function() {
@@ -159,7 +159,7 @@
                                 circle_id: param.circleId
                             }, function(data) {
                                 if (data && data.circleSummary) {
-                                    console.log(data.circleSummary, 'aaa')
+                                    //console.log(data.circleSummary, 'aaa')
                                     var editJson = data.circleSummary;
                                     that.img = editJson.poster;
                                     that.poster = editJson.poster;
@@ -207,7 +207,7 @@
                             rotation: true
                         }, function(ret) {
                             if (ret) {
-                                console.log("ret==", ret)
+                                //console.log("ret==", ret)
                                 that.img = ret.list[0].thumbPath
                                 var obj = {
                                     uid: localStorage.getItem("user").user_id
@@ -230,7 +230,7 @@
 
                                     }
                                 }, function(data, err) {
-                                    console.log("data", data);
+                                    //console.log("data", data);
                                     api.hideProgress();
                                     if (data.code == 0) {
                                         that.poster = data.date.src.split(',')[0];
@@ -251,7 +251,7 @@
                             endDate: new Date(year, mount, day) //设置开始日期
                         });
                         dtpicker.show(function(selectItems) {
-                            console.log(selectItems.text)
+                            //console.log(selectItems.text)
                             that.time_from = selectItems.text
                         })
 
@@ -267,7 +267,7 @@
                             endDate: new Date(year, mount, day) //设置开始日期
                         });
                         dtpicker.show(function(selectItems) {
-                            console.log(selectItems.text)
+                            //console.log(selectItems.text)
                             that.time_to = selectItems.text
                         })
                     },
@@ -282,7 +282,7 @@
                             endDate: new Date(year, mount, day) //设置开始日期
                         });
                         dtpicker.show(function(selectItems) {
-                            console.log(selectItems.text)
+                            //console.log(selectItems.text)
                             that.last_time = selectItems.text
                         })
                     },
@@ -414,7 +414,7 @@
                   json,
                   circle_id:circle_id,
                 })
-                // console.log(json, '预览')
+                // //console.log(json, '预览')
             } else {
                 if (app.isEdit) {
                   //编辑更新提交
@@ -433,7 +433,7 @@
                   })
                 } else {
                   //完成验证发布活动
-                    console.log(json,'432');
+                    //console.log(json,'432');
                   ajaxGetWithProgress(createCircle, json, function(data, err) {
                       if (data.return_info.status) {
                         app.img = '';

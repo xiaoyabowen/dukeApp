@@ -234,8 +234,8 @@
 <script>
 
     var url, content;
-    // console.log(positiondata);
-    console.log(position)
+    // //console.log(positiondata);
+    //console.log(position)
     // var arr = positiondata.positionlist;
     var arr = position.zpData;
     apiready = function () {
@@ -256,7 +256,7 @@
             list.push(str);
         }
         var dom = list.join('');
-        // console.log(dom);
+        // //console.log(dom);
         box.innerHTML = dom;
     };
 
@@ -265,7 +265,7 @@
     var mask2 = document.querySelector('.resume_positionType_mask2');
     // 选择职位类型
     function selection(index) {
-        // console.log(arr[index]);
+        // //console.log(arr[index]);
         // var list = arr[index].c;
         var list = arr[index].subLevelModelList;
         var list0 = list[0].subLevelModelList;
@@ -282,9 +282,9 @@
                 '                </div>';
             list1.push(str);
         }
-        // console.log(list0);
+        // //console.log(list0);
         for (var i = 0; i < list0.length; i++) {
-            console.log(list0[i].name);
+            //console.log(list0[i].name);
             var s = list0[i].name.trim();
             var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
                 '                <div class="info-choose cssFlex">\n' +
@@ -308,12 +308,12 @@
     }
 
     function selection1(index, index2) {
-        console.log(index, index2);
+        //console.log(index, index2);
         var list = arr[index].subLevelModelList;
         var list0 = list[index2].subLevelModelList;
         var list2 = [];
         for (var i = 0; i < list0.length; i++) {
-            // console.log(list0[i].s);
+            // //console.log(list0[i].s);
             var s = list0[i].name.trim();
             var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
                 '                <div class="info-choose cssFlex">\n' +
@@ -330,16 +330,16 @@
     }
 
     mask2.addEventListener('click', function (e) {
-        // console.log(e.target);
+        // //console.log(e.target);
         content = e.target.innerText;
-        console.log(content);
+        //console.log(content);
         preservation();
     })
 
     // 隐藏遮罩层
     document.querySelector('.resume_positionType_mask').addEventListener('click', function (e) {
         var node = e.target;
-        // console.dir(node);
+        // //console.dir(node);
         if (node.classList.contains('resume_positionType_mask')) {
             // mask.classList.add('isDisplay');
             // mask2.classList.add('isDisplay');

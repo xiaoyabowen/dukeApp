@@ -29,11 +29,11 @@ function contactsInit(Vue) {
             lookmeList: function () {
                 var that = this;
                 var list = localStorage.getItem('chats');
-                // console.log(list)
+                // //console.log(list)
                 if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(queryChatList, {}, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.ChatList) {
                             that.list = data.ChatList;
                             localStorage.setItem('chats', JSON.stringify(that.list));
@@ -43,7 +43,7 @@ function contactsInit(Vue) {
                 }
 
                 ajaxGetWithProgress(queryChatList, {}, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.ChatList) {
                         that.list = data.ChatList;
                         localStorage.setItem('chats', JSON.stringify(that.list));
@@ -67,7 +67,7 @@ function contactsInit(Vue) {
             getSignatureJiGuang : function () {
                 var that = this
                 ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                    console.log(data)
+                    //console.log(data)
                     if (data){
                         that.appkey = data.appkey
                         that.random_str = data.random_str
@@ -75,7 +75,7 @@ function contactsInit(Vue) {
                         that.timestamp = data.timestamp
 
                         that.JIM =  new JMessage({debug:true})
-                        console.log("JIM",that.JIM)
+                        //console.log("JIM",that.JIM)
                         that.init()
 
                     } else {
@@ -94,7 +94,7 @@ function contactsInit(Vue) {
                     "flag": 1
 
                 }).onSuccess(function(data) {
-                    console.log('success:', data);
+                    //console.log('success:', data);
 
                     that.isConnect()
                     that.isInit()
@@ -103,19 +103,19 @@ function contactsInit(Vue) {
                     // that.updateConversation()
                     // appendToDashboard('success' + JSON.stringify(data));
                 }).onFail(function(data) {
-                    console.log('error2:' ,data)
+                    //console.log('error2:' ,data)
                     // appendToDashboard('error: ' +JSON.stringify(data));
                 });
             },
             // 获取连接状态
             isConnect : function (){
                 var that = this
-                console.log('isConnect:',that.JIM.isConnect());
+                //console.log('isConnect:',that.JIM.isConnect());
             },
             // 获取初始化状态
             isInit : function (){
                 var that = this
-                console.log('isInit:',that.JIM.isInit());
+                //console.log('isInit:',that.JIM.isInit());
             },
 
             // 登陆
@@ -125,62 +125,62 @@ function contactsInit(Vue) {
                     'username' : localStorage.getItem("person_id") + 'j',
                     'password': localStorage.getItem("person_id") + 'j',
                 }).onSuccess(function(data) {
-                    console.log('success:',data);
+                    //console.log('success:',data);
                     // appendToDashboard(JSON.stringify(data));
 
                     that.JIM.onMsgReceive(function(data) {
                         data = JSON.stringify(data);
-                        console.log('1msg_receive:' + data);
+                        //console.log('1msg_receive:' + data);
                         // appendToDashboard('msg_receive:' + data);
 
                     });
 
 
                     that.JIM.onEventNotification(function(data) {
-                        console.log('event_receive: ' + JSON.stringify(data));
+                        //console.log('event_receive: ' + JSON.stringify(data));
                         // appendToDashboard('event_receive: ' +JSON.stringify(data));
                     });
 
                     that.JIM.onSyncConversation(function(data) { //离线消息同步监听
-                        console.log( data);
+                        //console.log( data);
                         // appendToDashboard('event_receive: ' +JSON.stringify(data));
                     });
 
                     that.JIM.onUserInfUpdate(function(data) {
-                        console.log('onUserInfUpdate : ' + JSON.stringify(data));
+                        //console.log('onUserInfUpdate : ' + JSON.stringify(data));
                         // appendToDashboard('onUserInfUpdate : ' +JSON.stringify(data));
                     });
 
                     that.JIM.onSyncEvent(function(data) {
-                        console.log('onSyncEvent : ' + JSON.stringify(data));
+                        //console.log('onSyncEvent : ' + JSON.stringify(data));
                         // appendToDashboard('onSyncEvent : ' +JSON.stringify(data));
                     });
 
                     that.JIM.onMsgReceiptChange(function(data){
-                        console.log('onMsgReceiptChange : ' + JSON.stringify(data));
+                        //console.log('onMsgReceiptChange : ' + JSON.stringify(data));
                         // appendToDashboard('onMsgReceiptChange : ' +JSON.stringify(data));
 
                     });
 
                     that.JIM.onSyncMsgReceipt(function(data){
-                        console.log('onSyncMsgReceipt : ' + JSON.stringify(data));
+                        //console.log('onSyncMsgReceipt : ' + JSON.stringify(data));
                         // appendToDashboard('onSyncMsgReceipt : ' +JSON.stringify(data));
 
                     });
 
                     that.JIM.onMutiUnreadMsgUpdate(function(data){
-                        console.log('onConversationUpdate : ' + JSON.stringify(data));
+                        //console.log('onConversationUpdate : ' + JSON.stringify(data));
                         // appendToDashboard('onConversationUpdate : ' +JSON.stringify(data));
 
                     });
 
                     that.JIM.onTransMsgRec(function(data){
-                        console.log('onTransMsgRec : ' + JSON.stringify(data));
+                        //console.log('onTransMsgRec : ' + JSON.stringify(data));
                         // appendToDashboard('onTransMsgRec : ' +JSON.stringify(data));
                     });
 
                     that.JIM.onRoomMsg (function(data){
-                        console.log('onRoomMsg  : ' + JSON.stringify(data));
+                        //console.log('onRoomMsg  : ' + JSON.stringify(data));
                         // appendToDashboard('onRoomMsg  : ' +JSON.stringify(data));
                     });
 
@@ -190,16 +190,16 @@ function contactsInit(Vue) {
 
                 }).onFail(function(data) {
 
-                    console.log('error:' + JSON.stringify(data));
+                    //console.log('error:' + JSON.stringify(data));
                     // appendToDashboard('error: ' +JSON.stringify(data));
                 }).onTimeout(function(data) {
-                    console.log('timeout:' + JSON.stringify(data));
+                    //console.log('timeout:' + JSON.stringify(data));
                     // appendToDashboard('timeout: ' +JSON.stringify(data));
                 });
             },
             sendSingleMsg : function () {
                 var that = this
-                console.log("sendInput",that.sendInput)
+                //console.log("sendInput",that.sendInput)
                 that.JIM.sendSingleMsg({
                     'target_username' : that.pid_accept + 'j',     //接收消息者 username
                     'target_nickname' : that.pid_name,     //接收者的展示名
@@ -210,8 +210,8 @@ function contactsInit(Vue) {
                     'custom_notification':{'enabled':true,'title':'title','alert':'alert'},
                     'need_receipt':true       //是否需要已读回执，需要:true 不需要:false
                 }).onSuccess(function(data,msg) {
-                    console.log('success data:' ,data);
-                    console.log('succes msg:' ,msg);
+                    //console.log('success data:' ,data);
+                    //console.log('succes msg:' ,msg);
                     var html = '<div class="ask">\n' +
                         '                <div class="time">05/22 06:30</div>\n' +
                         '                <div class="msg">\n' +
@@ -233,7 +233,7 @@ function contactsInit(Vue) {
                     that.sendInput = ''
 
                 }).onFail(function(data) {
-                    console.log('error:' ,data);
+                    //console.log('error:' ,data);
                     // appendToDashboard('error: ' +JSON.stringify(data));
                 });
 
@@ -247,9 +247,9 @@ function contactsInit(Vue) {
             getConversation: function (){
                 var that = this
                 that.JIM.getConversation().onSuccess(function (data) {
-                    console.log('success123:',data);
+                    //console.log('success123:',data);
                 }).onFail(function (data) {
-                    console.log('error:', data);
+                    //console.log('error:', data);
                 });
             },
 

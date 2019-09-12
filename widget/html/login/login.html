@@ -319,7 +319,7 @@
                 wx.auth({
                     apiKey: ''
                 }, function (ret, err) {
-                    console.log("登录授权1", ret)
+                    ////console.log("登录授权1", ret)
                     if (ret.status) {
                         code = ret.code;
                         wx.getToken({
@@ -327,7 +327,7 @@
                             apiSecret: '',
                             code: code
                         }, function (ret, err) {
-                            console.log("getToken成功", ret)
+                            //console.log("getToken成功", ret)
                             if (ret.status) {
                                 accessToken = ret.accessToken;
                                 dynamicToken = ret.dynamicToken;
@@ -346,7 +346,7 @@
                                     accessToken: accessToken,
                                     openId: openId
                                 }, function (ret, err) {
-                                    console.log("getUserInfo", ret)
+                                    //console.log("getUserInfo", ret)
                                     getUserInfoWx = ret
                                     if (ret.status) {
                                         api.hideProgress();
@@ -360,7 +360,7 @@
                                     }
                                 });
                             } else {
-                                console.log("error", ret)
+                                //console.log("error", ret)
                                 //判断accessToken是否 过期，调用此接口刷新 accessToken
                                 if (err.code == 1) {
                                     wx.refreshToken({
@@ -368,7 +368,7 @@
                                         dynamicToken: dynamicToken
                                     }, function (ret, err) {
                                         if (ret.status) {
-                                            console.log("errorerror", ret)
+                                            //console.log("errorerror", ret)
                                         } else {
                                             alert(err.code);
                                         }
@@ -402,7 +402,7 @@
             chat_id: openid,
         }
         ajaxGetWithProgress(ChatLogin, obj, function (data) {
-            console.log("ChatLogin", data)
+            //console.log("ChatLogin", data)
             if (data.date == false) {
                 openNewWindow("loginComfirWx", "./loginComfirWx.html", {
                     getUserInfoWx: getUserInfoWx
@@ -506,7 +506,7 @@
         }
         ajaxGetUser(LoginAndRegist, params, function (data, err) {
             api.hideProgress();
-            console.log("LoginAndRegist", data)
+            //console.log("LoginAndRegist", data)
 
 
             // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")

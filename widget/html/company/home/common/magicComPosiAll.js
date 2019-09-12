@@ -8,12 +8,12 @@ function magicComPosiAllInit(Vue) {
         // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
         a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
 
-        console.log("a01_w",a01_w)
-        console.log("winWidth/2",winWidth/2)
+        //console.log("a01_w",a01_w)
+        //console.log("winWidth/2",winWidth/2)
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-        console.log("bevelLength",bevelLength)
+        //console.log("bevelLength",bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w-10)*0.23-25;    // 100
     }
@@ -85,7 +85,7 @@ function magicComPosiAllInit(Vue) {
             queryJobsByUidMenu: function () {
                 var that = this
                 ajaxGetWithProgress(queryJobsByUidMenu, {}, function (data) {
-                    console.log("magicall", data)
+                    //console.log("magicall", data)
                     var jobList = data.Jobs
                     if (data) {
                         if (jobList == null) {
@@ -95,7 +95,7 @@ function magicComPosiAllInit(Vue) {
                             var jobList4 = jobList.slice(0, -1)
                             // 最后一个
                             var jobList1 = jobList.slice(jobList.length - 1)
-                            console.log("jobList.jobList1",jobList1)
+                            //console.log("jobList.jobList1",jobList1)
                             that.listJob = jobList4
 
                             that.magicComCid1 = jobList1[0].job_id
@@ -119,7 +119,7 @@ function magicComPosiAllInit(Vue) {
                 var isBlck = document.querySelector('.bgBlack')
                 if (isBlck.getAttribute("class") == 'isDisplay') {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    //console.log(document.querySelector('.bgBlack'))
                 } else {
 
                     that.active = 'magicAll';
@@ -133,7 +133,7 @@ function magicComPosiAllInit(Vue) {
             },
             jobDetailClick: function (job_id, job_name,index,job_type) {
                 var that = this
-                console.log("job_name",job_name)
+                //console.log("job_name",job_name)
                 store.state.obj.job_id = job_id
                 store.state.obj.job_name = job_name
                 store.state.obj.job_type = job_type
@@ -149,7 +149,7 @@ function magicComPosiAllInit(Vue) {
             },
             magicCom1Click: function () {  // 公司1
                 var that = this
-                console.log("that.magicCom1Type",that.magicCom1Type)
+                //console.log("that.magicCom1Type",that.magicCom1Type)
                 store.state.obj.job_id = that.magicComCid1
                 store.state.obj.job_name = that.magicCom1Text
                 store.state.obj.job_type = that.magicCom1Type

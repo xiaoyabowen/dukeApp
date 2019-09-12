@@ -147,7 +147,7 @@
             a01_w = winWidth;
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            console.log("bevelLength",bevelLength)
+            ////console.log("bevelLength",bevelLength)
             m_d = (a01_w-10)*0.23-25;    // 100
 
             new Vue({
@@ -189,7 +189,7 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
 
                         /*localStorage.setItem("magic_id",ret.value.key.c_id)
@@ -199,7 +199,7 @@
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
 
                         /*localStorage.setItem("magic_id2",ret.value.key.c_id)
@@ -209,7 +209,7 @@
                     api.addEventListener({
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
 
                         // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
                         that.cid = ret.value.key.cid
@@ -259,7 +259,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data,'280000');
+                            //console.log(data,'280000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];
@@ -297,7 +297,7 @@
                     },
                     // 显示全部评论
                     totalComment: function () {
-                        console.log(this.list);
+                        //console.log(this.list);
                         this.evalist = this.list;
                         this.len = this.list.length;
                     },
@@ -314,7 +314,7 @@
                             pId: that.person_id,
                             cId: that.cid
                         }, function (data, err) {
-                            console.log("creat",data);
+                            //console.log("creat",data);
                             if (data) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {
                                     item: that.item,
@@ -332,11 +332,11 @@
 
                     commodityList : function (){
                         var that = this
-                        console.log("that.tId",that.tId)
+                        //console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList",data)
+                            //console.log("commodityList",data)
                             var jobList = data.comList
-                            console.log(jobList)
+                            //console.log(jobList)
                             if (data) {
                                 if (jobList == null) {
                                     that.listJob = ''
@@ -367,7 +367,7 @@
                         var isBlck = document.querySelector('.bgBlack')
                         if (isBlck.getAttribute("class") == 'isDisplay') {
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            console.log(document.querySelector('.bgBlack'))
+                            //console.log(document.querySelector('.bgBlack'))
                         } else {
                             var that = this;
                             that.active = 'magicAll';

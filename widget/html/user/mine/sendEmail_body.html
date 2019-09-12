@@ -64,7 +64,7 @@
             filesTime = api.pageParam.filesTime
             filesDocu = api.pageParam.filesDocu
             name = api.pageParam.name
-            console.log(name)
+            // console.log(name)
 
             new Vue({
                 el: '#app1',
@@ -99,7 +99,7 @@
                             resumeName : name,
                             resume : filesDocu
                         }
-                        console.log(obj)
+                        // console.log(obj)
                         ajaxGetWithProgress(SendResumeEmailUserProfile,obj,function (data,ret) {
                             if (data.date){
                                 mui.confirm('发送成功，请前往查看！', '提示',['确认','取消'], function (e) {

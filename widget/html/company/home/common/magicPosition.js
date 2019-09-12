@@ -72,14 +72,14 @@ function magicPositionInit(Vue) {
 
             queryPersonListMenu: function () {
                 var that = this
-                console.log("store.state.obj.job_name",store.state.obj.job_name)
+                //console.log("store.state.obj.job_name",store.state.obj.job_name)
                 ajaxGetWithProgress(filterScreen, {job_type:store.state.obj.job_type}, function (data) {
-                    console.log("queryPersonListMenu", data)
+                    //console.log("queryPersonListMenu", data)
                     var jobList;
                     if (data) {
                         jobList = data.list
                         that.listJob = jobList
-                        console.log("that.listJob",that.listJob)
+                        //console.log("that.listJob",that.listJob)
                         if (jobList == null) {
                             that.listJob = ''
                         } else if (jobList.length == 5) {
@@ -107,7 +107,7 @@ function magicPositionInit(Vue) {
                 var isBlck = document.querySelector('.bgBlack')
                 if (isBlck.getAttribute("class") == 'isDisplay') {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    //console.log(document.querySelector('.bgBlack'))
                 } else {
                     var that = this;
                     that.active = 'magicAll';
@@ -121,8 +121,8 @@ function magicPositionInit(Vue) {
             },
             jobDetailClick: function (job_id, job_name,index) {
 
-                console.log("job_idjob_id",job_id)
-                console.log("job_namejob_name",job_name)
+                //console.log("job_idjob_id",job_id)
+                //console.log("job_namejob_name",job_name)
                 this.timeIndex = index;
 
                 api.sendEvent({

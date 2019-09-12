@@ -160,7 +160,7 @@ datalistModel.prototype = {
 
         //去服务器拉取数据
         this.getPagerDataFormServer(getData, true, true, function (ret, err) {
-            // console.log(getData)
+            // //console.log(getData)
             datalist.hasNoMoreData = false;
             if (ret.status) {
                 var serverResult = ret.data;
@@ -212,7 +212,7 @@ datalistModel.prototype = {
                 getData.cursor = datalist.cursorOnDbError;
                 getData.size = datalist.upNum;
                 this.getPagerDataFormServer(getData,false, true, function (ret, err) {
-                    // console.log(ret)
+                    // //console.log(ret)
                     if (ret.status) {
                         var serverResult = ret.data;
                         callBackOnGetDatas(serverResult.data);
@@ -654,12 +654,12 @@ function ajaxGetUser(url, getData, callBack) {
 
 function ajaxGet(url, params, callBack) {
     // var user = getUserInfo();
-    // console.log(user)
+    // //console.log(user)
     // params.token = user.token;
 
     // 测试用
     var user = localStorage.getItem('user');
-    console.log(user);
+    //console.log(user);
     // alert(user);
     // if (!user) {
     //     api.hideProgress();
@@ -673,7 +673,7 @@ function ajaxGet(url, params, callBack) {
     }
 
     api.showProgress();
-    console.log('token', params)
+    //console.log('token', params)
     api.ajax({
         url: url,
         method: 'get',

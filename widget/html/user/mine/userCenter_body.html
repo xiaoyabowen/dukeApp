@@ -113,7 +113,7 @@
             window.location.reload()
         });
 
-        console.log(uid);
+        // console.log(uid);
 
         var app = new Vue({
             el: '#circle',
@@ -162,7 +162,7 @@
 
                         that.isEdit = false;
                     }
-                    console.log("objobj",obj)
+                    // console.log("objobj",obj)
                     api.ajax({
                         // report : false,
                         url: queryCirclePersonMsgByPid,
@@ -176,7 +176,7 @@
                         }
                     }, function(data, err) {
                         api.hideProgress();
-                        console.log("queryCirclePersonMsgByPid",data)
+                        // console.log("queryCirclePersonMsgByPid",data)
                         if (data){
                             that.item = data
                             that.p_name = data.p_name || "未填写"

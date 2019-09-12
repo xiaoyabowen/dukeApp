@@ -158,7 +158,7 @@
     apiready = function () {
 
         content = api.pageParam.email
-        console.log(content)
+        //console.log(content)
     };
 
 // 重新认证
@@ -192,9 +192,9 @@
             code: emaiInput,
             c_id: localStorage.getItem("com_id")
         }
-        console.log(obj)
+        //console.log(obj)
         ajaxGetWithProgress(CertifiedMailOrgnizationProfile,obj,function (data,err) {
-            console.log(data)
+            //console.log(data)
             if (data.return.status){
                 document.querySelector(".sucessAuthen").style.display = "block"
             } else {

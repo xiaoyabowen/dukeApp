@@ -118,7 +118,7 @@
 <script>
     apiready = function () {
         var now = (new Date()).getTime();//获取当前时间
-        console.log(now);
+        // console.log(now);
 
         var person_id = localStorage.getItem('person_id');
         var obj = {
@@ -126,7 +126,7 @@
         }
         ajaxGetWithProgress(queryInvitationList, obj, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log("mianshilist",data);
+            // console.log("mianshilist",data);
             if (data.List) {
                 document.querySelector('.boxSub').classList.remove('isDisplay');
                 document.querySelector('.clear').classList.add('isDisplay');
@@ -145,8 +145,8 @@
                         list2.push(list[i]);
                     }
                 }
-                console.log(123, list1);
-                console.log(456, list2);
+                // console.log(123, list1);
+                // console.log(456, list2);
 
                 var complete = document.getElementById('complete');
                 var not_complete = document.getElementById('not_complete');
@@ -206,8 +206,8 @@
 
                         var start = new Date(value.status_time).getTime();
                         var ent = new Date().getTime();
-                        console.log(start);
-                        console.log(ent);
+                        // console.log(start);
+                        // console.log(ent);
                         if (start > ent) {
 
                             str2 +='                        <div class="inter-state inter-state-no">待初试 </div>\n'
@@ -244,7 +244,7 @@
     };
 
     function company_details(cid) {
-        console.log(cid);
+        // console.log(cid);
         openNewWindow("InterviewDetail", "./InterviewDetail.html", {
             app_id: cid
         });

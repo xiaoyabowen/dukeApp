@@ -108,7 +108,7 @@
         }
         ajaxGetWithProgress(QueryApplicationStatus4List, obj, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            // console.log(data);
             if (data.queryApplicationStatus4List) {
                 document.querySelector('.boxSub').classList.remove('isDisplay');
                 document.querySelector('.clear').classList.add('isDisplay');
@@ -117,7 +117,7 @@
                 var arr = [];
                 for (var i = 0; i < list.length; i++) {
                     var city = list[i].province + list[i].city + list[i].street + list[i].shortname;
-                    console.log(city);
+                    // console.log(city);
                     var str = '<div class="boxSub inde-sub">\n' +
                         '            <div class="inter-box inter-box-no">\n' +
                         '\n' +
@@ -187,7 +187,7 @@
 
     // 录用的职位类型 --- 详情
     function position_type(job_id) {
-        console.log(job_id);
+        // console.log(job_id);
         openNewWindow("position", "../home/position.html", {
             job_id: job_id
         });
@@ -195,16 +195,16 @@
 
     // 导航
     function navigation(e) {
-        console.log(e.dataset.city);
-        console.log(e.dataset.lat);
-        console.log(e.dataset.lon);
+        // console.log(e.dataset.city);
+        // console.log(e.dataset.lat);
+        // console.log(e.dataset.lon);
         // openmap(e.dataset.city,0);
         baiduditu(e.dataset.lat, e.dataset.lon, e.dataset.city);
     }
 
     // 聊天
     function chatRecord(id) {
-        console.log(id);
+        // console.log(id);
     }
 
     // 唤起高德导航
@@ -227,7 +227,7 @@
         uri += '&lat=' + lat + '&lon=' + lon;
         uri += '&dev=1';
         uri += '&style=2';
-        console.log(uri);
+        // console.log(uri);
         api.openApp({
             // androidPkg: 'com.autonavi.minimap',
             androidPkg: 'android.intent.action.VIEW',
@@ -244,7 +244,7 @@
             if (ret) {
 
             } else {
-                console.log(JSON.stringify(err));
+                // console.log(JSON.stringify(err));
                 $.toast('未安装高德地图');
             }
         });

@@ -235,13 +235,13 @@
         }, function(ret) {
             if (ret) {
 
-                console.log("fanhuid",ret)
+                //console.log("fanhuid",ret)
                 var imgListArr = {}
                 var imgList = ret.list
                 for (var i=0;i<imgList.length;i++){
                     imgListArr["file"+(i+1)] = imgList[i].thumbPath
                 }
-                console.log(imgListArr)
+                //console.log(imgListArr)
 
                 api.ajax({
                     // report : false,
@@ -259,10 +259,10 @@
                     }
                 }, function (data, err) {
 
-                    console.log(data)
+                    //console.log(data)
                     picture = data.imgUrl
                     var retImg = stringFun(data.imgUrl)
-                    console.log(retImg)
+                    //console.log(retImg)
                     var ulBox = document.getElementById('ul_box');
                     var ulBoxLi = ''
                     // ulBoxLi +='<li class="action"></li>'
@@ -297,7 +297,7 @@
 
 
         for(var i=0;i<keyWordsList.length;i++){
-            // console.log(keyWordsList[i]);
+            // //console.log(keyWordsList[i]);
             _keyWordsFiltering = _keyWordsFiltering.replace(keyWordsList[i],"***")
 
         }
@@ -314,10 +314,10 @@
             pic:picture,
             adrStatus:4,
         }
-        console.log("star:",obj)
-        console.log( _keyWordsFiltering)
+        //console.log("star:",obj)
+        //console.log( _keyWordsFiltering)
         ajaxGetWithProgress(CommodityProFileEvaluation,obj,function (data) {
-            console.log("starPing",data)
+            //console.log("starPing",data)
             if (data.Evaluation) {
 
                 mui.confirm('非常感谢您的评价', '',['确认','取消'], function (e) {

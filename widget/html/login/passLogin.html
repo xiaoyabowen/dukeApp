@@ -346,7 +346,7 @@
                     }
                     ajaxGetUser(LoginAndRegist, params, function (data, err) {
 
-                        console.log("Logindata=",data)
+                        //console.log("Logindata=",data)
                         api.hideProgress();
 
                         phoneValue = data.phone
@@ -354,12 +354,12 @@
                         // that.getSignatureJiGuang()
                         localStorage.setItem('phone',phoneValue);
 
-                        console.log(localStorage.getItem("user"))
+                        //console.log(localStorage.getItem("user"))
                         // openNewWindow("companyInfoFinsh", "../company/mine/companyInfoFinsh.html")
                         if (data.success == false) {
                             localStorage.setItem('user',data.user_uid);
                             localStorage.setItem('person_id',data.user_uid);
-                            console.log(phoneValue)
+                            //console.log(phoneValue)
                             openNewWindow("loginComfir", "./loginComfir.html",{
                                 phoneValue : phoneValue
                             })

@@ -113,7 +113,7 @@
                 return;
             }
             ajaxGetWithProgress(updatePwd, params, function (ret, err) {
-                console.log(ret)
+                // console.log(ret)
 
                 if (ret.return && ret.return.status ) {
                     localStorage.setItem("passStatus","pass")

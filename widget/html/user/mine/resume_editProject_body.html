@@ -202,7 +202,7 @@
             // if (res && res.projectlist) {
 
                 var msg = res;
-                console.log(msg)
+                // console.log(msg)
                 document.getElementById("pro_name").innerText = msg.project_name || '请输入';
                 document.getElementById("c_name").innerText = msg.com_name || '不关联任何公司';
                 document.getElementById("c_id").innerText = msg.c_id;
@@ -306,14 +306,14 @@
     // 删除项目经历
     function deleteWork() {
         mui.confirm('是否删除此工作经历?', function (e) {
-            console.log(e)
+            // console.log(e)
             var pro_id = document.getElementById("proid").innerText
             var obj = {
                 pro_id: pro_id
             }
             ajaxGetWithProgress(DeleteProjec,obj,function(res,err) {
                 // api.alert({mas: JSON.stringify(res)});
-                console.log(res);
+                // console.log(res);
                 if (res && res.return.status) {
                     api.execScript({
                         name: 'resume_editResume',
@@ -350,11 +350,11 @@
             pro_id:pro_id
 
         }
-        console.log(params)
+        // console.log(params)
 
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data)
+            // console.log(data)
             if (data.return_info.status) {
                 // api.toast({
                 //     msg: '编辑项目经历成功'

@@ -178,7 +178,7 @@
                 uid :person_id
             }
             ajaxGetWithProgress(QuerySubscriptionById,obj,function (data) {
-                console.log("editDIngyue",data)
+                //console.log("editDIngyue",data)
                 var dataHtml = data.querySubscription[0];
                 document.getElementById("text").value = dataHtml.sub_name
                 document.getElementById("age").innerText = dataHtml.age
@@ -220,7 +220,7 @@
         picker.setData(cityData3)
         picker.pickers[0].setSelectedIndex(0);
         picker.show(function(SelectedItem) {
-            console.log(SelectedItem[0].text);
+            //console.log(SelectedItem[0].text);
             document.getElementById("int_city").innerText = SelectedItem[0].text;
         })
     }
@@ -279,7 +279,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('company_size').innerText = SelectedItem[0].text;
         })
     }*/
@@ -298,7 +298,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('team_size').innerText = SelectedItem[0].text;
         })
     }
@@ -323,7 +323,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('team_status').innerText = SelectedItem[0].text;
         })
     }
@@ -354,7 +354,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('pay').innerText = SelectedItem[0].text;
         })
     }
@@ -397,7 +397,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            //console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.getElementById('age').innerText = selectItems.text;
         })
@@ -425,7 +425,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('education').innerText = SelectedItem[0].text;
         })
 
@@ -447,7 +447,7 @@
 
 
         // alert(person_id)
-        // console.log(School,major,education,entry_date,quit_date);
+        // //console.log(School,major,education,entry_date,quit_date);
 
         if (sub_name == ""){
             api.toast({
@@ -514,7 +514,7 @@
             }
             ajaxGetWithProgress(UpdateSubscriptionById, params, function (data, err) {
                 // alert(JSON.stringify(data));
-                console.log(data);
+                //console.log(data);
                 if (data.return.status) {
                     var frameName = url +"_body";
                     api.execScript({
@@ -542,10 +542,10 @@
                 int_status : team_status ,
                 age : age ,
             }
-            console.log(params);
+            //console.log(params);
             ajaxGetWithProgress(addSubscriptionUserProfile, params, function (data, err) {
                 // alert(JSON.stringify(data));
-                console.log(data);
+                //console.log(data);
                 if (data.return_info.status) {
                     toast('添加成功')
                     var frameName = url +"_body";

@@ -25,9 +25,9 @@ function paymentInit(Vue) {
                     payPass: that.number,
                     personId: that.personId
                 }, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.date) {
-                        console.log(123)
+                        //console.log(123)
                         api.closeToWin({
                             name: 'confirmOrder'
                         });
@@ -37,7 +37,7 @@ function paymentInit(Vue) {
                 });
             },
             password: function () {
-                console.log(this.number)
+                //console.log(this.number)
                 if (this.number.length === 6) {
                     this.SetPayPwd();
                 }

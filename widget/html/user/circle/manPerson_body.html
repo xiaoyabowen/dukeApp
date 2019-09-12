@@ -99,7 +99,7 @@
                         ajaxGetWithProgress(queryAllCirPerson, {
                             circle_id: circleId,
                         }, function(data) {
-                            // console.log(data,'sss')
+                            // //console.log(data,'sss')
                             if (data && data.cirPersonList && data.cirPersonList.length > 0) {
                                 that.itemList = data.cirPersonList;
                             }
@@ -122,7 +122,7 @@
                             circle_id: circleId,
                             status,
                         }, function(data) {
-                            // console.log(data,'99999')
+                            // //console.log(data,'99999')
                             if (data && data.SignCirPersonList && data.SignCirPersonList.length > 0) {
                                 that.itemList = data.SignCirPersonList;
                             }else{

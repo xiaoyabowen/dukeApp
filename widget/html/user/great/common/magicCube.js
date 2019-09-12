@@ -28,7 +28,7 @@ function magicCubeInit(Vue) {
         },
         created: function () {
             // this.queryListRandom();
-            console.log(this.list);
+            ////console.log(this.list);
         },
         mounted: function () {
             document.getElementById('app1').classList.remove('isDisplay');
@@ -38,16 +38,16 @@ function magicCubeInit(Vue) {
             queryListRandom: function () {
                 var that = this;
                 ajaxGet(queryListRandom, {}, function(data,err){
-                    console.log(123, data);
+                    //console.log(123, data);
                     that.list = data.job;
                     that.list1 = data.company;
-                    console.log("thatlist=",that.list)
+                    //console.log("thatlist=",that.list)
                     document.getElementById('app1').classList.remove('isDisplay');
                 });
             },
             togle: function () {
                 document.getElementById('subBox').classList.remove('isDisplay');
-                console.log(123)
+                //console.log(123)
                 this.active = true;
                 var that = this;
                 // this.queryListRandom();
@@ -58,7 +58,7 @@ function magicCubeInit(Vue) {
             detailClick: function (index,job_id) {
                 this.index1 = index;
                 this.index2 = -1;
-                console.log(job_id)
+                //console.log(job_id)
                 openNewWindow("index", "../../great/"+ job_id +"/index.html");
                 /*if (job_id == 'facial') {
                     openNewWindow("index", "widget://html/user/great/index.html");
@@ -70,7 +70,7 @@ function magicCubeInit(Vue) {
             detailClick2: function (index,c_id) {
                 this.index2 = index;
                 this.index1 = -1;
-                console.log(c_id)
+                //console.log(c_id)
                 openNewWindow("companyInfo", "../home/companyInfo.html", {
                     cid: c_id
                 });

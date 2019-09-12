@@ -8,7 +8,7 @@ function timestampToTime(timestamp) {
     var Y =date.getFullYear() + '-';
     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
     var D = date.getDate() + '';
-    console.log(Y+M+D)
+    //console.log(Y+M+D)
     return Y+M+D;
 }
 
@@ -19,11 +19,11 @@ var nstr = new Date(); // 获取当前日期
 
 
 var timestampStr = nstr.getTime();
-console.log(timestampStr)
+//console.log(timestampStr)
 
 
 // var timestamp = new Date(date).getTime();
-// console.log(timestamp)
+// //console.log(timestamp)
 
 
 var changedYear = nstr.getFullYear(); // 年份
@@ -64,7 +64,7 @@ $(function () {
 
 function daysOfMonth(){
     var MonthYear =$(".txt_Year").text()
-    console.log(MonthYear)
+    //console.log(MonthYear)
     var MonthMonth = $(".txt_blue").text()
     // 获取到当前月份的全部日期
     let daysOfMonth = '';
@@ -81,8 +81,8 @@ function daysOfMonth(){
 
 
 function commChanged(changedYear,changedMonth) {
-    console.log(changedYear)
-    console.log(changedMonth)
+    //console.log(changedYear)
+    //console.log(changedMonth)
     var changedMonth =  changedMonth
     var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
 
@@ -139,10 +139,10 @@ function showCanledar(month, firstday, dnow, allday,changedYear) {
     // }
     // for (var i=1;i<=arr.length;i++){
     //     if (arr[i] == dateDay){
-    //         console.log($(".normal").eq(dateDay).html())
+    //         //console.log($(".normal").eq(dateDay).html())
     //     }
     // }
-    // console.log(arr)
+    // //console.log(arr)
     var dateDay = 13
     var price = "12999"
     var normalIndex = $(".normal").eq(dateDay-1*1)

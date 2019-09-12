@@ -359,8 +359,8 @@
 <script>
     // var card_el=document.getElementById("card_main");
     // card_el.style.height=csreen_height-80+"px";
-    // console.log("card", card_el);
-    // console.log("card height: "+card_el.style.height);
+    // //console.log("card", card_el);
+    // //console.log("card height: "+card_el.style.height);
     // window.reload();
 
     mui.init();
@@ -385,18 +385,18 @@
         // a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
         a01_w = winWidth;
 
-        console.log("a01_w", a01_w)
-        console.log("winWidth/2", winWidth / 2)
+        //console.log("a01_w", a01_w)
+        //console.log("winWidth/2", winWidth / 2)
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
-        console.log("bevelLength", bevelLength)
+        //console.log("bevelLength", bevelLength)
         // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w - 10) * 0.23 - 25;    // 100
 
 //leileiStart
         var searchValue = api.pageParam.value;
-        console.log(searchValue, '388888866');
+        //console.log(searchValue, '388888866');
         api.sendEvent({
             name: 'searchType',
             extra: {
@@ -455,7 +455,7 @@
             objData = {person_id: uid}
         }
         ajaxGetWithProgress(JobId, objData, function (data, err) {
-            console.log(1, data)
+            //console.log(1, data)
             api.hideProgress();
             if (data) {
                 var data = data.JobSummary
@@ -463,7 +463,7 @@
 
                 cid = data.c_id;
                 uid = data.uid;
-                // console.log(uid,'ppppp');
+                // //console.log(uid,'ppppp');
                 ptoken = data.uid;
                 cn_name = data.c_name;
                 job_name = data.job_name;
@@ -506,7 +506,7 @@
                 ms_type: ms_type,
             }
             ajaxGetWithProgress(QueryJobSummary, obj, function (data, err) {
-                console.log("positiondata=", data);
+                //console.log("positiondata=", data);
                 api.hideProgress();
                 if (data) {
                     document.querySelector('.view').classList.remove('isDisplay');
@@ -567,8 +567,8 @@
             mounted: function () {
               //搜索进入开始
               if (job_id) {
-                  console.log("biedey1111", job_id)
-                  console.log("biedeyemian11111", search)
+                  //console.log("biedey1111", job_id)
+                  //console.log("biedeyemian11111", search)
                   positionDe(job_id, h_type, ms_type, search);
                   // return;
               }
@@ -579,20 +579,20 @@
                 api.addEventListener({
                     name: 'comCom1',
                 }, function (ret, err) {
-                    console.log("ret", ret);
+                    //console.log("ret", ret);
                     that.active = ret.value.key.magicCom1;
                 });
                 api.addEventListener({
                     name: 'comCom2',
                 }, function (ret, err) {
-                    console.log("ret", ret);
+                    //console.log("ret", ret);
                     that.active = ret.value.key.magicCom2;
                 });
                 api.addEventListener({
                     name: 'jobAll',
                 }, function (ret, err) {
-                    console.log("ret", ret);
-                    console.log("job_id", ret.value.key.job_id)
+                    //console.log("ret", ret);
+                    //console.log("job_id", ret.value.key.job_id)
                     that.active = ret.value.key.magicCom;
                     positionDe(ret.value.key.job_id, '1', '1', ret.value.key.job_name)
                 });
@@ -634,9 +634,9 @@
                 MenuListQyMenu: function () {
                     var that = this
                     ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
-                        console.log("MenuListQyMenu1111111111111111111111111", data)
+                        //console.log("MenuListQyMenu1111111111111111111111111", data)
                         var jobList = data.job
-                        console.log(jobList)
+                        //console.log(jobList)
                         if (data) {
                             if (jobList == null) {
                                 that.listJob = ''
@@ -660,7 +660,7 @@
                     var isBlck = document.querySelector('.bgBlack')
                     if (isBlck.getAttribute("class") == 'isDisplay') {
                         document.querySelector('.bgBlack').classList.remove('isDisplay');
-                        console.log(document.querySelector('.bgBlack'))
+                        //console.log(document.querySelector('.bgBlack'))
                     } else {
                         var that = this;
                         that.active = 'magicAll';
@@ -700,11 +700,11 @@
                 loadData() {
                     var that = this;
                     ajaxGetWithProgress(QueryResumeUserProfile, {uid: that.uid}, function (data) {
-                        console.log(data, 'resume');
+                        //console.log(data, 'resume');
 
                         if (data && data.QueryResume && data.QueryResume.length > 0) {
                             that.resumeList = data.QueryResume;
-                            console.log(that.resumeList, 'aaaaa')
+                            //console.log(that.resumeList, 'aaaaa')
                         } else {
                             // mui.alert('请先去添加个人附件简历')
                             // mui.alert('请先去添加个人附件简历')
@@ -713,7 +713,7 @@
                     })
                 },
                 selectResume(index) {
-                    console.log('aaa')
+                    //console.log('aaa')
                     this.selectIndex = index;
 
                 },
@@ -727,7 +727,7 @@
                     var resume = this.resumeList[this.selectIndex].docu;
                     var resumeName = this.resumeList[this.selectIndex].res_name;
                     var uid = this.resumeList[this.selectIndex].uid;
-                    console.log(jobId, uid, cn_name, job_name, '677');
+                    //console.log(jobId, uid, cn_name, job_name, '677');
                     ajaxGetWithProgress(SendResumeTo, {
                         c_name: cn_name,//公司名称
                         job_name: job_name, // 职位名称
@@ -770,7 +770,7 @@
 
     function chatJob() {
         var uidUser = localStorage.getItem("user")
-        console.log(uidUser)
+        //console.log(uidUser)
         if (!uidUser) {
             openNewWindow("login", "../../login/login.html");
             return;
@@ -782,10 +782,10 @@
             job_id: jobId,
 
         }
-        console.log(obj)
+        //console.log(obj)
 
         ajaxGetWithProgress(addTopicLink, obj, function (data) {
-            console.log("addTopicLink", data)
+            //console.log("addTopicLink", data)
             if (data) {
                 var token = localStorage.getItem('person_id');
                 openNewWindow("chat_Room", "../chat/chat_Room.html", {

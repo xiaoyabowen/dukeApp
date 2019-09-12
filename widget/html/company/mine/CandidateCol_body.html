@@ -113,7 +113,7 @@
                 QueryAttListUserProfile : function () {
                     var that = this
                     ajaxGetWithProgress(QueryAttListUserProfile,{},function (data) {
-                        console.log("QueryAttListUserProfile",data)
+                        //console.log("QueryAttListUserProfile",data)
                         if (data){
                             that.cadidate = data.QueryAttList
                         } else {
@@ -123,7 +123,7 @@
                 },
                 candiClick : function (person_id) {
                     var that = this
-                    console.log("person_idperson_idperson_id",person_id)
+                    //console.log("person_idperson_idperson_id",person_id)
                     openNewWindow("home", "../home/home.html",{
                     })
                     api.sendEvent({

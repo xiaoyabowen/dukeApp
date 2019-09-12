@@ -65,7 +65,7 @@
     apiready = function () {
 
         var payment = paymentInit(Vue);
-        // console.log(payment);
+        // //console.log(payment);
 
         Vue.component('payment', payment)
 
@@ -85,7 +85,7 @@
             },
             created: function () {
                 this.personId = localStorage.getItem('person_id');
-                console.log(this.personId)
+                //console.log(this.personId)
                 this.pname = api.pageParam.pname;
                 this.idcard = api.pageParam.idcard;
                 this.issureBy = api.pageParam.issureBy;
@@ -102,7 +102,7 @@
                     ajaxGetWithProgress(SendSms, {
                         phone: that.phone
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.Code == 'OK') {
                             mui.toast("发送成功请注意查收!");
                         } else {
@@ -122,7 +122,7 @@
                         idType: that.idType,
                         code: that.code
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.date) {
                             that.payment = 'payment'
                         }
@@ -130,7 +130,7 @@
                 },
                 // 点击下一步
                 nextHandle: function () {
-                    console.log(this.text, this.number);
+                    //console.log(this.text, this.number);
                     if (!this.code) {
                         mui.toast('请填写验证码')
                         return;

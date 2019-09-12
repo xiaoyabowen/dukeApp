@@ -249,7 +249,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('company_size').innerText = SelectedItem[0].text;
         })
     }
@@ -280,7 +280,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('team_size').innerText = SelectedItem[0].text;
         })
     }
@@ -311,7 +311,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('pay').innerText = SelectedItem[0].text;
         })
     }
@@ -326,7 +326,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.getElementById('entry_date').innerText = selectItems.text;
         })
@@ -355,7 +355,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('education').innerText = SelectedItem[0].text;
         })
 
@@ -447,7 +447,7 @@
             issue_time: issue_time ,
             edu_ex: edu_ex ,
         }
-        console.log(params);
+        // console.log(params);
 
         ajaxGetWithProgress(AddSubscription, params, function (data, err) {
             // alert(JSON.stringify(data));

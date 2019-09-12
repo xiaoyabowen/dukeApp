@@ -167,7 +167,7 @@
     apiready = function () {
         Htmlname = api.pageParam.activeName
         uid = localStorage.getItem("person_id");
-        console.log("uid",uid)
+        //console.log("uid",uid)
         new Vue({
             el: '#app1',
             data: {
@@ -203,7 +203,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(Queryhistory,obj,function (data) {
-                        console.log("Queryhistory",data)
+                        //console.log("Queryhistory",data)
                         that.listall = data.history;
                     })
                 },

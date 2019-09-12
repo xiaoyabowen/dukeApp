@@ -86,7 +86,7 @@ function magicPosiDetailInit(Vue) {
                 var isBlck=document.querySelector('.bgBlack')
                 if(isBlck.getAttribute("class")=='isDisplay'){
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    ////console.log(document.querySelector('.bgBlack'))
                 }else {
                     var that = this;
                     that.active = 'magicCom2';
@@ -102,7 +102,7 @@ function magicPosiDetailInit(Vue) {
                 var that = this
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
-                    console.log("com2",data)
+                    //console.log("com2",data)
                     var jobList = data.job
                     if (data) {
                         if (jobList == null){
@@ -128,9 +128,9 @@ function magicPosiDetailInit(Vue) {
                     job_id : store.state.obj.job_id,
                 }
 
-                console.log("objobThree",obj)
+                //console.log("objobThree",obj)
                 ajaxGetWithProgress(JobThreeOneCompanyMueu,obj,function (data) {
-                    console.log("JobThreeOneCompanyMueu",data)
+                    //console.log("JobThreeOneCompanyMueu",data)
                     var jobList = data.job
                     if (data) {
                         if (jobList == null || jobList == ''){
@@ -158,8 +158,8 @@ function magicPosiDetailInit(Vue) {
             },
             jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
                 var that = this
-                console.log("job_id",job_id)
-                console.log("job_name",job_name)
+                //console.log("job_id",job_id)
+                //console.log("job_name",job_name)
                 this.timeIndex = index;
 
 
@@ -184,7 +184,7 @@ function magicPosiDetailInit(Vue) {
             magicCom1Click: function () {  // 公司1
                 var that = this;
 
-                console.log("that.magicComCid1",that.magicComCid1)
+                //console.log("that.magicComCid1",that.magicComCid1)
 
 
                 /*store.state.obj.c_id = that.magicComCid1

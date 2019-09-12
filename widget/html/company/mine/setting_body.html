@@ -114,10 +114,10 @@
     }
     apiready = function () {
         var user = localStorage.getItem("user");
-        console.log(user);
+        //console.log(user);
 
         var setting_ul = document.querySelector('.setting_ul');
-        // console.log(setting_ul);
+        // //console.log(setting_ul);
         setting_ul.onclick = function (e) {
             var node = e.target;
             var li;
@@ -126,7 +126,7 @@
             } else {
                 li = node.parentNode.parentNode;
             }
-            console.log(li.dataset.type);
+            //console.log(li.dataset.type);
             if (li.dataset.type) {
                 openNewWindow(li.dataset.type, "./"+ li.dataset.type +".html");
             }
@@ -134,7 +134,7 @@
 
         document.getElementById('setting_btn').onclick = function () {
             mui.confirm('确定退出登录?', function (e) {
-                console.log(e)
+                //console.log(e)
 
                 if (e.index) {
 
@@ -166,7 +166,7 @@
         var obj = {
             uid : uid
         }
-        console.log("以前的是",localStorage.getItem('person_id'))
+        //console.log("以前的是",localStorage.getItem('person_id'))
         api.ajax({
 
             url:suIdentityLogin,
@@ -178,7 +178,7 @@
                 values:obj
             }
         }, function (data, err) {
-            console.log("juese",data)
+            //console.log("juese",data)
             if (data.role_type == 1){
                 mui.confirm('切换至我是千里马', '切换角色',['确认','取消'], function (e) {
                     if (!e.index) {

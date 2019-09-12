@@ -108,17 +108,17 @@
     apiready = function () {
         url = api.pageParam.url;
         content = api.pageParam.content;
-        // console.log(content);
+        // //console.log(content);
         if (content) {
             var arr1 = content.split(',');
-            console.log(arr1);
+            //console.log(arr1);
             for (var i = 0; i < arr1.length; i++) {
                 if (list.indexOf(arr1[i]) != -1) {
                     array.push(list.indexOf(arr1[i]));
-                    console.log(arr1[i])
+                    //console.log(arr1[i])
                 }
             }
-            console.log(123, array);
+            //console.log(123, array);
         }
 
         var tagBox = document.querySelector('.resume_CompanyIndustry_content');
@@ -126,7 +126,7 @@
 
         for (var i = 0; i < list.length; i++) {
 
-            // console.log(array.indexOf(i))
+            // //console.log(array.indexOf(i))
             if (array.indexOf(i) != '-1') {
                 arr.push('<div class="resume_CompanyIndustry_item active">');
                 selectList.push(list[i]);
@@ -164,7 +164,7 @@
 
     // 点击保存执行此方法
     function preservation () {
-        console.log(selectList);
+        //console.log(selectList);
         var list = selectList.join(',')
         var frameName = url + "_body";
         api.execScript({

@@ -123,7 +123,7 @@
     function user11() {
         localStorage.setItem("role","1")
         var role = localStorage.getItem('role');
-        console.log(role)
+        ////console.log(role)
 
         var user = localStorage.getItem("user")
         // openNewWindow("home", "../user/home/home.html")
@@ -131,7 +131,7 @@
             var obj ={
                 uid : user.user_id
             }
-            console.log(obj)
+            //console.log(obj)
             ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
 
                 if (data.date != 0) {
@@ -162,8 +162,8 @@
     function company() {
         localStorage.setItem("role","2")
         var role = localStorage.getItem('role');
-        console.log(role)
-        // console.log(user)
+        //console.log(role)
+        // //console.log(user)
         // alert(role)
         var user = localStorage.getItem("user")
         // openNewWindow("login", "login.html")
@@ -171,7 +171,7 @@
             var obj ={
                 uid : user.user_id
             }
-            console.log(obj)
+            //console.log(obj)
             ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
 
                 if (data.date != 0) {

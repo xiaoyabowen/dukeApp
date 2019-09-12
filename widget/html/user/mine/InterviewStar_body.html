@@ -139,7 +139,7 @@
             user_id: user_id
         }
         ajaxGetWithProgress(queryEvaluateRecruiter,obj,function (data) {
-            console.log(data)
+            // console.log(data)
             if (data){
                 document.querySelector(".st-logo").src= imgSrcFun(data.p_icon)
                 document.querySelector(".st-main-name").innerText= data.p_name
@@ -249,7 +249,7 @@
             suggest : _keyWordsFiltering,
         }
         ajaxGetWithProgress(createEvaluate,obj,function (data) {
-            console.log(data)
+            // console.log(data)
             if (data){
                 mui.confirm('非常感谢您的评价', '',['确认','取消'], function (e) {
                     if (!e.index) {

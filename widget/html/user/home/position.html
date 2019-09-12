@@ -85,13 +85,13 @@
             uid: localStorage.getItem("person_id")
         }
 
-        // console.log(obj)
+        // //console.log(obj)
         ajaxGetWithProgress(querySuccessLogin, obj, function (data, err) {
-            // console.log("homeData",data)
+            // //console.log("homeData",data)
             if (data.date == 1) {
 
                 mui.confirm('您还未完善资料', '',['确认','取消'], function (e) {
-                    console.log("mumiicomfir",e)
+                    //console.log("mumiicomfir",e)
                     if (e.index == 0){
                         openNewWindow("resume_editResume", "../mine/resume_editResume.html")
                     }else if (e.index == 1){

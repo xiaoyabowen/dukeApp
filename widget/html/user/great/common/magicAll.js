@@ -58,7 +58,7 @@ function magicAllInit(Vue) {
 
 
             this.$watch("listJob",function (ret) {
-                console.log("retert",ret)
+                //console.log("retert",ret)
             })
         },
 
@@ -66,9 +66,9 @@ function magicAllInit(Vue) {
             commodityList : function (){
 
                 var that = this
-                console.log("that.tId",that.tId)
+                //console.log("that.tId",that.tId)
                 ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                    console.log("commodityList",data)
+                    //console.log("commodityList",data)
                     var jobList = data.comList
                     if (data) {
                         if (jobList == null) {
@@ -102,7 +102,7 @@ function magicAllInit(Vue) {
                 var isBlck = document.querySelector('.bgBlack')
                 if (isBlck.getAttribute("class") == 'isDisplay') {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    //console.log(document.querySelector('.bgBlack'))
                 } else {
                     var that = this;
                     that.active = 'magicAll';
@@ -116,8 +116,8 @@ function magicAllInit(Vue) {
             },
             jobDetailClick: function (cid, comName,index,tid) {
                 var that = this
-                console.log("12",cid)
-                console.log("34",comName)
+                //console.log("12",cid)
+                //console.log("34",comName)
                 this.timeIndex = index;
 
                 if (tid == 1){

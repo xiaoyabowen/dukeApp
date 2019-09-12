@@ -694,7 +694,7 @@
                     api.addEventListener({
                         name: 'myorder',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         this.orderAll('all', 1)
 
                     });
@@ -704,7 +704,7 @@
                     api.addEventListener({
                         name: 'myordernotpay',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         this.orderNotPay('notpay', 5)
 
                     });
@@ -724,7 +724,7 @@
                 api.addEventListener({
                     name: 'myorder',
                 }, function(ret, err) {
-                    console.log(ret);
+                    //console.log(ret);
 
                     this.active = 'all';
 
@@ -732,7 +732,7 @@
                 api.addEventListener({
                     name: 'myordernotpay',
                 }, function(ret, err) {
-                    console.log(ret);
+                    //console.log(ret);
 
                     this.active = 'notpay';
                     this.orderNotPay('notpay', 5)
@@ -747,7 +747,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(allCommodityOrder,obj,function (data) {
-                        console.log("alldata",data)
+                        //console.log("alldata",data)
                         that.listall = data.Order;
                     })
                 },
@@ -758,7 +758,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(queryPayOrderByPidCommodityProFile,obj,function (data) {
-                        console.log("paydata",data)
+                        //console.log("paydata",data)
                         that.listpay = data.PayOrder;
                     })
                 },
@@ -769,7 +769,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(queryNoOrderByPidCommodityProFile,obj,function (data) {
-                        console.log("orderNotPay",data)
+                        //console.log("orderNotPay",data)
                         that.listnotpay = data.NoOrder;
                     })
                 },
@@ -780,7 +780,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(takeCommodityOrderCommodityProFile,obj,function (data) {
-                        console.log("orderWait",data)
+                        //console.log("orderWait",data)
                         that.listwait = data.TakeOrder;
                     })
                 },
@@ -791,7 +791,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(evaCommodityOrderCommodityProFile,obj,function (data) {
-                        console.log("orderStar",data)
+                        //console.log("orderStar",data)
                         that.liststar = data.EvaOrder;
                     })
                 },
@@ -810,12 +810,12 @@
                 payGoClick : function (item) {
                     var that = this
                     toast("付款")
-                    console.log("itemitem",item.bId)
+                    //console.log("itemitem",item.bId)
 
                     if (item.payType == '微信') {
 
                         mui.alert('weixin', '提示', function (e) {
-                            console.log(e)
+                            //console.log(e)
                             if (e.index == 0) {
 
                             }
@@ -834,7 +834,7 @@
                             payType: "支付宝",
                             adrId : item.adr.name + ',' + item.adr.phone + ',' +item.adr.address+','+ item.adr.addrDetails
                         }
-                        console.log(obj)
+                        //console.log(obj)
                         api.ajax({
                             url: 'http://192.168.1.24:8088/pay/GoPayOrder',  //url+模块
                             // url: 'http://192.168.1.24:8088/pay/GoPayOrder',  //url+模块
@@ -846,7 +846,7 @@
                             }
                         }, function (ret, err) {
                             //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                            console.log("自己处理订单信息以及签名过程请求:", ret);
+                            //console.log("自己处理订单信息以及签名过程请求:", ret);
                             var aliPayPlus = api.require('aliPayPlus');
                             aliPayPlus.payOrder({
                                 orderInfo: ret,
@@ -855,7 +855,7 @@
 
 
                             }, function (ret, err) {
-                                console.log(ret)
+                                //console.log(ret)
                                 var msg = ret.code
 
                                 if (msg == 9000) {
@@ -919,7 +919,7 @@
                             adrId : item.adr.name + ',' + item.adr.phone + ',' +item.adr.address+','+ item.adr.addrDetails
                         }
 
-                        console.log(obj)
+                        //console.log(obj)
 
 
                         api.ajax({
@@ -932,13 +932,13 @@
                                 values: obj
                             }
                         },function(ret,err){
-                            console.log("yinlian",ret)
+                            //console.log("yinlian",ret)
                             if (ret) {
                                 unPay.pay({
                                     tn: ret,
                                     devMode: true
                                 }, function(ret, err){
-                                    console.log("pay",ret)
+                                    //console.log("pay",ret)
                                     if (ret.result == "success"){
                                         mui.alert('支付成功', '提示', function (e) {
                                             if (e.index == 0) {
@@ -970,7 +970,7 @@
                         pId: that.person_id,
                         bank: that.bank
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (!data.date) {
                             mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
                                 if (e.index) {
@@ -1011,7 +1011,7 @@
                         bId : bId,
                     }
                     ajaxGetWithProgress(CommodityProFileRemind,obj,function (data) {
-                        console.log("tixing",data)
+                        //console.log("tixing",data)
                         if (data) {
                             toast("提醒成功")
                             that.orderAll('all', 1)
@@ -1027,7 +1027,7 @@
                         bId : bId,
                     }
                     ajaxGetWithProgress(CommodityProFileRemind,obj,function (data) {
-                        console.log("queren",data)
+                        //console.log("queren",data)
                         if (data) {
                             toast("确认收货成功")
                             that.orderAll('all', 1)
@@ -1043,7 +1043,7 @@
                         bid : bId,
                     }
                     ajaxGetWithProgress(deleteOrderCommodityProFile,obj,function (data) {
-                        console.log("删除",data)
+                        //console.log("删除",data)
                         if (data) {
                             toast("删除成功")
                             that.orderAll('all', 1)

@@ -224,11 +224,11 @@
         })
     }
     function set_resume_SkillLabel(value) {
-        console.log(value);
+        // console.log(value);
         var tag = document.querySelector('.info-edit-skill');
         var tags = [];
         var title = value.split(',');
-        console.log(title);
+        // console.log(title);
         title.forEach(function (value) {
             var str = '<li>'+ value +'</li>';
             tags.push(str);
@@ -335,13 +335,13 @@
             u_id: person_id
         }
 
-        console.log(params);
+        // console.log(params);
 
-        console.log(JSON.stringify(params));
+        // console.log(JSON.stringify(params));
         ajaxGetWithProgress(AddWork, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.warn(JSON.stringify(data));
-            console.warn(JSON.stringify(err));
+            // console.warn(JSON.stringify(data));
+            // console.warn(JSON.stringify(err));
             if (data.return_info.status) {
                 api.toast({
                     msg: '编辑工作经历成功'

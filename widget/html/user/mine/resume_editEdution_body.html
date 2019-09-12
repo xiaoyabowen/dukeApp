@@ -157,7 +157,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.querySelector('.entry_date').innerText = selectItems.text;
         })
@@ -173,7 +173,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.querySelector('.quit_date').innerText = selectItems.text;
         })
@@ -202,7 +202,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.querySelector('.education').innerText = SelectedItem[0].text;
         })
 
@@ -211,14 +211,14 @@
     // 删除此段教育经历
     function deleteEdution() {
         mui.confirm('是否删除此教育经历?', function (e) {
-            console.log(e)
+            // console.log(e)
             if (e.index === 1) {
                 var obj = {
                     univ_id: univ_id
                 }
                 ajaxGetWithProgress(DeleteEducation,obj,function(res,err) {
                     // api.alert({mas: JSON.stringify(res)});
-                    console.log(res);
+                    // console.log(res);
                     if (res && res.return.status) {
                         api.toast({
                             msg: '删除教育经历成功'

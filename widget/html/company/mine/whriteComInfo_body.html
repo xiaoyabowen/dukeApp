@@ -292,7 +292,7 @@
                             uid: uid
                         }
                         ajaxGetWithProgress(queryOrgnizationInformation,obj,function (data,ret) {
-                            console.log(data)
+                            ////console.log(data)
                             if (data){
                                 that.comUploadIn = imgSrcFun(data.logo_icon)
                                 that.homepage = data.homepage
@@ -311,22 +311,22 @@
 
                     this.indusListActive = index;
                     this.indusListText = itemIn.name;
-                    console.log(this.indusListText)
+                    ////console.log(this.indusListText)
                 },
                 comscaleList : function (item,index){   //公司规模
                     this.comscaleActive = index;
                     this.comscaleText = item.name;
-                    console.log(this.comscaleText)
+                    //console.log(this.comscaleText)
                 },
                 restList : function (item,index){   //公司规模
                     this.restActive = index;
                     this.restText = item.name;
-                    console.log(this.restText)
+                    //console.log(this.restText)
                 },
                 overtimeList : function (item,index){   //公司规模
                     this.overtimeActive = index;
                     this.overtimeText = item.name;
-                    console.log(this.overtimeText)
+                    //console.log(this.overtimeText)
                 },
                 wuploadimg : function () {
                     var that = this
@@ -346,7 +346,7 @@
                             var obj = {
                                 uid : localStorage.getItem("person_id")
                             }
-                            console.log(JSON.stringify(ret));
+                            //console.log(JSON.stringify(ret));
                             //上传剪辑后的图像到服务器
                             api.ajax({
                                 // report : false,
@@ -364,13 +364,13 @@
                                     values:obj
                                 }
                             }, function (ret, err) {
-                                console.log(ret);
+                                //console.log(ret);
                                 var pathImgImg = ret.imgUrl
                                 if (pathImgImg == ''){
                                     that.comUploadIn = '../../../image/company/cominfo.png'
                                 }else{
                                     var pathImgData = pathImgImg.split(",")
-                                    console.log(pathImgData)
+                                    //console.log(pathImgData)
                                     that.comUploadIn = pathImgData[0]
                                 }
 
@@ -378,7 +378,7 @@
 
                             });
                         } else {
-                            console.log(JSON.stringify(err));
+                            //console.log(JSON.stringify(err));
                         }
 
                     });
@@ -390,7 +390,7 @@
 
                     })
                     dtpicker.show(function(e) {
-                        console.log(e);
+                        //console.log(e);
                         that.s_time = e.value
                     })
                 },
@@ -401,7 +401,7 @@
 
                     })
                     dtpicker.show(function(e) {
-                        console.log(e);
+                        //console.log(e);
                         that.x_time = e.value
                     })
                 },
@@ -453,9 +453,9 @@
                         break_time : that.restText,
                         work_overtime : that.overtimeText,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(createOrgnization,obj,function (data,ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

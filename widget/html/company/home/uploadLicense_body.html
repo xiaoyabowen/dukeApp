@@ -77,7 +77,7 @@
                 var obj = {
                     uid : localStorage.getItem("person_id")
                 }
-                console.log(JSON.stringify(ret));
+                //console.log(JSON.stringify(ret));
                 //上传剪辑后的图像到服务器
                 api.ajax({
                     // report : false,
@@ -95,17 +95,17 @@
                         values:obj
                     }
                 }, function (ret, err) {
-                    console.log(123,ret);
+                    //console.log(123,ret);
                     var pathImgImg = ret.imgUrl
 
                     var pathImgData = pathImgImg.split(",")
-                    console.log(pathImgData)
+                    //console.log(pathImgData)
                     document.querySelector(".up-logo-img").src = pathImgData[0]
                     api.hideProgress();
 
                 });
             } else {
-                console.log(JSON.stringify(err));
+                //console.log(JSON.stringify(err));
             }
         });
     }
@@ -116,7 +116,7 @@
             c_id : localStorage.getItem("com_id")
         }
         ajaxGetWithProgress(OrgnizationProfileUploadBusiness,obj,function (data,ret) {
-            console.log(data)
+            //console.log(data)
             if(data){
                 openNewWindow("inAuthen", "./inAuthen.html")
             }

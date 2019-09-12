@@ -139,7 +139,7 @@
         var uid = localStorage.getItem("person_id");
         params.person_id = uid
         ajaxGetWithProgress(queryHomePage, params, function (data, err) {
-            console.log(data)
+            // console.log(data)
             var proPageArr = data.queryHomePage
             if (data) {
                 for (var i=0;i<proPageArr.length;i++){
@@ -323,11 +323,11 @@
             p_id: person_id,
             pro_id:''
         }
-        console.log(params)
+        // console.log(params)
 
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data)
+            // console.log(data)
             if (data.return_info.status == true) {
                 openNewWindow("home", "../home/home.html")
             }else{

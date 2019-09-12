@@ -97,7 +97,7 @@
                             idcard: that.number,
                             bankname: that.bankname
                         }, function (data, err) {
-                            console.log(data);
+                            //console.log(data);
 
                             if (data.status == '01') {
                                 openNewWindow("codePhone", "./codePhone.html", {
@@ -121,7 +121,7 @@
                     },
                     // 点击下一步
                     nextHandle: function () {
-                        console.log(this.text, this.number);
+                        //console.log(this.text, this.number);
                         var that = this;
                         openNewWindow("codePhone", "./codePhone.html", {
                             pname: that.name,

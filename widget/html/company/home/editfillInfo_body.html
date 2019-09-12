@@ -100,7 +100,7 @@
             person_id:uid
         }
         ajaxGetWithProgress(queryPersonByidnUserProfile,obj,function (data,ret) {
-            console.log("datadatadata",data)
+            //console.log("datadatadata",data)
             if (data){
                 document.querySelector(".uploadIn").src = imgSrcFun(data.p_icon);
                 document.getElementById("fillName").innerText = data.p_name;
@@ -128,7 +128,7 @@
         })
     }
     function edit_fillName(value) {
-        console.log(value)
+        //console.log(value)
         document.getElementById("fillName").innerText = value;
     }
 
@@ -192,7 +192,7 @@
                 var obj = {
                     uid : localStorage.getItem("user")
                 }
-                console.log("datadret",ret);
+                //console.log("datadret",ret);
                 //上传剪辑后的图像到服务器
                 api.ajax({
                     url: 'http://192.168.1.24:8088/upload/UploadFlie',
@@ -208,13 +208,13 @@
                         values:obj
                     }
                 }, function (ret, err) {
-                    console.log(123,ret);
+                    //console.log(123,ret);
                     var pathImgImg = ret.imgUrl
                     if (pathImgImg == ''){
                         document.querySelector(".uploadIn").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
                     }else{
                         var pathImgData = pathImgImg.split(",")
-                        console.log(pathImgData)
+                        //console.log(pathImgData)
                         document.querySelector(".uploadIn").src = pathImgData[0]
                     }
 
@@ -222,7 +222,7 @@
 
                 });
             } else {
-                console.log(JSON.stringify(err));
+                //console.log(JSON.stringify(err));
             }
         });
     }
@@ -238,11 +238,11 @@
             c_id:document.getElementById("fillId").innerText
 
         }
-        console.log(obj)
+        //console.log(obj)
 
         ajaxGetWithProgress("http://192.168.1.24:8000/SE4M/addRecruiter", obj, function (data, err) {
             if (data.date = "1"){
-                console.log(data)
+                //console.log(data)
                 var frameName = urlED + "_body";
                 api.execScript({
                     name:urlED,

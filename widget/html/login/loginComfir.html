@@ -214,7 +214,7 @@
         apiready = function () {
             phone = api.pageParam.phoneValue
             url = api.pageParam.url
-            console.log(phone)
+            //console.log(phone)
             // phone = "15901420539"
             var header = $api.dom('#topbar');
             $api.fixStatusBar(header);
@@ -272,7 +272,7 @@
                                 var obj = {
                                     uid: localStorage.getItem("person_id")
                                 }
-                                console.log(JSON.stringify(ret));
+                                //console.log(JSON.stringify(ret));
                                 //上传剪辑后的图像到服务器
                                 api.ajax({
                                     // report : false,
@@ -290,13 +290,13 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log(123, ret);
+                                    //console.log(123, ret);
                                     var pathImgImg = ret.imgUrl
                                     if (pathImgImg == '') {
                                         that.logoUser = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/q9ej4b0i96jy58c8.png'
                                     } else {
                                         var pathImgData = pathImgImg.split(",")
-                                        console.log(pathImgData)
+                                        //console.log(pathImgData)
                                         that.logoUser = pathImgData[0]
                                     }
 
@@ -305,7 +305,7 @@
 
                                 });
                             } else {
-                                console.log(JSON.stringify(err));
+                                //console.log(JSON.stringify(err));
                             }
                         });
                     },
@@ -326,7 +326,7 @@
                                 var obj = {
                                     uid: localStorage.getItem("person_id")
                                 }
-                                console.log(JSON.stringify(ret));
+                                //console.log(JSON.stringify(ret));
                                 //上传剪辑后的图像到服务器
                                 api.ajax({
                                     // report : false,
@@ -344,27 +344,27 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log(123, ret);
+                                    //console.log(123, ret);
                                     var pathImgImg = ret.imgUrl
                                     if (pathImgImg == '') {
                                         that.logoCom = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
                                     } else {
                                         var pathImgData = pathImgImg.split(",")
-                                        console.log(pathImgData)
+                                        //console.log(pathImgData)
                                         that.logoCom = pathImgData[0]
                                     }
                                     api.hideProgress();
 
                                 });
                             } else {
-                                console.log(JSON.stringify(err));
+                                //console.log(JSON.stringify(err));
                             }
                         });
                     },
                     funPass: function () {
                         var that = this
-                        console.log(that.userPass)
-                        console.log(that.userAgainPass)
+                        //console.log(that.userPass)
+                        //console.log(that.userAgainPass)
                         if (that.userPass != that.userAgainPass) {
                             toast("两次密码不一致");
                             that.userAgainPass = ''
@@ -418,9 +418,9 @@
                                 phone: that.phone
                             }
 
-                            console.log("wxPhone", obj)
+                            //console.log("wxPhone", obj)
                             ajaxGetWithProgress(ChatRegistToken, obj, function (data) {
-                                console.log("ChatRegist111", data)
+                                //console.log("ChatRegist111", data)
                                 api.hideProgress();
 
                                 if (data){
@@ -450,9 +450,9 @@
                                 phone: that.phone
                             }
 
-                            console.log(obj)
+                            //console.log(obj)
                             ajaxGetWithProgress(CreatePersonBasicUserProfile, obj, function (data) {
-                                console.log(data)
+                                //console.log(data)
                                 api.hideProgress();
                                 if (data.PersonBasicMessage.return.status) {
                                     if (data.PersonBasicMessage.role_type == 2) {

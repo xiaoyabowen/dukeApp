@@ -213,7 +213,7 @@
         arr.push(list[i]);
         arr.push('</span>');
     }
-    console.log(arr)
+    // console.log(arr)
     var str = arr.join('');
     tagBox.innerHTML = str;
 
@@ -246,7 +246,7 @@
     }
 
     // var titleHtml = document.querySelector(".titleText").innerText;
-    console.log(titleHtml)
+    // console.log(titleHtml)
     var action = document.querySelector('.action');
     var ulBox = document.getElementById('ul_box');
     action.onclick = function () {
@@ -275,13 +275,13 @@
         }, function(ret) {
             if (ret) {
 
-                console.log("fanhuid",ret)
+                // console.log("fanhuid",ret)
                 var imgListArr = {}
                 var imgList = ret.list
                 for (var i=0;i<imgList.length;i++){
                     imgListArr["file"+(i+1)] = imgList[i].thumbPath
                 }
-                console.log(imgListArr)
+                // console.log(imgListArr)
 
                 api.ajax({
                     // report : false,
@@ -299,10 +299,10 @@
                     }
                 }, function (data, err) {
 
-                    console.log(data)
+                    // console.log(data)
                     picture = data.imgUrl
                     var retImg = stringFun(data.imgUrl)
-                    console.log(retImg)
+                    // console.log(retImg)
                     var ulBox = document.getElementById('ul_box');
                     var ulBoxLi = ''
                     // ulBoxLi +='<li class="action"></li>'
@@ -311,7 +311,7 @@
                     }
                     ulBox.innerHTML = ulBoxLi
 
-                    console.log(ulBox)
+                    // console.log(ulBox)
 
                 });
 
@@ -323,7 +323,7 @@
 
     getId = genID(32)
     function quesSubmit() {
-        console.log(getId)
+        // console.log(getId)
         api.showProgress();
         var question = document.querySelector(".ques-textarea").value;
         var contact = document.querySelector(".ques-contact-name").innerText;
@@ -336,7 +336,7 @@
             id:getId,
             pic: picture
         }
-        console.log(obj)
+        // console.log(obj)
         api.ajax({
             // report : false,
             url:addFeedback,
@@ -351,7 +351,7 @@
             }
         }, function (ret, err) {
             api.hideProgress();
-            console.log(ret)
+            // console.log(ret)
             if (ret.return_info.status){
                 var frameName = url + "_body";
                 api.execScript({

@@ -221,7 +221,7 @@
                         }
                     );
                     dtpicker.show(function (selectItems) {
-                        console.log(selectItems.text)
+                        //console.log(selectItems.text)
                         that.time = selectItems.text
                     })
                 },
@@ -233,14 +233,14 @@
                     picker.setData(cityData3)
                     picker.pickers[0].setSelectedIndex(0);
                     picker.show(function (SelectedItem) {
-                        console.log(SelectedItem[0].text);
+                        //console.log(SelectedItem[0].text);
                         that.userAdr = SelectedItem[0].text + '-' + SelectedItem[1].text + '-' + SelectedItem[2].text;
                     })
                 },
                 userContact: function () {
                     var that = this
                     mui.prompt('', '请填写姓名', '请填写姓名', ['确定', '取消'], function (e) {
-                        // console.log(e)
+                        // //console.log(e)
                         if (e.index === 0) {
                             that.userName = e.value;
                         }
@@ -250,7 +250,7 @@
                 userPhoneInput: function () {
                     var that = this
                     mui.prompt('', '请填写手机号', '请填写手机号', ['确定', '取消'], function (e) {
-                        // console.log(e)
+                        // //console.log(e)
                         if (e.index === 0) {
                             that.userPhone = e.value;
                         }
@@ -268,11 +268,11 @@
                         adr_id: that.userAdr + ',' + that.jobAddress,
                         app_id: that.app_id,
                     }
-                    console.log(obj)
+                    //console.log(obj)
 
                     ajaxGetWithProgress(UpdateStatus, obj, function (data, ret) {
 
-                        console.log(data)
+                        //console.log(data)
                         if (data.return_info.status) {
                             toast("发送offer成功")
                             // openNewWindow("resume", "./comment/resume.html")

@@ -13,10 +13,10 @@ var store = new Vuex.Store({
     mutations: {
 
         isPage: function(state, page) {
-            console.log(state)
+            //console.log(state)
         },
         upData: function(state, obj) {
-            console.log("upDatmutationsa",obj)
+            //console.log("upDatmutationsa",obj)
             state.obj.c_id = obj.magicComCid1
             state.obj.c_name = obj.magicCom1Text
             state.obj.logo_icon = obj.magicCom1Img

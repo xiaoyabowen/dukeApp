@@ -103,7 +103,7 @@
                 api.addEventListener({
                     name: 'jobAll'+that.tId,
                 }, function(ret, err) {
-                    console.log("ret",ret);
+                    //console.log("ret",ret);
                     that.cid = ret.value.key.cid
                     that.summary()
 
@@ -118,7 +118,7 @@
                         cid: that.cid,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.Commodity) {
                             that.item = data.Commodity;
                             that.imgsBanner = data.intpic;
@@ -162,7 +162,7 @@
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        console.log(data,'163333');
+                        //console.log(data,'163333');
                         if (data.commcollect) {
                             toast("已收藏")
 
@@ -183,9 +183,9 @@
                         id: that.att_id,
                         ccStatus: 0,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(collectComm, obj, function(data,err){
-                        console.log(data,'1866666');
+                        //console.log(data,'1866666');
                         if (data.commcollect) {
                             toast("已取消收藏")
                             // window.location.reload()

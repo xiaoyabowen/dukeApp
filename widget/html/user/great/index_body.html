@@ -195,9 +195,8 @@
                     }, 1500)
                 },
                 juClick : function (tid) {
-
                     ajaxGetWithProgress(commodityList,{tid : tid },function (data) {
-                        console.log("commodityList",data)
+                        //console.log("commodityList",data)
                         if (tid == 1) {
                             openNewWindow("index", "facial/index.html", {
                                 cid: data.cid,
@@ -225,19 +224,10 @@
                             })
                         }
                     })
-
-
                 }
-
             }
         })
-
-
     }
-
-
-    // apiready();
-
 
 </script>
 </body>

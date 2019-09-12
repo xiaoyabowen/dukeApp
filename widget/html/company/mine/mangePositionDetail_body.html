@@ -114,7 +114,7 @@
                         job_id: job_id
                     }
                     ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data) {
                             that.posiName = data.job_name || ""
                             that.posiYear = data.work_ex
@@ -144,7 +144,7 @@
                         status: status
                     }
                     ajaxGetWithProgress(ICjobsJobProfile, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({
@@ -165,7 +165,7 @@
                         status: status
                     }
                     ajaxGetWithProgress(ICjobsJobProfile, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

@@ -215,7 +215,7 @@
             ajaxGetWithProgress(queryDynamicSummaryById, {
                 com_dynamic_id: ID
             }, function(data, err) {
-                console.log(data)
+                // console.log(data)
                 document.querySelector(".modal-news").innerHTML = '<div class="subspace subspaceNew">' +
                     '<div class="subspace">\n' +
                     '        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">\n' +
@@ -258,27 +258,27 @@
                 closeOnKeyBack();
             });
 
-            console.log(api.pageParam,'2616111');
+            // console.log(api.pageParam, '2616111');
             cid = api.pageParam.cid;
             c_id = api.pageParam.c_id;
             uid = localStorage.getItem("person_id");
             if (cid) {
                 companyId(cid)
             }
-              console.log(cid,'2699999',c_id)
+            // console.log(cid, '2699999', c_id)
             if (cid || c_id) {
                 document.querySelector(".comTitle").innerHTML == '';
                 var obj = {
                     person_id: uid,
-                    ms_type:0,
+                    ms_type: 0,
                 }
 
-                if(cid){
-                  obj.cid = cid;
+                if (cid) {
+                    obj.cid = cid;
                 }
 
-                if(c_id){
-                  obj.cid = c_id;
+                if (c_id) {
+                    obj.cid = c_id;
                 }
 
                 var infoListHtml = ''
@@ -287,7 +287,7 @@
                 var html2 = ''
                 var html3 = '';
                 ajaxGetWithProgress(QueryOrgnizationSummary, obj, function(data, err) {
-                    console.log("data", data);
+                    // console.log("data", data);
                     document.querySelector('.subBox').classList.remove('isDisplay');
                     var dataSummary = data.Orgnization_summary
                         // var companySummary = data.companySummary.Result    //企查查  信息
@@ -308,44 +308,47 @@
                     }
                     var adressData = data.address;
 
-                    // 公司头部
-                    if (attentionCompany.att_status == 0) {
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
-                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                    } else if (attentionCompany.att_status == 1) {
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
-                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                    }
-                    document.querySelector(".comTitle").innerHTML +=
-                        '<div class="comintobox cssFlex">' +
-                        '<div class="comInfo">' +
-                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                        '                    <p class="comInfoCon comInfoConMar">\n' +
-                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.org_type + '</span>\n' +
-                        '                    </p>\n' +
-                        '                    <p class="timeInfo cssFlex">\n' +
-                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                        '                        <span>' + dataSummary.s_time + '</span>\n' +
-                        '                        <i>-</i>\n' +
-                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                        '                    </p>\n' +
-                        '                </div>\n' +
-                        '                <div class="comLogo">\n' +
-                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                        '                </div>' +
-                        '                </div>'
+                    // 搜索
+                    if (c_id) {
+                        // 公司头部
+                        if (attentionCompany.att_status == 0) {
+                            document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
+                                '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+                        } else if (attentionCompany.att_status == 1) {
+                            document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
+                                '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+                        }
+                        document.querySelector(".comTitle").innerHTML +=
+                            '<div class="comintobox cssFlex">' +
+                            '<div class="comInfo">' +
+                            '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
+                            '                    <p class="comInfoCon comInfoConMar">\n' +
+                            '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
+                            '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
+                            '                        <span>' + dataSummary.org_type + '</span>\n' +
+                            '                    </p>\n' +
+                            '                    <p class="timeInfo cssFlex">\n' +
+                            '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
+                            '                        <span>' + dataSummary.s_time + '</span>\n' +
+                            '                        <i>-</i>\n' +
+                            '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
+                            '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
+                            '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
+                            '                        <span>' + dataSummary.work_overtime + '</span>\n' +
+                            '                    </p>\n' +
+                            '                </div>\n' +
+                            '                <div class="comLogo">\n' +
+                            '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
+                            '                </div>' +
+                            '                </div>'
 
-                    //公司头部
+                        //公司头部
+                    }
+
 
                     if (data) {
 
                         // 公司标签
-
 
                         document.querySelector(".job-text").innerHTML = dataSummary.summary //公司介绍
                         var product_hishtml = ''
@@ -493,7 +496,7 @@
                 var html2 = ''
                 var html3 = '';
                 ajaxGetWithProgress(QueryOrgnizationSummary, obj, function(data, err) {
-                    console.log(data);
+                    // console.log(data);
                     document.getElementById("comTitleId").innerHTML = ''
                     var dataSummary = data.Orgnization_summary
                         // var companySummary = data.companySummary.Result    //企查查  信息
@@ -504,7 +507,7 @@
                     var DynamicList = data.DynamicList //  公司动态
                     var attentionCompany = data.attentionCompany //  关注状态
                         // 公司标签
-                        console.log(welfare,'aaa')
+                    // console.log(welfare, 'aaa')
                     var welData = welfare.split(",")
                     for (var i = 0; i < welData.length; i++) {
                         infoListHtml += '<span>' + welData[i] + '</span>'
@@ -513,7 +516,7 @@
                     var adressData = data.address
                     if (data) {
                         // 公司头部
-                        console.log(data,'公司头部')
+                        // console.log(data, '公司头部')
                         api.hideProgress();
                         if (attentionCompany.att_status == 0) {
                             document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
@@ -572,59 +575,59 @@
                         document.querySelector(".homepage").innerHTML = dataSummary.homepage
 
                         // 公司照片
-                        if(PIClist && PIClist.length > 0){
-                          for (var i = 0; i < PIClist.length; i++) {
-                              PIClistHtml += '<div class="swiper-slide">\n' +
-                                  // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
-                                  '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
-                                  '                                            </div>'
-                          }
-                          document.querySelector(".PIClistBox").innerHTML = PIClistHtml
+                        if (PIClist && PIClist.length > 0) {
+                            for (var i = 0; i < PIClist.length; i++) {
+                                PIClistHtml += '<div class="swiper-slide">\n' +
+                                    // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
+                                    '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
+                                    '                                            </div>'
+                            }
+                            document.querySelector(".PIClistBox").innerHTML = PIClistHtml
                         }
 
-                        if(JobList && JobList.length > 0){
-                          for (var i = 0; i < JobList.length; i++) {
-                            html2 += '<div class="jobBox cssFlex" >\n' +
-                                '                                        <div class="job-left">\n' +
-                                '                                            <h4 class="job-nameNm">' + JobList[i].job_name + '</h4>\n' +
-                                '                                            <p class="job-name">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="adress-job">\n' +
-                                '                                                <span>' + JobList[i].province + '-' + JobList[i].city + '-' + JobList[i].street + '</span>\n' +
-                                '                                                <span>' + JobList[i].work_ex + '</span>\n' +
-                                '                                                <span>' + JobList[i].edu_ex + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="job-img-content cssFlex">\n' +
-                                '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
-                                '                                                <i>·</i>\n' +
-                                '                                                <span>人力资源经理</span>\n' +
-                                '                                            </p>\n' +
-                                '                                        </div>\n' +
-                                '                                        <!--薪资 日期-->\n' +
-                                '                                        <div class="job-right ">\n' +
-                                '                                            <p class="moneyNum">20k-30K</p>\n' +
-                                '                                            <p class="date-job" >4月17日</p>\n' +
-                                '                                        </div>\n' +
-                                '                                    </div>';
-                        }
+                        if (JobList && JobList.length > 0) {
+                            for (var i = 0; i < JobList.length; i++) {
+                                html2 += '<div class="jobBox cssFlex" >\n' +
+                                    '                                        <div class="job-left">\n' +
+                                    '                                            <h4 class="job-nameNm">' + JobList[i].job_name + '</h4>\n' +
+                                    '                                            <p class="job-name">\n' +
+                                    '                                                <span>' + JobList[i].c_name + '</span>\n' +
+                                    '                                            </p>\n' +
+                                    '                                            <p class="adress-job">\n' +
+                                    '                                                <span>' + JobList[i].province + '-' + JobList[i].city + '-' + JobList[i].street + '</span>\n' +
+                                    '                                                <span>' + JobList[i].work_ex + '</span>\n' +
+                                    '                                                <span>' + JobList[i].edu_ex + '</span>\n' +
+                                    '                                            </p>\n' +
+                                    '                                            <p class="job-img-content cssFlex">\n' +
+                                    '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
+                                    '                                                <span>' + JobList[i].c_name + '</span>\n' +
+                                    '                                                <i>·</i>\n' +
+                                    '                                                <span>人力资源经理</span>\n' +
+                                    '                                            </p>\n' +
+                                    '                                        </div>\n' +
+                                    '                                        <!--薪资 日期-->\n' +
+                                    '                                        <div class="job-right ">\n' +
+                                    '                                            <p class="moneyNum">20k-30K</p>\n' +
+                                    '                                            <p class="date-job" >4月17日</p>\n' +
+                                    '                                        </div>\n' +
+                                    '                                    </div>';
+                            }
                         }
                         document.getElementById("tab2").innerHTML = html2
-                        if(DynamicList && DynamicList.length>0){
-                          for (var i = 0; i < DynamicList.length; i++) {
-                              html3 +=
-                                  '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
-                                  '                                            <h4 class="sizeTitle">\n' +
-                                  '                                                ' + DynamicList[i].title + '\n' +
-                                  '                                            </h4>\n' +
-                                  '                                            <p>\n' +
-                                  '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
-                                  '                                            </p>\n' +
-                                  '                                        </li>';
-                          }
+                        if (DynamicList && DynamicList.length > 0) {
+                            for (var i = 0; i < DynamicList.length; i++) {
+                                html3 +=
+                                    '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
+                                    '                                            <h4 class="sizeTitle">\n' +
+                                    '                                                ' + DynamicList[i].title + '\n' +
+                                    '                                            </h4>\n' +
+                                    '                                            <p>\n' +
+                                    '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
+                                    '                                            </p>\n' +
+                                    '                                        </li>';
+                            }
 
-                          document.querySelector(".componySize").innerHTML = html3
+                            document.querySelector(".componySize").innerHTML = html3
                         }
                     }
 
@@ -683,7 +686,7 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret", ret);
+                        // console.log("ret", ret);
                         that.active = ret.value.key.magicCom1;
 
                         /*localStorage.setItem("magic_id",ret.value.key.c_id)
@@ -693,7 +696,7 @@
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret", ret);
+                        // console.log("ret", ret);
                         that.active = ret.value.key.magicCom2;
 
                         /*localStorage.setItem("magic_id2",ret.value.key.c_id)
@@ -703,7 +706,7 @@
                     api.addEventListener({
                         name: 'jobAll',
                     }, function(ret, err) {
-                        console.log("ret", ret);
+                        // console.log("ret", ret);
                         companyId(ret.value.key.job_id)
                     });
 
@@ -740,7 +743,7 @@
                     MenuListQyMenu: function() {
                         var that = this
                         ajaxGetWithProgress(MenuListQyMenu, {}, function(data) {
-                            console.log("magicall1234", data)
+                            // console.log("magicall1234", data)
                             var jobList = data.job
                             if (data) {
                                 if (jobList == null) {
@@ -790,7 +793,7 @@
         }
 
         function jobClickDetail(jobid) {
-            console.log("jobid", jobid)
+            // console.log("jobid", jobid)
             openNewWindow("position", "./position.html", {
                 job_id: jobid,
                 h_type: 0,
@@ -822,41 +825,41 @@
 
             }
             ajaxGetWithProgress(attentionCompanyByCid, obj, function(data, err) {
-                console.log(data)
+                // console.log(data)
                 if (data) {
-                  if(document.querySelector('.follow-btn')){
-                    if(document.querySelector('.follow-btn') && document.querySelector('.follow-btn').innerHTML == '关注'){
-                        document.querySelector('.follow-btn').innerHTML = '已关注';
-                        document.querySelector('.follow-btn').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
-                        document.querySelector('.follow-btn').style.color='#fff';
-                        document.querySelector('.follow-btn').style.backgroundSize= '0.16rem 0.16rem';
-                        // background: url("../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)
-                    }else{
-                      document.querySelector('.follow-btn').innerHTML = '关注';
-                      document.querySelector('.follow-btn').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
-                      document.querySelector('.follow-btn').style.color='rgba(99,139,255,1)';
-                      document.querySelector('.follow-btn').style.backgroundSize= '0.16rem 0.16rem';
+                    if (document.querySelector('.follow-btn')) {
+                        if (document.querySelector('.follow-btn') && document.querySelector('.follow-btn').innerHTML == '关注') {
+                            document.querySelector('.follow-btn').innerHTML = '已关注';
+                            document.querySelector('.follow-btn').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
+                            document.querySelector('.follow-btn').style.color = '#fff';
+                            document.querySelector('.follow-btn').style.backgroundSize = '0.16rem 0.16rem';
+                            // background: url("../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)
+                        } else {
+                            document.querySelector('.follow-btn').innerHTML = '关注';
+                            document.querySelector('.follow-btn').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
+                            document.querySelector('.follow-btn').style.color = 'rgba(99,139,255,1)';
+                            document.querySelector('.follow-btn').style.backgroundSize = '0.16rem 0.16rem';
+                        }
+                    } else {
+                        if (document.querySelector('.follow-btnbg') && document.querySelector('.follow-btnbg').innerHTML == '已关注') {
+                            document.querySelector('.follow-btnbg').innerHTML = '关注';
+                            document.querySelector('.follow-btnbg').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
+                            document.querySelector('.follow-btnbg').style.color = 'rgba(99,139,255,1)';
+                            document.querySelector('.follow-btnbg').style.backgroundSize = '0.16rem 0.16rem';
+                        } else {
+                            document.querySelector('.follow-btnbg').innerHTML = '已关注';
+                            document.querySelector('.follow-btnbg').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
+                            document.querySelector('.follow-btnbg').style.color = '#fff';
+                            document.querySelector('.follow-btnbg').style.backgroundSize = '0.16rem 0.16rem';
+                        }
                     }
-                  }else{
-                    if(document.querySelector('.follow-btnbg') && document.querySelector('.follow-btnbg').innerHTML == '已关注'){
-                      document.querySelector('.follow-btnbg').innerHTML = '关注';
-                      document.querySelector('.follow-btnbg').style.background = 'url("../../../icon/jiaGuan.png") no-repeat 0.12rem center,#fff';
-                      document.querySelector('.follow-btnbg').style.color='rgba(99,139,255,1)';
-                      document.querySelector('.follow-btnbg').style.backgroundSize= '0.16rem 0.16rem';
-                    }else{
-                      document.querySelector('.follow-btnbg').innerHTML = '已关注';
-                      document.querySelector('.follow-btnbg').style.background = ' url("../../../icon/jia.png") no-repeat 0.12rem center,rgba(99,139,255,1)';
-                      document.querySelector('.follow-btnbg').style.color='#fff';
-                      document.querySelector('.follow-btnbg').style.backgroundSize= '0.16rem 0.16rem';
-                    }
-                  }
 
 
 
-                  api.toast({
-                      msg: '编辑成功'
-                  });
-                  // reload()
+                    api.toast({
+                        msg: '编辑成功'
+                    });
+                    // reload()
                 }
 
             })

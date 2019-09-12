@@ -112,7 +112,7 @@
                                     toast("请求出错")
                                 }
                             })
-                            console.log(that.adrId)
+                            ////console.log(that.adrId)
                         })
                     },
                     addAdrBtn : function () {
@@ -149,9 +149,9 @@
                                 address: that.adress,
                                 addrDetails: that.detailed
                             }
-                            console.log(str)
+                            ////console.log(str)
                             ajaxGetWithProgress(addDeliveryAdr, str, function (data, err) {
-                                console.log("adrStatus1",data);
+                                //console.log("adrStatus1",data);
                                 var url = api.pageParam.url
                                 if (data.status){
                                     var frameName = url + "_body";
@@ -187,9 +187,9 @@
                                 address: that.adress,
                                 addrDetails: that.detailed
                             }
-                            console.log(str2)
+                            //console.log(str2)
                             ajaxGetWithProgress(deliveryUpdate, str2, function (data, err) {
-                                console.log("adrStatus2",data);
+                                //console.log("adrStatus2",data);
                                 var url = api.pageParam.url
                                 if (data.success){
                                     var frameName = url + "_body";

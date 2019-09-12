@@ -125,7 +125,7 @@
                 this.data = api.pageParam.data;
                 this.getPrice = this.data.commTravel.price_y;
                 this.getPriceDefult = this.data.commTravel.price_y;
-                console.log(this.data);
+                ////console.log(this.data);
 
             },
             mounted:function () {
@@ -133,7 +133,7 @@
                 document.getElementById('app').classList.remove('isDisplay');
                 // var dateShow = "2019-9-8"
                 var dateShow = this.data.commTravel.departureDate;
-                // console.log(this.data.commTravel.departureDate)
+                // //console.log(this.data.commTravel.departureDate)
                 var dateShows=dateShow.split("-"); //字符分割
 
                 function timestampToTime(timestamp) {
@@ -141,7 +141,7 @@
                     var Y =date.getFullYear() + '-';
                     var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                     var D = date.getDate() + '';
-                    console.log(Y+M+D)
+                    //console.log(Y+M+D)
                     return Y+M+D;
                 }
 
@@ -150,10 +150,10 @@
 
                 // timestampToTime(nstr)
                 var timestampStr = nstr.getTime();
-                console.log(timestampStr)
+                //console.log(timestampStr)
 
                 // var timestamp = new Date(date).getTime();
-                // console.log(timestamp)
+                // //console.log(timestamp)
                 var changedYear = nstr.getFullYear(); // 年份
                 var changedMonth = nstr.getMonth(); // 月份
                 var dnow = nstr.getDate(); // 今日日期
@@ -184,13 +184,13 @@
 
                 // $(function () {
                 //     commChanged(dateShows[0],(dateShows[1]+1)*1)
-                //     console.log(123, (dateShows[1]+1)*1)
+                //     //console.log(123, (dateShows[1]+1)*1)
                 // })
 
 
                 function daysOfMonth(){
                     var MonthYear =$(".txt_Year").text()
-                    console.log(MonthYear)
+                    //console.log(MonthYear)
                     var MonthMonth = $(".txt_blue").text()
                     // 获取到当前月份的全部日期
                     let daysOfMonth = '';
@@ -208,8 +208,8 @@
                 commChanged(dateShows[0], dateShows[1])
 
                 function commChanged(changedYear,changedMonth) {
-                    console.log(changedYear)
-                    console.log(4444,changedMonth)
+                    //console.log(changedYear)
+                    //console.log(4444,changedMonth)
                     var changedMonth =  changedMonth
                     var firstweekday = getFirstWeekDay(changedYear, parseInt(changedMonth) - 1, 1);
 
@@ -309,9 +309,9 @@
                         buy_num: that.num,
                         reservetime: that.data.commTravel.departureDate
                     }
-                    // console.log(str)
+                    // //console.log(str)
                     ajaxGetWithProgress(createReserveAndOrder, str, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status){
                             openNewWindow("confirmOrder", "../confirmOrder.html", {
                                 url: 'tourism',

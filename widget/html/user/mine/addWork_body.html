@@ -297,7 +297,7 @@
             u_id: person_id
         }
         ajaxGetWithProgress(addWorkingExperience, params, function (ret, err) {
-            console.log(ret)
+            // console.log(ret)
             if (ret.return_info && ret.return_info.status ) {
                 openNewWindow("addEdution", "./addEdution.html")
             } else if(ret.return && !ret.return.status){

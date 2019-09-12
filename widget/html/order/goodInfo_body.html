@@ -307,7 +307,7 @@
                         oid: oId,
                     }
                     ajaxGetWithProgress(OrderSummaryCommodityProFile, obj, function (data) {
-                        console.log("orderdetail", data)
+                        //console.log("orderdetail", data)
                         if(data){
                             var address = data.comm.adrId
                             var adr= stringFun(address)
@@ -338,7 +338,7 @@
                                 that.buyNum = data.comm.buyNum || "未填写"
                                 that.chufaCity = data.comm.departureCity || "未填写"
                                 that.chufaTime = data.comm.departureDate || "未填写"
-                                console.log("data.comm.placard",data.comm.placard)
+                                //console.log("data.comm.placard",data.comm.placard)
                                 that.orderImg = imgSrcFun(data.comm.placard) || "../../image/chat/touxiangm.png"
                             }
 

@@ -62,9 +62,9 @@
                 res_name: value + '.' + nameLast,
                 id: filesId
             }
-            console.log(obj)
+            // console.log(obj)
             ajaxGetWithProgress(UpdateResumeNameUserProfile, obj, function (res, err) {
-                console.log(res);
+                // console.log(res);
                 if (res.return.status) {
                     var frameName = url + "_body";
                     api.execScript({

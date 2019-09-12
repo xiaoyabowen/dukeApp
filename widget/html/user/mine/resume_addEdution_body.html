@@ -133,7 +133,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.querySelector('.entry_date').innerText = selectItems.text;
         })
@@ -149,7 +149,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.querySelector('.quit_date').innerText = selectItems.text;
         })
@@ -179,7 +179,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.querySelector('.education').innerText = SelectedItem[0].text;
         })
 

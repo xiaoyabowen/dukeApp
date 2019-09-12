@@ -354,7 +354,7 @@
             userName:'testName',
             userId:'testId'
         },function(ret,err){
-            console.log("jpush.bind",ret)
+            // console.log("jpush.bind",ret)
             if(ret.status){
                 // api.alert({msg:'绑定成功'});
             }else{
@@ -364,7 +364,7 @@
         //设置监听
         jpush.setListener(
             function(ret,err){
-                console.log("jpush.setListener",ret)
+                // console.log("jpush.setListener",ret)
                 if(ret){
                     api.alert({msg:ret.data});
                 }
@@ -396,7 +396,7 @@
 
         var JIMStr = localStorage.getItem("JIM")
         // JIMData = JSON.parse()
-        console.log(JIMStr)
+        // console.log(JIMStr)
 
         /*var homeAll = homeAllInit(Vue);
         console.log(homeAll)
@@ -422,7 +422,7 @@
             }
         }
 
-        console.log("homeUser", localStorage.getItem('user'))
+        // console.log("homeUser", localStorage.getItem('user'))
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2))
         // width_d=(screen_w-20) *2/5 - 5;
@@ -522,7 +522,7 @@
                 getSignatureJiGuang: function () {
                     var that = this
                     ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                        console.log(data)
+                        // console.log(data)
                         if (data) {
                             that.appkey = data.appkey
                             that.random_str = data.random_str
@@ -530,7 +530,7 @@
                             that.timestamp = data.timestamp
 
                             that.JIM = new JMessage({debug: true})
-                            console.log("JIM", that.JIM)
+                            // console.log("JIM", that.JIM)
                             that.init()
 
                         } else {
@@ -549,10 +549,10 @@
                         "flag": 1
 
                     }).onSuccess(function (data) {
-                        console.log('success:', data);
+                        // console.log('success:', data);
 
                     }).onFail(function (data) {
-                        console.log('error2:', data)
+                        // console.log('error2:', data)
                     });
                 },
             }
@@ -571,7 +571,7 @@
             }
         }
 
-        console.log("user", localStorage.getItem("user"))
+        // console.log("user", localStorage.getItem("user"))
         api.ajax({
 
             url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
@@ -583,7 +583,7 @@
                 values: obj
             }
         }, function (data, err) {
-            console.log("ifq", data)
+            // console.log("ifq", data)
             if (data.role_type == 1) {
                 // openNewWindow("home", "./home.html")
             } else if (data.role_type == 2) {
@@ -608,7 +608,7 @@
                 values: {}
             }
         }, function (data, err) {
-            console.log("ifqshang", data)
+            // console.log("ifqshang", data)
             if(data && data.length > 0){
               for (var i=0;i<data.data.length;i++){
                   if (data.data[i].version == "CS" && data.data[i].status == "0"){
@@ -643,7 +643,7 @@
     function getRegistrationId(ret) {
 
         var registrationId = ret;
-        console.log("registrationId  回调 结果",registrationId)
+        // console.log("registrationId  回调 结果",registrationId)
     };
 
     searchinputTop = document.getElementById("search-inputTop")
@@ -656,7 +656,7 @@
     // 删除  浏览记录
     function delHistoryClick() {
         ajaxGetWithProgress(removeSearchHistory, {}, function (data) {
-            console.log(data)
+            // console.log(data)
             if (data.return.status) {
                 document.querySelector(".historyTitle").classList.add("isDisplay")
             }
@@ -665,9 +665,9 @@
 
     // 搜索  展示列表
     function searchListClick(s_id, search, ms_type) {   // 0 公司   1 职位
-        console.log(s_id)
-        console.log(search)
-        console.log(ms_type)
+        // console.log(s_id)
+        // console.log(search)
+        // console.log(ms_type)
         var searchListText = document.querySelectorAll(".searchListText")
         if (ms_type == 0) {
             openNewWindow("companyInfo", "./companyInfo.html", {
@@ -684,9 +684,9 @@
     }
 
     function historyClick(s_id, search, ms_type) {
-        console.log(s_id)
-        console.log(search)
-        console.log(ms_type)
+        // console.log(s_id)
+        // console.log(search)
+        // console.log(ms_type)
         if (ms_type == 1) {
             openNewWindow("companyInfo", "./companyInfo.html", {
                 job_id: job_id,
@@ -704,7 +704,7 @@
 
     function mineGo() {
         var uidUser = localStorage.getItem("user")
-        console.log("localStorage.getItem",uidUser)
+        // console.log("localStorage.getItem",uidUser)
         if (!uidUser || uidUser == undefined) {
             openNewWindow("login", "../../login/login.html");
             return;

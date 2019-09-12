@@ -419,7 +419,7 @@
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            //console.log(data);
             api.hideProgress();
             if (data) {
                 document.querySelector('.subBox').classList.remove('isDisplay');
@@ -524,7 +524,7 @@
                     pays.forEach(function (value) {
                         pays2.push(value + 'k')
                     })
-                    // console.log(pays2);
+                    // //console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
                 // 工作经历
@@ -544,8 +544,8 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(workings)
+                    // //console.log(dom);
+                    // //console.log(workings)
                     workings.innerHTML = dom;
                 }
                 // 教育经历
@@ -566,8 +566,8 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(educations)
+                    // //console.log(dom);
+                    // //console.log(educations)
                     educations.innerHTML = dom;
                 }
 
@@ -587,8 +587,8 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(project)
+                    // //console.log(dom);
+                    // //console.log(project)
                     project.innerHTML = dom;
                 }
 
@@ -609,8 +609,8 @@
                 header.innerText = '已预约  ' + filterTime3(time) + '面试';
                 var start = new Date(time).getTime();
                 var ent = new Date().getTime();
-                console.log(start);
-                console.log(ent);
+                //console.log(start);
+                //console.log(ent);
                 if (start > ent) {
                     tag.innerText = '待初试';
                     document.getElementById('s2').classList.remove('isDisplay');
@@ -664,12 +664,12 @@
     function inappropriate() {
         mui.confirm('确定要拒接此简历吗?', '不合适', ['确认', '取消'], function (e) {
             if (!e.index) {
-                console.log(app_id);
+                //console.log(app_id);
                 ajaxGetWithProgress(UpdateStatus, {
                     app_id: app_id,
                     status: '5'
                 }, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
 
                     if (data.return_info.status) {
                         mui.toast('此简历已拒绝');
@@ -721,11 +721,11 @@
                     app_id: app_id,
                     status2: '撤销'
                 }, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
 
                     if (data.return.status) {
                         mui.toast('撤销成功')
-                        console.log(that.list2.splice(index, 1));
+                        //console.log(that.list2.splice(index, 1));
                     }
 
                 })
@@ -747,7 +747,7 @@
     function employment() {
         mui.confirm('确定要录用此简历吗?', '录用', ['确认', '取消'], function (e) {
             if (!e.index) {
-                console.log(app_id);
+                //console.log(app_id);
                 var p_name = document.getElementById('p_name').innerText
                 openNewWindow("offer", "../chat/offer.html", {
                     person_id: person_id,
@@ -759,7 +759,7 @@
                     app_id: app_id,
                     status: '4'
                 }, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.return_info.status) {
                         mui.toast('此简历已录用');
                         // closeWin();

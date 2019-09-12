@@ -292,7 +292,7 @@
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log("seeRESume=", data);
+            // console.log("seeRESume=", data);
             if (data) {
                 document.querySelector('.boxSub').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -326,7 +326,7 @@
                 // 工作年限
                 if (person_summary.job_from_time) {
                     var workingAge = ages(person_summary.job_from_time);
-                    console.log(workingAge)
+                    // console.log(workingAge)
                     document.getElementById('working').innerText = workingAge;
                 } else {
                     document.getElementById('working').innerText = 0
@@ -427,7 +427,7 @@
                     var arr = [];
                     var dom = '未填写';
                     var etLeg = education_his.length;
-                    console.log('educations.leg: '+ etLeg);
+                    // console.log('educations.leg: '+ etLeg);
                     if(etLeg>0){
                         for (var i = 0; i < etLeg; i++) {
                             var str = '<div class="see-education cssFlex">\n' +

@@ -27,7 +27,7 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: status
                 }, function (data, err) {
-                    console.log("jianlidata",data);
+                    //console.log("jianlidata",data);
                     that.list1 = data.ResumeList
                 })
             },*/
@@ -36,7 +36,7 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: 2
                 }, function (data, err) {
-                    // console.log(data);
+                    // //console.log(data);
                     if (data.ResumeList) {
                         var arr1 = data.ResumeList;
                         var arr2 = [];
@@ -45,14 +45,14 @@ function resumeInit(Vue) {
                                 arr2.push(arr1[i].queryPersonByJobid[j]);
                             }
                         }
-                        console.log(arr2);
+                        //console.log(arr2);
                         that.list2 = arr2;
-                        // console.log(that[list]);
+                        // //console.log(that[list]);
                     }
                     ajaxGetWithProgress(ResumeList, {
                         status: 3
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.ResumeList) {
                             var arr3 = data.ResumeList;
                             for (var i = 0; i < arr3.length; i++) {
@@ -61,7 +61,7 @@ function resumeInit(Vue) {
                                 }
                             }
 
-                            console.log(that.list2);
+                            //console.log(that.list2);
                         }
                     })
                 })
@@ -73,7 +73,7 @@ function resumeInit(Vue) {
                 //     ajaxGetWithProgress(ResumeList, {
                 //         status: 2
                 //     }, function (data, err) {
-                //         // console.log(data);
+                //         // //console.log(data);
                 //         if (data.ResumeList) {
                 //             var arr1 = data.ResumeList;
                 //             var arr2 = [];
@@ -82,14 +82,14 @@ function resumeInit(Vue) {
                 //                     arr2.push(arr1[i].queryPersonByJobid[j]);
                 //                 }
                 //             }
-                //             console.log(arr2);
+                //             //console.log(arr2);
                 //             that.list2 = arr2;
-                //             // console.log(that[list]);
+                //             // //console.log(that[list]);
                 //         }
                 //         ajaxGetWithProgress(ResumeList, {
                 //             status: 3
                 //         }, function (data, err) {
-                //             console.log(data);
+                //             //console.log(data);
                 //             if (data.ResumeList) {
                 //                 var arr3 = data.ResumeList;
                 //                 for (var i = 0; i < arr3.length; i++) {
@@ -98,7 +98,7 @@ function resumeInit(Vue) {
                 //                     }
                 //                 }
                 //
-                //                 console.log(that.list2);
+                //                 //console.log(that.list2);
                 //             }
                 //         })
                 //     })
@@ -109,10 +109,10 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: status
                 }, function (data, err) {
-                    console.log("jianlidata",data);
+                    //console.log("jianlidata",data);
                     that.list1 = data.ResumeList
 
-                    console.log("that.list1",that.list1)
+                    //console.log("that.list1",that.list1)
                 })
             },
 
@@ -123,7 +123,7 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: 2
                 }, function (data, err) {
-                    // console.log(data);
+                    // //console.log(data);
                     if (data.ResumeList) {
                         var arr1 = data.ResumeList;
                         var arr2 = [];
@@ -132,14 +132,14 @@ function resumeInit(Vue) {
                                 arr2.push(arr1[i][j]);
                             }
                         }
-                        console.log(arr2);
+                        //console.log(arr2);
                         that.list2 = arr2;
-                        // console.log(that[list]);
+                        // //console.log(that[list]);
                     }
                     ajaxGetWithProgress(ResumeList, {
                         status: 3
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.ResumeList) {
                             var arr3 = data.ResumeList;
                             for (var i = 0; i < arr3.length; i++) {
@@ -148,7 +148,7 @@ function resumeInit(Vue) {
                                 }
                             }
 
-                            console.log(that.list2);
+                            //console.log(that.list2);
                         }
                     })
                 })
@@ -160,10 +160,10 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: status
                 }, function (data, err) {
-                    console.log("jianlidata",data);
+                    //console.log("jianlidata",data);
                     that.list4 = data.ResumeList
 
-                    console.log("that.list4",that.list4)
+                    //console.log("that.list4",that.list4)
                 })
             },
             // tab切换   不合适   5
@@ -173,15 +173,15 @@ function resumeInit(Vue) {
                 ajaxGetWithProgress(ResumeList, {
                     status: status
                 }, function (data, err) {
-                    console.log("jianlidata",data);
+                    //console.log("jianlidata",data);
                     that.list5 = data.ResumeList
 
-                    console.log("that.list5",that.list5)
+                    //console.log("that.list5",that.list5)
                 })
             },
             // 查看简历详情
             resumeHandle: function (item) {
-                console.log("简历详情跳转数据",item);
+                //console.log("简历详情跳转数据",item);
                 openNewWindow("seeResume", "../mine/seeResume.html", {
                     person_id: item.person_id,
                     status: item.status,
@@ -202,16 +202,16 @@ function resumeInit(Vue) {
                 var that = this;
                 mui.confirm('确定要重新邀约吗？', '友情提示',['确认','取消'], function (e) {
                     if (!e.index) {
-                        console.log(app_id);
+                        //console.log(app_id);
                         ajaxGetWithProgress(UpdateStatus2, {
                             app_id: app_id,
                             status2: '未接受'
                         }, function (data, err) {
-                            console.log("chongxin",data);
+                            //console.log("chongxin",data);
 
                             if (data.return.status) {
                                 mui.toast('重新邀约成功')
-                                console.log(that.list2.splice(index, 1));
+                                //console.log(that.list2.splice(index, 1));
                             }
 
                         })
@@ -223,16 +223,16 @@ function resumeInit(Vue) {
                 var that = this;
                 mui.confirm('确定要撤回面试邀请吗？', '友情提示',['确认','取消'], function (e) {
                     if (!e.index) {
-                        console.log(app_id);
+                        //console.log(app_id);
                         ajaxGetWithProgress(UpdateStatus2, {
                             app_id: app_id,
                             status2: '撤销'
                         }, function (data, err) {
-                            console.log(data);
+                            //console.log(data);
 
                             if (data.return.status) {
                                 mui.toast('撤销成功')
-                                console.log(that.list2.splice(index, 1));
+                                //console.log(that.list2.splice(index, 1));
                             }
 
                         })

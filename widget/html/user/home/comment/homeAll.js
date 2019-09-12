@@ -59,9 +59,9 @@ function homeAllInit(Vue) {
             MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
-                    console.log("magicalldata", data)
+                    //console.log("magicalldata", data)
                     var jobList = data.job
-                    console.log(jobList)
+                    //console.log(jobList)
                     if (data) {
                         if (jobList == null){
                             that.listJob = ''

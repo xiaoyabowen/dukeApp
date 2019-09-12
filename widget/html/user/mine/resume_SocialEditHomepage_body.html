@@ -78,7 +78,7 @@
         params.id = home_id
         params.home_page = value
         ajaxGetWithProgress(updateHomePage, params, function (data, err) {
-            console.log(data)
+            // console.log(data)
             if (data.return.status) {
                 var frameName = url + "_body";
                 api.execScript({
@@ -103,7 +103,7 @@
 
         params.id = home_id
         ajaxGetWithProgress(deleteHomePage, params, function (data, err) {
-            console.log(data)
+            // console.log(data)
             if (data.return.status) {
                 mui.confirm('确定要删除此主页吗?', function (e) {
                     var frameName = url + "_body";

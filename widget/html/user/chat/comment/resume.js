@@ -25,7 +25,7 @@ function resumeInit(Vue) {
                 if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(lookmeList, {}, function (data, err) {
-                        console.log('后台获取数据更新的本地数据库:', data);
+                        //console.log('后台获取数据更新的本地数据库:', data);
                         if (data.lookmeList) {
                             that.list = data.lookmeList;
                             localStorage.setItem('seens', JSON.stringify(that.list));
@@ -35,7 +35,7 @@ function resumeInit(Vue) {
                 }
 
                 ajaxGetWithProgress(lookmeList, {}, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.lookmeList) {
                         that.list = data.lookmeList;
 
@@ -61,12 +61,12 @@ function resumeInit(Vue) {
             //     if (!request) return;
             //     // 数据库打开报错
             //     request.onerror = function (event) {
-            //         console.log('数据库打开错误');
+            //         //console.log('数据库打开错误');
             //     }
             //     // 数据库打开成功
             //     request.onsuccess = function (event) {
             //         vm.db = request.result;
-            //         console.log('数据库打开成功', vm.db);
+            //         //console.log('数据库打开成功', vm.db);
             //         vm.requestRead(vm);
             //     }
             //     // 数据库升级事件
@@ -90,11 +90,11 @@ function resumeInit(Vue) {
             //         });
             //
             //     request.onsuccess = function (event) {
-            //         console.log('数据添加成功');
+            //         //console.log('数据添加成功');
             //     };
             //
             //     request.onerror = function (event) {
-            //         console.log('数据添加失败');
+            //         //console.log('数据添加失败');
             //     }
             // },
             // // 读取数据
@@ -104,7 +104,7 @@ function resumeInit(Vue) {
             //     var request = objectStore.get(1);
             //
             //     request.onerror = function (event) {
-            //         console.log('事务失败');
+            //         //console.log('事务失败');
             //     };
             //
             //     request.onsuccess = function (event) {
@@ -112,9 +112,9 @@ function resumeInit(Vue) {
             //             if (request.result.seens) {
             //                 vm.list = request.result.seens;
             //             }
-            //             console.log('数据库读取:' + request.result.seens);
+            //             //console.log('数据库读取:' + request.result.seens);
             //             ajaxGet(lookmeList, {}, function(data,err){
-            //                 console.log('后台获取数据更新的本地数据库:',data);
+            //                 //console.log('后台获取数据更新的本地数据库:',data);
             //                 if (data.lookmeList) {
             //                     vm.list = data.lookmeList;
             //                     vm.listDB = data.lookmeList;
@@ -123,9 +123,9 @@ function resumeInit(Vue) {
             //             });
             //
             //         } else {
-            //             console.log('未获得数据记录', request);
+            //             //console.log('未获得数据记录', request);
             //             ajaxGetWithProgress(lookmeList, {}, function (data, err) {
-            //                 console.log(data);
+            //                 //console.log(data);
             //                 if (data.lookmeList) {
             //                     vm.list = data.lookmeList;
             //                     vm.listDB = data.lookmeList;
@@ -144,11 +144,11 @@ function resumeInit(Vue) {
             //             seens: vm.listDB
             //         });
             //     request.onsuccess = function (event) {
-            //         console.log('数据更新成功');
+            //         //console.log('数据更新成功');
             //     };
             //
             //     request.onerror = function (event) {
-            //         console.log('数据更新失败');
+            //         //console.log('数据更新失败');
             //     }
             // },
             // // 删除数据

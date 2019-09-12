@@ -125,7 +125,7 @@
 <script>
     apiready = function () {
         var circle_id = api.pageParam.circle_id;
-        // console.log(123,circle_id);
+        // //console.log(123,circle_id);
         new Vue({
             el: '#circle',
             data: {
@@ -140,7 +140,7 @@
                 ajaxGetWithProgress(circleManageCount, {
                     circle_id: circle_id
                 }, function (data) {
-                    // console.log(data,123)
+                    // //console.log(data,123)
                     if (data) {
                         that.items = data;
                     }

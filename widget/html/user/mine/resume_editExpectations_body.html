@@ -147,7 +147,7 @@
         }else {
             ajaxGetWithProgress(GetStatus,obj,function(res,err) {
                 // api.alert({mas: JSON.stringify(res.education_his)});
-                console.log("求职期望详情=",res);
+                // console.log("求职期望详情=",res);
                 if (res) {
                     var msg = res;
                     document.getElementById("work_name").innerText = msg.work_name || '请输入';
@@ -192,7 +192,7 @@
         picker.setData(cityData3)
         picker.pickers[0].setSelectedIndex(1);
         picker.show(function(SelectedItem) {
-            console.log(SelectedItem[0].text);
+            // console.log(SelectedItem[0].text);
             document.getElementById("int_city").innerText = SelectedItem[0].text;
         })
     }
@@ -224,7 +224,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('pay').innerText = SelectedItem[0].text;
         })
     }
@@ -278,9 +278,9 @@
             }
         }
 
-        console.log("求职期望传：",obj)
+        // console.log("求职期望传：",obj)
         ajaxGetWithProgress(SetStatus,obj,function(res,err) {
-            console.log("求职期望返回：",res)
+            // console.log("求职期望返回：",res)
             if (res.return_info.status) {
 
                 api.execScript({

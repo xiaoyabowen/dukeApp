@@ -667,7 +667,7 @@ function getNowFormatDate() {
     var minutes = d.getMinutes()//获取分钟
     var miao = d.getSeconds()//获取秒
     currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao;
-    console.log(currentdate)
+    //console.log(currentdate)
     return currentdate;
 }
 
@@ -679,7 +679,7 @@ function dateStrChangeTimeTamp(dateStr) {
     dateStr = dateStr.substring(0, 18);
     dateStr = dateStr.replace(/-/g, '/');
     var timesTamp = new Date(dateStr).getTime();
-    console.log("timeTamp",timesTamp)
+    //console.log("timeTamp",timesTamp)
     return timesTamp
 }
 
@@ -768,14 +768,14 @@ function isStatus(num) {
 function getCaption(obj){
     var index=obj.lastIndexOf("\.");
     obj=obj.substring(index+1,obj.length);
-    console.log(obj);
+    //console.log(obj);
     return obj;
 }
 
 function getFirst(obj) {
     var index = obj .lastIndexOf("\.");
     obj  = obj .substring(0, index);
-    console.log(obj);
+    //console.log(obj);
     return obj;
 }
 
@@ -856,7 +856,7 @@ function filterTime1(time) {
 function filterTime2(time) {
     var arr = time.split(':');
     arr.pop();
-    // console.log(arr);
+    // //console.log(arr);
     return arr.join(':');
 }
 // 过滤时间转成 - 2019年4月5日
@@ -871,7 +871,7 @@ function filterTime3(time) {
 function telFourLast(urlString) {
     if (urlString != "") {
         tel = urlString.substr(urlString.length-4)
-        console.log(tel)
+        //console.log(tel)
         return tel
     }
 }
@@ -903,13 +903,13 @@ function checkUrl(urlString) {
 
 function dataValue(name) {
     var path = 'widget://html/' + name;
-    // console.log(path)
+    // //console.log(path)
     //同步返回结果：
     var data = api.readFile({
         sync: true,
         path: path
     });
-    // console.log(data)
+    // //console.log(data)
     return data
 }
 
@@ -1877,7 +1877,7 @@ function posiShareClick() {
 
         }
     }, function (ret) {
-        console.log("diable",ret)
+        //console.log("diable",ret)
         if (ret.index == 0) {
             var wx = api.require('wx');
             wx.shareWebpage({
@@ -1888,7 +1888,7 @@ function posiShareClick() {
                 thumb: 'widget://icon/dukelogo.png',
                 contentUrl: 'http://m.anzhi.com/app_7ce8_com.bowenru.xxq.html'
             }, function (ret, err) {
-                console.log("share",ret)
+                //console.log("share",ret)
                 if (ret.status) {
                     toast('分享成功');
                 } else {

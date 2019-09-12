@@ -30,7 +30,7 @@ function offlinePositionInit(Vue) {
                     uid: uid
                 }
                 ajaxGetWithProgress(queryICListJobProfile,obj,function (data,ret) {
-                    console.log(data)
+                    //console.log(data)
                     if (data){
                         that.onlineList = data.ICList
                     } else {

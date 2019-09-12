@@ -20,11 +20,11 @@ function contactsInit(Vue) {
             lookmeList: function () {
                 var that = this;
                 var list = localStorage.getItem('chats');
-                console.log(123,list)
+                //console.log(123,list)
                 if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(queryChatListB, {}, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.ChatList) {
                             that.list = data.ChatList;
                             localStorage.setItem('chats', JSON.stringify(that.list));
@@ -34,7 +34,7 @@ function contactsInit(Vue) {
                 }
 
                 ajaxGetWithProgress(queryChatListB, {}, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.ChatList) {
                         that.list = data.ChatList;
                         localStorage.setItem('chats', JSON.stringify(that.list));

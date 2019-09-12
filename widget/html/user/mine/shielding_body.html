@@ -104,7 +104,7 @@
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(123, data);
+            // console.log(123, data);
             if (data.ShieldCompany) {
                 var box = document.querySelector('.resume_expectations_content');
                 document.getElementById('shielding_num').innerText = data.ShieldCompany.length || 0;

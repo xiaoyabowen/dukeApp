@@ -93,7 +93,7 @@
             },
             methods: {
                 activeMan:function (circle_id,MyCreate) { //活动管理
-                    console.log(circle_id)
+                    //console.log(circle_id)
                     var that = this;
                     /*openNewWindow("manActivity", "./manActivity.html",{
                       circle_id : circle_id
@@ -124,7 +124,7 @@
                         uid:localStorage.getItem('user')
                     }
                     ajaxGetWithProgress(queryCircleListByPersonId,obj,function (data) {
-                        console.log("queryCircleList",data)
+                        //console.log("queryCircleList",data)
                         if (data){
                             that.circleList = data.Circlelist
                         } else {
@@ -138,7 +138,7 @@
                       uid:localStorage.getItem('user')
                   }
                   ajaxGetWithProgress(queryMyJoinCirCle,obj,function(data){
-                    console.log(data,'我参加的');
+                    //console.log(data,'我参加的');
                     if(data){
                         that.circleList = data.MyJoinCirCle;
                     }else{

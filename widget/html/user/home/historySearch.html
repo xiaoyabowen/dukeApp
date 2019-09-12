@@ -309,7 +309,7 @@
     apiready = function () {
         url = api.pageParam.url
 
-        console.log("url",url)
+        // console.log("url",url)
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
 
@@ -363,7 +363,7 @@
     function getRegistrationId(ret) {
 
         var registrationId = ret;
-        console.log("registrationId  回调 结果", registrationId)
+        // console.log("registrationId  回调 结果", registrationId)
     };
 
     searchinputTop = document.getElementById("search-inputTop")
@@ -371,7 +371,7 @@
         // 判断  浏览记录
 
         ajaxGetWithProgress(querySearchHistory, {}, function (data) {
-            console.log("historyHtml", data)
+            // console.log("historyHtml", data)
             var historyHtml = ''
 
             api.hideProgress();
@@ -382,7 +382,7 @@
                 for (var i = 0; i < dataD.length; i++) {
                     historyHtml += '<span onclick="historyClick(' + dataD[i].id + ',' + dataD[i].ms_type + ')"  data-search="' + dataD[i].S_Name + '">' + dataD[i].search + '</span>'
                 }
-                console.log(dataD.length)
+                // console.log(dataD.length)
                 if (dataD.length == 0) {
                     document.querySelector(".historyList").innerHTML = '暂无数据'
                     document.querySelector(".historyTitle").classList.add("isDisplay")
@@ -407,18 +407,18 @@
                 search: searchinputTop.value
             }
             ajaxGetWithProgress(QueryUserSolr, obj, function (ret) {
-  console.log("list", ret)
+//   console.log("list", ret)
                 var searchHtml = ''
                 var ret = ret.list
 
 
-                console.log("list", ret)
+                // console.log("list", ret)
                 for (var i = 0; i < ret.length; i++) {
                     searchHtml += '<div class="searchMain cssFlex" onclick="searchListClick(' + ret[i].S_Id + ',' + i + ',' + ret[i].type + ')"><div class="commonFont searchListText" data-search="' + ret[i].S_Name + '">' + ret[i].S_Name + '</div></div>'
                 }
 
 
-                console.log("ret.length", ret.length)
+                // console.log("ret.length", ret.length)
                 if (ret.length != 0) {
                     document.querySelector(".searchList").innerHTML = searchHtml
 
@@ -438,7 +438,7 @@
     function delHistoryClick() {
 
         ajaxGetWithProgress(removeSearchHistory, {}, function (data) {
-            console.log(data)
+            // console.log(data)
             if (data.return.status) {
                 document.querySelector(".historyTitle").classList.add("isDisplay")
             }
@@ -447,9 +447,9 @@
 
     // 搜索  展示列表
     function searchListClick(s_id, search, ms_type) {   // 0 公司   1 职位
-        console.log(s_id)
-        console.log(search)
-        console.log(ms_type)
+        // console.log(s_id)
+        // console.log(search)
+        // console.log(ms_type)
         var searchListText = document.querySelectorAll(".searchListText")
         if (ms_type == 0) {
             openNewWindow("companyInfo", "./companyInfo.html", {
@@ -467,7 +467,7 @@
     }
 
     function historyClick(s_id, search, ms_type) {
-        console.log(s_id)
+        // console.log(s_id)
         var searchListText = document.querySelectorAll(".searchListText")
 
         if (ms_type == 1) {

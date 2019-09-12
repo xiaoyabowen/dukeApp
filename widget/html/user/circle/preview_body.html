@@ -115,7 +115,7 @@
             costList:[],
           },
           mounted(){
-            console.log(data,'130');
+            //console.log(data,'130');
             this.title = data.title;
             this.poster = data.poster;
             this.c_from = data.c_from;
@@ -126,7 +126,7 @@
             this.cost = data.cost;
             this.costList = deleteOnlyOne(this.cost.split(','));
             // deleteOnlyOne
-            // console.log(this.costList,'125');
+            // //console.log(this.costList,'125');
           },
           methods:{
 
@@ -134,7 +134,7 @@
         })
       }
       function sendPub(){
-        console.log(param);
+        //console.log(param);
         if (param.circle_id) {
           //编辑更新提交
           data.circle_id = param.circle_id;

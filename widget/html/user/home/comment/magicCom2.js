@@ -80,7 +80,7 @@ function magicCom2Init(Vue) {
                 var isBlck=document.querySelector('.bgBlack')
                 if(isBlck.getAttribute("class")=='isDisplay'){
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    ////console.log(document.querySelector('.bgBlack'))
                 }else {
                     var that = this;
                     that.active = 'magicCom2';
@@ -100,7 +100,7 @@ function magicCom2Init(Vue) {
                 that.magicCom2Img = store.state.obj.logo_icon
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid2},function (data) {
-                    console.log("com2",data)
+                    //console.log("com2",data)
                     var jobList = data.job
                     if (data) {
                         if (jobList == null){
@@ -118,8 +118,8 @@ function magicCom2Init(Vue) {
                 })
             },
             jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
-                console.log("job_id",job_id)
-                console.log("job_name",job_name)
+                //console.log("job_id",job_id)
+                //console.log("job_name",job_name)
                 this.timeIndex = index;
 
 
@@ -143,7 +143,7 @@ function magicCom2Init(Vue) {
             magicCom1Click: function () {  // 公司1
                 var that = this;
 
-                console.log("that.magicComCid1",that.magicComCid1)
+                //console.log("that.magicComCid1",that.magicComCid1)
 
 /*
                 store.state.obj.c_id = that.magicComCid1

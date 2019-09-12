@@ -161,7 +161,7 @@
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            // console.log(data);
             var subscribedHtml = ''
             var dataArr = data.querySubscription
             if (dataArr) {
@@ -207,14 +207,14 @@
             } else {
                 document.querySelector('.clearBox').classList.remove('isDisplay');
             }
-            console.log(sub_id);
+            // console.log(sub_id);
         });
 
         // 点击订阅
         var subscribed_main = document.querySelectorAll('.subscribed_main');
         for (var i = 0; i < subscribed_main.length; i++) {
             subscribed_main[i].onclick = function (e) {
-                console.log(e)
+                // console.log(e)
             }
         }
 
@@ -230,7 +230,7 @@
 
     // 跳转职位详情
     function subscribedClick(c_id) {
-        console.log(c_id)
+        // console.log(c_id)
     }
     // 添加订阅
     function addSubscribed() {
@@ -242,14 +242,14 @@
     // 删除订阅
     document.querySelector('.subscribed_bottom_right').onclick = function () {
         mui.confirm('确定要删除此订阅吗?', function (e) {
-            console.log(e)
+            // console.log(e)
             // console.log(sub_id)
             if (e.index) {
                 ajaxGetWithProgress(DeleteSubscriptionById, {
                     sub_id: sub_id
                 }, function (data, err) {
                     // alert(JSON.stringify(data));
-                    console.log(data);
+                    // console.log(data);
                     if (data.return.status) {
                         document.querySelector('.subscribed_main').classList.add('isDisplay');
                         document.querySelector('.subscribed_bottom').classList.add('isDisplay');

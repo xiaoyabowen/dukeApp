@@ -174,7 +174,7 @@
             a01_w = winWidth;
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            console.log("bevelLength",bevelLength)
+            //console.log("bevelLength",bevelLength)
             // width_d=(screen_w-20) *2/5 - 5;
             m_d = (a01_w-10)*0.23-25;    // 100
 
@@ -220,7 +220,7 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
 
                         /*localStorage.setItem("magic_id",ret.value.key.c_id)
@@ -230,7 +230,7 @@
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
 
                         /*localStorage.setItem("magic_id2",ret.value.key.c_id)
@@ -240,7 +240,7 @@
                     api.addEventListener({
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.cid = ret.value.key.cid
                         that.showTravel()
 
@@ -286,7 +286,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.commTravel) {
                                 that.item = data.commodity;
                                 that.att = data.att;
@@ -322,7 +322,7 @@
                             pid: that.person_id,
                             commId: that.item.cId
                         }, function(data,err){
-                            console.log(data);
+                            //console.log(data);
                             if (data.commcollect) {
                                 toast("编辑成功")
                                 window.location.reload()

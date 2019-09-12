@@ -99,7 +99,7 @@
         }
         var my_ConcernHtml= ''
         ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
-            console.log(data)
+            // console.log(data)
 
             var conData = data.AttentionCompany
             if (conData == undefined){
@@ -176,13 +176,13 @@
         })
     };
     function companyDetail(cid) {
-        console.log(cid)
+        // console.log(cid)
         openNewWindow("companyInfo", "../home/companyInfo.html", {
             cid: cid
         });
     }
     function companPoi(pid) {
-        console.log(pid)
+        // console.log(pid)
         openNewWindow("position", "../home/position.html", {
             job_id: pid
         });

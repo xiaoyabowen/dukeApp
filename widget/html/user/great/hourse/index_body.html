@@ -200,7 +200,7 @@
             a01_w = winWidth;
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            console.log("bevelLength",bevelLength)
+            //console.log("bevelLength",bevelLength)
             // width_d=(screen_w-20) *2/5 - 5;
             m_d = (a01_w-10)*0.23-25;    // 100
             // getSrceenWH(winWidth,winHeight)
@@ -253,7 +253,7 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
 
                         /*localStorage.setItem("magic_id",ret.value.key.c_id)
@@ -263,18 +263,18 @@
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
 
                         /*localStorage.setItem("magic_id2",ret.value.key.c_id)
                         localStorage.setItem("magic_img2",ret.value.key.logo_icon)
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
-                    console.log("that.tId1234",'jobAll'+that.tId)
+                    //console.log("that.tId1234",'jobAll'+that.tId)
                     api.addEventListener({
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        // console.log("ret",ret);
+                        // //console.log("ret",ret);
                         that.hourseId = ret.value.key.cid
                         that.housequeryHouseSummary()
 
@@ -320,19 +320,19 @@
                             cid: that.hourseId,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data);
+                            //console.log(data);
                             that.item = data.comm
                             that.picList = stringFun(data.comm.intPic)
                             that.picListpic1 = stringFun(data.comm.pic1)
                             that.picListpic2 = stringFun(data.comm.pic2)
                             that.picListpic3 = stringFun(data.comm.pic3)
-                            console.log(that.picList)
+                            //console.log(that.picList)
 
                         });
                     },
                     // 切换tab
                     activeHandle: function (activeType) {
-                        console.log(activeType)
+                        //console.log(activeType)
                         this.activeType = activeType;
                     },
                     // 办理签证
@@ -374,7 +374,7 @@
                             summary : that.usermain,
                         }
                         ajaxGetWithProgress(createHouseOrderhouse,obj,function (data) {
-                            console.log(data)
+                            //console.log(data)
                             if (data.data){
                                 toast("提交成功")
                                 that.username = ''
@@ -389,11 +389,11 @@
                     },
                     commodityList : function (){
                         var that = this
-                        console.log("that.tId",that.tId)
+                        //console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList11",data)
+                            //console.log("commodityList11",data)
                             var jobList = data.comList
-                            console.log(jobList)
+                            //console.log(jobList)
                             if (data) {
                                 if (jobList == null) {
                                     that.listJob = ''
@@ -424,7 +424,7 @@
                         var isBlck = document.querySelector('.bgBlack')
                         if (isBlck.getAttribute("class") == 'isDisplay') {
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            console.log(document.querySelector('.bgBlack'))
+                            //console.log(document.querySelector('.bgBlack'))
                         } else {
                             var that = this;
                             that.active = 'magicAll';

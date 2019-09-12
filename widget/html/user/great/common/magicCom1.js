@@ -92,7 +92,7 @@ function magicCom1Init(Vue) {
                 var isBlck=document.querySelector('.bgBlack')
                 if(isBlck.getAttribute("class")=='isDisplay'){
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    ////console.log(document.querySelector('.bgBlack'))
                 }else {
                     var that = this;
                     that.active = 'magicCom1';
@@ -112,10 +112,10 @@ function magicCom1Init(Vue) {
                 that.magicCom1Img = store.state.obj.logo_icon
 
 
-                console.log("store.state.obj.c_name1",store.state.obj.c_name)
+                ////console.log("store.state.obj.c_name1",store.state.obj.c_name)
 
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid1},function (data) {
-                    console.log("com1",data)
+                    //console.log("com1",data)
 
                     var jobList = data.job
                     if (data) {
@@ -135,8 +135,8 @@ function magicCom1Init(Vue) {
                 })
             },
             jobDetailClick : function (job_id,job_name,index){
-                console.log("job_id",job_id)
-                console.log("job_name",job_name)
+                //console.log("job_id",job_id)
+                //console.log("job_name",job_name)
                 this.timeIndex = index;
                 api.sendEvent({
                     name: 'jobAll',
@@ -153,7 +153,7 @@ function magicCom1Init(Vue) {
             magicCom1Click: function () {  // 公司1
                 var that = this;
                 ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :localStorage.getItem("magic_id")},function (data) {
-                    console.log("com1",data)
+                    //console.log("com1",data)
 
                     var jobList = data.job
                     if (data) {

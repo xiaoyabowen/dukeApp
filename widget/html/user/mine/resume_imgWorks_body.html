@@ -212,7 +212,7 @@
                 saveToPhotoAlbum: false
             }, function (ret, err) {
                 if (ret) {
-                    console.log(ret.data);
+                    // console.log(ret.data);
                     list.push(ret.data);
 
                     var arr = ['<li class="action"></li>'];
@@ -285,7 +285,7 @@
                         }
                     }, function (ret, err) {
                         alert(123,JSON.stringify(ret));
-                        console.log(ret);
+                        // console.log(ret);
                         api.hideProgress();
                         // if (ret.status == 1) {
                         //     api.toast({
@@ -305,7 +305,7 @@
                         // }
                     });
                 } else {
-                    console.log(JSON.stringify(err));
+                    // console.log(JSON.stringify(err));
                 }
             });
         }
@@ -326,7 +326,7 @@
             doms[i].classList.add('active');
             doms[i].dataset.index = i;
             doms[i].onclick = function () {
-                console.log(this.dataset);
+                // console.log(this.dataset);
                 var index = this.dataset.index;
                 var i_dom = this.children[1];
                 if (i_dom.classList.contains('active')) {
@@ -337,7 +337,7 @@
                     i_dom.classList.add('active');
                     arr1.push(index);
                 }
-                console.log(arr1);
+                // console.log(arr1);
             }
         }
     }
@@ -356,9 +356,9 @@
                 }
 
                 var arr2 = sort(arr1);
-                console.log(arr2);
+                // console.log(arr2);
                 for (var i = 0; i < arr2.length; i++) {
-                    console.log(arr2[i] - 1);
+                    // console.log(arr2[i] - 1);
                     list.splice(arr2[i] - 1, 1);
                 }
                 var arr = ['<li class="action"></li>'];

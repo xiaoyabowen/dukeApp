@@ -49,14 +49,14 @@ function castThreeInit(Vue) {
             commodityListCommodityProFile : function () {
                 var that = this
                 ajaxGetWithProgress(commodityListCommodityProFile,{tid:3},function (data) {
-                    console.log("commodityListCommodityProFile",data)
+                    //console.log("commodityListCommodityProFile",data)
                     var hourseList = data.commodityList
                     that.hourseList = hourseList
                     /*// 最后一个
                     var jobList1 = jobList.slice(jobList.length - 1)
-                    console.log("34",jobList1)
+                    //console.log("34",jobList1)
                     that.listJob = jobList4
-                    console.log("112111",that.listJob)*/
+                    //console.log("112111",that.listJob)*/
                 })
 
             },

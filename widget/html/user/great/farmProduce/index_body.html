@@ -185,7 +185,7 @@
 
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            console.log("bevelLength",bevelLength)
+            //console.log("bevelLength",bevelLength)
             // width_d=(screen_w-20) *2/5 - 5;
             m_d = (a01_w-10)*0.23-25;    // 100
 
@@ -263,19 +263,19 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
                     });
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
                     });
                     api.addEventListener({
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.cid = ret.value.key.cid
                         that.summary()
 
@@ -321,7 +321,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data,'3100000000000');
+                            //console.log(data,'3100000000000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgsBanner = data.intpic;
@@ -360,7 +360,7 @@
                     },
                     // 显示全部评论
                     totalComment: function () {
-                        console.log(this.list);
+                        //console.log(this.list);
                         this.evalist = this.list;
                         this.len = this.list.length;
                     },
@@ -378,7 +378,7 @@
                             pid: that.person_id,
                             commId: that.item.cId
                         }, function(data,err){
-                            console.log(data);
+                            //console.log(data);
                             if (data.commcollect) {
                                 toast("编辑成功")
                                 window.location.reload()
@@ -398,9 +398,9 @@
                             pId: that.person_id,
                             cId: that.cid
                         }
-                        console.log("qie",obj)
+                        //console.log("qie",obj)
                         ajaxGetWithProgress(createOrder, obj, function (data, err) {
-                            console.log("creat",data);
+                            //console.log("creat",data);
                             if (data) {
                                 openNewWindow("confirmOrder", "../confirmOrder.html", {
                                     item: that.item,
@@ -417,11 +417,11 @@
                     },
                     commodityList : function (){
                         var that = this
-                        console.log("that.tId",that.tId)
+                        //console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList11啊啊啊啊",data)
+                            //console.log("commodityList11啊啊啊啊",data)
                             var jobList = data.comList
-                            console.log(jobList)
+                            //console.log(jobList)
                             if (data) {
                                 if (jobList == null) {
                                     that.listJob = ''
@@ -452,7 +452,7 @@
                         var isBlck = document.querySelector('.bgBlack')
                         if (isBlck.getAttribute("class") == 'isDisplay') {
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            console.log(document.querySelector('.bgBlack'))
+                            //console.log(document.querySelector('.bgBlack'))
                         } else {
                             var that = this;
                             that.active = 'magicAll';

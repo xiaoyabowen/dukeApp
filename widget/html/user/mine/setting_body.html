@@ -133,7 +133,7 @@
     }
     apiready = function () {
         var user = localStorage.getItem("user");
-        console.log(user);
+        // console.log(user);
 
         var setting_ul = document.querySelector('.setting_ul');
         // console.log(setting_ul);
@@ -145,7 +145,7 @@
             } else {
                 li = node.parentNode.parentNode;
             }
-            console.log(li.dataset.type);
+            // console.log(li.dataset.type);
             if (li.dataset.type) {
                 openNewWindow(li.dataset.type, "./"+ li.dataset.type +".html");
             }
@@ -153,10 +153,10 @@
 
         document.getElementById('setting_btn').onclick = function () {
             mui.confirm('确定退出登录?', function (e) {
-                console.log(e)
+                // console.log(e)
 
                 if (e.index) {
-                    console.log(123)
+                    // console.log(123)
 
 
                     localStorage.clear();
@@ -185,7 +185,7 @@
 
     }
     function changejuese(){
-        console.log("之前的是",localStorage.getItem('person_id'))
+        // console.log("之前的是",localStorage.getItem('person_id'))
         var uid = localStorage.getItem("person_id")
         var obj = {
             uid : uid
@@ -201,7 +201,7 @@
                 values:obj
             }
         }, function (data, err) {
-            console.log("juese",data)
+            // console.log("juese",data)
             if (data.role_type == 2){
                 mui.confirm('切换至我是伯乐', '切换角色',['确认','取消'], function (e) {
                     if (!e.index) {

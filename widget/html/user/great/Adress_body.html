@@ -157,7 +157,7 @@
                         pid:that.person_id,
                     }
                     ajaxGetWithProgress(deliveryShow, str, function (data, err) {
-                        console.log(data);
+                        ////console.log(data);
                         if (data.deliveryAdr.length != 0){
                             document.querySelector(".adressBox").classList.remove("isDisplay")
                             that.adressList = data.deliveryAdr
@@ -168,7 +168,7 @@
                     });
                 },
                 delAdr :function (index) {
-                    console.log(index)
+                    //console.log(index)
 
                     mui.confirm('是否删除此地址吗?', function (e) {
                         if (e.index == 1) {
@@ -177,7 +177,7 @@
                                 adrId:index,
                             }
                             ajaxGetWithProgress(deliveryDelete,str,function(res,err) {
-                                console.log(res);
+                                //console.log(res);
                                 reload()
                                 api.toast({msg:"删除成功"})
                             })
@@ -186,7 +186,7 @@
 
                     })
                     /*ajaxGetWithProgress(deliveryDelete, str, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.deliveryAdr){
                             document.querySelector(".adressBox").classList.remove("isDisplay")
                             that.adressList = data.deliveryAdr
@@ -220,7 +220,7 @@
                         pid:that.person_id
                     }
                     ajaxGetWithProgress(deliverySetAddr,str,function(res,err) {
-                        console.log(res);
+                        //console.log(res);
                         reload()
                     })
                 }

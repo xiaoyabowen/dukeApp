@@ -228,9 +228,9 @@
                         cid: that.ouId,
                         pid: that.person_id
                     }
-                    console.log("ouIdouId",obj)
+                    ////console.log("ouIdouId",obj)
                     ajaxGetWithProgress(queryPeopleAndCityoloq, obj, function (data) {
-                        console.log(data)
+                        //console.log(data)
                         that.tripPersonList = data.travelPeople
                         that.cid = data.travelPeople[0].cid
                         that.tripCityList = data.clist
@@ -267,7 +267,7 @@
                         day: that.day,
                         month: that.month,
                     }
-                    console.log("strstr",str)
+                    //console.log("strstr",str)
                     /*var frameName = name + "_body";
                     api.execScript({
                         name:name,
@@ -276,7 +276,7 @@
                     })
                     closeWin();*/
                     ajaxGetWithProgress(createOrderoloq, str, function (data, err) {
-                        console.log("createOrderoloq",data);
+                        //console.log("createOrderoloq",data);
                         that.tdId = data.TravelDate.tdId
                         localStorage.setItem("tripPhone",that.phone)
 
@@ -365,7 +365,7 @@
                     // 获取当月的天数
                     function getMonthAllDay(month, year) {
                         var m_days = new Array(31, 28 + is_leap(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-                        console.log(m_days)
+                        //console.log(m_days)
                         that.day = m_days[month]
                         return m_days[month];
                     }
@@ -381,7 +381,7 @@
 
                     function daysOfMonth() {
                         var MonthYear = $(".txt_Year").text()
-                        console.log(MonthYear)
+                        //console.log(MonthYear)
                         var MonthMonth = $(".txt_blue").text()
                         // 获取到当前月份的全部日期
                         let daysOfMonth = '';
@@ -424,8 +424,8 @@
                         tb += "<tr class='secondtr'>";
                         tb += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
                         tb += "</tr>";
-                        console.log("dataDateList", that.dataDateList.length)
-                        console.log("dataDateList", that.dataDateList)
+                        //console.log("dataDateList", that.dataDateList.length)
+                        //console.log("dataDateList", that.dataDateList)
                         for (var i = 0; i < rows; i++) {
                             tb += "<tr>";
                             for (var k = 0; k < 7; k++) { // 表格每行的单元格
@@ -474,11 +474,11 @@
                         priceNumList[i].index = i
                         priceNumList[i].addEventListener("click",function (item,index) {
                             var normalIndex = this.index
-                            console.log(normalIndex)
+                            //console.log(normalIndex)
                             that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
                             // $(this).addClass("activeTd").siblings().removeClass("activeTd");
                             var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
-                            console.log("valuePrice",valuePrice)
+                            //console.log("valuePrice",valuePrice)
                             that.getPriceDefult = valuePrice
                             if ( valuePrice!=='' ) {
                                 $('.tdActive').siblings().children().removeClass("activeTd");
@@ -536,7 +536,7 @@
 
                     function daysOfMonth() {
                         var MonthYear = $(".txt_Year").text()
-                        console.log(MonthYear)
+                        //console.log(MonthYear)
                         var MonthMonth = $(".txt_blue").text()
                         // 获取到当前月份的全部日期
                         let daysOfMonth = '';
@@ -579,8 +579,8 @@
                         tb += "<tr class='secondtr'>";
                         tb += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
                         tb += "</tr>";
-                        console.log("dataDateList", that.dataDateList.length)
-                        console.log("dataDateList", that.dataDateList)
+                        //console.log("dataDateList", that.dataDateList.length)
+                        //console.log("dataDateList", that.dataDateList)
                         for (var i = 0; i < rows; i++) {
                             tb += "<tr>";
                             for (var k = 0; k < 7; k++) { // 表格每行的单元格
@@ -619,7 +619,7 @@
                             priceNumList[i].index = i
                             priceNumList[i].addEventListener("click",function (item,index) {
                                 var normalIndex = this.index
-                                console.log(normalIndex)
+                                //console.log(normalIndex)
                                 var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
                                 that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
                                 that.getPriceDefult = valuePrice
@@ -682,7 +682,7 @@
 
                     function daysOfMonth() {
                         var MonthYear = $(".txt_Year").text()
-                        console.log(MonthYear)
+                        //console.log(MonthYear)
                         var MonthMonth = $(".txt_blue").text()
                         // 获取到当前月份的全部日期
                         let daysOfMonth = '';
@@ -725,8 +725,8 @@
                         tb1 += "<tr class='secondtr'>";
                         tb1 += "<td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>";
                         tb1 += "</tr>";
-                        console.log("dataDateList", that.dataDateList.length)
-                        console.log("dataDateList", that.dataDateList)
+                        //console.log("dataDateList", that.dataDateList.length)
+                        //console.log("dataDateList", that.dataDateList)
                         for (var i = 0; i < rows; i++) {
                             tb1 += "<tr>";
                             for (var k = 0; k < 7; k++) { // 表格每行的单元格
@@ -765,7 +765,7 @@
                             priceNumList[i].index = i
                             priceNumList[i].addEventListener("click",function (item,index) {
                                 var normalIndex = this.index
-                                console.log(normalIndex)
+                                //console.log(normalIndex)
                                 var valuePrice = $(".normal").eq(normalIndex).children(".price").children(".priceNum").text()
                                 that.dateActive =getQueryYear +'-'+getQueryMonth+'-'+ normalIndex
                                 that.getPriceDefult = valuePrice

@@ -244,11 +244,11 @@
                         circle_id: that.circle_id
                     }
                     ajaxGetWithProgress(CircleProfileAllinOne, obj, function (data) {
-                        console.log("CircleProfileAllinOne", data);
+                        //console.log("CircleProfileAllinOne", data);
                         var circleSummary = data.circleSummary;
                         var Comment = data.Comment;
 
-                        console.log("Comment", Comment)
+                        //console.log("Comment", Comment)
 
                         if (data) {
                             document.querySelector(".detailBomBtn").classList.remove("isDisplay")
@@ -273,7 +273,7 @@
                                 that.CommentSta = false
                             } else {
                                 that.CommentSta = true
-                                console.log(Comment.p_name)
+                                //console.log(Comment.p_name)
                                 that.disPersonId = Comment.person_id
                                 that.disIcon = imgSrcFun(Comment.p_icon)
                                 that.disName = Comment.p_name
@@ -338,7 +338,7 @@
                         phone: that.userPhone,
                     }
                     ajaxGetWithProgress(joinCircleCircleProfile, obj, function (data) {
-                        console.log("joinCircleCircleProfile", data)
+                        //console.log("joinCircleCircleProfile", data)
                         if (data.return_info.status) {
                             toast("报名成功")
                             that.userName = ''
@@ -543,7 +543,7 @@
                 // 发送
                 sendHandle: function () {
                     // alert(123)
-                    console.log(this.textarea);
+                    //console.log(this.textarea);
                     if (!this.textarea) {
                         mui.toast('评论不能为空');
                         return;
@@ -570,7 +570,7 @@
                 },
                 // 发送
                 sendHandle: function () {
-                    console.log(this.textarea);
+                    //console.log(this.textarea);
                     if (!this.textarea) {
                         mui.toast('评论不能为空');
                         return;
@@ -582,7 +582,7 @@
                         circle_id: that.circle_id,
                         content: that.textarea
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.return_info.status) {
                             toast('评论成功');
                             that.comment_box = false;

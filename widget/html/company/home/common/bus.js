@@ -17,20 +17,20 @@ var store = new Vuex.Store({
     mutations: {
 
         isPage: function(state, page) {
-            console.log(state)
+            //console.log(state)
         },
         updateMagicList: function(state,list,isFillter){
-          //  console.log(json,'211111');
-          console.log(state,'commit')
+          //  //console.log(json,'211111');
+          //console.log(state,'commit')
           state.newMagicList = list;
         }
     },
     actions:{
       loadMagicData({commit},payload){
-          // console.log(payload,'222222')
+          // //console.log(payload,'222222')
           return new Promise((res,ret)=>{
             ajaxGetWithProgress(filterScreen, payload, function(data) {
-                console.log(data, 'dispatch')
+                //console.log(data, 'dispatch')
                 commit('updateMagicList',data.list,payload.isFiltter);
                 res();
             })

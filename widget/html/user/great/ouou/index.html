@@ -106,7 +106,7 @@
                 api.addEventListener({
                     name: 'jobAll'+that.tId,
                 }, function(ret, err) {
-                    console.log("ret",ret);
+                    ////console.log("ret",ret);
                     that.ouId = ret.value.key.cid
                     that.querySummaryByidoloq()
 
@@ -122,7 +122,7 @@
                         cid: that.ouId,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data);
+                        ////console.log(data);
                         that.item = data.commodity
                         that.total = data.total
                         that.att = data.att;
@@ -148,7 +148,7 @@
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已收藏")
 
@@ -169,9 +169,9 @@
                         id: that.att_id,
                         ccStatus: 0,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(collectComm, obj, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏");
                         }

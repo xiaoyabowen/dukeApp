@@ -164,7 +164,7 @@
                             uid: uid
                         }
                         ajaxGetWithProgress(queryOrgnizationWelfare,obj,function (data,ret) {
-                            console.log(data)
+                            //console.log(data)
                         })
                     }
 
@@ -175,7 +175,7 @@
                     }else{
                         this.comscaleText.push(value)
                     }
-                    console.log(this.comscaleText)
+                    //console.log(this.comscaleText)
                 },
                 restList : function (value,index){   //薪资期权
                     if(this.restText.indexOf( value )!=-1){
@@ -204,15 +204,15 @@
                     var c_id = localStorage.getItem("com_id");
                     var welfareArr = [];
                     welfareArr = welfareArr.concat(that.comscaleText).concat(that.restText).concat(that.overtimeText).concat(that.lifeText)
-                    console.log(welfareArr)
+                    //console.log(welfareArr)
                     var obj = {
                         c_id : c_id,
                         welfare : welfareArr.join(','), //
 
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(createCompanyWelfare,obj,function (data,ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

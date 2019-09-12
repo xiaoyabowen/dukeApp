@@ -89,7 +89,7 @@
                 api.addEventListener({
                     name: 'jobAll'+that.tId,
                 }, function(ret, err) {
-                    console.log("ret",ret);
+                    //console.log("ret",ret);
                     that.cid = ret.value.key.cid
                     that.showTravel()
 
@@ -104,7 +104,7 @@
                         cid: that.cid,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.commTravel) {
                             that.item = data.commodity;
                             that.att = data.att;
@@ -133,7 +133,7 @@
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已收藏")
 
@@ -154,9 +154,9 @@
                         id: that.att_id,
                         ccStatus: 0,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGet(collectComm, obj, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏")
                             // window.location.reload()

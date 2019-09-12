@@ -156,7 +156,7 @@
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            ////console.log(data);
             var subscribedHtml = ''
             var dataArr = data.querySubscription
             if (dataArr) {
@@ -208,14 +208,14 @@
         var subscribed_main = document.querySelectorAll('.subscribed_main');
         for (var i = 0; i < subscribed_main.length; i++) {
             subscribed_main[i].onclick = function (e) {
-                console.log(e)
+                ////console.log(e)
             }
         }
 
 
         // 修改订阅
         document.querySelector('.subscribed_bottom_left').onclick = function () {
-            console.log(sub_id)
+            //console.log(sub_id)
             openNewWindow("add_Subscription", "./add_Subscription.html", {
                 url: 'subscribed_positions',
                 content : "edit",
@@ -227,7 +227,7 @@
 
     // 跳转职位详情
     function subscribedClick(c_id) {
-        console.log(c_id)
+        //console.log(c_id)
     }
     // 添加订阅
     function addSubscribed() {
@@ -240,14 +240,14 @@
     // 删除订阅
     document.querySelector('.subscribed_bottom_right').onclick = function () {
         mui.confirm('确定要删除此订阅吗?', function (e) {
-            console.log(e)
-            // console.log(sub_id)
+            //console.log(e)
+            // //console.log(sub_id)
             if (e.index) {
                 ajaxGetWithProgress(DeleteSubscriptionById, {
                     sub_id: sub_id
                 }, function (data, err) {
                     // alert(JSON.stringify(data));
-                    console.log(data);
+                    //console.log(data);
                     if (data.return.status) {
                         document.querySelector('.subscribed_main').classList.add('isDisplay');
                         document.querySelector('.subscribed_bottom').classList.add('isDisplay');
@@ -261,7 +261,7 @@
 
     // 重新获取数据
     function reset() {
-        console.log(1233)
+        //console.log(1233)
         document.querySelector('.subscribed_main').classList.remove('isDisplay');
         document.querySelector('.subscribed_bottom').classList.remove('isDisplay');
         document.querySelector('.clearBox').classList.add('isDisplay');

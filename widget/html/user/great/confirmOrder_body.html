@@ -289,12 +289,12 @@
             api.addEventListener({
                 name: 'addressDefault',
             }, function (ret, err) {
-                console.log("ret", ret);
+                //console.log("ret", ret);
                 app.isDefult = ret.value.key.addressDefault;
                 app.isChange()
             });
-            console.log("123",api.pageParam.item);
-            console.log("order",api.pageParam.order);
+            //console.log("123",api.pageParam.item);
+            //console.log("order",api.pageParam.order);
 
             var app = new Vue({
                 el: '#app',
@@ -356,7 +356,7 @@
                             pId:that.person_id,
                         }
                         ajaxGetWithProgress(queryDefaultAdr, str, function (data, err) {
-                            console.log("queryDefaultAdr",data);
+                            //console.log("queryDefaultAdr",data);
                             that.isDefult = data.default
                             that.order = data
                         });
@@ -384,9 +384,9 @@
                             }
                         }
 
-                        console.log("AndPriceObj", obj)
+                        //console.log("AndPriceObj", obj)
                         ajaxGetWithProgress(updateBuyNumAndPrice, obj, function (data) {
-                            console.log("updateBuyNumAndPrice", data)
+                            //console.log("updateBuyNumAndPrice", data)
                         })
 
 
@@ -404,9 +404,9 @@
                             buyNum: that.num,
                             price: that.item.priceh * that.num,
                         }
-                        console.log("AndPriceJianObj", obj)
+                        //console.log("AndPriceJianObj", obj)
                         ajaxGetWithProgress(updateBuyNumAndPrice, obj, function (data) {
-                            console.log("updateBuyNumAndPrice", data)
+                            //console.log("updateBuyNumAndPrice", data)
                         })
 
 
@@ -438,7 +438,7 @@
                             } else if (that.bank == '微信') {
 
                                 mui.alert('weixin', '提示', function (e) {
-                                    console.log(e)
+                                    //console.log(e)
                                     if (e.index == 0) {
 
                                     }
@@ -460,7 +460,7 @@
                                     adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
                                     // adrId: name + ',' +phone + ',' + address
                                 }
-                                console.log("",obj)
+                                //console.log("",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
@@ -472,14 +472,14 @@
 
                                 }, function (ret, err) {
                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    //console.log("自己处理订单信息以及签名过程请求:", ret);
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
                                         // orderInfo: 'app_id=2019081266240052&biz_content=timeout_express30mproduct_codeQUICK_MSECURITY_PAYtotal_amount1subject1234455body34234324343out_trade_no281088602799079424&charset=utf-8&format=json&method=&sign_type=RSA2&timestamp=2016-08-25%2020%3A26%3A31&version=1.0&sign=',
                                         // sandbox: false
                                     }, function (ret, err) {
-                                        console.log(ret)
+                                        //console.log(ret)
                                         var msg = ret.code
 
                                         if (msg == 9000) {
@@ -554,13 +554,13 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log("yinlian", ret)
+                                    //console.log("yinlian", ret)
                                     if (ret) {
                                         unPay.pay({
                                             tn: ret,
                                             devMode: true
                                         }, function (ret, err) {
-                                            console.log("pay", ret)
+                                            //console.log("pay", ret)
                                             if (ret.result == "success") {
                                                 mui.alert('支付成功', '提示', function (e) {
                                                     if (e.index == 0) {
@@ -592,7 +592,7 @@
                                 pId: that.person_id,
                                 bank: that.bank
                             }, function (data, err) {
-                                console.log(data);
+                                //console.log(data);
                                 if (!data.date) {
                                     mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
                                         if (e.index) {
@@ -638,7 +638,7 @@
                             } else if (that.bank == '微信') {
 
                                 mui.alert('weixin', '提示', function (e) {
-                                    console.log(e)
+                                    //console.log(e)
                                     if (e.index == 0) {
 
                                     }
@@ -659,7 +659,7 @@
                                     adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
 
                                 }
-                                console.log("123345",obj)
+                                //console.log("123345",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     // url: 'http://192.168.1.24:8088/pay/GoPayOrder',  //url+模块
@@ -671,7 +671,7 @@
                                     }
                                 }, function (ret, err) {
                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    //console.log("自己处理订单信息以及签名过程请求:", ret);
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
@@ -680,7 +680,7 @@
 
 
                                     }, function (ret, err) {
-                                        console.log(ret)
+                                        //console.log(ret)
                                         var msg = ret.code
 
                                         if (msg == 9000) {
@@ -756,13 +756,13 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log("yinlian", ret)
+                                    //console.log("yinlian", ret)
                                     if (ret) {
                                         unPay.pay({
                                             tn: ret,
                                             devMode: true
                                         }, function (ret, err) {
-                                            console.log("pay", ret)
+                                            //console.log("pay", ret)
                                             if (ret.result == "success") {
                                                 mui.alert('支付成功', '提示', function (e) {
                                                     if (e.index == 0) {
@@ -794,7 +794,7 @@
                                 pId: that.person_id,
                                 bank: that.bank
                             }, function (data, err) {
-                                console.log(data);
+                                //console.log(data);
                                 if (!data.date) {
                                     mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
                                         if (e.index) {
@@ -815,14 +815,14 @@
                         // 旅游类型
                         if (that.active == 'tourism') {
 
-                            console.log(that.bank)
+                            //console.log(that.bank)
                             if (!that.bank) {
                                 mui.toast('请选择支付方式');
                                 return;
                             } else if (that.bank == '微信') {
 
                                 mui.alert('weixin', '提示', function (e) {
-                                    console.log(e)
+                                    //console.log(e)
                                     if (e.index == 0) {
 
                                     }
@@ -842,7 +842,7 @@
                                     payType: "支付宝",
                                     // adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
                                 }
-                                console.log("zhifubao",obj)
+                                //console.log("zhifubao",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
@@ -853,7 +853,7 @@
                                     }
                                 }, function (ret, err) {
                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    //console.log("自己处理订单信息以及签名过程请求:", ret);
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
@@ -862,7 +862,7 @@
 
 
                                     }, function (ret, err) {
-                                        console.log(ret)
+                                        //console.log(ret)
                                         var msg = ret.code
 
                                         if (msg == 9000) {
@@ -926,7 +926,7 @@
                                     adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
                                 }
 
-                                console.log(obj)
+                                //console.log(obj)
 
 
                                 api.ajax({
@@ -939,13 +939,13 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log("yinlian", ret)
+                                    //console.log("yinlian", ret)
                                     if (ret) {
                                         unPay.pay({
                                             tn: ret,
                                             devMode: true
                                         }, function (ret, err) {
-                                            console.log("pay", ret)
+                                            //console.log("pay", ret)
                                             if (ret.result == "success") {
                                                 mui.alert('支付成功', '提示', function (e) {
                                                     if (e.index == 0) {
@@ -977,7 +977,7 @@
                                 pId: that.person_id,
                                 bank: that.bank
                             }, function (data, err) {
-                                console.log(data);
+                                //console.log(data);
                                 if (!data.date) {
                                     mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
                                         if (e.index) {
@@ -1000,14 +1000,14 @@
                         // 旅游  欧来欧去
                         if (that.active == 'tourismouou') {
 
-                            console.log(that.bank)
+                            //console.log(that.bank)
                             if (!that.bank) {
                                 mui.toast('请选择支付方式');
                                 return;
                             } else if (that.bank == '微信') {
 
                                 mui.alert('weixin', '提示', function (e) {
-                                    console.log(e)
+                                    //console.log(e)
                                     if (e.index == 0) {
 
                                     }
@@ -1029,7 +1029,7 @@
                                     phone: that.order.userphone,
                                     payType: "支付宝",
                                 }
-                                console.log("objobjobj",obj)
+                                //console.log("objobjobj",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
                                     method: 'GET',
@@ -1040,7 +1040,7 @@
                                     }
                                 }, function (ret, err) {
                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
-                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    //console.log("自己处理订单信息以及签名过程请求:", ret);
                                     var aliPayPlus = api.require('aliPayPlus');
                                     aliPayPlus.payOrder({
                                         orderInfo: ret,
@@ -1049,7 +1049,7 @@
 
 
                                     }, function (ret, err) {
-                                        console.log(ret)
+                                        //console.log(ret)
                                         var msg = ret.code
 
                                         if (msg == 9000) {
@@ -1114,7 +1114,7 @@
                                     phone: that.order.userphone,
                                     payType: "银联",
                                 }
-                                console.log(obj)
+                                //console.log(obj)
 
 
                                 api.ajax({
@@ -1127,13 +1127,13 @@
                                         values: obj
                                     }
                                 }, function (ret, err) {
-                                    console.log("yinlian", ret)
+                                    //console.log("yinlian", ret)
                                     if (ret) {
                                         unPay.pay({
                                             tn: ret,
                                             devMode: true
                                         }, function (ret, err) {
-                                            console.log("pay", ret)
+                                            //console.log("pay", ret)
                                             if (ret.result == "success") {
                                                 mui.alert('支付成功', '提示', function (e) {
                                                     if (e.index == 0) {
@@ -1165,7 +1165,7 @@
                                 pId: that.person_id,
                                 bank: that.bank
                             }, function (data, err) {
-                                console.log(data);
+                                //console.log(data);
                                 if (!data.date) {
                                     mui.confirm('是否添加' + that.bank + '银行卡', '您还未添加' + that.bank + '银行卡', function (e) {
                                         if (e.index) {
@@ -1191,9 +1191,9 @@
 
     function address(name, phone, addrDetails, adrId) {
 
-        console.log(name)
-        console.log(phone)
-        console.log(addrDetails)
+        //console.log(name)
+        //console.log(phone)
+        //console.log(addrDetails)
 
         document.querySelector(".con-adr-not").classList.add("isDisplay")
         document.querySelector(".con-adr-yes").classList.remove("isDisplay")
@@ -1206,7 +1206,7 @@
             adrId: adrId,
             // oId : api.pageParam.OrderKey
         }
-        console.log(str)
+        //console.log(str)
         ajaxGetWithProgress(updateDeliveryAddress, str, function (res, err) {
 
         })

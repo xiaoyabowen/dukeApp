@@ -166,7 +166,7 @@
                             for (var i = 0; i < imgList.length; i++) {
                                 imgListArr["file" + i] = imgList[i].thumbPath
                             }
-                            console.log("imgListArrFile",imgListArr)
+                            ////console.log("imgListArrFile",imgListArr)
                             api.ajax({
                                 // report : false,
                                 url: 'http://192.168.1.24:8088/upload/UploadFlie',
@@ -183,15 +183,15 @@
                                 }
                             }, function (data, err) {
 
-                                console.log(data)
+                                //console.log(data)
                                 picture = data.imgUrl
                                 var retImg = stringFun(data.imgUrl).join(",")
-                                console.log("retImg",retImg)
+                                //console.log("retImg",retImg)
                                 var reg=/,$/gi;
                                 var retImgSub=retImg.replace(reg,"");
-                                console.log("retImgSub",stringFun(retImgSub))
+                                //console.log("retImgSub",stringFun(retImgSub))
                                 that.retImgArr = stringFun(retImgSub)
-                                console.log("retImgretImg",retImg.length)
+                                //console.log("retImgretImg",retImg.length)
                             });
 
 
@@ -213,7 +213,7 @@
                             cid : that.cid
                         }
                         ajaxGetWithProgress(orgnizationPICBbycidlist, obj, function (data, ret) {
-                            console.log("orgnizationPICBbycidlist",data)
+                            //console.log("orgnizationPICBbycidlist",data)
                             if (data){
                                 that.retImgArr = data.pic.split(",")
                                 that.id = data.id
@@ -229,9 +229,9 @@
                         pic: that.retImgArr.join(","),
                         cid: that.cid,
                     }
-                    console.log("preservation",obj)
+                    //console.log("preservation",obj)
                     ajaxGetWithProgress(addCompanyPic, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return_info.status) {
                             var frameName = url + "_body";
                             api.execScript({
@@ -249,9 +249,9 @@
                         pic: that.retImgArr.join(","),
                         id:that.id
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(UpdateCompanyPic, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({
@@ -320,7 +320,7 @@
                     }
                 }, function (data, err) {
 
-                    console.log(data)
+                    //console.log(data)
                     picture = data.imgUrl
                     var retImg = stringFun(data.imgUrl)
                     that
@@ -341,14 +341,14 @@
     }
 
     function delImgComCir(index) {
-        console.log("imgListArr", imgListArr)
+        //console.log("imgListArr", imgListArr)
 
         // imgListArr.splice(index,1);
         var filex = "file" + index
-        console.log("filex", filex)
+        //console.log("filex", filex)
         delete imgListArr.filex
 
-        console.log("imgListArrdelete", imgListArr)
+        //console.log("imgListArrdelete", imgListArr)
 
         var ulBox = document.getElementById('ul_box');
         var ulBoxLi = ''
@@ -363,7 +363,7 @@
             cid: cid
         }
         ajaxGetWithProgress(addCompanyPicOrgnizationProfile, obj, function (data) {
-            console.log(data)
+            //console.log(data)
         })
     }
 

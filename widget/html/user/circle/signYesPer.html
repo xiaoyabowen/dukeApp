@@ -118,7 +118,7 @@
                 api.addEventListener({
                     name: 'jobAll'+that.tId,
                 }, function(ret, err) {
-                    // console.log("ret",ret);
+                    // //console.log("ret",ret);
                     that.hourseId = ret.value.key.cid
                     that.housequeryHouseSummary()
 
@@ -133,7 +133,7 @@
                         cid: that.hourseId,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data);
+                        //console.log(data);
                         that.item = data.comm
                         that.att = data.att;
                         that.att_id = data.att_id;
@@ -141,7 +141,7 @@
                         that.picListpic1 = stringFun(data.comm.pic1)
                         that.picListpic2 = stringFun(data.comm.pic2)
                         that.picListpic3 = stringFun(data.comm.pic3)
-                        console.log(that.picList)
+                        //console.log(that.picList)
 
                     });
                 },
@@ -157,7 +157,7 @@
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已收藏")
 
@@ -178,9 +178,9 @@
                         id: that.att_id,
                         ccStatus: 0,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGet(collectComm, obj, function(data,err){
-                        console.log(data);
+                        //console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏")
                             // window.location.reload()

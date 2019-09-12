@@ -204,7 +204,7 @@
 
                 },
                 created: function () {
-                    console.log(api.pageParam.getUserInfoWx,"getUserInfoWx")
+                    ////console.log(api.pageParam.getUserInfoWx,"getUserInfoWx")
                     this.getUserInfoWx = api.pageParam.getUserInfoWx
                 },
                 mounted: function () {
@@ -281,9 +281,9 @@
                             code :that.userPhoneYz,
                         }
 
-                        console.log(obj)
+                        //console.log(obj)
                         ajaxGetWithProgress(ChatBound, obj, function (data) {
-                            console.log("ChatBound",data)
+                            //console.log("ChatBound",data)
                             api.hideProgress();
                             if (data.bound == true) {
                                 localStorage.setItem('user',data.user_id);

@@ -100,7 +100,7 @@
                         cid: c_id,
                     }
                     ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
-                        console.log("queryProductSummary",data)
+                        //console.log("queryProductSummary",data)
                         if (data){
                             that.comProArr= data.product_his
 
@@ -117,7 +117,7 @@
                             cid: c_id,
                         }
                         ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
-                            console.log("queryProductSummary",data)
+                            //console.log("queryProductSummary",data)
                             if (data){
                                 that.comProArr= data.product_his
 
@@ -151,7 +151,7 @@
                             var obj = {
                                 uid : localStorage.getItem("person_id")
                             }
-                            console.log(JSON.stringify(ret));
+                            //console.log(JSON.stringify(ret));
                             //上传剪辑后的图像到服务器
                             api.ajax({
                                 // report : false,
@@ -169,14 +169,14 @@
                                     values:obj
                                 }
                             }, function (ret, err) {
-                                console.log(ret);
+                                //console.log(ret);
                                 prod_icon = document.querySelector(".addComProImg").src
                                 var pathImgImg = ret.imgUrl
                                 if (pathImgImg == ''){
                                     prod_icon = '../../../image/company/comproImg.png'
                                 }else{
                                     var pathImgData = pathImgImg.split(",")
-                                    console.log(pathImgData)
+                                    //console.log(pathImgData)
                                     prod_icon = pathImgData[0]
                                 }
 
@@ -184,7 +184,7 @@
 
                             });
                         } else {
-                            console.log(JSON.stringify(err));
+                            //console.log(JSON.stringify(err));
                         }
 
                     });
@@ -212,9 +212,9 @@
                         prod_tags: suggestText,
                         prod_icon: prod_icon,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

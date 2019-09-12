@@ -94,7 +94,7 @@
                             uid: uid
                         }
                         ajaxGetWithProgress(queryOrgnizationSenior,obj,function (data,ret) {
-                            console.log(data)
+                            //console.log(data)
                             if (data){
                                 that.mangeName = data.senior
                                 that.mangePosition = data.senior_position
@@ -123,7 +123,7 @@
                             var obj = {
                                 uid : localStorage.getItem("person_id")
                             }
-                            console.log(JSON.stringify(ret));
+                            //console.log(JSON.stringify(ret));
                             //上传剪辑后的图像到服务器
                             api.ajax({
                                 // report : false,
@@ -141,13 +141,13 @@
                                     values:obj
                                 }
                             }, function (ret, err) {
-                                console.log(ret);
+                                //console.log(ret);
                                 var pathImgImg = ret.imgUrl
                                 if (pathImgImg == ''){
                                     that.senior_icon = '../../../image/company/commanger.png'
                                 }else{
                                     var pathImgData = pathImgImg.split(",")
-                                    console.log(pathImgData)
+                                    //console.log(pathImgData)
                                     that.senior_icon = pathImgData[0]
                                 }
 
@@ -155,7 +155,7 @@
 
                             });
                         } else {
-                            console.log(JSON.stringify(err));
+                            //console.log(JSON.stringify(err));
                         }
 
                     });
@@ -187,9 +187,9 @@
                         senior_bak : that.comproText,
                         senior_icon : that.senior_icon,
                     }
-                    console.log(obj)
+                    //console.log(obj)
                     ajaxGetWithProgress(createCompanySenior,obj,function (data,ret) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.return.status) {
                             var frameName = url + "_body";
                             api.execScript({

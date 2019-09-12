@@ -130,7 +130,7 @@
         }
         if (statusD == 2){
             ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
-                console.log(data)
+                //console.log(data)
                 if (data) {
 
                     document.getElementById("adr_id").innerText = data.adr_id
@@ -294,7 +294,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            //console.log(SelectedItem)
             document.getElementById('postPaySelectText').innerText = SelectedItem[0].text;
             document.getElementById('postPaySelect').innerText = SelectedItem[0].value;
         })
@@ -358,7 +358,7 @@
 
 
     function postJobSubmit() {
-        console.log(loginAuthen)
+        //console.log(loginAuthen)
         var adr_id = document.getElementById("adr_id").innerText
         var companyAdressId = document.getElementById("companyAdressId").innerText
         var job_name = document.getElementById("postPositionName").innerText
@@ -441,9 +441,9 @@
                 icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,',
                 company_c_id : company_c_id
             }
-            console.log(obj)
+            //console.log(obj)
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
-                console.log(data)
+                //console.log(data)
                 if (data){
                     if (data.return_info.status){
                         toast("请求成功")
@@ -482,7 +482,7 @@
                 company_c_id : company_c_id
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
-                console.log(data)
+                //console.log(data)
                 if (data){
                     if (data.return_info.status){
                         toast("请求成功")
@@ -520,7 +520,7 @@
                 company_c_id : company_c_id
             }
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
-                console.log(data)
+                //console.log(data)
                 if (data){
                     // if (data.return_info.status){
                     //     toast("请求成功")

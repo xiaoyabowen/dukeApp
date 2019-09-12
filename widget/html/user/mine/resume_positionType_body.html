@@ -235,7 +235,7 @@
 
     var url, content;
     // console.log(positiondata);
-    console.log(position)
+    // console.log(position)
     // var arr = positiondata.positionlist;
     var arr = position.zpData;
     apiready = function () {
@@ -284,7 +284,7 @@
         }
         // console.log(list0);
         for (var i = 0; i < list0.length; i++) {
-            console.log(list0[i].name);
+            // console.log(list0[i].name);
             var s = list0[i].name.trim();
             var str = '<div class="resume_expectations_item" data-str="'+ s +'">\n' +
                 '                <div class="info-choose cssFlex">\n' +
@@ -308,7 +308,7 @@
     }
 
     function selection1(index, index2) {
-        console.log(index, index2);
+        // console.log(index, index2);
         var list = arr[index].subLevelModelList;
         var list0 = list[index2].subLevelModelList;
         var list2 = [];
@@ -332,7 +332,7 @@
     mask2.addEventListener('click', function (e) {
         // console.log(e.target);
         content = e.target.innerText;
-        console.log(content);
+        // console.log(content);
         preservation();
     })
 

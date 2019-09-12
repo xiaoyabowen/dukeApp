@@ -51,7 +51,7 @@
         url = api.pageParam.url;
         var details = api.pageParam.details;
         var cost = api.pageParam.cost;
-        console.log(api.pageParam,'54444');
+        ////console.log(api.pageParam,'54444');
         app = new Vue({
             el: '#detailWrap',
             data: {
@@ -101,7 +101,7 @@
                         rotation: true
                     }, function(ret) {
                         if (ret) {
-                            console.log("ret==", ret)
+                            //console.log("ret==", ret)
                             that.imgList = ret.list;
 
                             var imgListArr = {}
@@ -110,7 +110,7 @@
                                 imgListArr["file"+(i+1)] = imgList[i].thumbPath;
                             }
 
-                            console.log(imgListArr,'955');
+                            //console.log(imgListArr,'955');
 
                             var obj = {
                                 uid: localStorage.getItem("user").user_id
@@ -130,7 +130,7 @@
                                 }
                             }, function(data, err) {
 
-                                console.log("dataaaa", data);
+                                //console.log("dataaaa", data);
                                 api.hideProgress();
                                 if (data.code == 0) {
 
@@ -150,7 +150,7 @@
               imgs: app.imgs,
               intro: app.intro
           }
-          // console.log(data,'124')
+          // //console.log(data,'124')
           var frameName = url + "_body";
           api.execScript({
               name: url,

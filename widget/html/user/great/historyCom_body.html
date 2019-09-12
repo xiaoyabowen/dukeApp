@@ -166,7 +166,7 @@
     apiready = function () {
         Htmlname = api.pageParam.activeName
         uid = localStorage.getItem("person_id");
-        console.log("uid",uid)
+        ////console.log("uid",uid)
         new Vue({
             el: '#app1',
             data: {
@@ -214,7 +214,7 @@
 
                   }
                   ajaxGetWithProgress(queryAttentionCircle,obj,function (data) {
-                      console.log("queryCircleList",data)
+                      //console.log("queryCircleList",data)
 
                       if (data){
                           document.querySelector(".cirBox").classList.remove("isDisplay")
@@ -237,7 +237,7 @@
                         pid : that.person_id
                     }
                     ajaxGetWithProgress(QueryAttCommodity,obj,function (data) {
-                        console.log("QueryAttCommodity",data);
+                        //console.log("QueryAttCommodity",data);
                         if(data && data.AttCommodity){
                           that.listall = data.AttCommodity;
                         }

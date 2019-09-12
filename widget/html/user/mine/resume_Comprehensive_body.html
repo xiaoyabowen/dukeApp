@@ -106,20 +106,20 @@
 
         if (content) {
             var arr1 = content.split(',');
-            console.log(arr1);
+            // console.log(arr1);
             for (var i = 0; i < arr1.length; i++) {
                 if (list.indexOf(arr1[i]) != -1) {
                     array.push(list.indexOf(arr1[i]));
-                    console.log(arr1[i])
+                    // console.log(arr1[i])
                 }
             }
-            console.log(123, array);
+            // console.log(123, array);
         }
 
         var tagBox = document.querySelector('.resume_CompanyIndustry_content');
         var arr = [];
         for (var i = 0; i < list.length; i++) {
-            console.log(array.indexOf(i))
+            // console.log(array.indexOf(i))
             if (array.indexOf(i) != '-1') {
                 arr.push('<div class="resume_CompanyIndustry_item active">');
                 selectList.push(list[i]);
@@ -157,14 +157,14 @@
     function preservation () {
 
         var list = selectList.join(',')
-        console.log(list);
+        // console.log(list);
         var person_id = localStorage.getItem('person_id');
         ajaxGetWithProgress(updateTitle, {
             person_id: person_id,
             p_title: list
         }, function (res, err) {
             // api.alert({mas: JSON.stringify(res)});
-            console.log(res);
+            // console.log(res);
             if (res.return.status) {
                 var frameName = url + "_body";
                 api.execScript({

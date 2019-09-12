@@ -176,7 +176,7 @@
             a01_w = winWidth;
             // 斜边长
             bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            console.log("bevelLength",bevelLength)
+            ////console.log("bevelLength",bevelLength)
             // width_d=(screen_w-20) *2/5 - 5;
             m_d = (a01_w-10)*0.23-25;    // 100
 
@@ -252,7 +252,7 @@
                     api.addEventListener({
                         name: 'comCom1',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
 
                         /*localStorage.setItem("magic_id",ret.value.key.c_id)
@@ -262,7 +262,7 @@
                     api.addEventListener({
                         name: 'comCom2',
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
 
                         /*localStorage.setItem("magic_id2",ret.value.key.c_id)
@@ -272,7 +272,7 @@
                     api.addEventListener({
                         name: 'jobAll'+that.tId,
                     }, function(ret, err) {
-                        console.log("ret",ret);
+                        //console.log("ret",ret);
                         that.ouId = ret.value.key.cid
                         that.querySummaryByidoloq()
 
@@ -319,7 +319,7 @@
                             cid: that.ouId,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data);
+                            //console.log(data);
                             that.item = data.commodity
                             that.total = data.total
                             that.imgs = stringFun(data.commodity.placard)
@@ -332,7 +332,7 @@
                     },
                     // 切换tab
                     activeHandle: function (activeType) {
-                        console.log(activeType)
+                        //console.log(activeType)
                         this.activeType = activeType;
                     },
                     // 办理签证
@@ -350,7 +350,7 @@
                             pid: that.person_id,
                             commId: that.item.cId
                         }, function(data,err){
-                            console.log(data);
+                            //console.log(data);
                             if (data.commcollect) {
                                 toast("编辑成功")
                                 window.location.reload()
@@ -390,7 +390,7 @@
                             cId: that.ouId,
                             tdId: document.querySelector(".tdId").innerText,
                         }
-                        console.log("uioiiaaaaaa",a)*/
+                        //console.log("uioiiaaaaaa",a)*/
 
                         openNewWindow("confirmOrder", "../confirmOrder.html", {
                             url: 'tourismouou',
@@ -426,11 +426,11 @@
                     },
                     commodityList : function (){
                         var that = this
-                        console.log("that.tId",that.tId)
+                        //console.log("that.tId",that.tId)
                         ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            console.log("commodityList11",data)
+                            //console.log("commodityList11",data)
                             var jobList = data.comList
-                            console.log(jobList)
+                            //console.log(jobList)
                             if (data) {
                                 if (jobList == null) {
                                     that.listJob = ''
@@ -461,7 +461,7 @@
                         var isBlck = document.querySelector('.bgBlack')
                         if (isBlck.getAttribute("class") == 'isDisplay') {
                             document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            console.log(document.querySelector('.bgBlack'))
+                            //console.log(document.querySelector('.bgBlack'))
                         } else {
                             var that = this;
                             that.active = 'magicAll';
@@ -482,7 +482,7 @@
 
         function tripValue(tripPerson,tdId,tripCity,dateActive,num,price,priceDan,username) {
 
-            console.log("userphone",localStorage.getItem("tripPhone"))
+            //console.log("userphone",localStorage.getItem("tripPhone"))
 
             // document.querySelector(".ouIds").innerText = oId
             document.querySelector(".tdId").innerText = tdId

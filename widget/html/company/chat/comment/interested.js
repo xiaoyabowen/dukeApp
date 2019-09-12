@@ -21,7 +21,7 @@ function interestedInit(Vue) {
             lookJobsList: function () {
                 var that = this;
                 ajaxGetWithProgress(lookJobsList, {}, function (data, err) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.LookJobsPersonList) {
                         var arr1 = data.LookJobsPersonList;
                         var arr2 = [];
@@ -30,14 +30,14 @@ function interestedInit(Vue) {
                                 arr2.push(arr1[i].LookJobsPerson[j]);
                             }
                         }
-                        console.log(arr2);
+                        //console.log(arr2);
                         that.list = arr2;
                     }
                 })
             },
             // 点击查看简历
             resumeHandle: function(person_id) {
-                console.log(person_id);
+                //console.log(person_id);
                 openNewWindow("seeResume", "../mine/seeResume.html", {
                     person_id: person_id
                 });

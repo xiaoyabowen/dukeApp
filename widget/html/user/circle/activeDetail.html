@@ -138,7 +138,7 @@
                         circle_id: that.circle_id
                     }
                     ajaxGetWithProgress(CircleProfileAllinOne, obj, function (data) {
-                        console.log("CircleProfileAllinOne", data);
+                        ////console.log("CircleProfileAllinOne", data);
                         if (data) {
                             that.att = data.Att_status;
                         } else {
@@ -163,10 +163,10 @@
                         uid: that.person_id,
                         Att_status: 0,
                     }
-                    console.log("objobj", obj)
+                    //console.log("objobj", obj)
                     ajaxGetWithProgress(AttentionCircle, obj, function (data, err) {
 
-                        console.log("AttentionCircl111e", data);
+                        //console.log("AttentionCircl111e", data);
                         if (data.data) {
                             toast("已收藏")
                             // window.location.reload()
@@ -188,10 +188,10 @@
                         uid: that.person_id,
                         Att_status: 1,
                     }
-                    console.log("objobj2", obj)
+                    //console.log("objobj2", obj)
                     ajaxGetWithProgress(AttentionCircle, obj, function (data, err) {
 
-                        console.log("AttentionCircle", data);
+                        //console.log("AttentionCircle", data);
                         if (data.data) {
                             toast("已取消收藏")
                             // window.location.reload()

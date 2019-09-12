@@ -107,10 +107,10 @@
                         uid: uid
                     }
                     ajaxGetWithProgress(QueryResumeUserProfile, obj, function (data, ret) {
-                        console.log(data)
+                        // console.log(data)
                         that.file = true
                         that.fileList = data.QueryResume
-                        console.log(that.fileList)
+                        // console.log(that.fileList)
                         if (that.fileList == undefined) {
                             document.querySelector(".notFiles").classList.remove("isDisplay")
 
@@ -141,7 +141,7 @@
                     } else {
                         var fileBrowser = api.require('fileBrowser');
                         fileBrowser.open(function (ret) {
-                            console.log(ret)
+                            // console.log(ret)
                             if (ret) {
                                 var uid = localStorage.getItem("person_id")
                                 var obj = {
@@ -167,7 +167,7 @@
                                         values: obj
                                     }
                                 }, function (data, err) {
-                                    console.log("updateFile=", data);
+                                    // console.log("updateFile=", data);
                                     if (data.success) {
                                         toast("上传成功")
                                         loadCom()
@@ -206,7 +206,7 @@
                                         id: filesId
                                     }
                                     ajaxGetWithProgress(deleteResumeNameUserProfile, obj, function (data, ret) {
-                                        console.log(data)
+                                        // console.log(data)
                                         if (data.return.status) {
                                             toast("删除成功")
                                             loadCom()
@@ -224,7 +224,7 @@
 
                             var name = getFirst(filesName)
                             var nameLast = getCaption(filesName)
-                            console.log(name)
+                            // console.log(name)
                             openNewWindow("WorkReshName", "./WorkReshName.html", {
                                 name: name,
                                 url: "workUp",

@@ -155,7 +155,7 @@
     apiready = function () {
         url = api.pageParam.url
         item = api.pageParam.item
-        console.log("item",item)
+        // console.log("item",item)
         var uid = localStorage.getItem("person_id");
         // console.log(uid);
         document.querySelector('.Box').classList.remove('isDisplay');
@@ -310,7 +310,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.getElementById('user_age').value = selectItems.text;
         })
@@ -360,7 +360,7 @@
                 var obj = {
                     uid : localStorage.getItem("user")
                 }
-                console.log("datadret",ret);
+                // console.log("datadret",ret);
                 //上传剪辑后的图像到服务器
                 api.ajax({
                     url: 'http://192.168.1.24:8088/upload/UploadFlie',
@@ -376,13 +376,13 @@
                         values:obj
                     }
                 }, function (ret, err) {
-                    console.log(123,ret);
+                    // console.log(123,ret);
                     var pathImgImg = ret.imgUrl
                     if (pathImgImg == ''){
                         document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
                     }else{
                         var pathImgData = pathImgImg.split(",")
-                        console.log(pathImgData)
+                        // console.log(pathImgData)
                         document.querySelector(".p_iconImg").src = pathImgData[0]
 
                         ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]+','},function (data) {
@@ -400,7 +400,7 @@
 
                 });
             } else {
-                console.log(JSON.stringify(err));
+                // console.log(JSON.stringify(err));
             }
         });
     }
@@ -465,7 +465,7 @@
             email:email,//电邮
         }
 
-        console.log(obj);
+        // console.log(obj);
         ajaxGetWithProgress(updateCirclePersonMsgByPid, obj, function (data, err) {
 
             if (data.return.status) {

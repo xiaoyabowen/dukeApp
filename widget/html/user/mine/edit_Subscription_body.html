@@ -167,7 +167,7 @@
             person_id: person_id
         }, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            // console.log(data);
             var arr = data.querySubscription;
             if (arr) {
                 var item = arr[0];
@@ -213,7 +213,7 @@
         picker.setData(cityData3)
         picker.pickers[0].setSelectedIndex(0);
         picker.show(function(SelectedItem) {
-            console.log(SelectedItem[0].text);
+            // console.log(SelectedItem[0].text);
             document.getElementById("int_city").innerText = SelectedItem[0].text +'-'+ SelectedItem[1].text +'-'+ SelectedItem[2].text;
         })
     }
@@ -272,7 +272,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('company_size').innerText = SelectedItem[0].text;
         })
     }
@@ -303,7 +303,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('team_size').innerText = SelectedItem[0].text;
         })
     }
@@ -334,7 +334,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('first', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('pay').innerText = SelectedItem[0].text;
         })
     }
@@ -349,7 +349,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.getElementById('entry_date').innerText = selectItems.text;
         })
@@ -378,7 +378,7 @@
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
         picker.show(function (SelectedItem) {
-            console.log(SelectedItem)
+            // console.log(SelectedItem)
             document.getElementById('education').innerText = SelectedItem[0].text;
         })
 
@@ -470,11 +470,11 @@
             issue_time: issue_time ,
             edu_ex: edu_ex ,
         }
-        console.log(params);
+        // console.log(params);
 
         ajaxGetWithProgress(UpdateSubscriptionById, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data);
+            // console.log(data);
             if (data.return.status) {
                 toast('修改成功')
                 var frameName = url +"_body";

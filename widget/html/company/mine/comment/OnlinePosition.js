@@ -30,7 +30,7 @@ function OnlinePositionInit(Vue) {
                     uid: uid
                 }
                 ajaxGetWithProgress(queryMyJobsCandidateNum,obj,function (data,ret) {
-                    console.log("zhiwei",data)
+                    //console.log("zhiwei",data)
                     if (data.valid == 0){
                         that.onlineList = data.queryMyJobs
                     }else if (data.valid == 1){

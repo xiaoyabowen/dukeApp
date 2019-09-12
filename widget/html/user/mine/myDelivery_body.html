@@ -176,7 +176,7 @@
         var uid = localStorage.getItem("person_id");
         params.person_id = uid
         ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
-            console.log(res);
+            // console.log(res);
             var jobHtml = ''
             var data = res.jobs
             if (res) {
@@ -229,7 +229,7 @@
         })
     };
     function jobPosi(job_id) {
-        console.log(job_id)
+        // console.log(job_id)
         openNewWindow("position", "../home/position.html", {
             url: 'myDelivery',
             job_id:job_id

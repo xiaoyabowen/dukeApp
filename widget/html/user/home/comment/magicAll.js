@@ -57,9 +57,9 @@ function magicAllInit(Vue) {
             MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {job_type:that.job_type}, function (data) {
-                    console.log("magicall", data)
+                    ////console.log("magicall", data)
                     var jobList = data.job
-                    console.log(jobList)
+                    //console.log(jobList)
                     if (data) {
                         if (jobList == null) {
                             that.listJob = ''
@@ -94,7 +94,7 @@ function magicAllInit(Vue) {
                 var isBlck = document.querySelector('.bgBlack')
                 if (isBlck.getAttribute("class") == 'isDisplay') {
                     document.querySelector('.bgBlack').classList.remove('isDisplay');
-                    console.log(document.querySelector('.bgBlack'))
+                    //console.log(document.querySelector('.bgBlack'))
                 } else {
                     var that = this;
                     that.active = 'magicAll';
@@ -114,7 +114,7 @@ function magicAllInit(Vue) {
                 store.state.obj.job_type = job_type
                 store.state.obj.job_id = job_id
 
-                console.log("indexindex",this.timeIndex)
+                //console.log("indexindex",this.timeIndex)
                 api.sendEvent({
                     name: 'jobAll',
                     extra: {
@@ -129,7 +129,7 @@ function magicAllInit(Vue) {
             },
             magicCom1Click: function (event) {  // 公司1
                 var that = this;
-                console.log("event",event)
+                //console.log("event",event)
                 if(event) {
                     event.stopPropagation ? event.stopPropagation(): event.cancelBubble = true;
 
@@ -156,7 +156,7 @@ function magicAllInit(Vue) {
             },
             magicCom2Click: function () {  // 公司2
                 var that = this;
-                console.log("magicComCid2",that.magicComCid2)
+                //console.log("magicComCid2",that.magicComCid2)
 
                 var obj = {
                     magicComCid1: that.magicComCid2,

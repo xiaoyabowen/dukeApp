@@ -155,7 +155,7 @@
         }
         ajaxGetWithProgress(GetWork, obj, function (res, err) {
             // api.alert({mas: JSON.stringify(res)});
-            console.log(res);
+            // console.log(res);
             if (res && res.working_his) {
                 var msg = res.working_his[--sn];
                 // console.log(msg)
@@ -172,7 +172,7 @@
                 var tags = [];
                 if ( msg.title){
                     var title = msg.title.split(',');
-                    console.log(title);
+                    // console.log(title);
                     title.forEach(function (value) {
                         var str = '<li>'+ value +'</li>';
                         tags.push(str);
@@ -272,11 +272,11 @@
         })
     }
     function set_resume_SkillLabel(value) {
-        console.log(value);
+        // console.log(value);
         var tag = document.querySelector('.info-edit-skill');
         var tags = [];
         var title = value.split(',');
-        console.log(title);
+        // console.log(title);
         title.forEach(function (value) {
             var str = '<li>'+ value +'</li>';
             tags.push(str);
@@ -315,14 +315,14 @@
     // 删除工作经历
     function deleteWork() {
         mui.confirm('是否删除此工作经历?', function (e) {
-            console.log(e)
+            // console.log(e)
             if (e.index === 1) {
                 var obj = {
                     w_id: w_id
                 }
                 ajaxGetWithProgress(DeleteWork,obj,function(res,err) {
                     // api.alert({mas: JSON.stringify(res)});
-                    console.log(res);
+                    // console.log(res);
                     if (res && res.return.status) {
                         api.toast({
                             msg: '删除工作经历成功'

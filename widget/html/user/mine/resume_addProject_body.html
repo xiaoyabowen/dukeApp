@@ -245,7 +245,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             // $(".birth_option").val(selectItems.text)
             document.querySelector('.entry_date').innerText = selectItems.text;
         })
@@ -263,7 +263,7 @@
             }
         );
         dtpicker.show(function (selectItems) {
-            console.log(selectItems)
+            // console.log(selectItems)
             document.querySelector('.end_date').innerText = selectItems.text;
         })
 
@@ -315,11 +315,11 @@
             p_id: person_id,
             pro_id:''
         }
-        console.log(params)
+        // console.log(params)
 
         ajaxGetWithProgress(createProjectExperience, params, function (data, err) {
             // alert(JSON.stringify(data));
-            console.log(data)
+            // console.log(data)
             if (data.return_info.status) {
                 // api.toast({
                 //     msg: '添加项目经历成功'

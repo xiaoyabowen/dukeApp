@@ -203,7 +203,7 @@
     function com_dy(ID) {
         $(".modal-news").show()
         ajaxGetWithProgress(queryDynamicSummaryById, {com_dynamic_id: ID}, function (data, err) {
-            console.log(data)
+            ////console.log(data)
             document.querySelector(".modal-news").innerHTML = '<div class="subspace subspaceNew">' +
                 '<div class="subspace">\n' +
                 '        <img src="../../../icon/delete.png" alt="delete" class="delete-space" onclick="closeMotal()">\n' +
@@ -271,22 +271,22 @@
                     }
 
                     ajaxGetWithProgress(queryMyOrgProfileAllinOne, obj, function (data, ret) {
-                        console.log(data)
+                        //console.log(data)
                         document.querySelector(".boxSub").classList.remove("isDisplay")
                         document.querySelector(".boxSubDis").classList.remove("isDisplay")
                         document.querySelector(".F9Line").classList.remove("isDisplay")
                         var cvomInfo = data.Orgnization_summary
-                        console.log(cvomInfo)
+                        //console.log(cvomInfo)
                         c_id = cvomInfo.c_id
                         localStorage.setItem("com_id",c_id)
                         var cvomproduct = data.product_his  //产品介绍
                         var JobList = data.JobList  // 再照职位
                         var DynamicList = data.DynamicList  //企业空间
                         if (data) {
-                            console.log("cvomInfoc_name",cvomInfo.c_name)
+                            //console.log("cvomInfoc_name",cvomInfo.c_name)
                             that.ComName = cvomInfo.c_name;
-                            console.log("ComName",that.ComName);
-                            console.log(document.querySelector(".comInfoTitle"))
+                            //console.log("ComName",that.ComName);
+                            //console.log(document.querySelector(".comInfoTitle"))
                             that.ComContactor = cvomInfo.contactor || '未填写'
                             that.ComScale = cvomInfo.scale || '未填写'
                             that.ComOrgType = cvomInfo.org_type || '未填写'

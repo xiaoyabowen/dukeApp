@@ -195,7 +195,7 @@
             var params = {};
             params.code = $api.byId("yanzheng").value;
             params.phone = $api.byId("phone").value;
-            console.log(params)
+            // console.log(params)
             if (isBlack(params.phone)) {
                 toast('请输入手机号');
                 api.hideProgress();
@@ -209,7 +209,7 @@
 
             ajaxGetUser(verificationPhone, params, function (data, err) {
                 api.hideProgress();
-                console.log(data)
+                // console.log(data)
                 if (data.data == true) {
                     openNewWindow("editPhoneComfir", "./editPhoneComfir.html")
                     // openNewWindow("setting", "setting.html")

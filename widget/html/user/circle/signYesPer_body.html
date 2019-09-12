@@ -128,7 +128,7 @@
                         circle_id : that.circle_id
                     }
                     ajaxGetWithProgress(queryAllSignPerson,obj,function (data) {
-                        console.log("queryAllSignPerson",data.signPersonList)
+                        //console.log("queryAllSignPerson",data.signPersonList)
                         if (data.signPersonList == undefined){
                             that.comment_box = true
                         } else{
@@ -184,7 +184,7 @@
                         phone : that.userPhone,
                     }
                     ajaxGetWithProgress(joinCircleCircleProfile,obj,function (data) {
-                        console.log("joinCircleCircleProfile",data)
+                        //console.log("joinCircleCircleProfile",data)
                         if (data.return_info.status){
                             toast("报名成功")
                             that.userName = ''

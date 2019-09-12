@@ -195,7 +195,7 @@
                         job_id : that.job_id
                     }
                     ajaxGetWithProgress(queryJobTopicChatProFile,obj,function (data) {
-                        console.log("cardChat",data)
+                        //console.log("cardChat",data)
                         if (data){
                             that.job_name = data.job_name
                             that.ratio = data.ratio
@@ -215,7 +215,7 @@
                 getSignatureJiGuang : function () {
                     var that = this
                     ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                        console.log(data)
+                        //console.log(data)
                         if (data){
                             that.appkey = data.appkey
                             that.random_str = data.random_str
@@ -223,7 +223,7 @@
                             that.timestamp = data.timestamp
 
                             that.JIM =  new JMessage({debug:true})
-                            console.log("JIM",that.JIM)
+                            //console.log("JIM",that.JIM)
                             that.init()
 
                         } else {
@@ -242,7 +242,7 @@
                         "flag": 1
 
                     }).onSuccess(function(data) {
-                        console.log('success:', data);
+                        //console.log('success:', data);
 
                         that.isConnect()
                         that.isInit()
@@ -252,19 +252,19 @@
                         // that.updateConversation()
                         // appendToDashboard('success' + JSON.stringify(data));
                     }).onFail(function(data) {
-                        console.log('error2:' ,data)
+                        //console.log('error2:' ,data)
                         // appendToDashboard('error: ' +JSON.stringify(data));
                     });
                 },
                 // 获取连接状态
                 isConnect : function (){
                     var that = this
-                    console.log('isConnect:',that.JIM.isConnect());
+                    //console.log('isConnect:',that.JIM.isConnect());
                 },
                 // 获取初始化状态
                 isInit : function (){
                     var that = this
-                    console.log('isInit:',that.JIM.isInit());
+                    //console.log('isInit:',that.JIM.isInit());
                 },
 
 
@@ -275,23 +275,23 @@
                         'username' : localStorage.getItem("person_id") + 'j',
                         'password': localStorage.getItem("person_id") + 'j',
                     }).onSuccess(function(data) {
-                        console.log('success:',data);
+                        //console.log('success:',data);
                         // appendToDashboard(JSON.stringify(data));
 
                         that.JIM.onMsgReceive(function(data) {
                             data = JSON.stringify(data);
-                            console.log('1msg_receive:' + data);
+                            //console.log('1msg_receive:' + data);
                             // appendToDashboard('msg_receive:' + data);
 
                         });
 
                         that.JIM.onEventNotification(function(data) {
-                            console.log('event_receive: ' + JSON.stringify(data));
+                            //console.log('event_receive: ' + JSON.stringify(data));
                             // appendToDashboard('event_receive: ' +JSON.stringify(data));
                         });
 
                         that.JIM.onSyncConversation(function(data) { //离线消息同步监听
-                            console.log( data);
+                            //console.log( data);
                             // 消息所有列表
                             var allData = data
                             // 先提取出 当前的 聊天室  的   personid  的  json
@@ -317,7 +317,7 @@
                                     }
                                 }
                             }
-                            console.log("mapDest",mapDest);
+                            //console.log("mapDest",mapDest);
 
                             for (var i = 0; i < mapDest.length; i++){
                                 if (mapDest[i].from_username == that.pid_accept + 'j'){
@@ -360,52 +360,52 @@
                         });
 
                         that.JIM.onUserInfUpdate(function(data) {
-                            console.log('onUserInfUpdate : ' + JSON.stringify(data));
+                            //console.log('onUserInfUpdate : ' + JSON.stringify(data));
                             // appendToDashboard('onUserInfUpdate : ' +JSON.stringify(data));
                         });
 
                         that.JIM.onSyncEvent(function(data) {
-                            console.log('onSyncEvent : ' + JSON.stringify(data));
+                            //console.log('onSyncEvent : ' + JSON.stringify(data));
                             // appendToDashboard('onSyncEvent : ' +JSON.stringify(data));
                         });
 
                         that.JIM.onMsgReceiptChange(function(data){
                             alert("onMsgReceiptChange")
-                            console.log('onMsgReceiptChange : ',data);
+                            //console.log('onMsgReceiptChange : ',data);
 
                         });
 
                         that.JIM.onSyncMsgReceipt(function(data){
-                            console.log('onSyncMsgReceipt : ' + JSON.stringify(data));
+                            //console.log('onSyncMsgReceipt : ' + JSON.stringify(data));
 
                         });
 
                         that.JIM.onMutiUnreadMsgUpdate(function(data){
-                            console.log('onConversationUpdate : ' + JSON.stringify(data));
+                            //console.log('onConversationUpdate : ' + JSON.stringify(data));
 
                         });
 
                         that.JIM.onTransMsgRec(function(data){
-                            console.log('onTransMsgRec : ' + JSON.stringify(data));
+                            //console.log('onTransMsgRec : ' + JSON.stringify(data));
                         });
 
                         that.JIM.onRoomMsg (function(data){
-                            console.log('onRoomMsg  : ' + JSON.stringify(data));
+                            //console.log('onRoomMsg  : ' + JSON.stringify(data));
                         });
 
 
 
                     }).onFail(function(data) {
 
-                        console.log('error:' + JSON.stringify(data));
+                        //console.log('error:' + JSON.stringify(data));
                     }).onTimeout(function(data) {
-                        console.log('timeout:' + JSON.stringify(data));
+                        //console.log('timeout:' + JSON.stringify(data));
                     });
                 },
 
                 sendSingleMsg : function () {
                     var that = this
-                    console.log("sendInput",that.sendInput)
+                    //console.log("sendInput",that.sendInput)
                     that.JIM.sendSingleMsg({
                         'target_username' : that.pid_accept + 'j',     //接收消息者 username
                         'target_nickname' : that.pid_name,     //接收者的展示名
@@ -416,8 +416,8 @@
                         'custom_notification':{'enabled':true,'title':'title','alert':'alert'},
                         'need_receipt':true       //是否需要已读回执，需要:true 不需要:false
                     }).onSuccess(function(data,msg) {
-                        console.log('success data:' ,data);
-                        console.log('succes msg:' ,msg);
+                        //console.log('success data:' ,data);
+                        //console.log('succes msg:' ,msg);
                         var html = '<div class="ask">\n' +
                             '                <div class="time">05/22/ 06:30</div>\n' +
                             '                <div class="msg">\n' +
@@ -444,15 +444,15 @@
                             title : that.sendInput,
                             del : that.sendInput
                         }
-                        console.log("JMessagepushObj",obj)
+                        //console.log("JMessagepushObj",obj)
                         ajaxGetWithProgress(JMessagepush,obj,function (data) {
-                            console.log("JMessagepush",data)
+                            //console.log("JMessagepush",data)
                         })
                         that.sendInput = ''
 
 
                     }).onFail(function(data) {
-                        console.log('error:' ,data);
+                        //console.log('error:' ,data);
                         // appendToDashboard('error: ' +JSON.stringify(data));
                     });
                     that.onMsgReceive()
@@ -463,7 +463,7 @@
                     var that = this
                     that.JIM.onMsgReceive(function(data) {
                         var dataValue = data.messages[0].content
-                        console.log('1msg_receive:', data);
+                        //console.log('1msg_receive:', data);
                         /*var html = '<div class="ask">\n' +
                             '                <div class="time">'+formatTime(dataValue.create_time,'h:m:s')+'</div>\n' +
                             '                <div class="msg">\n' +
