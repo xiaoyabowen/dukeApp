@@ -650,6 +650,9 @@
                     // console.log(dom);
                     // console.log(workings)
                     workings.innerHTML = dom;
+                }else{
+                    var workings = document.getElementById('workings');
+                    workings.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
                 // 教育经历
                 if (education_his) {
@@ -671,6 +674,9 @@
                     // console.log(dom);
                     // console.log(educations)
                     educations.innerHTML = dom;
+                }else{
+                    var educations = document.getElementById('educations');
+                    educations.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
 
 
@@ -692,6 +698,9 @@
                     // console.log(dom);
                     // console.log(project)
                     project.innerHTML = dom;
+                }else{
+                  var project = document.getElementById('project');
+                  project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
 
             }
@@ -846,6 +855,9 @@
                     // console.log(dom);
                     // console.log(workings)
                     workings.innerHTML = dom;
+                }else{
+                    var workings = document.getElementById('workings');
+                  workings.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
                 // 教育经历
                 if (education_his) {
@@ -867,6 +879,9 @@
                     // console.log(dom);
                     // console.log(educations)
                     educations.innerHTML = dom;
+                }else{
+                    var educations = document.getElementById('educations');
+                    educations.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
 
 
@@ -888,10 +903,11 @@
                     // console.log(dom);
                     // console.log(project)
                     project.innerHTML = dom;
+                }else{
+                  var project = document.getElementById('project');
+                  project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
-
             }
-
         });
     }
 

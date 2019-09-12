@@ -28,26 +28,26 @@
     <div class="colbox" v-for="(item,index) in cadidate" :key="index" @click="candiClick(item.person_id)">
         <div class="colboxmain cssFlex">
             <img
-            :src="item.p_icon.split(',')[0]"
-            alt="d"
+            :src="item.p_icon ? item.p_icon.split(',')[0] : ''"
+            alt=""
             class="colIMg"
             >
             <div class="colINfo">
                 <div class="colinfobox cssFlex">
-                    <span class="colinfoboxName">{{item.p_name}}</span>
+                    <span class="colinfoboxName">{{item.p_name ? item.p_name : ''}}</span>
                 </div>
                 <div class="coltext commonSub24 cssFlex">
-                    {{item.address}}/11年/{{item.degree}}/{{item.p_birthday}}岁
+                    {{item.address ? item.address : '未填写'}}/11年/{{item.degree ? item.degree : ''}}/{{item.p_birthday ? item.p_birthday : ''}}岁
                 </div>
                 <div class="colcomjob cssFlex">
-                    <span class="colcom commonSub24">{{item.com_name}}</span>
-                    <span class="colposition commonSub24">{{item.work_name}}</span>
+                    <span class="colcom commonSub24">{{item.com_name ? item.com_name : ''}}</span>
+                    <span class="colposition commonSub24">{{item.work_name ? item.work_name : ''}}</span>
                 </div>
-                <div class="colTime commonSub24">
+                <div v-if='item.from && item.to' class="colTime commonSub24">
                     {{item.from}}-{{item.to}}
                 </div>
             </div>
-            <div class="colinfoboxPrice commonFont">{{item.pay}}</div>
+            <div class="colinfoboxPrice commonFont">{{item.pay ? item.pay : '未填写 '}}</div>
         </div>
         <div class="line20"></div>
     </div>

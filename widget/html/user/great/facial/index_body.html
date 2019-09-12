@@ -116,11 +116,14 @@
             api.addEventListener({
                 name: 'keyback'
             }, function (ret, err) {
+                // alert('aaaa')
                 closeOnKeyBack();
             });
+
             var backButtonPress = 0;
 
             function closeOnKeyBack() {
+                // alert('ssss')
                 backButtonPress++;
                 if (backButtonPress > 1) {
 
