@@ -265,7 +265,6 @@
 
 
 <script type="text/javascript" src="../../../script/api.js"></script>
-<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -341,19 +340,19 @@
 
                     // document.getElementById('ououPrice').innerText = this.ououPrice;
                 },
-                beforeUpdate : function (){
+                beforeUpdate: function () {
 
                 },
                 methods: {
 
-                    isChange : function (){
+                    isChange: function () {
                         var that = this
                         that.queryDefaultAdr()
                     },
-                    queryDefaultAdr : function () {
+                    queryDefaultAdr: function () {
                         var that = this
                         var str = {
-                            pId:that.person_id,
+                            pId: that.person_id,
                         }
                         ajaxGetWithProgress(queryDefaultAdr, str, function (data, err) {
                             //console.log("queryDefaultAdr",data);
@@ -436,14 +435,33 @@
                                 mui.toast('请选择支付方式');
                                 return;
                             } else if (that.bank == '微信') {
-
-                                mui.alert('weixin', '提示', function (e) {
+                                
+                                /*mui.alert('weixin', '提示', function (e) {
                                     //console.log(e)
                                     if (e.index == 0) {
 
                                     }
+                                });*/
+                                var obj = {}
+                                api.ajax({
+                                    url: 'http://112.126.98.172:8088/pay/unifiedorder',  //url+模块
+                                    method: 'GET',
+                                    dataType: 'xml',
+                                    timeout: 30,
+                                    data: {
+                                        values: obj
+                                    }
+                                }, function (ret, err) {
+                                    //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
+                                    console.log("自己处理订单信息以及签名过程请求:", ret);
+                                    var wxPay = api.require('wxPay');
+                                    console.log('wxPay',wxPay)
+                                    wxPay.getOrderId({
+                                        info: ret
+                                    }, function(ret, err) {
+                                        console.log(ret)
+                                    });
                                 });
-
                                 return;
                             } else if (that.bank == '支付宝') {
 

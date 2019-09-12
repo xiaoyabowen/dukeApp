@@ -23,8 +23,7 @@
         <param name="android_api_key" value="3eadfe73e2cdcad56b8e2c82b40378e9" />
         <param name="ios_api_key" value="4091f06d6613a7ecefa0ad420d637212" />
     </feature>
-
-
+    <!--微信第三方-->
     <feature name="wx">
         <param name="urlScheme" value="wx9a92052d07ef404d"/>
         <param name="apiKey" value="wx9a92052d07ef404d"/>
@@ -32,9 +31,9 @@
     </feature>
     <!--微信支付-->
     <feature name="wxPay">
-        <param name="urlScheme" value="wxd0d84bbf23b4a0e4"/>
-        <param name="apiKey" value="wxd0d84bbf23b4a0e4"/>
-        <param name="apiSecret" value="a354f72aa1b4c2b8eaad137ac81434cd"/>
+        <param name="urlScheme" value="wx9a92052d07ef404d"/>
+        <param name="apiKey" value="wx9a92052d07ef404d"/>
+        <param name="apiSecret" value="3e6aaa4be193ba74319134c12bdd3353"/>
     </feature>
 
     <!--支付寶 支付-->
