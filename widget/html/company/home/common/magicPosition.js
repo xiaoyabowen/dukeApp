@@ -4,8 +4,8 @@ function magicPositionInit(Vue) {
     apiready = function () {
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        a01_w = winWidth;
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2))
         // width_d=(screen_w-20) *2/5 - 5;

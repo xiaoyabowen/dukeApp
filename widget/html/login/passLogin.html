@@ -258,11 +258,11 @@
             <div class="three-login">
                 <h4>使用第三方登录</h4>
                 <ul class="cssFlex threeLi">
-                    <li>
+                    <li onclick="weixin_login()">
                         <img src="../../image/login/wechat.png" alt="weixin">
                         <span>微信登陆</span>
                     </li>
-                    <li>
+                    <li onclick="ling_login()">
                         <img src="../../image/login/in.png" alt="qq">
                         <span>领英登录</span>
                     </li>
@@ -298,7 +298,7 @@
             passInput.setAttribute("type","password")
         }
     })
-    var url,appkey,random_str,signature,timestamp,JIM
+    var code, accessToken, dynamicToken, openId, phoneValue, wx, getUserInfoWx,url
     apiready = function () {
         url = api.pageParam.url
 
@@ -317,11 +317,6 @@
 
             },
             created: function () {
-                // this.token = api.pageParam.token;
-
-                // this.getSignatureJiGuang();
-
-
 
             },
             mounted: function () {
@@ -388,6 +383,8 @@
         })
 
 
+
+
         //添加安卓退出按钮事件
         api.addEventListener({
             name: 'keyback'
@@ -414,6 +411,119 @@
         });
     }
 
+    // 微信 第三方登陆
+    function weixin_login() {
+
+        //判断是否安装微信
+        wx.isInstalled(function (ret, err) {
+            if (ret.installed) {
+                //alert('当前设备已安装微信客户端');
+                //登录授权（用于实现第三方登录）
+                wx.auth({
+                    apiKey: ''
+                }, function (ret, err) {
+                    console.log("登录授权1", ret)
+                    if (ret.status) {
+                        code = ret.code;
+                        wx.getToken({
+                            apiKey: '',
+                            apiSecret: '',
+                            code: code
+                        }, function (ret, err) {
+                            console.log("getToken成功", ret)
+                            if (ret.status) {
+                                accessToken = ret.accessToken;
+                                dynamicToken = ret.dynamicToken;
+                                openId = ret.openId;
+
+                                api.showProgress({
+                                    style: 'default',
+                                    animationType: 'fade',
+                                    title: '授权成功',
+                                    text: '绑定处理中...',
+                                    modal: true
+                                });
+
+                                //获取用户信息（需要获取 accessToken 成功）
+                                wx.getUserInfo({
+                                    accessToken: accessToken,
+                                    openId: openId
+                                }, function (ret, err) {
+                                    console.log("getUserInfo", ret)
+                                    getUserInfoWx = ret
+                                    if (ret.status) {
+                                        api.hideProgress();
+                                        // 第三方登录
+
+                                        WXbindAccount(ret.openid);
+
+
+                                    } else {
+                                        alert(err.code);
+                                    }
+                                });
+                            } else {
+                                console.log("error", ret)
+                                //判断accessToken是否 过期，调用此接口刷新 accessToken
+                                if (err.code == 1) {
+                                    wx.refreshToken({
+                                        apiKey: '',
+                                        dynamicToken: dynamicToken
+                                    }, function (ret, err) {
+                                        if (ret.status) {
+                                            console.log("errorerror", ret)
+                                        } else {
+                                            alert(err.code);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        if (err.code == -1) {
+                            toast("未知错误");
+                        } else if (err.code == 1) {
+                            toast("用户取消");
+                        } else if (err.code == 2) {
+                            toast("用户拒绝授权");
+                        } else if (err.code == 3) {
+                            toast("当前设备未安装微信客户端");
+                        }
+
+                    }
+                });
+            } else {
+                toast('当前设备未安装微信客户端');
+            }
+        });
+    }
+
+    function WXbindAccount(openid) {
+        var obj = {
+            p_name: getUserInfoWx.nickname,
+            p_icon: getUserInfoWx.headimgurl,
+            chat_id: openid,
+        }
+        ajaxGetWithProgress(ChatLogin, obj, function (data) {
+            console.log("ChatLogin", data)
+            if (data.date == false) {
+                openNewWindow("loginComfirWx", "./loginComfirWx.html", {
+                    getUserInfoWx: getUserInfoWx
+                })
+            } else {
+                localStorage.setItem('user', data.user_id);
+                localStorage.setItem('person_id', data.user_id);
+                openNewWindow("home", "../user/home/home.html")
+            }
+        })
+
+    }
+
+
+    // 领英 登陆
+    function ling_login() {
+        toast("该功能暂未开放！")
+    }
     function returnPass() {
         openNewWindow("returnPass", "returnPass.html")
     }

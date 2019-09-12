@@ -246,7 +246,7 @@
                         <img src="../../image/login/wechat.png" alt="weixin">
                         <span>微信登陆</span>
                     </li>
-                    <li>
+                    <li onclick="ling_login()">
                         <img src="../../image/login/in.png" alt="qq">
                         <span>领英登录</span>
                     </li>
@@ -415,7 +415,10 @@
         })
 
     }
-
+    // 领英 登陆
+    function ling_login() {
+        toast("该功能暂未开放！")
+    }
     /*************点击获取验证码***********/
     var flag = true;//防止重复点击获取验证码
     function getCode() {

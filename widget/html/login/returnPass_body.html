@@ -107,7 +107,6 @@
             color: #fff;
             height: 0.6rem;
             line-height: 0.6rem;
-            /*margin-top: 0.28rem;*/
             background:rgba(93,146,254,1);
             border-radius:0.08rem;
             position: absolute;
@@ -115,34 +114,22 @@
             top: 0.15rem;
         }
         .configBtn{
-            padding: 0 18px;
+            margin: 0.64rem 0.34rem 0;
         }
         .subConfigBtn {
-            width: 100%;
-            height: 50px;
+            width: 6.8rem;
+            height: 1.02rem;
             background: rgba(93,146,254,1);
-            border-radius: 6px;
-            line-height: 50px;
+            border-radius:0.12rem;
+            line-height: 1.02rem;
             font-weight: 400;
             color: rgba(255,255,255,1);
-            font-size: 18px;
-            margin: 26px auto 0;
+            font-size: 0.36rem;
+            margin: 0 auto;
             text-align: center;
 
         }
 
-        button.login-href {
-            display: inline-block;
-            width: 100%;
-            height: 40px;
-            background: rgba(255,255,255,1);
-            border-radius: 25px;
-            line-height: 40px;
-            font-size: 16px;
-            font-weight: 400;
-            color: rgba(116,160,255,1);
-            margin-bottom: 16px;
-        }
     </style>
 </head>
 <body>
@@ -153,12 +140,12 @@
         <div class="login-input">
             <div class="input-phone cssFlex">
                 <span class="phone-top phone-img"></span>
-                <input id="phone" type="number" placeholder="请输入您的手机号">
+                <input id="phone" type="number" v-model="phone" placeholder="请输入您的手机号">
             </div>
             <div class="input-password cssFlex">
                 <span class="phone-top yanz-img"></span>
-                <input id="yanzheng" type="number" placeholder="请输入验证码">
-                <button  id="sms" class="yanzheng"  onclick="getCode()">获取验证码</button>
+                <input id="yanzheng" type="number" v-model="yanzheng" placeholder="请输入验证码">
+                <button  id="sms" class="yanzheng"  @click="getCode()">获取验证码</button>
             </div>
         </div>
     </div>
@@ -166,17 +153,17 @@
         <div class="login-input">
             <div class="input-phone cssFlex">
                 <span class="phone-top pass-img"></span>
-                <input id="password" type="password" placeholder="新密码">
+                <input id="password" type="password" v-model="password" placeholder="新密码">
             </div>
             <div class="input-password cssFlex">
                 <span class="phone-top pass-img"></span>
-                <input id="newpassWord" type="password" placeholder="确认密码">
+                <input id="newpassWord" type="password" v-model="newpassWord" placeholder="确认密码">
             </div>
         </div>
 
     </div>
     <div class="configBtn">
-        <div class="subConfigBtn" onclick="goHome()">
+        <div class="subConfigBtn" @click="goHome()">
             确定
         </div>
 
@@ -184,72 +171,113 @@
 </div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
-<script type="text/javascript" src="../../script/util.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
 <script type="text/javascript" src="../../script/rem.js"></script>
-<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     apiready = function () {
 
-    };
+        new Vue({
+            el: '#main',
+            data: {
+                phone:'',
+                yanzheng:'',
+                password:'',
+                newpassWord:'',
+                flag:true,
+            },
+            created: function () {
 
-    /*************点击获取验证码***********/
-    var flag = true;//防止重复点击获取验证码
-    function getCode(){
-        if(!flag){
-            return;
-        }
-        tel = document.getElementById('phone').value;
-        if (isBlack(tel)) {
-            toast('请输入手机号');
-            api.hideProgress();
-            return;
-        }else if(!checkMobileNum(tel)){
-            toast("手机号码不正确");
-            return;
-        }
-        var obj = {
-            phone : tel
-        }
-        flag = false;
-        setTime();
-        ajaxGetUser(SendSmsCode,obj,function(ret,err) {
-            if (ret && ret.success ) {
-                toast("获取成功，请注意查收！");
-            }else if(ret && !ret.success){
-                if(ret){
-                    var msg = ret.msg || "网络连接错误，请稍后重试！";
-                    toast(msg);
-                }else{
-                    var msg = err.msg || "网络连接错误，请稍后重试！";
-                    toast(msg);
+            },
+            mounted : function (){
+
+            },
+            methods: {
+                getCode : function () {
+                    var that = this;
+                    if(!that.flag){
+                        return;
+                    }
+                    tel =that.phone;
+                    if (isBlack(tel)) {
+                        toast('请输入手机号');
+                        api.hideProgress();
+                        return;
+                    }else if(!checkMobileNum(tel)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    var obj = {
+                        phone : that.phone
+                    }
+                    that.flag = !that.flag;
+                    that.setTime();
+                    ajaxGetUser(SendSmsCode,obj,function(ret,err) {
+                        if (ret && ret.success ) {
+                            toast("获取成功，请注意查收！");
+                        }else if(ret && !ret.success){
+                            if(ret){
+                                var msg = ret.msg || "网络连接错误，请稍后重试！";
+                                toast(msg);
+                            }else{
+                                var msg = err.msg || "网络连接错误，请稍后重试！";
+                                toast(msg);
+                            }
+                        }
+                    })
+                },
+                setTime : function () {
+                    var that = this;
+                    var time;
+                    var sms = document.getElementById('sms');
+                    time = time||59;
+                    sms.innerHTML = time+"s";
+                    var codeInterval = setInterval(function(){
+                        if(time > 0){
+                            time--;
+                            sms.innerHTML = time+"s";
+                        }else{
+                            sms.innerHTML = "获取验证码";
+                            clearInterval(codeInterval);
+                            that.flag = !that.flag;
+                        }
+                    },1000)
+                },
+                goHome :function () {
+                    var that= this;
+                    tel = that.phone;
+                    if (isBlack(tel)) {
+                        toast('请输入手机号');
+                        api.hideProgress();
+                        return;
+                    }else if(!checkMobileNum(tel)){
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    if (that.password !== that.newpassWord){
+                        toast("两次密码输入不一致");
+                        return;
+                    }
+                    var obj = {
+                        code : that.yanzheng,
+                        phone : that.phone,
+                        newPwd : that.newpassWord,
+                    }
+                    ajaxGetWithProgress(forgetPwd,obj,function (data) {
+                        console.log("forgetPwd",data)
+                        if (data.return){
+                            openNewWindow("passLogin", "./passLogin.html")
+                        }
+                    })
+
                 }
             }
         })
-    }
+    };
 
-    /*******************倒计时****************************/
-    function setTime(){
-        var time;
-        var sms = document.getElementById('sms');
-        time = time||59;
-        sms.innerHTML = time+"s";
-        var codeInterval = setInterval(function(){
-            if(time > 0){
-                time--;
-                sms.innerHTML = time+"s";
-            }else{
-                sms.innerHTML = "获取验证码";
-                clearInterval(codeInterval);
-                flag = true;
-            }
-        },1000)
-    }
-    /*******************倒计时****************************/
-
-    function goHome() {
-        openNewWindow("home", "../user/home/home.html")
-    }
 </script>
 </html>

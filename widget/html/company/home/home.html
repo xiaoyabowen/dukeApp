@@ -7,15 +7,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
-    <link rel="stylesheet" href="../../../css/api.css" />
-    <link rel="stylesheet" href="../../../css/commonWin.css" />
-    <link rel="stylesheet" href="../../../css/mofang.css" />
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/mofang.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/componyDetail.css">
     <link rel="stylesheet" href="../../../css/swiper-3.3.1.min.css">
     <style>
 
-        .box{
+        .box {
             margin-bottom: 0.2rem !important;
         }
 
@@ -31,7 +31,7 @@
             font-size: 0px;
         }
 
-        .see-xian-img>img:nth-child(3n) {
+        .see-xian-img > img:nth-child(3n) {
             margin-right: 0;
         }
 
@@ -43,11 +43,11 @@
             font-size: 0.36rem;
         }
 
-        #tabs>li>a {
+        #tabs > li > a {
             font-size: 0.28rem !important;
         }
 
-        .activeTab>a {
+        .activeTab > a {
             color: rgba(99, 139, 255, 1) !important;
         }
 
@@ -59,6 +59,7 @@
         .workJob {
             width: 43%;
         }
+
         .chatJob {
             margin-left: 0.34rem;
             margin-right: 0.4rem;
@@ -71,16 +72,19 @@
         .contentBox {
             background: #638BFF !important;
         }
-        .see-hope>div>span:nth-child(1){
-          color: #666666;
-          font-size: 0.28rem;
+
+        .see-hope > div > span:nth-child(1) {
+            color: #666666;
+            font-size: 0.28rem;
         }
-        .see-hope>div>span:nth-child(2){
-          color: #333;
-          font-size: 0.28rem;
+
+        .see-hope > div > span:nth-child(2) {
+            color: #333;
+            font-size: 0.28rem;
         }
-        #pay{
-          color: #638BFF;
+
+        #pay {
+            color: #638BFF;
         }
     </style>
 </head>
@@ -126,16 +130,20 @@
             <div @click='changeStatus("recommand")' :class="[classFlag == 'recommand' ? 'selectClass':'','recommand']">
                 推荐
             </div>
-            <div @click='changeStatus("actives")' :class="[classFlag == 'actives' ? 'selectClass':'','actives' , !activesUpDownFlag ? 'selectDown' : 'selectUp' ]">
+            <div @click='changeStatus("actives")'
+                 :class="[classFlag == 'actives' ? 'selectClass':'','actives' , !activesUpDownFlag ? 'selectDown' : 'selectUp' ]">
                 活跃
             </div>
-            <div @click='changeStatus("sallary")' :class="[classFlag == 'sallary' ? 'selectClass' : '' , 'sallary' ,!sallaryUpDownFlag ? 'selectDown' : 'selectUp']">
+            <div @click='changeStatus("sallary")'
+                 :class="[classFlag == 'sallary' ? 'selectClass' : '' , 'sallary' ,!sallaryUpDownFlag ? 'selectDown' : 'selectUp']">
                 薪资
             </div>
-            <div @click='changeStatus("education")' :class="[classFlag == 'education' ? 'selectClass' : '' , 'education',!educationUpDownFlag ? 'selectDown' : 'selectUp']">
+            <div @click='changeStatus("education")'
+                 :class="[classFlag == 'education' ? 'selectClass' : '' , 'education',!educationUpDownFlag ? 'selectDown' : 'selectUp']">
                 学历
             </div>
-            <div @click='changeStatus("age")' :class="[classFlag == 'age' ? 'selectClass' : '' , 'age', !ageUpDownFlag ? 'selectDown' : 'selectUp']">
+            <div @click='changeStatus("age")'
+                 :class="[classFlag == 'age' ? 'selectClass' : '' , 'age', !ageUpDownFlag ? 'selectDown' : 'selectUp']">
                 年龄
             </div>
         </div>
@@ -143,13 +151,17 @@
             <div v-for='(item,index) in activesList1' class="command" :key='index'>
                 <div class="title">{{item.tagName}}</div>
                 <div class="contents">
-                    <span :class='[signactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
+                    <span :class='[signactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
+                          v-for='(subItem,subIndex) in item.tagList'
+                          @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
                 </div>
             </div>
             <div v-for='(item,index) in activesList2' class="command" :key='index'>
                 <div class="title">{{item.tagName}}</div>
                 <div class="contents">
-                    <span :class='[updateactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
+                    <span :class='[updateactivesselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
+                          v-for='(subItem,subIndex) in item.tagList'
+                          @click=activesloadData(item.tagName,subItem,subIndex)>{{subItem}}</span>
                 </div>
             </div>
         </div>
@@ -157,7 +169,8 @@
             <div v-for='(item,index) in sallaryList' class="command" :key='index'>
                 <div class="title">{{item.tagName}}</div>
                 <div class="contents">
-                    <span :class='[sallaryselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=sallaryloadData(subItem,subIndex)>{{subItem}}</span>
+                    <span :class='[sallaryselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
+                          v-for='(subItem,subIndex) in item.tagList' @click=sallaryloadData(subItem,subIndex)>{{subItem}}</span>
                 </div>
             </div>
         </div>
@@ -165,7 +178,8 @@
             <div v-for='(item,index) in educationList' class="command" :key='index'>
                 <div class="title">{{item.tagName}}</div>
                 <div class="contents">
-                    <span :class='[educationselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=educationloadData(subItem,subIndex)>{{subItem}}</span>
+                    <span :class='[educationselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
+                          v-for='(subItem,subIndex) in item.tagList' @click=educationloadData(subItem,subIndex)>{{subItem}}</span>
                 </div>
             </div>
         </div>
@@ -173,7 +187,9 @@
             <div v-for='(item,index) in ageList' class="command" :key='index'>
                 <div class="title">{{item.tagName}}</div>
                 <div class="contents">
-                    <span :class='[ageselectedStatusIndex == subIndex ? "selectedStatus" : ""]' v-for='(subItem,subIndex) in item.tagList' @click=ageloadData(subItem,subIndex)>{{subItem}}</span>
+                    <span :class='[ageselectedStatusIndex == subIndex ? "selectedStatus" : ""]'
+                          v-for='(subItem,subIndex) in item.tagList'
+                          @click=ageloadData(subItem,subIndex)>{{subItem}}</span>
                 </div>
             </div>
         </div>
@@ -212,7 +228,6 @@
         </div>
 
 
-
         <div id="content">
             <div id="tab1" style="display: block;">
                 <div class="see-xian-box">
@@ -227,20 +242,20 @@
                         </p>
                         <span class="see-price" id="pay">10-15k</span> -->
                         <div>
-                          <span>应聘岗位:</span>
-                          <span class="see-gang" id="work_name"></span>
+                            <span>应聘岗位:</span>
+                            <span class="see-gang" id="work_name"></span>
                         </div>
                         <div>
-                          <span>期望薪资:</span>
-                          <span class="see-price" id="pay"></span>
+                            <span>期望薪资:</span>
+                            <span class="see-price" id="pay"></span>
                         </div>
                         <div>
-                          <span>工作地址:</span>
-                          <span class="see-adress" id="int_city"></span>
+                            <span>工作地址:</span>
+                            <span class="see-adress" id="int_city"></span>
                         </div>
                         <div>
-                          <span>目前状态:</span>
-                          <span class="see-choose-hang" id="work"</span>
+                            <span>目前状态:</span>
+                            <span class="see-choose-hang" id="work"></span>
                         </div>
                     </div>
                     <!-- <p class="see-choose-hang" id="work">行业不限</p> -->
@@ -248,7 +263,9 @@
                     <div class="see-me-miao">
                         <div class="see-me-list cssFlex" id="p_title"></div>
                         <p class="see-me-text" id="p_tags">
-                            Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id tempor eros, at lobortis augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec accumsan tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
+                            Cras gravida vel ex at consectetur. Aliquam vel volutpat ante. Integer id tempor eros, at
+                            lobortis augue. Etiam ipsum mi, placerat eget urna at, placerat sodales lorem. Donec
+                            accumsan tempus justo at hendrerit. Donec varius venenatis molestie. Sed volutpat
                             nunc lorem.
                         </p>
                     </div>
@@ -330,7 +347,7 @@
 <script>
 
     // 模态框
-    $(document).on("click", ".componySize>li", function() {
+    $(document).on("click", ".componySize>li", function () {
         $(".modal-space").show()
     })
 
@@ -340,16 +357,16 @@
 
     var person_summary, magicBox, winWidth, winHeight, a01_w, m_d, magicBtn, magicSubBox, iconImg, person_id;
 
-    apiready = function() {
+    apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
         person_id = localStorage.getItem("user")
         api.addEventListener({
             name: 'keyback'
-        }, function(ret, err) {
+        }, function (ret, err) {
             closeOnKeyBack();
         });
-        ////console.log("person_idperson_id", person_id)
+
         var backButtonPress = 0;
         if (person_id) {
             comValue(person_id)
@@ -363,16 +380,13 @@
 
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+        a01_w = winWidth;
 
-        //console.log("a01_w", a01_w)
-        //console.log("winWidth/2", winWidth / 2)
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
-        //console.log("bevelLength", bevelLength)
-        // width_d=(screen_w-20) *2/5 - 5;
+
         m_d = (a01_w - 10) * 0.23 - 25; // 100
 
         app1Vue = new Vue({
@@ -381,17 +395,17 @@
                 active: 'magicComAll',
                 person_id: '',
             },
-            created: function() {
+            created: function () {
                 this.togle()
             },
-            mounted: function() {
+            mounted: function () {
 
                 var that = this
                 that.active = store.state.obj.magicCom;
                 that.person_id = api.pageParam.person_id
                 api.addEventListener({
                     name: 'magicComAll',
-                }, function(ret, err) {
+                }, function (ret, err) {
                     //console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
 
@@ -399,30 +413,30 @@
                 });
                 api.addEventListener({
                     name: 'magicComPosiAll',
-                }, function(ret, err) {
-                    //console.log("ret", ret);
+                }, function (ret, err) {
+
                     that.active = ret.value.key.magicComPosiAll;
 
                 });
                 api.addEventListener({
                     name: 'magicPosition',
-                }, function(ret, err) {
-                    //console.log("ret", ret);
+                }, function (ret, err) {
+
                     that.active = ret.value.key.magicComAll;
                 });
                 api.addEventListener({
                     name: 'jobAllName',
-                }, function(ret, err) {
+                }, function (ret, err) {
                     comValue(ret.value.key.job_id)
                 });
                 api.addEventListener({
                     name: 'jobPosiAll',
-                }, function(ret, err) {
+                }, function (ret, err) {
                     comValue(ret.value.key.job_name)
                 });
                 api.addEventListener({
                     name: 'personHome',
-                }, function(ret, err) {
+                }, function (ret, err) {
                     comValue(ret.value.key.person_id)
 
                 });
@@ -459,7 +473,7 @@
                 }
             },
             methods: {
-                togle: function() {
+                togle: function () {
                     // this.active = true;
                     var isBlck = document.querySelector('.bgBlack')
                     if (isBlck.getAttribute("class") == 'isDisplay') {
@@ -473,7 +487,7 @@
                 },
 
                 // 更改简历数据
-                HavechatClick: function() {
+                HavechatClick: function () {
                     var uidUser = localStorage.getItem("user")
                     if (!uidUser) {
                         openNewWindow("login", "../../login/login.html");
@@ -483,7 +497,7 @@
                     }
                 },
 
-                hideBg: function() {
+                hideBg: function () {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');
                     that.active = ''
@@ -502,12 +516,12 @@
                     msg: '再按一次退出应用'
                 });
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 backButtonPress = 0;
             }, 1000);
         }
 
-        ajaxGetWithProgress(QueryPersonRandomOne, {}, function(data, err) {
+        ajaxGetWithProgress(QueryPersonRandomOne, {}, function (data, err) {
             // alert(JSON.stringify(data));
             //console.log("datadata", data);
             if (data) {
@@ -517,12 +531,12 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
-                //console.log("data.person_summary.person_id",data.person_summary.person_id)
+
                 $("#personId").html(data.person_summary.person_id)
-                if (data.attPerson){
+                if (data.attPerson) {
                     document.querySelector(".collection").classList.add("isDisplay")
                     document.querySelector(".collectionHand").classList.remove("isDisplay")
-                }else{
+                } else {
                     document.querySelector(".collection").classList.remove("isDisplay")
                     document.querySelector(".collectionHand").classList.add("isDisplay")
 
@@ -563,7 +577,7 @@
                 if (person_summary.p_birthday) {
 
                     var age = ages(person_summary.p_birthday);
-                    //console.log(age,'年龄')
+
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0
@@ -602,24 +616,23 @@
 
                 // 求职期望
                 if (Intention) {
-                  //console.log(Intention,'')
+
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
-                    if (Intention.work == ''){
+                    if (Intention.work == '') {
                         // document.getElementById('work').innerText = Intention.work;
-                    } else{
+                    } else {
                         // document.getElementById('work').innerText = '未填写';
                     }
 
                     var pays = Intention.pay.split('.');
                     var pays2 = []
-                    pays.forEach(function(value) {
+                    pays.forEach(function (value) {
                         pays2.push(value)
                     })
-                    // //console.log(pays2);
+
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
-                // //console.warn(JSON.stringify(working_his));
 
                 // 工作经历
                 if (working_his) {
@@ -646,10 +659,9 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(workings)
+
                     workings.innerHTML = dom;
-                }else{
+                } else {
                     var workings = document.getElementById('workings');
                     workings.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
@@ -670,10 +682,9 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(educations)
+
                     educations.innerHTML = dom;
-                }else{
+                } else {
                     var educations = document.getElementById('educations');
                     educations.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
@@ -694,12 +705,11 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(project)
+
                     project.innerHTML = dom;
-                }else{
-                  var project = document.getElementById('project');
-                  project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
+                } else {
+                    var project = document.getElementById('project');
+                    project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
 
             }
@@ -714,9 +724,8 @@
         // 获取用户简历全部信息
         ajaxGetWithProgress(QueryPerson, {
             person_id: person_id
-        }, function(data, err) {
-            // alert(JSON.stringify(data));
-            //console.log("QueryPerson", data);
+        }, function (data, err) {
+
             if (data) {
                 document.querySelector('.box').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -725,18 +734,18 @@
                 var working_his = data.working_his;
                 var Intention = data.Intention;
 
-                if(person_summary.i_status == '1'){
+                if (person_summary.i_status == '1') {
                     //离职-随时到岗
                     document.querySelector('#work').innerHTML = '离职-随时到岗';
-                }else if(person_summary.i_status == '2'){
+                } else if (person_summary.i_status == '2') {
                     document.querySelector('#work').innerHTML = '在职-月内到岗';
-                   //在职-月内到岗
-                }else if(person_summary.i_status == '3'){
+                    //在职-月内到岗
+                } else if (person_summary.i_status == '3') {
                     document.querySelector('#work').innerHTML = '在职-考虑机会';
-                  //在职-考虑机会
-                }else if(person_summary.i_status == '4'){
+                    //在职-考虑机会
+                } else if (person_summary.i_status == '4') {
                     document.querySelector('#work').innerHTML = '在职-暂不考虑';
-                  //在职-暂不考虑
+                    //在职-暂不考虑
                 }
 
                 // 电话 邮箱
@@ -812,19 +821,19 @@
 
                 // 求职期望
                 if (Intention) {
-                    //console.log(Intention,'7800')
+
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
                     // document.getElementById('work').innerText = Intention.work;
                     var pays = Intention.pay.split('.');
                     var pays2 = []
-                    pays.forEach(function(value) {
+                    pays.forEach(function (value) {
                         pays2.push(value)
                     })
-                    // //console.log(pays2);
+
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
-                // //console.warn(JSON.stringify(working_his));
+
 
                 // 工作经历
                 if (working_his) {
@@ -851,12 +860,11 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(workings)
+
                     workings.innerHTML = dom;
-                }else{
+                } else {
                     var workings = document.getElementById('workings');
-                  workings.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
+                    workings.innerHTML = '<div class="jing-title">' + '未填写' + '</div>'
                 }
                 // 教育经历
                 if (education_his) {
@@ -875,10 +883,9 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(educations)
+
                     educations.innerHTML = dom;
-                }else{
+                } else {
                     var educations = document.getElementById('educations');
                     educations.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
@@ -899,12 +906,11 @@
                     }
 
                     var dom = arr.join('');
-                    // //console.log(dom);
-                    // //console.log(project)
+
                     project.innerHTML = dom;
-                }else{
-                  var project = document.getElementById('project');
-                  project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
+                } else {
+                    var project = document.getElementById('project');
+                    project.innerHTML = '<div class="jing-title">' + '未填写' + '</div>';
                 }
             }
         });
@@ -920,7 +926,7 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function(data, err) {
+        ajaxGetWithProgress(queryRecruiterSuccessJobProfile, obj, function (data, err) {
             //console.log("homeData", data)
             localStorage.setItem("com_id", data.c_id)
             if (data.date == 1) {
@@ -1032,11 +1038,11 @@
                 } else {
                     this.itemList = [];
                     this.closeTabCon();
-                    this.signactivesselectedStatusIndex= 'a';
+                    this.signactivesselectedStatusIndex = 'a';
                     this.updateactivesselectedStatusIndex = 'a';
                     this.sallaryselectedStatusIndex = 'a';
-                    this.educationselectedStatusIndex= 'a';
-                    this.ageselectedStatusIndex= 'a';
+                    this.educationselectedStatusIndex = 'a';
+                    this.ageselectedStatusIndex = 'a';
                     this.findItems();
                 }
             },
@@ -1122,54 +1128,59 @@
     })
     //leilei
 
+
     // zbw star
     // 收藏
-     function collectionHandle() {
+    function collectionHandle() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../../login/login.html");
             return;
         }
         ajaxGet(attentionPerson, {
             uid: localStorage.getItem("user"),
             person_id: $("#personId").html(),
-        }, function(data,err){
+        }, function (data, err) {
             //console.log(data);
             api.showProgress();
-            if (data){
+            if (data) {
                 api.hideProgress();
-                if (data.status){
-                   toast("收藏成功")
+                if (data.status) {
+                    toast("收藏成功")
                     document.querySelector(".collection").classList.remove("isDisplay")
                     document.querySelector(".collectionHand").classList.add("isDisplay")
+                    window.location.reload()
                 }
             }
         });
     }
+
     // 收藏
     function collectionHandleActive() {
         var uidUser = localStorage.getItem("user")
-        if (!uidUser){
+        if (!uidUser) {
             openNewWindow("login", "../../../login/login.html");
             return;
         }
-        //console.log(obj)
+
         ajaxGet(attentionPerson, {
             uid: localStorage.getItem("user"),
             person_id: $("#personId").html(),
-        }, function(data,err){
+        }, function (data, err) {
             //console.log(data);
             api.showProgress();
-            if (data){
+            if (data) {
                 api.hideProgress();
-                if (data.status){
+                if (data.status) {
                     toast("取消收藏")
                     document.querySelector(".collection").classList.add("isDisplay")
                     document.querySelector(".collectionHand").classList.remove("isDisplay")
+                    window.location.reload()
                 }
             }
         });
     }
+
     // zbw end
 
 </script>
