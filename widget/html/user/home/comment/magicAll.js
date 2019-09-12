@@ -7,8 +7,7 @@ function magicAllInit(Vue) {
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
-
+        a01_w = winWidth;
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2))

@@ -6,8 +6,8 @@ function magicComPosiAllInit(Vue) {
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
-
+        // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+        a01_w = winWidth;
         console.log("a01_w",a01_w)
         console.log("winWidth/2",winWidth/2)
 

@@ -350,7 +350,6 @@
         }, function(ret, err) {
             closeOnKeyBack();
         });
-        console.log("person_idperson_id", person_id)
         var backButtonPress = 0;
         if (person_id) {
             comValue(person_id)
@@ -364,16 +363,12 @@
 
         winWidth = api.winWidth;
         winHeight = api.winHeight;
-        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-        a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+        a01_w = winWidth;
 
-        console.log("a01_w", a01_w)
-        console.log("winWidth/2", winWidth / 2)
 
         // 斜边长
         bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
-        console.log("bevelLength", bevelLength)
-        // width_d=(screen_w-20) *2/5 - 5;
         m_d = (a01_w - 10) * 0.23 - 25; // 100
 
         app1Vue = new Vue({
@@ -401,14 +396,12 @@
                 api.addEventListener({
                     name: 'magicComPosiAll',
                 }, function(ret, err) {
-                    console.log("ret", ret);
                     that.active = ret.value.key.magicComPosiAll;
 
                 });
                 api.addEventListener({
                     name: 'magicPosition',
                 }, function(ret, err) {
-                    console.log("ret", ret);
                     that.active = ret.value.key.magicComAll;
                 });
                 api.addEventListener({
@@ -518,7 +511,6 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
-                console.log("data.person_summary.person_id",data.person_summary.person_id)
                 $("#personId").html(data.person_summary.person_id)
                 if (data.attPerson){
                     document.querySelector(".collection").classList.add("isDisplay")
@@ -564,7 +556,6 @@
                 if (person_summary.p_birthday) {
 
                     var age = ages(person_summary.p_birthday);
-                    console.log(age,'年龄')
                     document.getElementById('age').innerText = age;
                 } else {
                     document.getElementById('age').innerText = 0
@@ -603,7 +594,6 @@
 
                 // 求职期望
                 if (Intention) {
-                  console.log(Intention,'')
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
                     if (Intention.work == ''){
@@ -617,11 +607,8 @@
                     pays.forEach(function(value) {
                         pays2.push(value)
                     })
-                    // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
-                // console.warn(JSON.stringify(working_his));
-
                 // 工作经历
                 if (working_his) {
                     var workings = document.getElementById('workings');
@@ -647,8 +634,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(workings)
                     workings.innerHTML = dom;
                 }else{
                     var workings = document.getElementById('workings');
@@ -671,8 +656,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(educations)
                     educations.innerHTML = dom;
                 }else{
                     var educations = document.getElementById('educations');
@@ -695,8 +678,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(project)
                     project.innerHTML = dom;
                 }else{
                   var project = document.getElementById('project');
@@ -716,7 +697,6 @@
         ajaxGetWithProgress(QueryPerson, {
             person_id: person_id
         }, function(data, err) {
-            // alert(JSON.stringify(data));
             console.log("QueryPerson", data);
             if (data) {
                 document.querySelector('.box').classList.remove('isDisplay');
@@ -813,7 +793,6 @@
 
                 // 求职期望
                 if (Intention) {
-                    console.log(Intention,'7800')
                     document.getElementById('work_name').innerText = Intention.work_name;
                     document.getElementById('int_city').innerText = Intention.int_city;
                     // document.getElementById('work').innerText = Intention.work;
@@ -822,10 +801,8 @@
                     pays.forEach(function(value) {
                         pays2.push(value)
                     })
-                    // console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
                 }
-                // console.warn(JSON.stringify(working_his));
 
                 // 工作经历
                 if (working_his) {
@@ -852,8 +829,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(workings)
                     workings.innerHTML = dom;
                 }else{
                     var workings = document.getElementById('workings');
@@ -876,8 +851,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(educations)
                     educations.innerHTML = dom;
                 }else{
                     var educations = document.getElementById('educations');
@@ -900,8 +873,6 @@
                     }
 
                     var dom = arr.join('');
-                    // console.log(dom);
-                    // console.log(project)
                     project.innerHTML = dom;
                 }else{
                   var project = document.getElementById('project');
@@ -1123,6 +1094,7 @@
     })
     //leilei
 
+
     // zbw star
     // 收藏
      function collectionHandle() {
@@ -1143,6 +1115,7 @@
                    toast("收藏成功")
                     document.querySelector(".collection").classList.remove("isDisplay")
                     document.querySelector(".collectionHand").classList.add("isDisplay")
+                    window.location.reload()
                 }
             }
         });
@@ -1154,7 +1127,6 @@
             openNewWindow("login", "../../../login/login.html");
             return;
         }
-        console.log(obj)
         ajaxGet(attentionPerson, {
             uid: localStorage.getItem("user"),
             person_id: $("#personId").html(),
@@ -1167,6 +1139,7 @@
                     toast("取消收藏")
                     document.querySelector(".collection").classList.add("isDisplay")
                     document.querySelector(".collectionHand").classList.remove("isDisplay")
+                    window.location.reload()
                 }
             }
         });

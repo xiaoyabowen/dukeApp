@@ -53,10 +53,15 @@ var ChatRegistToken = serverUrl + "/Login/ChatRegistToken";   // 第三方登陆
 
 
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
-var updatePwd = serverUrl + "/UserProfile/updatePwd";   //验证码登陆   role_type
 
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
+// 账号   忘记密码
+var forgetPwd = serverUrl + "/UserProfile/forgetPwd";
+// 账号   修改密码
+var updatePwd = serverUrl + "/UserProfile/updatePwd";
+
+
 // 账号密码登录
 var CreatePersonBasicUserProfile = serverUrl + "/UserProfile/CreatePersonBasic";
 // 判断是千里马还是伯乐

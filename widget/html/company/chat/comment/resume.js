@@ -68,44 +68,45 @@ function resumeInit(Vue) {
             },
             // tab切换  新简历status  1
             activeHandle: function (name, status) {
+                console.log("namename",name)
                 var that = this;
-                // if (name == 'interview') {
-                //     ajaxGetWithProgress(ResumeList, {
-                //         status: 2
-                //     }, function (data, err) {
-                //         // console.log(data);
-                //         if (data.ResumeList) {
-                //             var arr1 = data.ResumeList;
-                //             var arr2 = [];
-                //             for (var i = 0; i < arr1.length; i++) {
-                //                 for (var j = 0; j < arr1[i].queryPersonByJobid.length; j++) {
-                //                     arr2.push(arr1[i].queryPersonByJobid[j]);
-                //                 }
-                //             }
-                //             console.log(arr2);
-                //             that.list2 = arr2;
-                //             // console.log(that[list]);
-                //         }
-                //         ajaxGetWithProgress(ResumeList, {
-                //             status: 3
-                //         }, function (data, err) {
-                //             console.log(data);
-                //             if (data.ResumeList) {
-                //                 var arr3 = data.ResumeList;
-                //                 for (var i = 0; i < arr3.length; i++) {
-                //                     for (var j = 0; j < arr3[i].queryPersonByJobid.length; j++) {
-                //                         that.list2.push(arr3[i].queryPersonByJobid[j]);
-                //                     }
-                //                 }
-                //
-                //                 console.log(that.list2);
-                //             }
-                //         })
-                //     })
-                // } else {
-                //     this.ResumeList(status);
-                // }
-                this.active = name;
+                if (name == 'interview') {
+                    ajaxGetWithProgress(ResumeList, {
+                        status: 2
+                    }, function (data, err) {
+                        // console.log(data);
+                        if (data.ResumeList) {
+                            var arr1 = data.ResumeList;
+                            var arr2 = [];
+                            for (var i = 0; i < arr1.length; i++) {
+                                for (var j = 0; j < arr1[i].queryPersonByJobid.length; j++) {
+                                    arr2.push(arr1[i].queryPersonByJobid[j]);
+                                }
+                            }
+                            console.log(arr2);
+                            that.list2 = arr2;
+                            // console.log(that[list]);
+                        }
+                        ajaxGetWithProgress(ResumeList, {
+                            status: 3
+                        }, function (data, err) {
+                            console.log(data);
+                            if (data.ResumeList) {
+                                var arr3 = data.ResumeList;
+                                for (var i = 0; i < arr3.length; i++) {
+                                    for (var j = 0; j < arr3[i].queryPersonByJobid.length; j++) {
+                                        that.list2.push(arr3[i].queryPersonByJobid[j]);
+                                    }
+                                }
+
+                                console.log(that.list2);
+                            }
+                        })
+                    })
+                } else {
+                    this.ResumeList(status);
+                }
+                that.active = name;
                 ajaxGetWithProgress(ResumeList, {
                     status: status
                 }, function (data, err) {
@@ -153,19 +154,7 @@ function resumeInit(Vue) {
                     })
                 })
             },
-            // tab切换   录用   4
-            offerHandle: function (name, status) {
-                var that = this;
-                that.active = name;
-                ajaxGetWithProgress(ResumeList, {
-                    status: status
-                }, function (data, err) {
-                    console.log("jianlidata",data);
-                    that.list4 = data.ResumeList
 
-                    console.log("that.list4",that.list4)
-                })
-            },
             // tab切换   不合适   5
             noHandle: function (name, status) {
                 var that = this;
