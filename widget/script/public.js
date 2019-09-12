@@ -30,7 +30,6 @@ var Domain = 'http://192.168.1.24:8088';
 
 
 
-
 var rootWindowName = "root";
 simpleVersion = true;
 
