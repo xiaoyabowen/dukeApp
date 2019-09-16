@@ -13,24 +13,66 @@
         .searchClick{
             right: 0.1rem;
         }
+        .OneImgRight {
+            margin-top: 0.1rem;
+            width: 0.47rem;
+            height: 0.42rem;
+        }
+        .middleHeightTop {
+            height: 0.56rem;
+            align-items: center;
+        }
+        /*leileiStart*/
+        #search-inputTop {
+            display: block;
+            width: 4.25rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            padding: 0 0.12rem 0 1rem;
+            border-radius: 0.28rem;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.24rem;
+            background: url("../../../icon/search.png") no-repeat 0.48rem center, rgba(255, 255, 255, 1);
+            background-size: 0.26rem 0.26rem;
+            margin-bottom: 0 !important;
+        }
+
+        #search-inputTop::-webkit-input-placeholder {
+            font-size: 0.28rem;
+            line-height: 0.32rem;
+        }
+          /*leileiEnd*/
     </style>
     <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>-->
 </head>
 <body>
-<div id="topbar" class="cssFlex">
+<!-- <div id="topbar" class="cssFlex">
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="mineGo()" style="margin-top: 0.1rem">
-            首页
-        </div>
+
         <div class="middleMain">
             <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
             <span class="searchClick">GO</span>
         </div>
 
     </div>
-</div>
+</div> -->
 
+
+<!-- leileiStart -->
+<div id="topbar" class="display">
+    <div class="headerBoxbg cssFlex">
+      <div class="leftImgClose" onclick="mineGo()" style="margin-top: 0.1rem">
+          首页
+      </div>
+        <div class="middleHeightTop cssFlex">
+            <input type="text" id="search-inputTop" placeholder="通过姓名或公司搜索联系人" readonly>
+            <span class="search-Click">GO</span>
+        </div>
+    </div>
+</div>
+<!-- leileiEnd -->
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
