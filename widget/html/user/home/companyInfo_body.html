@@ -279,7 +279,6 @@
 
             if (c_id) {
                 obj.cid = c_id;
-
                 ms_type = 0
             }
 
@@ -299,7 +298,9 @@
                 var JobList = data.JobList //  zaizhao 职位
                 var DynamicList = data.DynamicList //  公司动态
                 var attentionCompany = data.attentionCompany //  关注状态
+                console.log(data,'30111')
                 if (welfare) {
+                  // console.log(30333);
                     var welData = welfare.split(",")
                     for (var i = 0; i < welData.length; i++) {
                         infoListHtml += '<span>' + welData[i] + '</span>'
@@ -309,8 +310,7 @@
                     document.querySelector(".infoList").innerHTML = ''
                 }
                 var adressData = data.address;
-
-
+                console.log(dataSummary,'31111');
                 // 搜索
                 if (c_id) {
                     // 公司头部
@@ -347,41 +347,6 @@
 
                     //公司头部
                 }
-
-
-                // 公司头部
-                if (attentionCompany.att_status == 0) {
-                    document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
-                        '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                } else if (attentionCompany.att_status == 1) {
-                    document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
-                        '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                }
-                document.querySelector(".comTitle").innerHTML +=
-                    '<div class="comintobox cssFlex">' +
-                    '<div class="comInfo">' +
-                    '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                    '                    <p class="comInfoCon comInfoConMar">\n' +
-                    '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                    '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                    '                        <span>' + dataSummary.org_type + '</span>\n' +
-                    '                    </p>\n' +
-                    '                    <p class="timeInfo cssFlex">\n' +
-                    '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                    '                        <span>' + dataSummary.s_time + '</span>\n' +
-                    '                        <i>-</i>\n' +
-                    '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                    '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                    '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                    '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                    '                    </p>\n' +
-                    '                </div>\n' +
-                    '                <div class="comLogo">\n' +
-                    '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                    '                </div>' +
-                    '                </div>'
-
-                //公司头部
 
                 if (data) {
 
@@ -444,15 +409,15 @@
                                 '                                            </p>\n' +
                                 '                                            <p class="job-img-content cssFlex">\n' +
                                 '                                                <img src="' + imgSrcFun(JobList[i].p_icon) + '" alt="hr" class="hrImg">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
+                                '                                                <span>' + JobList[i].p_name + '</span>\n' +
                                 '                                                <i>·</i>\n' +
-                                '                                                <span>人力资源经理</span>\n' +
+                                '                                                <span>'+ JobList[i].z_user_job +'</span>\n' +
                                 '                                            </p>\n' +
                                 '                                        </div>\n' +
                                 '                                        <!--薪资 日期-->\n' +
                                 '                                        <div class="job-right ">\n' +
-                                '                                            <p class="moneyNum">20k-30K</p>\n' +
-                                '                                            <p class="date-job" >4月17日</p>\n' +
+                                '                                            <p class="moneyNum">' + JobList[i].ratio + '</p>\n' +
+                                '                                            <p class="date-job" >'+JobList[i].open_time +'</p>\n' +
                                 '                                        </div>\n' +
                                 '                                    </div>';
                         }
@@ -545,11 +510,16 @@
                 var attentionCompany = data.attentionCompany //  关注状态
                 // 公司标签
                 // console.log(welfare, 'aaa')
-                var welData = welfare.split(",")
-                for (var i = 0; i < welData.length; i++) {
-                    infoListHtml += '<span>' + welData[i] + '</span>'
+                if(welfare){
+                  var welData = welfare.split(",")
+                  for (var i = 0; i < welData.length; i++) {
+                      infoListHtml += '<span>' + welData[i] + '</span>'
+                  }
+                  document.querySelector(".infoList").innerHTML = infoListHtml
+                }else{
+                  document.querySelector(".infoList").innerHTML = '';
                 }
-                document.querySelector(".infoList").innerHTML = infoListHtml
+
                 var adressData = data.address
                 if (data) {
                     // 公司头部
@@ -622,7 +592,7 @@
                         document.querySelector(".PIClistBox").innerHTML = PIClistHtml
                     }
 
-
+                    console.log(JobList,'588');
                     if (JobList && JobList.length > 0) {
                         for (var i = 0; i < JobList.length; i++) {
                             html2 += '<div class="jobBox cssFlex" >\n' +
@@ -638,15 +608,15 @@
                                 '                                            </p>\n' +
                                 '                                            <p class="job-img-content cssFlex">\n' +
                                 '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
+                                '                                                <span>' + JobList[i].p_name + '</span>\n' +
                                 '                                                <i>·</i>\n' +
-                                '                                                <span>人力资源经理</span>\n' +
+                                '                                                <span>'+ JobList[i].z_user_job +'</span>\n' +
                                 '                                            </p>\n' +
                                 '                                        </div>\n' +
                                 '                                        <!--薪资 日期-->\n' +
                                 '                                        <div class="job-right ">\n' +
-                                '                                            <p class="moneyNum">20k-30K</p>\n' +
-                                '                                            <p class="date-job" >4月17日</p>\n' +
+                                '                                            <p class="moneyNum">' + JobList[i].ratio + '</p>\n' +
+                                '                                            <p class="date-job" >'+JobList[i].open_time +'</p>\n' +
                                 '                                        </div>\n' +
                                 '                                    </div>';
                         }

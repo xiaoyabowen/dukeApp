@@ -245,8 +245,8 @@
 
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="password" value="" placeholder="请输入密码">
-                    <img src="../../image/login/hide.png" alt="password show" id="passShow">
+                    <input id="password" :type='passTogle ? "password" : "text"' value="" placeholder="请输入密码">
+                    <img src="../../image/login/hide.png" alt="password show" @click = 'changePassStatus' id="passShow">
                 </div>
             </div>
             <button class="login-href" @click="goHome()">进入渡客</button>
@@ -288,16 +288,6 @@
     // 点击是否查看密码
     var passId = document.getElementById('passShow');
     var passInput = document.getElementById('password');
-    passTogle = true;
-    passId.addEventListener('click',function(e){
-        if (passTogle){
-            passTogle = false;
-            passInput.setAttribute("type","text")
-        }else{
-            passTogle = true;
-            passInput.setAttribute("type","password")
-        }
-    })
     var code, accessToken, dynamicToken, openId, phoneValue, wx, getUserInfoWx,url
     apiready = function () {
         url = api.pageParam.url
@@ -314,6 +304,7 @@
                 random_str : '',
                 signature : '',
                 timestamp : '',
+                passTogle:true,
 
             },
             created: function () {
@@ -323,6 +314,15 @@
 
             },
             methods: {
+                changePassStatus(){
+                  // console.log(123);
+                  this.passTogle = !this.passTogle;
+                  if(this.passTogle){  //切换当前图片
+
+                  }else{
+
+                  }
+                },
                 goHome : function () {
 
                     var that = this
