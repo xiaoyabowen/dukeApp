@@ -94,15 +94,16 @@
     <script type="text/javascript" src="../../../script/user.js"></script>
     <script>
         apiready = function () {
-           
+
         };
         function editPassBtn() {
             var params = {};
             params.newPwd = $api.byId("againPass").value;
             params.oldPwd = '';
             var user = localStorage.getItem("user")
+            // console.log(localStorage,'104444444444')
             var userP = JSON.parse(user)
-
+            // console.log(userP,'10666666666666')
             params.token = userP.token;
 
             if (isBlack(params.newPwd)) {
