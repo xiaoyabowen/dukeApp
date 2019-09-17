@@ -198,6 +198,13 @@
             e_from: entry_date,
             e_to: quit_date
         }
+
+        if(new Date(entry_date).getTime() >= new Date(quit_date).getTime()){
+          api.toast({
+              msg: '请选择正确的入学年份和毕业年份'
+          });
+          return;
+        }
         if (School == "请输入") {
             api.toast({
                 msg: '请填写您的学校名称'
@@ -224,6 +231,7 @@
             });
             return
         }
+
 
         ajaxGetWithProgress(AddEducation, params, function (ret, err) {
             // console.log(ret)

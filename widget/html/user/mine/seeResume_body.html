@@ -139,7 +139,7 @@
                                         </p>
                                         <span class="see-price" id="pay">10-15k</span>
                                     </div>
-                                    <p class="see-choose-hang" id="work">行业不限</p>
+                                    <p class="see-choose-hang" id="work"></p>
                                     <div class="seeSubTitle">自我描述</div>
                                     <div class="see-me-miao">
                                         <div class="see-me-list cssFlex" id="p_title">
@@ -270,8 +270,8 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/swiper-3.3.1.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     // swiper  轮播
     var mySwiper = new Swiper('.swiper-container', {
@@ -292,7 +292,7 @@
         // 获取用户简历全部信息
         ajaxGetWithProgress(GetResumeInformation, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            // console.log("seeRESume=", data);
+            console.log("seeRESume=", data);
             if (data) {
                 document.querySelector('.boxSub').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -339,7 +339,7 @@
                     document.getElementById('degree').innerText = '未填写'
                 }
                 // 年龄
-                if (person_summary.b_birthday) {
+                if (person_summary.p_birthday) {
                     var age = ages(person_summary.p_birthday);
                     document.getElementById('age').innerText = age;
                 } else {
@@ -391,7 +391,7 @@
                 if (Intention) {
                     document.getElementById('work_name').innerText = Intention[0].work_name;
                     document.getElementById('int_city').innerText = Intention[0].int_city;
-                    document.getElementById('work').innerText = Intention[0].work;
+                    // document.getElementById('work').innerText = Intention[0].work;
                     var pays = Intention[0].pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
@@ -421,6 +421,29 @@
                     // console.log(workings)
                     workings.innerHTML = dom;
                 }
+
+                if (projects != null) {
+                    var project = document.getElementById('project');
+                    var arr = [];
+                    var dom = '未填写';
+                    var ptLeg = projects.length;
+                    if(ptLeg.length>0){
+                        for (var i = 0; i < ptLeg; i++) {
+                            var str = '<div class="see-product-box">\n' +
+                                '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
+                                '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
+                                '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
+                                '                                           </div>';
+                            arr.push(str);
+                        }
+
+                        dom = arr.join('');
+                    }
+                    // console.log(dom);
+                    // console.log(project)
+                    project.innerHTML = dom;
+                }else{
+                }
                 // 教育经历
                 if (education_his) {
                     var educations = document.getElementById('educations');
@@ -446,31 +469,6 @@
                     // console.log(educations)
                     educations.innerHTML = dom;
                 }
-
-
-                if (projects != null) {
-
-                    var project = document.getElementById('project');
-                    var arr = [];
-                    var dom = '未填写';
-                    var ptLeg = projects.length;
-                    if(ptLeg.length>0){
-                        for (var i = 0; i < ptLeg; i++) {
-                            var str = '<div class="see-product-box">\n' +
-                                '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
-                                '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
-                                '                                               <div class="produvt-content">' + projects[i].p_note + '</div>\n' +
-                                '                                           </div>';
-                            arr.push(str);
-                        }
-
-                        dom = arr.join('');
-                    }
-                    // console.log(dom);
-                    // console.log(project)
-                    project.innerHTML = dom;
-                }
-
             }
 
             // 联系方式 和 图片作品

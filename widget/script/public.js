@@ -9,10 +9,9 @@ var isCleanUser = false;
 
 // 本地服务器
 
-// var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
-// var localhostHref = 'http://192.168.1.24:8000/SE4M';
+// var serverUrl = "http://192.168.1.6:8000/SE4M/SE";
+// var localhostHref = 'http://192.168.1.6:8000/SE4M';
 // var Domain = 'http://192.168.1.24:8088';
-
 
 
 // 正式服务器
@@ -21,14 +20,13 @@ var localhostHref = 'http://112.126.98.172:8000/SE4M';
 var Domain = 'http://112.126.98.172:8088';
 
 
-
 // 渡客正式服务器
 
-var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
-var localhostHref = 'http://59.110.231.40:25121/SE4M';
-var Domain = 'http://59.110.231.40:25122';
-
-
+// var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
+// var localhostHref = 'http://59.110.231.40:25121/SE4M';
+// var Domain = 'http://59.110.231.40:25122';
+//
+//
 
 var rootWindowName = "root";
 simpleVersion = true;
@@ -60,6 +58,9 @@ var forgetPwd = serverUrl + "/UserProfile/forgetPwd";
 // 账号   修改密码
 var updatePwd = serverUrl + "/UserProfile/updatePwd";
 
+// 修改教育经历
+
+var queryEducation =  serverUrl + "/UserProfile/QueryOneEducation";
 
 // 账号密码登录
 var CreatePersonBasicUserProfile = serverUrl + "/UserProfile/CreatePersonBasic";
@@ -197,6 +198,7 @@ var QueryApplicationStatus4List = serverUrl + "/EvaluateProfile/queryApplication
 
 // 查询教育信息
 var GetEducation = serverUrl + "/UserProfile/queryEducationByid";
+
 // 添加/修改教育信息
 var AddEducation = serverUrl + "/UserProfile/createEducation";
 // 删除此段教育经历
@@ -839,6 +841,7 @@ function ages(str) {
     if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
         var Y = new Date().getFullYear();
         // return ("年龄   =   " + (Y - r[1]) + "   周岁");
+        // console.log(Y - r[1],'nianling');
         return (Y - r[1]);
     }
     return ("输入的日期格式错误！");

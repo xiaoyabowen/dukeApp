@@ -320,8 +320,8 @@
 <script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
     var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
@@ -599,7 +599,7 @@
         // console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://59.110.231.40:25121/SE4M/SE/Login/quRoleType',
+            url: 'http://112.126.98.172:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -624,7 +624,7 @@
 
         api.ajax({
 
-            url: 'http://59.110.231.40:25121/SE4M/SE/Status/status',
+            url: 'http://112.126.98.172:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,

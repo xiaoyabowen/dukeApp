@@ -51,7 +51,7 @@
             <div class="info-choose cssFlex" onclick="showUserPicker()">
                 <span class="info-choose-name">学历</span>
                 <div class="info-choose-main cssFlex">
-                    <span class="info-choose-main-name education">请选择</span>
+                    <span style='font-size:0.28rem; color:rgba(102, 102, 102, 1)' class="info-choose-main-name education">请选择</span>
                     <img src="../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
@@ -90,24 +90,26 @@
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     var person_id = localStorage.getItem('person_id');
     var sn, univ_id;
     apiready = function () {
-
+        console.log(api.pageParam,'9999');
         sn = api.pageParam.sn;
         univ_id = api.pageParam.univ_id;
         var obj = {
-            person_id: person_id
+            // person_id: person_id
+            univ_id:univ_id
         }
         // 获取教育信息
-        ajaxGetWithProgress(GetEducation,obj,function(res,err) {
+        ajaxGetWithProgress(queryEducation,obj,function(res,err) {
+          // console.log(res);
             // api.alert({mas: JSON.stringify(res.education_his)});
-            if (res && res.education_his) {
-                var msg = res.education_his[--sn];
-
+            if (res) {
+                // console.log(res)
+                var msg = res;
                 document.getElementById("School").innerText = msg.univ_name || '请输入';
                 document.getElementById("major").innerText = msg.major || '请输入';
                 document.querySelector('.education').innerText = msg.degree || '请选择';
@@ -151,7 +153,7 @@
     function entry_date() {
         var dtpicker = new mui.DtPicker(
             {
-                type: "date", //设置日历初始视图模式
+                type: "month", //设置日历初始视图模式
                 beginDate: new Date(1950, 04, 25), //设置开始日期
                 endDate: new Date() //设置开始日期
             }
@@ -167,7 +169,7 @@
     function quit_date() {
         var dtpicker = new mui.DtPicker(
             {
-                type: "date", //设置日历初始视图模式
+                type: "month", //设置日历初始视图模式
                 beginDate: new Date(1950, 04, 25), //设置开始日期
                 endDate: new Date() //设置开始日期
             }
@@ -257,7 +259,13 @@
             e_from: entry_date,
             e_to: quit_date
         }
-
+        
+        if(new Date(entry_date).getTime() >= new Date(quit_date).getTime()){
+          api.toast({
+              msg: '选择正确的入学年份和毕业年份'
+          });
+          return;
+        }
 
         ajaxGetWithProgress(AddEducation, params, function (data, err) {
             // alert(JSON.stringify(data));

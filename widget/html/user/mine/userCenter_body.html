@@ -98,8 +98,8 @@
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     var adr_id, url;
 
@@ -192,7 +192,7 @@
                             that.edu_level = data.edu_level || "未填写"
                             that.edu_time = data.edu_from +  ' - ' + data.edu_to || "未填写"
                             that.edu_type = data.edu_type || "未填写"
-                            that.p_title = stringFun(data.p_title)
+                            that.p_title = data.p_title.split(',')
                             that.p_birthday = ages(data.p_birthday) + "岁"
                         }
                     });

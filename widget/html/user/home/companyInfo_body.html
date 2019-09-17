@@ -263,230 +263,238 @@
         uid = localStorage.getItem("person_id");
         if (cid) {
             companyId(cid)
+        }else{
+          companyId(c_id)
         }
 
-        if (cid || c_id) {
-            document.querySelector(".comTitle").innerHTML == '';
-            var obj = {
-                person_id: uid,
-
-                ms_type: 0,
-            }
-
-            if (cid) {
-                obj.cid = cid;
-            }
-
-            if (c_id) {
-                obj.cid = c_id;
-                ms_type = 0
-            }
-
-            var infoListHtml = ''
-
-            var PIClistHtml = ''
-            var html2 = ''
-            var html3 = '';
-            ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
-                // console.log("data", data);
-                document.querySelector('.subBox').classList.remove('isDisplay');
-                var dataSummary = data.Orgnization_summary
-                // var companySummary = data.companySummary.Result    //企查查  信息
-                var PIClist = data.PIClist //公司图片
-                var product_his = data.product_his //产品介绍
-                var welfare = dataSummary.welfare //bianqian
-                var JobList = data.JobList //  zaizhao 职位
-                var DynamicList = data.DynamicList //  公司动态
-                var attentionCompany = data.attentionCompany //  关注状态
-                console.log(data,'30111')
-                if (welfare) {
-                  // console.log(30333);
-                    var welData = welfare.split(",")
-                    for (var i = 0; i < welData.length; i++) {
-                        infoListHtml += '<span>' + welData[i] + '</span>'
-                    }
-                    document.querySelector(".infoList").innerHTML = infoListHtml
-                } else {
-                    document.querySelector(".infoList").innerHTML = ''
-                }
-                var adressData = data.address;
-                console.log(dataSummary,'31111');
-                // 搜索
-                if (c_id) {
-                    // 公司头部
-                    if (attentionCompany.att_status == 0) {
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
-                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                    } else if (attentionCompany.att_status == 1) {
-                        document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
-                            '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
-                    }
-                    document.querySelector(".comTitle").innerHTML +=
-                        '<div class="comintobox cssFlex">' +
-                        '<div class="comInfo">' +
-                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                        '                    <p class="comInfoCon comInfoConMar">\n' +
-                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.org_type + '</span>\n' +
-                        '                    </p>\n' +
-                        '                    <p class="timeInfo cssFlex">\n' +
-                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                        '                        <span>' + dataSummary.s_time + '</span>\n' +
-                        '                        <i>-</i>\n' +
-                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                        '                    </p>\n' +
-                        '                </div>\n' +
-                        '                <div class="comLogo">\n' +
-                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                        '                </div>' +
-                        '                </div>'
-
-                    //公司头部
-                }
-
-                if (data) {
-
-                    // 公司标签
-
-                    document.querySelector(".job-text").innerHTML = dataSummary.summary //公司介绍
-                    var product_hishtml = ''
-                    // 产品介绍
-                    if (product_his == null) {
-                        // document.querySelector(".product_hisbox").innerHTML ="暂无数据"
-                    } else {
-                        for (var i = 0; i < product_his.length; i++) {
-                            product_hishtml += '<div class="infoProduct cssFlex">\n' +
-                                '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
-                                '                                            <div class="infoProductContent">\n' +
-                                '                                                <h5>' + product_his[i].productname + '</h5>\n' +
-                                '                                                <p class="textOverflow">' + product_his[i].prod_desc + '<i>详情</i></p>\n' +
-                                '                                            </div>\n' +
-                                '                                        </div>'
-                        }
-                        document.querySelector(".product_hisbox").innerHTML = product_hishtml
-                    }
-
-
-                    // 高管介绍
-                    // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
-                    document.querySelector(".seniorname").innerHTML = dataSummary.senior
-                    document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak
-
-                    // 公司官网
-                    document.querySelector(".homepage").innerHTML = dataSummary.homepage
-
-                    // 公司照片
-                    if (PIClist == null) {
-
-                    } else {
-                        for (var i = 0; i < PIClist.length; i++) {
-                            PIClistHtml += '<div class="swiper-slide">\n' +
-                                // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
-                                '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
-                                '                                            </div>'
-                        }
-                        document.querySelector(".PIClistBox").innerHTML = PIClistHtml
-                    }
-
-                    if (JobList == null) {
-
-                    } else {
-                        for (var i = 0; i < JobList.length; i++) {
-                            html2 += '<div class="jobBox cssFlex" data-search = "' + JobList[i].job_name + '" onclick="jobClickDetail(' + JobList[i].job_id + ')">\n' +
-                                '                                        <div class="job-left">\n' +
-                                '                                            <h4 class="job-nameNm ellipsis">' + JobList[i].job_name + '</h4>\n' +
-                                '                                            <p class="job-name">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="adress-job">\n' +
-                                '                                                <span>' + JobList[i].province + '-' + JobList[i].city + '-' + JobList[i].street + '</span>\n' +
-                                '                                                <span>' + JobList[i].work_ex + '</span>\n' +
-                                '                                                <span>' + JobList[i].edu_ex + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="job-img-content cssFlex">\n' +
-                                '                                                <img src="' + imgSrcFun(JobList[i].p_icon) + '" alt="hr" class="hrImg">\n' +
-                                '                                                <span>' + JobList[i].p_name + '</span>\n' +
-                                '                                                <i>·</i>\n' +
-                                '                                                <span>'+ JobList[i].z_user_job +'</span>\n' +
-                                '                                            </p>\n' +
-                                '                                        </div>\n' +
-                                '                                        <!--薪资 日期-->\n' +
-                                '                                        <div class="job-right ">\n' +
-                                '                                            <p class="moneyNum">' + JobList[i].ratio + '</p>\n' +
-                                '                                            <p class="date-job" >'+JobList[i].open_time +'</p>\n' +
-                                '                                        </div>\n' +
-                                '                                    </div>';
-                        }
-
-                        document.getElementById("tab2").innerHTML = html2
-                    }
-
-                    if (DynamicList == null) {
-
-                    } else {
-                        for (var i = 0; i < DynamicList.length; i++) {
-                            html3 +=
-                                '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
-                                '                                            <h4 class="sizeTitle">\n' +
-                                '                                                ' + DynamicList[i].title + '\n' +
-                                '                                            </h4>\n' +
-                                '                                            <p>\n' +
-                                '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                        </li>';
-                        }
-
-                        document.querySelector(".componySize").innerHTML = html3
-                    }
-
-
-                }
-
-
-                lat = adressData.latitude
-                long = adressData.longitude
-                province = adressData.province
-                city = adressData.city
-                street = adressData.street
-                allAddress = province + city + street
-
-                var jfong = [lat, long];
-                marker = new AMap.Marker({
-                    position: jfong,
-                    zIndex: 101,
-                    map: map
-                });
-                marker.setMap(map);
-                marker.allAddress = allAddress;
-                marker.on('click', function (e) {
-
-                    infoWindow.setContent("<ul class='main'>" +
-                        "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
-                        "</ul>");
-                    infoWindow.open(map, e.lnglat);
-                });
-
-
-                infoWindow = new AMap.InfoWindow({
-                    isCustom: true,
-                    draggable: true, //是否可拖动
-                    offset: new AMap.Pixel(0, -31),
-                    content: ""
-
-
-                });
-            });
-
-
-        }
+        // if (cid || c_id) {
+        //     document.querySelector(".comTitle").innerHTML == '';
+        //     var obj = {
+        //         person_id: uid,
+        //
+        //         ms_type: 0,
+        //     }
+        //
+        //     if (cid) {
+        //         obj.cid = cid;
+        //     }
+        //
+        //     if (c_id) {
+        //         obj.cid = c_id;
+        //         ms_type = 0
+        //     }
+        //
+        //     var infoListHtml = ''
+        //
+        //     var PIClistHtml = ''
+        //     var html2 = ''
+        //     var html3 = '';
+        //     ajaxGetWithProgress(QueryOrgnizationSummary, obj, function (data, err) {
+        //         // console.log("data", data);
+        //         document.querySelector('.subBox').classList.remove('isDisplay');
+        //         var dataSummary = data.Orgnization_summary
+        //         // var companySummary = data.companySummary.Result    //企查查  信息
+        //         var PIClist = data.PIClist //公司图片
+        //         var product_his = data.product_his //产品介绍
+        //         var welfare = dataSummary.welfare ? dataSummary.welfare : '' //bianqian
+        //         var JobList = data.JobList //  zaizhao 职位
+        //         var DynamicList = data.DynamicList //  公司动态
+        //         var attentionCompany = data.attentionCompany //  关注状态
+        //         console.log(data,'30111')
+        //         if (welfare) {
+        //           // console.log(30333);
+        //             var welData = welfare.split(",")
+        //             for (var i = 0; i < welData.length; i++) {
+        //                 infoListHtml += '<span>' + welData[i] + '</span>'
+        //             }
+        //             document.querySelector(".infoList").innerHTML = infoListHtml
+        //         } else {
+        //             document.querySelector(".infoList").innerHTML = ''
+        //         }
+        //         var adressData = data.address;
+        //         console.log(dataSummary.financing ? dataSummary.financing : '未填写','00000');
+        //         console.log(dataSummary,'31111');
+        //         // 搜索
+        //         if (c_id) {
+        //             // 公司头部
+        //             if (attentionCompany.att_status == 0) {
+        //                 document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
+        //                     '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+        //             } else if (attentionCompany.att_status == 1) {
+        //                 document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btn" onclick="flowGuan(' + attentionCompany.id + ',0)">关注</div>\n' +
+        //                     '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
+        //             }
+        //             document.querySelector(".comTitle").innerHTML +=
+        //                 '<div class="comintobox cssFlex">' +
+        //                 '<div class="comInfo">' +
+        //                 '                    <h3 class="comInfoTitle ">' + dataSummary.c_name ? dataSummary.c_name : '未填写' + '</h3>\n' +
+        //                 '                    <p class="comInfoCon comInfoConMar">\n' +
+        //                 '                        <span>' + dataSummary.financing ? dataSummary.financing  : '未填写' + '</span><i>·</i>\n' +
+        //                 '                        <span>' + dataSummary.scale ? dataSummary.scale : '未填写' + '</span><i>·</i>\n' +
+        //                 '                        <span>' + dataSummary.org_type ? dataSummary.org_type : '未填写' + '</span>\n' +
+        //                 '                    </p>\n' +
+        //                 '                    <p class="timeInfo cssFlex">\n' +
+        //                 '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
+        //                 '                        <span>' + dataSummary.s_time ? dataSummary.s_time : '未填写' + '</span>\n' +
+        //                 '                        <i>-</i>\n' +
+        //                 '                        <span class="marginR">' + dataSummary.x_time ? dataSummary.x_time : '未填写' + '</span>\n' +
+        //                 '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
+        //                 '                        <span class="marginR">' + dataSummary.break_time ? dataSummary.break_time : '未填写' + '</span>\n' +
+        //                 '                        <span>' + dataSummary.work_overtime ? dataSummary.work_overtime : '未填写'+ '</span>\n' +
+        //                 '                    </p>\n' +
+        //                 '                </div>\n' +
+        //                 '                <div class="comLogo">\n' +
+        //                 '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
+        //                 '                </div>' +
+        //                 '                </div>'
+        //
+        //             //公司头部
+        //         }
+        //
+        //         if (data) {
+        //
+        //             // 公司标签
+        //
+        //             document.querySelector(".job-text").innerHTML = dataSummary.summary //公司介绍
+        //             var product_hishtml = ''
+        //             // 产品介绍
+        //             if (product_his == null) {
+        //                 document.querySelector(".product_hisbox").innerHTML = '<div class="infoProduct cssFlex">\n' +
+        //                     '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
+        //                     '                                            <div class="infoProductContent">\n' +
+        //                     '                                                <h5>' +'未填写' + '</h5>\n' +
+        //                     '                                                <p class="textOverflow">' + '未填写' + '</p>\n' +
+        //                     '                                            </div>\n' +
+        //                     '                                        </div>'
+        //             } else {
+        //                 for (var i = 0; i < product_his.length; i++) {
+        //                     product_hishtml += '<div class="infoProduct cssFlex">\n' +
+        //                         '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
+        //                         '                                            <div class="infoProductContent">\n' +
+        //                         '                                                <h5>' + product_his[i].productname ? product_his[i].productname : '未填写' + '</h5>\n' +
+        //                         '                                                <p class="textOverflow">' + product_his[i].prod_desc ? product_his[i].prod_desc : '未填写' + '<i>详情</i></p>\n' +
+        //                         '                                            </div>\n' +
+        //                         '                                        </div>'
+        //                 }
+        //                 document.querySelector(".product_hisbox").innerHTML = product_hishtml
+        //             }
+        //
+        //
+        //             // 高管介绍
+        //             // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
+        //             document.querySelector(".seniorname").innerHTML = dataSummary.senior ? dataSummary.senior : '未填写'
+        //             document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak ? dataSummary.senior_bak : '未填写'
+        //
+        //             // 公司官网
+        //             document.querySelector(".homepage").innerHTML = dataSummary.homepage ? dataSummary.homepage : '未填写';
+        //
+        //             // 公司照片
+        //             if (PIClist == null) {
+        //
+        //             } else {
+        //                 for (var i = 0; i < PIClist.length; i++) {
+        //                     PIClistHtml += '<div class="swiper-slide">\n' +
+        //                         // '                                                <img src="'+PIClist[i].pic+'" alt="img">\n' +
+        //                         '                                                <img src="../../../image/babyShow01.png" alt="img">\n' +
+        //                         '                                            </div>'
+        //                 }
+        //                 document.querySelector(".PIClistBox").innerHTML = PIClistHtml
+        //             }
+        //
+        //             if (JobList == null) {
+        //
+        //             } else {
+        //                 for (var i = 0; i < JobList.length; i++) {
+        //                     html2 += '<div class="jobBox cssFlex" data-search = "' + JobList[i].job_name + '" onclick="jobClickDetail(' + JobList[i].job_id + ')">\n' +
+        //                         '                                        <div class="job-left">\n' +
+        //                         '                                            <h4 class="job-nameNm ellipsis">' + JobList[i].job_name + '</h4>\n' +
+        //                         '                                            <p class="job-name">\n' +
+        //                         '                                                <span>' + JobList[i].c_name + '</span>\n' +
+        //                         '                                            </p>\n' +
+        //                         '                                            <p class="adress-job">\n' +
+        //                         '                                                <span>' + JobList[i].province + '-' + JobList[i].city + '-' + JobList[i].street + '</span>\n' +
+        //                         '                                                <span>' + JobList[i].work_ex + '</span>\n' +
+        //                         '                                                <span>' + JobList[i].edu_ex + '</span>\n' +
+        //                         '                                            </p>\n' +
+        //                         '                                            <p class="job-img-content cssFlex">\n' +
+        //                         '                                                <img src="' + imgSrcFun(JobList[i].p_icon) + '" alt="hr" class="hrImg">\n' +
+        //                         '                                                <span>' + JobList[i].p_name + '</span>\n' +
+        //                         '                                                <i>·</i>\n' +
+        //                         '                                                <span>'+ JobList[i].z_user_job +'</span>\n' +
+        //                         '                                            </p>\n' +
+        //                         '                                        </div>\n' +
+        //                         '                                        <!--薪资 日期-->\n' +
+        //                         '                                        <div class="job-right ">\n' +
+        //                         '                                            <p class="moneyNum">' + JobList[i].ratio + '</p>\n' +
+        //                         '                                            <p class="date-job" >'+JobList[i].open_time +'</p>\n' +
+        //                         '                                        </div>\n' +
+        //                         '                                    </div>';
+        //                 }
+        //
+        //                 document.getElementById("tab2").innerHTML = html2
+        //             }
+        //
+        //             if (DynamicList == null) {
+        //
+        //             } else {
+        //                 for (var i = 0; i < DynamicList.length; i++) {
+        //                     html3 +=
+        //                         '                                        <li onclick="com_dy(' + DynamicList[i].com_dynamic_id + ')">\n' +
+        //                         '                                            <h4 class="sizeTitle">\n' +
+        //                         '                                                ' + DynamicList[i].title + '\n' +
+        //                         '                                            </h4>\n' +
+        //                         '                                            <p>\n' +
+        //                         '                                                <span class="size-name">' + DynamicList[i].publisher + '</span>评论 <span class="time-size">' + DynamicList[i].create_time + '</span>\n' +
+        //                         '                                            </p>\n' +
+        //                         '                                        </li>';
+        //                 }
+        //
+        //                 document.querySelector(".componySize").innerHTML = html3
+        //             }
+        //
+        //
+        //         }
+        //
+        //
+        //         // lat = adressData.latitude
+        //         // long = adressData.longitude
+        //         // province = adressData.province
+        //         // city = adressData.city
+        //         // street = adressData.street
+        //         // allAddress = province + city + street
+        //         //
+        //         // var jfong = [lat, long];
+        //         // marker = new AMap.Marker({
+        //         //     position: jfong,
+        //         //     zIndex: 101,
+        //         //     map: map
+        //         // });
+        //         // marker.setMap(map);
+        //         // marker.allAddress = allAddress;
+        //         // marker.on('click', function (e) {
+        //         //
+        //         //     infoWindow.setContent("<ul class='main'>" +
+        //         //         "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
+        //         //         "</ul>");
+        //         //     infoWindow.open(map, e.lnglat);
+        //         // });
+        //         //
+        //         //
+        //         // infoWindow = new AMap.InfoWindow({
+        //         //     isCustom: true,
+        //         //     draggable: true, //是否可拖动
+        //         //     offset: new AMap.Pixel(0, -31),
+        //         //     content: ""
+        //         //
+        //         //
+        //         // });
+        //     });
+        //
+        //
+        // }
 
 
         function companyId(c_id) {
-            // alert(123);
             document.querySelector(".comTitle").innerHTML == ''
             var obj = {
                 cid: c_id,
@@ -502,6 +510,7 @@
                 document.getElementById("comTitleId").innerHTML = ''
                 var dataSummary = data.Orgnization_summary
                 // var companySummary = data.companySummary.Result    //企查查  信息
+                 document.querySelector('.subBox').classList.remove('isDisplay');
                 var PIClist = data.PIClist //公司图片
                 var product_his = data.product_his //产品介绍
                 var welfare = dataSummary.welfare ? dataSummary.welfare : ''; //公司福利
@@ -523,7 +532,8 @@
                 var adressData = data.address
                 if (data) {
                     // 公司头部
-                    // console.log(data, '公司头部')
+                    console.log(data, '公司头部22222')
+                    console.log(dataSummary,'2222')
                     api.hideProgress();
                     if (attentionCompany.att_status == 0) {
                         document.querySelector(".comTitle").innerHTML += '<div class="follow cssFlex">\n' + '<div class="follow-btnbg" onclick="flowGuan(' + attentionCompany.id + ',1)">已关注</div>\n' +
@@ -533,53 +543,62 @@
                             '<img src="../../../icon/share.png" onclick="posiShareClick()"alt="share" class="followshare">\n' + '</div>'
                     }
                     document.querySelector(".comTitle").innerHTML +=
-                        '<div class="comintobox cssFlex">' +
-                        '<div class="comInfo">' +
-                        '                    <h3 class="comInfoTitle ">' + dataSummary.c_name + '</h3>\n' +
-                        '                    <p class="comInfoCon comInfoConMar">\n' +
-                        '                        <span>' + dataSummary.financing + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.scale + '</span><i>·</i>\n' +
-                        '                        <span>' + dataSummary.org_type + '</span>\n' +
-                        '                    </p>\n' +
-                        '                    <p class="timeInfo cssFlex">\n' +
-                        '                        <img src="../../../icon/time.png" alt="time" class="ComTime">\n' +
-                        '                        <span>' + dataSummary.s_time + '</span>\n' +
-                        '                        <i>-</i>\n' +
-                        '                        <span class="marginR">' + dataSummary.x_time + '</span>\n' +
-                        '                        <img src="../../../icon/date.png" alt="date" class="dateCom">\n' +
-                        '                        <span class="marginR">' + dataSummary.break_time + '</span>\n' +
-                        '                        <span>' + dataSummary.work_overtime + '</span>\n' +
-                        '                    </p>\n' +
-                        '                </div>\n' +
-                        '                <div class="comLogo">\n' +
-                        '                    <img src="../../../image/comLogo.png" alt="comLogo">\n' +
-                        '                </div>' +
-                        '                </div>'
+                    `
+                    <div class="comintobox cssFlex">
+                      <div class="comInfo">
+                             <h3 class="comInfoTitle">${dataSummary.c_name ? dataSummary.c_name : '未填写'}</h3>
+                           <p class="comInfoCon comInfoConMar">
+                                <span>${dataSummary.financing ? dataSummary.financing : '未填写'}</span><i>·</i>
+                                <span>${dataSummary.scale ? dataSummary.scale : '未填写'}</span><i>·</i>
+                                 <span>${dataSummary.org_type ? dataSummary.org_type : '未填写'}</span>
+                              </p>
+                              <p class="timeInfo cssFlex">
+                                  <img src="../../../icon/time.png" alt="time" class="ComTime">
+                                  <span>${dataSummary.s_time ? dataSummary.s_time : '未填写'}</span>
+                                <i>-</i>
+                                  <span class="marginR">${dataSummary.x_time ? dataSummary.x_time : '未填写'}</span>
+                                  <img src="../../../icon/date.png" alt="date" class="dateCom">
+                               <span class="marginR">${dataSummary.break_time ? dataSummary.break_time : '未填写'}</span>
+                                 <span>${dataSummary.work_overtime ? dataSummary.work_overtime : '未填写'}</span>
+                              </p>
+                        </div>
+                          <div class="comLogo">
+                              <img src=${dataSummary.logo_icon ? dataSummary.logo_icon : "../../../image/comLogo.png"} alt="comLogo">
+                          </div>
+                        </div>
+                    `;
 
 
-                    document.querySelector(".job-text").innerHTML = dataSummary.summary //公司介绍
+                    document.querySelector(".job-text").innerHTML = dataSummary.summary ? dataSummary.summary : '该公司暂未填写基本信息' //公司介绍
                     // 产品介绍
-                    if (product_his && product_his.length != 0) {
+                    if (product_his == null) {
+                        document.querySelector(".product_hisbox").innerHTML = '<div class="infoProduct cssFlex">\n' +
+                            '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
+                            '                                            <div class="infoProductContent">\n' +
+                            '                                                <h5>' +'未填写' + '</h5>\n' +
+                            '                                                <p class="textOverflow">' + '未填写' + '</p>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>'
+                    } else {
                         for (var i = 0; i < product_his.length; i++) {
                             product_hishtml += '<div class="infoProduct cssFlex">\n' +
                                 '                                            <img src="../../../image/pro.png" alt="pro" class="pro-img">\n' +
                                 '                                            <div class="infoProductContent">\n' +
-                                '                                                <h5>' + product_his[i].productname + '</h5>\n' +
-                                '                                                <p class="textOverflow">' + product_his[i].prod_desc + '<i>详情</i></p>\n' +
+                                '                                                <h5>' + product_his[i].productname ? product_his[i].productname : '未填写' + '</h5>\n' +
+                                '                                                <p class="textOverflow">' + product_his[i].prod_desc ? product_his[i].prod_desc : '未填写' + '<i>详情</i></p>\n' +
                                 '                                            </div>\n' +
                                 '                                        </div>'
                         }
                         document.querySelector(".product_hisbox").innerHTML = product_hishtml
                     }
 
-
                     // 高管介绍
                     // document.querySelector(".seniorimg").innerHTML = dataSummary.senior_icon
-                    document.querySelector(".seniorname").innerHTML = dataSummary.senior
-                    document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak
+                    document.querySelector(".seniorname").innerHTML = dataSummary.senior ? dataSummary.senior : '未填写'
+                    document.querySelector(".seniorinfo").innerHTML = dataSummary.senior_bak ? dataSummary.senior_bak : '未填写'
 
                     // 公司官网
-                    document.querySelector(".homepage").innerHTML = dataSummary.homepage
+                    document.querySelector(".homepage").innerHTML = dataSummary.homepage ? dataSummary.homepage : '未填写';
 
                     // 公司照片
                     if (PIClist && PIClist.length > 0) {
@@ -592,35 +611,42 @@
                         document.querySelector(".PIClistBox").innerHTML = PIClistHtml
                     }
 
-                    console.log(JobList,'588');
+                    // console.log(JobList,'588');
                     if (JobList && JobList.length > 0) {
                         for (var i = 0; i < JobList.length; i++) {
-                            html2 += '<div class="jobBox cssFlex" >\n' +
-                                '                                        <div class="job-left">\n' +
-                                '                                            <h4 class="job-nameNm">' + JobList[i].job_name + '</h4>\n' +
-                                '                                            <p class="job-name">\n' +
-                                '                                                <span>' + JobList[i].c_name + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="adress-job">\n' +
-                                '                                                <span>' + JobList[i].province + '-' + JobList[i].city + '-' + JobList[i].street + '</span>\n' +
-                                '                                                <span>' + JobList[i].work_ex + '</span>\n' +
-                                '                                                <span>' + JobList[i].edu_ex + '</span>\n' +
-                                '                                            </p>\n' +
-                                '                                            <p class="job-img-content cssFlex">\n' +
-                                '                                                <img src="../../../image/hr.png" alt="hr" class="hrImg">\n' +
-                                '                                                <span>' + JobList[i].p_name + '</span>\n' +
-                                '                                                <i>·</i>\n' +
-                                '                                                <span>'+ JobList[i].z_user_job +'</span>\n' +
-                                '                                            </p>\n' +
-                                '                                        </div>\n' +
-                                '                                        <!--薪资 日期-->\n' +
-                                '                                        <div class="job-right ">\n' +
-                                '                                            <p class="moneyNum">' + JobList[i].ratio + '</p>\n' +
-                                '                                            <p class="date-job" >'+JobList[i].open_time +'</p>\n' +
-                                '                                        </div>\n' +
-                                '                                    </div>';
+                            html2 +=
+                              `
+                                <div class="jobBox cssFlex" >
+                                   <div class="job-left">
+                                       <h4 class="job-nameNm">${JobList[i].job_name ? JobList[i].job_name : '未填写'}</h4>
+                                       <p class="job-name">
+                                           <span>${JobList[i].c_name ? JobList[i].c_name : '未填写'} </span>
+                                       </p>
+                                       <p class="adress-job">
+                                           <span>${JobList[i].province ? JobList[i].province : '未填写'}-${JobList[i].city ? JobList[i].city : '未填写'}-${JobList[i].street ? JobList[i].street : '未填写'}</span>
+                                           <span>${JobList[i].work_ex ? JobList[i].work_ex : '未填写'}</span>
+                                           <span>${JobList[i].edu_ex ? JobList[i].work_ex : '未填写'}</span>
+                                       </p>
+                                       <p class="job-img-content cssFlex">
+                                           <img src=${JobList[i].p_icon ? JobList[i].p_icon : "../../../image/hr.png"} alt="hr" class="hrImg">
+                                           <span> ${JobList[i].p_name ? JobList[i].p_name : '未填写'}</span>
+                                         <i>·</i>
+                                           <span> ${JobList[i].z_user_job ? JobList[i].z_user_job : '未填写'}</span>
+                                       </p>
+                                   </div>
+                                   <div class="job-right ">
+                                       <p class="moneyNum"> ${JobList[i].ratio ? JobList[i].ratio : '未填写'}</p>
+                                       <p class="date-job" >${JobList[i].open_time ? JobList[i].open_time : '未填写'}</p>
+                                   </div>
+                               </div>
+                              `
                         }
                     }
+
+
+
+
+
 
 
                     document.getElementById("tab2").innerHTML = html2
@@ -642,38 +668,38 @@
                 }
 
 
-                lat = adressData.latitude
-                long = adressData.longitude
-                province = adressData.province
-                city = adressData.city
-                street = adressData.street
-                allAddress = province + city + street
-
-                var jfong = [lat, long];
-                marker = new AMap.Marker({
-                    position: jfong,
-                    zIndex: 101,
-                    map: map
-                });
-                marker.setMap(map);
-                marker.allAddress = allAddress;
-                marker.on('click', function (e) {
-
-                    infoWindow.setContent("<ul class='main'>" +
-                        "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
-                        "</ul>");
-                    infoWindow.open(map, e.lnglat);
-                });
-
-
-                infoWindow = new AMap.InfoWindow({
-                    isCustom: true,
-                    draggable: true, //是否可拖动
-                    offset: new AMap.Pixel(0, -31),
-                    content: ""
-
-
-                });
+                // lat = adressData.latitude
+                // long = adressData.longitude
+                // province = adressData.province
+                // city = adressData.city
+                // street = adressData.street
+                // allAddress = province + city + street
+                //
+                // var jfong = [lat, long];
+                // marker = new AMap.Marker({
+                //     position: jfong,
+                //     zIndex: 101,
+                //     map: map
+                // });
+                // marker.setMap(map);
+                // marker.allAddress = allAddress;
+                // marker.on('click', function (e) {
+                //
+                //     infoWindow.setContent("<ul class='main'>" +
+                //         "<li> 地址： <span style='color:blue'>" + allAddress + "</span></li>" +
+                //         "</ul>");
+                //     infoWindow.open(map, e.lnglat);
+                // });
+                //
+                //
+                // infoWindow = new AMap.InfoWindow({
+                //     isCustom: true,
+                //     draggable: true, //是否可拖动
+                //     offset: new AMap.Pixel(0, -31),
+                //     content: ""
+                //
+                //
+                // });
             });
 
 

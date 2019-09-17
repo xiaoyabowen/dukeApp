@@ -174,8 +174,8 @@
 </div>
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<!-- <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script> -->
 
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -271,7 +271,7 @@
                     }
 
                     ajaxGetWithProgress(queryMyOrgProfileAllinOne, obj, function (data, ret) {
-                        //console.log(data)
+                        console.log(data)
                         document.querySelector(".boxSub").classList.remove("isDisplay")
                         document.querySelector(".boxSubDis").classList.remove("isDisplay")
                         document.querySelector(".F9Line").classList.remove("isDisplay")
@@ -295,7 +295,7 @@
                             that.ComBreakTime = cvomInfo.break_time || '未填写'
                             that.ComworkOver = cvomInfo.work_overtime || '未填写'
                             that.ComLogo = imgSrcFun(cvomInfo.logo_icon) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                            that.ComWelfare = stringFun(cvomInfo.welfare) || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                            that.ComWelfare = cvomInfo.welfare ? cvomInfo.welfare.split(',') : []
                             that.ComSummary = cvomInfo.summary || '未填写'
                             that.ComUrl = cvomInfo.homepage || '未填写'
                             that.ComNameAll = cvomInfo.nameall || '未填写'

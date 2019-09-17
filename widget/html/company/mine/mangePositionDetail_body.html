@@ -51,7 +51,7 @@
         </div>
         <div class="mp-derection nsubtitle ">职位描述：</div>
         <div class="mp-mai  commonFont">岗位职责：</div>
-        <div class="mp-mainTet">
+        <div v-html = 'posiMain' class="mp-mainTet">
             {{posiMain}}
         </div>
     </div>
@@ -116,12 +116,22 @@
                     ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
                         //console.log(data)
                         if (data) {
+                           var addressTemp = '';
+                           if(data.province){
+                             addressTemp += data.province
+                           }
+                           if(data.city){
+                             addressTemp+= '-' + data.city;
+                           }
+                           if(data.street){
+                             addressTemp+= '-' + data.street;
+                           }
                             that.posiName = data.job_name || ""
                             that.posiYear = data.work_ex
                             that.posiEdu = data.edu_ex
                             that.posiType = data.nature
                             that.posiPrice = data.ratio
-                            that.posiAddress = data.province + '-' + data.city + '-' + data.street
+                            that.posiAddress = addressTemp
                             that.posiDeAddress = data.shortname
                             if (data.skills){
 
