@@ -56,611 +56,611 @@
 </head>
 
 <body class="commonBg">
-    <div class="Box isDisplay">
-        <div class="box-tob">
-            <p>头像</p>
-            <img style='margin-top:10px; border-radius:50%; width:1.5rem; height:1.5rem; margin-right:10px' src="../../../image/tx.png" alt="img" class="p_iconImg">
-        </div>
-        <div class="firm cssFlex">
-            <div class="xing">*</div>
-            <span>名字</span>
-            <input type="text" name="" class="firmInput" id="user_p_name" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="fillSex()">
-            <div class="xing">*</div>
-            <span>性别</span>
-            <input type="text" name="" class="firmInput" id="user_p_sex" readonly placeholder="单行输入">
-            <input type="hidden" name="" class="firmInput" id="user_p_sexValue">
-        </div>
-        <div class="firm cssFlex" onclick="fillAge()">
-            <div class="xing">*</div>
-            <span>年龄</span>
-            <input type="text" name="" class="firmInput" id="user_age" readonly placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="workingStart()">
-            <div class="xing">*</div>
-            <span>工作开始时间</span>
-            <input type="text" name="" class="firmInput" readonly id="workingStart" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex">
-            <div class="xing">*</div>
-            <span>邮箱</span>
-            <input type="text" name="" class="firmInput" id="email" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="int_city()">
-            <div class="xing">*</div>
-            <span>所在位置</span>
-            <input type="text" name="" class="firmInput" readonly id="address" placeholder="单行输入">
-        </div>
-
-        <!--<div class="bun">
-        认证我的身份
+<div class="Box isDisplay">
+    <div class="box-tob">
+        <p>头像</p>
+        <img style='margin-top:10px; border-radius:50%; width:1.5rem; height:1.5rem; margin-right:10px' src="../../../image/tx.png" alt="img" class="p_iconImg">
     </div>
-    <p class="qy">500多位企业家认证</p>-->
-        <div class="heign1"></div>
-
-        <div class="firm cssFlex">
-            <span>所在公司</span>
-            <input type="text" name="" class="firmInput" id="company_name" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex">
-            <span>担任职务</span>
-            <input type="text" name="" class="firmInput" id="job_name" placeholder="单行输入">
-        </div>
-        <div class="heign1"></div>
-        <div class="firm cssFlex">
-            <span>毕业院校</span>
-            <input type="text" name="" class="firmInput" id="edu_name" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="eduClick()">
-            <span>学历</span>
-            <input type="text" name="" class="firmInput" readonly id="edu_level" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex">
-            <span>所学专业</span>
-            <input type="text" name="" class="firmInput" id="edu_type" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="eduStarTimeClick()">
-            <span>在校开始时间</span>
-            <input type="text" name="" class="firmInput" readonly id="edu_Stime" placeholder="单行输入">
-        </div>
-        <div class="firm cssFlex" onclick="eduEndTimeClick()">
-            <span>在校结束时间</span>
-            <input type="text" name="" class="firmInput" readonly id="edu_Etime" placeholder="单行输入">
-        </div>
-        <div class="heign1"></div>
-        <div class="firm cssFlex">
-            <span>个人标签</span>
-            <input type="text" name="" class="firmInput" id="p_title" readOnly placeholder="用几个字来形容下自己" onclick="addlabel()">
-        </div>
-
-        <!-- <div style='height:100px'></div> -->
-        <div class='tabsWrap' style="width:100%; padding:0.3rem;padding-bottom:60px; display:none">
-            <input id='labTxt' type="text" placeholder="请输入标签">
-            <div class="btn"><button>添加</button></div>
-            <div class="tabs">
-                <!-- <span> <i class="labs">我的</i> <i class="delete"> x </i> </span>
-          <span><i class="labs">遇到</i> <i class="delete"> x </i> </span> -->
-            </div>
-            <div class="evenBtn">
-                <button class="ensure">确定</button>
-                <button class="cancle">取消</button>
-            </div>
-        </div>
-        <script>
-        </script>
+    <div class="firm cssFlex">
+        <div class="xing">*</div>
+        <span>名字</span>
+        <input type="text" name="" class="firmInput" id="user_p_name" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="fillSex()">
+        <div class="xing">*</div>
+        <span>性别</span>
+        <input type="text" name="" class="firmInput" id="user_p_sex" readonly placeholder="单行输入">
+        <input type="hidden" name="" class="firmInput" id="user_p_sexValue">
+    </div>
+    <div class="firm cssFlex" onclick="fillAge()">
+        <div class="xing">*</div>
+        <span>年龄</span>
+        <input type="text" name="" class="firmInput" id="user_age" readonly placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="workingStart()">
+        <div class="xing">*</div>
+        <span>工作开始时间</span>
+        <input type="text" name="" class="firmInput" readonly id="workingStart" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex">
+        <div class="xing">*</div>
+        <span>邮箱</span>
+        <input type="text" name="" class="firmInput" id="email" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="int_city()">
+        <div class="xing">*</div>
+        <span>所在位置</span>
+        <input type="text" name="" class="firmInput" readonly id="address" placeholder="单行输入">
     </div>
 
-    <style>
-        .tabsWrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #fff;
-            z-index: 9;
-        }
+    <!--<div class="bun">
+    认证我的身份
+</div>
+<p class="qy">500多位企业家认证</p>-->
+    <div class="heign1"></div>
 
-        .evenBtn {
-            /*position: absolute;*/
-            /*bottom: 5px;*/
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 50px;
-        }
+    <div class="firm cssFlex">
+        <span>所在公司</span>
+        <input type="text" name="" class="firmInput" id="company_name" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex">
+        <span>担任职务</span>
+        <input type="text" name="" class="firmInput" id="job_name" placeholder="单行输入">
+    </div>
+    <div class="heign1"></div>
+    <div class="firm cssFlex">
+        <span>毕业院校</span>
+        <input type="text" name="" class="firmInput" id="edu_name" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="eduClick()">
+        <span>学历</span>
+        <input type="text" name="" class="firmInput" readonly id="edu_level" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex">
+        <span>所学专业</span>
+        <input type="text" name="" class="firmInput" id="edu_type" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="eduStarTimeClick()">
+        <span>在校开始时间</span>
+        <input type="text" name="" class="firmInput" readonly id="edu_Stime" placeholder="单行输入">
+    </div>
+    <div class="firm cssFlex" onclick="eduEndTimeClick()">
+        <span>在校结束时间</span>
+        <input type="text" name="" class="firmInput" readonly id="edu_Etime" placeholder="单行输入">
+    </div>
+    <div class="heign1"></div>
+    <div class="firm cssFlex">
+        <span>个人标签</span>
+        <input type="text" name="" class="firmInput" id="p_title" readOnly placeholder="用几个字来形容下自己" onclick="addlabel()">
+    </div>
 
-        .evenBtn button {
-            outline: medium;
-            border: none;
-        }
-
-        .evenBtn .cancle {
-            background: #eee;
-        }
-
-        .evenBtn .ensure {
-            background: yellowgreen;
-            color: #fff;
-        }
-
-        .tabsWrap .btn {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tabsWrap .btn button {
-            outline: medium;
-            width: 40%;
-            border-radius: 99rem;
-            border: none;
-            background: orange;
-            color: #fefefe;
-        }
-
-        .tabsWrap .tabs {
-            padding: 0.1rem;
-        }
-
-        .tabsWrap .tabs .delete {
-            /*width: 0.2rem;
-  height: 0.2rem;*/
-            padding: 2px;
-            color: red;
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 50%;
-            /*background: #fff;*/
-        }
-
-        .tabsWrap .tabs span {
-            padding: 2px 5px;
-            background: #ccc;
-            /*height: 0.6rem;*/
-            border-radius: 99rem;
-            font-size: 0.28rem;
-            color: #fff;
-            margin-bottom: 5px;
-            /*line-height: 0.6rem;*/
-        }
-    </style>
-
-    <script type="text/javascript" src="../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../script/mui.min.js"></script>
-    <script type="text/javascript" src="../../../script/mui.picker.js"></script>
-    <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
-    <script type="text/javascript" src="../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../script/data.js"></script>
-    <script type="text/javascript" src="../../../script/city.data-3.js"></script>
-
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <!-- <div style='height:100px'></div> -->
+    <div class='tabsWrap' style="width:100%; padding:0.3rem;padding-bottom:60px; display:none">
+        <input id='labTxt' type="text" placeholder="请输入标签">
+        <div class="btn"><button>添加</button></div>
+        <div class="tabs">
+            <!-- <span> <i class="labs">我的</i> <i class="delete"> x </i> </span>
+      <span><i class="labs">遇到</i> <i class="delete"> x </i> </span> -->
+        </div>
+        <div class="evenBtn">
+            <button class="ensure">确定</button>
+            <button class="cancle">取消</button>
+        </div>
+    </div>
     <script>
-        eruda.init();
     </script>
-    <script>
-        var item, url;
+</div>
+
+<style>
+    .tabsWrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        z-index: 9;
+    }
+
+    .evenBtn {
+        /*position: absolute;*/
+        /*bottom: 5px;*/
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .evenBtn button {
+        outline: medium;
+        border: none;
+    }
+
+    .evenBtn .cancle {
+        background: #eee;
+    }
+
+    .evenBtn .ensure {
+        background: yellowgreen;
+        color: #fff;
+    }
+
+    .tabsWrap .btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tabsWrap .btn button {
+        outline: medium;
+        width: 40%;
+        border-radius: 99rem;
+        border: none;
+        background: orange;
+        color: #fefefe;
+    }
+
+    .tabsWrap .tabs {
+        padding: 0.1rem;
+    }
+
+    .tabsWrap .tabs .delete {
+        /*width: 0.2rem;
+height: 0.2rem;*/
+        padding: 2px;
+        color: red;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        /*background: #fff;*/
+    }
+
+    .tabsWrap .tabs span {
+        padding: 2px 5px;
+        background: #ccc;
+        /*height: 0.6rem;*/
+        border-radius: 99rem;
+        font-size: 0.28rem;
+        color: #fff;
+        margin-bottom: 5px;
+        /*line-height: 0.6rem;*/
+    }
+</style>
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/city.data-3.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>
+    eruda.init();
+</script>
+<script>
+    var item, url;
 
 
-        apiready = function() {
+    apiready = function() {
 
-            var winHeight
-            winHeight = api.winHeight;
-            console.log(winHeight)
-            document.querySelector('.tabsWrap').style.height = winHeight + 'px';
+        var winHeight
+        winHeight = api.winHeight;
+        console.log(winHeight)
+        document.querySelector('.tabsWrap').style.height = winHeight + 'px';
 
-            url = api.pageParam.url
-            item = api.pageParam.item
-                // console.log("item",item)
-            var uid = localStorage.getItem("person_id");
-            // console.log(uid);
-            document.querySelector('.Box').classList.remove('isDisplay');
-            document.getElementById('user_p_name').value = item.p_name || '未填写';
-            if (item.p_sex == '1') {
-                document.getElementById('user_p_sex').value = '男';
-                document.getElementById('user_p_sexValue').value = '1';
-            } else if (item.p_sex == '2') {
-                document.getElementById('user_p_sex').value = '女';
-                document.getElementById('user_p_sexValue').value = '2';
-            }
-            // console.log(item,'170')
-            document.querySelector('.p_iconImg').src = item.p_icon.split(',')[0];
-            document.getElementById('user_age').value = item.p_birthday || '';
-            document.getElementById('workingStart').value = item.job_from_time || '';
-            document.getElementById('email').value = item.email || '';
-            document.getElementById('address').value = item.address || '';
-            document.getElementById('edu_Stime').value = item.edu_from || '';
-            document.getElementById('edu_Etime').value = item.edu_to || '';
-
-            document.getElementById('company_name').value = item.company_name || '';
-            document.getElementById('job_name').value = item.job_name || '';
-
-            document.getElementById('edu_name').value = item.edu_name || '';
-            document.getElementById('edu_level').value = item.edu_level || '';
-            document.getElementById('edu_type').value = item.edu_type || '';
-            document.getElementById('p_title').value = item.p_title || '';
-
-
-        };
-
-        function addlabel() {
-            labArr = [];
-            document.querySelector('.tabsWrap').style.display = 'block';
-
-            document.addEventListener('touchmove', function(event) {
-                event.preventDefault();
-            }, false);
-
-            document.addEventListener('touchmove', function(event) {
-                window.event.returnValue = false;
-            }, false);
+        url = api.pageParam.url
+        item = api.pageParam.item
+        // console.log("item",item)
+        var uid = localStorage.getItem("person_id");
+        // console.log(uid);
+        document.querySelector('.Box').classList.remove('isDisplay');
+        document.getElementById('user_p_name').value = item.p_name || '未填写';
+        if (item.p_sex == '1') {
+            document.getElementById('user_p_sex').value = '男';
+            document.getElementById('user_p_sexValue').value = '1';
+        } else if (item.p_sex == '2') {
+            document.getElementById('user_p_sex').value = '女';
+            document.getElementById('user_p_sexValue').value = '2';
         }
+        // console.log(item,'170')
+        document.querySelector('.p_iconImg').src = item.p_icon.split(',')[0];
+        document.getElementById('user_age').value = item.p_birthday || '';
+        document.getElementById('workingStart').value = item.job_from_time || '';
+        document.getElementById('email').value = item.email || '';
+        document.getElementById('address').value = item.address || '';
+        document.getElementById('edu_Stime').value = item.edu_from || '';
+        document.getElementById('edu_Etime').value = item.edu_to || '';
+
+        document.getElementById('company_name').value = item.company_name || '';
+        document.getElementById('job_name').value = item.job_name || '';
+
+        document.getElementById('edu_name').value = item.edu_name || '';
+        document.getElementById('edu_level').value = item.edu_level || '';
+        document.getElementById('edu_type').value = item.edu_type || '';
+        document.getElementById('p_title').value = item.p_title || '';
+
+
+    };
+
+    function addlabel() {
+        labArr = [];
+        document.querySelector('.tabsWrap').style.display = 'block';
+
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, false);
+
+        document.addEventListener('touchmove', function(event) {
+            window.event.returnValue = false;
+        }, false);
+    }
 
 
 
 
 
 
-        //
-        var dataI = 0;
-        document.querySelector('.btn').onclick = function() {
-            dataI++;
-            if (document.querySelector('#labTxt').value) {
-                document.querySelector('.tabs').innerHTML += `
+    //
+    var dataI = 0;
+    document.querySelector('.btn').onclick = function() {
+        dataI++;
+        if (document.querySelector('#labTxt').value) {
+            document.querySelector('.tabs').innerHTML += `
             <span data-i = ${dataI} onclick='deleteOne(${dataI})'><i class='labs'>${document.querySelector('#labTxt').value}</i><i class="delete"> x </i> </span>
             `;
-                document.querySelector('#labTxt').value = '';
+            document.querySelector('#labTxt').value = '';
+        }
+    }
+    var labArr = [];
+    document.querySelector('.ensure').onclick = function() {
+        var nodeArr = document.querySelectorAll('.tabs .labs');
+        for (var i = 0; i < nodeArr.length; i++) {
+            labArr.push(nodeArr[i].innerHTML);
+        }
+        document.querySelector('.tabsWrap').style.display = 'none';
+        console.log(labArr,'325555');
+        var p_titleStr = labArr.join(',');
+        document.getElementById('p_title').value = p_titleStr;
+
+        document.addEventListener('touchmove', function(event) {
+            window.event.returnValue = true;
+        }, false);
+
+        // console.log(labArr);
+    };
+
+    function deleteOne(dataI) {
+        // console.log(dataI);
+        var tabsArr = document.querySelectorAll('.tabs span');
+        for (var i = 0; i < tabsArr.length; i++) {
+            if (tabsArr[i].getAttribute('data-i') == dataI) {
+                tabsArr[i].remove();
             }
         }
-        var labArr = [];
-        document.querySelector('.ensure').onclick = function() {
-            var nodeArr = document.querySelectorAll('.tabs .labs');
-            for (var i = 0; i < nodeArr.length; i++) {
-                labArr.push(nodeArr[i].innerHTML);
-            }
-            document.querySelector('.tabsWrap').style.display = 'none';
-            console.log(labArr,'325555');
-            var p_titleStr = labArr.join(',');
-            document.getElementById('p_title').value = p_titleStr;
+    };
+    document.querySelector('.cancle').onclick = function() {
+        document.querySelector('.tabsWrap').style.display = 'none';
 
-            document.addEventListener('touchmove', function(event) {
-                window.event.returnValue = true;
-            }, false);
+        document.addEventListener('touchmove', function(event) {
+            window.event.returnValue = true;
+        }, false);
+    }
 
-            // console.log(labArr);
-        };
 
-        function deleteOne(dataI) {
-            // console.log(dataI);
-            var tabsArr = document.querySelectorAll('.tabs span');
-            for (var i = 0; i < tabsArr.length; i++) {
-                if (tabsArr[i].getAttribute('data-i') == dataI) {
-                    tabsArr[i].remove();
+
+
+
+
+
+
+
+    //
+    // 性别
+    function fillSex() {
+
+
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "1",
+            text: "男"
+        }, {
+            value: "2",
+            text: "女"
+        }])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('1', "男");
+        picker.show(function(SelectedItem) {
+            document.getElementById('user_p_sex').value = SelectedItem[0].text;
+            document.getElementById('user_p_sexValue').value = SelectedItem[0].value;
+        })
+
+    }
+
+    // 选择出生时间
+    function ageChoose() {
+        var dtpicker = new mui.DtPicker({
+            type: "date", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            document.querySelector(".birth_option").value = selectItems.text
+        })
+    }
+
+    // 开始工作的时间
+    function eduStarTimeClick() {
+        var dtpicker = new mui.DtPicker({
+            type: "month", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            document.getElementById("edu_Stime").value = selectItems.text
+
+        })
+    }
+    // jeishu 工作的时间
+    function eduEndTimeClick() {
+        var dtpicker = new mui.DtPicker({
+            type: "month", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            document.getElementById("edu_Etime").value = selectItems.text
+
+        })
+    }
+
+
+    //工作开始时间
+    function workingStart() {
+        var dtpicker = new mui.DtPicker({
+            type: "date", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            document.getElementById("workingStart").value = selectItems.text
+
+        })
+    }
+
+    // jeishu 工作的时间
+    function fillAge() {
+        var dtpicker = new mui.DtPicker({
+            type: "date", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // $(".birth_option").val(selectItems.text)
+            document.getElementById("user_age").value = selectItems.text
+
+        })
+    }
+
+    // 居住地选择
+    function int_city() {
+        var picker = new mui.PopPicker({
+            layer: 2
+        });
+        picker.setData(cityData3)
+        picker.pickers[0].setSelectedIndex(0);
+        picker.show(function(SelectedItem) {
+
+            document.getElementById("address").value = SelectedItem[0].text + '-' + SelectedItem[1].text
+
+        })
+    }
+
+
+    //年龄
+    function user_age() {
+        var dtpicker = new mui.DtPicker({
+            type: "date", //设置日历初始视图模式
+            beginDate: new Date(1950, 04, 25), //设置开始日期
+            endDate: new Date() //设置开始日期
+        });
+        dtpicker.show(function(selectItems) {
+            // console.log(selectItems)
+            // $(".birth_option").val(selectItems.text)
+            document.getElementById('user_age').value = selectItems.text;
+        })
+    }
+
+    // xueli
+    function eduClick() {
+        var picker = new mui.PopPicker();
+        picker.setData([{
+            value: "first",
+            text: "海外留学"
+        }, {
+            value: "second",
+            text: "博士"
+        }, {
+            value: "third",
+            text: "硕士"
+        }, {
+            value: "fourth",
+            text: "本科"
+        }, {
+            value: "fifth",
+            text: "本科以下"
+        }])
+        // picker.pickers[0].setSelectedIndex(4, 2000);
+        picker.pickers[0].setSelectedValue('fourth', 2000);
+        picker.show(function(SelectedItem) {
+            document.getElementById('edu_level').value = SelectedItem[0].text;
+        })
+    }
+
+    // 上传头像
+    var file = document.querySelector('.p_iconImg');
+    file.onclick = function() {
+        api.getPicture({
+            sourceType: 'library',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            destinationType: 'url',
+            allowEdit: true,
+            quality: 50,
+            targetWidth: 100,
+            targetHeight: 100,
+            saveToPhotoAlbum: false
+        }, function(ret, err) {
+            if (ret) {
+                var obj = {
+                    uid: localStorage.getItem("user")
                 }
+                // console.log("datadret",ret);
+                //上传剪辑后的图像到服务器
+                api.ajax({
+                    url: 'http://112.126.98.172:8088/upload/UploadFlie',
+                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                    method: 'post',
+                    cache: 'false',
+                    timeout: 30,
+                    dataTpye: 'json',
+                    data: {
+                        files: {
+                            file: ret.data
+                        },
+                        values: obj
+                    }
+                }, function(ret, err) {
+                    // console.log(123,ret);
+                    var pathImgImg = ret.imgUrl
+                    if (pathImgImg == '') {
+                        document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                    } else {
+                        var pathImgData = pathImgImg.split(",")
+                        // console.log(pathImgData)
+                        document.querySelector(".p_iconImg").src = pathImgData[0]
+
+                        ajaxGetWithProgress(updatePIcon, {
+                            p_icon: pathImgData[0] + ','
+                        }, function(data) {
+                            if (data.return.status) {
+                                toast("修改成功")
+                            } else {
+                                toast("修改失败")
+                            }
+                        })
+
+
+                    }
+
+                    api.hideProgress();
+
+                });
+            } else {
+                // console.log(JSON.stringify(err));
             }
-        };
-        document.querySelector('.cancle').onclick = function() {
-            document.querySelector('.tabsWrap').style.display = 'none';
+        });
+    }
 
-            document.addEventListener('touchmove', function(event) {
-                window.event.returnValue = true;
-            }, false);
+
+    // 点击保存执行方法
+    function preservation() {
+        var person_id = localStorage.getItem('person_id');
+        var p_name = document.getElementById('user_p_name').value;
+        var p_sex = document.getElementById('user_p_sexValue').value;
+        var p_birthday = document.getElementById('user_age').value;
+        var company_name = document.getElementById('company_name').value;
+        var job_name = document.getElementById('job_name').value;
+        var edu_name = document.getElementById('edu_name').value;
+        var edu_level = document.getElementById('edu_level').value;
+        var edu_Stime = document.getElementById('edu_Stime').value;
+        var edu_Etime = document.getElementById('edu_Etime').value;
+        var edu_type = document.getElementById('edu_type').value;
+        var job_from_time = document.getElementById('workingStart').value;
+        var p_title = document.getElementById('p_title').value;
+        var address = document.getElementById('address').value;
+        var email = document.getElementById('email').value;
+
+
+
+
+        if (p_name == "") {
+            toast("请填写姓名")
+            return
         }
 
-
-
-
-
-
-
-
-
-        //
-        // 性别
-        function fillSex() {
-
-
-            var picker = new mui.PopPicker();
-            picker.setData([{
-                    value: "1",
-                    text: "男"
-                }, {
-                    value: "2",
-                    text: "女"
-                }])
-                // picker.pickers[0].setSelectedIndex(4, 2000);
-            picker.pickers[0].setSelectedValue('1', "男");
-            picker.show(function(SelectedItem) {
-                document.getElementById('user_p_sex').value = SelectedItem[0].text;
-                document.getElementById('user_p_sexValue').value = SelectedItem[0].value;
-            })
-
+        if (p_sex == "") {
+            toast("请选择性别")
+            return
         }
 
-        // 选择出生时间
-        function ageChoose() {
-            var dtpicker = new mui.DtPicker({
-                type: "date", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // $(".birth_option").val(selectItems.text)
-                document.querySelector(".birth_option").value = selectItems.text
-            })
+        if (p_birthday == "") {
+            toast("请选择年龄")
+            return
+        }
+        if (job_from_time == "") {
+            toast("请填写工作开始时间")
+            return
+        }
+        if (email == "") {
+            toast("请填写邮箱")
+            return
+        } else if (!checkEmail(email)) {
+            toast("请填写正确的邮箱")
+            return
         }
 
-        // 开始工作的时间
-        function eduStarTimeClick() {
-            var dtpicker = new mui.DtPicker({
-                type: "month", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // $(".birth_option").val(selectItems.text)
-                document.getElementById("edu_Stime").value = selectItems.text
-
-            })
-        }
-        // jeishu 工作的时间
-        function eduEndTimeClick() {
-            var dtpicker = new mui.DtPicker({
-                type: "month", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // $(".birth_option").val(selectItems.text)
-                document.getElementById("edu_Etime").value = selectItems.text
-
-            })
+        if(new Date(edu_Stime).getTime() >= new Date(edu_Etime).getTime()){
+            toast('请填写正确的入学时间与毕业时间');
+            return;
         }
 
-
-        //工作开始时间
-        function workingStart() {
-            var dtpicker = new mui.DtPicker({
-                type: "date", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // $(".birth_option").val(selectItems.text)
-                document.getElementById("workingStart").value = selectItems.text
-
-            })
+        var obj = {
+            person_id: person_id,
+            p_name: p_name,
+            p_sex: p_sex,
+            p_birthday: p_birthday,
+            company_name: company_name,
+            job_name: job_name,
+            edu_name: edu_name,
+            edu_level: edu_level,
+            edu_from: edu_Stime,
+            edu_to: edu_Etime,
+            edu_type: edu_type,
+            job_from_time: job_from_time, //工作开始时间
+            p_title: p_title, //标签
+            address: address, //地址
+            email: email, //电邮
         }
 
-        // jeishu 工作的时间
-        function fillAge() {
-            var dtpicker = new mui.DtPicker({
-                type: "date", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // $(".birth_option").val(selectItems.text)
-                document.getElementById("user_age").value = selectItems.text
+        // console.log(obj);
+        ajaxGetWithProgress(updateCirclePersonMsgByPid, obj, function(data, err) {
 
-            })
-        }
-
-        // 居住地选择
-        function int_city() {
-            var picker = new mui.PopPicker({
-                layer: 2
-            });
-            picker.setData(cityData3)
-            picker.pickers[0].setSelectedIndex(0);
-            picker.show(function(SelectedItem) {
-
-                document.getElementById("address").value = SelectedItem[0].text + '-' + SelectedItem[1].text
-
-            })
-        }
-
-
-        //年龄
-        function user_age() {
-            var dtpicker = new mui.DtPicker({
-                type: "date", //设置日历初始视图模式
-                beginDate: new Date(1950, 04, 25), //设置开始日期
-                endDate: new Date() //设置开始日期
-            });
-            dtpicker.show(function(selectItems) {
-                // console.log(selectItems)
-                // $(".birth_option").val(selectItems.text)
-                document.getElementById('user_age').value = selectItems.text;
-            })
-        }
-
-        // xueli
-        function eduClick() {
-            var picker = new mui.PopPicker();
-            picker.setData([{
-                    value: "first",
-                    text: "海外留学"
-                }, {
-                    value: "second",
-                    text: "博士"
-                }, {
-                    value: "third",
-                    text: "硕士"
-                }, {
-                    value: "fourth",
-                    text: "本科"
-                }, {
-                    value: "fifth",
-                    text: "本科以下"
-                }])
-                // picker.pickers[0].setSelectedIndex(4, 2000);
-            picker.pickers[0].setSelectedValue('fourth', 2000);
-            picker.show(function(SelectedItem) {
-                document.getElementById('edu_level').value = SelectedItem[0].text;
-            })
-        }
-
-        // 上传头像
-        var file = document.querySelector('.p_iconImg');
-        file.onclick = function() {
-            api.getPicture({
-                sourceType: 'library',
-                encodingType: 'jpg',
-                mediaValue: 'pic',
-                destinationType: 'url',
-                allowEdit: true,
-                quality: 50,
-                targetWidth: 100,
-                targetHeight: 100,
-                saveToPhotoAlbum: false
-            }, function(ret, err) {
-                if (ret) {
-                    var obj = {
-                            uid: localStorage.getItem("user")
-                        }
-                        // console.log("datadret",ret);
-                        //上传剪辑后的图像到服务器
-                    api.ajax({
-                        url: 'http://112.126.98.172:8088/upload/UploadFlie',
-                        //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                        method: 'post',
-                        cache: 'false',
-                        timeout: 30,
-                        dataTpye: 'json',
-                        data: {
-                            files: {
-                                file: ret.data
-                            },
-                            values: obj
-                        }
-                    }, function(ret, err) {
-                        // console.log(123,ret);
-                        var pathImgImg = ret.imgUrl
-                        if (pathImgImg == '') {
-                            document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
-                        } else {
-                            var pathImgData = pathImgImg.split(",")
-                                // console.log(pathImgData)
-                            document.querySelector(".p_iconImg").src = pathImgData[0]
-
-                            ajaxGetWithProgress(updatePIcon, {
-                                p_icon: pathImgData[0] + ','
-                            }, function(data) {
-                                if (data.return.status) {
-                                    toast("修改成功")
-                                } else {
-                                    toast("修改失败")
-                                }
-                            })
-
-
-                        }
-
-                        api.hideProgress();
-
-                    });
-                } else {
-                    // console.log(JSON.stringify(err));
-                }
-            });
-        }
-
-
-        // 点击保存执行方法
-        function preservation() {
-            var person_id = localStorage.getItem('person_id');
-            var p_name = document.getElementById('user_p_name').value;
-            var p_sex = document.getElementById('user_p_sexValue').value;
-            var p_birthday = document.getElementById('user_age').value;
-            var company_name = document.getElementById('company_name').value;
-            var job_name = document.getElementById('job_name').value;
-            var edu_name = document.getElementById('edu_name').value;
-            var edu_level = document.getElementById('edu_level').value;
-            var edu_Stime = document.getElementById('edu_Stime').value;
-            var edu_Etime = document.getElementById('edu_Etime').value;
-            var edu_type = document.getElementById('edu_type').value;
-            var job_from_time = document.getElementById('workingStart').value;
-            var p_title = document.getElementById('p_title').value;
-            var address = document.getElementById('address').value;
-            var email = document.getElementById('email').value;
-
-
-
-
-            if (p_name == "") {
-                toast("请填写姓名")
-                return
+            if (data.return.status) {
+                api.sendEvent({
+                    name: 'editInfo',
+                    extra: {
+                        key: {}
+                    }
+                });
+                api.execScript({
+                    name: 'userCenter',
+                    frameName: url + "_body",
+                    script: 'reload()'
+                })
+                closeWin();
             }
 
-            if (p_sex == "") {
-                toast("请选择性别")
-                return
-            }
-
-            if (p_birthday == "") {
-                toast("请选择年龄")
-                return
-            }
-            if (job_from_time == "") {
-                toast("请填写工作开始时间")
-                return
-            }
-            if (email == "") {
-                toast("请填写邮箱")
-                return
-            } else if (!checkEmail(email)) {
-                toast("请填写正确的邮箱")
-                return
-            }
-          
-            if(new Date(edu_Stime).getTime() >= new Date(edu_Etime).getTime()){
-               toast('请填写正确的入学时间与毕业时间');
-               return;
-            }
-
-            var obj = {
-                person_id: person_id,
-                p_name: p_name,
-                p_sex: p_sex,
-                p_birthday: p_birthday,
-                company_name: company_name,
-                job_name: job_name,
-                edu_name: edu_name,
-                edu_level: edu_level,
-                edu_from: edu_Stime,
-                edu_to: edu_Etime,
-                edu_type: edu_type,
-                job_from_time: job_from_time, //工作开始时间
-                p_title: p_title, //标签
-                address: address, //地址
-                email: email, //电邮
-            }
-
-            // console.log(obj);
-            ajaxGetWithProgress(updateCirclePersonMsgByPid, obj, function(data, err) {
-
-                if (data.return.status) {
-                    api.sendEvent({
-                        name: 'editInfo',
-                        extra: {
-                            key: {}
-                        }
-                    });
-                    api.execScript({
-                        name: 'userCenter',
-                        frameName: url + "_body",
-                        script: 'reload()'
-                    })
-                    closeWin();
-                }
-
-            });
-        }
-    </script>
+        });
+    }
+</script>
 </body>
 
 </html>

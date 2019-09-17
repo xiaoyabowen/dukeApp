@@ -121,7 +121,7 @@
     <div class="boxSub">
 
         <div class="authen-title">企业邮箱认证</div>
-        <div class="authen-yaz commonFont">们向您的邮箱 <i>test01@gotoip2.com</i> 中下发了四位数验证码，
+        <div class="authen-yaz commonFont">们向您的邮箱 <i id="authenEmaila">test01@gotoip2.com</i> 中下发了四位数验证码，
             请查收并填入下方。</div>
         <div class="authenBox cssFlex">
             <span>验证码：</span>
@@ -156,7 +156,7 @@
 <script>
     var content;
     apiready = function () {
-
+        document.getElementById("authenEmaila").value = localStorage.getItem("fillEmail")
         content = api.pageParam.email
         //console.log(content)
     };
