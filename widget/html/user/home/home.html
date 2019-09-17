@@ -281,21 +281,6 @@
             </div>
             <img src="../../../image/homeCar.png" class="homeCar homeBtnCom" alt="job">
         </div>
-        <!-- <div class="homeBtn">
-          <div onclick="position()">
-            <img src="../../../image/homeJob.png" class="homeJob homeBtnCom none" alt="job">
-          </div>
-          <div onclick="circle()">
-            <img src="../../../image/homeCircle.png" class="homeCircle homeBtnCom" alt="job">
-          </div>
-          <div onclick="hua()">
-              <img src="../../../image/homeJu.png" class="homeJu homeBtnCom" alt="job" >
-          </div>
-          <div>
-            <img src="../../../image/homeCar.png" class="homeBtnCom" alt="job">
-          </div>
-        </div> -->
-
 
     </div>
 
@@ -614,7 +599,7 @@
         // console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://192.168.1.24:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://59.110.231.40:25121/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -639,7 +624,7 @@
 
         api.ajax({
 
-            url: 'http://192.168.1.24:8000/SE4M/SE/Status/status',
+            url: 'http://59.110.231.40:25121/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,

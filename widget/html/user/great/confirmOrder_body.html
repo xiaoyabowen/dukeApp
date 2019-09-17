@@ -446,7 +446,7 @@
                                 api.ajax({
                                     url: 'http://112.126.98.172:8088/pay/unifiedorder',  //url+模块
                                     method: 'GET',
-                                    dataType: 'xml',
+                                    dataType: 'json',
                                     timeout: 30,
                                     data: {
                                         values: obj
@@ -454,12 +454,22 @@
                                 }, function (ret, err) {
                                     //开发者通过 payOrder 方法来进行支付，自己处理订单信息以及签名过程
                                     console.log("自己处理订单信息以及签名过程请求:", ret);
+
                                     var wxPay = api.require('wxPay');
-                                    console.log('wxPay',wxPay)
-                                    wxPay.getOrderId({
-                                        info: ret
+                                    wxPay.payOrder({
+                                        apiKey: ret.appid,
+                                        orderId:ret.prepayid,
+                                        mchId: ret.partnerid,
+                                        nonceStr: ret.noncestr,
+                                        timeStamp: ret.timestamp,
+                                        package:ret.package,
+                                        sign:ret.sign,
                                     }, function(ret, err) {
-                                        console.log(ret)
+                                        if (ret.status) {
+                                            //支付成功
+                                        } else {
+                                            alert(err.code);
+                                        }
                                     });
                                 });
                                 return;
@@ -480,7 +490,7 @@
                                 }
                                 //console.log("",obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://59.110.231.40:25122/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -563,7 +573,7 @@
 
                                 }
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://59.110.231.40:25122/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll: false,
@@ -679,8 +689,8 @@
                                 }
                                 //console.log("123345",obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
-                                    // url: 'http://192.168.1.24:8088/pay/GoPayOrder',  //url+模块
+                                    url: 'http://59.110.231.40:25122/pay/alipayUniform',  //url+模块
+                                    // url: 'http://59.110.231.40:25122/pay/GoPayOrder',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -765,7 +775,7 @@
                                 }
 
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://59.110.231.40:25122/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll: false,
@@ -862,7 +872,7 @@
                                 }
                                 //console.log("zhifubao",obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://59.110.231.40:25122/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -948,7 +958,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://59.110.231.40:25122/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll: false,
@@ -1049,7 +1059,7 @@
                                 }
                                 //console.log("objobjobj",obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://59.110.231.40:25122/pay/alipayUniform',  //url+模块
                                     method: 'GET',
                                     dataType: 'text',
                                     timeout: 30,
@@ -1136,7 +1146,7 @@
 
 
                                 api.ajax({
-                                    url: 'http://192.168.1.24:8088/pay/unionpayOrder',//从银联测试服务器上获取tn号
+                                    url: 'http://59.110.231.40:25122/pay/unionpayOrder',//从银联测试服务器上获取tn号
                                     method: 'post',
                                     dataType: 'text',
                                     returnAll: false,

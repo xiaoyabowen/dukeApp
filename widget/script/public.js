@@ -24,9 +24,9 @@ var Domain = 'http://112.126.98.172:8088';
 
 // 渡客正式服务器
 
-// var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
-// var localhostHref = 'http://59.110.231.40:25121/SE4M';
-// var Domain = 'http://59.110.231.40:25122';
+var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
+var localhostHref = 'http://59.110.231.40:25121/SE4M';
+var Domain = 'http://59.110.231.40:25122';
 
 
 
@@ -38,21 +38,20 @@ var falga = false;
 function al(data) {
     if (falga) {
         alert(JSON.stringify(data))
-    } else {
-    }
+    } else {}
 }
 
 
 // 接口    信息  列表
 
-var SendSmsCode = serverUrl + "/Login/SendSmsCode";   //获取验证码
+var SendSmsCode = serverUrl + "/Login/SendSmsCode"; //获取验证码
 
-var ChatLogin = serverUrl + "/Login/ChatLogin";   // 第三方登陆1
-var ChatBound = serverUrl + "/Login/ChatBound";   // 第三方登陆1   绑定手机号
-var ChatRegistToken = serverUrl + "/Login/ChatRegistToken";   // 第三方登陆1   绑定手机号  注册
+var ChatLogin = serverUrl + "/Login/ChatLogin"; // 第三方登陆1
+var ChatBound = serverUrl + "/Login/ChatBound"; // 第三方登陆1   绑定手机号
+var ChatRegistToken = serverUrl + "/Login/ChatRegistToken"; // 第三方登陆1   绑定手机号  注册
 
 
-var LoginAndRegist = serverUrl + "/Login/LoginAndRegist";   //验证码登陆   role_type
+var LoginAndRegist = serverUrl + "/Login/LoginAndRegist"; //验证码登陆   role_type
 
 // 账号密码登录
 var PwdLogin = serverUrl + "/Login/pwdLogin";
@@ -105,10 +104,10 @@ var queryPersonListMenu = serverUrl + "/Menu/queryPersonList";
 var filterScreen = serverUrl + "/Menu/Screen";
 
 // 支付宝  支付  接口
-var payalipayUniform = Domain +'/pay/alipayUniform'
+var payalipayUniform = Domain + '/pay/alipayUniform'
 
 // 确认订单 数量 加减
-var updateBuyNumAndPrice = Domain +'/reserve/updateBuyNumAndPrice'
+var updateBuyNumAndPrice = Domain + '/reserve/updateBuyNumAndPrice'
 
 
 
@@ -120,12 +119,12 @@ var MessageListByUserName = serverUrl + "/JiGuang/MessageListByUserName";
 var JMessagepush = serverUrl + "/JiGuang/JMessagepush";
 
 /*
-* 支付状态   orderStatus  0 未支付
-*            1 支付    -- bill
-*                          adrStatus   0 待收货   1 待评价  2
-*
-*
-* */
+ * 支付状态   orderStatus  0 未支付
+ *            1 支付    -- bill
+ *                          adrStatus   0 待收货   1 待评价  2
+ *
+ *
+ * */
 // 我的订单   全部订单
 var allCommodityOrder = Domain + "/CommodityProFile/allCommodityOrder";
 // 我的订单   已支付
@@ -355,7 +354,7 @@ var updateCirclePersonMsgByPid = serverUrl + '/CircleProfile/updateCirclePersonM
 var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";
 
 // 圈子 人员管理 所有人员
-var queryAllCirPerson = serverUrl +'/CircleProfile/queryAllCirPerson';
+var queryAllCirPerson = serverUrl + '/CircleProfile/queryAllCirPerson';
 
 //圈子 人员管理 根据状态切换
 
@@ -653,7 +652,7 @@ var queryICListJobProfile = serverUrl + "/JobProfile/queryICList";
 var ICjobsJobProfile = serverUrl + "/JobProfile/ICjobs";
 
 //  伯乐 添加订阅
-var addSubscriptionUserProfile= serverUrl + "/UserProfile/addSubscription";
+var addSubscriptionUserProfile = serverUrl + "/UserProfile/addSubscription";
 
 // 公司填写信息
 var addRecruiter = localhostHref + "/addRecruiter";
@@ -666,12 +665,12 @@ function getNowFormatDate() {
 
     var year = d.getFullYear(); //获取年 
 
-    var month = d.getMonth();//获取月  
+    var month = d.getMonth(); //获取月  
     var day = d.getDay(); //获取当日
-    var hours = d.getHours()//获取小时
-    var minutes = d.getMinutes()//获取分钟
-    var miao = d.getSeconds()//获取秒
-    currentdate = year + '-'+ month + '-'+ day + ' '+ hours + ':'+ minutes + ':'+ miao;
+    var hours = d.getHours() //获取小时
+    var minutes = d.getMinutes() //获取分钟
+    var miao = d.getSeconds() //获取秒
+    currentdate = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + miao;
     //console.log(currentdate)
     return currentdate;
 }
@@ -691,9 +690,9 @@ function dateStrChangeTimeTamp(dateStr) {
 
 //把时间戳转成日期格式
 //例如 timeTamp = '1425553097';
-function formatTimeTamp(timeTamp){
-    var time = new Date(timeTamp*1000);
-    var date = ((time.getFullYear())  + "-" +
+function formatTimeTamp(timeTamp) {
+    var time = new Date(timeTamp * 1000);
+    var date = ((time.getFullYear()) + "-" +
         (time.getMonth() + 1) + "-" +
         (time.getDate()) + " " +
         (time.getHours()) + ":" +
@@ -706,10 +705,10 @@ function formatTimeTamp(timeTamp){
  * number: 传入时间戳
  * format：返回格式，支持自定义，但参数必须与formateArr里保持一致
  */
-function formatTime(number,format) {
+function formatTime(number, format) {
 
-    var formateArr  = ['Y','M','D','h','m','s'];
-    var returnArr   = [];
+    var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+    var returnArr = [];
 
     var date = new Date(number * 1000);
     returnArr.push(date.getFullYear());
@@ -720,8 +719,7 @@ function formatTime(number,format) {
     returnArr.push(formatNumber(date.getMinutes()));
     returnArr.push(formatNumber(date.getSeconds()));
 
-    for (var i in returnArr)
-    {
+    for (var i in returnArr) {
         format = format.replace(formateArr[i], returnArr[i]);
     }
     return format;
@@ -736,18 +734,18 @@ function formatNumber(n) {
 // 获取当前时间
 function nowDate() {
     var now = new Date();
-    var yy = now.getFullYear();      //年
-    var mm = now.getMonth() + 1;     //月
-    var dd = now.getDate();          //日
-    var hh = now.getHours();         //时
-    var ii = now.getMinutes();       //分
-    var ss = now.getSeconds();       //秒
+    var yy = now.getFullYear(); //年
+    var mm = now.getMonth() + 1; //月
+    var dd = now.getDate(); //日
+    var hh = now.getHours(); //时
+    var ii = now.getMinutes(); //分
+    var ss = now.getSeconds(); //秒
     var clock = yy + "-";
-    if(mm < 10) clock += "0";
+    if (mm < 10) clock += "0";
     clock += mm + "-";
-    if(dd < 10) clock += "0";
+    if (dd < 10) clock += "0";
     clock += dd + " ";
-    if(hh < 10) clock += "0";
+    if (hh < 10) clock += "0";
     clock += hh + ":";
     if (ii < 10) clock += '0';
     clock += ii + ":";
@@ -770,38 +768,38 @@ function isStatus(num) {
 }
 
 // JS字符串截取   .  后面的 内容
-function getCaption(obj){
-    var index=obj.lastIndexOf("\.");
-    obj=obj.substring(index+1,obj.length);
+function getCaption(obj) {
+    var index = obj.lastIndexOf("\.");
+    obj = obj.substring(index + 1, obj.length);
     //console.log(obj);
     return obj;
 }
 
 function getFirst(obj) {
-    var index = obj .lastIndexOf("\.");
-    obj  = obj .substring(0, index);
+    var index = obj.lastIndexOf("\.");
+    obj = obj.substring(0, index);
     //console.log(obj);
     return obj;
 }
 
 // JS大小转化B KB MB GB的转化方法
-function conver(limit){
+function conver(limit) {
     var size = "";
-    if( limit < 0.1 * 1024 ){ //如果小于0.1KB转化成B
+    if (limit < 0.1 * 1024) { //如果小于0.1KB转化成B
         size = limit.toFixed(2) + "B";
-    }else if(limit < 0.1 * 1024 * 1024 ){//如果小于0.1MB转化成KB
+    } else if (limit < 0.1 * 1024 * 1024) { //如果小于0.1MB转化成KB
         size = (limit / 1024).toFixed(2) + "KB";
-    }else if(limit < 0.1 * 1024 * 1024 * 1024){ //如果小于0.1GB转化成MB
+    } else if (limit < 0.1 * 1024 * 1024 * 1024) { //如果小于0.1GB转化成MB
         size = (limit / (1024 * 1024)).toFixed(2) + "MB";
-    }else{ //其他转化成GB
+    } else { //其他转化成GB
         size = (limit / (1024 * 1024 * 1024)).toFixed(2) + "GB";
     }
 
     var sizestr = size + "";
     var len = sizestr.indexOf("\.");
     var dec = sizestr.substr(len + 1, 2);
-    if(dec == "00"){//当小数点后为00时 去掉小数部分
-        return sizestr.substring(0,len) + sizestr.substr(len + 3,2);
+    if (dec == "00") { //当小数点后为00时 去掉小数部分
+        return sizestr.substring(0, len) + sizestr.substr(len + 3, 2);
     }
     return sizestr;
 }
@@ -809,21 +807,21 @@ function conver(limit){
 
 // 图片路劲去逗号
 function imgSrcFun(src) {
-    if(src.indexOf(',')>-1){
+    if (src.indexOf(',') > -1) {
         return src.split(',')[0];
-    }else{
-      return src
+    } else {
+        return src
     }
     // console.log(src);
 }
 
 // 字符串 转数组
 function stringFun(string) {
-  if(string.indexOf(',')>-1){
-    return string.split(',');
-  }else{
-    return string;
-  }
+    if (string.indexOf(',') > -1) {
+        return string.split(',');
+    } else {
+        return string;
+    }
 
 }
 
@@ -876,7 +874,7 @@ function filterTime3(time) {
 // 手机号  后4位
 function telFourLast(urlString) {
     if (urlString != "") {
-        tel = urlString.substr(urlString.length-4)
+        tel = urlString.substr(urlString.length - 4)
         //console.log(tel)
         return tel
     }
@@ -962,7 +960,7 @@ function getDay(day) {
     return tYear + "-" + tMonth + "-" + tDate;
 }
 
-var industryNum = 3;//商家最多选择三个行业
+var industryNum = 3; //商家最多选择三个行业
 
 //========系统级别的公共方法（开始）==========
 /**
@@ -1028,7 +1026,7 @@ function systemForword(url, currentDirectory, overLoad) {
         browser.open({
             url: url
         });
-//      openNewWindow(hex_md5(url), path + "outside/outside.html",param,overLoad);
+        //      openNewWindow(hex_md5(url), path + "outside/outside.html",param,overLoad);
     } else {
         var content = url.substring("native://".length);
         var name;
@@ -1063,9 +1061,11 @@ function systemForword(url, currentDirectory, overLoad) {
 
 //打开用户的照片list页面,打开用户的主页
 function openUserHome(uid) {
-//  alert("打开用户的主页"+uid);
+    //  alert("打开用户的主页"+uid);
     var url = 'inner://main/userDynamic.html?uid=' + uid;
-    systemForword(url, 0, {reload: true});
+    systemForword(url, 0, {
+        reload: true
+    });
 }
 
 //保存购物车
@@ -1149,7 +1149,7 @@ function addToCarts(obj, mallId, mallName) {
                 });
             });
         } else {
-//			alert(err)
+            //			alert(err)
             api.toast({
                 msg: err.msg,
                 duration: 2000,
@@ -1205,7 +1205,11 @@ function getLocalFunctionPorts(callBackOnGetData) {
 
 //===========打开聊天=======
 function openChat(type, thirdId, thirdNick) {
-    openNewWindow("chat" + type + "_" + thirdId, "./chat.html", {type: type, thirdId: thirdId, thirdNick: thirdNick});
+    openNewWindow("chat" + type + "_" + thirdId, "./chat.html", {
+        type: type,
+        thirdId: thirdId,
+        thirdNick: thirdNick
+    });
 }
 
 var selectData = [{
@@ -1224,79 +1228,307 @@ var sexData = [{
     value: '2',
     text: '女'
 }];
-var ageData = [{"text": 1, "value": 1}, {"text": 2, "value": 2}, {"text": 3, "value": 3}, {
+var ageData = [{
+    "text": 1,
+    "value": 1
+}, {
+    "text": 2,
+    "value": 2
+}, {
+    "text": 3,
+    "value": 3
+}, {
     "text": 4,
     "value": 4
-}, {"text": 5, "value": 5}, {"text": 6, "value": 6}, {"text": 7, "value": 7}, {"text": 8, "value": 8}, {
+}, {
+    "text": 5,
+    "value": 5
+}, {
+    "text": 6,
+    "value": 6
+}, {
+    "text": 7,
+    "value": 7
+}, {
+    "text": 8,
+    "value": 8
+}, {
     "text": 9,
     "value": 9
-}, {"text": 10, "value": 10}, {"text": 11, "value": 11}, {"text": 12, "value": 12}, {
+}, {
+    "text": 10,
+    "value": 10
+}, {
+    "text": 11,
+    "value": 11
+}, {
+    "text": 12,
+    "value": 12
+}, {
     "text": 13,
     "value": 13
-}, {"text": 14, "value": 14}, {"text": 15, "value": 15}, {"text": 16, "value": 16}, {
+}, {
+    "text": 14,
+    "value": 14
+}, {
+    "text": 15,
+    "value": 15
+}, {
+    "text": 16,
+    "value": 16
+}, {
     "text": 17,
     "value": 17
-}, {"text": 18, "value": 18}, {"text": 19, "value": 19}, {"text": 20, "value": 20}, {
+}, {
+    "text": 18,
+    "value": 18
+}, {
+    "text": 19,
+    "value": 19
+}, {
+    "text": 20,
+    "value": 20
+}, {
     "text": 21,
     "value": 21
-}, {"text": 22, "value": 22}, {"text": 23, "value": 23}, {"text": 24, "value": 24}, {
+}, {
+    "text": 22,
+    "value": 22
+}, {
+    "text": 23,
+    "value": 23
+}, {
+    "text": 24,
+    "value": 24
+}, {
     "text": 25,
     "value": 25
-}, {"text": 26, "value": 26}, {"text": 27, "value": 27}, {"text": 28, "value": 28}, {
+}, {
+    "text": 26,
+    "value": 26
+}, {
+    "text": 27,
+    "value": 27
+}, {
+    "text": 28,
+    "value": 28
+}, {
     "text": 29,
     "value": 29
-}, {"text": 30, "value": 30}, {"text": 31, "value": 31}, {"text": 32, "value": 32}, {
+}, {
+    "text": 30,
+    "value": 30
+}, {
+    "text": 31,
+    "value": 31
+}, {
+    "text": 32,
+    "value": 32
+}, {
     "text": 33,
     "value": 33
-}, {"text": 34, "value": 34}, {"text": 35, "value": 35}, {"text": 36, "value": 36}, {
+}, {
+    "text": 34,
+    "value": 34
+}, {
+    "text": 35,
+    "value": 35
+}, {
+    "text": 36,
+    "value": 36
+}, {
     "text": 37,
     "value": 37
-}, {"text": 38, "value": 38}, {"text": 39, "value": 39}, {"text": 40, "value": 40}, {
+}, {
+    "text": 38,
+    "value": 38
+}, {
+    "text": 39,
+    "value": 39
+}, {
+    "text": 40,
+    "value": 40
+}, {
     "text": 41,
     "value": 41
-}, {"text": 42, "value": 42}, {"text": 43, "value": 43}, {"text": 44, "value": 44}, {
+}, {
+    "text": 42,
+    "value": 42
+}, {
+    "text": 43,
+    "value": 43
+}, {
+    "text": 44,
+    "value": 44
+}, {
     "text": 45,
     "value": 45
-}, {"text": 46, "value": 46}, {"text": 47, "value": 47}, {"text": 48, "value": 48}, {
+}, {
+    "text": 46,
+    "value": 46
+}, {
+    "text": 47,
+    "value": 47
+}, {
+    "text": 48,
+    "value": 48
+}, {
     "text": 49,
     "value": 49
-}, {"text": 50, "value": 50}, {"text": 51, "value": 51}, {"text": 52, "value": 52}, {
+}, {
+    "text": 50,
+    "value": 50
+}, {
+    "text": 51,
+    "value": 51
+}, {
+    "text": 52,
+    "value": 52
+}, {
     "text": 53,
     "value": 53
-}, {"text": 54, "value": 54}, {"text": 55, "value": 55}, {"text": 56, "value": 56}, {
+}, {
+    "text": 54,
+    "value": 54
+}, {
+    "text": 55,
+    "value": 55
+}, {
+    "text": 56,
+    "value": 56
+}, {
     "text": 57,
     "value": 57
-}, {"text": 58, "value": 58}, {"text": 59, "value": 59}, {"text": 60, "value": 60}, {
+}, {
+    "text": 58,
+    "value": 58
+}, {
+    "text": 59,
+    "value": 59
+}, {
+    "text": 60,
+    "value": 60
+}, {
     "text": 61,
     "value": 61
-}, {"text": 62, "value": 62}, {"text": 63, "value": 63}, {"text": 64, "value": 64}, {
+}, {
+    "text": 62,
+    "value": 62
+}, {
+    "text": 63,
+    "value": 63
+}, {
+    "text": 64,
+    "value": 64
+}, {
     "text": 65,
     "value": 65
-}, {"text": 66, "value": 66}, {"text": 67, "value": 67}, {"text": 68, "value": 68}, {
+}, {
+    "text": 66,
+    "value": 66
+}, {
+    "text": 67,
+    "value": 67
+}, {
+    "text": 68,
+    "value": 68
+}, {
     "text": 69,
     "value": 69
-}, {"text": 70, "value": 70}, {"text": 71, "value": 71}, {"text": 72, "value": 72}, {
+}, {
+    "text": 70,
+    "value": 70
+}, {
+    "text": 71,
+    "value": 71
+}, {
+    "text": 72,
+    "value": 72
+}, {
     "text": 73,
     "value": 73
-}, {"text": 74, "value": 74}, {"text": 75, "value": 75}, {"text": 76, "value": 76}, {
+}, {
+    "text": 74,
+    "value": 74
+}, {
+    "text": 75,
+    "value": 75
+}, {
+    "text": 76,
+    "value": 76
+}, {
     "text": 77,
     "value": 77
-}, {"text": 78, "value": 78}, {"text": 79, "value": 79}, {"text": 80, "value": 80}, {
+}, {
+    "text": 78,
+    "value": 78
+}, {
+    "text": 79,
+    "value": 79
+}, {
+    "text": 80,
+    "value": 80
+}, {
     "text": 81,
     "value": 81
-}, {"text": 82, "value": 82}, {"text": 83, "value": 83}, {"text": 84, "value": 84}, {
+}, {
+    "text": 82,
+    "value": 82
+}, {
+    "text": 83,
+    "value": 83
+}, {
+    "text": 84,
+    "value": 84
+}, {
     "text": 85,
     "value": 85
-}, {"text": 86, "value": 86}, {"text": 87, "value": 87}, {"text": 88, "value": 88}, {
+}, {
+    "text": 86,
+    "value": 86
+}, {
+    "text": 87,
+    "value": 87
+}, {
+    "text": 88,
+    "value": 88
+}, {
     "text": 89,
     "value": 89
-}, {"text": 90, "value": 90}, {"text": 91, "value": 91}, {"text": 92, "value": 92}, {
+}, {
+    "text": 90,
+    "value": 90
+}, {
+    "text": 91,
+    "value": 91
+}, {
+    "text": 92,
+    "value": 92
+}, {
     "text": 93,
     "value": 93
-}, {"text": 94, "value": 94}, {"text": 95, "value": 95}, {"text": 96, "value": 96}, {
+}, {
+    "text": 94,
+    "value": 94
+}, {
+    "text": 95,
+    "value": 95
+}, {
+    "text": 96,
+    "value": 96
+}, {
     "text": 97,
     "value": 97
-}, {"text": 98, "value": 98}, {"text": 99, "value": 99}, {"text": 100, "value": 100}]
+}, {
+    "text": 98,
+    "value": 98
+}, {
+    "text": 99,
+    "value": 99
+}, {
+    "text": 100,
+    "value": 100
+}]
 
 function isNotBlack(data) {
     return (data == "" || typeof (data) == "undefined" || data == null || isNullJson(data)) ? false : true;
@@ -1348,10 +1580,22 @@ function isFunction(func) {
 function hex_md5(string) {
     var x = Array();
     var k, AA, BB, CC, DD, a, b, c, d;
-    var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
-    var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
-    var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
-    var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
+    var S11 = 7,
+        S12 = 12,
+        S13 = 17,
+        S14 = 22;
+    var S21 = 5,
+        S22 = 9,
+        S23 = 14,
+        S24 = 20;
+    var S31 = 4,
+        S32 = 11,
+        S33 = 16,
+        S34 = 23;
+    var S41 = 6,
+        S42 = 10,
+        S43 = 15,
+        S44 = 21;
     string = uTF8Encode(string);
     x = convertToWordArray(string);
     a = 0x67452301;
@@ -1517,7 +1761,9 @@ var convertToWordArray = function (string) {
 };
 
 var wordToHex = function (lValue) {
-    var WordToHexValue = "", WordToHexValueTemp = "", lByte, lCount;
+    var WordToHexValue = "",
+        WordToHexValueTemp = "",
+        lByte, lCount;
     for (lCount = 0; lCount <= 3; lCount++) {
         lByte = (lValue >>> (lCount * 8)) & 255;
         WordToHexValueTemp = "0" + lByte.toString(16);
@@ -1548,7 +1794,9 @@ var uTF8Encode = function (string) {
 function base64_encode(str) {
     var c1, c2, c3;
     var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    var i = 0, len = str.length, string = '';
+    var i = 0,
+        len = str.length,
+        string = '';
 
     while (i < len) {
         c1 = str.charCodeAt(i++) & 0xff;
@@ -1587,14 +1835,16 @@ function base64_decode(str) {
         37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1,
         -1, -1
     );
-    var i = 0, len = str.length, string = '';
+    var i = 0,
+        len = str.length,
+        string = '';
 
     while (i < len) {
         do {
             c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff]
         } while (
             i < len && c1 == -1
-            );
+        );
 
         if (c1 == -1) break;
 
@@ -1602,7 +1852,7 @@ function base64_decode(str) {
             c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff]
         } while (
             i < len && c2 == -1
-            );
+        );
 
         if (c2 == -1) break;
 
@@ -1616,7 +1866,7 @@ function base64_decode(str) {
             c3 = base64DecodeChars[c3]
         } while (
             i < len && c3 == -1
-            );
+        );
 
         if (c3 == -1) break;
 
@@ -1628,7 +1878,7 @@ function base64_decode(str) {
             c4 = base64DecodeChars[c4]
         } while (
             i < len && c4 == -1
-            );
+        );
 
         if (c4 == -1) break;
 
@@ -1702,8 +1952,8 @@ Date.prototype.format = function (format) {
     }
     for (var k in date) {
         if (new RegExp("(" + k + ")").test(format)) {
-            format = format.replace(RegExp.$1, RegExp.$1.length == 1
-                ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ?
+                date[k] : ("00" + date[k]).substr(("" + date[k]).length));
         }
     }
     return format;
@@ -1711,7 +1961,7 @@ Date.prototype.format = function (format) {
 var sdelay = 0;
 
 function returnTop() {
-    window.scrollBy(0, -100);//Only for y vertical-axis
+    window.scrollBy(0, -100); //Only for y vertical-axis
     if (document.body.scrollTop > 0) {
         sdelay = setTimeout('returnTop()', 150);
     }
@@ -1756,11 +2006,11 @@ function openNewUrl(url, params) {
             text = text + key + "=" + params[key] + "&"
         }
     }
-//  if(url.indexOf('login.html') == -1){
+    //  if(url.indexOf('login.html') == -1){
     location.href = url + text;
-//  }else if(checkUser()){
-//     location.href = url+text;
-//  }
+    //  }else if(checkUser()){
+    //     location.href = url+text;
+    //  }
 
 }
 
@@ -1782,7 +2032,7 @@ function checkLength(num, type) {
     if (value.length > num) {
         toast("温馨提示：密码为6至8位数字和字母的组合");
         type.value = type.value.substring(0, num)
-//     	return;
+        //     	return;
     }
 }
 
@@ -1832,8 +2082,8 @@ function checkEmail(emailText) {
 //	document.getElementById("leftButton").style.opacity = 1;
 //}
 //删除数组最后一个元素
-function deleteOnlyOne(arr){
-    arr.splice(arr.length-1,1);
+function deleteOnlyOne(arr) {
+    arr.splice(arr.length - 1, 1);
     return arr;
 }
 
@@ -1846,8 +2096,7 @@ function posiShareClick() {
             h: 150
         },
         tapClose: true,
-        items: [
-            {
+        items: [{
                 text: '微信好友',
                 icon: 'widget://image/wx.png'
             },
@@ -1888,7 +2137,7 @@ function posiShareClick() {
             var wx = api.require('wx');
             wx.shareWebpage({
                 apiKey: '',
-                scene: 'session',// 单聊
+                scene: 'session', // 单聊
                 title: '渡客免费猎头！',
                 description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
                 thumb: 'widget://icon/dukelogo.png',
@@ -1907,7 +2156,7 @@ function posiShareClick() {
             var wx = api.require('wx');
             wx.shareWebpage({
                 apiKey: '',
-                scene: 'timeline',// 朋友圈
+                scene: 'timeline', // 朋友圈
                 title: '渡客免费猎头！',
                 description: '渡客猎头APP，为中高层职场精英提供更多工作机会，更优雅的生活方式！',
                 thumb: 'widget://icon/icon.png',
@@ -1922,17 +2171,17 @@ function posiShareClick() {
                 }
             });
         } else if (ret.index == 2) {
-                /*var qq = api.require('qq');
-                qq.shareNews({
-                    url: 'http://www.baidu.com',
-                    title: '我爱网拍！',
-                    description: '我发现了一件大宝贝，快来看看啊！',
-                    imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
-                    type: 'QFriend'
-                });*/
-                toast('qq登录正在开发中…')
-            } else if (ret.index == 3) {
-                toast('微博登录正在开发中…')
-            }
+            /*var qq = api.require('qq');
+            qq.shareNews({
+                url: 'http://www.baidu.com',
+                title: '我爱网拍！',
+                description: '我发现了一件大宝贝，快来看看啊！',
+                imgUrl: 'http://module.apicloud.com/icon/1516258079676_叮叮.png',
+                type: 'QFriend'
+            });*/
+            toast('qq登录正在开发中…')
+        } else if (ret.index == 3) {
+            toast('微博登录正在开发中…')
+        }
     });
 }
