@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="../../../css/mui.picker.all.css">
     <link rel="stylesheet" href="../../../css/mui.dtpicker.css">
     <style>
-
+        .Box{
+            margin-bottom: 0.34rem;
+        }
         .commonColor{
             width: 6rem;
         }
@@ -88,10 +90,8 @@
         <div class="post-box-left">
             <div class="commonFont post-box-name">工作地点</div>
             <div class="commonFont commonColor ellipsis" id="companyAdressId">请选择工作地点</div>
-            <div style="display: none" id="long"></div>
-            <div style="display: none" id="lat"></div>
-            <div style="display: none" id="adr_id"></div>
 
+            <div style="display: none" id="adr_id"></div>
         </div>
         <img src="../../../icon/right.png" alt="right" class="info-img-right">
     </div>
@@ -101,11 +101,12 @@
         企业匿名发布
     </div>
     <div class="postSubBtn postSubFa" onclick="postJobSubmit()">发布</div>
+    <div class="changeJue" onclick="changeJueClick()">切换回千里马</div>
 
 </div>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -116,6 +117,7 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.picker.all.js"></script>
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script type="text/javascript" src="../../../script/city.data-3.js"></script>
 <script>
     var job_id,url,statusD,loginAuthen,company_c_id;
     apiready = function () {
@@ -134,9 +136,9 @@
                 if (data) {
 
                     document.getElementById("adr_id").innerText = data.adr_id
-                    document.getElementById("companyAdressId").innerText = data.shortname
+                    // document.getElementById("companyAdressId").innerText = data.shortname
                     document.getElementById("postPositionName").innerText = data.job_name
-                    document.getElementById("setpostJobMiao").innerText = data.description
+                    // document.getElementById("setpostJobMiao").innerText = data.description
                     document.getElementById("postPositiontype").innerText = data.job_type
                     document.getElementById("postPaySelect").innerText = data.ratio+'k'
                     document.getElementById("postPaySelectText").innerText = data.ratio
@@ -145,8 +147,8 @@
                     document.getElementById("postStudent").innerText = data.edu_ex
                     document.getElementById("postStudentText").innerText = data.edu_ex
                     document.getElementById("positionSkill_type").innerText = data.skills
-                    document.getElementById("postJobType").innerText = data.nature
-                    document.getElementById("postJobText").innerText = data.nature
+                    // document.getElementById("postJobType").innerText = data.nature
+                    // document.getElementById("postJobText").innerText = data.nature
 
 
 
@@ -159,6 +161,39 @@
         }
 
     };
+    function changeJueClick() {
+
+        var uid = localStorage.getItem("person_id")
+        var obj = {
+            uid : uid
+        }
+        api.ajax({
+
+            url:suIdentityLogin,
+            method: 'get',
+            cache: 'false',
+            timeout: 30,
+            dataTpye: 'json',
+            data: {
+                values:obj
+            }
+        }, function (data, err) {
+            //console.log("juese",data)
+            if (data.role_type == 1){
+                mui.confirm('切换回我是千里马', '切换角色',['确认','取消'], function (e) {
+                    if (!e.index) {
+                        openNewWindow("home", "../../user/home/home.html");
+                        localStorage.setItem('person_id',data.user_uid);
+                        localStorage.setItem('user',data.user_uid);
+                    }
+                })
+
+
+            }
+            api.hideProgress();
+
+        });
+    }
 
     // guozuo 类型
     function postJobType() {
@@ -314,16 +349,32 @@
 
     // gongzuo didian
     function companyAdress() {
-        openNewWindow("companyAdress", "./companyAdress.html", {
+
+        var picker = new mui.PopPicker({
+            layer: 3
+        });
+        picker.setData(cityData3)
+        picker.pickers[0].setSelectedIndex(0);
+        picker.show(function (SelectedItem) {
+
+            document.getElementById("companyAdressId").innerText = SelectedItem[0].text + '-' +SelectedItem[1].text+ '-' +SelectedItem[2].text
+            var obj = {
+                province : SelectedItem[0].text,
+                city : SelectedItem[1].text,
+                street : SelectedItem[2].text
+            }
+            ajaxGetWithProgress(addAddressJobProfile,obj,function (data) {
+                if (data){
+                    document.getElementById("adr_id").innerText = data.adr_id
+                } else {
+                    toast("请求出错")
+                }
+            })
+        })
+        /*openNewWindow("companyAdress", "./companyAdress.html", {
             url: 'postsPublish',
             content : "请选择工作地点"
-        })
-    }
-    function companyAdressId(value,long,lat,adr_id) {
-        document.getElementById("companyAdressId").innerText = value;
-        document.getElementById("long").innerText = long;
-        document.getElementById("lat").innerText = lat;
-        document.getElementById("adr_id").innerText = adr_id;
+        })*/
     }
 
     //格式化现在得日期
@@ -533,13 +584,14 @@
                                 frameName: frameName
                             })
                             closeWin();
+                            if (!data.emailStatus){
+                                openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
+                            }else{
+                                openNewWindow("home", "./home.html")
+                            }
                         }
                     })
-                    if (!data.emailStatus){
-                        openNewWindow("companyEmailAuthen", "./companyEmailAuthen.html")
-                    }else{
-                        openNewWindow("home", "./home.html")
-                    }
+
                 }else{
                     toast("请求出错!")
                 }

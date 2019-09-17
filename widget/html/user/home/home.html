@@ -265,7 +265,8 @@
             <span class="search-Click">GO</span>
         </div>
         <div class="rightImgEdite">
-            <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
+            <!--<img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">-->
+            <img src="../../../icon/msg.png" class="OneImgRight" onclick="otherPageInfo()" alt="chat">
         </div>
     </div>
 </div>
@@ -320,14 +321,47 @@
 <script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
-    var wx, UISearchBar, searchinputTop, JIMData, homeBtnCom;
+    var wx,searchinputTop, JIMData, homeBtnCom,getWebUrl;
     var jpush = null;
     apiready = function () {
-        dateStrChangeTimeTamp("2015-03-05 17:59:00.0")
+
+        // alert(2)
+
+//         getWebUrl = api.require('getWebUrl');
+//         api.addEventListener({
+//             name:'saveWebInfoToApp'
+//         },function(ret,err){
+//             $api.setStorage('webInfo',ret.value);
+//             alert('应用内获取 webInfo = ' + JSON.stringify($api.getStorage('webInfo')))
+//         });
+//         api.addEventListener({
+//             name:'smartupdatefinish'
+//         }, function(ret, err){
+// //                                alert("已完成修复，请重新启动好礼多多")
+// //                            cmboxdown.open();
+// //                            api.rebootApp();
+//             api.confirm({
+//                 title: '提示',
+//                 msg: '已添加修复，请重新启动',
+//                 buttons: ['确定', '取消']
+//             }, function(ret, err) {
+//                 if(ret.buttonIndex == 1){
+//                     api.closeWidget({
+//                         id : 'A6918676845050', //这里改成自己的应用ID
+//                         retData : {
+//                             name : 'closeWidget'
+//                         },
+//                         silent : true
+//                     });
+// //                            api.rebootApp();
+//                 }
+//             });
+//         });
+
         var mam = api.require('mam');
         mam.checkUpdate(function(ret, err) {
             if (ret) {
@@ -599,7 +633,7 @@
         // console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://59.110.231.40:25121/SE4M/SE/Login/quRoleType',
+            url: 'http://192.168.1.6:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -608,7 +642,7 @@
                 values: obj
             }
         }, function (data, err) {
-            // console.log("ifq", data)
+            console.log("ifq", data)
             if (data.role_type == 1) {
                 // openNewWindow("home", "./home.html")
             } else if (data.role_type == 2) {
@@ -624,7 +658,7 @@
 
         api.ajax({
 
-            url: 'http://59.110.231.40:25121/SE4M/SE/Status/status',
+            url: 'http://192.168.1.6:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -665,12 +699,23 @@
 
     }
 
-    function getRegistrationId(ret) {
-
-        var registrationId = ret;
-        // console.log("registrationId  回调 结果",registrationId)
-    };
-
+    function otherPageInfo() {
+        api.openFrame({
+            name : 'content',
+            url : 'https://community.apicloud.com/bbs/forum.php',
+            bounces : true,
+            bgColor : '#ffffff',
+            rect : {
+                x : 0,
+                y : 0,
+                w : api.frameWidth,
+                h : api.frameHeight
+            }
+        });
+        api.sendEvent({
+            name : 'frameClient'
+        });
+    }
     searchinputTop = document.getElementById("search-inputTop")
     searchinputTop.onclick = function (e) {
         openNewWindow("historySearch", "./historySearch.html", {

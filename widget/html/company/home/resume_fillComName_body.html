@@ -15,7 +15,7 @@
             display: none;
             position: absolute;
             left: 0;
-            top: 0.82rem;
+            top: 1.64rem;
             width: 100%;
             height: 4rem;
             background: #fff;
@@ -35,6 +35,18 @@
             font-weight: 400;
             border-bottom: 1px solid #ebebeb;
         }
+        #comNumber{
+            border-bottom: 1px solid #ebebeb;
+        }
+        .place{
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 0.28rem;
+            font-weight: 400;
+
+            color: #638BFF;
+        }
+
     </style>
 </head>
 <body class="commonBg">
@@ -45,7 +57,11 @@
             您的公司名称
         </div>
         <div class="nowCompanyPany">当前就职的公司</div>
+        <!--<div class="cssFlex comInput">
+            <input type="text" class="comNumber" placeholder="请输入公司识别码">
+        </div>-->
         <div class="resume_level2_content">
+            <input class="text" id="comNumber" type="number" maxlength=30 placeholder="请输入公司识别码">
             <input class="text" id="text0" type="text" maxlength=30 placeholder="您的公司名称">
             <input type="hidden" id="c_id" value="this">
             <ul class="comBoxPush">
@@ -56,10 +72,13 @@
             </ul>
 
         </div>
+        <div class="place cssFlex isDisplay" onclick="resume_boxCom()">
+            公司未注册，请点击注册
+        </div>
         <!--<p><span class="resume_level2_num">0</span><span class="resume_level2_total"></span>/30字符</p>-->
         <div class="carefulTitle">注意事项：</div>
         <div class="carefulMain">
-            1.该输入您所属公司营业执照上的公司名称；<br />
+            1.请输入您所属公司营业执照上的公司名称；<br />
             2.请注意区分总公司和分公司；<br />
             3.公司名称将用于后续的企业认证使用，请确保准确性。<br />
         </div>
@@ -71,8 +90,8 @@
 
 
 </div>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
@@ -82,10 +101,10 @@
 <script>
     var text = document.getElementById('text0')
     var c_id = document.getElementById('c_id')
-    // var num = document.querySelector('.resume_level2_num');
     var box = document.querySelector('.comBoxPush');
-    // var total = document.querySelector('.resume_level2_total');
+    var place = document.querySelector('.place');
     var url,content;
+
     apiready = function () {
         content = api.pageParam.content;
         url = api.pageParam.url;
@@ -113,10 +132,12 @@
                             arr.push(str);
                         }
                         box.innerHTML = arr.join(' ');
+                        place.classList.add("isDisplay")
                     } else{
                         text.value = valuePill
                         api.hideProgress();
                         box.style.display = "none"
+                        place.classList.remove("isDisplay")
                     }
 
                 }
@@ -130,24 +151,51 @@
         text.value = list.dataset.name;
         box.style.display = "none"
     }
+    function resume_boxCom() {
 
+        api.sendEvent({
+            name: 'viewdisappear',
+            extra: {
+                key: {
+
+                },
+            }
+        });
+        api.addEventListener({
+            name:'viewdisappear'
+        },function(){
+            api.closeWin({
+                name:"resume_fillComName"
+            });
+        });
+        openNewWindow("resume_boxCom", "./resume_boxCom.html",{
+            url: 'fillInfo',
+        })
+
+
+    }
 
     // 点击保存执行此方法
     function preservation () {
         var c_name = document.getElementById('text0').value;
+        var comNumber = document.getElementById('comNumber').value;
         var c_id = document.getElementById('c_id').value;
-        localStorage.setItem("com_id",c_id)
+        localStorage.setItem("com_id",c_id);
+        if(isBlack(comNumber)){
+            toast("请从公司邮箱查看并输入识别码");
+            return;
+        }
         if(isBlack(c_name)){
             toast("请输入公司名称");
             return;
         }
 
-        ajaxGetWithProgress(JobProfileCreateCompany, {
-            c_id: c_id || '',
-            nameall:c_name
+        ajaxGetWithProgress(JoinCompanyList, {
+            cid: c_id || '',
+            code:comNumber,
         }, function (data, err) {
-            //console.log(data);
-            if (data){
+            console.log(data);
+            if (data.data){
                 var frameName = url + "_body";
                 api.execScript({
                     name:url,
@@ -155,6 +203,8 @@
                     script: 'edit_fillComName('+JSON.stringify(c_name)+','+JSON.stringify(data.c_id)+')'
                 })
                 closeWin();
+            }else{
+                toast(data.msg)
             }
         });
 

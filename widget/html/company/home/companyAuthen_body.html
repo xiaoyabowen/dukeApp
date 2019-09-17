@@ -57,7 +57,7 @@
         <div class="authen-yaz commonFont">请输入您的企业邮箱，请勿使用qq、163等公共邮箱</div>
         <div class="authenBox cssFlex">
             <span>邮箱：</span>
-            <input type="text" id="authenEmail" value="bowenru@163.com" placeholder="输入企业邮箱地址">
+            <input type="text" id="authenEmail" value="" placeholder="输入企业邮箱地址">
         </div>
 
         <div class="postSubBtn" onclick="nextPost()">下一步</div>
@@ -74,7 +74,9 @@
 
     apiready = function () {
 
+
     };
+    document.getElementById("authenEmail").value = localStorage.getItem("fillEmail")
     function checkEmail(emails) {
         if (!(/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/.test(emails))) {
             return false;

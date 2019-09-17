@@ -6,27 +6,26 @@ var isCleanUser = false;
 
 
 
-
 // 本地服务器
 
-// var serverUrl = "http://192.168.1.24:8000/SE4M/SE";
-// var localhostHref = 'http://192.168.1.24:8000/SE4M';
-// var Domain = 'http://192.168.1.24:8088';
+var serverUrl = "http://192.168.1.6:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.6:8000/SE4M';
+var Domain = 'http://192.168.1.6:8088';
 
 
 
 // 正式服务器
-var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
-var localhostHref = 'http://112.126.98.172:8000/SE4M';
-var Domain = 'http://112.126.98.172:8088';
+// var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
+// var localhostHref = 'http://112.126.98.172:8000/SE4M';
+// var Domain = 'http://112.126.98.172:8088';
 
 
 
 // 渡客正式服务器
 
-var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
-var localhostHref = 'http://59.110.231.40:25121/SE4M';
-var Domain = 'http://59.110.231.40:25122';
+// var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
+// var localhostHref = 'http://59.110.231.40:25121/SE4M';
+// var Domain = 'http://59.110.231.40:25122';
 
 
 
@@ -398,6 +397,7 @@ var queryShieldCompany = serverUrl + "/OrgnizationProfile/queryShieldCompany";
 var addShieldCompany = serverUrl + "/OrgnizationProfile/addShieldCompany";
 // 模糊查询公司
 var orgnizationList = serverUrl + "/OrgnizationProfile/orgnizationList";
+var JoinCompanyList = serverUrl + "/OrgnizationProfile/JoinCompany";
 
 
 // 圈子发布活动
