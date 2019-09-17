@@ -245,8 +245,8 @@
 
                 </div>
                 <div class="input-password cssFlex">
-                    <input id="password" type="password" value="" placeholder="请输入密码">
-                    <img src="../../image/login/hide.png" alt="password show" id="passShow">
+                    <input id="password" :type='passTogle ? "password" : "text"' value="" placeholder="请输入密码">
+                    <img src="../../image/login/hide.png" alt="password show" @click = 'changePassStatus' id="passShow">
                 </div>
             </div>
             <button class="login-href" @click="goHome()">进入渡客</button>
@@ -288,16 +288,6 @@
     // 点击是否查看密码
     var passId = document.getElementById('passShow');
     var passInput = document.getElementById('password');
-    passTogle = true;
-    passId.addEventListener('click',function(e){
-        if (passTogle){
-            passTogle = false;
-            passInput.setAttribute("type","text")
-        }else{
-            passTogle = true;
-            passInput.setAttribute("type","password")
-        }
-    })
     var code, accessToken, dynamicToken, openId, phoneValue, wx, getUserInfoWx,url
     apiready = function () {
         url = api.pageParam.url
@@ -314,6 +304,7 @@
                 random_str : '',
                 signature : '',
                 timestamp : '',
+                passTogle:true,
 
             },
             created: function () {
@@ -323,6 +314,15 @@
 
             },
             methods: {
+                changePassStatus(){
+                  // console.log(123);
+                  this.passTogle = !this.passTogle;
+                  if(this.passTogle){  //切换当前图片
+
+                  }else{
+
+                  }
+                },
                 goHome : function () {
 
                     var that = this
@@ -422,7 +422,7 @@
                 wx.auth({
                     apiKey: ''
                 }, function (ret, err) {
-                    console.log("登录授权1", ret)
+                    // console.log("登录授权1", ret)
                     if (ret.status) {
                         code = ret.code;
                         wx.getToken({
@@ -430,7 +430,7 @@
                             apiSecret: '',
                             code: code
                         }, function (ret, err) {
-                            console.log("getToken成功", ret)
+                            // console.log("getToken成功", ret)
                             if (ret.status) {
                                 accessToken = ret.accessToken;
                                 dynamicToken = ret.dynamicToken;
@@ -449,7 +449,7 @@
                                     accessToken: accessToken,
                                     openId: openId
                                 }, function (ret, err) {
-                                    console.log("getUserInfo", ret)
+                                    // console.log("getUserInfo", ret)
                                     getUserInfoWx = ret
                                     if (ret.status) {
                                         api.hideProgress();
@@ -463,7 +463,7 @@
                                     }
                                 });
                             } else {
-                                console.log("error", ret)
+                                // console.log("error", ret)
                                 //判断accessToken是否 过期，调用此接口刷新 accessToken
                                 if (err.code == 1) {
                                     wx.refreshToken({
@@ -471,7 +471,7 @@
                                         dynamicToken: dynamicToken
                                     }, function (ret, err) {
                                         if (ret.status) {
-                                            console.log("errorerror", ret)
+                                            // console.log("errorerror", ret)
                                         } else {
                                             alert(err.code);
                                         }
@@ -505,7 +505,7 @@
             chat_id: openid,
         }
         ajaxGetWithProgress(ChatLogin, obj, function (data) {
-            console.log("ChatLogin", data)
+            // console.log("ChatLogin", data)
             if (data.date == false) {
                 openNewWindow("loginComfirWx", "./loginComfirWx.html", {
                     getUserInfoWx: getUserInfoWx

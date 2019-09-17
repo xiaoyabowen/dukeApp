@@ -57,7 +57,7 @@
 <div class="Box isDisplay">
     <div class="box-tob">
         <p>头像</p>
-        <img src="../../../image/tx.png" alt="img" class="p_iconImg">
+        <img style='margin-top:10px; border-radius:50%; width:1.5rem; height:1.5rem; margin-right:10px' src="../../../image/tx.png" alt="img" class="p_iconImg">
     </div>
     <div class="firm cssFlex">
         <div class="xing">*</div>
@@ -167,6 +167,8 @@
             document.getElementById('user_p_sex').value ='女';
             document.getElementById('user_p_sexValue').value ='2';
         }
+        // console.log(item,'170')
+        document.querySelector('.p_iconImg').src = item.p_icon.split(',')[0];
         document.getElementById('user_age').value = item.p_birthday || '';
         document.getElementById('workingStart').value = item.job_from_time  || '';
         document.getElementById('email').value = item.email  || '';

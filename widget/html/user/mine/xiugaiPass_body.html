@@ -102,7 +102,8 @@
             var params = {};
             params.newPwd = $api.byId("againPass").value;
             params.oldPwd = '';
-            var user = localStorage.getItem("user")
+            var user = localStorage.getItem("user");
+            // console.log(user,'10666');
             var userP = JSON.parse(user)
 
             params.token = userP.token;

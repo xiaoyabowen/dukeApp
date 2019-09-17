@@ -31,11 +31,12 @@
         <img src="../../../image/bjt.png" alt="img">
         <div class="boxtb">
             <img src="../../../image/tb1.png" alt="img">
-            <p>北京</p>
+            <p style="width:80px">{{address}}</p>
         </div>
         <div class="boxBod">
             <div class="boxbodt">
-                <img src="../../../image/tx.png" alt="img">
+                <img style='border-radius:50%' v-if='p_icon' :src="p_icon" alt="img">
+                <img v-if='!p_icon' src="../../../image/tx.png" alt="img">
             </div>
             <div class="boxbodd cssFlex">
                 {{p_name}}
@@ -118,6 +119,8 @@
         var app = new Vue({
             el: '#circle',
             data: {
+              address:"",
+            p_icon:'',
                 url: '',
                 name: '',
                 person_id: '',
@@ -175,16 +178,19 @@
                             values: obj
                         }
                     }, function(data, err) {
+                      console.log(data,'188888888')
                         api.hideProgress();
                         // console.log("queryCirclePersonMsgByPid",data)
                         if (data){
+                          that.p_icon = data.p_icon.split(',')[0];
                             that.item = data
                             that.p_name = data.p_name || "未填写"
+                            that.address = data.address.split('-')[1];
                             that.company_name = data.company_name || "未填写"
                             that.job_name = data.job_name || "未填写"
                             that.edu_name = data.edu_name || "未填写"
                             that.edu_level = data.edu_level || "未填写"
-                            that.edu_time = data.edu_time || "未填写"
+                            that.edu_time = data.edu_from +  ' - ' + data.edu_to || "未填写"
                             that.edu_type = data.edu_type || "未填写"
                             that.p_title = stringFun(data.p_title)
                             that.p_birthday = ages(data.p_birthday) + "岁"
