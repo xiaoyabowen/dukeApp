@@ -15,7 +15,8 @@
 <div id="circle" v-cloak>
     <!--quanzi-->
     <div class="cirBox isDisplay">
-        <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
+        <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList"
+             :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
                 <div class="cirMain">
@@ -32,7 +33,8 @@
                         活动地点：{{item.address.split('-')[1]}}-{{item.address.split('-')[2]}}
                     </div>
                     <div class="cirMainTitleNote cssFlex" v-if="item.suggest !== ''">
-                        <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')" :key="index1">{{item1}}</span>
+                        <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')"
+                              :key="index1">{{item1}}</span>
                     </div>
                     <div class="cirMainTitleNote cssFlex" v-else>
 
@@ -42,7 +44,8 @@
             <div class="cirSignUser cssFlex">
                 <div class="cirSignUserLeft">
                     <div class="userImgAll cssFlex" :class="item.count == 0 ? 'isDisplay' : ''">
-                        <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer" :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
+                        <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer"
+                             :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
                         <!--<img class="allImgCom allImg1" src="../../../image/circle/allSeeIcon.png" alt="">
                         <img class="allImgCom allImg2" src="../../../image/circle/saoYzIcon.png" alt="">
                         <img class="allImgCom allImg3" src="../../../image/circle/perManIcon.png" alt="">-->
@@ -57,6 +60,7 @@
 
             </div>
         </div>
+        <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
     </div>
 </div>
 
@@ -67,24 +71,29 @@
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script src="../../../script/vue.min.js"></script>
-<!--<script src="../../../script/vuex.min.js"></script>-->
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     function reload() {
         window.location.reload()
     }
+
     apiready = function () {
+
 
         new Vue({
             el: '#circle',
             data: {
                 isDisplay: false,
                 CommentSta: false,
+                notList: false,
                 person_id: '',
+                skip: 1,
+                limit:6,
+                pages:'',
                 cirImg: '../../../image/circle/circle01.png',
-                circleList : [],
+                circleList: [],
 
             },
             created: function () {
@@ -95,22 +104,87 @@
 
             },
             methods: {
-                activeDetail:function (circle_id,MyCreate) {
+                activeDetail: function (circle_id, MyCreate) {
                     var that = this
-                    if (MyCreate == true){
-                        openNewWindow("manActivity", "./manActivity.html",{
-                            circle_id : circle_id,
-                            url : "index"
+                    if (MyCreate == true) {
+                        openNewWindow("manActivity", "./manActivity.html", {
+                            circle_id: circle_id,
+                            url: "index"
                         });
                     } else {
-                        openNewWindow("activeDetail", "./activeDetail.html",{
-                            circle_id : circle_id,
-                            url : "index"
+                        openNewWindow("activeDetail", "./activeDetail.html", {
+                            circle_id: circle_id,
+                            url: "index"
                         });
                     }
 
                 },
-                queryCircleList : function () {
+
+                queryCircleList: function () {
+                    var that = this
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c : that.skip,
+                            lengthofRS : that.limit,
+                        }
+                        console.log("obj",obj)
+                        ajaxGet(queryCircleList,obj , function (ret, err) {
+                            api.hideProgress();
+                            console.log("ret",ret)
+                            if (ret && isNotBlack(ret.Circlelist)) {
+                                api.refreshHeaderLoadDone();
+                                document.querySelector(".cirBox").classList.remove("isDisplay")
+                                that.circleList = ret.Circlelist;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function(ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c : that.skip,
+                            lengthofRS : that.limit,
+                        }
+                        console.log("obj11",obj)
+                        if (that.pages >= that.skip){
+                            that.notList = false
+                            ajaxGet(queryCircleList,obj , function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret",ret)
+                                if (ret && isNotBlack(ret.Circlelist)) {
+                                    api.refreshHeaderLoadDone();
+                                    document.querySelector(".cirBox").classList.remove("isDisplay")
+                                    that.circleList = that.circleList.concat(ret.Circlelist);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        }else {
+                            that.notList = !that.notList
+                        }
+
+
+                    });
+
+                }
+                /*queryCircleList : function () {
                     var that = this
                     var obj = {
 
@@ -125,7 +199,7 @@
                             toast("请求出错")
                         }
                     })
-                }
+                }*/
             }
         })
     }

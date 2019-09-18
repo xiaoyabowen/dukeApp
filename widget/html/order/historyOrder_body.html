@@ -97,63 +97,16 @@
             </div>
 
         </div>
-
+        <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
     </div>
 
-    <!--<div class="new" v-show="active == 'all'">
-        &lt;!&ndash;<div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>&ndash;&gt;
-        <div  :class="listall.length == 0 ? '' : 'isDisplay'">
-            <div class="notImg">
-                <img src="../../image/myfa.png" alt="du" class="notImgMy">
-            </div>
-            <div class="notMyConText">您没有相关订单！</div>
-        </div>
-        <div class="comBox" v-for="(item,index) in listall" :key="index">
-
-            <div class="comtile">
-                <span class="commonFont comtileText">{{item.time}}</span>
-            </div>
-
-            &lt;!&ndash;面膜类型&ndash;&gt;
-            <div class="comMain cssFlex" @click="goodInfoClick(item.cid)">
-                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
-                <div class="comContent">
-                    <div class="comProTet textOverflow commonFont">
-                        {{item.com_name}}
-                    </div>
-                    <div class="comProTet textOverflow commonSub24">
-                        {{item.summary}}
-                    </div>
-                    <div class="comPrice commonTitle">
-                        <i class="priceColorWei">¥{{item.dprice}}/件</i> <i class="commonFont">x{{item.buyNum}}</i>
-                    </div>
-                </div>
-            </div>
-            &lt;!&ndash;旅游   类型&ndash;&gt;
-            &lt;!&ndash;<div class="comMain cssFlex" @click="goodInfoClick(item.oId,item.cId,item.bId,item.adrStatus,item.tId)"  v-show="item.tId == 2">
-                <img :src="orderImg" alt="orderImg"class="comLeftImg">
-                <div class="comContent">
-                    <div class="comProTet textOverflow commonFont">
-                        {{item.com_name}}
-                    </div>
-
-                    <div class="comPrice commonTitle">
-                        <i class="priceColorWei">¥{{item.dprice}}</i>元
-                    </div>
-                </div>
-            </div>&ndash;&gt;
-
-
-        </div>
-
-    </div>-->
 </div>
 
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/rem.js"></script>
 <script type="text/javascript" src="../../script/apiCloud.js"></script>
@@ -186,6 +139,11 @@
                 fareStatus:1,    //  是否 有  运费状态
                 gootBtnStatus:1,    //  商品 按钮
 
+                notList: false,
+                skip: 1,
+                limit:6,
+                pages:'',
+
             },
 
             created: function () {
@@ -199,13 +157,68 @@
                 Queryhistory : function (name,index) {
                     var that = this
                     that.active = name
-                    var obj = {
-                        pid : that.person_id
-                    }
-                    ajaxGetWithProgress(Queryhistory,obj,function (data) {
-                        //console.log("Queryhistory",data)
-                        that.listall = data.history;
-                    })
+
+
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c : that.skip,
+                            lengthofRS : that.limit,
+                            pid : that.person_id
+                        }
+                        console.log("obj",obj)
+                        ajaxGet(Queryhistory,obj , function (ret, err) {
+                            api.hideProgress();
+                            if (ret && isNotBlack(ret.history)) {
+                                api.refreshHeaderLoadDone();
+                                that.listall = ret.history;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function(ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c : that.skip,
+                            lengthofRS : that.limit,
+                            pid : that.person_id
+                        }
+                        if (that.pages >= that.skip){
+                            that.notList = false
+                            ajaxGet(Queryhistory,obj , function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret",ret)
+                                if (ret && isNotBlack(ret.history)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.listall = that.listall.concat(ret.history);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        }else {
+                            that.notList = !that.notList
+                        }
+
+
+                    });
+
+
                 },
 
                 //  商品详情

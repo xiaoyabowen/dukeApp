@@ -96,13 +96,16 @@
         ajaxGetWithProgress(SendEmailOrgnizationProfile,{
             email: emailInput
         },function (data,err) {
-            if (data.date){
+            openNewWindow("companyAuthenYZ", "./companyAuthenYZ.html",{
+                email:emailInput
+            })
+            /*if (data.date){
                 openNewWindow("companyAuthenYZ", "./companyAuthenYZ.html",{
                     email:emailInput
                 })
             } else {
                 toast("请打开邮箱中POP3/SMTP协议")
-            }
+            }*/
         })
 
     }

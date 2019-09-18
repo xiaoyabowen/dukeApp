@@ -628,7 +628,7 @@
                                            <span>${JobList[i].edu_ex ? JobList[i].work_ex : '未填写'}</span>
                                        </p>
                                        <p class="job-img-content cssFlex">
-                                           <img src=${JobList[i].p_icon ? JobList[i].p_icon : "../../../image/hr.png"} alt="hr" class="hrImg">
+                                           <img src=${JobList[i].p_icon ? JobList[i].p_icon.split(',')[0] : "../../../image/hr.png"} alt="hr" class="hrImg">
                                            <span> ${JobList[i].p_name ? JobList[i].p_name : '未填写'}</span>
                                          <i>·</i>
                                            <span> ${JobList[i].z_user_job ? JobList[i].z_user_job : '未填写'}</span>

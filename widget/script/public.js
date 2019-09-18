@@ -9,10 +9,10 @@ var isCleanUser = false;
 // 本地服务器
 
 
-// var serverUrl = "http://192.168.1.6:8000/SE4M/SE";
-// var localhostHref = 'http://192.168.1.6:8000/SE4M';
-// var Domain = 'http://192.168.1.6:8088';
-//
+var serverUrl = "http://192.168.1.6:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.6:8000/SE4M';
+var Domain = 'http://192.168.1.6:8088';
+
 
 
 
@@ -24,9 +24,11 @@ var isCleanUser = false;
 
 // 渡客正式服务器
 
+/*
 var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
 var localhostHref = 'http://59.110.231.40:25121/SE4M';
 var Domain = 'http://59.110.231.40:25122';
+*/
 
 
 
@@ -335,7 +337,7 @@ var queryApplyList = serverUrl + "/CircleProfile/queryApplyList";
 var MassTexting = localhostHref + "/MassTexting";
 
 // 圈子 我的活动   我参加的
-var queryMyJoinCirCle = serverUrl + "/CircleProfile/queryMyJoinCirCle";
+var queryMyJoinCirCle = serverUrl + "·";
 // 圈子 我的活动   我发布的
 var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPersonId";
 

@@ -15,11 +15,12 @@
 <div id="circle" v-cloak>
     <!--quanzi-->
     <div class="tabs cssFlex">
-      <div @click='changeTab("my")' :class="[tabFlag == 'my' ? 'actives' : '']">我的活动</div>
-      <div @click='changeTab("joy")' :class="[tabFlag == 'joy' ? 'actives' : '']">我参加的</div>
+        <div @click='changeTab("my")' :class="[tabFlag == 'my' ? 'actives' : '']">我的活动</div>
+        <div @click='changeTab("joy")' :class="[tabFlag == 'joy' ? 'actives' : '']">我参加的</div>
     </div>
     <div class="cirBox tabcontents">
-        <div class="cirSubBox" @click="activeMan(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
+        <div class="cirSubBox" @click="activeMan(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList"
+             :key="index">
             <div class="cirSubBoxSub cssFlex">
                 <img :src="item.poster" alt="circle" class="circleImg">
                 <div class="cirMain">
@@ -36,7 +37,8 @@
                         活动地点：{{item.address.split('-')[1]}}-{{item.address.split('-')[2]}}
                     </div>
                     <div class="cirMainTitleNote cssFlex" v-if="item.suggest !== ''">
-                        <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')" :key="index1">{{item1}}</span>
+                        <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')"
+                              :key="index1">{{item1}}</span>
                     </div>
                     <div class="cirMainTitleNote cssFlex" v-else>
 
@@ -46,7 +48,8 @@
             <div class="cirSignUser cssFlex">
                 <div class="cirSignUserLeft">
                     <div class="userImgAll cssFlex" :class="item.count == 0 ? 'isDisplay' : ''">
-                        <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer" :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
+                        <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer"
+                             :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
                         <!--<img class="allImgCom allImg1" src="../../../image/circle/allSeeIcon.png" alt="">
                         <img class="allImgCom allImg2" src="../../../image/circle/saoYzIcon.png" alt="">
                         <img class="allImgCom allImg3" src="../../../image/circle/perManIcon.png" alt="">-->
@@ -59,6 +62,7 @@
                 <div class="signUserBtnCom signUserBtnMy" v-show="item.MyCreate == true">我的活动</div>
             </div>
         </div>
+        <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
     </div>
 </div>
 
@@ -71,8 +75,8 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     apiready = function () {
         new Vue({
@@ -81,8 +85,12 @@
                 isDisplay: false,
                 person_id: '',
                 cirImg: '../../../image/circle/circle01.png',
-                circleList : [],
-                tabFlag:'my',
+                circleList: [],
+                tabFlag: 'my',
+                skip: 1,
+                limit: 6,
+                pages: '',
+                notList: false,
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
@@ -92,59 +100,151 @@
 
             },
             methods: {
-                activeMan:function (circle_id,MyCreate) { //活动管理
+                activeMan: function (circle_id, MyCreate) { //活动管理
                     //console.log(circle_id)
                     var that = this;
-                    /*openNewWindow("manActivity", "./manActivity.html",{
-                      circle_id : circle_id
-                    });*/
-                    if (MyCreate == true){
-                        openNewWindow("manActivity", "./manActivity.html",{
-                            circle_id : circle_id,
-                            url : "index"
+
+                    if (MyCreate == true) {
+                        openNewWindow("manActivity", "./manActivity.html", {
+                            circle_id: circle_id,
+                            url: "index"
                         });
                     } else {
-                        openNewWindow("activeDetail", "./activeDetail.html",{
-                            circle_id : circle_id,
-                            url : "index"
+                        openNewWindow("activeDetail", "./activeDetail.html", {
+                            circle_id: circle_id,
+                            url: "index"
                         });
                     }
                 },
-                changeTab(flag){
-                  this.tabFlag = flag;
-                  if(flag == 'my'){
-                    this.queryCircleList();
-                  }else{
-                    this.loadEnjoyList();
-                  }
+                changeTab(flag) {
+                    this.tabFlag = flag;
+                    if (flag == 'my') {
+                        this.queryCircleList();
+                    } else if (flag == 'joy'){
+                        this.loadEnjoyList();
+                    }
                 },
-                queryCircleList : function () { //我的活动
+                queryCircleList: function () { //我的活动
                     var that = this
-                    var obj = {
-                        uid:localStorage.getItem('user')
-                    }
-                    ajaxGetWithProgress(queryCircleListByPersonId,obj,function (data) {
-                        //console.log("queryCircleList",data)
-                        if (data){
-                            that.circleList = data.Circlelist
-                        } else {
-                            toast("请求出错")
-                        }
-                    })
-                },
-                loadEnjoyList:function(){//我参加的
-                  var that = this
-                  var obj = {
-                      uid:localStorage.getItem('user')
-                  }
-                  ajaxGetWithProgress(queryMyJoinCirCle,obj,function(data){
-                    //console.log(data,'我参加的');
-                    if(data){
-                        that.circleList = data.MyJoinCirCle;
-                    }else{
 
-                    }
-                  })
+
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        console.log("obj", obj)
+                        ajaxGet(queryCircleListByPersonId, obj, function (ret, err) {
+                            api.hideProgress();
+                            console.log("ret", ret)
+                            if (ret && isNotBlack(ret.Circlelist)) {
+                                api.refreshHeaderLoadDone();
+                                that.circleList = ret.Circlelist;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function (ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        console.log("obj11", obj)
+                        if (that.pages >= that.skip) {
+                            that.notList = false
+                            ajaxGet(queryCircleListByPersonId, obj, function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret", ret)
+                                if (ret && isNotBlack(ret.Circlelist)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.circleList = that.circleList.concat(ret.Circlelist);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        } else {
+                            that.notList = !that.notList
+                        }
+                    });
+                },
+                loadEnjoyList: function () {//我参加的
+                    var that = this
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        ajaxGet(queryMyJoinCirCle, obj, function (ret, err) {
+                            api.hideProgress();
+                            console.log("ret11", ret)
+                            if (ret && isNotBlack(ret.Circlelist)) {
+                                api.refreshHeaderLoadDone();
+                                that.circleList = ret.Circlelist;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function (ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        if (that.pages >= that.skip) {
+                            that.notList = false
+                            ajaxGet(queryMyJoinCirCle, obj, function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret11", ret)
+                                if (ret && isNotBlack(ret.Circlelist)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.circleList = that.circleList.concat(ret.Circlelist);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        } else {
+                            that.notList = !that.notList
+                        }
+
+
+                    });
+
+
                 }
             }
         })
