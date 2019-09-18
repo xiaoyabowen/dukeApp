@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <style>
 
-        .Box{
+        .Box {
             margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
         }
-
 
 
     </style>
@@ -28,11 +27,15 @@
     <div class="new">
         <!--<div :class="listall.length == 0 ? 'queDiv' : 'isDisplay'">暂无数据</div>-->
         <div id='historyTabs' class="tabs cssFlex">
-          <div @click = changeTabs('commodityItem') :class="[tabItem == 'commodityItem' ? 'historyTabsActive' : '','tab']">商品</div>
-          <div @click = changeTabs('circleItem') :class="[tabItem == 'circleItem' ? 'historyTabsActive' : '','tab'] ">圈子</div>
+            <div @click=changeTabs('commodityItem')
+                 :class="[tabItem == 'commodityItem' ? 'historyTabsActive' : '','tab']">商品
+            </div>
+            <div @click=changeTabs('circleItem') :class="[tabItem == 'circleItem' ? 'historyTabsActive' : '','tab'] ">
+                圈子
+            </div>
         </div>
 
-        <div  :class="listall.length == 0 ? '' : 'isDisplay'">
+        <div :class="listall.length == 0 ? '' : 'isDisplay'">
             <div class="notImg">
                 <img src="../../../image/myfa.png" alt="du" class="notImgMy">
             </div>
@@ -43,8 +46,9 @@
                 <span class="commonFont comtileText">{{item.time}}</span>
             </div> -->
             <!--面膜类型-->
-            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)" v-show="item.tId == 1 && tabItem == 'commodityItem'" >
-                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"
+                 v-show="item.tId == 1 && tabItem == 'commodityItem'">
+                <img :src="item.placard.split(',')[0]" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
                     <div class="comProTet textOverflow commonFont">
                         {{item.comName}}
@@ -59,8 +63,9 @@
             </div>
 
             <!--农产品类型-->
-            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)" v-show="item.tId == 5 && tabItem == 'commodityItem'">
-                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"
+                 v-show="item.tId == 5 && tabItem == 'commodityItem'">
+                <img :src="item.placard.split(',')[0]" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
                     <div class="comProTet textOverflow commonFont">
                         {{item.comName}}
@@ -75,7 +80,8 @@
             </div>
             <!-- 圈子 -->
             <div class="cirBox isDisplay" v-show="tabItem == 'circleItem'">
-                <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList" :key="index">
+                <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)"
+                     v-for="(item,index) in circleList" :key="index">
                     <div class="cirSubBoxSub cssFlex">
                         <img :src="item.poster" alt="circle" class="circleImg">
                         <div class="cirMain">
@@ -92,7 +98,8 @@
                                 活动地点：{{item.address.split('-')[1]}}-{{item.address.split('-')[2]}}
                             </div>
                             <div class="cirMainTitleNote cssFlex" v-if="item.suggest !== ''">
-                                <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')" :key="index1">{{item1}}</span>
+                                <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')"
+                                      :key="index1">{{item1}}</span>
                             </div>
                             <div class="cirMainTitleNote cssFlex" v-else>
 
@@ -102,7 +109,9 @@
                     <div class="cirSignUser cssFlex">
                         <div class="cirSignUserLeft">
                             <div class="userImgAll cssFlex" :class="item.count == 0 ? 'isDisplay' : ''">
-                                <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer" :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
+                                <img class="allImgCom" :class="`allImg${index2}`"
+                                     v-for="(item2,index2) in item.CircleSummer" :key="index2"
+                                     :src="item2.p_icon.split(',')[0]" alt="">
                                 <!--<img class="allImgCom allImg1" src="../../../image/circle/allSeeIcon.png" alt="">
                                 <img class="allImgCom allImg2" src="../../../image/circle/saoYzIcon.png" alt="">
                                 <img class="allImgCom allImg3" src="../../../image/circle/perManIcon.png" alt="">-->
@@ -116,8 +125,9 @@
                 </div>
             </div>
             <!--旅游   类型-->
-            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"  v-show="item.tId == 2 && tabItem == 'commodityItem'">
-                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"
+                 v-show="item.tId == 2 && tabItem == 'commodityItem'">
+                <img :src="item.placard.split(',')[0]" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
                     <div class="comProTet textOverflow commonFont">
                         {{item.comName}}
@@ -129,8 +139,9 @@
                 </div>
             </div>
             <!--房产  类型-->
-            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"  v-show="item.tId == 3 && tabItem == 'commodityItem'">
-                <img :src="item.placard.split(',')[0]" alt="orderImg"class="comLeftImg">
+            <div class="comMain cssFlex" @click="goodInfoClick(item.cid,item.tId)"
+                 v-show="item.tId == 3 && tabItem == 'commodityItem'">
+                <img :src="item.placard.split(',')[0]" alt="orderImg" class="comLeftImg">
                 <div class="comContent">
                     <div class="comProTet textOverflow commonFont">
                         {{item.comName}}
@@ -143,15 +154,14 @@
             </div>
 
         </div>
+        <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
 
     </div>
 </div>
 
 
-
-
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
@@ -162,7 +172,7 @@
 
 
 <script>
-    var uid,Htmlname;
+    var uid, Htmlname;
     apiready = function () {
         Htmlname = api.pageParam.activeName
         uid = localStorage.getItem("person_id");
@@ -170,101 +180,203 @@
         new Vue({
             el: '#app1',
             data: {
-                person_id:'',
+                person_id: '',
                 listall: [],
                 listpay: [],
                 listnotpay: [],
                 listwait: [],
                 liststar: [],
-                htmlname :Htmlname,
+                htmlname: Htmlname,
                 active: '',
                 status: 1,
                 orderImg: "../../image/chat/touxiangm.png",
-                payStatus:1,    //支付状态
-                goodsStatus:1,  //商品状态
-                fareStatus:1,    //  是否 有  运费状态
-                gootBtnStatus:1,    //  商品 按钮
-
+                payStatus: 1,    //支付状态
+                goodsStatus: 1,  //商品状态
+                fareStatus: 1,    //  是否 有  运费状态
+                gootBtnStatus: 1,    //  商品 按钮
+                notList: false,
+                skip: 1,
+                limit: 6,
+                pages: '',
                 //tabs
-                tabItem:'commodityItem',//circle
+                tabItem: 'commodityItem',//circle
                 isDisplay: false,
-                circleList:[],
+                circleList: [],
 
             },
 
             created: function () {
                 this.person_id = uid
                 this.QueryAttCommodity();
-                this.queryCircleList();
+                // this.queryCircleList();
             },
-            mounted : function (){
+            mounted: function () {
 
             },
             methods: {
-              activeDetail:function (circle_id,MyCreate) {
-                  var that = this
-                  openNewWindow("activeDetail", "../circle/activeDetail.html",{
-                      circle_id : circle_id,
-                      url : "index"
-                  });
-              },
-              queryCircleList : function () {
-                  var that = this
-                  var obj = {
-
-                  }
-                  ajaxGetWithProgress(queryAttentionCircle,obj,function (data) {
-                      //console.log("queryCircleList",data)
-
-                      if (data){
-                          document.querySelector(".cirBox").classList.remove("isDisplay")
-                          that.circleList = data.Circlelist
-                      } else {
-                          toast("请求出错")
-                      }
-                  })
-              },
-              changeTabs:function(tabItem){
-                // if(tabItem == 'circleItem'){
-                //   this.queryCircleList();
-                // }
-                this.tabItem = tabItem;
-              },
-                QueryAttCommodity : function (name,index) {
+                activeDetail: function (circle_id, MyCreate) {
                     var that = this
-                    that.active = name
-                    var obj = {
-                        pid : that.person_id
+                    openNewWindow("activeDetail", "../circle/activeDetail.html", {
+                        circle_id: circle_id,
+                        url: "index"
+                    });
+                },
+
+                changeTabs: function (tabItem) {
+                    if (tabItem == 'circleItem') {
+                        this.queryCircleList();
+                    } else {
+                        this.QueryAttCommodity();
                     }
-                    ajaxGetWithProgress(QueryAttCommodity,obj,function (data) {
-                        //console.log("QueryAttCommodity",data);
-                        if(data && data.AttCommodity){
-                          that.listall = data.AttCommodity;
+                    this.tabItem = tabItem;
+                },
+                // 圈子
+                queryCircleList: function () {
+                    var that = this
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
                         }
-                    })
+                        console.log("obj", obj)
+                        ajaxGet(queryCircleList, obj, function (ret, err) {
+                            api.hideProgress();
+                            console.log("ret", ret)
+                            if (ret && isNotBlack(ret.Circlelist)) {
+                                api.refreshHeaderLoadDone();
+                                that.circleList = ret.Circlelist;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function (ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        console.log("obj11", obj)
+                        if (that.pages >= that.skip) {
+                            that.notList = false
+                            ajaxGet(queryCircleList, obj, function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret", ret)
+                                if (ret && isNotBlack(ret.Circlelist)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.circleList = that.circleList.concat(ret.Circlelist);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        } else {
+                            that.notList = !that.notList
+                        }
+
+
+                    });
+                },
+                // 商品
+                QueryAttCommodity: function () {
+                    var that = this
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                            pid: that.person_id
+                        }
+                        ajaxGet(QueryAttCommodity, obj, function (ret, err) {
+                            api.hideProgress();
+                            console.log("QueryAttCommodity",ret)
+                            if (ret && isNotBlack(ret.AttCommodity)) {
+                                api.refreshHeaderLoadDone();
+                                that.listall = ret.AttCommodity;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function (ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                            pid: that.person_id
+                        }
+                        if (that.pages >= that.skip) {
+                            that.notList = false
+                            ajaxGet(QueryAttCommodity, obj, function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret", ret)
+                                if (ret && isNotBlack(ret.AttCommodity)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.listall = that.listall.concat(ret.AttCommodity);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+                        } else {
+                            that.notList = !that.notList
+                        }
+
+
+                    });
+
                 },
 
                 //  商品详情
-                goodInfoClick : function (cid,tId) {
-                    if (tId == 1){
-                        openNewWindow("index", "./facial/index.html",{
-                            cid : cid,
-                            tId : tId,
+                goodInfoClick: function (cid, tId) {
+                    if (tId == 1) {
+                        openNewWindow("index", "./facial/index.html", {
+                            cid: cid,
+                            tId: tId,
                         })
-                    } else if (tId == 2){
-                        openNewWindow("index", "./ouou/index.html",{
-                            ouId : cid,
-                            tId : tId,
+                    } else if (tId == 2) {
+                        openNewWindow("index", "./ouou/index.html", {
+                            ouId: cid,
+                            tId: tId,
                         });
-                    }else if (tId == 3){
-                        openNewWindow("index", "./hourse/index.html",{
-                            hourseId : cid,
-                            tId : tId,
+                    } else if (tId == 3) {
+                        openNewWindow("index", "./hourse/index.html", {
+                            hourseId: cid,
+                            tId: tId,
                         });
-                    }else if (tId == 5){
-                        openNewWindow("index", "./farmProduce/index.html",{
-                            cid : cid,
-                            tId : tId,
+                    } else if (tId == 5) {
+                        openNewWindow("index", "./farmProduce/index.html", {
+                            cid: cid,
+                            tId: tId,
                         });
                     }
 
