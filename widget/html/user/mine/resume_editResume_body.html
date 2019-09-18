@@ -372,7 +372,7 @@
                         '3': '在职-考虑机会',
                         '4': '在职-暂不考虑',
                     }
-                    document.getElementById('jobHuntingStatus').innerText = statusObj[person_summary.i_status];
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[person_summary.i_status] ? statusObj[person_summary.i_status] : '未选择';
                     document.getElementById('jobHuntingStatus').dataset['status'] = person_summary.i_status;
                 }else {
                     document.getElementById('jobHuntingStatus').innerText = "未选择"

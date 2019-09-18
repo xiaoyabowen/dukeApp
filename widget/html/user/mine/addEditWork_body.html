@@ -139,58 +139,55 @@
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
     var person_id = localStorage.getItem('person_id');
     var sn, w_id;
     apiready = function () {
         sn = api.pageParam.sn;
         w_id = api.pageParam.w_id;
-
-        // console.log(w_id);
-
         var obj = {
-            person_id: person_id
+            person_id: person_id,
+            w_id:w_id
         }
-        ajaxGetWithProgress(GetWork, obj, function (res, err) {
+        ajaxGetWithProgress(getWorkById, obj, function (res, err) {
             // api.alert({mas: JSON.stringify(res)});
-            // console.log(res);
-            if (res && res.working_his) {
-                var msg = res.working_his[--sn];
-                // console.log(msg)
-                document.getElementById("com_name").innerText = msg.com_name || '请输入';
-                document.getElementById("com_type").innerText = msg.com_type || '请输入';
-                document.getElementById("w_from").innerText = msg.w_from || '请输入';
-                document.getElementById("w_to").innerText = msg.w_to || '请输入';
-                document.getElementById("position").innerText = msg.position || '请输入';
-                document.getElementById("role").innerText = msg.role || '请输入';
-                document.getElementById("position_type").innerText = msg.position_type || '请输入';
-                document.getElementById("c_note").innerText = msg.c_note || '请输入';
-
-                var tag = document.querySelector('.info-edit-skill');
-                var tags = [];
-                if ( msg.title){
-                    var title = msg.title.split(',');
-                    // console.log(title);
-                    title.forEach(function (value) {
-                        var str = '<li>'+ value +'</li>';
-                        tags.push(str);
-                    })
-                    var dom = tags.join('');
-                    tag.innerHTML = dom;
-                }
+            if(res){
+                  var msg = res;
+                  document.getElementById("com_name").innerText = res.com_name || '请输入';
+                  document.getElementById("com_type").innerText = res.com_type || '请输入';
+                  document.getElementById("w_from").innerText = res.w_from || '请输入';
+                  document.getElementById("w_to").innerText = res.w_to || '请输入';
+                  document.getElementById("position").innerText = res.position || '请输入';
+                  document.getElementById("role").innerText = res.role || '请输入';
+                  document.getElementById("position_type").innerText = res.position_type || '请输入';
+                  document.getElementById("c_note").innerText = res.c_note || '请输入';
+                  var tag = document.querySelector('.info-edit-skill');
+                  var tags = [];
+                  if ( msg.title){
+                      var title = msg.title.split(',');
+                      // console.log(title);
+                      title.forEach(function (value) {
+                          var str = '<li>'+ value +'</li>';
+                          tags.push(str);
+                      })
+                      var dom = tags.join('');
+                      tag.innerHTML = dom;
+                  }
 
 
-                if (msg.is_open == 'true') {
-                    // alert(456)
-                    document.getElementById('btn').classList.remove('mui-active');
-                } else {
-                    // alert(123)
-                    document.getElementById('btn').classList.add('mui-active');
-                }
+                  if (msg.is_open == 'true') {
+                      // alert(456)
+                      document.getElementById('btn').classList.remove('mui-active');
+                  } else {
+                      // alert(123)
+                      document.getElementById('btn').classList.add('mui-active');
+                  }
 
+              }
             }
+            console.log(res);
         })
 
     };

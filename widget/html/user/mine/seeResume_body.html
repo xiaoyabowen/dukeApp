@@ -93,7 +93,7 @@
                     <span id="working">11</span>年工作经验 / <span id="degree">本科</span> / <span id="age">33</span>岁
                 </p>
                 <p class="see-status" id="jobHuntingStatus">
-                    离职-随时到岗
+
                 </p>
             </div>
             <div class="comLogo comLogoSee">
@@ -104,9 +104,8 @@
         <!-- mui  滑动tab切换-->
         <div class="mui-content">
             <div id="slider" class="mui-slider">
-                <div id="sliderSegmentedControl"
-                     class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-                    <a class="mui-control-item" href="#item1mobile">
+                <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                    <a class="mui-control-item mui-active" href="#item1mobile">
                         在线简历
                     </a>
                     <a class="mui-control-item " href="#item2mobile">
@@ -121,15 +120,6 @@
                     <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
                         <div id="scroll1" class="mui-scroll-wrapper">
                             <div class="mui-scroll">
-                                <!--<ul class="mui-table-view">-->
-                                <!--<li class="mui-table-view-cell">-->
-                                <!--第一个选项卡子项-1-->
-                                <!--</li>-->
-                                <!--<li class="mui-table-view-cell">-->
-                                <!--第一个选项卡子项-2-->
-                                <!--</li>-->
-
-                                <!--</ul>-->
                                 <div class="see-xian-box">
                                     <div class="seeSubTitle">求职期望</div>
                                     <div class="see-hope cssFlex">
@@ -137,7 +127,7 @@
                                             <span class="see-gang" id="work_name"></span>
                                             <span class="see-adress" id="int_city"></span>
                                         </p>
-                                        <span class="see-price" id="pay">10-15k</span>
+                                        <span class="see-price" id="pay"></span>
                                     </div>
                                     <p class="see-choose-hang" id="work"></p>
                                     <div class="seeSubTitle">自我描述</div>
@@ -167,15 +157,7 @@
                                     <div class="seeSubTitle">教育经历</div>
                                     <div id="educations">
                                         未填写
-<!--                                        <div class="see-education cssFlex">-->
-<!--                                            <div class="education-left">-->
-<!--                                                <div class="education-name">北京理工大学</div>-->
-<!--                                                <div class="education-edu">本科 | 营销管理</div>-->
-<!--                                                <div class="education-date">2011年-2015年</div>-->
-<!--                                            </div>-->
-<!--                                            &lt;!&ndash;<img src="../../../image/mine/defalut.png" alt="defult"&ndash;&gt;-->
-<!--                                            &lt;!&ndash;class="edcution-img">&ndash;&gt;-->
-<!--                                        </div>-->
+
                                     </div>
 
                                 </div>
@@ -234,8 +216,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
     </div>
@@ -385,7 +365,7 @@
                         '3': '在职-考虑机会',
                         '4': '在职-暂不考虑',
                     }
-                    document.getElementById('jobHuntingStatus').innerText = statusObj[person_summary.i_status];
+                    document.getElementById('jobHuntingStatus').innerText = statusObj[person_summary.i_status] ? statusObj[person_summary.i_status] : '未填写';
                 }
                 // 求职期望
                 if (Intention) {
@@ -427,7 +407,9 @@
                     var arr = [];
                     var dom = '未填写';
                     var ptLeg = projects.length;
-                    if(ptLeg.length>0){
+                    // console.log(ptLeg);
+                    if(ptLeg>0){
+                      // console.log(ptLeg,'asdasdas');
                         for (var i = 0; i < ptLeg; i++) {
                             var str = '<div class="see-product-box">\n' +
                                 '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
@@ -438,11 +420,11 @@
                         }
 
                         dom = arr.join('');
+                        // console.log(dom,'442')
                     }
                     // console.log(dom);
                     // console.log(project)
                     project.innerHTML = dom;
-                }else{
                 }
                 // 教育经历
                 if (education_his) {
@@ -459,7 +441,6 @@
                                 '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
                                 '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
                                 '                                               </div>\n' +
-                                '                                               <img src="../../../image/mine/defalut.png" alt="defult" class="edcution-img">\n' +
                                 '                                           </div>';
                             arr.push(str);
                         }

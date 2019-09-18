@@ -182,21 +182,33 @@
                         api.hideProgress();
                         // console.log("queryCirclePersonMsgByPid",data)
                         if (data){
+                          var edutime = '';
+                          if(data.edu_from){
+                            edutime += data.edu_from;
+                          }
+
+                          if(data.edu_to){
+                            edutime += ' - ' + data.edu_to;
+                          }
                           that.p_icon = data.p_icon.split(',')[0];
                             that.item = data
                             that.p_name = data.p_name || "未填写"
-                            that.address = data.address.split('-')[1];
+                            that.address = data.address ? data.address.split('-')[1] : '未填写';
                             that.company_name = data.company_name || "未填写"
                             that.job_name = data.job_name || "未填写"
                             that.edu_name = data.edu_name || "未填写"
                             that.edu_level = data.edu_level || "未填写"
-                            that.edu_time = data.edu_from +  ' - ' + data.edu_to || "未填写"
+                            that.edu_time = edutime ? edutime : '未填写'
                             that.edu_type = data.edu_type || "未填写"
-                            that.p_title = data.p_title.split(',')
-                            that.p_birthday = ages(data.p_birthday) + "岁"
+                            that.p_title =  data.p_title ? data.p_title.split(',') : ''
+                            if(data.p_birthday){
+                              that.p_birthday = ages(data.p_birthday) + "岁"
+                            }else{
+                              that.p_birthday = '未填写'
+                            }
+
                         }
                     });
-
                 },
                 editInfo :function () {
                     var that = this

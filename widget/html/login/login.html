@@ -525,6 +525,7 @@
             } else if (data.date == 0) {
                 localStorage.setItem('user', data.user_uid);
                 localStorage.setItem('person_id', data.user_uid);
+                localStorage.setItem('user_phone',data.phone);
                 phoneValue = data.phone
                 openNewWindow("loginComfir", "./loginComfir.html", {
                     phoneValue: phoneValue

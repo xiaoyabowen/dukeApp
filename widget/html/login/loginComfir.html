@@ -212,7 +212,7 @@
 <script>
     var phone, p_icon, url,
         apiready = function () {
-            phone = api.pageParam.phoneValue
+            phone = localStorage.getItem('user_phone');
             url = api.pageParam.url
             //console.log(phone)
             // phone = "15901420539"
