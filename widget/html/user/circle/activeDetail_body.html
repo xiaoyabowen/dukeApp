@@ -175,6 +175,11 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+
 <script>
 
     function reload() {
@@ -251,6 +256,7 @@
                         //console.log("Comment", Comment)
 
                         if (data) {
+                          console.log(data,'259999')
                             document.querySelector(".detailBomBtn").classList.remove("isDisplay")
                             that.poster = circleSummary.poster;
                             that.title = circleSummary.title;

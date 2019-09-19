@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -42,18 +42,19 @@
     var text = document.getElementById('text0')
     var num = document.querySelector('.resume_level2_num');
     var total = document.querySelector('.resume_level2_total');
-    var url;
+    var url,content;
     apiready = function () {
 
         url = api.pageParam.url;
+        // console.log(api.pageParam,'499999999999999');
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
         }
-
+        content = api.pageParam.content;
         if (content == '请填写职位名称'){
-            text = ''
+            text.value = ''
         } else {
-            text = content
+            text.value = content
         }
 
     };
@@ -61,7 +62,8 @@
 
     // 点击保存执行此方法
     function preservation () {
-        var value = text.value;
+        var value = document.getElementById('text0').value;
+        console.log(value);
         if(isBlack(value)){
             toast("请输入姓名");
             return;

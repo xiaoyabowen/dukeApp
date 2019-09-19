@@ -138,8 +138,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -166,6 +166,8 @@
 
     var cid,uid,url,index;
     apiready = function () {
+        console.log(api.pageParam,'1699999');
+
         cid = api.pageParam.cid;
         url = api.pageParam.url;
         index = api.pageParam.index;
@@ -281,18 +283,20 @@
                 this.queryOrgnizationInformation()
             },
             mounted : function (){
-
+                // console.log(this.comscale,'28999')
             },
             methods: {
                 queryOrgnizationInformation : function (){
                     var that = this
+                    // console.log(this.comscale,'29111')
                     if (index == 2){
                         var uid = localStorage.getItem("person_id")
                         var obj = {
                             uid: uid
                         }
+                        // console.log(that.comscale,'296')
                         ajaxGetWithProgress(queryOrgnizationInformation,obj,function (data,ret) {
-                            ////console.log(data)
+                            console.log(data,'297777')
                             if (data){
                                 that.comUploadIn = imgSrcFun(data.logo_icon)
                                 that.homepage = data.homepage
@@ -300,6 +304,18 @@
                                 that.x_time = data.x_time
                                 that.x_time = data.x_time
                                 that.indusListText = data.org_type
+
+                                that.comscaleActive =  that.comscale.findIndex((item,index,arr)=>{ return item.name == data.scale});
+                                that.comscaleText = data.scale;
+
+                                that.indusListActive = that.industry.findIndex((item)=>{ return item.name == data.org_type});
+                                that.indusListText = data.org_type;
+
+                                that.restActive = that.rest.findIndex((item)=>{return item.name == data.break_time});
+                                that.restText = data.break_time;
+
+                                that.overtimeActive = that.overtime.findIndex((item)=>{ return item.name == data.work_overtime});
+                                that.overtimeText = data.work_overtime;
                             } else {
                                 toast("请求出错")
                             }

@@ -123,6 +123,11 @@
 <script type="text/javascript" src="../../../script/city.data-3.js"></script>
 <script>
     var job_id,url,statusD,loginAuthen,company_c_id;
+    var isBackStatus = localStorage.getItem('firmExmStatus');
+    if(isBackStatus == 0){
+        document.querySelector('.changeJue').style.display='none';
+    }
+    localStorage.removeItem('firmExmStatus');
     apiready = function () {
         job_id = api.pageParam.job_id;
         url = api.pageParam.url;
@@ -535,6 +540,8 @@
                 icon:'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/fj4ibaymfva0d38i.png,',
                 company_c_id : company_c_id
             }
+            // console.log(obj,'');
+
             ajaxGetWithProgress(createJobProfile,obj,function (data,ret) {
                 //console.log(data)
                 if (data){

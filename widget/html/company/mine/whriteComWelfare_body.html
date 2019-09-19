@@ -73,8 +73,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -96,8 +96,6 @@
         new Vue({
             el: '#app1',
             data: {
-
-
                 comscaleText :[],//保险 选中的
                 comscale: [
                     {
@@ -158,16 +156,56 @@
             },
             methods: {
                 queryOrgnizationWelfare : function (){
+                    var that = this;
                     if (index == 2){
                         var uid = localStorage.getItem("person_id")
                         var obj = {
                             uid: uid
                         }
                         ajaxGetWithProgress(queryOrgnizationWelfare,obj,function (data,ret) {
-                            //console.log(data)
+                            console.log(data.welfare,'1655555');
+                            var welArray = data.welfare.split(',');
+                            // for(var i = 0; i<welArray.length; i++){
+                            //     for(var j = 0; j<that.comscale.length; j++){
+                            //         if(welArray[i] == that.comscale[j].name){
+                            //             that.comscaleText.push(welArray[i])
+                            //         }
+                            //     }
+                            //     for(var k = 0; k<that.rest.length; k++){
+                            //         if(welArray[i] == that.rest[k].name){
+                            //             that.restText.push(welArray[i])
+                            //         }
+                            //     }
+
+                            //     for(var n = 0; n<that.overtime.length; n++){
+                            //         if(welArray[i] == that.overtime[n].name){
+                            //             that.overtimeText.push(welArray[i]);
+                            //         }
+                            //     }
+
+                            //     for(var m = 0; m<that.lifeHelp.length; m++){
+                            //         if(welArray[i] == that.lifeHelp[m].name){
+                            //             that.lifeText.push(welArray[i]);
+                            //         }
+                            //     }
+                            // }
+                            that.withDrawData(welArray,that.comscale, that.comscaleText);
+                            that.withDrawData(welArray,that.rest, that.restText);
+                            that.withDrawData(welArray,that.overtime, that.overtimeText);
+                            that.withDrawData(welArray,that.lifeHelp, that.lifeText);
+
                         })
                     }
 
+                },
+                withDrawData(outerArr,innerArr,resiveArr){
+                    for(var i = 0; i<outerArr.length; i++){
+                        for(var j = 0; j<innerArr.length; j++){
+                            if(outerArr[i] == innerArr[j].name){
+                                resiveArr.push(outerArr[i]);
+                            }
+                        }
+                    }
                 },
                 comscaleList : function (value,index){   //保险
                     if(this.comscaleText.indexOf( value )!=-1){

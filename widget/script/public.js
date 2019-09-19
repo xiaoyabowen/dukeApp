@@ -7,11 +7,9 @@ var isCleanUser = false;
 
 
 // 本地服务器
-
-
-var serverUrl = "http://192.168.25.1:8000/SE4M/SE";
-var localhostHref = 'http://192.168.25.1:8000/SE4M';
-var Domain = 'http://192.168.25.1:8088';
+var serverUrl = "http://192.168.1.9:8000/SE4M/SE";
+var localhostHref = 'http://192.168.1.9:8000/SE4M';
+var Domain = 'http://192.168.1.9:8088';
 
 
 
@@ -25,11 +23,11 @@ var Domain = 'http://192.168.25.1:8088';
 // 渡客正式服务器
 
 
-/*
-var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
-var localhostHref = 'http://59.110.231.40:25121/SE4M';
-var Domain = 'http://59.110.231.40:25122';
-*/
+//
+// var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
+// var localhostHref = 'http://59.110.231.40:25121/SE4M';
+// var Domain = 'http://59.110.231.40:25122';
+//
 
 
 

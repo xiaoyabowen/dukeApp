@@ -71,9 +71,9 @@
             </div>
         </div>
         <div class="addCards_btn" onclick="nextHandle()">下一步</div>
-        
+
         <div class="changeJue" onclick="changeJueClick()">切换回千里马</div>
-        
+
     </div>
 
 </div>
@@ -226,7 +226,7 @@
                 api.ajax({
                     // report : false,
 
-                    url: 'http://192.168.1.6:8088/upload/UploadFlie',
+                    url: 'http://192.168.1.9:8088/upload/UploadFlie',
 
                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                     method: 'post',
@@ -281,7 +281,7 @@
         localStorage.setItem("fillEmail",document.getElementById("fillEmail").innerText)
         // ajaxGetWithProgress(addRecruiter,obj,function (data,err) {
         // ajaxGetWithProgress('http://192.168.1.6:8000/SE4M/addRecruiter', obj, function (data, err) {
-        ajaxGetWithProgress('http://192.168.1.6:8000/SE4M/addRecruiter', obj, function (data, err) {
+        ajaxGetWithProgress('http://192.168.1.9:8000/SE4M/addRecruiter', obj, function (data, err) {
             if (data){
                 if (data.date == 1){
                     openNewWindow("postsPublish", "./postsPublish.html",{

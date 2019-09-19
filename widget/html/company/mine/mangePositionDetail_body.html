@@ -45,7 +45,7 @@
     </div>
     <div class="line20"></div>
     <div class="boxSub">
-        <div class="mp-maintitle commonFont">福利待遇：</div>
+        <div class="mp-maintitle commonFont">技能要求</div>
         <div class="mp-mainWelf cssFlex">
             <span class="listSpan commonFont" v-for="(item,index) in waeltList" :key="index">{{item}}</span>
         </div>
@@ -78,8 +78,8 @@
 <script src="../../../script/vuex.min.js"></script>
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
 
     var job_id, url, statusD;
@@ -87,7 +87,7 @@
         url = api.pageParam.url;
         job_id = api.pageParam.job_id;
         statusD = api.pageParam.status;
-
+        console.log(api.pageParam);
         new Vue({
             el: '#add_activities',
 
@@ -113,8 +113,9 @@
                     var obj = {
                         job_id: job_id
                     }
+                    console.log(obj)
                     ajaxGetWithProgress(queryJobSummaryJobProfile, obj, function (data, ret) {
-                        //console.log(data)
+                        console.log(data,'17777777');
                         if (data) {
                            var addressTemp = '';
                            if(data.province){
@@ -134,10 +135,9 @@
                             that.posiAddress = addressTemp
                             that.posiDeAddress = data.shortname
                             if (data.skills){
-
-                                that.waeltList = stringFun(data.skills)
+                                that.waeltList = data.skills.split(',');
                             } else{
-                                that.waeltList = ""
+                                that.waeltList = []
                             }
 
                             that.posiMain = data.description

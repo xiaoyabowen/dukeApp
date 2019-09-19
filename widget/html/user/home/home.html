@@ -619,7 +619,8 @@
         // test()
         wx = api.require('wx');
         // initFrameInWin(api.pageParam);
-        var uid = localStorage.getItem("person_id")
+        var uid = localStorage.getItem("person_id");
+        console.log(uid);
         var obj;
         if (uid == null){
 
@@ -632,10 +633,7 @@
 
         // console.log("user", localStorage.getItem("user"))
         api.ajax({
-
-
-            url: 'http://192.168.1.6:8000/SE4M/SE/Login/quRoleType',
-
+            url: 'http://192.168.1.9:8000/SE4M/SE/Login/quRoleType',
             method: 'get',
             cache: 'false',
             timeout: 30,
