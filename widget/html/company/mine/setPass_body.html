@@ -27,11 +27,13 @@
 
 <div class="Box" id="app1">
     <div class="boxSub">
-        <input type="text" class="inputboxSet" v-model="PassInput" placeholder="请输入原密码">
-        <input type="text" class="inputboxSet" v-model="setPassInput" placeholder="请输入新密码">
-        <input type="text" class="inputboxSet" v-model="setPassInputAgain" placeholder="确认密码">
 
-        <div class="postSubBtn" onclick="nextPass()">确认修改</div>
+        <input type="password" class="inputboxSet" v-model="PassInput" placeholder="请输入原密码">
+        <input type="password" class="inputboxSet" v-model="setPassInput" placeholder="请填写新密码">
+        <input type="password" class="inputboxSet" v-model="setPassInputAgain" placeholder="确认密码">
+
+
+        <div class="postSubBtn" @click="nextPass()">确认修改</div>
 
     </div>
 
@@ -40,9 +42,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
-<script src="../../../script/jquery-1.8.1.min.js"></script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
@@ -75,18 +76,52 @@
 
             },
             methods: {
-                /*orgnizationPICBbycidlist : function (){
-                    if (index == 2){
-                        var uid = localStorage.getItem("user").user_id
-                        var obj = {
-                            uid: uid
-                        }
-                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
-                            //console.log(data)
-                        })
+                nextPass : function (){
+                    var that = this;
+
+                    if (isBlack(that.PassInput)) {
+                        toast('请输入原密码');
+                        api.hideProgress();
+                        return;
+                    }
+                    if (isBlack(that.setPassInput)) {
+                        toast('请输入新密码');
+                        api.hideProgress();
+                        return;
+                    }
+                    if (isBlack(that.setPassInputAgain)) {
+                        toast('请再次输入新密码');
+                        api.hideProgress();
+                        return;
                     }
 
-                },*/
+                    if (that.setPassInput !== that.setPassInputAgain) {
+                        toast('两次密码输入不一致');
+                        api.hideProgress();
+                        return;
+                    }
+
+                    var obj = {
+                        newPwd : that.setPassInputAgain,
+                        oldPwd : that.PassInput
+                    }
+                    ajaxGetWithProgress(updatePwd, obj, function (ret, err) {
+                        console.log(ret)
+                        if (ret.return) {
+                            localStorage.clear();
+
+                            openNewWindow('login', "../../login/login.html",{
+                                url : "mineLogin"
+                            });
+                            that.PassInput='';
+                            that.setPassInput='';
+                            that.setPassInputAgain='';
+                        } else {
+                            toast(ret.msg)
+                        }
+                    })
+
+                },
 
             }
         })

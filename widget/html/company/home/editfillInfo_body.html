@@ -196,7 +196,7 @@
                 //上传剪辑后的图像到服务器
                 api.ajax({
 
-                    url: 'http://192.168.1.6:8088/upload/UploadFlie',
+                    url: 'http://192.168.1.9:8088/upload/UploadFlie',
 
                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                     method: 'post',
@@ -242,7 +242,7 @@
         }
         //console.log(obj)
 
-        ajaxGetWithProgress("http://192.168.1.6:8000/SE4M/addRecruiter", obj, function (data, err) {
+        ajaxGetWithProgress("http://192.168.1.9:8000/SE4M/addRecruiter", obj, function (data, err) {
             if (data.date = "1"){
                 //console.log(data)
                 var frameName = urlED + "_body";

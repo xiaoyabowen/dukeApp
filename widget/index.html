@@ -26,6 +26,11 @@
 <script type="text/javascript" src="script/apiCloud.js"></script>
 <script>
 
+    function visitorFun() {
+        alert(1)
+    }
+    setTimeout("visitorFun()",3000);
+
     apiready = function () {
 
         var uid = localStorage.getItem("person_id")
@@ -37,7 +42,7 @@
         api.ajax({
 
 
-            url: 'http://192.168.1.6:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://192.168.1.9:8000/SE4M/SE/Login/quRoleType',
 
             method: 'get',
             cache: 'false',

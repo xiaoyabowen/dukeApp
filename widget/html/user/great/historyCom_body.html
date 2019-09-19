@@ -208,7 +208,6 @@
             created: function () {
                 this.person_id = uid
                 this.QueryAttCommodity();
-                // this.queryCircleList();
             },
             mounted: function () {
 
@@ -247,7 +246,7 @@
                         console.log("obj", obj)
                         ajaxGet(queryCircleList, obj, function (ret, err) {
                             api.hideProgress();
-                            console.log("ret", ret)
+                            console.log("ret22", ret)
                             if (ret && isNotBlack(ret.Circlelist)) {
                                 api.refreshHeaderLoadDone();
                                 that.circleList = ret.Circlelist;
@@ -277,7 +276,7 @@
                             that.notList = false
                             ajaxGet(queryCircleList, obj, function (ret, err) {
                                 api.hideProgress();
-                                console.log("ret", ret)
+                                console.log("ret11", ret)
                                 if (ret && isNotBlack(ret.Circlelist)) {
                                     api.refreshHeaderLoadDone();
                                     that.circleList = that.circleList.concat(ret.Circlelist);
@@ -309,7 +308,7 @@
                         }
                         ajaxGet(QueryAttCommodity, obj, function (ret, err) {
                             api.hideProgress();
-                            console.log("QueryAttCommodity",ret)
+                            console.log("QueryAttCommodity1",ret)
                             if (ret && isNotBlack(ret.AttCommodity)) {
                                 api.refreshHeaderLoadDone();
                                 that.listall = ret.AttCommodity;
@@ -339,7 +338,7 @@
                             that.notList = false
                             ajaxGet(QueryAttCommodity, obj, function (ret, err) {
                                 api.hideProgress();
-                                console.log("ret", ret)
+                                console.log("QueryAttCommodity2", ret)
                                 if (ret && isNotBlack(ret.AttCommodity)) {
                                     api.refreshHeaderLoadDone();
                                     that.listall = that.listall.concat(ret.AttCommodity);

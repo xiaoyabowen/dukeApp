@@ -34,14 +34,14 @@
             >
             <div class="colINfo">
                 <div class="colinfobox cssFlex">
-                    <span class="colinfoboxName">{{item.p_name ? item.p_name : ''}}</span>
+                    <span class="colinfoboxName">{{item.p_name ? item.p_name : '--'}}</span>
                 </div>
                 <div class="coltext commonSub24 cssFlex">
-                    {{item.address ? item.address : '未填写'}}/11年/{{item.degree ? item.degree : ''}}/{{item.p_birthday ? item.p_birthday : ''}}岁
+                    {{item.address ? item.address : '未填写'}}/11年/{{item.degree ? item.degree : '--'}}/{{item.p_birthday ? ages(item.p_birthday) : '--'}}岁
                 </div>
                 <div class="colcomjob cssFlex">
-                    <span class="colcom commonSub24">{{item.com_name ? item.com_name : ''}}</span>
-                    <span class="colposition commonSub24">{{item.work_name ? item.work_name : ''}}</span>
+                    <span class="colcom commonSub24">{{item.com_name ? item.com_name : '--'}}</span>
+                    <span class="colposition commonSub24">{{item.work_name ? item.work_name : '--'}}</span>
                 </div>
                 <div v-if='item.from && item.to' class="colTime commonSub24">
                     {{item.from}}-{{item.to}}
@@ -73,6 +73,7 @@
         </div>
         <div class="line20"></div>
     </div>-->
+    <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
 </div>
 
 
@@ -102,6 +103,10 @@
             el: '#app1',
             data: {
                 cadidate:[],
+                notList: false,
+                skip: 1,
+                limit: 6,
+                pages: '',
             },
             created: function () {
                 this.QueryAttListUserProfile()
@@ -112,14 +117,64 @@
             methods: {
                 QueryAttListUserProfile : function () {
                     var that = this
-                    ajaxGetWithProgress(QueryAttListUserProfile,{},function (data) {
-                        console.log("QueryAttListUserProfile",data)
-                        if (data){
-                            that.cadidate = data.QueryAttList
-                        } else {
-                            toast("请求失败")
+
+
+                    api.setRefreshHeaderInfo({
+                        visible: true,
+                        bgColor: 'rgba(0,0,0,0)',
+                        textColor: '#666',
+                        textDown: '下拉刷新...',
+                        textUp: '松开刷新...'
+                    }, function (ret, err) {
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
                         }
-                    })
+                        ajaxGet(QueryAttListUserProfile, obj, function (ret, err) {
+                            api.hideProgress();
+                            console.log("ret", ret)
+                            if (ret && isNotBlack(ret.QueryAttList)) {
+                                api.refreshHeaderLoadDone();
+                                that.cadidate = ret.QueryAttList;
+                                that.pages = ret.summary.total_pages;
+                            } else {
+                                api.refreshHeaderLoadDone();
+                            }
+                        })
+                    });
+                    api.refreshHeaderLoading();
+
+
+                    api.addEventListener({
+                        name: 'scrolltobottom',
+                        extra: {
+                            threshold: 100 //距离底部距离
+                        }
+                    }, function (ret, err) {
+                        that.skip += 1
+
+                        var obj = {
+                            page_c: that.skip,
+                            lengthofRS: that.limit,
+                        }
+                        if (that.pages >= that.skip) {
+                            that.notList = false
+                            ajaxGet(QueryAttListUserProfile, obj, function (ret, err) {
+                                api.hideProgress();
+                                console.log("ret", ret)
+                                if (ret && isNotBlack(ret.QueryAttList)) {
+                                    api.refreshHeaderLoadDone();
+                                    that.cadidate = that.cadidate.concat(ret.QueryAttList);
+                                } else {
+                                    api.refreshHeaderLoadDone();
+                                }
+                            })
+
+                        } else {
+                            that.notList = !that.notList
+                        }
+                    });
+
                 },
                 candiClick : function (person_id) {
                     var that = this

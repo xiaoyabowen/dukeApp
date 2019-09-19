@@ -7,6 +7,7 @@ var isCleanUser = false;
 
 
 // 本地服务器
+
 var serverUrl = "http://192.168.1.9:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.9:8000/SE4M';
 var Domain = 'http://192.168.1.9:8088';

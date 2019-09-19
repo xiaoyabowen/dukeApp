@@ -215,7 +215,7 @@
 
                 </div>
                 <div class="comLogo comLogoSee">
-                    <img src="../../../image/comLogo.png" alt="comLogo">
+                    <img src="../../../image/comLogo.png" alt="comLogo" id="p_iconLogo">
                 </div>
 
             </div>
@@ -340,11 +340,8 @@
 <script src="common/magicPosition.js"></script>
 <script src="common/magicComPosiAll.js"></script>
 <script src="common/bus.js"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
-
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
 
@@ -525,7 +522,7 @@
 
         ajaxGetWithProgress(QueryPersonRandomOne, {}, function (data, err) {
             // alert(JSON.stringify(data));
-            //console.log("datadata", data);
+            console.log("datadata", data);
             if (data) {
                 document.querySelector('.box').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -542,6 +539,25 @@
                     document.querySelector(".collection").classList.remove("isDisplay")
                     document.querySelector(".collectionHand").classList.add("isDisplay")
 
+                }
+                if (person_summary.i_status == '1') {
+                    //离职-随时到岗
+                    document.querySelector('#work').innerHTML = '离职-随时到岗';
+                } else if (person_summary.i_status == '2') {
+                    document.querySelector('#work').innerHTML = '在职-月内到岗';
+                    //在职-月内到岗
+                } else if (person_summary.i_status == '3') {
+                    document.querySelector('#work').innerHTML = '在职-考虑机会';
+                    //在职-考虑机会
+                } else if (person_summary.i_status == '4') {
+                    document.querySelector('#work').innerHTML = '在职-暂不考虑';
+                    //在职-暂不考虑
+                }
+                // 个人头像
+                if (person_summary.p_icon) {
+                    document.getElementById('p_iconLogo').src = imgSrcFun(person_summary.p_icon);
+                } else {
+                    document.getElementById('p_iconLogo').src = '../../../image/comLogo.png'
                 }
                 // 电话 邮箱
                 if (person_summary) {
@@ -575,6 +591,9 @@
                 } else {
                     document.getElementById('degree').innerText = '未填写'
                 }
+
+
+
                 // 年龄
                 if (person_summary.p_birthday) {
 
@@ -715,8 +734,6 @@
                 }
 
             }
-
-
         });
 
 
@@ -727,7 +744,7 @@
         ajaxGetWithProgress(QueryPerson, {
             person_id: person_id
         }, function (data, err) {
-
+            console.log("data",data)
             if (data) {
                 document.querySelector('.box').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
@@ -735,7 +752,7 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
-
+                $("#personId").html(data.person_summary.person_id)
                 if (person_summary.i_status == '1') {
                     //离职-随时到岗
                     document.querySelector('#work').innerHTML = '离职-随时到岗';
@@ -749,7 +766,12 @@
                     document.querySelector('#work').innerHTML = '在职-暂不考虑';
                     //在职-暂不考虑
                 }
-
+                // 个人头像
+                if (person_summary.p_icon) {
+                    document.getElementById('p_iconLogo').src = imgSrcFun(person_summary.p_icon);
+                } else {
+                    document.getElementById('p_iconLogo').src = '../../../image/comLogo.png'
+                }
                 // 电话 邮箱
                 if (person_summary) {
                     person_summary = person_summary;
@@ -787,21 +809,9 @@
                     var age = ages(person_summary.p_birthday);
                     document.getElementById('age').innerText = age;
                 } else {
-                    document.getElementById('age').innerText = 0
+                    document.getElementById('age').innerText = "--"
                 }
 
-                // 时间转换
-                function ages(str) {
-                    var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-                    if (r == null) return false;
-                    var d = new Date(r[1], r[3] - 1, r[4]);
-                    if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
-                        var Y = new Date().getFullYear();
-                        // return ("年龄   =   " + (Y - r[1]) + "   周岁");
-                        return (Y - r[1]);
-                    }
-                    return ("输入的日期格式错误！");
-                }
 
                 // 自我介绍
                 if (person_summary.p_tags) {
@@ -960,7 +970,6 @@
         }
 
     }
-
 
     //leilei 筛选
     var json = {
@@ -1148,10 +1157,13 @@
             if (data) {
                 api.hideProgress();
                 if (data.status) {
+                    console.log(document.querySelector(".collection"))
+                    console.log(document.querySelector(".collectionHand"))
+                    document.querySelector(".collection").classList.add("isDisplay")
+                    document.querySelector(".collectionHand").classList.remove("isDisplay")
                     toast("收藏成功")
-                    document.querySelector(".collection").classList.remove("isDisplay")
-                    document.querySelector(".collectionHand").classList.add("isDisplay")
-                    window.location.reload()
+
+                    // window.location.reload()
                 }
             }
         });
@@ -1175,9 +1187,8 @@
                 api.hideProgress();
                 if (data.status) {
                     toast("取消收藏")
-                    document.querySelector(".collection").classList.add("isDisplay")
-                    document.querySelector(".collectionHand").classList.remove("isDisplay")
-                    window.location.reload()
+                    document.querySelector(".collection").classList.remove("isDisplay")
+                    document.querySelector(".collectionHand").classList.add("isDisplay")
                 }
             }
         });
