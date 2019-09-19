@@ -785,3 +785,13 @@ img.info-img-right {
 [v-cloak] {
     display: none;
 }
+
+.notListData{
+    text-align: center;
+    color: #333333;
+    font-size: 0.28rem;
+    font-weight: 400;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    margin-bottom: 0.2rem;
+}
