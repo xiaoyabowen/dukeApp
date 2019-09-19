@@ -64,8 +64,8 @@
             font-size: 0.32rem;
         }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
     <div class="Box">
@@ -74,7 +74,10 @@
 
                 <div class="login-input">
                     <div class="input-phone cssFlex">
-                        <input id="password" type="password" placeholder="请使用6-16位的数字以及字母组合">
+                        <input id="pass" type="password" placeholder="请输入原密码">
+                    </div>
+                    <div class="input-phone cssFlex">
+                        <input id="password" type="password" placeholder="请输入新密码">
                     </div>
                     <div class="input-password cssFlex">
                         <input id="againPass" type="password" placeholder="确认密码">
@@ -97,31 +100,45 @@
 
         };
         function editPassBtn() {
-            var params = {};
-            params.newPwd = $api.byId("againPass").value;
-            params.oldPwd = '';
-            var user = localStorage.getItem("user")
-            // console.log(localStorage,'104444444444')
-            var userP = JSON.parse(user)
-            // console.log(userP,'10666666666666')
-            params.token = userP.token;
-
-            if (isBlack(params.newPwd)) {
+            if (isBlack(document.getElementById("pass").value)) {
                 toast('请输入密码');
                 api.hideProgress();
                 return;
             }
-            ajaxGetWithProgress(updatePwd, params, function (ret, err) {
-                // console.log(ret)
+            if (isBlack(document.getElementById("password").value)) {
+                toast('请输入新密码');
+                api.hideProgress();
+                return;
+            }
+            if (isBlack(document.getElementById("againPass").value)) {
+                toast('请再次输入密码');
+                api.hideProgress();
+                return;
+            }
+            if (document.getElementById("password").value !== document.getElementById("againPass").value) {
+                toast('两次输入密码不一致');
+                api.hideProgress();
+                return;
+            }
+            var params = {};
+            params.newPwd = document.getElementById("againPass").value;
+            params.oldPwd = document.getElementById("pass").value;
 
-                if (ret.return && ret.return.status ) {
-                    localStorage.setItem("passStatus","pass")
-                    openNewWindow("setting", "./setting.html")
-                } else if(ret.return && !ret.return.status){
-                    if(ret){
-                        var msg = ret.msg || "服务器错误！";
-                        toast(msg);
-                    }
+
+
+            ajaxGetWithProgress(updatePwd, params, function (ret, err) {
+                console.log(ret)
+
+                if (ret.return) {
+                    localStorage.clear();
+                    openNewWindow('login', "../../login/login.html",{
+                        url : "mineLogin"
+                    });
+                    document.getElementById("pass").value == '';
+                    document.getElementById("password").value == '';
+                    document.getElementById("againPass").value == '';
+                } else {
+                    toast(ret.msg)
                 }
             })
         }

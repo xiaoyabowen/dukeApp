@@ -659,15 +659,7 @@ function ajaxGet(url, params, callBack) {
 
     // 测试用
     var user = localStorage.getItem('user');
-    //console.log(user);
-    // alert(user);
-    // if (!user) {
-    //     api.hideProgress();
-    //     localStorage.clear();
-    //     openNewWindow('login', "../../login/login.html");
-    //     return;
-    // }
-    // params.uid = '1';
+
     if (user) {
         params.uid = localStorage.getItem("person_id")
     }
@@ -700,9 +692,12 @@ function ajaxGet(url, params, callBack) {
 					}
 					api.showProgress();
 					ajaxGetUser(visitorUrl,obj,function(ret,err){
+
+
 						api.hideProgress();
 						if (ret&&ret.success) {//清空本地数据  下一次进来在获取游客身份的时候  还是会把之前选过的考试类型等返回给客户端
-							setUserInfo(ret.data);
+
+                            setUserInfo(ret.data);
 							$api.setStorage("lastTime","");
 							openNewWindow("login","../common/login.html");
 							api.execScript({
@@ -787,6 +782,7 @@ function ajaxGetWithProgress(url, getData, callBack) {
 		callBack(ret, err);
 		api.hideProgress();
 	});
+
 }
 
 
