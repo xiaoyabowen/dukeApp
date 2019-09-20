@@ -97,7 +97,10 @@
                 </p>
             </div>
             <div class="comLogo comLogoSee">
-                <img id="p_icon" src="../../../image/comLogo.png" alt="comLogo">
+                <div style="border-radius:50%;width:1.44rem; height: 1.44rem; display:inline-block;background-image: url(../../../image/comLogo.png);background-size: cover; background-repeat: no-repeat;background-position: center" id="p_icon">
+
+                </div>
+                <!-- <img id="p_icon" src="../../../image/comLogo.png" alt="comLogo"> -->
             </div>
         </div>
         <div class="F9Line"></div>
@@ -292,7 +295,7 @@
                 }
                 // 图片
                 if (person_summary.p_icon) {
-                    document.getElementById('p_icon').src = imgSrcFun(person_summary.p_icon);
+                    document.getElementById('p_icon').style.backgroundImage = 'url('+ imgSrcFun(person_summary.p_icon) +')';
                 }
                 // 公司名称 // 职位
                 if (working_his) {

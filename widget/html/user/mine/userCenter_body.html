@@ -35,7 +35,7 @@
         </div>
         <div class="boxBod">
             <div class="boxbodt">
-                <img style='border-radius:50%' v-if='p_icon' :src="p_icon" alt="img">
+                <div :style="{borderRadius:'50%', width:'2.2rem',height:'2.2rem', backgroundImage:'url('+ p_icon +')',display:'inline-block',backgroundRepeat:'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover'}"></div>
                 <img v-if='!p_icon' src="../../../image/tx.png" alt="img">
             </div>
             <div class="boxbodd cssFlex">

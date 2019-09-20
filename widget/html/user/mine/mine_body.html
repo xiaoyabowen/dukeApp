@@ -24,6 +24,9 @@
                     <h3 class="m-name" style="font-weight: 500" onclick="resume_editResume()">未登录</h3>
                     <p class="m-conpony-name ellipsis" id="com_name">未填写</p>
                     <p class="timeInfo cssFlex">
+                        <!-- <div class="m-adressimg" style='background-image:url(../../../image/mine/adress.png);background-repeat:no-repeat; background-size:cover'>
+
+                        </div> -->
                         <img src="../../../image/mine/adress.png" alt="time" class="m-adressimg">
                         <span class="m-adress" id="province">未定位</span>
                         <img src="../../../image/mine/work.png" alt="date" class="m-zhiweiimg">
@@ -35,7 +38,10 @@
                 </div>
                 <div class="mineInforight">
                     <div class="m-right-id">我是千里马</div>
-                    <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo" onclick="resume_editResume()">
+                    <div id="p_icon" style='display:inline-block;background-image:url();background-repeat:no-repeat; background-size:cover;background-position:center' class="m-img-logo" onclick="resume_editResume()">
+
+                    </div>
+                    <!-- <img id="p_icon" src="../../../image/mine/defalut.png" alt="" class="m-img-logo" onclick="resume_editResume()"> -->
                 </div>
             </div>
 
@@ -159,7 +165,7 @@
                 document.getElementById('com_name').innerText = dataA.company_name || '未填写';
                 document.getElementById('province').innerText = dataA.address || '未定位';
                 document.getElementById('position_type').innerText = dataA.job_name || '未填写';
-                document.getElementById('p_icon').src = dataA.p_icon.split(',')[0];
+                document.getElementById('p_icon').style.backgroundImage = 'url('+dataA.p_icon.split(',')[0]+')';
                 // 查询沟通数量
                 document.getElementById('communicate').innerText = data.chatNum || 0;
                 // 获取面试机会
