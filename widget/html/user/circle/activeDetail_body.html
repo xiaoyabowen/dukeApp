@@ -249,14 +249,10 @@
                         circle_id: that.circle_id
                     }
                     ajaxGetWithProgress(CircleProfileAllinOne, obj, function (data) {
-                        //console.log("CircleProfileAllinOne", data);
                         var circleSummary = data.circleSummary;
                         var Comment = data.Comment;
 
-                        //console.log("Comment", Comment)
-
                         if (data) {
-                          console.log(data,'259999')
                             document.querySelector(".detailBomBtn").classList.remove("isDisplay")
                             that.poster = circleSummary.poster;
                             that.title = circleSummary.title;

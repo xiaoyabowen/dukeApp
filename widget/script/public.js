@@ -14,7 +14,6 @@ var Domain = 'http://192.168.1.9:8088';
 
 
 
-
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 // var localhostHref = 'http://112.126.98.172:8000/SE4M';
@@ -24,11 +23,11 @@ var Domain = 'http://192.168.1.9:8088';
 // 渡客正式服务器
 
 
-//
+
 // var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
 // var localhostHref = 'http://59.110.231.40:25121/SE4M';
 // var Domain = 'http://59.110.231.40:25122';
-//
+
 
 
 

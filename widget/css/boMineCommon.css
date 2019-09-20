@@ -541,6 +541,7 @@ img.colIMg {
     width: 1.2rem;
     height: 1.2rem;
     margin-right: 0.16rem;
+    border-radius: 50%;
 }
 .colinfobox.cssFlex {
     height: 0.66rem;
