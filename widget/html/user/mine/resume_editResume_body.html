@@ -128,8 +128,8 @@
 
     </style>
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -145,7 +145,8 @@
                 <!-- <div class="editResume_information" onclick="editInfo()">编辑基本信息</div> -->
             </div>
             <div class="resume_editResume_head_right">
-                <img id="p_icon" src="../../../image/pro.png" alt="pro" class="p_iconImg">
+                <div id="p_icon" style="display: inline-block; background-image: url(../../../image/pro.png);background-repeat: no-repeat; background-position: center;background-size: cover" class="p_iconImg"></div>
+                <!-- <img id="p_icon" src="../../../image/pro.png" alt="pro" class="p_iconImg"> -->
             </div>
         </div>
 
@@ -301,7 +302,6 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
-<!--<script type="text/javascript" src="../../../script/util.js"></script>-->
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
@@ -315,6 +315,7 @@
     }
     var p_tags, p_title, home_page, url;
     apiready = function () {
+      
         url = api.pageParam.url
         // console.log(url)
         // 获取用户简历全部信息
@@ -345,7 +346,7 @@
 
                 // 图片
                 if (person_summary.p_icon) {
-                    document.getElementById('p_icon').src = imgSrcFun(person_summary.p_icon);
+                    document.getElementById('p_icon').style.backgroundImage = 'url('+ imgSrcFun(person_summary.p_icon) +')';
                 }
 
                 // 自我介绍
@@ -538,14 +539,14 @@
                         values:obj
                     }
                 }, function (ret, err) {
-                    // console.log(123,ret);
+                    console.log(123,ret);
                     var pathImgImg = ret.imgUrl
                     if (pathImgImg == ''){
-                        document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                        document.querySelector(".p_iconImg").style.backgroundImage = document.querySelector(".p_iconImg").style.backgroundImage ? document.querySelector(".p_iconImg").style.backgroundImage :  "url('http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png')"
                     }else{
                         var pathImgData = pathImgImg.split(",")
                         // console.log(pathImgData)
-                        document.querySelector(".p_iconImg").src = pathImgData[0]
+                        document.querySelector(".p_iconImg").style.backgroundImage ='url('+ pathImgData[0] +')'; 
 
                         ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]+','},function (data) {
                             if (data.return.status){
@@ -554,10 +555,7 @@
                                 toast("修改失败")
                             }
                         })
-
-
                     }
-
                     api.hideProgress();
 
                 });

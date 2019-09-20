@@ -20,7 +20,7 @@
         保存
     </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWin()">
+        <div class="leftImgClose" onclick="closeWinClick()">
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
@@ -43,7 +43,15 @@
     apiready = function () {
         initFrameInWin(api.pageParam);
     };
-
+    function closeWinClick() {
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            script : 'reload()'
+        })
+        closeWin();
+    }
     //点击保存
     function save(){
         api.execScript({
