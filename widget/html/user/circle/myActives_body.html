@@ -146,6 +146,7 @@
                                 that.circleList = ret.Circlelist;
                                 that.pages = ret.summary.total_pages;
                             } else {
+                                that.circleList = [];
                                 api.refreshHeaderLoadDone();
                             }
                         })
@@ -175,6 +176,7 @@
                                     api.refreshHeaderLoadDone();
                                     that.circleList = that.circleList.concat(ret.Circlelist);
                                 } else {
+                                    that.circleList = [];
                                     api.refreshHeaderLoadDone();
                                 }
                             })
@@ -204,6 +206,7 @@
                                 that.circleList = ret.Circlelist;
                                 that.pages = ret.summary.total_pages;
                             } else {
+                                that.circleList = [];
                                 api.refreshHeaderLoadDone();
                             }
                         })
@@ -232,6 +235,7 @@
                                     api.refreshHeaderLoadDone();
                                     that.circleList = that.circleList.concat(ret.Circlelist);
                                 } else {
+                                    that.circleList = [];
                                     api.refreshHeaderLoadDone();
                                 }
                             })
