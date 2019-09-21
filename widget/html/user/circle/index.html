@@ -6,40 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>圈子</title>
+    <title>圈子首页</title>
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
-        .headerBox {
-            justify-content: space-between;
+        .searchClick{
+            right: 0.1rem;
         }
-        .oneImgRight,.rightImgEdite {
-            width: 0.4rem;
-            height: 0.34rem;
-            margin-top: -0.8rem;
+        .OneImgRight {
+            margin-top: 0.1rem;
+            width: 0.47rem;
+            height: 0.42rem;
         }
-        .rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
+        .middleHeightTop {
+            height: 0.56rem;
+            align-items: center;
+        }
+        /*leileiStart*/
+        #search-inputTop {
+            display: block;
+            width: 4.25rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            padding: 0 0.12rem 0 1rem;
+            border-radius: 0.28rem;
+            font-weight: 400;
+            color: rgba(153, 153, 153, 1);
+            font-size: 0.24rem;
+            background: url("../../../icon/search.png") no-repeat 0.48rem center, rgba(255, 255, 255, 1);
+            background-size: 0.26rem 0.26rem;
+            margin-bottom: 0 !important;
         }
 
+        #search-inputTop::-webkit-input-placeholder {
+            font-size: 0.28rem;
+            line-height: 0.32rem;
+        }
+          /*leileiEnd*/
     </style>
+
 </head>
 <body>
-<div id="topbar" >
+<!-- <div id="topbar" class="cssFlex">
+    <div class="headerBox cssFlex">
+
+        <div class="middleMain">
+            <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
+            <span class="searchClick">GO</span>
+        </div>
+
+    </div>
+</div> -->
+
+
+<!-- leileiStart -->
+<div id="topbar" class="display">
 
     <div class="headerBox cssFlex">
-        <div onclick="mineGo()">
+        <div class="leftImgClose" onclick="mineGo()" style="margin-top: 0.1rem">
             首页
         </div>
-        <div class="middle_center">
-            活动
-        </div>
-        <div class="rightImgEdite" onclick="signPushActive()">
-            <img class="oneImgRight" src="../../../image/circle/cirSign.png" alt="" >
+        <div class="middleMain">
+            圈子
         </div>
     </div>
 </div>
+<!-- leileiEnd -->
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/util.js"></script>
@@ -51,22 +83,11 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
-    };
-
+    }
     function mineGo() {
+
         openNewWindow("home", "../home/home.html")
     }
-    //发布活动
 
-    function signPushActive(){
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser || uidUser == 'undefined'){
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("publishActivity", "./publishActivity.html",{
-            url:'index'
-        })
-    }
 </script>
 </html>

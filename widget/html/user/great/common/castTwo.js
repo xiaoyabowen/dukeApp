@@ -82,7 +82,7 @@ function castTwoInit(Vue) {
                 });
             },
             facilClick : function () {
-                openNewWindow("index", "facial/index.html");
+                openNewWindow("index", "facial/index1.html");
             },
             togle : function () {
                 toast("切换内容")

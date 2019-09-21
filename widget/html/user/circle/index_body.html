@@ -1,201 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="commonBg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>圈子</title>
+    <title>聊天</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css">
-    <link rel="stylesheet" href="../../../css/circleCommon.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mescroll.js@1.4.1/mescroll.min.css">
+    <link rel="stylesheet" href="../../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../../css/greatCommon.css">
+    <link rel="stylesheet" href="../../../css/mofang.css">
+    <style>
+        .searchClick {
+            right: 0.1rem;
+        }
+        .personJu{
+            position: absolute;
+            top: 6.4rem;
+            right: 0.2rem;
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+    </style>
 </head>
+<body class="commonBg">
 
-<body>
+
+<div class="Box" id="home">
 
 
-<div id="circle" v-cloak class="">
-    <div class="cirBox isDisplay">
-        <div class="cirSubBox" @click="activeDetail(item.circle_id,item.MyCreate)" v-for="(item,index) in circleList"
-             :key="index">
-            <div class="cirSubBoxSub cssFlex">
-                <img :src="item.poster" alt="circle" class="circleImg">
-                <div class="cirMain">
-                    <div class="cirMainTitle commonFont textOverflow">{{item.title}}</div>
-                    <div class="cirMainTitleUser commonSub24 cssFlex">
-                        发起人:
-                        <img :src="item.p_icon.split(',')[0]" alt="userInfoImg" class="userInfoImg"> {{item.cir_name}}
-                    </div>
-                    <div class="cirMainTitleTime commonSub24 cssFlex">
-                        活动时间：{{item.c_from.slice(5,7)}}-{{item.c_from.slice(8,10)}}~{{item.c_to.slice(5,7)}}-{{item.c_to.slice(8,10)}}
-                    </div>
-                    <div class="cirMainTitleAddr commonSub24 cssFlex">
-                        活动地点：{{item.address.split('-')[1]}}-{{item.address.split('-')[2]}}
-                    </div>
-                    <div class="cirMainTitleNote cssFlex" v-if="item.suggest !== ''">
-                        <span :class="`spanNote${index1}`" v-for="(item1,index1) in item.suggest.split(',')"
-                              :key="index1">{{item1}}</span>
-                    </div>
-                    <div class="cirMainTitleNote cssFlex" v-else>
+    <div class="bgBlack" @click="hideBg()"></div>
 
-                    </div>
-                </div>
-            </div>
-
-            <div class="cirSignUser cssFlex">
-                <div class="cirSignUserLeft">
-                    <div class="userImgAll cssFlex" :class="item.count == 0 ? 'isDisplay' : ''">
-                        <img class="allImgCom" :class="`allImg${index2}`" v-for="(item2,index2) in item.CircleSummer"
-                             :key="index2" :src="item2.p_icon.split(',')[0]" alt="">
-                        <!--<img class="allImgCom allImg1" src="../../../image/circle/allSeeIcon.png" alt="">
-
-                    <img class="allImgCom allImg2" src="../../../image/circle/saoYzIcon.png" alt="">
-                    <img class="allImgCom allImg3" src="../../../image/circle/perManIcon.png" alt="">-->
-                    </div>
-                    <div class="cirSignUserNum commonSub24">
-                        {{item.count}}人已报名
-                    </div>
-                </div>
-
-                <div class="signUserBtnCom signUserBtn" v-show="item.MyCreate == false">立即报名</div>
-                <div class="signUserBtnCom signUserBtnMy" v-show="item.MyCreate == true">我的活动</div>
-
+    <div class="great_header_banner swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
+                <img :src="imgSrc.imgSrc"/>
             </div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="notListData" :class="notList ? '' : 'isDisplay'">暂无数据</div>
-</div>
+    <div class="listBox">
+        <img src="../../../image/duke-2.png" class="personJu" alt="person" @click="togle()">
+        <div class="positionComCast positionRate" @click="juClick(item.circle_id,item.id,item.type_name)" v-for="(item,index) in listBox" :key="index">
+            <div class="xuanboxCast " :class="`posiCast${index}`">
+                <div class="daoboxCast">
+                    <!--<img src="../../../image/bigWeigh/lvyouW.png" class="iconImgCast" alt="person">-->
+                    <div class="CastText commonFont">{{item.type_name}}</div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="positionComCast positionRate" @click="juClick(1)">
+            <div class="xuanboxCast posiCast1">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/huazhuangA.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">化妆品</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="juClick(3)">
+            <div class="xuanboxCast posiCast2">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/fangW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">希腊房产</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positionComCast positionRate" @click="juClick(6)">
+            <div class="xuanboxCast posiCast3">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/baoxianW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">保险</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="juClick(8)">
+            <div class="xuanboxCast posiCast4">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/zucheW.png" class="iconImgCast cariconImgCast" alt="person">
+                    <div class="CastText commonFont">租车</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="juClick(5)">
+            <div class="xuanboxCast posiCast5">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/nongW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">农产品</div>
+                </div>
+            </div>
+        </div>
+        <div class="positionComCast positionRate" @click="juClick(7)">
+            <div class="xuanboxCast posiCast6">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/meirongW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">美容</div>
+                </div>
+            </div>
+        </div>-->
+        <div class="positionComCast positionRate" @click="juClick()">
+            <div class="xuanboxCast posiCast7 posiCast7FCC">
+                <div class="daoboxCast">
+                    <img src="../../../image/bigWeigh/xicheW.png" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">洗车券</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 
 </div>
+
 
 <script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/swiper.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
+<script src="../../../script/vuex.min.js"></script>
+<script src="comment/bus.js"></script>
+
 
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
+
 <script>
-    function reload() {
-        window.location.reload()
-    }
-
+    var m_d,winWidth
     apiready = function () {
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
 
-
+        if (winWidth > winHeight / 2){
+            m_d = "1.5"
+        }else {
+            m_d = "1.8"
+        }
         new Vue({
-            el: '#circle',
+            el: '#home',
             data: {
                 isDisplay: false,
-                CommentSta: false,
-                notList: false,
                 person_id: '',
-                skip: 1,
-                limit: 6,
-                pages: '',
-                cirImg: '../../../image/circle/circle01.png',
-                circleList: [],
-
+                active: '',
+                listBox: [],
+                activeAni:true,
+                styles: {
+                    //存放的是 动态修改的样式
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+                stylesMove: {
+                    //存放的是 动态修改的样式
+                    right: m_d + "rem",// 内容标题总样式
+                    top: m_d + "rem",
+                    width: m_d + "rem",// 内容标题总样式
+                    height: m_d + "rem",
+                },
+                imgs: [
+                    {
+                        imgSrc: '../../../image/bigWeigh/mianBan2.png'
+                    },
+                    {
+                        imgSrc: '../../../image/bigWeigh/fangBan3.png'
+                    },
+                    {
+                        imgSrc: '../../../image/bigWeigh/nongBan1.png'
+                    },
+                    {
+                        imgSrc: '../../../image/bigWeigh/lvyouBan3.png'
+                    },
+                ]
             },
             created: function () {
-                this.person_id = localStorage.getItem('person_id');
-                this.queryCircleList()
+                this.CircleTypeMenuSeven()
             },
             mounted: function () {
 
             },
             methods: {
-                activeDetail: function (circle_id, MyCreate) {
-                    var that = this
-                    if (MyCreate == true) {
-                        openNewWindow("manActivity", "./manActivity.html", {
-                            circle_id: circle_id,
-                            url: "index"
-                        });
-                    } else {
-                        openNewWindow("activeDetail", "./activeDetail.html", {
-                            circle_id: circle_id,
-                            url: "index"
-                        });
-                    }
 
+                CircleTypeMenuSeven : function (){
+                    var that = this;
+                    ajaxGetWithProgress(CircleTypeMenuSeven,{},function (data) {
+                        console.log(data)
+                        if (data){
+                            that.listBox = data.CircleTypeMenu;
+                        } else{
+                            toast("请求出错")
+                        }
+                    })
                 },
 
-                queryCircleList: function () {
+                togle: function () {
                     var that = this
-                    api.setRefreshHeaderInfo({
-                        visible: true,
-                        bgColor: 'rgba(0,0,0,0)',
-                        textColor: '#666',
-                        textDown: '下拉刷新...',
-                        textUp: '松开刷新...'
-                    }, function (ret, err) {
-                        var obj = {
-                            page_c: that.skip,
-                            lengthofRS: that.limit,
-                        }
-                        console.log("obj", obj)
-                        ajaxGet(queryCircleList, obj, function (ret, err) {
-                            api.hideProgress();
-                            console.log("ret", ret)
-                            if (ret && isNotBlack(ret.Circlelist)) {
-                                api.refreshHeaderLoadDone();
-                                document.querySelector(".cirBox").classList.remove("isDisplay")
-                                that.circleList = ret.Circlelist;
-                                that.pages = ret.summary.total_pages;
-                            } else {
-                                api.refreshHeaderLoadDone();
-                            }
-                        })
+                    that.activeAni = true
+                    setTimeout(function () {
+                        that.activeAni = false;
+                    }, 1500)
+                },
+                juClick : function (tid,typeid,type_name) {
+                    var circle_id;
+                    if (tid == ''){
+                        circle_id = "37"
+                    } else{
+                        circle_id = tid
+                    }
+                    openNewWindow("activeDetail", "./activeDetail.html", {
+                        url: "index",
+                        circle_id : circle_id,
+                        typeid : typeid,
+                        type_name : type_name,
                     });
-                    api.refreshHeaderLoading();
 
-
-                    api.addEventListener({
-                        name: 'scrolltobottom',
-                        extra: {
-                            threshold: 100 //距离底部距离
-                        }
-                    }, function (ret, err) {
-                        that.skip += 1
-
-                        var obj = {
-                            page_c: that.skip,
-                            lengthofRS: that.limit,
-                        }
-                        console.log("obj11", obj)
-                        if (that.pages >= that.skip) {
-                            that.notList = false
-                            ajaxGet(queryCircleList, obj, function (ret, err) {
-                                api.hideProgress();
-                                console.log("ret", ret)
-                                if (ret && isNotBlack(ret.Circlelist)) {
-                                    api.refreshHeaderLoadDone();
-                                    document.querySelector(".cirBox").classList.remove("isDisplay")
-                                    that.circleList = that.circleList.concat(ret.Circlelist);
-                                } else {
-                                    api.refreshHeaderLoadDone();
-                                }
-                            })
-                        } else {
-                            that.notList = !that.notList
-                        }
-                    });
 
                 }
-
-
             }
         })
     }
+
 </script>
-
 </body>
-
 </html>

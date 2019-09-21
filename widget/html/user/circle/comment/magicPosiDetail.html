@@ -1,0 +1,43 @@
+<div class="magicComBox">
+
+    <!--<img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">-->
+    <div class="magicBox">
+
+        <div class="magicBG magicBGheight cssFlex">
+            <div class="magicBtn magicBtnPosi" v-for="(item,index) in listJob" :key="index"
+                 @click="jobDetailClick(item.job_id,item.job_name,index,item.company_c_id ,item.job_type)"
+                 :class="[index === listJob.length-1 ? 'magicBtnPosiBor' : '',activeAni ? 'animation' : '' ] "
+                 v-bind:style="styles">
+                <div class="magicSubBox cssFlex" v-bind:style="styles">
+                    <div class="magicSubBoxMain">
+                        <!--<img :src="item.icon.split(',')[0]" class="iconImg" alt="person">-->
+                        <div class="magicSize">{{item.title}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="magicBG cssFlex">
+
+            <div class="magicBtn  magicBtnCom " :class="activeAni ? 'animation' : '' " @click="magicCom1Click()">
+                <div class="magicSubBox cssFlex">
+                    <div class="magicSubBoxMain">
+                        <!--<img :src="magicCom1Img" class="iconImg" alt="person">-->
+                        <div class="magicSize">{{magicCom1Text}}</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="magicBtn magicBtnCom  magicBtnPosiBor" @click="magicCom2Click()">
+                <div class="magicSubBox cssFlex">
+                    <div class="magicSubBoxMain">
+                        <!--<img :src="magicCom2Img" class="iconImg" alt="person">-->
+                        <div class="magicSize">{{magicCom2Text}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

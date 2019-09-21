@@ -23,7 +23,6 @@ var Domain = 'http://192.168.1.9:8088';
 // 渡客正式服务器
 
 
-
 // var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
 // var localhostHref = 'http://59.110.231.40:25121/SE4M';
 // var Domain = 'http://59.110.231.40:25122';
@@ -314,6 +313,14 @@ var verificationPhone = serverUrl + "/UserProfile/verificationPhone";
 
 // 头像  修改  我的
 var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
+
+
+// 圈子 首页 七个标签
+var CircleTypeMenuSeven = serverUrl + "/Menu/CircleTypeMenuSeven";
+// 圈子 魔方 首页  点击 一个活动 默认 对应
+var CircleMenu = serverUrl + "/Menu/CircleMenu";
+// 圈子 魔方 点击 一个活动 的四个和一个随机
+var CircleOneType = serverUrl + "/Menu/CircleOneType";
 
 
 // 圈子活动列表

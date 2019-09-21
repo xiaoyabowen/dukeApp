@@ -122,7 +122,7 @@ function magicAllInit(Vue) {
 
                 if (tid == 1){
 
-                    openNewWindow("index", "../facial/index.html", {
+                    openNewWindow("index", "../facial/index1.html", {
                         cid: cid,
                         tId: tid,
                     })
@@ -130,27 +130,27 @@ function magicAllInit(Vue) {
 
                 }else if (tid == 2) {
 
-                    openNewWindow("index", "../ouou/index.html", {
+                    openNewWindow("index", "../ouou/index1.html", {
                         ouId: cid,
                         tId: tid,
                     })
 
                 }else if (tid == 3) {
 
-                    openNewWindow("index", "../hourse/index.html", {
+                    openNewWindow("index", "../hourse/index1.html", {
                         hourseId: cid,
                         tId: tid,
                     })
                 }else if (tid == 4) {
 
-                    openNewWindow("index", "../ouou/index.html", {
+                    openNewWindow("index", "../ouou/index1.html", {
                         cid: cid,
                         tId: tid,
                     })
 
                 }else if (tid == 5) {
 
-                    openNewWindow("index", "../farmProduce/index.html", {
+                    openNewWindow("index", "../farmProduce/index1.html", {
                         cid: cid,
                         tId: tid,
                     })

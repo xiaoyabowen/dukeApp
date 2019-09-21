@@ -70,7 +70,7 @@ function castThreeInit(Vue) {
                 });
             },
             hourser1 : function (id){
-                openNewWindow("index", "../great/hourse/index.html",{
+                openNewWindow("index", "../great/hourse/index1.html",{
                     hourseId : id
                 })
             },

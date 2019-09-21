@@ -52,7 +52,7 @@ function castFourInit(Vue) {
                 });
             },
             Peach : function (){
-                openNewWindow("index", "./farmProduce/index.html", {
+                openNewWindow("index", "./farmProduce/index1.html", {
                     url: 'index'
                 });
             },
