@@ -556,7 +556,7 @@
                     openNewWindow("index", "../great/index.html")
                 },
                 circle: function () {
-                    // openNewWindow("index", "../circle/index.html")
+                    // openNewWindow("index", "../circle/index1.html")
                     // alert(12);
                     // openNewWindow('publishActivity','../circle/publishActivity.html');
                 },
@@ -706,7 +706,7 @@
     }
 
     function otherPageInfo() {
-        api.openFrame({
+        /*api.openFrame({
             name : 'content',
             url : 'https://community.apicloud.com/bbs/forum.php',
             bounces : true,
@@ -720,7 +720,13 @@
         });
         api.sendEvent({
             name : 'frameClient'
-        });
+        });*/
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser) {
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("index", "../chat/index.html")
     }
     searchinputTop = document.getElementById("search-inputTop")
     searchinputTop.onclick = function (e) {

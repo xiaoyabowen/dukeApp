@@ -316,6 +316,14 @@ var verificationPhone = serverUrl + "/UserProfile/verificationPhone";
 var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
 
 
+// 圈子 首页 七个标签
+var CircleTypeMenuSeven = serverUrl + "/Menu/CircleTypeMenuSeven";
+// 圈子 魔方 首页  点击 一个活动 默认 对应
+var CircleMenu = serverUrl + "/Menu/CircleMenu";
+// 圈子 魔方 点击 一个活动 的四个和一个随机
+var CircleOneType = serverUrl + "/Menu/CircleOneType";
+
+
 // 圈子活动列表
 var queryCircleList = serverUrl + "/CircleProfile/queryCircleList";
 // 圈子添加活动

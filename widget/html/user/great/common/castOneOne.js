@@ -55,8 +55,8 @@ function castOneOneInit(Vue) {
                 });
             },
             tourClick : function (ouId) {
-                // openNewWindow("index", "../great/ouou/index.html")
-                openNewWindow("index", "../great/ouou/index.html",{
+                // openNewWindow("index", "../great/ouou/index1.html")
+                openNewWindow("index", "../great/ouou/index1.html",{
                     ouId : ouId
                 });
             },

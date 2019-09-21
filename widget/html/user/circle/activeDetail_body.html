@@ -8,6 +8,7 @@
     <title>我的</title>
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/mofang.css">
     <link rel="stylesheet" href="../../../css/circleCommon.css"/>
     <style>
 
@@ -16,6 +17,16 @@
 <script>eruda.init();</script>-->
 </head>
 <body>
+
+
+<div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
+    <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+    <keep-alive>
+        <component :is="active"></component>
+    </keep-alive>
+</div>
+
 <div id="circle" v-cloak>
     <img :src="poster" alt="" class="deImg">
     <div class="detailBox boxSub">
@@ -175,7 +186,12 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-
+<script src="../../../script/vuex.min.js"></script>
+<script src="comment/magicAll.js"></script>
+<script src="comment/magicCom1.js"></script>
+<script src="comment/magicCom2.js"></script>
+<script src="comment/magicPosiDetail.js"></script>
+<script src="comment/bus.js"></script>
 <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>
 
@@ -185,9 +201,158 @@
     function reload() {
         window.location.reload()
     }
-
+    var h_type, magicBGheight, ms_type, search, magicBox, winWidth, winHeight,
+        a01_w, m_d, magicBtn, magicSubBox, iconImg;
     apiready = function () {
-        new Vue({
+
+        var magicAll = magicAllInit(Vue);
+        var magicCom1 = magicCom1Init(Vue);
+        var magicCom2 = magicCom2Init(Vue);
+        var magicPosiDetail = magicPosiDetailInit(Vue);
+
+        Vue.component('magicAll', magicAll);
+        Vue.component('magicCom1', magicCom1);
+        Vue.component('magicCom2', magicCom2);
+        Vue.component('magicPosiDetail', magicPosiDetail);
+
+
+        winWidth = api.winWidth+30;
+        winHeight = api.winHeight;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
+        a01_w = winWidth;
+
+        //console.log("a01_w", a01_w)
+        //console.log("winWidth/2", winWidth / 2)
+
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
+        //console.log("bevelLength", bevelLength)
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w - 10) * 0.23 - 25;    // 100
+
+        var CircleMa = new Vue({
+            el: '#app1',
+            data: {
+                active: 'magicAll',
+                // 聊天
+                JIM: '',
+                pid_accept: '',         //接收消息者 username
+                pid_name: '',             //接收消息者 name
+                appkey: '',
+                random_str: '',
+                signature: '',
+                timestamp: '',
+                timeIndex: '',
+            },
+            created: function () {
+                this.togle()
+            },
+            mounted: function () {
+
+
+                var that = this
+
+                that.active = store.state.obj.magicCom;
+                api.addEventListener({
+                    name: 'comCom1',
+                }, function (ret, err) {
+                    //console.log("ret", ret);
+                    that.active = ret.value.key.magicCom1;
+                });
+                api.addEventListener({
+                    name: 'comCom2',
+                }, function (ret, err) {
+                    //console.log("ret", ret);
+                    that.active = ret.value.key.magicCom2;
+                });
+
+
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width = winWidth + "px"
+                bgBlack.style.height = winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
+                // 里面小盒子宽度
+                for (var i = 0; i < magicBtn.length; i++) {
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i = 0; i < magicSubBox.length; i++) {
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i = 0; i < iconImg.length; i++) {
+                    iconImg[i].style.width = m_d / 2 + "px"
+                    iconImg[i].style.height = m_d / 2 + "px"
+                }
+
+            },
+            methods: {
+
+                MenuListQyMenu: function () {
+                    var that = this
+                    var obj = {
+
+                    }
+                    ajaxGetWithProgress(CircleMenu, obj, function (data) {
+                        console.log("CircleMenu", data)
+                        var jobList = data.list
+                        if (data) {
+                            if (jobList == null) {
+                                that.listJob = ''
+                            } else {
+                                that.listJob = jobList
+                            }
+
+                            that.magicComCid1 = data.CircleMenu[0].id
+
+                            that.magicCom1Text = data.CircleMenu[0].type_name
+                            that.magicComCid2 = data.CircleMenu[1].id
+
+                            that.magicCom2Text = data.CircleMenu[1].type_name
+
+
+                        }
+
+                    })
+
+                },
+                togle: function () {
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        //console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                    }
+                },
+
+                hideBg: function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
+                },
+
+
+            }
+        })
+
+        var Circle = new Vue({
             el: '#circle',
             data: {
                 preViel : true,
@@ -239,16 +404,29 @@
                 this.CircleProfileAllinOne();
             },
             mounted: function () {
-
+                var that = this
+                api.addEventListener({
+                    name: 'circleAll',
+                }, function (ret, err) {
+                    CircleMa.active = ret.value.key.magicCom;
+                    that.circle_id = ret.value.key.cirId;
+                    console.log(ret.value.key.cirId,"circle_id")
+                    that.CircleProfileAllinOne()
+                });
 
             },
             methods: {
                 CircleProfileAllinOne: function () {
+
                     var that = this;
                     var obj = {
                         circle_id: that.circle_id
                     }
+                    console.log(obj)
                     ajaxGetWithProgress(CircleProfileAllinOne, obj, function (data) {
+
+                        console.log("CircleProfileAllinOne",data)
+
                         var circleSummary = data.circleSummary;
                         var Comment = data.Comment;
 
