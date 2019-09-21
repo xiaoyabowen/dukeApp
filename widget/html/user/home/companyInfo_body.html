@@ -616,7 +616,7 @@
                         for (var i = 0; i < JobList.length; i++) {
                             html2 +=
                               `
-                                <div class="jobBox cssFlex" >
+                                <div onclick='jobClickDetail(${JobList[i].job_id})' class="jobBox cssFlex" >
                                    <div class="job-left">
                                        <h4 class="job-nameNm">${JobList[i].job_name ? JobList[i].job_name : '未填写'}</h4>
                                        <p class="job-name">
@@ -822,6 +822,12 @@
         })
     };
 
+
+    // function toJobDetail(id){
+    //   var job_id = id;
+    //
+    // }
+
     function historysClick() {
         openNewWindow("historySearch", "./historySearch.html", {
             // c_id: s_id,
@@ -834,7 +840,7 @@
             job_id: jobid,
             h_type: 0,
             search: document.querySelector(".jobBox").getAttribute("data-search"),
-            ms_type: 0, // 0 search   1 魔方 进入
+            ms_type: 1, // 0 search   1 魔方 进入
         })
     }
 

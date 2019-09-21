@@ -28,6 +28,22 @@
             margin: 0.2rem 0;
 
         }
+        .mui-table-view-cell>a:not(.mui-btn){
+          color: #333333;
+          font-size: 0.28rem;
+        }
+        /*.mui-input-group .mui-input-row:after{
+          left: 0;
+        }*/
+        .mui-table-view-cell:after{
+          left: 0;
+        }
+        .mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{
+          color: #638BFF;
+        }
+        .mui-table-view-cell.mui-active{
+          background: #fff;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -92,8 +108,8 @@
             </div>
 
 
-
-            <div class="tourism_main">
+            <!-- tabStart -->
+            <!-- <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
                     <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">图文详情</span></div>
                     <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'active' : ''">费用说明</span></div>
@@ -114,7 +130,44 @@
                 <div v-if="activeType == 'uiNatural'">
                     <img v-for="(pic, index) in picListpic3" :key="index" :src="pic.img" class="imgComDetail" alt="">
                 </div>
-            </div>
+            </div> -->
+            <!-- tabEnd -->
+
+            <!-- foldStart -->
+            <ul class="mui-table-view">
+                 <li class="mui-table-view-cell mui-collapse mui-active">
+                     <a class="mui-navigate-right" href="#">手绘地图线路</a>
+                     <div class="mui-collapse-content">
+                         <!-- <p>面板1子内容</p> -->
+                         <img style='width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                     </div>
+                 </li>
+                 <li class="mui-table-view-cell mui-collapse">
+                     <a class="mui-navigate-right" href="#">图文详情</a>
+                     <div class="mui-collapse-content">
+                         <p>面板2子内容</p>
+                     </div>
+                 </li>
+                 <li class="mui-table-view-cell mui-collapse">
+                     <a class="mui-navigate-right" href="#">行程描述</a>
+                     <div class="mui-collapse-content">
+                         <p>面板3子内容</p>
+                     </div>
+                 </li>
+                 <li class="mui-table-view-cell mui-collapse">
+                     <a class="mui-navigate-right" href="#">费用说明</a>
+                     <div class="mui-collapse-content">
+                         <p>面板4子内容</p>
+                     </div>
+                 </li>
+                 <li class="mui-table-view-cell mui-collapse">
+                     <a class="mui-navigate-right" href="#">预订须知</a>
+                     <div class="mui-collapse-content">
+                         <p>面板5子内容</p>
+                     </div>
+                 </li>
+             </ul>
+            <!-- foldEnd -->
         </div>
     </div>
 
@@ -135,8 +188,8 @@
     <script src="../common/magicAll.js"></script>
     <script src="../common/bus.js"></script>
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
 
     </script>
