@@ -15,7 +15,6 @@ var localhostHref = 'http://192.168.1.12:8000/SE4M';
 var Domain = 'http://192.168.1.12:8088';
 
 
-
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
 // var localhostHref = 'http://112.126.98.172:8000/SE4M';
@@ -341,6 +340,9 @@ var joinCircle = serverUrl + "/CircleProfile/joinCircle";
 var queryInvoice = serverUrl + "/CircleProfile/queryInvoice";
 // 圈子活动签到
 var editCircleStatus = serverUrl + "/CircleProfile/editCircleStatus";
+// 圈子活动  审核
+var AuditStatus = serverUrl + "/CircleProfile/AuditStatus";
+
 // 圈子暂停活动
 var updateCircle = serverUrl + "/CircleProfile/updateCircle";
 

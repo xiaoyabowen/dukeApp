@@ -1068,6 +1068,9 @@
 .manPerson .status1{
   color: #FF6A77;
 }
+.manPerson .status2{
+  color: #ff5053;
+}
 .manPerson .oprate{
 
 }
@@ -1080,20 +1083,26 @@
   text-align: center;
   line-height: 0.64rem;
 }
-.manPerson .oprate>div:nth-child(1){
+.oprateYes{
+    /*margin-right: 0.1rem;*/
+}
+.oprateYes,.oprateNo{
+    float: right;
+}
+.oprateDai,.oprateYes,.oprateNo{
   background: #638BFF;
   color: #fff;
-  margin-right: 0.02rem;
+  margin-right: 0.1rem;
 }
 /*.manPerson .oprate div.isSigned{
   background: #ddd;
   color: #fff;
 }*/
-.manPerson .oprate>div:nth-child(2){
+.opratePhone{
   background: #FFBA3E;
   color: #fff;
 }
-.manPerson .oprate>div:nth-child(3){
+.oprateOut{
   background: #fff;
   border:0.02rem solid #638BFF;
   color: #638BFF;
