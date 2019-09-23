@@ -199,11 +199,11 @@
     </style>
 
 </head>
-<body class="commonBg">
+<body class="commonBg" id="app1" @click="hideBg()">
 
 
-<div id="app1">
-    <div class="bgBlack" @click="hideBg()"></div>
+<div>
+    <!--<div class="bgBlack" @click="hideBg()"></div>-->
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <keep-alive>
         <component :is="active"></component>
@@ -775,7 +775,11 @@
         });
     }
 
-
+    var bodyClick = document.getElementsByTagName("body")[0]
+    bodyClick.onclick = function () {
+        alert(111)
+        document.querySelector('.bgBlack').classList.add('isDisplay');
+    }
     // 点击进入发布人主页
     function homePage() {
         openNewWindow("userCenter", "../mine/userCenter.html", {

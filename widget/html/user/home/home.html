@@ -484,33 +484,7 @@
                 // console.log("JIMisConnect",that.JIM.isConnect())
                 that.getSignatureJiGuang()
             },
-            // mounted: function () {
-            //     var that = this
-            //     magicBox = document.querySelector(".magicBox")
-            //     magicBtn = document.getElementsByClassName("magicBtn")
-            //     magicSubBox = document.getElementsByClassName("magicSubBox")
-            //     iconImg = document.getElementsByClassName("iconImg")
-            //     magicBox.style.width = bevelLength * 2 + "px"
-            //     magicBox.style.height = bevelLength + "px"
-            //     var rightYi = bevelLength
-            //     magicBox.style.right = '-' + rightYi + "px"
-            //     // 里面小盒子宽度
-            //     for (var i = 0; i < magicBtn.length; i++) {
-            //         magicBtn[i].style.width = m_d + "px"
-            //         magicBtn[i].style.height = m_d + "px"
-            //     }
-            //     // 里面小盒子宽度
-            //     for (var i = 0; i < magicSubBox.length; i++) {
-            //         magicSubBox[i].style.width = m_d + "px"
-            //         magicSubBox[i].style.height = m_d + "px"
-            //     }
-            //     // 图片宽度
-            //     for (var i = 0; i < iconImg.length; i++) {
-            //         iconImg[i].style.width = m_d / 2 + "px"
-            //         iconImg[i].style.height = m_d / 2 + "px"
-            //     }
-            //
-            // },
+
             methods: {
 
                 togle: function () {
@@ -642,17 +616,17 @@
                 values: {}
             }
         }, function (data, err) {
-            // console.log("ifqshang", data)
-            if(data && data.length > 0){
+            console.log("ifqshang", data)
+            if(data){
               for (var i=0;i<data.data.length;i++){
-                  if (data.data[i].version == "CS" && data.data[i].status == "0"){
-                      document.querySelector(".homeJob").style.display = "block"
-                      document.querySelector(".home-banner").src = "../../../image/homeBanner.png"
-                  }
-                  /*if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
-                      document.querySelector(".homeJob").style.display = "none"
+                  if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
+
+                      var homeBtn = document.querySelector(".homeBtn");
+                      var homeJob = document.querySelector(".homeJob");
+                      homeBtn.removeChild(homeJob);//通过inpu的父对象把它删除
                       document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
-                  }*/
+                  }
+
               }
             }
             api.hideProgress();
