@@ -70,7 +70,9 @@
         color: #666;
       }
       .tagsList .btn{
+
         margin-top:80px;
+
       }
     </style>
 </head>
@@ -148,7 +150,9 @@
                <span>(最多选择三项)</span>
              </div>
              <ul>
+
                <li v-for = '(item,index) in tagList' @click='addTags(item.type_name)' :class = "{selectActive:tagSelect.indexOf( item.type_name ) != -1} ">{{item.type_name}}</li>
+
              </ul>
              <div class="btn">
                <button class="sure" @click='sureBtn'>确认</button>
@@ -212,9 +216,11 @@
 
 
                     tagBlock:false,
+
                     tagList:[], //标签后台数据
                     tagSelect:[],//选择标签
                     tagSelectIndex:'',
+
                 },
                 created: function() {
                     this.person_id = localStorage.getItem('person_id');
@@ -235,6 +241,7 @@
                     this.getTagsData();
                 },
                 methods: {
+
                     getTagsData(){
                       var that = this;
                       ajaxGetWithProgress(circleTypeMenu,{},function(data){

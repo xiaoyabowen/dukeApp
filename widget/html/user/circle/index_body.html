@@ -23,6 +23,15 @@
             width: 1.1rem;
             height: 1.1rem;
         }
+        .daoboxCast{
+            align-items: center;
+            justify-content: center;
+        }
+        .CastTextCom{
+            font-size: 0.36rem !important;
+            margin-top: 0 !important;
+        }
+
     </style>
 </head>
 <body class="commonBg">
@@ -46,9 +55,9 @@
         <img src="../../../image/duke-2.png" class="personJu" alt="person" @click="togle()">
         <div class="positionComCast positionRate" @click="juClick(item.circle_id,item.id,item.type_name)" v-for="(item,index) in listBox" :key="index">
             <div class="xuanboxCast " :class="`posiCast${index}`">
-                <div class="daoboxCast">
+                <div class="daoboxCast cssFlex">
                     <!--<img src="../../../image/bigWeigh/lvyouW.png" class="iconImgCast" alt="person">-->
-                    <div class="CastText commonFont">{{item.type_name}}</div>
+                    <div class="CastText CastTextCom commonFont">{{item.type_name}}</div>
                 </div>
             </div>
         </div>

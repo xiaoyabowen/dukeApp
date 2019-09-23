@@ -46,10 +46,9 @@
     position: absolute;
     transform: rotate(-45deg);
     border-radius: 0.2rem;
-    background: url("../image/bigWeigh/juBg.png") no-repeat center center;
     background-size: 1.8rem 1.8rem;
     /*background:red;*/
-
+    background: url("../image/comBg.png") no-repeat center center;
 }
 
 .daoboxCast{
