@@ -104,56 +104,47 @@ function magicCom1Init(Vue) {
             OneCompanyFourJobMenu: function () {
                 var that = this
 
-                that.magicComCid1 = store.state.obj.c_id
-                that.magicCom1Text = store.state.obj.c_name
-                that.magicCom1Img = store.state.obj.logo_icon
+                console.log(store.state.obj.magicCom1Text)
+                ajaxGetWithProgress(CircleOneType,{type :store.state.obj.magicCom1Text},function (data) {
 
-
-                //console.log("store.state.obj.c_name1", store.state.obj.c_name)
-
-                ajaxGetWithProgress(OneCompanyFourJobMenu, {cid: that.magicComCid1}, function (data) {
-                    //console.log("com1", data)
-
-                    var jobList = data.job
+                    console.log("CircleOneType",data);
+                    var jobList = data.Circlelist
                     if (data) {
-                        api.hideProgress();
-                        if (jobList == null) {
+                        if (jobList == null || jobList == '') {
                             that.listJob = ''
                         } else {
                             that.listJob = jobList
                         }
-
-                        if (data.company[0].logo_icon == '') {
-                            that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                        } else {
-                            that.magicCom2Img = data.company[0].logo_icon
-                        }
-
+                        that.magicCom1Text = data.CircleType.type_name
+                        that.magicCom2Text = store.state.obj.magicCom1Text
 
                     }
+
                 })
             },
-            jobDetailClick: function (job_id, job_name, index, company_c_id, job_type) {
-                //console.log("job_id", job_id)
-                //console.log("job_name", job_name)
+            jobDetailClick: function (circle_id,suggest,title,index) {
+                var that = this
+
+
                 this.timeIndex = index;
+                store.state.obj.magicCom1Text = suggest;
+                store.state.obj.cirId = circle_id;
+                store.state.obj.title = title;
 
 
-                store.state.obj.company_c_id = company_c_id
-                store.state.obj.job_name = job_name
-                store.state.obj.job_type = job_type
-                store.state.obj.job_id = job_id
-
+                console.log("cirId",circle_id)
+                //console.log("indexindex",this.timeIndex)
                 api.sendEvent({
-                    name: 'jobAll',
+                    name: 'circleAll',
                     extra: {
                         key: {
-                            job_id: job_id,
-                            job_name: job_name,
+                            cirId: circle_id,
+                            cir_suggest: suggest,
                             magicCom: 'magicPosiDetail',
                         },
                     }
                 });
+
 
 
             },

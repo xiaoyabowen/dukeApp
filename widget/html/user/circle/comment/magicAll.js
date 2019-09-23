@@ -101,7 +101,9 @@ function magicAllInit(Vue) {
             jobDetailClick: function (circle_id,suggest,title,index) {
 
                 this.timeIndex = index;
-                store.state.obj.type = suggest;
+                console.log("suggest",suggest)
+
+                store.state.obj.magicCom1Text = suggest;
                 store.state.obj.cirId = circle_id;
                 store.state.obj.title = title;
 
@@ -127,9 +129,7 @@ function magicAllInit(Vue) {
                     event.stopPropagation ? event.stopPropagation(): event.cancelBubble = true;
 
                     var obj = {
-                        magicComCid1: that.magicComCid1,
                         magicCom1Text: that.magicCom1Text,
-                        magicCom1Img: that.magicCom1Img,
                         magicCom: 'magicCom2',
                     }
 
@@ -152,9 +152,7 @@ function magicAllInit(Vue) {
                 //console.log("magicComCid2",that.magicComCid2)
 
                 var obj = {
-                    magicComCid1: that.magicComCid2,
                     magicCom1Text: that.magicCom2Text,
-                    magicCom1Img: that.magicCom2Img,
                     magicCom: 'magicCom2',
                 }
 

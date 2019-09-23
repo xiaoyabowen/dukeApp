@@ -100,10 +100,19 @@ function magicPosiDetailInit(Vue) {
                 }, 1500)
             },
             OneCompanyFourJobMenu : function () {
-                var that = this
-                console.log(store.state.obj.suggest)
-                ajaxGetWithProgress(CircleOneType,{type :store.state.obj.suggest},function (data) {
-                    console.log("CircleOneType",data)
+                var that = this;
+                ajaxGetWithProgress(CircleOneType,{type :store.state.obj.magicCom1Text},function (data) {
+
+                    console.log("CircleOneType",data);
+                    var jobList = data.Circlelist
+                    if (data) {
+                        if (jobList == null || jobList == '') {
+                            that.listJob = ''
+                        } else {
+                            that.listJob = jobList
+                        }
+                        that.magicCom1Text = data.CircleType.type_name
+                    }
                     /*var jobList = data.job
                     if (data) {
                         if (jobList == null){
@@ -122,9 +131,8 @@ function magicPosiDetailInit(Vue) {
 
             JobThreeOneCompanyMueu : function () {
                 var that = this
-
                 var obj ={
-                    type : store.state.obj.type,
+                    type : store.state.obj.magicCom1Text,
                     circle_id : store.state.obj.cirId,
                     title : store.state.obj.title,
                     count : "3",
@@ -150,54 +158,33 @@ function magicPosiDetailInit(Vue) {
 
 
                     }
-                    // var jobList = data.job
-                    /*if (data) {
-                        if (jobList == null || jobList == ''){
-                            that.listJob = ''
-                        } else{
-                            that.listJob = jobList
-                        }
-                        that.magicComCid1 = data.company[0].c_id
-                        if (data.company[0].logo_icon == ''){
-                            that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                        } else {
-                            that.magicCom1Img = data.company[0].logo_icon
-                        }
-                        that.magicCom1Text = data.company[0].c_name
-                        that.magicComCid2 = data.company[1].c_id
-                        if (data.company[1].logo_icon == ''){
-                            that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                        } else {
-                            that.magicCom2Img = data.company[1].logo_icon
-                        }
-                        that.magicCom2Text = data.company[1].c_name
 
-                    }*/
                 })
             },
-            jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
+            jobDetailClick: function (circle_id,suggest,title,index) {
                 var that = this
-                //console.log("job_id",job_id)
-                //console.log("job_name",job_name)
+
+
                 this.timeIndex = index;
+                store.state.obj.magicCom1Text = suggest;
+                store.state.obj.cirId = circle_id;
+                store.state.obj.title = title;
 
 
-                store.state.obj.company_c_id = company_c_id
-                store.state.obj.job_name = job_name
-                store.state.obj.job_type = job_type
-                store.state.obj.job_id = job_id
-
-                that.JobThreeOneCompanyMueu()
+                console.log("cirId",circle_id)
+                //console.log("indexindex",this.timeIndex)
                 api.sendEvent({
-                    name: 'jobAll',
+                    name: 'circleAll',
                     extra: {
                         key: {
-                            job_id : job_id,
-                            job_name : job_name,
+                            cirId: circle_id,
+                            cir_suggest: suggest,
                             magicCom: 'magicPosiDetail',
                         },
                     }
                 });
+
+                that.JobThreeOneCompanyMueu()
 
             },
             magicCom1Click: function () {  // 公司1

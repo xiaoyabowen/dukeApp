@@ -38,7 +38,8 @@
                     <div v-if='item.status == 0' class="status status1">未签到</div>
                     <div v-if='item.status == 1' class="status">已签到</div>
                     <div class="oprate">
-                        <div :class='[item.status == 1 ? "isSigned" : ""] ' @click='tosign(item.id,item.status)'>代签</div>
+                        <!--<div :class='[item.status == 1 ? "isSigned" : ""] ' @click='tosign(item.id,item.status)' v-show="item.status == 3">审核</div>-->
+                        <div :class='[item.status == 1 ? "isSigned" : ""] ' @click='tosign(item.id,item.status)' >代签</div>
                         <div @click='telePhone(item.phone)'>电话</div>
                         <div @click='abolish()'>作废</div>
                     </div>
@@ -99,7 +100,7 @@
                         ajaxGetWithProgress(queryAllCirPerson, {
                             circle_id: circleId,
                         }, function(data) {
-                            // //console.log(data,'sss')
+                            console.log(data,'sss')
                             if (data && data.cirPersonList && data.cirPersonList.length > 0) {
                                 that.itemList = data.cirPersonList;
                             }
