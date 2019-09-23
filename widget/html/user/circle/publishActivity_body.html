@@ -13,11 +13,70 @@
     <link rel="stylesheet" href="../../../css/mui.picker.all.css" />
     <link rel="stylesheet" href="../../../css/mui.dtpicker.css" />
     <link rel="stylesheet" href="../../../css/circleCommon.css">
+    <style>
+      .tagsDiv{
+        width: 100%;
+        background: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+      }
+      .tagsList{
+        padding: 0.3rem;
+      }
+      .tagsList .tips{
+        font-size:0.36rem;
+        font-weight: 500;
+        margin: 20px 20px 20px 0;
+        text-align: left;
+      }
+      .tagsList .tips span{
+          color:#999;
+          font-size: 0.28rem;
+      }
+      .tagsList ul li{
+        padding:0.07rem 0.25rem 0.06rem 0.25rem;
+        background: #ddd;
+        display: inline-block;
+        border-radius: 100px;
+        font-size: 0.28rem;
+        color:#638BFF;
+        background: #fff;
+        border: 1px solid #638BFF;
+        box-sizing: border-box;
+        margin: 0.1rem 0.15rem 0.1rem 0.15rem;
+      }
+      .tagsList .selectActive{
+        background: #638BFF;
+        color: #fff;
+      }
+      .tagsList div{
+        text-align: center;
+      }
+      .tagsList div button{
+       width: 70%;
+       height: 0.78rem;
+       border-radius: 8px;
+       border: none;
+       outline: medium;
+       background: #638BFF;
+       color: #fff;
+       font-size: 0.3rem;
+      }
+      .tagsList div .cancel{
+        background: #ddd;
+        margin-top: 10px;
+        color: #666;
+      }
+      .tagsList .btn{
+        margin-top:100px;
+      }
+    </style>
 </head>
 
 <body>
     <div id="informationInit" v-cloak>
-
         <div class="information_head" @click="upImg()">
 
             <div class="information_head_add" v-if="!img"></div>
@@ -38,7 +97,7 @@
             </div>
             <div class="information_item cssFlex">
                 <label>活动标签：</label>
-                <input type="text" v-model="tag" maxlength=80 placeholder="如：免费,社交,美食">
+                <input type="text" @click='openBlock' v-model='tag' readonly maxlength=80 placeholder="请选择">
             </div>
             <div class="information_item cssFlex">
                 <label>人数限制：</label>
@@ -82,6 +141,21 @@
 
             </div>
         </div>
+        <div v-show='tagBlock' class="tagsDiv">
+           <div class="tagsList">
+             <div class='tips'>
+               请选择活动标签
+               <span>(最多选择三项)</span>
+             </div>
+             <ul>
+               <li v-for = '(item,index) in tagList' @click='addTags(item)' :class = "{selectActive:tagSelect.indexOf( item ) != -1} ">{{item}}</li>
+             </ul>
+             <div class="btn">
+               <button class="sure" @click='sureBtn'>确认</button>
+               <button class="cancel" @click='cancelBtn'>取消</button>
+             </div>
+           </div>
+        </div>
     </div>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>
@@ -105,6 +179,9 @@
         var detailData = {};
         var circle_id;
         apiready = function() {
+
+            var winHeight = api.winHeight;
+            document.querySelector('.tagsDiv').style.height = winHeight+'px';
 
             circle_id = api.pageParam.circleId ? api.pageParam.circleId : '';
             url = api.pageParam.url
@@ -133,6 +210,18 @@
 
                     status: '', //活动状态暂停
 
+
+                    tagBlock:false,
+                    tagList:[
+                      '免费',
+                      '品酒',
+                      '加油',
+                      '交友',
+                      '火锅',
+                      '美女'
+                    ], //标签后台数据
+                    tagSelect:[],//选择标签
+                    tagSelectIndex:'a',
                 },
                 created: function() {
                     this.person_id = localStorage.getItem('person_id');
@@ -148,6 +237,27 @@
                     this.getEditData();
                 },
                 methods: {
+                     openBlock(){
+                       this.tagBlock = true;
+                     },
+                     sureBtn(){
+                       this.tagBlock = false;
+                       this.tag = this.tagSelect.join(',');
+                     },
+                     cancelBtn(){
+                       this.tagBlock = false;
+                     },
+                     addTags(item){
+                       if(this.tagSelect.indexOf( item )!=-1){
+                           this.tagSelect.splice( this.tagSelect.indexOf( item ), 1 )
+                       }else{
+                             if(this.tagSelect.length >= 3){
+                                mui.toast('标签最多可以选择三个');
+                             }else{
+                               this.tagSelect.push(item);
+                             }
+                       }
+                    },
                     getEditData: function() {
                         var that = this;
                         this.person_id = localStorage.getItem('person_id');
@@ -166,7 +276,7 @@
                                     that.title = editJson.title;
                                     that.name = editJson.cir_name;
                                     that.phone = editJson.phone;
-                                    that.tag = editJson.suggest;
+
                                     that.num = editJson.number;
                                     that.time_from = editJson.c_from;
                                     that.time_to = editJson.c_to;
@@ -176,6 +286,8 @@
                                     that.editDetails = editJson.details;
                                     that.editCost = editJson.cost;
                                     that.status = editJson.cir_status;
+                                    that.tag = editJson.suggest;
+                                    that.tagSelect = editJson.suggest.split(',');
                                     // 1已暂停
                                     // 0发布中
                                 }
@@ -217,7 +329,7 @@
                                     // report : false,
 
                                     url: 'http://192.168.1.12:8088/upload/UploadFlieTest',
-
+                                    // url:'http://112.126.98.172:8088/upload/UploadFlie?uid=yun',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',
                                     cache: 'false',
@@ -232,9 +344,8 @@
 
                                     }
                                 }, function(data, err) {
-                                    //console.log("data", data);
-                                    api.hideProgress();
                                     if (data.code == 0) {
+                                        api.hideProgress();
                                         that.poster = data.date.src.split(',')[0];
                                     }
                                 });
