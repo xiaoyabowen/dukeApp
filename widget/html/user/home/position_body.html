@@ -369,6 +369,7 @@
     var cn_name;
     var job_name;
     apiready = function () {
+
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
         var magicCom2 = magicCom2Init(Vue);
@@ -434,7 +435,7 @@
         // zbw
 
 
-
+        console.log( api.pageParam,'4388888')
         job_id = api.pageParam.job_id;
         h_type = api.pageParam.h_type;
         ms_type = api.pageParam.ms_type;
@@ -442,19 +443,22 @@
         urlPosition = api.pageParam.url;
         uidUser = localStorage.getItem("user")
         // zbw
-
+        console.log(uidUser,'uid');
         var objData;
         if (!uidUser) {
             objData = {
 
             }
         }else{
-            uid = uidUser.user_uid;
+            uid = uidUser;
             objData = {person_id: uid}
         }
+        console.log(job_id,'455555');
+
         if (job_id) {
             positionDe(job_id, h_type, ms_type, search)
         }else{
+          console.log(objData)
           ajaxGetWithProgress(JobId, objData, function (data, err) {
               console.log(1, data)
               api.hideProgress();
@@ -496,8 +500,19 @@
                   document.getElementById('city').innerText = cityStr;
               }
           })
-
         }
+        api.addEventListener({
+          name:'closePositionWin'
+        },function(ret){
+          console.log(ret,'555555555')
+            var job_id = ret.value.job_id;
+            var h_type = ret.value.h_type;
+            var ms_type = ret.value.ms_type;
+            var serch = ret.value.search;
+            // console.log(job_id,h_type,ms_type,search)
+            // console.log(api.pageParam,'600')
+            positionDe(job_id, h_type, ms_type, search);
+        })
         // console.log(JobId,'33333333333')
         // zbw
         function positionDe(job_id, h_type, ms_type, search) {
@@ -754,6 +769,7 @@
 
     // 点击进入公司详情页面
     function company() {
+
         openNewWindow("companyInfo", "../home/companyInfo.html", {
             cid: cid
         });
