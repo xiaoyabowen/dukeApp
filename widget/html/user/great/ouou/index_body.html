@@ -44,6 +44,12 @@
         .mui-table-view-cell.mui-active{
           background: #fff;
         }
+        .mui-table-view-cell.mui-collapse .mui-collapse-content{
+          padding:0;
+        }
+        .mui-table-view-cell.mui-collapse.mui-active{
+          margin-top: 0;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -56,24 +62,15 @@
             <keep-alive>
                 <component :is="active"></component>
             </keep-alive>
-            <div class="great_header">
-
+            <div class="great_header great_headerBottom">
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
                             <img :src="imgSrc" />
                         </div>
-                        <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
                     </div>
-                    <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                 </div>
-
-
-
-
                 <div class="tourism_title">{{item.comName}}</div>
                 <div class="posire">
                     <div class="great_Price_List cssFlex">
@@ -85,7 +82,6 @@
                         <div class="sellJuOuou" @click="Consultation()"><i class="tripPrice isDisplay">0</i>立即购买</div>
                     </div>
                 </div>
-
                 <div class="ouPersonDetail cssFlex" @click="tripDetail()">
                     <div class="ouPersonDetailText">
                         <div class="commonFont ouPersonLeft cssFlex">
@@ -106,8 +102,6 @@
                     <img src="../../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-
-
             <!-- tabStart -->
             <!-- <div class="tourism_main">
                 <div class="tourism_main_header hourse_main cssFlex">
@@ -132,38 +126,37 @@
                 </div>
             </div> -->
             <!-- tabEnd -->
-
             <!-- foldStart -->
             <ul class="mui-table-view">
                  <li class="mui-table-view-cell mui-collapse mui-active">
                      <a class="mui-navigate-right" href="#">手绘地图线路</a>
                      <div class="mui-collapse-content">
                          <!-- <p>面板1子内容</p> -->
-                         <img style='width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                         <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">图文详情</a>
                      <div class="mui-collapse-content">
-                         <p>面板2子内容</p>
+                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">行程描述</a>
                      <div class="mui-collapse-content">
-                         <p>面板3子内容</p>
+                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">费用说明</a>
                      <div class="mui-collapse-content">
-                         <p>面板4子内容</p>
+                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">预订须知</a>
                      <div class="mui-collapse-content">
-                         <p>面板5子内容</p>
+                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
                      </div>
                  </li>
              </ul>
@@ -198,7 +191,7 @@
 
         var winWidth,winHeight,url
         apiready = function () {
-// 添加安卓退出按钮事件
+            // 添加安卓退出按钮事件
             api.addEventListener({
                 name: 'keyback'
             }, function (ret, err) {
@@ -211,7 +204,7 @@
                 if (backButtonPress > 1) {
                     openNewWindow("index", "../index.html");
                 } else {
-
+                  
                 }
                 setTimeout(function () {
                     backButtonPress = 0;

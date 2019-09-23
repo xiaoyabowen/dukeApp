@@ -42,6 +42,15 @@
             font-size: 0.28rem;
             line-height: 0.32rem;
         }
+        .oneImgRight,.rightImgEdite {
+            width: 0.4rem;
+            height: 0.34rem;
+            margin-top: -0.8rem;
+        }
+        .rightImgEdite {
+            width: 0.3rem;
+            height: 0.3rem;
+        }
           /*leileiEnd*/
     </style>
 
@@ -69,6 +78,9 @@
         <div class="middleMain">
             圈子
         </div>
+        <div class="rightImgEdite" onclick="signPushActive()">
+            <img class="oneImgRight" src="../../../image/circle/cirSign.png" alt="" >
+        </div>
     </div>
 </div>
 <!-- leileiEnd -->
@@ -88,6 +100,15 @@
 
         openNewWindow("home", "../home/home.html")
     }
-
+    function signPushActive(){
+        var uidUser = localStorage.getItem("user")
+        if (!uidUser || uidUser == 'undefined'){
+            openNewWindow("login", "../../login/login.html");
+            return;
+        }
+        openNewWindow("publishActivity", "./publishActivity.html",{
+            url:'index'
+        })
+    }
 </script>
 </html>

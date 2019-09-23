@@ -95,50 +95,60 @@ function magicCom2Init(Vue) {
             },
             OneCompanyFourJobMenu : function () {
                 var that = this
+                console.log(store.state.obj.magicCom1Text)
+                ajaxGetWithProgress(CircleOneType,{type :store.state.obj.magicCom1Text},function (data) {
 
-                that.magicComCid2 = store.state.obj.c_id
-                that.magicCom2Text = store.state.obj.c_name
-                that.magicCom2Img = store.state.obj.logo_icon
+                    console.log("CircleOneType",data);
+                    var jobList = data.Circlelist
+                    if (data) {
+                        if (jobList == null || jobList == '') {
+                            that.listJob = ''
+                        } else {
+                            that.listJob = jobList
+                        }
+                        that.magicCom1Text = data.CircleType.type_name
+                        that.magicCom2Text = store.state.obj.magicCom1Text
 
-                ajaxGetWithProgress(OneCompanyFourJobMenu,{cid :that.magicComCid2},function (data) {
-                    //console.log("com2",data)
-                    var jobList = data.job
+
+                    }
+                    /*var jobList = data.job
                     if (data) {
                         if (jobList == null){
                             that.listJob = ''
                         } else{
                             that.listJob = jobList
                         }
+
+                        that.magicCom1Img =data.company[0].logo_icon
+                        that.magicCom1Text = data.company[0].c_name
                         that.magicComCid1 = data.company[0].c_id
-                        if (data.company[0].logo_icon == ''){
-                            that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                        } else {
-                            that.magicCom1Img = data.company[0].logo_icon
-                        }
-                    }
+
+                    }*/
                 })
             },
-            jobDetailClick: function (job_id, job_name,index,company_c_id,job_type) {
-                //console.log("job_id",job_id)
-                //console.log("job_name",job_name)
+            jobDetailClick: function (circle_id,suggest,title,index) {
+                var that = this
+                console.log("suggest",suggest)
                 this.timeIndex = index;
+                store.state.obj.magicCom1Text = suggest;
+                store.state.obj.cirId = circle_id;
+                store.state.obj.title = title;
 
 
-                store.state.obj.company_c_id = company_c_id
-                store.state.obj.job_name = job_name
-                store.state.obj.job_type = job_type
-                store.state.obj.job_id = job_id
-
+                console.log("cirId",circle_id)
+                //console.log("indexindex",this.timeIndex)
                 api.sendEvent({
-                    name: 'jobAll',
+                    name: 'circleAll',
                     extra: {
                         key: {
-                            job_id : job_id,
-                            job_name : job_name,
+                            cirId: circle_id,
+                            cir_suggest: suggest,
                             magicCom: 'magicPosiDetail',
                         },
                     }
                 });
+
+                that.OneCompanyFourJobMenu()
 
             },
             magicCom1Click: function () {  // 公司1
@@ -152,9 +162,7 @@ function magicCom2Init(Vue) {
                 store.state.obj.logo_icon = that.magicCom1Img*/
 
                 var obj = {
-                    magicComCid1: that.magicComCid1,
                     magicCom1Text: that.magicCom1Text,
-                    magicCom1Img: that.magicCom1Img,
                     magicCom: 'magicCom1',
                 }
 
