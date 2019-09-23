@@ -70,7 +70,7 @@
         color: #666;
       }
       .tagsList .btn{
-        margin-top:100px;
+        margin-top:80px;
       }
     </style>
 </head>
@@ -148,7 +148,7 @@
                <span>(最多选择三项)</span>
              </div>
              <ul>
-               <li v-for = '(item,index) in tagList' @click='addTags(item)' :class = "{selectActive:tagSelect.indexOf( item ) != -1} ">{{item}}</li>
+               <li v-for = '(item,index) in tagList' @click='addTags(item.type_name)' :class = "{selectActive:tagSelect.indexOf( item.type_name ) != -1} ">{{item.type_name}}</li>
              </ul>
              <div class="btn">
                <button class="sure" @click='sureBtn'>确认</button>
@@ -212,16 +212,9 @@
 
 
                     tagBlock:false,
-                    tagList:[
-                      '免费',
-                      '品酒',
-                      '加油',
-                      '交友',
-                      '火锅',
-                      '美女'
-                    ], //标签后台数据
+                    tagList:[], //标签后台数据
                     tagSelect:[],//选择标签
-                    tagSelectIndex:'a',
+                    tagSelectIndex:'',
                 },
                 created: function() {
                     this.person_id = localStorage.getItem('person_id');
@@ -232,13 +225,27 @@
                         this.circleId = param.circleId;
                         //console.log(param.circleId, '124')
                     }
+
                 },
                 mounted: function() {
                     this.getEditData();
+                    // console.log(this.tagList,'234');
                     // circleTypeMenu
                     //获取标签
+                    this.getTagsData();
                 },
                 methods: {
+                    getTagsData(){
+                      var that = this;
+                      ajaxGetWithProgress(circleTypeMenu,{},function(data){
+                          console.log(data,'245555555');
+                          if(data.CircleTypeMenu && data.CircleTypeMenu.length>0){
+                            // console.log(data.circleTypeMenu);
+                            that.tagList = data.CircleTypeMenu;
+                          }
+                      })
+                    },
+
                      openBlock(){
                        this.tagBlock = true;
                      },
