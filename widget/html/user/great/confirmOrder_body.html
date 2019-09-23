@@ -435,7 +435,21 @@
                                 mui.toast('请选择支付方式');
                                 return;
                             } else if (that.bank == '微信') {
-                                var obj = {}
+                                var obj = {
+                                    cId: that.item.cId,
+                                    pId: that.person_id,
+                                    // oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "微信",
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: name + ',' +phone + ',' + address
+
+                                };
+                                console.log("obj",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.12:8088/pay/unifiedorder',  //url+模块
                                     method: 'GET',
@@ -684,7 +698,21 @@
                                 return;
                             } else if (that.bank == '微信') {
 
-                                var obj = {}
+                                var obj = {
+                                    cId: that.item.cId,
+                                    pId: that.person_id,
+                                    // oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    price: that.item.price,
+                                    comName: that.item.comName,
+                                    summary: that.item.summary,
+                                    payType: "微信",
+
+                                    adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
+                                    // adrId: name + ',' +phone + ',' + address
+
+                                };
+                                console.log("obj",obj)
                                 api.ajax({
                                     url: 'http://192.168.1.12:8088/pay/unifiedorder',  //url+模块
                                     method: 'GET',
