@@ -243,6 +243,7 @@
     apiready = function () {
 
 
+
         winWidth = api.winWidth;
         winHeight = api.winHeight;
         a01_w = (winWidth > winHeight / 2) ? winWidth / 2 : winHeight / 2;
@@ -836,6 +837,17 @@
 
     function jobClickDetail(jobid) {
         // console.log("jobid", jobid)
+        // api.closeWin({});
+        api.sendEvent({
+            name: 'closePositionWin',
+            extra: {
+              job_id: jobid,
+              h_type: 0,
+              search: document.querySelector(".jobBox").getAttribute("data-search"),
+              ms_type: 1, // 0 search   1 魔方 进入
+            }
+        });
+
         openNewWindow("position", "./position.html", {
             job_id: jobid,
             h_type: 0,

@@ -57,7 +57,26 @@
         .mui-table-view-cell.mui-collapse.mui-active > .mui-navigate-right:after, .mui-table-view-cell.mui-collapse.mui-active > .mui-push-right:after{
           font-size: 20px;
         }
+<<<<<<< HEAD
+        .ououIndex{
+          position: fixed;
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          justify-content: space-around;
+          height: 60px;
+          background: #fff;
+          z-index:1;
+        }
+        .mui-table-view{
+          padding-bottom: 60px;
+        }
+        .posire{
+          padding-bottom: 0;
+        }
+=======
 
+>>>>>>> ad68ac4c1621ad9fb186e9cd3a4daa94d8be9911
     </style>
 </head>
 <body class="commonBg">
@@ -85,10 +104,10 @@
                         <span class="great_Price">¥{{item.priceRange}}</span>
                         <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
                     </div>
-                    <div class="ououIndex cssFlex">
+                    <!-- <div class="ououIndex cssFlex">
                         <div class="chatJuOuou" @click="callHandle()">客服咨询</div>
                         <div class="sellJuOuou" @click="Consultation()"><i class="tripPrice isDisplay">0</i>立即购买</div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="ouPersonDetail cssFlex" @click="tripDetail()">
                     <div class="ouPersonDetailText">
@@ -110,31 +129,6 @@
                     <img src="../../../../icon/right.png" alt="right" class="info-img-right">
                 </div>
             </div>
-            <!-- tabStart -->
-            <!-- <div class="tourism_main">
-                <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">图文详情</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'active' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'active' : ''">行程描述</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'active' : ''">预订须知</span></div>
-                </div>
-
-                <div id="trip" v-if="activeType == 'trip' && item.introduction">
-                    <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
-                </div>
-                <div v-if="activeType == 'immigrant'">
-                    <img v-for="(pic, index) in picListpic1" :key="index" :src="pic.img" class="imgComDetail" alt="">
-                </div>
-
-                <div v-if="activeType == 'comNatural' && item.intPic">
-                    <img v-for="(pic, index) in picListpic2" :key="index" :src="pic" class="imgComDetail" alt="">
-                </div>
-                <div v-if="activeType == 'uiNatural'">
-                    <img v-for="(pic, index) in picListpic3" :key="index" :src="pic.img" class="imgComDetail" alt="">
-                </div>
-            </div> -->
-            <!-- tabEnd -->
-            <!-- foldStart -->
             <ul class="mui-table-view">
                  <li class="mui-table-view-cell mui-collapse mui-active">
                      <a class="mui-navigate-right" href="#">手绘地图线路</a>
@@ -168,7 +162,10 @@
                      </div>
                  </li>
              </ul>
-            <!-- foldEnd -->
+             <div class="ououIndex cssFlex">
+                 <div class="chatJuOuou" @click="callHandle()">客服咨询</div>
+                 <div class="sellJuOuou" @click="Consultation()"><i class="tripPrice isDisplay">0</i>立即购买</div>
+             </div>
         </div>
     </div>
 
@@ -555,4 +552,3 @@
 
 
     </script>
-<
