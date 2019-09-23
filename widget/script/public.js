@@ -361,7 +361,8 @@ var queryAllSignPerson = serverUrl + "/CircleProfile/queryAllSignPerson";
 // 圈子 活动详情页的立即报名
 var joinCircleCircleProfile = serverUrl + "/CircleProfile/joinCircle";
 
-
+//圈子活动标签
+var circleTypeMenu = serverUrl + "/Menu/CircleTypeMenu";
 
 // 圈子 个人页面
 var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
