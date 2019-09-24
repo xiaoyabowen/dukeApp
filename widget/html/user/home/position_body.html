@@ -196,10 +196,48 @@
         }
 
         /*leilei*/
+        .launchImgBox{
+            width: 7.5rem;
+        }
+        .launchImg{
+            position: fixed;
+
+            max-width: 7.5rem;
+            height: 100%;
+            left: 0;
+            top: 0;
+            object-fit:cover;
+        }
+        .launchImgBox>img{
+            float: left;
+        }
+        .launchImgOne{
+            z-index: 99999999;
+            display: none;
+        }
+        .launchImgTwo{
+            z-index: 99999998;
+            display: none;
+        }
+        .launchImgThree{
+            z-index: 99999997;
+            display: none;
+        }
+        .launchImgFour{
+            z-index: 99999996;
+            display: none;
+        }
     </style>
 
 </head>
 <body class="commonBg" id="app1" @click="hideBg()">
+
+<div class="launchImgBox">
+    <img src="../../../launch/1.png" class="launchImg launchImgOne" id="launchImg" alt="launchImg">
+    <img src="../../../launch/2.png" class="launchImg launchImgTwo" id="launchImg1" alt="launchImg">
+    <img src="../../../launch/3.png" class="launchImg launchImgThree" id="launchImg2" alt="launchImg">
+    <img src="../../../launch/4.png" class="launchImg launchImgFour" id="launchImg3" alt="launchImg">
+</div>
 
 
 <div>
@@ -208,6 +246,7 @@
     <keep-alive>
         <component :is="active"></component>
     </keep-alive>
+
 </div>
 
 <div id="app">
@@ -368,7 +407,42 @@
         a01_w, m_d, magicBtn, magicSubBox, iconImg;
     var cn_name;
     var job_name;
+
     apiready = function () {
+
+
+        var intro_ist = $api.getStorage('introt');
+        if (!intro_ist) {
+
+            launchImgBox()
+
+        }else {
+            alert("notfirst")
+        }
+        function launchImgBox() {
+            var launchImg = document.getElementById("launchImg");
+            var launchImg1 = document.getElementById("launchImg1");
+            var launchImg2 = document.getElementById("launchImg2");
+            var launchImg3 = document.getElementById("launchImg3");
+
+            launchImg.onclick = function () {
+                launchImg.style.display = "none";
+                launchImg1.style.display = "block";
+            }
+            launchImg1.onclick = function () {
+                launchImg1.style.display = "none";
+                launchImg2.style.display = "block";
+            }
+            launchImg2.onclick = function () {
+                launchImg2.style.display = "none";
+                launchImg3.style.display = "block";
+            }
+            launchImg3.onclick = function () {
+                launchImg3.style.display = "none";
+                $api.setStorage('introt',"0");
+            }
+        }
+
 
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
@@ -685,7 +759,26 @@
                         // this.MenuListQyMenu();
                     }
                 },
-
+                /*launchImgOne:function(){
+                    var that = this;
+                    alert(1)
+                    that.launchImgOne = false;
+                    that.launchImgTwo = true;
+                },
+                launchImgTwo:function(){
+                    var that = this;
+                    that.launchImgTwo = false;
+                    that.launchImgThree = true;
+                },
+                launchImgThree:function(){
+                    var that = this;
+                    that.launchImgThree = false;
+                    that.launchImgFour = true;
+                },
+                launchImgFour:function(){
+                    var that = this;
+                    that.launchImgFour = false;
+                },*/
                 hideBg: function () {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');
@@ -695,6 +788,9 @@
 
             }
         })
+
+
+
 
         //leilei-Start
         var app = new Vue({
@@ -775,11 +871,7 @@
         });
     }
 
-    var bodyClick = document.getElementsByTagName("body")[0]
-    bodyClick.onclick = function () {
-        alert(111)
-        document.querySelector('.bgBlack').classList.add('isDisplay');
-    }
+
     // 点击进入发布人主页
     function homePage() {
         openNewWindow("userCenter", "../mine/userCenter.html", {
