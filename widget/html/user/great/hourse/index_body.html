@@ -6,26 +6,29 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>希腊房产</title>
-    <link rel="stylesheet" href="../../../../css/api.css" />
-    <link rel="stylesheet" href="../../../../css/commonWin.css" />
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
     <link rel="stylesheet" href="../../../../css/modal.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
     <link rel="stylesheet" href="../../../../css/mofang.css">
     <style>
-        .tourism_main{
+        .tourism_main {
             background: #fff;
             border-top: 0 !important;
         }
-        .postSubBtn{
+
+        .postSubBtn {
             width: 100%;
         }
-        .imgComDetail{
+
+        .imgComDetail {
             display: block;
             width: 7rem;
         }
-        .great_header{
+
+        .great_header {
             padding-bottom: 0 !important;
             margin-bottom: 0 !important;
         }
@@ -34,416 +37,421 @@
 <body class="commonBg">
 
 
-    <div class="Box">
-        <div id="great" class="isDisplay">
+<div class="Box">
+    <div id="great" class="isDisplay">
 
-            <div class="bgBlack" @click="hideBg()"></div>
-            <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-            <keep-alive>
-                <component :is="active"></component>
-            </keep-alive>
-            <div class="great_header">
+        <div class="bgBlack" @click="hideBg()"></div>
+        <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+        <keep-alive>
+            <component :is="active"></component>
+        </keep-alive>
+        <div class="great_header">
 
-                <div class="great_header_banner swiper-container">
-                    <div class="swiper-wrapper">
-                        <!--<div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
-                            <img :src="imgSrc" />
-                        </div>-->
-                        <div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+            <div class="great_header_banner swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
+                        <img :src="imgSrc.imgSrc"/>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
+
+                    <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
+                    <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                    <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
                 </div>
-
-                <div class="posire">
-                    <div class="tourism_title ellipsis">{{item.comName}}</div>
-                    <div class="juLisellBtn hourseLisellBtn commonFont cssFlex" @click="Consultation()">
-                        我要咨询
-                    </div>
-                </div>
-
-                <div class="hourseBox cssFlex">
-                    <div class="hourseTerm">
-                        <span class="TermOne">{{item.priceY}}</span>
-                        <span class="TermTwo commonSub24">总价（欧元）</span>
-                    </div>
-                    <div class="hourseTerm">
-                        <span class="TermOne">{{item.room}}</span>
-                        <span class="TermTwo commonSub24">室/厅/卫</span>
-                    </div>
-                    <div class="hourseTerm">
-                        <span class="TermOne">{{item.area}}</span>
-                        <span class="TermTwo commonSub24">面积/㎡</span>
-                    </div>
-                </div>
-                <div class="hourcePush commonFont cssFlex">
-                    8月-10月份签约客户赠送1万欧元的家具包
-                </div>
-
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
 
-
-
-            <div class="tourism_main">
-                <div class="tourism_main_header hourse_main cssFlex">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">基本信息</span></div>
-                    <div><span @click="activeHandle('immigrant')" :class="activeType == 'immigrant' ? 'active' : ''">希腊移民</span></div>
-                    <div><span @click="activeHandle('comNatural')" :class="activeType == 'comNatural' ? 'active' : ''">公司资质</span></div>
-                    <div><span @click="activeHandle('uiNatural')" :class="activeType == 'uiNatural' ? 'active' : ''">设计师资质</span></div>
-                </div>
-                <div id="trip" v-if="activeType == 'trip' && item.intPic">
-                    <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
-                </div>
-                <div v-if="activeType == 'immigrant' && item.pic1">
-                    <img v-for="(pic, index) in picListpic1" :key="index" :src="pic" class="imgComDetail" alt="">
-                </div>
-
-                <div v-if="activeType == 'comNatural' && item.pic2">
-                    <img v-for="(pic, index) in picListpic2" :key="index" :src="pic" class="imgComDetail" alt="">
-                </div>
-                <div v-if="activeType == 'uiNatural' && item.pic3">
-                    <img v-for="(pic, index) in picListpic3" :key="index" :src="pic" class="imgComDetail" alt="">
+            <div class="posire">
+                <div class="tourism_title ellipsis">{{item.comName}}</div>
+                <div class="juLisellBtn hourseLisellBtn commonFont cssFlex" @click="Consultation()">
+                    我要咨询
                 </div>
             </div>
 
-            <div id="dialogBg" @click="hiddialog()"></div>
-            <div id="dialog" class="animated">
-
-                <div class="inputValue">
-                    <p class="cssFlex">
-                        <label><i>*</i>姓   名:</label>
-                        <input type="text" class="inputModal" v-modal="username" placeholder="请填写您的姓名">
-                    </p>
-                    <p class="cssFlex">
-                        <label><i>*</i>手机号:</label>
-                        <input type="number" class="inputModal" v-modal="userphone"  placeholder="请填写您的手机号">
-                    </p>
-                    <p class="cssFlex">
-                        <label><i></i>微信号:</label>
-                        <input type="text" class="inputModal" v-modal="userwx"  placeholder="请填写您的微信号">
-                    </p>
-                    <p class="cssFlex">
-                        <label><i></i>资讯内容:</label>
-                        <textarea name="" class="areaModal" v-modal="usermain"  placeholder="请填写您的资讯内容"></textarea>
-                    </p>
+            <div class="hourseBox cssFlex">
+                <div class="hourseTerm">
+                    <span class="TermOne">{{item.priceY}}</span>
+                    <span class="TermTwo commonSub24">总价（欧元）</span>
                 </div>
-
-                <div class="postSubBtn" @click="submitImg()">提交咨询</div>
+                <div class="hourseTerm">
+                    <span class="TermOne">{{item.room}}</span>
+                    <span class="TermTwo commonSub24">室/厅/卫</span>
+                </div>
+                <div class="hourseTerm">
+                    <span class="TermOne">{{item.area}}</span>
+                    <span class="TermTwo commonSub24">面积/㎡</span>
+                </div>
             </div>
-            <!--<component is="magicCube"></component>-->
+            <div class="hourcePush commonFont cssFlex">
+                8月-10月份签约客户赠送1万欧元的家具包
+            </div>
+
         </div>
+
+
+        <div class="tourism_main">
+            <div class="tourism_main_header hourse_main cssFlex">
+                <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">基本信息</span></div>
+                <div><span @click="activeHandle('immigrant')"
+                           :class="activeType == 'immigrant' ? 'active' : ''">希腊移民</span></div>
+                <div><span @click="activeHandle('comNatural')"
+                           :class="activeType == 'comNatural' ? 'active' : ''">公司资质</span></div>
+                <div><span @click="activeHandle('uiNatural')"
+                           :class="activeType == 'uiNatural' ? 'active' : ''">设计师资质</span></div>
+            </div>
+            <div id="trip" v-if="activeType == 'trip' && item.intPic">
+                <img v-for="(pic, index) in picList" :key="index" :src="pic" class="imgComDetail" alt="">
+            </div>
+            <div v-if="activeType == 'immigrant' && item.pic1">
+                <img v-for="(pic, index) in picListpic1" :key="index" :src="pic" class="imgComDetail" alt="">
+            </div>
+
+            <div v-if="activeType == 'comNatural' && item.pic2">
+                <img v-for="(pic, index) in picListpic2" :key="index" :src="pic" class="imgComDetail" alt="">
+            </div>
+            <div v-if="activeType == 'uiNatural' && item.pic3">
+                <img v-for="(pic, index) in picListpic3" :key="index" :src="pic" class="imgComDetail" alt="">
+            </div>
+        </div>
+
+        <div id="dialogBg" @click="hiddialog()"></div>
+        <div id="dialog" class="animated">
+
+            <div class="inputValue">
+                <p class="cssFlex">
+                    <label><i>*</i>姓 名:</label>
+                    <input type="text" class="inputModal" v-modal="username" placeholder="请填写您的姓名">
+                </p>
+                <p class="cssFlex">
+                    <label><i>*</i>手机号:</label>
+                    <input type="number" class="inputModal" v-modal="userphone" placeholder="请填写您的手机号">
+                </p>
+                <p class="cssFlex">
+                    <label><i></i>微信号:</label>
+                    <input type="text" class="inputModal" v-modal="userwx" placeholder="请填写您的微信号">
+                </p>
+                <p class="cssFlex">
+                    <label><i></i>资讯内容:</label>
+                    <textarea name="" class="areaModal" v-modal="usermain" placeholder="请填写您的资讯内容"></textarea>
+                </p>
+            </div>
+
+            <div class="postSubBtn" @click="submitImg()">提交咨询</div>
+        </div>
+        <!--<component is="magicCube"></component>-->
     </div>
+</div>
 
 
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
+
+<script src="../../../../script/vue.min.js"></script>
+<script src="../../../../script/vuex.min.js"></script>
 
 
-    <script type="text/javascript" src="../../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
-    <script type="text/javascript" src="../../../../script/mui.min.js"></script>
-    <script src="../../../../script/swiper.min.js"></script>
-    <script type="text/javascript" src="../../../../script/data.js"></script>
-
-    <script src="../../../../script/vue.min.js"></script>
-    <script src="../../../../script/vuex.min.js"></script>
+<script src="../common/magicAll.js"></script>
+<script src="../common/bus.js"></script>
 
 
-
-    <script src="../common/magicAll.js"></script>
-    <script src="../common/bus.js"></script>
-
-
-
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>-->
-    <script>
 
-    </script>
+<script>
 
-    <script>
+    var winWidth, winHeight
+    apiready = function () {
+        // 添加安卓退出按钮事件
 
-        var winWidth,winHeight
-        apiready = function () {
-            // 添加安卓退出按钮事件
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
 
-            api.addEventListener({
-                name: 'keyback'
-            }, function (ret, err) {
-                closeOnKeyBack();
-            });
-            var backButtonPress = 0;
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                openNewWindow("index", "../index.html");
+            } else {
 
-            function closeOnKeyBack() {
-                backButtonPress++;
-                if (backButtonPress > 1) {
-                    openNewWindow("index", "../index.html");
-                } else {
-
-                }
-                setTimeout(function () {
-                    backButtonPress = 0;
-                }, 1000);
             }
-
-            var magicAll = magicAllInit(Vue);
-            Vue.component('magicAll', magicAll);
-
-
-            winWidth = api.winWidth;
-            winHeight = api.winHeight;
-            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-            // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
-            a01_w = winWidth;
-            // 斜边长
-            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            //console.log("bevelLength",bevelLength)
-            // width_d=(screen_w-20) *2/5 - 5;
-            m_d = (a01_w-10)*0.23-25;    // 100
-            // getSrceenWH(winWidth,winHeight)
-            new Vue({
-                el: '#great',
-                data: {
-                    activeType: 'trip',
-                    item: {},
-                    list: [],
-                    len: 1,
-                    total: 0,
-                    picList: [],
-                    picListpic1: [],
-                    picListpic2: [],
-                    picListpic3: [],
-                    imgs: [],
-                    att: false,
-                    att_id: '',
-                    person_id: '',
-                    hourseId: '',
-                    active:'magicAll',
-                    cid: '',
-                    data: '',
-                    username: '',
-                    userphone: '',
-                    userwx: '',
-                    usermain: '',
-                    showModal : false,
-                    listJob: [],
-
-                },
-                created: function () {
-                    this.person_id = localStorage.getItem('person_id');
-                    this.hourseId = api.pageParam.hourseId;
-                    this.tId = api.pageParam.tId;
-                    this.housequeryHouseSummary();
-                },
-                mounted: function () {
-                    var that = this
-                    document.getElementById('great').classList.remove('isDisplay');
-                    this.isDisplay = true;
-                    //获得slider插件对象
-                    var swiper = new Swiper('.swiper-container', {
-                        pagination: {
-                            el: '.swiper-pagination',
-                        },
-                        autoplay:true,
-                    });
-                    that.active = store.state.obj.magicCom;
-                    api.addEventListener({
-                        name: 'comCom1',
-                    }, function(ret, err) {
-                        //console.log("ret",ret);
-                        that.active = ret.value.key.magicCom1;
-
-                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
-                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
-                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
-                    });
-                    api.addEventListener({
-                        name: 'comCom2',
-                    }, function(ret, err) {
-                        //console.log("ret",ret);
-                        that.active = ret.value.key.magicCom2;
-
-                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
-                    });
-                    //console.log("that.tId1234",'jobAll'+that.tId)
-                    api.addEventListener({
-                        name: 'jobAll'+that.tId,
-                    }, function(ret, err) {
-                        // //console.log("ret",ret);
-                        that.hourseId = ret.value.key.cid
-                        that.housequeryHouseSummary()
-
-                    });
-
-                    magicBox = document.querySelector(".magicBox")
-                    bgBlack = document.querySelector(".bgBlack")
-
-                    magicBtn = document.getElementsByClassName("magicBtn")
-                    magicSubBox = document.getElementsByClassName("magicSubBox")
-                    iconImg = document.getElementsByClassName("iconImg")
-                    magicBox.style.width = bevelLength * 2 + "px"
-                    magicBox.style.height = bevelLength + "px"
-                    var rightYi = bevelLength
-                    magicBox.style.right = '-' + rightYi + "px"
-                    bgBlack.style.width =winWidth + "px"
-                    bgBlack.style.height =winHeight + "px"
-
-                    magicBGheight = document.querySelector(".magicBGheight")
-                    magicBGheight.style.height = m_d + "px"
-                    // 里面小盒子宽度
-                    for (var i =0;i<magicBtn.length ; i++){
-                        magicBtn[i].style.width = m_d + "px"
-                        magicBtn[i].style.height = m_d + "px"
-                    }
-                    // 里面小盒子宽度
-                    for (var i =0;i<magicSubBox.length ; i++){
-                        magicSubBox[i].style.width = m_d + "px"
-                        magicSubBox[i].style.height = m_d + "px"
-                    }
-                    // 图片宽度
-                    for (var i =0;i<iconImg.length ; i++){
-                        iconImg[i].style.width = m_d/2 + "px"
-                        iconImg[i].style.height = m_d/2 + "px"
-                    }
-                },
-
-                methods: {
-                    // 获取数据
-                    housequeryHouseSummary: function () {
-                        var that = this;
-                        ajaxGetWithProgress(housequeryHouseSummary, {
-                            cid: that.hourseId,
-                            pid: that.person_id
-                        }, function (data, err) {
-                            //console.log(data);
-                            that.item = data.comm
-                            that.picList = stringFun(data.comm.intPic)
-                            that.picListpic1 = stringFun(data.comm.pic1)
-                            that.picListpic2 = stringFun(data.comm.pic2)
-                            that.picListpic3 = stringFun(data.comm.pic3)
-                            //console.log(that.picList)
-
-                        });
-                    },
-                    // 切换tab
-                    activeHandle: function (activeType) {
-                        //console.log(activeType)
-                        this.activeType = activeType;
-                    },
-                    // 办理签证
-                    // 立即咨询
-                    Consultation: function () {
-                        $('#dialogBg').fadeIn(300);
-                        $('#dialog').removeAttr('class').addClass('animated flipInX').fadeIn();
-                        /*$('#dialogBg').width(winWidth).height(winHeight);
-
-                        $('#dialogBg').fadeIn(300);
-                        $('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
-                        //显示弹框
-                        $('.box a').click(function(){
-                            className = $(this).attr('class');
-                            $('#dialogBg').fadeIn(300);
-                            $('#dialog').removeAttr('class').addClass('animatedflipInX').fadeIn();
-                        });
-                        //关闭弹窗
-                        $('.claseDialogBtn').click(function(){
-                            $('#dialogBg').fadeOut(300,function(){
-                                $('#dialog').addClass('bounceOutUp').fadeOut();
-                            });
-                        });*/
-                    },
-                    hiddialog : function (){
-                        $('#dialogBg').fadeOut(300,function(){
-                            $('#dialog').fadeOut();
-                        });
-                    },
-
-                    submitImg : function () {
-                        var that = this
-                        var obj = {
-                            cid : '9',
-                            pid : that.person_id,
-                            name : that.username,
-                            phone : that.userphone,
-                            wechat : that.userwx,
-                            summary : that.usermain,
-                        }
-                        ajaxGetWithProgress(createHouseOrderhouse,obj,function (data) {
-                            //console.log(data)
-                            if (data.data){
-                                toast("提交成功")
-                                that.username = ''
-                                that.userphone = ''
-                                that.userwx = ''
-                                that.usermain = ''
-                                $('#dialogBg').fadeOut(300,function(){
-                                    $('#dialog').fadeOut();
-                                });
-                            }
-                        })
-                    },
-                    commodityList : function (){
-                        var that = this
-                        //console.log("that.tId",that.tId)
-                        ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                            //console.log("commodityList11",data)
-                            var jobList = data.comList
-                            //console.log(jobList)
-                            if (data) {
-                                if (jobList == null) {
-                                    that.listJob = ''
-                                } else {
-                                    that.listJob = jobList
-                                }
-
-                                that.magicComCid1 = data.Typelist[0].tid
-                                that.magicCom1Img = data.Typelist[0].pic
-                                if (data.Typelist[0].pic == null){
-                                    that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                                }
-                                that.magicCom1Text = data.Typelist[0].cateory
-
-                                that.magicComCid2 = data.Typelist[1].tid
-
-
-                                if (data.Typelist[1].pic == null){
-                                    that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                                }
-                                that.magicCom2Img = data.Typelist[1].pic
-                                that.magicCom2Text = data.Typelist[1].cateory
-                            }
-                        })
-                    },
-                    togle: function () {
-                        // this.active = true;
-                        var isBlck = document.querySelector('.bgBlack')
-                        if (isBlck.getAttribute("class") == 'isDisplay') {
-                            document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            //console.log(document.querySelector('.bgBlack'))
-                        } else {
-                            var that = this;
-                            that.active = 'magicAll';
-                            document.querySelector('.bgBlack').classList.remove('isDisplay');
-                            // this.MenuListQyMenu();
-                        }
-                    },
-
-                    hideBg : function () {
-                        var that = this
-                        document.querySelector('.bgBlack').classList.add('isDisplay');
-                        that.active = ''
-                    },
-                }
-            })
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
         }
 
+        var magicAll = magicAllInit(Vue);
+        Vue.component('magicAll', magicAll);
 
 
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+        a01_w = winWidth;
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
+        //console.log("bevelLength",bevelLength)
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w - 10) * 0.23 - 25;    // 100
+        // getSrceenWH(winWidth,winHeight)
+        new Vue({
+            el: '#great',
+            data: {
+                activeType: 'trip',
+                item: {},
+                list: [],
+                len: 1,
+                total: 0,
+                picList: [],
+                picListpic1: [],
+                picListpic2: [],
+                picListpic3: [],
+                imgs: [
+                    {
+                        imgSrc: '../../../../image/bigWeigh/banner@2x.png'
+                    },
+                    {
+                        imgSrc: '../../../../image/bigWeigh/banner@2x.png'
+                    },
+                    {
+                        imgSrc: '../../../../image/bigWeigh/banner@2x.png'
+                    },
+                ],
+                att: false,
+                att_id: '',
+                person_id: '',
+                hourseId: '',
+                active: 'magicAll',
+                cid: '',
+                data: '',
+                username: '',
+                userphone: '',
+                userwx: '',
+                usermain: '',
+                showModal: false,
+                listJob: [],
+                imgSrc: [],
 
-    </script>
-<
+            },
+            created: function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.hourseId = api.pageParam.hourseId;
+                this.tId = api.pageParam.tId;
+                this.housequeryHouseSummary();
+            },
+            mounted: function () {
+                var that = this
+                document.getElementById('great').classList.remove('isDisplay');
+                this.isDisplay = true;
+                //获得slider插件对象
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                    autoplay: true,
+                    observer:true,//修改swiper自己或子元素时，自动初始化swiper
+                    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                });
+                that.active = store.state.obj.magicCom;
+                api.addEventListener({
+                    name: 'comCom1',
+                }, function (ret, err) {
+                    //console.log("ret",ret);
+                    that.active = ret.value.key.magicCom1;
+
+                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'comCom2',
+                }, function (ret, err) {
+                    //console.log("ret",ret);
+                    that.active = ret.value.key.magicCom2;
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                //console.log("that.tId1234",'jobAll'+that.tId)
+                api.addEventListener({
+                    name: 'jobAll' + that.tId,
+                }, function (ret, err) {
+                    // //console.log("ret",ret);
+                    that.hourseId = ret.value.key.cid
+                    that.housequeryHouseSummary()
+
+                });
+
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width = winWidth + "px"
+                bgBlack.style.height = winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
+                // 里面小盒子宽度
+                for (var i = 0; i < magicBtn.length; i++) {
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i = 0; i < magicSubBox.length; i++) {
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i = 0; i < iconImg.length; i++) {
+                    iconImg[i].style.width = m_d / 2 + "px"
+                    iconImg[i].style.height = m_d / 2 + "px"
+                }
+            },
+
+            methods: {
+                // 获取数据
+                housequeryHouseSummary: function () {
+                    var that = this;
+                    ajaxGetWithProgress(housequeryHouseSummary, {
+                        cid: that.hourseId,
+                        pid: that.person_id
+                    }, function (data, err) {
+                        //console.log(data);
+                        that.item = data.comm
+                        that.picList = stringFun(data.comm.intPic)
+                        that.picListpic1 = stringFun(data.comm.pic1)
+                        that.picListpic2 = stringFun(data.comm.pic2)
+                        that.picListpic3 = stringFun(data.comm.pic3)
+                        //console.log(that.picList)
+
+                    });
+                },
+                // 切换tab
+                activeHandle: function (activeType) {
+                    //console.log(activeType)
+                    this.activeType = activeType;
+                },
+                // 办理签证
+                // 立即咨询
+                Consultation: function () {
+                    $('#dialogBg').fadeIn(300);
+                    $('#dialog').removeAttr('class').addClass('animated flipInX').fadeIn();
+                    /*$('#dialogBg').width(winWidth).height(winHeight);
+
+                    $('#dialogBg').fadeIn(300);
+                    $('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
+                    //显示弹框
+                    $('.box a').click(function(){
+                        className = $(this).attr('class');
+                        $('#dialogBg').fadeIn(300);
+                        $('#dialog').removeAttr('class').addClass('animatedflipInX').fadeIn();
+                    });
+                    //关闭弹窗
+                    $('.claseDialogBtn').click(function(){
+                        $('#dialogBg').fadeOut(300,function(){
+                            $('#dialog').addClass('bounceOutUp').fadeOut();
+                        });
+                    });*/
+                },
+                hiddialog: function () {
+                    $('#dialogBg').fadeOut(300, function () {
+                        $('#dialog').fadeOut();
+                    });
+                },
+
+                submitImg: function () {
+                    var that = this
+                    var obj = {
+                        cid: '9',
+                        pid: that.person_id,
+                        name: that.username,
+                        phone: that.userphone,
+                        wechat: that.userwx,
+                        summary: that.usermain,
+                    }
+                    ajaxGetWithProgress(createHouseOrderhouse, obj, function (data) {
+                        //console.log(data)
+                        if (data.data) {
+                            toast("提交成功")
+                            that.username = ''
+                            that.userphone = ''
+                            that.userwx = ''
+                            that.usermain = ''
+                            $('#dialogBg').fadeOut(300, function () {
+                                $('#dialog').fadeOut();
+                            });
+                        }
+                    })
+                },
+                commodityList: function () {
+                    var that = this
+                    //console.log("that.tId",that.tId)
+                    ajaxGetWithProgress(commodityList, {tid: that.tId}, function (data) {
+                        //console.log("commodityList11",data)
+                        var jobList = data.comList
+                        //console.log(jobList)
+                        if (data) {
+                            if (jobList == null) {
+                                that.listJob = ''
+                            } else {
+                                that.listJob = jobList
+                            }
+
+                            that.magicComCid1 = data.Typelist[0].tid
+                            that.magicCom1Img = data.Typelist[0].pic
+                            if (data.Typelist[0].pic == null) {
+                                that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                            }
+                            that.magicCom1Text = data.Typelist[0].cateory
+
+                            that.magicComCid2 = data.Typelist[1].tid
+
+
+                            if (data.Typelist[1].pic == null) {
+                                that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
+                            }
+                            that.magicCom2Img = data.Typelist[1].pic
+                            that.magicCom2Text = data.Typelist[1].cateory
+                        }
+                    })
+                },
+                togle: function () {
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        //console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        // this.MenuListQyMenu();
+                    }
+                },
+
+                hideBg: function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
+                },
+            }
+        })
+    }
+</script>
+</body>

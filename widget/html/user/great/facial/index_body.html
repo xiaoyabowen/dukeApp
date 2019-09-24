@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
     <link rel="stylesheet" href="../../../../css/mofang.css">
+    <link rel="stylesheet" href="../../../../css/swiper.min.css">
 </head>
 <body class="commonBg">
 
@@ -24,8 +25,18 @@
             </keep-alive>
 
             <div class="great_header">
-                <div class="great_header_banner">
-                    <img :src="imgurl" alt="">
+                <div class="great_header_banner swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(imgSrc, index) in imgsBanner" :key="index">
+                            <img :src="imgSrc" />
+                        </div>
+
+                        <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
+                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
                 <div class="peachTitle commonTitle">{{item.comName}}</div>
                 <div class="great_Price_List cssFlex">
@@ -92,7 +103,7 @@
     <script type="text/javascript" src="../../../../script/rem.js"></script>
     <script type="text/javascript" src="../../../../script/mui.min.js"></script>
     <script type="text/javascript" src="../../../../script/data.js"></script>
-
+    <script src="../../../../script/swiper.min.js"></script>
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
     <script src="../common/magicCube.js"></script>
@@ -103,8 +114,8 @@
 
 
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
     <script>
 
     </script>
@@ -163,6 +174,7 @@
                     evalist2: [],
                     evalist3: [],
                     imgs: [],
+                    imgsBanner: [],
                     imgurl: '',
                     att: false,
                     att_id: '',
@@ -184,7 +196,13 @@
                     this.isDisplay = true;
 
                     var that = this
-
+                    //获得slider插件对象
+                    var swiper = new Swiper('.swiper-container', {
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                        autoplay:true,
+                    });
                     that.active = store.state.obj.magicCom;
                     api.addEventListener({
                         name: 'comCom1',
@@ -259,11 +277,12 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            //console.log(data,'280000');
+                            console.log(data,'280000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];
-                                // that.imgs = data.intpic;
+                                // that.imgsBanner = data.Commodity.intPic.split(',');
+                                that.imgsBanner = data.Commodity.placard.split(',');
                                 that.imgs = data.Commodity.intPic.split(',');
                                 that.total = data.total;
                                 that.att = data.att;
