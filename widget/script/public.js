@@ -346,7 +346,7 @@ var queryApplyList = serverUrl + "/CircleProfile/queryApplyList";
 var MassTexting = localhostHref + "/MassTexting";
 
 // 圈子 我的活动   我参加的
-var queryMyJoinCirCle = serverUrl + "·";
+var queryMyJoinCirCle = serverUrl + "/CircleProfile/queryMyJoinCirCle";
 // 圈子 我的活动   我发布的
 var queryCircleListByPersonId = serverUrl + "/CircleProfile/queryCircleListByPersonId";
 
@@ -364,7 +364,6 @@ var circleTypeMenu = serverUrl + "/Menu/CircleTypeMenu";
 var queryCirclePersonMsgByPid = serverUrl + '/CircleProfile/queryCirclePersonMsgByPid';
 // 圈子 修改圈子个人中心信息
 var updateCirclePersonMsgByPid = serverUrl + '/CircleProfile/updateCirclePersonMsgByPid';
-
 
 // 圈子 活动管理
 var circleManageCount = serverUrl + "/CircleProfile/CircleManageCount";

@@ -38,8 +38,8 @@
             width: 0.18rem !important;
         }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 </head>
 <body>
 <div id="circle" v-cloak>
@@ -58,8 +58,8 @@
                     <div class="dePerTextName">
                         <span class="commonSub24 dePerTextNameName">{{item.u_name}}</span>
 
-                        <img src="../../../image/circle/boyIcon.png" v-show="item.p_sex == 0" alt="bot" class="boyIcon">
-                        <img src="../../../image/circle/girlIcon.png" v-show="item.p_sex == 1" alt="bot" class="boyIcon">
+                        <img src="../../../image/circle/girlIcon.png" v-show="item.p_sex == 0" alt="bot" class="boyIcon">
+                        <img src="../../../image/circle/boyIcon.png" v-show="item.p_sex == 1" alt="bot" class="boyIcon">
                     </div>
                     <div class="dePerTextPos">
                         <span class="dePerTextPosName">{{item.company_name}}|{{item.job_name}}</span>
@@ -128,7 +128,7 @@
                         circle_id : that.circle_id
                     }
                     ajaxGetWithProgress(queryAllSignPerson,obj,function (data) {
-                        //console.log("queryAllSignPerson",data.signPersonList)
+                        console.log("queryAllSignPerson",data)
                         if (data.signPersonList == undefined){
                             that.comment_box = true
                         } else{

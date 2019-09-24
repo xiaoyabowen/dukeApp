@@ -134,7 +134,7 @@
                         textUp: '松开刷新...'
                     }, function (ret, err) {
                         var obj = {
-                            page_c: that.skip,
+                            page_c: 1,
                             lengthofRS: that.limit,
                         }
                         console.log("obj", obj)
@@ -195,7 +195,7 @@
                         textUp: '松开刷新...'
                     }, function (ret, err) {
                         var obj = {
-                            page_c: that.skip,
+                            page_c: 1,
                             lengthofRS: that.limit,
                         }
                         ajaxGet(queryMyJoinCirCle, obj, function (ret, err) {

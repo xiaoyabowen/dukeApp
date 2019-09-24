@@ -165,7 +165,7 @@
 
                         that.isEdit = false;
                     }
-                    // console.log("objobj",obj)
+                    console.log("objobj",obj)
                     api.ajax({
                         // report : false,
                         url: queryCirclePersonMsgByPid,
@@ -190,7 +190,7 @@
                           if(data.edu_to){
                             edutime += ' - ' + data.edu_to;
                           }
-                          that.p_icon = data.p_icon.split(',')[0];
+                            that.p_icon = data.p_icon ? data.p_icon.split(',')[0] : '';
                             that.item = data
                             that.p_name = data.p_name || "未填写"
                             that.address = data.address ? data.address.split('-')[1] : '未填写';
