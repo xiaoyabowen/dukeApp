@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
     <link rel="stylesheet" href="../../../../css/mofang.css">
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
+    <style>
+        .Box{
+            margin-bottom: 0.3rem !important;
+        }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -67,7 +72,7 @@
 
                     <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
                         <div class="great_comments_item_top cssFlex">
-                            <div><img :src="item.picon" alt=""></div>
+                            <div><img :src="item.picon.split(',')[0]" alt=""></div>
                             <div>
                                 <span>{{item.pname}}</span>
                                 <div>{{item.createTime}}</div>

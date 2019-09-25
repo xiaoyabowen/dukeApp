@@ -17,12 +17,10 @@ var Domain = 'http://192.168.1.12:8088';
 // var localhostHref = 'http://112.126.98.172:8000/SE4M';
 // var Domain = 'http://112.126.98.172:8088';
 
-
 // 渡客正式服务器
 // var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
 // var localhostHref = 'http://59.110.231.40:25121/SE4M';
 // var Domain = 'http://59.110.231.40:25122';
-
 
 
 var rootWindowName = "root";
@@ -44,8 +42,6 @@ var SendSmsCode = serverUrl + "/Login/SendSmsCode"; //获取验证码
 var ChatLogin = serverUrl + "/Login/ChatLogin"; // 第三方登陆1
 var ChatBound = serverUrl + "/Login/ChatBound"; // 第三方登陆1   绑定手机号
 var ChatRegistToken = serverUrl + "/Login/ChatRegistToken"; // 第三方登陆1   绑定手机号  注册
-
-
 var LoginAndRegist = serverUrl + "/Login/LoginAndRegist"; //验证码登陆   role_type
 
 // 账号密码登录
