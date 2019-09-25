@@ -198,15 +198,43 @@
         /*leilei*/
         .launchImgBox{
             width: 7.5rem;
+            /*background: red;*/
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99999999;
         }
         .launchImg{
-            position: fixed;
-
+            position: relative;
             max-width: 7.5rem;
             height: 100%;
             left: 0;
-            top: 0;
-            object-fit:cover;
+            bottom: 0;
+            /*object-fit:cover;*/
+            object-fit:contain;
+        }
+        .launchImgBox:before{
+            position: absolute;
+            content: '';
+            display:block;
+            left: 0;
+            top: 0rem;
+            background: rgba(0,0,0,0.8);
+            width: 100%;
+            height: 0.61rem;
+            z-index: 99999999;
+        }
+        .launchImgBox:after{
+            position: absolute;
+            content: '';
+            display:block;
+            left: 0;
+            bottom: 0rem;
+            background: rgba(0,0,0,0.8);
+            width: 100%;
+            height: 0.61rem;
+            z-index: 99999999;
         }
         .launchImgBox>img{
             float: left;
@@ -230,9 +258,9 @@
     </style>
 
 </head>
-<body class="commonBg" id="app1" @click="hideBg()">
+<body class="commonBg">
 
-<div class="launchImgBox">
+<div class="launchImgBox" id="launchImgBox">
     <img src="../../../launch/1.png" class="launchImg launchImgOne" id="launchImg" alt="launchImg">
     <img src="../../../launch/2.png" class="launchImg launchImgTwo" id="launchImg1" alt="launchImg">
     <img src="../../../launch/3.png" class="launchImg launchImgThree" id="launchImg2" alt="launchImg">
@@ -240,8 +268,8 @@
 </div>
 
 
-<div>
-    <!--<div class="bgBlack" @click="hideBg()"></div>-->
+<div id="app1">
+    <div class="bgBlack" @click="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <keep-alive>
         <component :is="active"></component>
@@ -412,19 +440,23 @@
 
 
         var intro_ist = $api.getStorage('introt');
+        console.log()
         if (!intro_ist) {
-
+            // alert("first")
             launchImgBox()
 
         }else {
-            alert("notfirst")
+            // alert("notfirst")
+            var launchImgBox = document.getElementById("launchImgBox");
+            launchImgBox.style.display = "none";
         }
         function launchImgBox() {
             var launchImg = document.getElementById("launchImg");
             var launchImg1 = document.getElementById("launchImg1");
             var launchImg2 = document.getElementById("launchImg2");
             var launchImg3 = document.getElementById("launchImg3");
-
+            var launchImgBox = document.getElementById("launchImgBox");
+            launchImg.style.display = "block";
             launchImg.onclick = function () {
                 launchImg.style.display = "none";
                 launchImg1.style.display = "block";
@@ -439,10 +471,10 @@
             }
             launchImg3.onclick = function () {
                 launchImg3.style.display = "none";
-                $api.setStorage('introt',"0");
+                launchImgBox.style.display = "none";
+                // $api.setStorage('introt',"0");
             }
         }
-
 
         var magicAll = magicAllInit(Vue);
         var magicCom1 = magicCom1Init(Vue);
@@ -750,35 +782,18 @@
                     // this.active = true;
                     var isBlck = document.querySelector('.bgBlack')
                     if (isBlck.getAttribute("class") == 'isDisplay') {
+
                         document.querySelector('.bgBlack').classList.remove('isDisplay');
                         //console.log(document.querySelector('.bgBlack'))
                     } else {
+
                         var that = this;
                         that.active = 'magicAll';
                         document.querySelector('.bgBlack').classList.remove('isDisplay');
                         // this.MenuListQyMenu();
                     }
                 },
-                /*launchImgOne:function(){
-                    var that = this;
-                    alert(1)
-                    that.launchImgOne = false;
-                    that.launchImgTwo = true;
-                },
-                launchImgTwo:function(){
-                    var that = this;
-                    that.launchImgTwo = false;
-                    that.launchImgThree = true;
-                },
-                launchImgThree:function(){
-                    var that = this;
-                    that.launchImgThree = false;
-                    that.launchImgFour = true;
-                },
-                launchImgFour:function(){
-                    var that = this;
-                    that.launchImgFour = false;
-                },*/
+
                 hideBg: function () {
                     var that = this
                     document.querySelector('.bgBlack').classList.add('isDisplay');

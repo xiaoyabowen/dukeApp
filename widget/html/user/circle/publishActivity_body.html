@@ -35,9 +35,12 @@
           color:#999;
           font-size: 0.28rem;
       }
+      .tagsListUl{
+          flex-wrap: wrap;
+          justify-content: center;
+      }
       .tagsList ul li{
         padding:0.07rem 0.25rem 0.06rem 0.25rem;
-        background: #ddd;
         display: inline-block;
         border-radius: 100px;
         font-size: 0.28rem;
@@ -149,10 +152,8 @@
                请选择活动标签
                <span>(最多选择三项)</span>
              </div>
-             <ul>
-
+             <ul class="cssFlex tagsListUl">
                <li v-for = '(item,index) in tagList' @click='addTags(item.type_name)' :class = "{selectActive:tagSelect.indexOf( item.type_name ) != -1} ">{{item.type_name}}</li>
-
              </ul>
              <div class="btn">
                <button class="sure" @click='sureBtn'>确认</button>
@@ -344,7 +345,7 @@
                                 api.ajax({
                                     // report : false,
 
-                                    url: 'http://59.110.231.40:25122/upload/UploadFlieTest',
+                                    url: 'http://192.168.1.12:8088/upload/UploadFlieTest',
                                     // url:'http://112.126.98.172:8088/upload/UploadFlie?uid=yun',
                                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                                     method: 'post',

@@ -39,7 +39,10 @@
     height: 1.1rem;
     z-index:111;
 }
-
+.positionComCasBox{
+    width: 1.8rem;
+    height: 1.8rem;
+}
 .xuanboxCast{
     width: 1.8rem;
     height: 1.8rem;

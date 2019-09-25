@@ -48,8 +48,8 @@
                             v-show="item.status == 0" class="oprateDai">代签</div>
                         <div @click='telePhone(item.phone)' class="opratePhone">电话</div>
 
-                        <div @click='toSee(item.id,item.phone,2)' class="oprateOut" v-show="item.status == 3">拒绝</div>
-                        <div @click='toSee(item.id,item.phone,0)' class="oprateYes" v-show="item.status == 3">通过</div>
+                        <div @click='toSee(item.id,item.phone,2,item.title)' class="oprateOut" v-show="item.status == 3">拒绝</div>
+                        <div @click='toSee(item.id,item.phone,0,item.title)' class="oprateYes" v-show="item.status == 3">通过</div>
                         <div @click='abolish()' class="oprateOut" v-show="item.status == 0">作废</div>
                     </div>
                 </div>
@@ -170,12 +170,13 @@
                             }
                         })
                     },
-                    toSee(id, phone, status) {
+                    toSee(id, phone, status,title) {
                         var that = this;
                         var obj = {
                             id: id,
                             phone: phone,
                             status: status,
+                            title: title,
                         }
                         ajaxGetWithProgress(AuditStatus, obj, function (data) {
                             console.log(data, "editCircleStatus")
