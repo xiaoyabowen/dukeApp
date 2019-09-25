@@ -1,4 +1,8 @@
 /*巨划算 ===========================  魔方 */
+
+.Box{
+    margin-bottom: 0.3rem;
+}
 .boxCost{
     background: #f5f5f5;
     /*background: red;*/

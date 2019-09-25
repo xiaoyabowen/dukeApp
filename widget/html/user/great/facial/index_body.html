@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>巨划算</title>
+    <title>渡选</title>
     <link rel="stylesheet" href="../../../../css/api.css" />
     <link rel="stylesheet" href="../../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../../css/mui.min.css">
@@ -28,7 +28,7 @@
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(imgSrc, index) in imgsBanner" :key="index">
-                            <img :src="imgSrc" />
+                            <img :src="imgSrc"/>
                         </div>
 
                         <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
@@ -201,7 +201,9 @@
                         pagination: {
                             el: '.swiper-pagination',
                         },
-                        autoplay:true,
+                        autoplay: true,
+                        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+                        observeParents:true,//修改swiper的父元素时，自动初始化swiper
                     });
                     that.active = store.state.obj.magicCom;
                     api.addEventListener({
@@ -281,8 +283,8 @@
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];
-                                // that.imgsBanner = data.Commodity.intPic.split(',');
-                                that.imgsBanner = data.Commodity.placard.split(',');
+                                that.imgsBanner = data.intpic;
+                                // that.imgsBanner = data.Commodity.placard.split(',');
                                 that.imgs = data.Commodity.intPic.split(',');
                                 that.total = data.total;
                                 that.att = data.att;
@@ -347,7 +349,7 @@
                         });
 
                     },
-                    // 获取巨划算魔方数据
+                    // 获取渡选魔方数据
 
                     commodityList : function (){
                         var that = this

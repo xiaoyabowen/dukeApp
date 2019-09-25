@@ -43,7 +43,7 @@
     <div class="great_header_banner swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
-                <img :src="imgSrc.imgSrc"/>
+                <img :src="imgSrc.banner"/>
             </div>
         </div>
         <!-- Add Pagination -->
@@ -173,12 +173,7 @@
                     height: m_d + "rem",
                 },
                 imgs: [
-                    {
-                        imgSrc: '../../../image/circle/circleBaner1.png'
-                    },
-                    {
-                        imgSrc: '../../../image/circle/circleBanner2.png'
-                    },
+
                 ]
             },
             created: function () {
@@ -202,6 +197,7 @@
                         console.log(data)
                         if (data){
                             that.listBox = data.CircleTypeMenu;
+                            that.imgs = data.CircleBanner;
                         } else{
                             toast("请求出错")
                         }
