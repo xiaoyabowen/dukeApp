@@ -36,7 +36,7 @@
     <div class="great_header_banner swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
-                <img :src="imgSrc.imgSrc"/>
+                <img :src="imgSrc.banner"/>
             </div>
         </div>
         <!-- Add Pagination -->
@@ -44,16 +44,16 @@
     </div>
     <div class="listBox">
         <img src="../../../image/duke-2.png" class="personJu" alt="person" @click="togle()">
-        <div class="positionComCast positionRate" @click="juClick(2)">
-            <div class="xuanboxCast posiCast0">
+        <div class="positionComCast positionRate" @click="juClick(item.tId)" v-for="(item,index) in greatList" :key="index">
+            <div class="xuanboxCast" :class="`posiCast${index}`">
                 <div class="daoboxCast">
-                    <img src="../../../image/bigWeigh/lvyouW.png" class="iconImgCast" alt="person">
-                    <div class="CastText commonFont">旅游</div>
+                    <img :src="item.pic" class="iconImgCast" alt="person">
+                    <div class="CastText commonFont">{{item.cateory}}</div>
                 </div>
             </div>
         </div>
 
-        <div class="positionComCast positionRate" @click="juClick(1)">
+        <!--<div class="positionComCast positionRate" @click="juClick(1)">
             <div class="xuanboxCast posiCast1">
                 <div class="daoboxCast">
                     <img src="../../../image/bigWeigh/huazhuangA.png" class="iconImgCast" alt="person">
@@ -101,7 +101,7 @@
                     <div class="CastText commonFont">美容</div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="positionComCast positionRate" @click="juClick()">
             <div class="xuanboxCast posiCast7 posiCast7FCC">
                 <div class="daoboxCast">
@@ -128,8 +128,8 @@
 <script src="../../../script/vuex.min.js"></script>
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
     var m_d,right,top,winWidth
@@ -142,8 +142,6 @@
         }else {
             m_d = "1.8"
         }
-
-
 
         new Vue({
             el: '#home',
@@ -164,23 +162,11 @@
                     width: m_d + "rem",// 内容标题总样式
                     height: m_d + "rem",
                 },
-                imgs: [
-                    {
-                        imgSrc: '../../../image/bigWeigh/mianBan2.png'
-                    },
-                    {
-                        imgSrc: '../../../image/bigWeigh/fangBan3.png'
-                    },
-                    {
-                        imgSrc: '../../../image/bigWeigh/nongBan1.png'
-                    },
-                    {
-                        imgSrc: '../../../image/bigWeigh/lvyouBan3.png'
-                    },
-                ]
+                imgs: [],
+                greatList: [],
             },
             created: function () {
-                this.CircleTypeMenuSeven()
+                this.CommodityType()
             },
             mounted: function () {
                 var swiper = new Swiper('.swiper-container', {
@@ -195,17 +181,19 @@
             methods: {
                 togle: function () {
                     var that = this
-                    that.activeAni = true
+                    that.activeAni = true;
+                    that.CommodityType();
                     setTimeout(function () {
                         that.activeAni = false;
                     }, 1500)
                 },
-                CircleTypeMenuSeven : function (){
+                CommodityType : function (){
                     var that = this;
-                    ajaxGetWithProgress(CircleTypeMenuSeven,{},function (data) {
+                    ajaxGetWithProgress(CommodityType,{},function (data) {
                         console.log(data)
                         if (data){
-                            that.imgs = data.CircleBanner;
+                            that.greatList = data.comType;
+                            that.imgs = data.comBanner;
                         } else{
                             toast("请求出错")
                         }

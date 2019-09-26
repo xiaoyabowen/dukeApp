@@ -299,11 +299,8 @@ var updatePhone = serverUrl + "/UserProfile/updatePhone";
 var verificationPhone = serverUrl + "/UserProfile/verificationPhone";
 
 
-
-
 // 头像  修改  我的
 var updatePIcon = serverUrl + "/UserProfile/updatePIcon";
-
 
 // 圈子 首页 七个标签
 var CircleTypeMenuSeven = serverUrl + "/Menu/CircleTypeMenuSeven";
@@ -453,6 +450,8 @@ var summary = Domain + "/Mask/summary";
 
 // 巨划算-面膜详情
 var summaryCommodityProFile = Domain + "/CommodityProFile/summary";
+// 巨划算首页 七个标签   加 轮播图
+var CommodityType = Domain + "/CommodityProFile/CommodityType";
 
 
 
