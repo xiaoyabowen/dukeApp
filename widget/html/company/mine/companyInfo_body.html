@@ -116,8 +116,8 @@
 
                 <div class="infobox">
                     <h4 class="productName productNamePad">公司官网</h4>
-                    <div class="link-compony cssFlex" @click="opnew()">
-                        <span class="homepage">{{ComUrl}}</span>
+                    <div class="link-compony cssFlex" @click="opnew(ComUrl)">
+                        <span style='font-size:0.28rem; color:#333' class="homepage">{{ComUrl}}</span>
                         <img src="../../../icon/right.png" alt="right" class="info-img-right">
                     </div>
 
@@ -187,7 +187,9 @@
 <script src="../../../script/vue.min.js"></script>
 
 <script>
-
+    function reload(){
+        window.location.reload();
+    }
 
     // 公司模态框
     $(document).on("click", ".more-see", function () {
@@ -283,10 +285,7 @@
                         var JobList = data.JobList  // 再照职位
                         var DynamicList = data.DynamicList  //企业空间
                         if (data) {
-                            //console.log("cvomInfoc_name",cvomInfo.c_name)
                             that.ComName = cvomInfo.c_name;
-                            //console.log("ComName",that.ComName);
-                            //console.log(document.querySelector(".comInfoTitle"))
                             that.ComContactor = cvomInfo.contactor || '未填写'
                             that.ComScale = cvomInfo.scale || '未填写'
                             that.ComOrgType = cvomInfo.org_type || '未填写'
@@ -303,15 +302,18 @@
                             that.ComSeniorPos = cvomInfo.senior_position || '未填写'
                             that.ComSeniorBak = cvomInfo.senior_bak || '未填写'
                             that.ComSeniorLogo =  cvomInfo.senior_icon || 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
-                            that.ComProList = cvomproduct || '未填写'
-                            that.ComJobList = JobList || '未填写'
-                            that.ComDynamicList = DynamicList || '未填写'
+                            that.ComProList = cvomproduct || [];
+                            that.ComJobList = JobList || [];
+                            that.ComDynamicList = DynamicList || [];
                         } else {
                             toast("请求失败")
                         }
                     })
                 },
-                opnew : function () {
+                opnew : function (url) {
+                  if(url == '未填写'){
+                    return;
+                  }
                     var that = this;
                     api.openApp({
                         androidPkg: 'android.intent.action.VIEW',
@@ -325,6 +327,8 @@
             }
         })
     };
+
+
 
 </script>
 </body>

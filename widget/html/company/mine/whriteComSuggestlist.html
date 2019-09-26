@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,27 +11,29 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
 
     <style>
-        .headerBox{
+        .headerBox {
             justify-content: space-between;
         }
     </style>
 
 </head>
+
 <body>
-<div id="topbar" class="cssFlex">
+    <div id="topbar" class="cssFlex">
 
-    <div class="headerBox cssFlex">
-        <div class="leftImgClose">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
-        </div>
-        <div class="middleMain">
-            产品介绍列表
-        </div>
-        <div class="rightImgEdite">
-
+        <div class="headerBox cssFlex">
+            <div class="leftImgClose">
+                <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png"
+                    onclick="closeWin()">
+            </div>
+            <div class="middleMain">
+                产品介绍列表
+            </div>
+            <div class="rightImgEdite" onclick='addProduct()'>
+                添加
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>
@@ -48,11 +50,19 @@
     };
     //点击保存
 
-    function save(){
+    function addProduct() {
+        openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
+            index:1,
+            url:'whriteComSuggestlist'
+        })
+    }
+
+    function save() {
         api.execScript({
             frameName: "whriteComInfo_body",
             script: 'preservation()'
         })
     }
 </script>
+
 </html>

@@ -10,7 +10,7 @@ var isCleanUser = false;
 
 var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.12:8000/SE4M';
-var Domain = 'http://192.168.1.12:8088';
+var Domain = 'http://192.168.1.12:8000';
 
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
@@ -612,6 +612,10 @@ var queryOrgnizationInformation = serverUrl + "/OrgnizationProfile/queryOrgnizat
 
 //  伯乐 完善我的公司  状态 公司介绍  已填写  详细信息
 var queryOrgnizationSummaryAndAddress = serverUrl + "/OrgnizationProfile/queryOrgnizationSummaryAndAddress";
+
+// 删除产品介绍列表
+
+var DelCompanyProduct = serverUrl + "/OrgnizationProfile/DelCompanyProduct";
 
 //  伯乐 完善我的公司  状态 公司福利   已填写  详细信息
 var queryOrgnizationWelfare = serverUrl + "/OrgnizationProfile/queryOrgnizationWelfare";

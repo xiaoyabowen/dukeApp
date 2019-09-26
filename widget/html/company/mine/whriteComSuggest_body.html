@@ -34,13 +34,13 @@
 <body class="commonBg">
 
 <div class="Box" id="app1">
-    <div class="boxSub isDisplay">
+    <div class="boxSub">
         <div class="w-title commonTitle">产品介绍</div>
         <div class="w-sub-title commonFont">
             产品指的公司研发的网站、手机应用。
         </div>
 
-        <div class="niceBox isDisplay">
+        <div class="niceBox">
 
             <input type="text" v-model="productName" class="w-comurl-input commonFont" placeholder="产品标题">
             <div class="subggestTitle commonFont">产品介绍</div>
@@ -70,8 +70,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -93,7 +93,7 @@
             data: {
                 productName:'',
                 productMain:'',
-                productIcon:'',
+                productIcon:'../../../image/company/comproImg.png',
                 pid:'',
                 comProArr:[],
                 indexNum:1,
@@ -145,7 +145,7 @@
                         targetHeight: 100,
                         saveToPhotoAlbum: false
                     }, function(ret, err) {
-
+                        // console.log(ret,9999);
                         if (ret) {
                             var obj = {
                                 uid : localStorage.getItem("person_id")
@@ -155,7 +155,7 @@
                             api.ajax({
                                 // report : false,
 
-                                // url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                                // url: 'http://192.168.1.12:8000/upload/UploadFlie',
                                 url: 'http://192.168.1.12:8088/upload/UploadFlie',
 
                                 //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
@@ -170,17 +170,17 @@
                                     values:obj
                                 }
                             }, function (ret, err) {
-                                //console.log(ret);
-                                var pathImgImg = ret.imgUrl
-                                if (pathImgImg == ''){
-                                    that.productIcon = '../../../image/company/comproImg.png'
-                                }else{
-                                    var pathImgData = pathImgImg.split(",")
-                                    that.productIcon = pathImgData[0]
+                                console.log(ret,err,787878);
+                                if(ret){
+                                  var pathImgImg = ret.imgUrl
+                                  if (pathImgImg == ''){
+                                      that.productIcon = '../../../image/company/comproImg.png'
+                                  }else{
+                                      var pathImgData = pathImgImg.split(",")
+                                      that.productIcon = pathImgData[0]
+                                  }
+                                  api.hideProgress();
                                 }
-
-                                api.hideProgress();
-
                             });
                         } else {
                             //console.log(JSON.stringify(err));
@@ -202,6 +202,7 @@
                         return
                     }
                     var obj
+
                     if (index == 1){
                         obj = {
                             c_id : c_id,
@@ -209,10 +210,10 @@
                             prod_tags: that.productMain,
                             prod_icon: that.productIcon,
                         }
-                        //console.log(obj)
+
                         ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
-                            //console.log(data)
-                            if (data.return.status) {
+                            api.hideProgress();
+                            if (data.return_info.status) {
                                 var frameName = url + "_body";
                                 api.execScript({
                                     name:url,
@@ -231,8 +232,8 @@
                         }
                         //console.log(obj)
                         ajaxGetWithProgress(updateCompanyProduct,obj,function (data,ret) {
-                            //console.log(data)
-                            if (data.return.status) {
+                            console.log(data,'dierci')
+                            if (data.return_info.status) {
                                 var frameName = url + "_body";
                                 api.execScript({
                                     name:url,

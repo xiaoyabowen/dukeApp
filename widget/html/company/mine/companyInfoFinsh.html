@@ -26,13 +26,13 @@
         <img class="rightImgTop" src="../../../icon/msg.png" alt="chat">
     </div>-->
     <div class="headerBox cssFlex">
-        <div class="leftImgClose" onclick="closeWin()">
-            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWin()">
+        <div class="leftImgClose">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWinaa()">
         </div>
         <div class="middleMain">
             完善公司信息
         </div>
-        <div class="rightImgEdite"onclick="save()">
+        <div class="rightImgEdite">
 
         </div>
     </div>
@@ -48,12 +48,35 @@
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
 
+    
     apiready = function () {
         initFrameInWin(api.pageParam);
-    };
-    //点击保存
-    function save(){
+       
+        api.addEventListener({
+        name: 'keyback'
+        }, function(ret, err) {
+            var frameName = 'companyInfo' + "_body";
+            api.execScript({
+                name:'companyInfo',
+                frameName: frameName,
+                script : 'reload()'
+            })
+            api.closeWin();
+        });
 
+    };
+    function closeWinaa(){
+        var frameName = 'companyInfo' + "_body";
+        api.execScript({
+            name:'companyInfo',
+            frameName: frameName,
+            script : 'reload()'
+        })
+        api.closeWin();
     }
+
+
+
+
 </script>
 </html>

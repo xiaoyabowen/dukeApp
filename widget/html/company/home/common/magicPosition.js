@@ -74,7 +74,7 @@ function magicPositionInit(Vue) {
                 var that = this
                 //console.log("store.state.obj.job_name",store.state.obj.job_name)
                 ajaxGetWithProgress(filterScreen, {job_type:store.state.obj.job_type}, function (data) {
-                    //console.log("queryPersonListMenu", data)
+                    console.log("queryPersonListMenu", data)
                     var jobList;
                     if (data) {
                         jobList = data.list

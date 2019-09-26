@@ -23,7 +23,7 @@
 
 <div class="Box" id="app1">
     <div class="boxSub isDisplay">
-        
+
         <div class="info-choose cssFlex" @click="whriteComInfo(1)" v-if="comInfomation == false">
             <span class="info-choose-name">公司基本信息</span>
             <div class="info-choose-main cssFlex">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="info-choose cssFlex" @click="whriteComPro(1)" v-if="comProduct == false">
+        <div class="info-choose cssFlex" @click="whriteComPro(1)" v-if="comSummary == false">
             <span class="info-choose-name">公司介绍</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option">未完善</span>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="info-choose cssFlex" @click="whriteComPro(2)" v-if="comProduct == true">
+        <div class="info-choose cssFlex" @click="whriteComPro(2)" v-if="comSummary == true">
             <span class="info-choose-name">公司介绍</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option">已完善</span>
@@ -87,14 +87,14 @@
             </div>
         </div>-->
 
-        <div class="info-choose cssFlex" @click="whriteComSuggest(1)" v-if="comSummary == false">
+        <div class="info-choose cssFlex" @click="whriteComSuggest(1)" v-if="comProduct == false">
             <span class="info-choose-name">产品介绍</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option">未完善</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
         </div>
-        <div class="info-choose cssFlex" @click="whriteComSuggest(2)"v-if="comSummary == true">
+        <div class="info-choose cssFlex" @click="whriteComSuggest(2)"v-if="comProduct == true">
             <span class="info-choose-name">产品介绍</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option" >已完善</span>
@@ -120,8 +120,8 @@
 
 </div>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -142,6 +142,10 @@
 
 
     apiready = function () {
+
+
+
+      
 
 
         new Vue({
@@ -174,7 +178,7 @@
                         uid:uid
                     }
                     ajaxGetWithProgress(CompanySummaryIsPerfect,obj,function (data,ret) {
-                        //console.log("finshCom",data)
+                        console.log("finshCom",data)
                         if (data) {
                             that.cid = data.cid
                             if (data.InformationPerfect){
@@ -222,6 +226,7 @@
                     })
                 },
                 whriteComPro : function (index) {
+
                     openNewWindow("whriteComPro", "./whriteComPro.html", {
                         url: 'companyInfoFinsh',
                         index:index,
@@ -266,6 +271,20 @@
         })
     };
 
+ 
+
+
+    // api.addEventListener({
+    //     name: 'keyback'
+    // }, function (ret, err) {
+    //     var frameName = 'companyInfo' + "_body";
+    //     api.execScript({
+    //         name:'companyInfo',
+    //         frameName: frameName,
+    //         script : 'reload()'
+    //     })
+    //     api.closeWin();
+    // });
 
 
 </script>

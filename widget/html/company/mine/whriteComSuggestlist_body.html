@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../css/api.css"/>
     <link rel="stylesheet" href="../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../css/boMineCommon.css"/>
+      <link rel="stylesheet" href="../../../css/mui.min.css">
     <style>
 
         .Box{
@@ -29,20 +30,44 @@
             height: 2.2rem;
             margin: 0.3rem 0 2.3rem;
         }
+        .infoProduct .delete{
+            position: absolute;
+            top: 0;
+            right:0;
+            height: 0.64rem;
+            margin-top: 0.32rem;
+        }
+        .infoProduct{
+            position: relative;
+        }
+        .infoProduct .delete button{
+            background: #FFF;
+            color:#638BFF;
+            font-size: 0.26rem;
+            padding: 0.1rem;
+            border-radius: 4px;
+            outline: medium;
+            border:1px solid #638BFF;
+        }
     </style>
 </head>
 <body class="commonBg">
 <div class="Box" id="app1">
     <div class="boxSub isDisplay">
         <div class="product_hisbox">
-            <div class="infoProduct infoProductPad clearfix" v-for="(item,index) in comProArr" :key="index" @click="productClick(item.pid)">
+            <div v-if='comProArr.length>0' class="infoProduct infoProductPad clearfix" v-for="(item,index) in comProArr" :key="index" @click="productClick(item.pid)">
                 <img :src="item.prod_icon.split(',')[0]" alt="pro" class="pro-img">
                 <div class="infoProductContent">
                     <h5>{{item.productname}}</h5>
                     <p class="textOverflow">{{item.prod_tags}}</p>
                 </div>
+                <div class="delete">
+                    <button @click.stop='deleteOne(item.pid)'>删除</button>
+                </div>
             </div>
-
+            <div style='text-align: center' v-if='comProArr.length <= 0'>
+                公司暂无产品介绍快去添加吧。
+            </div>
         </div>
     </div>
 
@@ -51,14 +76,15 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script src="../../../script/vue.min.js"></script>
 
 <script>
@@ -99,136 +125,27 @@
                         uid: uid,
                         cid: c_id,
                     }
+                    console.log(obj,'obj');
                     ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
-                        //console.log("queryProductSummary",data)
-                        if (data){
+                        console.log("queryProductSummary",data)
+                        if (data.product_his){
+                            // console.log('have')
                             that.comProArr= data.product_his
-
+                        }else{
+                            that.comProArr = [];
                         }
                         api.hideProgress();
                     })
-
-                    /*if (index == 2){
-                        that.indexNum = 2
-                        var uid = localStorage.getItem("person_id")
-                        var c_id = localStorage.getItem("com_id")
-                        var obj = {
-                            uid: uid,
-                            cid: c_id,
-                        }
-                        ajaxGetWithProgress(queryProductSummary,obj,function (data,ret) {
-                            //console.log("queryProductSummary",data)
-                            if (data){
-                                that.comProArr= data.product_his
-
-                            }
-                            api.hideProgress();
-                        })
-
-                    }else if (index == 1){
-                        that.indexNum = 1
-
-                        document.querySelector(".niceBox").classList.remove("isDisplay")
-                    }*/
-
-
                 },
-                wuploadimg : function () {
-                    var that = this
-                    api.getPicture({
-                        sourceType: 'library',
-                        encodingType: 'jpg',
-                        mediaValue: 'pic',
-                        destinationType: 'url',
-                        allowEdit: true,
-                        quality: 50,
-                        targetWidth: 100,
-                        targetHeight: 100,
-                        saveToPhotoAlbum: false
-                    }, function(ret, err) {
-
-                        if (ret) {
-                            var obj = {
-                                uid : localStorage.getItem("person_id")
-                            }
-                            //console.log(JSON.stringify(ret));
-                            //上传剪辑后的图像到服务器
-                            api.ajax({
-                                // report : false,
-
-                                // url: 'http://192.168.1.12:8088/upload/UploadFlie',
-                                url: 'http://192.168.1.12:8088/upload/UploadFlie',
-
-                                //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                                method: 'post',
-                                cache: 'false',
-                                timeout: 30,
-                                dataTpye: 'json',
-                                data: {
-                                    files: {
-                                        file: ret.data
-                                    },
-                                    values:obj
-                                }
-                            }, function (ret, err) {
-                                //console.log(ret);
-                                prod_icon = document.querySelector(".addComProImg").src
-                                var pathImgImg = ret.imgUrl
-                                if (pathImgImg == ''){
-                                    prod_icon = '../../../image/company/comproImg.png'
-                                }else{
-                                    var pathImgData = pathImgImg.split(",")
-                                    //console.log(pathImgData)
-                                    prod_icon = pathImgData[0]
-                                }
-
-                                api.hideProgress();
-
-                            });
-                        } else {
-                            //console.log(JSON.stringify(err));
-                        }
-
-                    });
+                deleteOne(pid){
+                  var that = this;
+                  ajaxGetWithProgress(DelCompanyProduct,{pid:pid},function(data,ret){
+                    if(data.status){
+                      mui.toast('删除成功');
+                      that.queryProductSummary();
+                    }
+                  })
                 },
-
-                preservation: function () {
-                    var that = this
-                    var c_id = localStorage.getItem("com_id")
-
-                    var suggestTitle = document.querySelector(".w-comurl-input").value
-                    var suggestText = document.querySelector(".textAreaCom").value
-                    var prod_icon = document.querySelector(".addComProImg").src
-
-                    if (suggestTitle == ''){
-                        toast("请填写产品名字")
-                        return
-                    }
-                    if (suggestText == ''){
-                        toast("请填写产品详情")
-                        return
-                    }
-                    var obj = {
-                        c_id : c_id,
-                        productname: suggestTitle,
-                        prod_tags: suggestText,
-                        prod_icon: prod_icon,
-                    }
-                    //console.log(obj)
-                    ajaxGetWithProgress(addCompanyProduct,obj,function (data,ret) {
-                        //console.log(data)
-                        if (data.return.status) {
-                            var frameName = url + "_body";
-                            api.execScript({
-                                name:url,
-                                frameName: frameName,
-                                script: 'loadCom()'
-                            })
-                            closeWin();
-                        }
-                    })
-                },
-
                 productClick : function (pid) {
                     openNewWindow("whriteComSuggest", "./whriteComSuggest.html", {
                         url: 'whriteComSuggestlist',

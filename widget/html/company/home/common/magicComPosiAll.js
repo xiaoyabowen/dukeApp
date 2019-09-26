@@ -84,7 +84,7 @@ function magicComPosiAllInit(Vue) {
             queryJobsByUidMenu: function () {
                 var that = this
                 ajaxGetWithProgress(queryJobsByUidMenu, {}, function (data) {
-                    //console.log("magicall", data)
+                    console.log("magicall", data)
                     var jobList = data.Jobs
                     if (data) {
                         if (jobList == null) {
