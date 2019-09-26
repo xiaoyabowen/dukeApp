@@ -266,7 +266,6 @@
         </div>
         <div class="rightImgEdite">
             <img src="../../../icon/msg.png" class="OneImgRight" onclick="linkChat()" alt="chat">
-            <!--<img src="../../../icon/msg.png" class="OneImgRight" onclick="otherPageInfo()" alt="chat">-->
         </div>
     </div>
 </div>
@@ -602,7 +601,10 @@
         });
 
         api.ajax({
+
+
             url: 'http://192.168.1.12:8000/SE4M/SE/Status/status',
+
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -613,16 +615,16 @@
         }, function (data, err) {
             console.log("ifqshang", data)
             if(data){
-                for (var i=0;i<data.data.length;i++){
-                    if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
+              for (var i=0;i<data.data.length;i++){
+                  if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
 
-                        var homeBtn = document.querySelector(".homeBtn");
-                        var homeJob = document.querySelector(".homeJob");
-                        homeBtn.removeChild(homeJob);//通过inpu的父对象把它删除
-                        document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
-                    }
+                      var homeBtn = document.querySelector(".homeBtn");
+                      var homeJob = document.querySelector(".homeJob");
+                      homeBtn.removeChild(homeJob);//通过inpu的父对象把它删除
+                      document.querySelector(".home-banner").src = "../../../image/bannerShi.png"
+                  }
 
-                }
+              }
             }
             api.hideProgress();
 
@@ -643,29 +645,7 @@
 
     }
 
-    function otherPageInfo() {
-        /*api.openFrame({
-            name : 'content',
-            url : 'https://community.apicloud.com/bbs/forum.php',
-            bounces : true,
-            bgColor : '#ffffff',
-            rect : {
-                x : 0,
-                y : 0,
-                w : api.frameWidth,
-                h : api.frameHeight
-            }
-        });
-        api.sendEvent({
-            name : 'frameClient'
-        });*/
-        var uidUser = localStorage.getItem("user")
-        if (!uidUser) {
-            openNewWindow("login", "../../login/login.html");
-            return;
-        }
-        openNewWindow("index", "../chat/index.html")
-    }
+
     searchinputTop = document.getElementById("search-inputTop")
     searchinputTop.onclick = function (e) {
         openNewWindow("historySearch", "./historySearch.html", {
@@ -726,7 +706,7 @@
 
 
 
-
+        
         var uidUser = localStorage.getItem("user")
         // console.log("localStorage.getItem",uidUser)
         if (!uidUser || uidUser == undefined) {
@@ -770,6 +750,7 @@
         // openNewWindow("Feedback", "../mine/Feedback.html")
     }
 
+    
     // 跳转到聊天页面
     function linkChat() {
 
@@ -778,7 +759,7 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        openNewWindow("index", "../chat/w_imageclip_frame.html")
+        openNewWindow("index", "../chat/index.html")
     }
 
     // 圈子

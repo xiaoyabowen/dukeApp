@@ -126,12 +126,19 @@
         }
 
 
-    </style>
 
+
+    </style>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+    <script>eruda.init();</script>
 </head>
 <body class="commonBg">
+
+<div class="FNImageBox cssFlex">
+    <div class="fnClose" onclick="fnImage(0)">取消</div>
+    <div class="fnClose" onclick="fnImage(1)">重置</div>
+    <div class="fnSave" onclick="fnImage(2)">确定</div>
+</div>
 
 <div class="Box">
     <!--&lt;!&ndash;头部&ndash;&gt;-->
@@ -145,7 +152,9 @@
                 <!-- <div class="editResume_information" onclick="editInfo()">编辑基本信息</div> -->
             </div>
             <div class="resume_editResume_head_right">
-                <div id="p_icon" style="display: inline-block; background-image: url(../../../image/pro.png);background-repeat: no-repeat; background-position: center;background-size: cover" class="p_iconImg"></div>
+                <div id="p_icon"
+                     style="display: inline-block; background-image: url(../../../image/pro.png);background-repeat: no-repeat; background-position: center;background-size: cover"
+                     class="p_iconImg"></div>
                 <!-- <img id="p_icon" src="../../../image/pro.png" alt="pro" class="p_iconImg"> -->
             </div>
         </div>
@@ -179,7 +188,7 @@
                 </div>
 
                 <div class="info-choose heightAuto cssFlex" onclick="resume_editExpectations()">
-                    <div >
+                    <div>
                         <span class="info-choose-name weight">求职期望</span>
 
                         <div class=" work_MAin isDisplay">
@@ -302,7 +311,6 @@
 
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
-<script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
@@ -310,12 +318,13 @@
 <script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script>
-    function loadCom (){
+    function loadCom() {
         window.location.reload()
     }
-    var p_tags, p_title, home_page, url;
+
+    var p_tags, p_title, home_page, url, FNImageClip, FNImageBox;
     apiready = function () {
-      
+
         url = api.pageParam.url
         // console.log(url)
         // 获取用户简历全部信息
@@ -346,7 +355,7 @@
 
                 // 图片
                 if (person_summary.p_icon) {
-                    document.getElementById('p_icon').style.backgroundImage = 'url('+ imgSrcFun(person_summary.p_icon) +')';
+                    document.getElementById('p_icon').style.backgroundImage = 'url(' + imgSrcFun(person_summary.p_icon) + ')';
                 }
 
                 // 自我介绍
@@ -375,23 +384,23 @@
                     }
                     document.getElementById('jobHuntingStatus').innerText = statusObj[person_summary.i_status] ? statusObj[person_summary.i_status] : '未选择';
                     document.getElementById('jobHuntingStatus').dataset['status'] = person_summary.i_status;
-                }else {
+                } else {
                     document.getElementById('jobHuntingStatus').innerText = "未选择"
                 }
                 // 求职期望
                 if (Intention) {
                     var Intention = data.Intention
-                   /* var work_MAinHtml = ''
-                    for (var i=0;i<Intention.length;i++){
-                        work_MAinHtml += '<p class="info-choose-name" style="width: 4rem;" onclick="intenType('+Intention[i].id+')">\n' +
-                            '\n' +
-                            '                                <span class="work_name">'+Intention[i].work_name+'</span>\n' +
-                            '                                <span class="pay">'+Intention[i].pay+'k</span>\n' +
-                            '                            </p>\n' +
-                            '                            <span class="info-choose-name int_city">'+Intention[i].int_city+'</span>'
-                    }
-                    document.querySelector(".work_MAin").innerHTML = work_MAinHtml
-*/
+                    /* var work_MAinHtml = ''
+                     for (var i=0;i<Intention.length;i++){
+                         work_MAinHtml += '<p class="info-choose-name" style="width: 4rem;" onclick="intenType('+Intention[i].id+')">\n' +
+                             '\n' +
+                             '                                <span class="work_name">'+Intention[i].work_name+'</span>\n' +
+                             '                                <span class="pay">'+Intention[i].pay+'k</span>\n' +
+                             '                            </p>\n' +
+                             '                            <span class="info-choose-name int_city">'+Intention[i].int_city+'</span>'
+                     }
+                     document.querySelector(".work_MAin").innerHTML = work_MAinHtml
+ */
 
                     document.querySelector('.work_name').innerText = Intention[0].work_name;
                     document.querySelector('.pay').innerText = Intention[0].pay;
@@ -405,7 +414,7 @@
                     // console.log(pays2);
                     // document.querySelector('.pay').innerText = pays2.join('-');
                     document.querySelector(".work_MAin").classList.remove("isDisplay")
-                }else {
+                } else {
                     document.querySelector(".work_Choose").classList.remove("isDisplay")
                 }
                 // 工作经历
@@ -505,64 +514,201 @@
 
     // 上传头像
     var file = document.querySelector('.p_iconImg');
-    file.onclick = function (){
-        api.getPicture({
-            sourceType: 'library',
-            encodingType: 'jpg',
-            mediaValue: 'pic',
-            destinationType: 'url',
-            allowEdit: true,
-            quality: 50,
-            targetWidth: 100,
-            targetHeight: 100,
-            saveToPhotoAlbum: false
-        }, function(ret, err) {
+    file.onclick = function () {
+        FNImageBox = document.querySelector(".FNImageBox");
+        api.actionSheet({
+            cancelTitle: '取消',
+            buttons: ['拍照', '手机相册']
+        }, function (ret, err) {
             if (ret) {
-                var obj = {
-                    uid : localStorage.getItem("user")
-                }
-                // console.log("datadret",ret);
-                //上传剪辑后的图像到服务器
-                api.ajax({
-
-                    url: 'http://192.168.1.12:8000/upload/UploadFlie',
-
-                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                    method: 'post',
-                    cache: 'false',
-                    timeout: 30,
-                    dataTpye: 'json',
-                    data: {
-                        files: {
-                            file: ret.data
-                        },
-                        values:obj
-                    }
-                }, function (ret, err) {
-                    console.log(123,ret);
-                    var pathImgImg = ret.imgUrl
-                    if (pathImgImg == ''){
-                        document.querySelector(".p_iconImg").style.backgroundImage = document.querySelector(".p_iconImg").style.backgroundImage ? document.querySelector(".p_iconImg").style.backgroundImage :  "url('http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png')"
-                    }else{
-                        var pathImgData = pathImgImg.split(",")
-                        // console.log(pathImgData)
-                        document.querySelector(".p_iconImg").style.backgroundImage ='url('+ pathImgData[0] +')'; 
-
-                        ajaxGetWithProgress(updatePIcon,{p_icon:pathImgData[0]+','},function (data) {
-                            if (data.return.status){
-                                toast("修改成功")
-                            } else {
-                                toast("修改失败")
-                            }
-                        })
-                    }
-                    api.hideProgress();
-
-                });
-            } else {
-                // console.log(JSON.stringify(err));
+                // 调用拍照功能
+                getPicture(ret.buttonIndex);
             }
         });
+
+    }
+
+    function getPicture(sourceType) {
+        if (sourceType == 1) {
+            api.getPicture({
+                sourceType: 'camera',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                allowEdit: false,
+                quality: 96,
+                saveToPhotoAlbum: false
+            }, function (ret, err) {
+                // 存储 拍照留下的路劲
+                localStorage.setItem("imgUrl", ret.data)
+                // 获取拍照图像并剪辑
+                if (!ret.data.length) {
+                    api.toast({
+                        msg: '请使用相机拍照',
+                        duration: 3000,
+                        location: 'bottom'
+                    });
+                } else {
+                    FNImageBox.style.display = "flex"
+                    // 剪辑图片
+                    alert(JSON.stringify(FNImageClip))
+                    FNImageClip = api.require('FNImageClip');
+                    FNImageClip.open({
+                        rect: {
+                            x: 0,
+                            y: 0,
+                            w: api.winWidth,
+                            h: api.winHeight - 50
+                            // - document.querySelector('#box').offsetHeight
+
+                        },
+                        srcPath: ret.data,
+                        mode: 'image',
+                        style: {
+                            mask: 'rgba(0,0,0,0.75)',
+                            clip: {
+                                w: 200,
+                                h: 200,
+                                x: (api.frameWidth - 200) / 2,
+                                y: (api.frameHeight - 200) / 2,
+                                borderColor: '#0f0',
+                                borderWidth: 1,
+                                appearance: 'rectangle'
+                            }
+                        },
+                    }, function (ret, err) {
+                        if (ret) {
+
+                        } else {
+                            toast("截取失败")
+                        }
+                    });
+                }
+            });
+
+        } else if (sourceType == 2) {
+            api.getPicture({
+                sourceType: 'library',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'url',
+                allowEdit: true,
+                quality: 50,
+                targetWidth: 100,
+                targetHeight: 100,
+                saveToPhotoAlbum: false
+            }, function (ret, err) {
+                if (ret) {
+                    var obj = {
+                        uid: localStorage.getItem("user")
+                    }
+                    // console.log("datadret",ret);
+                    //上传剪辑后的图像到服务器
+                    api.ajax({
+
+                        url: 'http://192.168.1.12:8088/upload/UploadFlie',
+
+                        //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                        method: 'post',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            files: {
+                                file: ret.data
+                            },
+                            values: obj
+                        }
+                    }, function (ret, err) {
+                        console.log(123, ret);
+                        var pathImgImg = ret.imgUrl
+                        if (pathImgImg == '') {
+                            document.querySelector(".p_iconImg").style.backgroundImage = document.querySelector(".p_iconImg").style.backgroundImage ? document.querySelector(".p_iconImg").style.backgroundImage : "url('http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png')"
+                        } else {
+                            var pathImgData = pathImgImg.split(",")
+                            // console.log(pathImgData)
+                            document.querySelector(".p_iconImg").style.backgroundImage = 'url(' + pathImgData[0] + ')';
+
+                            ajaxGetWithProgress(updatePIcon, {p_icon: pathImgData[0] + ','}, function (data) {
+                                if (data.return.status) {
+                                    toast("修改成功")
+                                } else {
+                                    toast("修改失败")
+                                }
+                            })
+                        }
+                        api.hideProgress();
+
+                    });
+                } else {
+                    // console.log(JSON.stringify(err));
+                }
+            });
+        }
+    }
+
+    function fnImage(index) {
+        if (index == 0) {
+            FNImageBox.style.display = "none"
+            FNImageClip.close();
+        } else if (index == 1) {
+            FNImageClip.reset();
+        } else if (index == 2) {
+            FNImageClip.save({
+                destPath: localStorage.getItem("imgUrl"),
+                copyToAlbum: false,
+                quality: 1
+            }, function (ret, err) {
+                if (ret) {
+                    api.showProgress();
+                    var obj = {
+                        uid: localStorage.getItem("user")
+                    }
+                    // console.log("datadret",ret);
+                    //上传剪辑后的图像到服务器
+                    api.ajax({
+                        url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                        //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                        method: 'post',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            files: {
+                                file: ret.destPath
+                            },
+                            values: obj
+                        }
+                    }, function (ret, err) {
+
+                        var pathImgImg = ret.imgUrl
+                        if (pathImgImg == '') {
+                            document.querySelector(".p_iconImg").style.backgroundImage = document.querySelector(".p_iconImg").style.backgroundImage ? document.querySelector(".p_iconImg").style.backgroundImage : "url('http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png')"
+                        } else {
+                            var pathImgData = pathImgImg.split(",")
+                            // console.log(pathImgData)
+                            document.querySelector(".p_iconImg").style.backgroundImage = 'url(' + pathImgData[0] + ')';
+
+                            ajaxGetWithProgress(updatePIcon, {p_icon: pathImgData[0] + ','}, function (data) {
+                                if (data.return.status) {
+                                    api.hideProgress();
+                                    toast("修改成功")
+                                } else {
+                                    toast("修改失败")
+                                }
+                            })
+                        }
+                        api.hideProgress();
+
+                    });
+
+
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+            FNImageBox.style.display = "none"
+            FNImageClip.close();
+        }
     }
 
     function setIntroduce(value) {
@@ -590,8 +736,8 @@
     function resume_editExpectations() {
         var index = document.querySelector(".idwork").innerText
         openNewWindow("resume_editExpectations", "./resume_editExpectations.html", {
-            content : '未填写',
-            id : index
+            content: '未填写',
+            id: index
         });
     }
 
@@ -626,7 +772,7 @@
             }, function (data, err) {
 
                 // console.log("求职状态是",data)
-                if (data.return.status){
+                if (data.return.status) {
                     loadCom()
                 }
             });
@@ -671,8 +817,8 @@
 
     // 编辑个人基本信息
     function editInfo() {
-        openNewWindow("editInfo", "editInfo.html",{
-            url:'resume_editResume'
+        openNewWindow("editInfo", "editInfo.html", {
+            url: 'resume_editResume'
         })
     }
 

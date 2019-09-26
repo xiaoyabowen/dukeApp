@@ -507,6 +507,7 @@ height: 0.2rem;*/
     // 上传头像
     var file = document.querySelector('.p_iconImg');
     file.onclick = function() {
+
         api.getPicture({
             sourceType: 'library',
             encodingType: 'jpg',
@@ -560,13 +561,8 @@ height: 0.2rem;*/
 
                     }
 
-                    api.hideProgress();
 
-                });
-            } else {
-                // console.log(JSON.stringify(err));
-            }
-        });
+
     }
 
 
