@@ -275,7 +275,7 @@
         //console.log(obj)
         localStorage.setItem("username",document.getElementById("fillName").innerText)
         localStorage.setItem("fillEmail",document.getElementById("fillEmail").innerText)
-        ajaxGetWithProgress('http://192.168.1.12:80000/SE4M/addRecruiter', obj, function (data, err) {
+        ajaxGetWithProgress('http://192.168.1.12:8000/SE4M/addRecruiter', obj, function (data, err) {
             if (data){
                 if (data.date == 1){
                     openNewWindow("postsPublish", "./postsPublish.html",{
