@@ -457,6 +457,15 @@
                 // ms_type:0,
             });
         } else if (ms_type == 1) {
+            api.sendEvent({
+                name: 'closePositionWin',
+                extra: {
+                job_id: s_id,
+                h_type: 0,
+                search: searchListText[search].getAttribute("data-search"),
+                ms_type: 0, // 0 search   1 魔方 进入
+                }
+            });
             openNewWindow("position", "./position.html", {
                 job_id: s_id,
                 h_type: 0,

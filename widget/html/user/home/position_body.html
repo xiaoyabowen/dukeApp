@@ -665,7 +665,7 @@
                     uid = data.uid;
                     ptoken = data.uid;
                     cn_name = data.c_name;
-
+                    document.getElementById('job_id').value = data.job_id;
                     document.getElementById('job_name').innerText = data.job_name || '未填写';
                     document.getElementById('work_ex').innerText = data.work_ex || '未填写';
                     document.getElementById('count').innerText = data.count || '未填写';
@@ -785,7 +785,7 @@
                     var that = this
                     ajaxGetWithProgress(MenuListQyMenu, {}, function (data) {
                         var jobList = data.job
-                        //console.log(jobList)
+                        console.log(jobList,'78888')
                         if (data) {
                             if (jobList == null) {
                                 that.listJob = ''
@@ -881,10 +881,12 @@
                     var resume = this.resumeList[this.selectIndex].docu;
                     var resumeName = this.resumeList[this.selectIndex].res_name;
                     var uid = this.resumeList[this.selectIndex].uid;
-                    //console.log(jobId, uid, cn_name, job_name, '677');
+                    var jobId = document.querySelector('#job_id').value;
+                    console.log(jobId, uid, cn_name, job_name,resumeName, '677');
+                  
                     ajaxGetWithProgress(SendResumeTo, {
-                        c_name: cn_name,//公司名称
-                        job_name: job_name, // 职位名称
+                        // c_name: cn_name,//公司名称
+                        // job_name: job_name, // 职位名称
                         resume: resume,// 简历路径
                         resumeName: resumeName, //简历名称
                         job_id: jobId,//职位id
@@ -934,13 +936,11 @@
 
         var obj = {
             ptoken: ptoken,
-            job_id: jobId,
+            job_id: document.querySelector('#job_id').value,
 
         }
-        //console.log(obj)
 
         ajaxGetWithProgress(addTopicLink, obj, function (data) {
-            //console.log("addTopicLink", data)
             if (data) {
                 var token = localStorage.getItem('person_id');
                 openNewWindow("chat_Room", "../chat/chat_Room.html", {
@@ -954,8 +954,6 @@
                 });
             }
         })
-
-
     }
 
     function historysClick() {

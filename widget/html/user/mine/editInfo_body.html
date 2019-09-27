@@ -507,63 +507,67 @@ height: 0.2rem;*/
     // 上传头像
     var file = document.querySelector('.p_iconImg');
     file.onclick = function() {
+       api.getPicture({
+           sourceType: 'library',
+           encodingType: 'jpg',
+           mediaValue: 'pic',
+           destinationType: 'url',
+           allowEdit: true,
+           quality: 50,
+           targetWidth: 100,
+           targetHeight: 100,
+           saveToPhotoAlbum: false
+       }, function(ret, err) {
+           if (ret) {
+               var obj = {
+                   uid: localStorage.getItem("user")
+               }
+               // console.log("datadret",ret);
+               //上传剪辑后的图像到服务器
+               api.ajax({
+                   url: 'http://192.168.1.12:8088/upload/UploadFlie',
+                   //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
+                   method: 'post',
+                   cache: 'false',
+                   timeout: 30,
+                   dataTpye: 'json',
+                   data: {
+                       files: {
+                           file: ret.data
+                       },
+                       values: obj
+                   }
+               }, function(ret, err) {
+                   // console.log(123,ret);
+                   var pathImgImg = ret.imgUrl
+                   if (pathImgImg == '') {
+                       document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
+                   } else {
+                       var pathImgData = pathImgImg.split(",")
+                       // console.log(pathImgData)
+                       document.querySelector(".p_iconImg").src = pathImgData[0]
 
-        api.getPicture({
-            sourceType: 'library',
-            encodingType: 'jpg',
-            mediaValue: 'pic',
-            destinationType: 'url',
-            allowEdit: true,
-            quality: 50,
-            targetWidth: 100,
-            targetHeight: 100,
-            saveToPhotoAlbum: false
-        }, function(ret, err) {
-            if (ret) {
-                var obj = {
-                    uid: localStorage.getItem("user")
-                }
-                // console.log("datadret",ret);
-                //上传剪辑后的图像到服务器
-                api.ajax({
-                    url: 'http://192.168.1.12:8088/upload/UploadFlie',
-                    //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
-                    method: 'post',
-                    cache: 'false',
-                    timeout: 30,
-                    dataTpye: 'json',
-                    data: {
-                        files: {
-                            file: ret.data
-                        },
-                        values: obj
-                    }
-                }, function(ret, err) {
-                    // console.log(123,ret);
-                    var pathImgImg = ret.imgUrl
-                    if (pathImgImg == '') {
-                        document.querySelector(".p_iconImg").src = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/defult/a4edepda85w9xiyk.png'
-                    } else {
-                        var pathImgData = pathImgImg.split(",")
-                        // console.log(pathImgData)
-                        document.querySelector(".p_iconImg").src = pathImgData[0]
-
-                        ajaxGetWithProgress(updatePIcon, {
-                            p_icon: pathImgData[0] + ','
-                        }, function(data) {
-                            if (data.return.status) {
-                                toast("修改成功")
-                            } else {
-                                toast("修改失败")
-                            }
-                        })
-
-
-                    }
+                       ajaxGetWithProgress(updatePIcon, {
+                           p_icon: pathImgData[0] + ','
+                       }, function(data) {
+                           if (data.return.status) {
+                               toast("修改成功")
+                           } else {
+                               toast("修改失败")
+                           }
+                       })
 
 
+                   }
 
-    }
+                   api.hideProgress();
+
+               });
+           } else {
+               // console.log(JSON.stringify(err));
+           }
+       });
+   }
 
 
     // 点击保存执行方法

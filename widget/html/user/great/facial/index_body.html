@@ -34,8 +34,13 @@
             <div class="great_header">
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="(imgSrc, index) in imgsBanner" :key="index">
-                            <img :src="imgSrc" />
+                        <div class="swiper-slide" v-for="(imgSrc, index) in imgsBanner" :key="index" :style="{
+                          backgroundImage:'url('+ imgSrc +')',
+                          backgroundRepeat:'no-repeat',
+                          backgroundSize:'contain',
+                          backgroundPosition:'center',
+                        }">
+                            <!-- <img :src="imgSrc" /> -->
                         </div>
 
                         <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
@@ -58,7 +63,7 @@
             </div>
 
 
-            <div class="great_comments">
+            <!-- <div class="great_comments">
                 <div class="great_comments_title">
                     <span>商品评价</span>
                     <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
@@ -93,9 +98,10 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
             <div class="great_details">
+                <div style='background:#fff;padding:10px'>商品详情</div>
                 <img v-for="(imgSrc, i) in imgs" :key="i" :src="imgSrc" alt="">
             </div>
         </div>

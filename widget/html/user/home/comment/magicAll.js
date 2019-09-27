@@ -56,7 +56,7 @@ function magicAllInit(Vue) {
             MenuListQyMenu: function () {
                 var that = this
                 ajaxGetWithProgress(MenuListQyMenu, {job_type:that.job_type}, function (data) {
-                    ////console.log("magicall", data)
+                    console.log("magicall", data)
                     var jobList = data.job
                     //console.log(jobList)
                     if (data) {
@@ -65,8 +65,7 @@ function magicAllInit(Vue) {
                         } else {
                             that.listJob = jobList
                         }
-
-console.log(data,'69')
+                        // console.log(data,'69')
                         that.magicComCid1 = data.company[0].c_id
                         if (data.company[0].logo_icon == ''){
                             that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'

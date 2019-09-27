@@ -846,6 +846,9 @@ function ArrFun(arr) {
 
 // 计算年龄或工作年限
 function ages(str) {
+    if(str.length <= 7){
+      str += '-00'
+    }
     var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
     if (r == null) return false;
     var d = new Date(r[1], r[3] - 1, r[4]);
@@ -855,8 +858,11 @@ function ages(str) {
         // console.log(Y - r[1],'nianling');
         return (Y - r[1]);
     }
-    return ("输入的日期格式错误！");
+    return ("");
 }
+
+
+// ages('2017-08')
 // 过滤时间转成 - 4-5-
 function filterTime0(time) {
     var arr = time.split('-');

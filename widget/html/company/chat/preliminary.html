@@ -160,8 +160,8 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
 
 </script>
@@ -192,6 +192,9 @@
                 this.app_id = api.pageParam.app_id;
                 this.name = api.pageParam.name;
                 this.content = api.pageParam.content;
+
+                console.log(api.pageParam,'1966666');
+
                 this.itme = new Date().format('yyyy-MM-DD');
                 if (this.content == 'edit'){
                     this.queryApplicationStatusEvaluateProfile()
@@ -209,6 +212,8 @@
                 },
 
                 queryApplicationStatusEvaluateProfile :function(){
+                  console.log(this.app_id,'212');
+                  return;
                     var that = this;
                     ajaxGetWithProgress(queryApplicationStatusEvaluateProfile,{app_id:that.app_id},function (data) {
                         //console.log("edit",data)
@@ -303,6 +308,11 @@
                             //console.log(data)
                             if (data.return_info.status){
                                 toast("邀约成功")
+                                api.closeWin({});
+                                api.sendEvent({
+                                    name: 'success',
+                                });
+
                                 // openNewWindow("resume", "./comment/resume.html")
 
                             } else {

@@ -82,7 +82,7 @@
 
 
 
-            <div class="great_comments">
+            <!-- <div class="great_comments">
                 <div class="great_comments_title">
                     <span>商品评价</span>
                     <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
@@ -114,13 +114,14 @@
                             <!--<img src="../../../image/pro.png" alt="">-->
                             <!--<img src="../../../image/pro.png" alt="">-->
                             <!--<img class="right0" src="../../../image/pro.png" alt="">-->
-                        </div>
+                        <!-- </div>
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
             <div class="great_details">
+                <div style='background:#fff;padding:10px'>商品详情</div>
                 <img v-for="(imgSrc, i) in imgs" :key="i"
                      :src="imgSrc" alt="">
             </div>
