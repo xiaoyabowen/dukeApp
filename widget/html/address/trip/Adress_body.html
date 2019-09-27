@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>地址管理</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css"/>
+    <style media="screen">
+      .ad-defult{
+        align-items: center;
+      }
+    </style>
+</head>
+<body class="commonBg">
+
+
+<div class="Box" id="app">
+    <div class="boxSub adressboxSub">
+        <div class="defaultImg isDisplay">
+            <img src="../../../image/great/adress.png" alt="adress" class="adressNot">
+            <div class="subTitle">暂无旅客</div>
+            <div class="addAdressbtn" @click="addAdress()">新增旅客</div>
+        </div>
+
+
+        <div class="adressBox">
+            <div class="adressEditInfoBox cssFlex" v-for="(item,index) in adressList">
+                <div class="adressEditInfo cssFlex">
+                    <div class="con-pay-main-right cssFlex">
+                        <input type="checkbox" value="" class="myOrderHaveCheck" id="mode0"
+                               name="checkItem">
+                        <label for="mode0">
+                            <div class="adress-con cssFlex">
+                                <span class="adinfo-name">{{item.nameall}}</span>
+                                <span class="adinfo-phone">{{item.callNo}}</span>
+                                <span class="adinfo-sex" v-show="item.sex == 0">男</span>
+                                <span class="adinfo-sex" v-show="item.sex == 1">女</span>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="adressEditImgBtn cssFlex">
+                    <img src="../../../icon/delete.png" alt="de" class="adressEditImg">
+                </div>
+            </div>
+
+            <div class="addAdressbtn" @click="addAdress()">新增旅客</div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script src="../../../script/vue.min.js"></script>
+
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script>
+    var app;
+    function reload(){
+        window.location.reload()
+    }
+    function preservation() {
+        app.savePer()
+    }
+    apiready = function () {
+        app = new Vue({
+            el: '#app',
+            data: {
+                isDefult: false,
+                person_id:"",
+                name:"",
+                adressList: [
+
+                ]
+            },
+            created :function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.findItemByuid()
+            },
+            mounted:function () {
+
+            },
+            methods:{
+                // 选择收货地址
+                linkHandle: function (name, phone, address, addrDetails,adrId) {
+                    var url = api.pageParam.url
+                    api.sendEvent({
+                        name: 'addressDefault',
+                        extra: {
+                            key: {
+                                /*c_id: that.magicComCid2,
+                                c_name: that.magicCom2Text,
+                                logo_icon: that.magicCom2Img,*/
+                                addressDefault: 'true'
+                            },
+
+                        }
+                    });
+                    var frameName = url + "_body";
+                    if (url == 'confirmOrder') {
+                        api.execScript({
+                            name:url,
+                            frameName: frameName,
+                            isDefult: "true",
+                            script:'address('+ JSON.stringify(name) +','+JSON.stringify(phone)+','+JSON.stringify(address + addrDetails)+','+JSON.stringify(adrId)+')'
+                        })
+                        closeWin();
+                        return;
+                    }
+
+                },
+                addAdress: function () {
+                    openNewWindow("addAdress", "./addAdress.html", {
+                        url: 'Adress',
+                        adrStatus:1
+                    })
+                },
+                findItemByuid : function () {
+                    var that = this
+                    var str = {
+                        uid:that.person_id,
+                    }
+                    api.ajax({
+                        // report : false,
+
+                        url: 'http://192.168.1.35:8082/travel/findItemByuid',
+                        method: '',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            files: {
+
+                            },
+                            values: str
+                        }
+                    }, function(data, err) {
+
+                        console.log("dataaaa", data);
+                        api.hideProgress();
+                        if (data) {
+                            that.adressList = data.Message;
+                        }
+                    });
+                    /*ajaxGetWithProgress(findItemByuid, str, function (data, err) {
+                        console.log(data);
+                        /!*if (data.deliveryAdr.length != 0){
+                            document.querySelector(".adressBox").classList.remove("isDisplay")
+                            that.adressList = data.deliveryAdr
+
+                        }else{
+                            document.querySelector(".defaultImg").classList.remove("isDisplay")
+                        }*!/
+                    });*/
+                },
+
+                delAdr :function (index) {
+                    //console.log(index)
+
+                    mui.confirm('是否删除此地址吗?', function (e) {
+                        if (e.index == 1) {
+
+                            var str = {
+                                adrId:index,
+                            }
+                            ajaxGetWithProgress(deliveryDelete,str,function(res,err) {
+                                //console.log(res);
+                                reload()
+                                api.toast({msg:"删除成功"})
+                            })
+                        }
+
+
+                    })
+                    /*ajaxGetWithProgress(deliveryDelete, str, function (data, err) {
+                        //console.log(data);
+                        if (data.deliveryAdr){
+                            document.querySelector(".adressBox").classList.remove("isDisplay")
+                            that.adressList = data.deliveryAdr
+
+                        }
+                    });*/
+                },
+                editAdr :function (adrId,i) {
+                    var that = this;
+                    var dataAdr = that.adressList[i]
+                    var adrId = adrId;
+                    var name = dataAdr.name;
+                    var phone = dataAdr.phone;
+                    var address = dataAdr.address;
+                    var addrDetails = dataAdr.addrDetails;
+                    var adrStatus = 2;
+                    openNewWindow("addAdress", "./addAdress.html", {
+                        url: 'addAdress',
+                        adrId:adrId,
+                        name:name,
+                        phone:phone,
+                        address:address,
+                        addrDetails:addrDetails,
+                        adrStatus:adrStatus
+                    })
+                },
+                defultAdr: function (index) {
+                    var that = this
+                    var str = {
+                        adrid:index,
+                        pid:that.person_id
+                    }
+                    ajaxGetWithProgress(deliverySetAddr,str,function(res,err) {
+                        //console.log(res);
+                        reload()
+                    })
+                },
+                savePer :　function () {
+                    alert(1)
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

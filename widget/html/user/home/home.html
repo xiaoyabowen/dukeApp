@@ -462,103 +462,6 @@
             closeOnKeyBack();
         });
 
-        new Vue({
-            el: '#app1',
-            data: {
-                // active: 'homeAll',
-                // 聊天
-                JIM: '',
-                pid_accept: '',         //接收消息者 username
-                pid_name: '',             //接收消息者 name
-                appkey: '',
-                random_str: '',
-                signature: '',
-                timestamp: '',
-            },
-            created: function () {
-                // this.getSignatureJiGuang()
-                var that = this
-                // that.JIM = JIMStr
-                // console.log(that.JIM)
-                // that.isConnect()
-                // console.log("JIMisConnect",that.JIM.isConnect())
-                that.getSignatureJiGuang()
-            },
-
-            methods: {
-
-                togle: function () {
-                    toast("切换内容")
-                },
-                position: function () {
-                    openNewWindow("position", "./position.html", {
-                        url: 'home',
-                    });
-                },
-                hua: function () {
-                    openNewWindow("index", "../great/index.html")
-                },
-                circle: function () {
-                    // openNewWindow("index", "../circle/index1.html")
-                    // alert(12);
-                    // openNewWindow('publishActivity','../circle/publishActivity.html');
-                },
-                jobDetail: function () {
-                    openNewWindow("position", "./position.html", {
-                        job_id: 23,
-                        url: 'home',
-                    })
-                },
-                jobDetail1: function () {
-                    openNewWindow("position", "./position.html", {
-                        job_id: 59,
-                        url: 'home',
-                    })
-                },
-                peack: function () {
-                    openNewWindow("index", "../great/farmProduce/index.html")
-                },
-
-
-                // 聊天获取 appkey random_str signature timestamp   初始化  JIM
-                getSignatureJiGuang: function () {
-                    var that = this
-                    ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                        // console.log(data)
-                        if (data) {
-                            that.appkey = data.appkey
-                            that.random_str = data.random_str
-                            that.signature = data.signature
-                            that.timestamp = data.timestamp
-
-                            that.JIM = new JMessage({debug: true})
-                            // console.log("JIM", that.JIM)
-                            that.init()
-
-                        } else {
-                            toast("连接失败")
-                        }
-                    })
-                },
-
-                init: function () {
-                    var that = this
-                    that.JIM.init({
-                        "appkey": that.appkey,
-                        "random_str": that.random_str,
-                        "signature": that.signature,
-                        "timestamp": that.timestamp,
-                        "flag": 1
-
-                    }).onSuccess(function (data) {
-                        // console.log('success:', data);
-
-                    }).onFail(function (data) {
-                        // console.log('error2:', data)
-                    });
-                },
-            }
-        })
         // test()
         wx = api.require('wx');
         // initFrameInWin(api.pageParam);
@@ -802,7 +705,7 @@
     function hua() {
 
         openNewWindow("index", "../great/index.html")
-        // openNewWindow("tripDate", "../great/ouou/tripDate.html")
+        // openNewWindow("Adress", "../../address/trip/Adress.html");
     }
 
 </script>

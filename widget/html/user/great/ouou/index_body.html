@@ -96,10 +96,10 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <div class="tourism_title">{{item.comName}}</div>
+                <div class="tourism_title">{{item.goodName}}</div>
                 <div class="posire">
                     <div class="great_Price_List cssFlex">
-                        <span class="great_Price">¥{{item.priceRange}}</span>
+                        <span class="great_Price">¥{{item.maxPrice}}</span>
                         <span class="great_Stock">商品已售: <span>{{total}}</span>件</span>
                     </div>
                     <!-- <div class="ououIndex cssFlex">
@@ -107,6 +107,7 @@
                         <div class="sellJuOuou" @click="Consultation()"><i class="tripPrice isDisplay">0</i>立即购买</div>
                     </div> -->
                 </div>
+                <!--<div class="ouPersonDetail cssFlex" @click="tripDetail()" v-show="tripStatus">-->
                 <div class="ouPersonDetail cssFlex" @click="tripDetail()">
                     <div class="ouPersonDetailText">
                         <div class="commonFont ouPersonLeft cssFlex">
@@ -132,31 +133,31 @@
                      <a class="mui-navigate-right" href="#">手绘地图线路</a>
                      <div class="mui-collapse-content">
                          <!-- <p>面板1子内容</p> -->
-                         <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                         <img style='display:block;width:100%;' :src="item" v-for="(item,index) in picListpic0" :key="picListpic0" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">图文详情</a>
                      <div class="mui-collapse-content">
-                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                        <img style='display:block;width:100%;' :src="item" v-for="(item,index) in picListpic1" :key="picListpic1" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">行程描述</a>
                      <div class="mui-collapse-content">
-                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                        <img style='display:block;width:100%;' :src="item" v-for="(item,index) in picListpic2" :key="picListpic2"alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">费用说明</a>
                      <div class="mui-collapse-content">
-                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                        <img style='display:block;width:100%;':src="item" v-for="(item,index) in picListpic3" :key="picListpic3" alt="">
                      </div>
                  </li>
                  <li class="mui-table-view-cell mui-collapse">
                      <a class="mui-navigate-right" href="#">预订须知</a>
                      <div class="mui-collapse-content">
-                        <img style='display:block;width:100%;' src="../../../../image/great/ouou01.png" alt="">
+                        <img style='display:block;width:100%;':src="item" v-for="(item,index) in picListpic4" :key="picListpic4" alt="">
                      </div>
                  </li>
              </ul>
@@ -172,18 +173,19 @@
 
     <script type="text/javascript" src="../../../../script/api.js"></script>
     <script type="text/javascript" src="../../../../script/rem.js"></script>
+
+    <script type="text/javascript" src="../../../../script/data.js"></script>
     <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../../script/public.js"></script>
     <script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
     <script type="text/javascript" src="../../../../script/mui.min.js"></script>
     <script src="../../../../script/swiper.min.js"></script>
-    <script type="text/javascript" src="../../../../script/data.js"></script>
 
     <script src="../../../../script/vue.min.js"></script>
     <script src="../../../../script/vuex.min.js"></script>
     <script src="../common/magicAll.js"></script>
     <script src="../common/bus.js"></script>
 
+    <script type="text/javascript" src="../../../../script/public.js"></script>
     <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
     <script>eruda.init();</script>
     <script>
@@ -239,35 +241,19 @@
                     len: 1,
                     total: "0",
                     picList: [],
-                    picListpic1: [
-                        {
-                            img:'../../../../image/bigWeigh/feiyong1.png'
-                        },
-                        {
-                            img:'../../../../image/bigWeigh/feiyong2.png'
-                        },
-                    ],
+                    picListpic0: [],
+                    picListpic1: [],
                     picListpic2: [],
-                    picListpic3: [
-                        {
-                            img:'../../../../image/bigWeigh/yu1.png'
-                        },
-                        {
-                            img:'../../../../image/bigWeigh/yu2.png'
-                        },
-                        {
-                            img:'../../../../image/bigWeigh/yu3.png'
-                        },
-                        {
-                            img:'../../../../image/bigWeigh/yu4.png'
-                        },
-                    ],
+                    picListpic3: [],
+                    picListpic4: [],
                     imgs: [],
                     att: false,
                     att_id: '',
                     person_id: '',
                     ouId: '',
                     tId: '',
+                    tripStatus: '',
+                    Spec: '',
 
                     cid: '',
                     data: '',
@@ -283,7 +269,7 @@
                     this.person_id = localStorage.getItem('person_id');
                     this.ouId = api.pageParam.ouId;
                     this.tId = api.pageParam.tId;
-                    this.querySummaryByidoloq();
+                    this.findSummaryByid();
                 },
                 mounted: function () {
                     var that = this
@@ -325,7 +311,7 @@
                     }, function(ret, err) {
                         //console.log("ret",ret);
                         that.ouId = ret.value.key.cid
-                        that.querySummaryByidoloq()
+                        that.findSummaryByid()
 
                     });
 
@@ -363,21 +349,24 @@
 
                 methods: {
                     // 获取数据
-                    querySummaryByidoloq: function () {
+                    findSummaryByid: function () {
 
                         var that = this;
-                        ajaxGetWithProgress(querySummaryByidoloq, {
-                            cid: that.ouId,
-                            pid: that.person_id
+                        ajaxGetWithProgress('http://192.168.1.35:8082/travel/findSummaryByid', {
+                            goodId: "284"
                         }, function (data, err) {
-                            //console.log(data);
-                            that.item = data.commodity
-                            that.total = data.total
-                            that.imgs = stringFun(data.commodity.placard)
-                            that.picList = stringFun(data.commodity.introduction)
-                            // that.picListpic1 = stringFun(data.commodity.intPic)
-                            that.picListpic2 = stringFun(data.commodity.intPic)
-                            // that.picListpic3 = stringFun(data.commodity.pic3)
+                            console.log("findSummaryByid",data);
+                            that.item = data.Message;
+                            that.total = data.total;
+                            that.tripStatus = data.YesOrNo;
+                            that.imgs = stringFun(data.Message.picImg);
+                            that.Spec = data.Spec;
+                            // that.picList = stringFun(data.commodity.introduction);
+                            that.picListpic0 = data.image[0].picImg.split(',');
+                            that.picListpic1 = data.image[1].picImg.split(',');
+                            that.picListpic2 = data.image[2].picImg.split(',');
+                            that.picListpic3 = data.image[3].picImg.split(',');
+                            that.picListpic4 = data.image[4].picImg.split(',');
 
                         });
                     },
@@ -465,7 +454,10 @@
                         var that = this
                         openNewWindow("tripDate", "./tripDate.html",{
                             name :'index',
-                            ouId : that.ouId
+                            ouId : that.ouId,
+                            Spec : that.Spec,
+
+
                         });
                     },
                     // 唤起手机拨号功能

@@ -25,20 +25,20 @@
 
 
 <div class="Box isDisplay" id="app">
-    <div class="boxSub">
+    <div class="boxSub" v-for="(item,index) in Spec" :key="index" >
         <div class="tr-title">
-            出游人群
+            {{item.title.specName}}
         </div>
         <div class="tripList cssFlex">
             <span :class="comscaleActive == index ? 'listSpanActive':''"
-                  v-for="(item,index) in tripPersonList" :key="index"
+                  v-for="(itemSpec,index) in Spec[index].item" :key="index"
                   @click="tripPersonListClick(item,index)">
-                {{item.peopleType}}
+                {{itemSpec.specValue}}
             </span>
 
         </div>
 
-        <div class="tr-title">
+        <!--<div class="tr-title">
             出游城市
         </div>
         <div class="tripList cssFlex">
@@ -48,7 +48,7 @@
                 {{item.departureCity}}
             </span>
 
-        </div>
+        </div>-->
 
 
     </div>
@@ -88,7 +88,7 @@
     </div>
     <div class="boxSub">
         <div class="tr-title">
-            选择数量
+            出行人数
         </div>
         <div class="tr-person cssFlex">
             <span class="tr-person-price">
@@ -103,7 +103,11 @@
         <div class="tr-title">
             预定人信息
         </div>
-        <div class="ReserveBox">
+        <div class="perInfoList cssFlex">
+            <div class="perInfoListBtn" @click="personAc()" v-for="">郑博文</div>
+            <div class="perInfoListBtn" @click="addPer()">选择出行人 > </div>
+        </div>
+        <!--<div class="ReserveBox">
             <div class="res-box cssFlex">
                 <span class="res-boxname"><i>*</i>联系人</span>
                 <input type="text" class="res-boxinput" v-model="name" placeholder="请填写联系人姓名">
@@ -112,7 +116,7 @@
                 <span class="res-boxname"><i>*</i>手机号</span>
                 <input type="text" class="res-boxinput" v-model="phone" placeholder="请填写手机号">
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="res-bottombox cssFlex">
         <div class="res-bom-text">¥<i>{{getPriceDefult * num}}</i></div>
@@ -130,8 +134,8 @@
 <script type="text/javascript" src="../../../../script/mui.min.js"></script>
 <script src="../../../../script/vue.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
     var name
@@ -149,7 +153,7 @@
                 getPrice: "",
                 getPriceDefult: "",
 
-
+                Spec : '',
 
                 cid:'',
                 ouId:'',
@@ -160,9 +164,6 @@
                 getQueryMonth1: "",     //月份2
                 getQueryMonth2: "",     //月份3
                 dataDateList: [],
-
-
-
 
                 num: 1,
                 dateActive: '',
@@ -187,6 +188,9 @@
 
                 this.person_id = localStorage.getItem('user');
                 this.ouId = api.pageParam.ouId;
+                this.Spec = api.pageParam.Spec;
+                console.log(api.pageParam.Spec)
+                console.log(this.Spec)
                 // 日历
                 this.getQueryYear = new Date().getFullYear() * 1;   // 年份
                 this.getQueryMonth = (new Date().getMonth() + 1) * 1; //月份
@@ -221,6 +225,16 @@
                     if (this.num < 1) {
                         this.num = 1
                     }
+                },
+                personAc: function () {
+                    this.num--
+                    if (this.num < 1) {
+                        this.num = 1
+                    }
+                },
+                addPer: function () {
+                    var that = this;
+                    openNewWindow("Adress", "../../../address/trip/Adress.html");
                 },
                 queryPeopleAndCityoloq: function () {
                     var that = this

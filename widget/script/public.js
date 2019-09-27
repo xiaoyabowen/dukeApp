@@ -11,6 +11,7 @@ var isCleanUser = false;
 var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
 var localhostHref = 'http://192.168.1.12:8000/SE4M';
 var Domain = 'http://192.168.1.12:8088';
+var DomainTrip = 'http://192.168.1.35:8052';
 
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
@@ -102,6 +103,20 @@ var payalipayUniform = Domain + '/pay/alipayUniform'
 
 // 确认订单 数量 加减
 var updateBuyNumAndPrice = Domain + '/reserve/updateBuyNumAndPrice'
+
+
+// 巨划算旅游 板块
+// 巨划算旅游查看详情
+var findSummaryByid = DomainTrip + '/travel/findSummaryByid'
+// 巨划算旅游添加出行人信息
+var createItem = DomainTrip + '/travel/createItem'
+// 巨划算旅游添加出行人信息
+var findItemByuid = DomainTrip + '/travel/findItemByuid'
+
+
+
+
+
 
 
 
@@ -2118,23 +2133,23 @@ function posiShareClick() {
                 text: '微信朋友圈',
                 icon: 'widget://image/pyq.png'
             },
-            {
-                text: 'QQ好友',
-                icon: 'widget://image/qq.png'
-            },
+            // {
+            //     text: 'QQ好友',
+            //     icon: 'widget://image/qq.png'
+            // },
 
             /*{
                 text: 'QQ空间',
                 icon: 'widget://image/qqkj.png'
             },*/
-            {
-                text: '新浪微博',
-                icon: 'widget://image/wb.png'
-            }
+            // {
+            //     text: '新浪微博',
+            //     icon: 'widget://image/wb.png'
+            // }
         ],
         styles: {
             bg: '#FFF',
-            column: 4,
+            column: 2,
             itemText: {
                 color: '#000',
                 size: 12,
