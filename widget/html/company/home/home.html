@@ -39,8 +39,19 @@
             display: none;
         }
 
+        /*#topbar{
+          position: relative;
+        }*/
+
         .middleMain {
             font-size: 0.36rem;
+            /*margin-top: 5px;*/
+            /*position: absolute;
+            top: 0;
+            left: 50%;*/
+            /*margin-top: */
+            /*top: 50%;*/
+            margin-top: 0.05rem;
         }
 
         #tabs > li > a {
@@ -101,7 +112,7 @@
 </div>
 
 
-<div id="topbar" class="display">
+<div style='position:fixed; z-index:999;width:100%; top:0' id="topbar" class="display">
     <div class="headerBoxbg cssFlex">
         <div class="leftImgClose" style="margin-top: 0.2rem">
             <!--<img src="../../../icon/comHome.png" onclick="mineGo()">-->
@@ -122,7 +133,7 @@
     </div>
 </div>
 
-<div class="contentBox pd commonBg rankTabsBg" id="rankWrap">
+<div style='margin-top:56px' class="contentBox pd commonBg rankTabsBg" id="rankWrap">
 
     <!-- leilei Start -->
     <div id="rankTabs">
@@ -555,6 +566,7 @@
                 }
                 // 个人头像
                 if (person_summary.p_icon) {
+                  console.log(person_summary.p_icon);
                     document.getElementById('p_iconLogo').src = imgSrcFun(person_summary.p_icon);
                 } else {
                     document.getElementById('p_iconLogo').src = '../../../image/comLogo.png'
@@ -768,6 +780,7 @@
                 }
                 // 个人头像
                 if (person_summary.p_icon) {
+                  console.log(person_summary.p_icon,'771')
                     document.getElementById('p_iconLogo').src = imgSrcFun(person_summary.p_icon);
                 } else {
                     document.getElementById('p_iconLogo').src = '../../../image/comLogo.png'

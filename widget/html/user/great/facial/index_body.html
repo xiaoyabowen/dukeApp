@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="commonBg">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -13,11 +14,12 @@
     <link rel="stylesheet" href="../../../../css/mofang.css">
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
     <style>
-        .Box{
+        .Box {
             margin-bottom: 0.3rem !important;
         }
     </style>
 </head>
+
 <body class="commonBg">
 
     <div class="Box">
@@ -33,7 +35,7 @@
                 <div class="great_header_banner swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(imgSrc, index) in imgsBanner" :key="index">
-                            <img :src="imgSrc"/>
+                            <img :src="imgSrc" />
                         </div>
 
                         <!--<div class="swiper-slide"><img src="../../../../image/bigWeigh/banner@2x.png" /></div>-->
@@ -65,9 +67,12 @@
 
                 <div class="great_comments_content">
                     <div class="great_comments_top">
-                        <span :class="activeComment == 1 ? 'activeComment' : ''" @click="commentsHandle(evalist1, 1)">好评</span>
-                        <span :class="activeComment == 2 ? 'activeComment' : ''" @click="commentsHandle(evalist2, 2)">中评</span>
-                        <span :class="activeComment == 3 ? 'activeComment' : ''" @click="commentsHandle(evalist3, 3)">差评</span>
+                        <span :class="activeComment == 1 ? 'activeComment' : ''"
+                            @click="commentsHandle(evalist1, 1)">好评</span>
+                        <span :class="activeComment == 2 ? 'activeComment' : ''"
+                            @click="commentsHandle(evalist2, 2)">中评</span>
+                        <span :class="activeComment == 3 ? 'activeComment' : ''"
+                            @click="commentsHandle(evalist3, 3)">差评</span>
                     </div>
 
                     <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
@@ -82,9 +87,8 @@
                             {{item.content}}
                         </div>
                         <div class="great_comments_item_img">
-                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
-                                 :class="i%3 === 0 ? 'right0' : ''"
-                                 :src="imgObj.pic" alt="">
+                            <img v-for="(imgObj, i) in item.commEvaPic" :key="i" :class="i%3 === 0 ? 'right0' : ''"
+                                :src="imgObj.pic" alt="">
                         </div>
                     </div>
 
@@ -92,8 +96,7 @@
             </div>
 
             <div class="great_details">
-                <img v-for="(imgSrc, i) in imgs" :key="i"
-                     :src="imgSrc" alt="">
+                <img v-for="(imgSrc, i) in imgs" :key="i" :src="imgSrc" alt="">
             </div>
         </div>
     </div>
@@ -128,7 +131,7 @@
     <script>
         var att_id
         apiready = function () {
-// 添加安卓退出按钮事件
+            // 添加安卓退出按钮事件
             api.addEventListener({
                 name: 'keyback'
             }, function (ret, err) {
@@ -162,9 +165,9 @@
             // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
             a01_w = winWidth;
             // 斜边长
-            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
+            bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
             ////console.log("bevelLength",bevelLength)
-            m_d = (a01_w-10)*0.23-25;    // 100
+            m_d = (a01_w - 10) * 0.23 - 25;    // 100
 
             new Vue({
                 el: '#great',
@@ -187,7 +190,7 @@
                     person_id: '',
                     cid: '',
                     tId: '',
-                    active:'magicAll',
+                    active: 'magicAll',
                 },
                 created: function () {
                     this.person_id = localStorage.getItem('person_id');
@@ -210,10 +213,22 @@
                         observer:true,//修改swiper自己或子元素时，自动初始化swiper
                         observeParents:true,//修改swiper的父元素时，自动初始化swiper
                     });
+
+                    // this.$nextTick(function () {
+                    //     var swiper = new Swiper('.swiper-container', {
+                    //         pagination: {
+                    //             el: '.swiper-pagination',
+                    //         },
+                    //         autoplay: true,
+                    //         observer: true,//修改swiper自己或子元素时，自动初始化swiper
+                    //         observeParents: true,//修改swiper的父元素时，自动初始化swiper
+                    //     });
+                    // })
+
                     that.active = store.state.obj.magicCom;
                     api.addEventListener({
                         name: 'comCom1',
-                    }, function(ret, err) {
+                    }, function (ret, err) {
                         //console.log("ret",ret);
                         that.active = ret.value.key.magicCom1;
 
@@ -223,7 +238,7 @@
                     });
                     api.addEventListener({
                         name: 'comCom2',
-                    }, function(ret, err) {
+                    }, function (ret, err) {
                         //console.log("ret",ret);
                         that.active = ret.value.key.magicCom2;
 
@@ -232,8 +247,8 @@
                         localStorage.setItem("magic_name2",ret.value.key.c_name)*/
                     });
                     api.addEventListener({
-                        name: 'jobAll'+that.tId,
-                    }, function(ret, err) {
+                        name: 'jobAll' + that.tId,
+                    }, function (ret, err) {
                         //console.log("ret",ret);
 
                         // positionDe(ret.value.key.job_id,'1','1',ret.value.key.job_name)
@@ -252,31 +267,28 @@
                     magicBox.style.height = bevelLength + "px"
                     var rightYi = bevelLength
                     magicBox.style.right = '-' + rightYi + "px"
-                    bgBlack.style.width =winWidth + "px"
-                    bgBlack.style.height =winHeight + "px"
+                    bgBlack.style.width = winWidth + "px"
+                    bgBlack.style.height = winHeight + "px"
 
                     magicBGheight = document.querySelector(".magicBGheight")
                     magicBGheight.style.height = m_d + "px"
                     // 里面小盒子宽度
-                    for (var i =0;i<magicBtn.length ; i++){
+                    for (var i = 0; i < magicBtn.length; i++) {
                         magicBtn[i].style.width = m_d + "px"
                         magicBtn[i].style.height = m_d + "px"
                     }
                     // 里面小盒子宽度
-                    for (var i =0;i<magicSubBox.length ; i++){
+                    for (var i = 0; i < magicSubBox.length; i++) {
                         magicSubBox[i].style.width = m_d + "px"
                         magicSubBox[i].style.height = m_d + "px"
                     }
                     // 图片宽度
-                    for (var i =0;i<iconImg.length ; i++){
-                        iconImg[i].style.width = m_d/2 + "px"
-                        iconImg[i].style.height = m_d/2 + "px"
+                    for (var i = 0; i < iconImg.length; i++) {
+                        iconImg[i].style.width = m_d / 2 + "px"
+                        iconImg[i].style.height = m_d / 2 + "px"
                     }
                 },
                 methods: {
-
-
-
                     // 获取数据
                     summary: function () {
                         var that = this;
@@ -284,7 +296,7 @@
                             cid: that.cid,
                             pid: that.person_id
                         }, function (data, err) {
-                            console.log(data,'280000');
+                            console.log(data, '280000');
                             if (data.Commodity) {
                                 that.item = data.Commodity;
                                 that.imgurl = that.item.placard.split(',')[0];
@@ -331,7 +343,7 @@
                     // 立即购买
                     purchaseHandle: function () {
                         var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
+                        if (!uidUser) {
                             openNewWindow("login", "../../../login/login.html");
                             return;
                         }
@@ -346,9 +358,9 @@
                                     item: that.item,
                                     order: data,
                                     url: 'facial',
-                                    OrderKey : data.OrderKey
+                                    OrderKey: data.OrderKey
                                 });
-                            }else {
+                            } else {
                                 toast("请求失败")
                             }
                         });
@@ -356,10 +368,10 @@
                     },
                     // 获取渡选魔方数据
 
-                    commodityList : function (){
+                    commodityList: function () {
                         var that = this
                         //console.log("that.tId",that.tId)
-                        ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
+                        ajaxGetWithProgress(commodityList, { tid: that.tId }, function (data) {
                             //console.log("commodityList",data)
                             var jobList = data.comList
                             //console.log(jobList)
@@ -372,7 +384,7 @@
 
                                 that.magicComCid1 = data.Typelist[0].tid
                                 that.magicCom1Img = data.Typelist[0].pic
-                                if (data.Typelist[0].pic == null){
+                                if (data.Typelist[0].pic == null) {
                                     that.magicCom1Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                                 }
                                 that.magicCom1Text = data.Typelist[0].cateory
@@ -380,7 +392,7 @@
                                 that.magicComCid2 = data.Typelist[1].tid
 
 
-                                if (data.Typelist[1].pic == null){
+                                if (data.Typelist[1].pic == null) {
                                     that.magicCom2Img = 'http://duke-app.oss-cn-beijing.aliyuncs.com/trend/yun/5n4ehv1hx5dd1jtu.png'
                                 }
                                 that.magicCom2Img = data.Typelist[1].pic
@@ -402,7 +414,7 @@
                         }
                     },
 
-                    hideBg : function () {
+                    hideBg: function () {
                         var that = this
                         document.querySelector('.bgBlack').classList.add('isDisplay');
                         that.active = ''
@@ -413,4 +425,5 @@
 
     </script>
 </body>
+
 </html>
