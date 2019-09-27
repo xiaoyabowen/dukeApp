@@ -23,7 +23,7 @@
     <div class="Box">
 
         <div id="great" class="isDisplay">
-            <div class="bgBlack" @click="hideBg()"></div>
+            <div class="bgBlack"@touchstart="hideBg()"></div>
             <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
             <keep-alive>
                 <component :is="active"></component>

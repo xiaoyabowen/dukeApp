@@ -614,7 +614,7 @@
             console.log("ifqshang", data)
             if(data){
                 for (var i=0;i<data.data.length;i++){
-                    if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
+                    if (data.data[i].version == "CS" && data.data[i].status == "1"){
 
                         var homeBtn = document.querySelector(".homeBtn");
                         var homeJob = document.querySelector(".homeJob");
@@ -778,7 +778,7 @@
             openNewWindow("login", "../../login/login.html");
             return;
         }
-        openNewWindow("index", "../chat/w_imageclip_frame.html")
+        openNewWindow("index", "../chat/index.html")
     }
 
     // 圈子

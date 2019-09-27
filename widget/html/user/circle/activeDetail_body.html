@@ -20,7 +20,7 @@
 
 
 <div id="app1">
-    <div class="bgBlack" @click="hideBg()"></div>
+    <div class="bgBlack"@touchstart="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <keep-alive>
         <component :is="active"></component>
@@ -119,7 +119,7 @@
         <!--评论输入框-->
         <!--<div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">-->
 
-        <div class="bgBlack" :class="comment_box ? '' : 'isDisplay'" @click="hideBg()"></div>
+        <div class="bgBlack" :class="comment_box ? '' : 'isDisplay'"@touchstart="hideBg()"></div>
         <div class="details_comment_box cssFlex" :class="comment_box ? '' : 'isDisplay'">
 
             <input type="text" class="writeText" @focus="focusHandle()" v-model="textarea" placeholder="快来写下你的评论吧…">
