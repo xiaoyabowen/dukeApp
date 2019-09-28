@@ -25,25 +25,29 @@ function resumeInit(Vue) {
                 if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(lookmeList, {}, function (data, err) {
-                        //console.log('后台获取数据更新的本地数据库:', data);
+
+                        api.hideProgress();
+                        // console.log('后台获取数据更新的本地数据库:', data);
                         if (data.lookmeList) {
                             that.list = data.lookmeList;
                             localStorage.setItem('seens', JSON.stringify(that.list));
                         }
                     });
+                    // console.log(that.list,'344444444444');
                     return;
                 }
 
+
+
                 ajaxGetWithProgress(lookmeList, {}, function (data, err) {
-                    //console.log(data);
+                    api.hideProgress();
+                    // console.log(data,'41444141');
                     if (data.lookmeList) {
                         that.list = data.lookmeList;
 
                         localStorage.setItem('seens', JSON.stringify(that.list));
 
                         that.listDB = data.lookmeList;
-
-
                     }
                 })
                 // this.setIndexedDB(this);

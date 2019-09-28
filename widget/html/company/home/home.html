@@ -367,6 +367,8 @@
 
     var person_summary, magicBox, winWidth, winHeight, a01_w, m_d, magicBtn, magicSubBox, iconImg, person_id;
 
+    var isCollection;
+
     apiready = function () {
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);
@@ -378,9 +380,9 @@
         });
 
         var backButtonPress = 0;
-        if (person_id) {
-            comValue(person_id)
-        }
+        // if (person_id) {
+        //     comValue(person_id)
+        // }
         var magicComAll = magicComAllInit(Vue);
         Vue.component('magicComAll', magicComAll);
         var magicComPosiAll = magicComPosiAllInit(Vue);
@@ -531,6 +533,30 @@
             }, 1000);
         }
 
+
+
+
+        //是否收藏
+
+        // var collectionId;
+
+        isCollection =  function (id){
+          ajaxGetWithProgress(AttentionPersonStatus,{
+            person_id:id,
+          },function(data,err){
+            console.log(data,id,5455555555)
+            if (data.attPerson) {
+                document.querySelector(".collection").classList.add("isDisplay")
+                document.querySelector(".collectionHand").classList.remove("isDisplay")
+            }
+            if(!data.attPerson) {
+                document.querySelector(".collection").classList.remove("isDisplay")
+                document.querySelector(".collectionHand").classList.add("isDisplay")
+            }
+          })
+        }
+
+
         ajaxGetWithProgress(QueryPersonRandomOne, {}, function (data, err) {
             // alert(JSON.stringify(data));
             console.log("datadata", data);
@@ -541,16 +567,9 @@
                 var education_his = data.education_his;
                 var working_his = data.working_his;
                 var Intention = data.Intention;
-
+                // collectionId = person_summary.person_id;
                 $("#personId").html(data.person_summary.person_id)
-                if (data.attPerson) {
-                    document.querySelector(".collection").classList.add("isDisplay")
-                    document.querySelector(".collectionHand").classList.remove("isDisplay")
-                } else {
-                    document.querySelector(".collection").classList.remove("isDisplay")
-                    document.querySelector(".collectionHand").classList.add("isDisplay")
-
-                }
+                isCollection(person_summary.person_id);
                 if (person_summary.i_status == '1') {
                     //离职-随时到岗
                     document.querySelector('#work').innerHTML = '离职-随时到岗';
@@ -564,6 +583,16 @@
                     document.querySelector('#work').innerHTML = '在职-暂不考虑';
                     //在职-暂不考虑
                 }
+
+                // if (data.attPerson) {
+                //     document.querySelector(".collection").classList.add("isDisplay")
+                //     document.querySelector(".collectionHand").classList.remove("isDisplay")
+                // } else {
+                //     document.querySelector(".collection").classList.remove("isDisplay")
+                //     document.querySelector(".collectionHand").classList.add("isDisplay")
+                //
+                // }
+
                 // 个人头像
                 if (person_summary.p_icon) {
                   console.log(person_summary.p_icon);
@@ -753,11 +782,13 @@
 
     function comValue(person_id) {
         // 获取用户简历全部信息
+
         ajaxGetWithProgress(QueryPerson, {
             person_id: person_id
         }, function (data, err) {
             console.log("data",data)
             if (data) {
+               isCollection(person_id);
                 document.querySelector('.box').classList.remove('isDisplay');
                 var person_summary = data.person_summary;
                 var projects = data.projects;
@@ -765,6 +796,7 @@
                 var working_his = data.working_his;
                 var Intention = data.Intention;
                 $("#personId").html(data.person_summary.person_id)
+
                 if (person_summary.i_status == '1') {
                     //离职-随时到岗
                     document.querySelector('#work').innerHTML = '离职-随时到岗';
@@ -1160,6 +1192,7 @@
     // zbw star
     // 收藏
     function collectionHandle() {
+      console.log(123,$("#personId").html());
         var uidUser = localStorage.getItem("user")
         if (!uidUser) {
             openNewWindow("login", "../../../login/login.html");
@@ -1174,12 +1207,9 @@
             if (data) {
                 api.hideProgress();
                 if (data.status) {
-                    console.log(document.querySelector(".collection"))
-                    console.log(document.querySelector(".collectionHand"))
-                    document.querySelector(".collection").classList.add("isDisplay")
-                    document.querySelector(".collectionHand").classList.remove("isDisplay")
-                    toast("收藏成功")
 
+                    toast("收藏成功")
+                    isCollection($("#personId").html());
                     // window.location.reload()
                 }
             }
@@ -1189,6 +1219,7 @@
     // 收藏
     function collectionHandleActive() {
         var uidUser = localStorage.getItem("user")
+          console.log(456,$("#personId").html());
         if (!uidUser) {
             openNewWindow("login", "../../../login/login.html");
             return;
@@ -1204,8 +1235,7 @@
                 api.hideProgress();
                 if (data.status) {
                     toast("取消收藏")
-                    document.querySelector(".collection").classList.remove("isDisplay")
-                    document.querySelector(".collectionHand").classList.add("isDisplay")
+                  isCollection($("#personId").html());
                 }
             }
         });

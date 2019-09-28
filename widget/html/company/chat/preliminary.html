@@ -197,6 +197,7 @@
 
                 this.itme = new Date().format('yyyy-MM-DD');
                 if (this.content == 'edit'){
+                    console.log('zouni')
                     this.queryApplicationStatusEvaluateProfile()
                 }
 
@@ -212,11 +213,10 @@
                 },
 
                 queryApplicationStatusEvaluateProfile :function(){
-                  console.log(this.app_id,'212');
-                  return;
+
                     var that = this;
                     ajaxGetWithProgress(queryApplicationStatusEvaluateProfile,{app_id:that.app_id},function (data) {
-                        //console.log("edit",data)
+                        console.log("edit",data)
                         var adrArr = stringFun(data.address)
                         if (data){
                             that.time = data.status_time || ""

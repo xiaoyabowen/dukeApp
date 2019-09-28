@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="../../../css/mineCommon.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
 
+    <style>
+        /* .subscribed_main_item{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* border-bottom: 1px solid #000; */
+        } */
+    </style>
+
 </head>
 <body class="commonBg">
 
@@ -53,7 +63,7 @@
         }
         var my_ConcernHtml= ''
         ajaxGetWithProgress(queryAttentionCompany, obj, function (data, err) {
-            // console.log(data)
+            console.log(data,'566666')
 
             var conData = data.AttentionCompany
             if (conData == undefined){
@@ -65,21 +75,23 @@
                 document.querySelector(".notmy_Concern_main").style.display = "none"
 
                 for ( var i=0;i<conData.length;i++){
-                    my_ConcernHtml += '<div class="concern_head">\n' +
-                        '                <div class="concern_head_top" onclick="companyDetail('+conData[i].c_id+')">\n' +
-                        '                    <div class="concern_head_img">\n' +
-                        '                        <img src="../../../image/mine/icon_baidulogo.png" alt="">\n' +
-                        '                    </div>\n' +
-                        '\n' +
-                        '                    <div class="concern_head_title">\n' +
-                        '                        <div class="concern_head_name">'+conData[i].c_name+'</div>\n' +
-                        '                        <div class="concern_head_address">'+conData[i].province+' '+conData[i].city+'  '+conData[i].street+'</div>\n' +
-                        '                    </div>\n' +
-                        '                </div>\n' +
-                        '                <div class="concern_head_bottom">\n' +
-                        '                    '+conData[i].financing+'·'+conData[i].scale+'·'+conData[i].org_type+'\n' +
-                        '                </div>\n' +
-                        '            </div>'
+                    my_ConcernHtml += `
+                                <div class="concern_head">
+                                               <div class="concern_head_top" onclick="companyDetail('+conData[i].c_id+')">
+                                                   <div class="concern_head_img">
+                                                       <img src=${conData[i].logo_icon ? conData[i].logo_icon : ''} alt="">
+                                                   </div>
+                                
+                                                   <div class="concern_head_title">
+                                                       <div class="concern_head_name">${conData[i].c_name ? conData[i].c_name : '未填写'}</div>
+                                               <div class="concern_head_address">${ conData[i].province ? conData[i].province+' '+conData[i].city+'  '+conData[i].street : '未填写'}</div>
+                                                   </div>
+                                            </div>
+                                                <div class="concern_head_bottom">
+                                                  ${ conData[i].financing ? conData[i].financing+'·'+conData[i].scale+'·'+conData[i].org_type : '未填写'}
+                                             </div>
+                                </div>
+                                `
 
                     if (conData[i].JobsLike == null){
 
@@ -87,36 +99,71 @@
                         for (var j=0;j<conData[i].JobsLike.length;j++){
                             var conDataPoi = conData[i].JobsLike[j]
                             console.log(conDataPoi,"conDataPoi")
-                            my_ConcernHtml += '<div class="subscribed_main_item" onclick="companPoi('+conDataPoi.company_c_id+')">\n' +
-                                '                <div class="subscribed_item_left">\n' +
-                                '                    <div class="subscribed_item_position">'+conDataPoi.job_name+'</div>\n' +
-                                '                    <div class="subscribed_item_company">\n' +
-                                '                        <div>\n' +
-                                // '                            <span>'+conDataPoi.c_name+' </span>\n' +
-                                '                        </div>\n' +
-                                '\n' +
-                                '                        <div>\n' +
-                                '                            <span>'+conDataPoi.address+' </span>\n' +
-                                '                            <span>'+conDataPoi.work_ex+' </span>\n' +
-                                '                            <span>'+conDataPoi.edu_ex+'</span>\n' +
-                                '                        </div>\n' +
-                                '                    </div>\n' +
-                                '                    <div class="subscribed_item_user">\n' +
-                                '                        <div class="subscribed_item_user_img">\n' +
-                                '                            <img src="'+conDataPoi.p_icon.split(",")[0]+'" alt="">\n' +
-                                '                        </div>\n' +
-                                '                        <div class="subscribed_item_user_name">\n' +
-                                '                            '+conDataPoi.p_name+'·'+conDataPoi.z_user_job+'\n' +
-                                '                        </div>\n' +
-                                '                    </div>\n' +
-                                '                </div>\n' +
-                                '                <div class="subscribed_item_right">\n' +
-                                '                    <div class="subscribed_item_range">\n' +
-                                '                        '+conDataPoi.ratio+'\n' +
-                                '                    </div>\n' +
-                                '                    <div class="subscribed_item_date">'+conDataPoi.open_time+'</div>\n' +
-                                '                </div>\n' +
-                                '            </div>'
+                            my_ConcernHtml +=  `
+                                            <div class="subscribed_main_item" onclick="companPoi(${conDataPoi.company_c_id})">
+                                                <div class="subscribed_item_left">
+                                                    <div class="subscribed_item_position">${conDataPoi.job_name ? conDataPoi.job_name : '未填写'}</div>
+                                                    <div class="subscribed_item_company">
+                                                        <div>
+                                                        </div>
+                                
+                                                        <div>
+                                                            <span>${conDataPoi.address ? conDataPoi.address : '未填写'} </span>
+                                                            <span>${conDataPoi.work_ex ? conDataPoi.work_ex : '未填写'} </span>
+                                                            <span>${conDataPoi.edu_ex ? conDataPoi.edu_ex : '未填写'}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subscribed_item_user">
+                                                        <div class="subscribed_item_user_img">
+                                                            <img style="width:100%;height:100%" src=${conDataPoi.p_icon ? conDataPoi.p_icon.split(",")[0] : ''} alt="">
+                                                        </div>
+                                                        <div class="subscribed_item_user_name">
+                                                            ${ conDataPoi.p_name ? conDataPoi.p_name+'·'+conDataPoi.z_user_job : '未填写'}
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="subscribed_item_right">
+                                                    <div class="subscribed_item_range">
+                                                        ${conDataPoi.ratio ? conDataPoi.ratio : "未填写"}
+                                                    </div>
+                                                    <div class="subscribed_item_date">${conDataPoi.open_time ? conDataPoi.open_time : '未填写'}</div>
+                                               </div>
+                                            </div>
+                                        `
+                                // {
+                                //     '<div class="subscribed_main_item" onclick="companPoi('+conDataPoi.company_c_id+')">\n' +
+                                // '                <div class="subscribed_item_left">\n' +
+                                // '                    <div class="subscribed_item_position">'+conDataPoi.job_name+'</div>\n' +
+                                // '                    <div class="subscribed_item_company">\n' +
+                                // '                        <div>\n' +
+                                // // '                            <span>'+conDataPoi.c_name+' </span>\n' +
+                                // '                        </div>\n' +
+                                // '\n' +
+                                // '                        <div>\n' +
+                                // '                            <span>'+conDataPoi.address+' </span>\n' +
+                                // '                            <span>'+conDataPoi.work_ex+' </span>\n' +
+                                // '                            <span>'+conDataPoi.edu_ex+'</span>\n' +
+                                // '                        </div>\n' +
+                                // '                    </div>\n' +
+                                // '                    <div class="subscribed_item_user">\n' +
+                                // '                        <div class="subscribed_item_user_img">\n' +
+                                // '                            <img style="width:100%;height:100%" src="'+conDataPoi.p_icon.split(",")[0]+'" alt="">\n' +
+                                // '                        </div>\n' +
+                                // '                        <div class="subscribed_item_user_name">\n' +
+                                // '                            '+conDataPoi.p_name+'·'+conDataPoi.z_user_job+'\n' +
+                                // '                        </div>\n' +
+                                // '                    </div>\n' +
+                                // '                </div>\n' +
+                                // '                <div class="subscribed_item_right">\n' +
+                                // '                    <div class="subscribed_item_range">\n' +
+                                // '                        '+conDataPoi.ratio+'\n' +
+                                // '                    </div>\n' +
+                                // '                    <div class="subscribed_item_date">'+conDataPoi.open_time+'</div>\n' +
+                                // '                </div>\n' +
+                                // '            </div>'
+                                   
+                                // }
                         }
                     }
                 }

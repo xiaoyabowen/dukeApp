@@ -756,8 +756,8 @@ body, div, p, span, a, input, ul, li {
 .subscribed_main_item {
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.01rem solid #EBEBEB;
-    padding: 0.38rem 0;
+    border-bottom: 0.01rem solid #666;
+    padding: 0.15rem 0;
 }
 
 .subscribed_item_position {

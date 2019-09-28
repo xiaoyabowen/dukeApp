@@ -104,6 +104,12 @@ var payalipayUniform = Domain + '/pay/alipayUniform'
 var updateBuyNumAndPrice = Domain + '/reserve/updateBuyNumAndPrice'
 
 
+//b伯乐 是否收藏该简历
+
+var AttentionPersonStatus = serverUrl + '/UserProfile/AttentionPersonStatus';
+
+
+
 
 // 聊天
 var getSignatureJiGuang = serverUrl + "/JiGuang/getSignature";
