@@ -174,7 +174,8 @@
                 },
                 imgs: [
 
-                ]
+                ],
+                activeId : "",
             },
             created: function () {
                 this.CircleTypeMenuSeven()
@@ -198,6 +199,7 @@
                         if (data){
                             that.listBox = data.CircleTypeMenu;
                             that.imgs = data.CircleBanner;
+                            that.activeId = data.CircleBanner[0].circle_id;
                         } else{
                             toast("请求出错")
                         }
@@ -220,9 +222,10 @@
 
                 },
                 juClick : function (tid,typeid,type_name) {
+                    var that = this;
                     var circle_id;
                     if (tid == ''){
-                        circle_id = "37"
+                        circle_id = that.activeId
                     } else{
                         circle_id = tid
                     }

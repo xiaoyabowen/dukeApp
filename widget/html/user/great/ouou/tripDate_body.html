@@ -258,29 +258,19 @@
                     ajaxGetWithProgress(queryPeopleAndCityoloq, obj, function (data) {
                         //console.log(data)
                         that.tripPersonList = data.travelPeople;
-                        that.cid = data.travelPeople[0].cid;
+                        // that.cid = data.travelPeople[0].cid;
                         that.tripCityList = data.clist;
-
                     })
                 },
                 // 提交订单
                 orderSubmit: function () {
                     var that = this
 
-                    /*if (that.name == '') {
-                        toast("请填写联系人姓名")
-                        return
-                    }
-
-                    if (that.phone == '') {
-                        toast("请填写联系人手机号")
-                        return
-                    }
 
                     if (that.getPriceDefult == '') {
                         toast("请选择出游日期")
                         return
-                    }*/
+                    }
                     localStorage.setItem("tripPhone", that.phone)
                     var obj = {
 
@@ -373,14 +363,13 @@
 
                 queryDateAndPriceoloq: function () {
                     var that = this;
-                    console.log(that.getQueryYear,that.getQueryMonth)
+
                     var obj = {
                         spec: '35,39',
                         startDate: that.getQueryYear+"-"+that.getQueryMonth+"-1",
                         endDate: that.getQueryYear+"-"+that.getQueryMonth+"-"+that.day,
                         day: that.day,
                     };
-                    console.log(obj)
                     api.ajax({
                         // report : false,
                         url: 'http://192.168.1.35:8082/travel/findPriceItemBySpecId',
