@@ -27,22 +27,22 @@
         <div class="info-choose cssFlex">
             <span class="info-choose-name">手机号</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option">未绑定</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                <span class="info-choose-main-name birth_option">{{items.phone_m}}</span>
+                <!-- <img src="../../../icon/right.png" alt="right" class="info-img-right"> -->
             </div>
         </div>
-        <div class="info-choose cssFlex">
+        <!-- <div class="info-choose cssFlex">
             <span class="info-choose-name">微信账号</span>
             <div class="info-choose-main cssFlex">
                 <span class="info-choose-main-name birth_option">未绑定</span>
                 <img src="../../../icon/right.png" alt="right" class="info-img-right">
             </div>
-        </div>
+        </div> -->
         <div class="info-choose cssFlex">
             <span class="info-choose-name">邮箱</span>
             <div class="info-choose-main cssFlex">
-                <span class="info-choose-main-name birth_option">wangzheguilai@sina.com</span>
-                <img src="../../../icon/right.png" alt="right" class="info-img-right">
+                <span class="info-choose-main-name birth_option">{{items.email}}</span>
+                <!-- <img src="../../../icon/right.png" alt="right" class="info-img-right"> -->
             </div>
         </div>
     </div>
@@ -52,8 +52,8 @@
 
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/api.js"></script>
 <script type="text/javascript" src="../../../script/rem.js"></script>
@@ -76,27 +76,29 @@
         new Vue({
             el: '#app1',
             data: {
-
+                items:{}
             },
             created: function () {
-                // this.orgnizationPICBbycidlist()
+                this.orgnizationPICBbycidlist()
             },
             mounted : function (){
 
             },
             methods: {
-                /*orgnizationPICBbycidlist : function (){
-                    if (index == 2){
-                        var uid = localStorage.getItem("user").user_id
+                orgnizationPICBbycidlist : function (){
+                        var that = this;
+                        var uid = localStorage.getItem("user")
+                        // console.log(uid)
                         var obj = {
                             uid: uid
                         }
-                        ajaxGetWithProgress(orgnizationPICBbycidlist,obj,function (data,ret) {
-                            //console.log(data)
+                        ajaxGetWithProgress(quRoleTypeUserProfile,obj,function (data,ret) {
+                            // console.log(data,'966')
+                            that.items = data;
                         })
-                    }
+                    
 
-                },*/
+                },
 
             }
         })

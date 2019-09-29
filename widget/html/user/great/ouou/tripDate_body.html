@@ -24,34 +24,25 @@
 <body class="commonBg">
 
 
-<div class="Box isDisplay" id="app">
-    <div class="boxSub" v-for="(item,index) in Spec" :key="index">
+<div class="Box" id="app">
+
+
+  <!-- selectedArr[item.title.id][+'id2'+] == itemSpec.id ? 'listSpanActive':'' -->
+    <div class="boxSub" v-for="(item,index1) in Spec" :key="index1">
         <div class="tr-title">
             {{item.title.specName}}
         </div>
         <div class="tripList cssFlex">
-            <span :class="comscaleActive == index ? 'listSpanActive':''"
-                  v-for="(itemSpec,index) in Spec[index].item" :key="index"
-                  @click="tripPersonListClick(item,index)">
+            <span v-for="(itemSpec,index) in item.item" :class=""
+                  :key="index"
+                  @click="tripPersonListClick(item.title.id, item.title.specName, itemSpec.id,itemSpec.specValue, index)">
                 {{itemSpec.specValue}}
             </span>
-
         </div>
-
-        <!--<div class="tr-title">
-            出游城市
-        </div>
-        <div class="tripList cssFlex">
-            <span :class="cityActive == index ? 'listSpanActive':''"
-                  v-for="(item,index) in tripCityList" :key="index"
-                  @click="tripCityListClick(item,index)">
-                {{item.departureCity}}
-            </span>
-
-        </div>-->
-
-
     </div>
+
+
+
     <ul id="tabs" class="cssFlex">
         <li class="activeTab">
             <a href="javascript:;" title="tab1">
@@ -145,11 +136,21 @@
         console.log(JSON.parse(personList),'145')
     };
     apiready = function () {
+        console.log(api.pageParam)
         name = api.pageParam.name;
-
+        var selectObj = {};
         app = new Vue({
             el: '#app',
             data: {
+
+
+                //leileiStart
+
+                selectedArr:[],
+
+                //leileiend
+
+
                 isDefult: false,
                 person_id: "",
                 name: "zheng",
@@ -199,8 +200,8 @@
                 this.ouId = api.pageParam.ouId;
                 this.goodId = api.pageParam.goodId;
                 this.Spec = api.pageParam.Spec;
-                console.log(api.pageParam.Spec)
-                console.log(this.Spec)
+                // console.log(api.pageParam.Spec)
+                // console.log(this.Spec)
                 // 日历
                 this.getQueryYear = new Date().getFullYear() * 1;   // 年份
                 this.getQueryMonth = (new Date().getMonth() + 1) * 1; //月份
@@ -212,13 +213,13 @@
             },
             mounted: function () {
                 var that = this;
-                document.getElementById('app').classList.remove('isDisplay');
+                // document.getElementById('app').classList.remove('isDisplay');
                 // JavaScript Document
-                $("#tabs li").click(function () {
-                    $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
-                    var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-                    $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
-                });
+                // $("#tabs li").click(function () {
+                //     $(this).addClass("activeTab").siblings().removeClass("activeTab"); //切换选中的按钮高亮状态
+                //     var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+                //     $("#content > div").eq(index).fadeIn().siblings().fadeOut(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+                // });
 
             },
             methods: {
@@ -328,19 +329,30 @@
                     });
                 },
                 // 出游人群
-                tripPersonListClick: function (item, index) {   //保险
-                    var that = this
-                    that.comscaleActive = index;
-                    that.tripPerson = item.peopleType;
-                    that.tripPersonId = item.ptypeId;
-                    that.queryDateAndPriceoloq()
-                    /*if (that.tripCityId == '') {
-                        toast('请再次选择出发城市')
-                        return
+
+                //leileichange
+                tripPersonListClick: function (id1, name1,id2,name2,index) {   //保险
+                    console.log(id1,name1,id2,name2);
+
+
+                    selectObj[id1] = {
+                      id1:id1,
+                      name1:name1,
+                      id2:id2,
+                      name2:name2,
+                      index:index,
                     }
-                    if (that.tripPersonId != '' && that.tripCityId != ''){
-                        that.queryDateAndPriceoloq()
-                    }*/
+                    console.log(selectObj);
+                    this.selectedArr[0] = selectObj;
+
+                    // this.selectedArr[]     //存放已经点击选择的内容;
+
+
+                    // var that = this
+                    // that.comscaleActive = index;
+                    // that.tripPerson = item.peopleType;
+                    // that.tripPersonId = item.ptypeId;
+                    // that.queryDateAndPriceoloq()
                 },
                 // 出发城市
                 tripCityListClick: function (item, index) {   //保险

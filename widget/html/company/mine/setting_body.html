@@ -58,7 +58,7 @@
                 </div>
             </li> -->
 
-            <li data-type="pushNews">
+            <!-- <li data-type="pushNews">
                 <div>
                     <img src="../../../image/company/push.png" alt="">
                     <span>推送消息设置</span>
@@ -67,7 +67,7 @@
                 <div class="setting_active">
                     <img src="../../../icon/right.png" alt="">
                 </div>
-            </li>
+            </li> -->
             <li data-type="aboutDuke">
                 <div>
                     <img src="../../../image/company/about.png" alt="">
@@ -135,13 +135,13 @@
         }
 
         document.getElementById('setting_btn').onclick = function () {
-            mui.confirm('确定退出登录?', function (e) {
+            mui.confirm('确定退出登录?', function (e) { //需清除用户数据
                 //console.log(e)
-                // if (e.index) {
-                //     openNewWindow('login', "../../login/login.html",{
-                //         url : "mineLogin"
-                //     });
-                // }
+                if (e.index) {
+                    openNewWindow('login', "../../login/login.html",{
+                        url : "mineLogin"
+                    });
+                }
             })
         }
 

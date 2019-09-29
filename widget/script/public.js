@@ -857,7 +857,9 @@ function imgSrcFun(src) {
 // 字符串 转数组
 function stringFun(string) {
     if (string.indexOf(',') > -1) {
-        return string.split(',');
+      var arr = string.split(',');
+        arr.splice(-1,1)
+        return arr;
     } else {
         return string;
     }
