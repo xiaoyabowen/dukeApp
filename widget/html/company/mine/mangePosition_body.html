@@ -58,6 +58,17 @@
 
     apiready = function () {
 
+
+    api.addEventListener({
+        name: 'reloadEvent'
+    }, function(ret, err){
+      loadCom();
+    });
+
+
+
+
+
         var OnlinePosition = OnlinePositionInit(Vue);
         var offlinePosition = offlinePositionInit(Vue);
         // //console.log(offlinePosition)

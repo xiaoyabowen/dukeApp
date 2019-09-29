@@ -140,13 +140,13 @@
         }
         if (statusD == 2){
             ajaxGetWithProgress(queryJobSummaryJobProfile,obj,function (data,ret) {
-                //console.log(data)
+                console.log(data,'bianji')
                 if (data) {
 
                     document.getElementById("adr_id").innerText = data.adr_id
-                    // document.getElementById("companyAdressId").innerText = data.shortname
+                    document.getElementById("companyAdressId").innerText = data.province + '-' + data.city + '-' + '-' + data.street;
                     document.getElementById("postPositionName").innerText = data.job_name
-                    // document.getElementById("setpostJobMiao").innerText = data.description
+                    document.getElementById("setpostJobMiao").innerText = data.description
                     document.getElementById("postPositiontype").innerText = data.job_type
                     document.getElementById("postPaySelect").innerText = data.ratio+'k'
                     document.getElementById("postPaySelectText").innerText = data.ratio
@@ -156,7 +156,7 @@
                     document.getElementById("postStudentText").innerText = data.edu_ex
                     document.getElementById("positionSkill_type").innerText = data.skills
                     // document.getElementById("postJobType").innerText = data.nature
-                    // document.getElementById("postJobText").innerText = data.nature
+                    document.getElementById("postJobText").innerText = data.nature
 
 
 
@@ -236,7 +236,8 @@
     function postPositionName() {
         openNewWindow("positionName", "./positionName.html", {
             url: 'postsPublish',
-            content : "请填写职位名称"
+            content : "请填写职位名称",
+            edit:document.getElementById("postPositionName").innerText,
         })
     }
     function edit_positionName(value) {
@@ -295,12 +296,6 @@
         }, {
             value: "3",
             text: "本科"
-        }, {
-            value: "4",
-            text: "大专"
-        }, {
-            value: "5",
-            text: "中专/高中及以下"
         }])
         // picker.pickers[0].setSelectedIndex(4, 2000);
         picker.pickers[0].setSelectedValue('fourth', 2000);
@@ -349,7 +344,8 @@
     function postJobMiao() {
         openNewWindow("resume_Achievement", "./resume_Achievement.html", {
             url: 'postsPublish',
-            type : 1
+            type : 1,
+            edit:document.querySelector('#setpostJobMiao').innerText,
         })
     }
     function setpostJobMiao(value) {
