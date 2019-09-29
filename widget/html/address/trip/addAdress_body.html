@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="commonBg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>新增出行人信息</title>
+    <link rel="stylesheet" href="../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../css/commonWin.css"/>
+    <link rel="stylesheet" href="../../../css/greatCommon.css"/>
+    <link rel="stylesheet" href="../../../css/mui.min.css">
+    <link rel="stylesheet" href="../../../css/mui.picker.all.css"/>
+    <link rel="stylesheet" href="../../../css/mui.dtpicker.css"/>
+</head>
+<body class="commonBg">
+
+
+<div class="Box" id="app">
+    <div class="boxSub">
+        <div class="information_content">
+            <div class="information_item cssFlex">
+                <label>中文姓名</label>
+                <input type="text" v-model="name" placeholder="收货人姓名">
+            </div>
+            <div class="information_item cssFlex">
+                <label>姓（拼音）</label>
+                <input type="text" v-model="nameX" placeholder="请输入姓（拼音）">
+            </div>
+            <div class="information_item cssFlex">
+                <label>名（拼音）</label>
+                <input type="text" v-model="nameM" placeholder="请输入名（拼音）">
+            </div>
+            <div class="information_item cssFlex" @click="int_city()">
+                <label>所持护照号</label>
+                <input type="text" v-model="passport" maxlength=80 placeholder="所持护照号码">
+            </div>
+            <div class="information_item cssFlex" @click="fillSex()">
+                <label>性别</label>
+                <input type="text" v-model="sex" placeholder="性别" readonly>
+                <input type="hidden" v-model="sexId" placeholder="性别" readonly>
+                <img src="../../../icon/right.png" alt="right" class="rightImgAdr">
+            </div>
+            <div class="information_item cssFlex" @click="spouseBirthClick()">
+                <label>出生日期</label>
+                <input type="text" v-model="ago" maxlength=80 placeholder="出生日期" readonly>
+                <img src="../../../icon/right.png" alt="right" class="rightImgAdr">
+            </div>
+            <div class="information_item cssFlex">
+                <label>邮箱</label>
+                <input type="text" v-model="email" placeholder="邮箱">
+            </div>
+            <div class="information_item cssFlex">
+                <label>手机号码</label>
+                <input type="number" v-model="phone" placeholder="手机号码">
+            </div>
+            <div class="information_btn" @click="addAdrBtn()">保存</div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/data.js"></script>
+<script src="../../../script/vue.min.js"></script>
+
+<script type="text/javascript" src="../../../script/mui.min.js"></script>
+<script type="text/javascript" src="../../../script/mui.picker.js"></script>
+<script type="text/javascript" src="../../../script/mui.dtpicker.js"></script>
+<script type="text/javascript" src="../../../script/city.data-3.js"></script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
+
+<script>
+
+    apiready = function () {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isDefult: false,
+                name: "",
+                nameX: "",
+                nameM: "",
+                passport: "",
+                sex: "",
+                sexId: "",
+                ago: "",
+                email: "",
+                phone: "",
+                person_id: "",
+                adrId: "",
+                adrStatus: '',
+                dataAdr: '',
+            },
+            created: function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.dataAdr = api.pageParam.dataAdr;
+                this.adrStatus = api.pageParam.adrStatus;
+                if (this.adrStatus == 2) {
+                    this.editInfo()
+                } else {
+
+                }
+                console.log(api.pageParam.dataAdr)
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                fillSex: function () {
+                    var that = this
+                    var picker = new mui.PopPicker();
+                    picker.setData([{
+                        value: "0",
+                        text: "男"
+                    }, {
+                        value: "1",
+                        text: "女"
+                    }
+                    ])
+                    // picker.pickers[0].setSelectedIndex(4, 2000);
+                    picker.pickers[0].setSelectedValue('first', 2000);
+                    picker.show(function (SelectedItem) {
+                        that.sex = SelectedItem[0].text;
+                        that.sexId = SelectedItem[0].value;
+                    })
+                },
+                spouseBirthClick: function () {
+                    var that = this
+                    var dtpicker = new mui.DtPicker(
+                        {
+                            type: "date", //设置日历初始视图模式
+                            beginDate: new Date(1950, 04, 25), //设置开始日期
+                            endDate: new Date() //设置开始日期
+                        }
+                    );
+                    dtpicker.show(function (selectItems) {
+                        that.ago = selectItems.text;
+                    })
+                },
+                editInfo: function () {
+                    var that = this;
+                    that.name = that.dataAdr.nameall;
+                    that.nameX = that.dataAdr.userSurname;
+                    that.nameM = that.dataAdr.userName;
+                    that.passport = that.dataAdr.cartNo;
+                    if (that.dataAdr.sex == 0) {
+                        that.sex = "男";
+                    } else if (that.dataAdr.sex == 1) {
+                        that.sex = "女";
+                    }
+
+                    that.sexId = that.dataAdr.sex;
+                    that.ago = that.dataAdr.birthdays;
+                    that.email = that.dataAdr.email;
+                    that.phone = that.dataAdr.callNo;
+                },
+                addAdrBtn: function () {
+                    var that = this
+                    if (isBlack(that.name)) {
+                        toast('请输入姓名');
+                        return;
+                    }
+                    if (isBlack(that.nameX)) {
+                        toast('请输入姓(拼音)');
+                        return;
+                    }
+                    if (isBlack(that.nameM)) {
+                        toast('请输入名(拼音)');
+                        return;
+                    }
+
+                    if (isBlack(that.passport)) {
+                        toast('请输入护照号');
+                        return;
+                    }
+                    if (isBlack(that.sex)) {
+                        toast('请选择性别');
+                        return;
+                    }
+                    if (isBlack(that.ago)) {
+                        toast('请选择出生日期');
+                        return;
+                    }
+                    if (isBlack(that.email)) {
+                        toast('请输入邮箱');
+                        return;
+                    } else if (!checkEmail(that.email)) {
+                        toast("邮箱不正确");
+                        return;
+                    }
+                    if (isBlack(that.phone)) {
+                        toast('请输入手机号');
+                        return;
+                    } else if (!checkMobileNum(that.phone)) {
+                        toast("手机号码不正确");
+                        return;
+                    }
+                    var str
+                    if (this.adrStatus == 1) {
+                        str = {
+                            userId: that.person_id,
+                            nameall: that.name,
+                            userSurname: that.nameX,
+                            userName: that.nameM,
+                            cartType: 0,
+                            cartNo: that.passport,
+                            sex: that.sexId,
+                            birthday: that.ago,
+                            email: that.email,
+                            callNo: that.phone,
+                        }
+                        api.ajax({
+                            url: 'http://192.168.1.35:8082/travel/createItem',
+                            method: 'post',
+                            cache: 'false',
+                            timeout: 30,
+                            dataTpye: 'json',
+                            data: {
+                                files: {},
+                                values: str
+                            }
+                        }, function (data, err) {
+
+                            console.log("dataaaa", data);
+                            api.hideProgress();
+                            if (data.Status) {
+
+                                var url = api.pageParam.url
+                                if (data.Status) {
+                                    var frameName = url + "_body";
+                                    api.execScript({
+                                        name: url,
+                                        frameName: frameName,
+                                        script: "reload()"
+                                    })
+                                    closeWin();
+                                } else {
+                                    api.toast({
+                                        msg: '请求出错'
+                                    });
+                                }
+                            }
+                        });
+                    } else if (this.adrStatus == 2) {
+                        str = {
+                            id : that.dataAdr.id,
+                            userId: that.person_id,
+                            nameall: that.name,
+                            userSurname: that.nameX,
+                            userName: that.nameM,
+                            cartType: 0,
+                            cartNo: that.passport,
+                            sex: that.sexId,
+                            birthday: that.ago,
+                            email: that.email,
+                            callNo: that.phone,
+                        }
+                        console.log(str)
+                        api.ajax({
+                            url: 'http://192.168.1.35:8082/travel/updateItem',
+                            method: 'post',
+                            cache: 'false',
+                            timeout: 30,
+                            dataTpye: 'json',
+                            data: {
+                                files: {},
+                                values: str
+                            }
+                        }, function (data, err) {
+
+                            console.log("dataaaa", data);
+                            api.hideProgress();
+                            if (data.Status) {
+
+                                var url = api.pageParam.url
+                                if (data.Status) {
+                                    var frameName = url + "_body";
+                                    api.execScript({
+                                        name: url,
+                                        frameName: frameName,
+                                        script: "reload()"
+                                    })
+                                    closeWin();
+                                } else {
+                                    api.toast({
+                                        msg: '请求出错'
+                                    });
+                                }
+                            }
+                        });
+                    }
+
+
+                },
+
+            }
+        })
+    }
+</script>
+</body>
+</html>

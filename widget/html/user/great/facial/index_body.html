@@ -63,8 +63,11 @@
             </div>
 
 
-            <!-- <div class="great_comments">
-                <div class="great_comments_title">
+
+
+            <div class="great_comments">
+                <!--<div class="great_comments_title">
+
                     <span>商品评价</span>
                     <span>({{evalist1.length + evalist2.length + evalist3.length}}条)</span>
                     <span @click="totalComment()">全部评价</span>
@@ -79,7 +82,7 @@
                         <span :class="activeComment == 3 ? 'activeComment' : ''"
                             @click="commentsHandle(evalist3, 3)">差评</span>
                     </div>
-
+-->
                     <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
                         <div class="great_comments_item_top cssFlex">
                             <div><img :src="item.picon.split(',')[0]" alt=""></div>

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>聊天</title>
+    <link rel="stylesheet" href="../../../css/api.css" />
+    <link rel="stylesheet" href="../../../css/commonWin.css" />
+    <style>
+
+    </style>
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>-->
+</head>
+<body>
+<div id="topbar" class="cssFlex">
+    <div class="headerBox cssFlex">
+        <div class="leftImgClose">
+            <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png" onclick="closeWinReturn()">
+        </div>
+        <div class="middleMain">
+            出行人信息
+        </div>
+
+        <div class="rightImgEdite" onclick="save()">
+            完成
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../script/public.js"></script>
+<script>
+    var url
+    apiready = function () {
+        url = api.pageParam.url
+        initFrameInWin(api.pageParam);
+    }
+    function closeWinReturn() {
+        var frameName = url + "_body";
+        api.execScript({
+            name:url,
+            frameName: frameName,
+            isDefult: "true",
+        })
+        closeWin();
+        /*api.sendEvent({
+            name: 'addressDefault',
+            extra: {
+                key: {
+                    /!*c_id: that.magicComCid2,
+                    c_name: that.magicCom2Text,
+                    logo_icon: that.magicCom2Img,*!/
+                    addressDefault: 'true'
+                },
+
+            }
+        });
+        var frameName = url + "_body";
+        if (url == 'confirmOrder') {
+            api.execScript({
+                name:url,
+                frameName: frameName,
+                isDefult: "true",
+            })
+            closeWin();
+        }*/
+    }
+    //点击保存
+    function save(){
+        // console.log('这是保存工作经历')
+        api.execScript({
+            frameName: "Adress_body",
+            script: 'preservation()'
+        })
+    }
+
+</script>
+</html>

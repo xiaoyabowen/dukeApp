@@ -118,10 +118,10 @@
                 <img :src="item.placard.split(',')[0]" alt="img" class="con-title-img">
                 <div class="con-title-info">
                     <div class="con-title-text textOverflow">
-                        {{item.comName}}
+                        {{item.summary}}
                     </div>
                     <div class="conmain-price">
-                        ¥{{order.price}}
+                        ¥{{item.ououPrice}}元
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
 
             <div class="con-pay">支付方式:</div>
             <div class="con-pay-box">
-                <div class="con-pay-main cssFlex">
+                <!--<div class="con-pay-main cssFlex">
                     <div class="con-pay-main-left cssFlex">
                         <img src="../../../image/great/gong.png" alt="gong" class="pay-gong">
                         <div class="con-pay-main-left-content">
@@ -190,7 +190,7 @@
                                name="checkItem">
                         <label for="mode1"></label>
                     </div>
-                </div>
+                </div>-->
                 <div class="con-pay-main cssFlex">
                     <div class="con-pay-main-left cssFlex">
                         <img src="../../../image/great/wxc.png" alt="gong" class="pay-gong">
@@ -217,7 +217,7 @@
                         <label for="mode3"></label>
                     </div>
                 </div>
-                <div class="con-pay-main cssFlex">
+                <!--<div class="con-pay-main cssFlex">
                     <div class="con-pay-main-left  cssFlex">
                         <img src="../../../image/great/yuns.png" alt="gong" class="pay-gong">
                         <div class="con-pay-main-left-content">
@@ -242,7 +242,7 @@
                                name="checkItem">
                         <label for="mode5"></label>
                     </div>
-                </div>
+                </div>-->
             </div>
 
         </div>
@@ -252,8 +252,8 @@
     <div class="con-main-bottom cssFlex">
         <div class="con-flex-left cssFlex">
             <div class="con-margintop" v-if="active == 'facial'">¥{{item.priceh * num}}</div>
-            <div class="con-margintop" v-if="active == 'tourism'">¥{{item.price_y * order.num}}</div>
-            <div class="con-margintop" v-if="active == 'tourismouou'">¥{{ououPrice}}</div>
+            <div class="con-margintop" v-if="active == 'tourism'">¥{{item.ououPrice}}</div>
+            <div class="con-margintop" v-if="active == 'tourismouou'">¥{{item.ououPrice}}</div>
             <div class="con-margintop" v-if="active == 'farmProduce'">¥{{item.priceh * num}}</div>
             <div>实付款</div>
         </div>
@@ -285,6 +285,7 @@
 
 
         apiready = function () {
+
             api.addEventListener({
                 name: 'addressDefault',
             }, function (ret, err) {
@@ -323,7 +324,7 @@
                     // this.OrderKey = api.pageParam.OrderKey
                     this.ououPrice = api.pageParam.ououPrice
 
-                    // this.isDefult = api.pageParam.isDefult
+                    this.isDefult = api.pageParam.isDefult
                     // this.queryDefaultAdr()
                     if (api.pageParam.url) {
                         this.isDefult = api.pageParam.order.default
@@ -946,9 +947,23 @@
                                 return;
                             } else if (that.bank == '微信') {
 
-                                var obj = {}
+                                var obj = {
+                                    cId: that.item.cId,
+                                    pId: that.person_id,
+                                    // oId: that.OrderKey,
+                                    buyNum: that.num,
+                                    orderNo: that.item.orderNo,
+                                    price: that.item.ououPrice,
+                                    title: that.item.summary,
+                                    summary: that.item.summary,
+                                    payType: "微信",
+
+                                    // adrId: name + ',' +phone + ',' + address
+
+                                };
+                                console.log(obj)
                                 api.ajax({
-                                    url: 'http://192.168.1.12:8088/pay/unifiedorder',  //url+模块
+                                    url: 'http://192.168.1.35:8082/pay/GoPayOrder',  //url+模块
                                     method: 'GET',
                                     dataType: 'json',
                                     timeout: 30,
@@ -1007,16 +1022,16 @@
                                     pId: that.person_id,
                                     // oId: that.OrderKey,
                                     buyNum: that.num,
-                                    price: that.item.price,
+                                    price: that.item.ououPrice,
                                     comName: that.item.comName,
                                     summary: that.item.summary,
                                     payType: "支付宝",
                                     // adrId: that.order.adr.name + ',' + that.order.adr.phone + ',' + that.order.adr.address + ',' + that.order.adr.addrDetails
                                 }
-                                //console.log("zhifubao",obj)
+                                console.log("zhifubao",obj)
                                 api.ajax({
 
-                                    url: 'http://192.168.1.12:8088/pay/alipayUniform',  //url+模块
+                                    url: 'http://192.168.1.35:8082/pay/GoPayOrder',  //url+模块
 
                                     method: 'GET',
                                     dataType: 'text',
@@ -1420,8 +1435,8 @@
         //console.log(phone)
         //console.log(addrDetails)
 
-        document.querySelector(".con-adr-not").classList.add("isDisplay")
-        document.querySelector(".con-adr-yes").classList.remove("isDisplay")
+        // document.querySelector(".con-adr-not").classList.add("isDisplay")
+        // document.querySelector(".con-adr-yes").classList.remove("isDisplay")
 
         document.getElementById('name').innerText = name
         document.getElementById('phone').innerText = phone
