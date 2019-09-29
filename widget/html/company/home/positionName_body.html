@@ -46,6 +46,7 @@
     apiready = function () {
 
         url = api.pageParam.url;
+        edit = api.pageParam.edit;
         // console.log(api.pageParam,'499999999999999');
         text.oninput = function (e) {
             num.innerText = e.target.value.length;
@@ -53,8 +54,10 @@
         content = api.pageParam.content;
         if (content == '请填写职位名称'){
             text.value = ''
-        } else {
-            text.value = content
+        }
+
+        if(edit){
+            text.value = edit;
         }
 
     };

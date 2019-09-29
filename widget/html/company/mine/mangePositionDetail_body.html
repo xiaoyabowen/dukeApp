@@ -84,6 +84,8 @@
 
     var job_id, url, statusD;
     apiready = function () {
+
+      
         url = api.pageParam.url;
         job_id = api.pageParam.job_id;
         statusD = api.pageParam.status;
@@ -200,7 +202,9 @@
         })
     }
 
-
+      function loadCom(){
+          window.location.reload();
+      }
 </script>
 </body>
 </html>

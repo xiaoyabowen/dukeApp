@@ -48,7 +48,26 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
+        //物理返回
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+           api.sendEvent({
+               name: 'reloadEvent',
+           });
+           api.closeWin({
+           });
+        });
     };
+
+
+    function closeWin(){
+      api.sendEvent({
+          name: 'reloadEvent',
+      });
+
+      api.closeWin({});
+    }
 
 </script>
 </html>
