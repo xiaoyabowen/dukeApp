@@ -35,8 +35,8 @@
             padding: 0 0.1rem;
         }
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 </head>
 <body class="commonBg">
 
@@ -175,48 +175,51 @@
         var params = {}
         var uid = localStorage.getItem("person_id");
         params.person_id = uid
+        console.log(params);
         ajaxGetWithProgress(QueryjobsList,params,function(res,err) {
-            // console.log(res);
+          api.hideProgress();
+            console.log(res,'已经投递');
             var jobHtml = ''
             var data = res.jobs
-            if (res) {
+            if (res && res.jobs && res.jobs.length>0 ) {
                 for (var i=0;i<data.length;i++){
-                    jobHtml += '<div class="subscribed_main_con" onclick="jobPosi('+data[i].job_id+')">\n' +
-                        '            <div class="subscribed_main_item">\n' +
-                        '                <div class="subscribed_item_left">\n' +
-                        '                    <div class="subscribed_item_position ellipsis">'+data[i].job_name+'</div>\n' +
-                        '                    <div class="subscribed_item_company">\n' +
-                        '                        <div>\n' +
-                        '                            <span>'+data[i].c_name+' </span>\n' +
-                        '                            <span>'+data[i].financing+'</span>\n' +
-                        '                        </div>\n' +
-                        '\n' +
-                        '                        <div>\n' +
-                        '                            <span>'+data[i].addr+'</span>\n' +
-                        '                            <span>'+data[i].work_ex+' </span>\n' +
-                        '                            <span>'+data[i].edu_ex+'</span>\n' +
-                        '                        </div>\n' +
-                        '                    </div>\n' +
-                        '                    <div class="subscribed_item_user">\n' +
-                        '                        <div class="subscribed_item_user_img">\n' +
-                        '                            <img src="../../../image/pro.png" alt="">\n' +
-                        '                        </div>\n' +
-                        '                        <div class="subscribed_item_user_name">\n' +
-                        '                            '+data[i].p_name+'·'+data[i].z_user_job+'\n' +
-                        '                        </div>\n' +
-                        '                    </div>\n' +
-                        '                </div>\n' +
-                        '                <div class="subscribed_item_right">\n' +
-                        '                    <div class="subscribed_item_range">\n' +
-                        '                        '+data[i].ratio+'\n' +
-                        '                    </div>\n' +
-                        '                    <div class="subscribed_item_date">'+data[i].open_time+'</div>\n' +
-                        '                </div>\n' +
-                        '            </div>\n' +
-                        '            <div class="subscribed_con_tip">\n' +
-                        '                <span>'+data[i].status_time+'</span>投递了简历\n' +
-                        '            </div>\n' +
-                        '        </div>';
+                    jobHtml += `
+                      <div class="subscribed_main_con" onclick="jobPosi(${data[i].job_id})">
+                        <div class="subscribed_main_item">
+                            <div class="subscribed_item_left">
+                                <div class="subscribed_item_position ellipsis">${data[i].job_name ? data[i].job_name : '未填写'}</div>
+                                <div class="subscribed_item_company">
+                                    <div>
+                                        <span>${data[i].c_name ? data[i].c_name : '未填写'}</span>
+                                        <span>${data[i].financing ? data[i].financing : '未填写'}</span>
+                                    </div>
+                                    <div>
+                                        <span>${data[i].addr ? data[i].addr : '未填写'}</span>
+                                        <span>${data[i].work_ex ? data[i].work_ex : '未填写'}</span>
+                                        <span>${data[i].edu_ex ? data[i].edu_ex : '未填写'}</span>
+                                    </div>
+                                </div>
+                                <div class="subscribed_item_user">
+                                    <div class="subscribed_item_user_img">
+                                        <img src="../../../image/pro.png" alt="">
+                                    </div>
+                                    <div class="subscribed_item_user_name">
+                                        ${ data[i].p_name ? data[i].p_name+'·'+data[i].z_user_job : '未填写'}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subscribed_item_right">
+                                <div class="subscribed_item_range">
+                                    ${data[i].ratio ? data[i].ratio : '未填写'}
+                                </div>
+                                <div class="subscribed_item_date">${data[i].open_time ? data[i].open_time : '未填写'}</div>
+                            </div>
+                        </div>
+                        <div class="subscribed_con_tip">
+                            <span>${data[i].time ? data[i].time : '未填写'}</span>投递了简历
+                        </div>
+                    </div>
+                    `
                 }
                 document.querySelector(".subscribed_main").innerHTML = jobHtml
             }else {

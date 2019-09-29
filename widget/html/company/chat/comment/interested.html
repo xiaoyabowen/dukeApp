@@ -7,15 +7,15 @@
                 <div class="contacts_item_left"><img :src="imgSrcFun(item.p_icon)" alt=""></div>
                 <div class="interested_item_con">
                     <div>
-                        <span class="name">{{item.p_name}} </span>
-                        <span class="job_name">&nbsp;{{item.work_name}}</span>
+                        <span class="name">{{item.p_name ? item.p_name :'未填写'}} </span>
+                        <span class="job_name">&nbsp;{{item.work_name ? item.work_name : '未填写'}}</span>
                     </div>
-                    <span>{{item.com_name}}</span>
+                    <span>{{item.com_name ? item.com_name : '未填写'}}</span>
                     <div class="interested_item_bottom">
-                        <span class="span-1">{{item.job_from_time ? ages(item.job_from_time) : 0}}年</span>
-                        <span class="span-2">{{item.degree}}</span>
-                        <span class="span-3">¥{{item.pay}}k</span>
-                        <span class="span-4">{{ages(item.p_birthday)}}岁</span>
+                        <span v-if='item.job_from_time' class="span-1">{{item.job_from_time ? ages(item.job_from_time) : 0}}年</span>
+                        <span class="span-2">{{item.degree ? item.degree : '未填写'}}</span>
+                        <span class="span-3">¥{{item.pay ? item.pay : '未填写'}}</span>
+                        <span v-if='item.p_birthday' class="span-4">{{ item.p_birthday ? ages(item.p_birthday) : '0'}}岁</span>
                     </div>
                 </div>
             </div>

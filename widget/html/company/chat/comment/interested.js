@@ -21,18 +21,22 @@ function interestedInit(Vue) {
             lookJobsList: function () {
                 var that = this;
                 ajaxGetWithProgress(lookJobsList, {}, function (data, err) {
-                    //console.log(data);
-                    if (data.LookJobsPersonList) {
-                        var arr1 = data.LookJobsPersonList;
-                        var arr2 = [];
-                        for (var i = 0; i < arr1.length; i++) {
-                            for (var j = 0; j < arr1[i].LookJobsPerson.length; j++) {
-                                arr2.push(arr1[i].LookJobsPerson[j]);
-                            }
-                        }
-                        //console.log(arr2);
-                        that.list = arr2;
+                    console.log(data,'123456');
+                    if(data.List && data.List.length > 0){
+                       that.list = data.List;
+
                     }
+                    // if (data.LookJobsPersonList) {
+                    //     var arr1 = data.LookJobsPersonList;
+                    //     var arr2 = [];
+                    //     for (var i = 0; i < arr1.length; i++) {
+                    //         for (var j = 0; j < arr1[i].LookJobsPerson.length; j++) {
+                    //             arr2.push(arr1[i].LookJobsPerson[j]);
+                    //         }
+                    //     }
+                    //     //console.log(arr2);
+                    //     that.list = arr2;
+                    // }
                 })
             },
             // 点击查看简历

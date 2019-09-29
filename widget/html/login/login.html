@@ -269,6 +269,28 @@
 
     var code, accessToken, dynamicToken, openId, phoneValue, wx, getUserInfoWx,url;
     apiready = function () {
+
+      //添加安卓退出按钮事件
+      api.addEventListener({
+          name: 'keyback'
+      }, function (ret, err) {
+        // alert(123);
+          closeOnKeyBack();
+      });
+      var backButtonPress = 0;
+
+      function closeOnKeyBack() {
+          backButtonPress++;
+          if (backButtonPress > 1) {
+              closeApp();
+          } else {
+              api.toast({msg: '再按一次退出应用'});
+          }
+          setTimeout(function () {
+              backButtonPress = 0;
+          }, 1000);
+      }
+
         wx = api.require('wx');
         url = api.pageParam.url
         // var guide = api.require('guide');
@@ -281,24 +303,24 @@
         // });
         // 添加安卓退出按钮事件
 
-        api.addEventListener({
-            name: 'keyback'
-        }, function (ret, err) {
-            closeOnKeyBack();
-        });
-        var backButtonPress = 0;
-
-        function closeOnKeyBack() {
-            backButtonPress++;
-            if (backButtonPress > 1) {
-                openNewWindow("home", "../user/home/home.html");
-            } else {
-
-            }
-            setTimeout(function () {
-                backButtonPress = 0;
-            }, 1000);
-        }
+        // api.addEventListener({
+        //     name: 'keyback'
+        // }, function (ret, err) {
+        //     closeOnKeyBack();
+        // });
+        // var backButtonPress = 0;
+        //
+        // function closeOnKeyBack() {
+        //     backButtonPress++;
+        //     if (backButtonPress > 1) {
+        //         openNewWindow("home", "../user/home/home.html");
+        //     } else {
+        //
+        //     }
+        //     setTimeout(function () {
+        //         backButtonPress = 0;
+        //     }, 1000);
+        // }
 
         var Height = $(window).height();   //获取当前页面高度
         $(window).resize(function () {
@@ -483,6 +505,9 @@
         });
     }
 
+
+
+
     // 登陆
     function login() {
         api.showProgress();
@@ -562,6 +587,8 @@
             url: "login"
         })
     }
+
+
 
 </script>
 </body>

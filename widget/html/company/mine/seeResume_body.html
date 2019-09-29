@@ -506,13 +506,13 @@
                 }
                 // 求职期望
                 if (Intention) {
-                    document.getElementById('work_name').innerText = Intention.work_name;
-                    document.getElementById('int_city').innerText = Intention.int_city;
-                    document.getElementById('work').innerText = Intention.work;
+                    document.getElementById('work_name').innerText = Intention.work_name ? Intention.work_name:'未填写';
+                    document.getElementById('int_city').innerText = Intention.int_city ? Intention.int_city : '未填写';
+                    // document.getElementById('work').innerText = Intention.work;
                     var pays = Intention.pay.split('.');
                     var pays2 = []
                     pays.forEach(function (value) {
-                        pays2.push(value + 'k')
+                        pays2.push(value)
                     })
                     // //console.log(pays2);
                     document.getElementById('pay').innerText = pays2.join('-');
@@ -521,19 +521,21 @@
                 if (working_his) {
                     var workings = document.getElementById('workings');
                     var arr = [];
+                    var str;
                     for (var i = 0; i < working_his.length; i++) {
-                        var str = '<div class="see-comlibox">\n' +
-                            '                                                <div class="jing-title">' + working_his[i].com_name + '</div>\n' +
-                            '                                                <div class="jing-position">' + working_his[i].position_type + '</div>\n' +
-                            '                                                <div class="jing-year"><span>' + working_his[i].w_from + '</span>至<span>' + working_his[i].w_to + '</span></div>\n' +
-                            '                                                <div class="jing-depart">所属部门：<span>' + working_his[i].position + '</span></div>\n' +
-                            '                                                <div class="jing-skill">' + working_his[i].c_note + '</div>\n' +
-                            '\n' +
-                            '                                            </div>';
-                        arr.push(str);
+                         str += `
+                                  <div class="see-comlibox">
+                                      <div class="jing-title">${working_his[i].com_name ? working_his[i].com_name :'未填写'}</div>
+                                      <div class="jing-position">${working_his[i].position_type ? working_his[i].position_type : '未填写'} </div>
+                                      <div class="jing-year"><span>${working_his[i].w_from ? working_his[i].w_from + '至'+ working_his[i].w_to : '未填写'}</span></div>
+                                      <div class="jing-depart">所属部门：<span>${working_his[i].position ? working_his[i].position : '未填写'}</span></div>
+                                      <div class="jing-skill">${working_his[i].c_note ? working_his[i].c_note : '未填写'}</div>
+                                  </div>
+                          `;
+                        // arr.push(str);
                     }
 
-                    var dom = arr.join('');
+                    var dom = str;
                     // //console.log(dom);
                     // //console.log(workings)
                     workings.innerHTML = dom;
@@ -542,16 +544,17 @@
                 if (education_his) {
                     var educations = document.getElementById('educations');
                     var arr = [];
-
+                    var str
                     for (var i = 0; i < education_his.length; i++) {
-                        var str = '<div class="see-education cssFlex">\n' +
-                            '                                               <div class="education-left">\n' +
-                            '                                                   <div class="education-name">' + education_his[i].univ_name + '</div>\n' +
-                            '                                                   <div class="education-edu"><span>' + education_his[i].degree + '</span> | <span>' + education_his[i].major + '</span></div>\n' +
-                            '                                                   <div class="education-date"><span>' + education_his[i].e_from + '</span>至<span>' + education_his[i].e_to + '</span></div>\n' +
-                            '                                               </div>\n' +
-                            '                                               ' +
-                            '                                           </div>';
+                         str =`
+                          <div class="see-education cssFlex">
+                             <div class="education-left">
+                                 <div class="education-name"> ${education_his[i].univ_name ? education_his[i].univ_name : '未填写'}</div>
+                                 <div class="education-edu"><span> ${education_his[i].degree ? education_his[i].degree+ '|' +education_his[i].major : '未填写' } </span></div>
+                                 <div class="education-date"><span> ${education_his[i].e_from ? education_his[i].e_from +'至'+ education_his[i].e_to : '未填写' } </span></div>
+                              </div>
+                           </div>
+                        `;
                         arr.push(str);
                     }
 
@@ -568,11 +571,13 @@
                     var arr = [];
 
                     for (var i = 0; i < projects.length; i++) {
-                        var str = '<div class="see-product-box">\n' +
-                            '                                               <div class="produvt-name">' + projects[i].project_name + '</div>\n' +
-                            '                                               <div class="produvt-date"><span>' + projects[i].from + '</span>至<span>' + projects[i].to + '</span></div>\n' +
-                            '                                               <div class="produvt-content"> </div>\n' +
-                            '                                           </div>';
+                        var str =   `
+                          <div class="see-product-box">
+                             <div class="produvt-name">${projects[i].project_name ? projects[i].project_name : '未填写'} </div>
+                             <div class="produvt-date"><span> ${projects[i].from ? projects[i].from + '至' + projects[i].to : '未填写'}</span></div>
+                             <div class="produvt-content"> </div>
+                         </div>
+                          `;
                         arr.push(str);
                     }
 
@@ -634,7 +639,7 @@
                 tag.innerText = '已录用';
                 document.getElementById('s4').classList.remove('isDisplay');
             } else if (status == 5) {   //不合适
-                header.classList.remove('isDisplay');
+                header.classList.add('isDisplay');
                 header.innerText = '已预约   ' + filterTime3(time) + '面试';
                 tag.classList.remove('isDisplay');
                 tag.classList.add('status2');
@@ -657,7 +662,8 @@
                 //console.log(app_id);
                 ajaxGetWithProgress(UpdateStatus, {
                     app_id: app_id,
-                    status: '5'
+                    status: '5',
+                    status_time:new Date().toLocaleString().slice(0,9).trim(),
                 }, function (data, err) {
                     //console.log(data);
 
@@ -675,7 +681,7 @@
                         document.getElementById('ss3').classList.add('isDisplay');
                         document.getElementById('s2').classList.add('isDisplay');
                         document.getElementById('s1').classList.add('isDisplay');
-                        document.getElementById('s6').classList.add('isDisplay');
+                        // document.getElementById('s6').classList.add('isDisplay');
                     }
                 })
             }
