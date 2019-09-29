@@ -32,7 +32,9 @@
             <div class="adressEditInfoBox cssFlex" v-for="(item,index) in adressList">
                 <div class="adressEditInfo cssFlex">
                     <div class="con-pay-main-right cssFlex">
-                        <input type="checkbox" value="" class="myOrderHaveCheck" :class="checkboxArr.indexOf(item.nameall)!=-1 ? 'checked': ''" v-model="checkboxArr" @change="changeInput(index,item.nameall)" id="mode${index}" name="checkItem">
+
+                        <input type="checkbox" value="" class="myOrderHaveCheck" :class="checkboxArr.indexOf(item.nameall)!=-1 ? 'checked': ''" @change="changeInput(index,item.nameall)" id="mode${index}" name="checkItem">
+
                         <label for="mode${index}">
                             <div class="adress-con cssFlex">
                                 <span class="adinfo-name">{{item.nameall}}</span>
@@ -136,12 +138,15 @@
                     console.log(nameall)
                     console.log(index)
                     var that = this;
-                    // that.checkboxStr = that.adressList[index].nameall;
-                    that.checkboxArr = nameall;
-                    if(that.checkboxArr.length>2){
+
+                    that.checkboxStr = that.adressList[index].nameall;
+                    that.checkboxArr = that.checkboxArr.push(that.checkboxStr)
+                    // that.checkboxArr = nameall;
+                    /*if(that.checkboxArr.length>2){
                         // that.hobby2.splice(0,1);
                         alert(1)
                     }
+*/
 
 
                 },
@@ -154,7 +159,7 @@
                     api.ajax({
                         // report : false,
 
-                        url: 'http://192.168.1.35:8082/travel/findItemByuid',
+                        url: 'http://192.168.1.35:8083/tour/travel/findItemByuid',
                         method: 'get',
                         cache: 'false',
                         timeout: 30,
@@ -188,7 +193,6 @@
                 editAdr :function (adrId,i) {
                     var that = this;
                     var dataAdr = that.adressList[i];
-                    console.log(dataAdr)
 
                     openNewWindow("addAdress", "./addAdress.html", {
                         url: 'addAdress',
@@ -199,7 +203,9 @@
                 // 完成保存
                 savePer :　function () {
                     var that = this;
-                    console.log(that.checkboxStr);
+
+                    console.log("checkboxArr",that.checkboxArr);
+
                     /*var frameName = url + "_body";
                     api.execScript({
                         name:url,
