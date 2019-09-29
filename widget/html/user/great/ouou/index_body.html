@@ -368,7 +368,9 @@
                               that.picListpic1 = data.image[1].picImg.split(',');
                               that.picListpic2 = data.image[2].picImg.split(',');
                               that.picListpic3 = data.image[3].picImg.split(',');
-                              that.picListpic4 = data.image[4].picImg.split(',');
+                              if(data.image[4]){
+                                that.picListpic4 = data.image[4].picImg.split(',');
+                              }
                             }
                         });
                     },
