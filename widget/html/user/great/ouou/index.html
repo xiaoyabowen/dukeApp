@@ -122,15 +122,15 @@
                         cid: that.ouId,
                         pid: that.person_id
                     }, function (data, err) {
-                        ////console.log(data);
+                        console.log(data,'1255555');
                         that.item = data.commodity
                         that.total = data.total
                         that.att = data.att;
                         that.att_id = data.att_id;
-                        that.imgs = stringFun(data.commodity.placard)
-                        that.picList = stringFun(data.commodity.introduction)
+                        // that.imgs = stringFun(data.commodity.placard)
+                        // that.picList = stringFun(data.commodity.introduction)
                         // that.picListpic1 = stringFun(data.commodity.intPic)
-                        that.picListpic2 = stringFun(data.commodity.intPic)
+                        // that.picListpic2 = stringFun(data.commodity.intPic)
                         // that.picListpic3 = stringFun(data.commodity.pic3)
 
                     });

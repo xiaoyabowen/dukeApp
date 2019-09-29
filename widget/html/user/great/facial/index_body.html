@@ -65,7 +65,7 @@
 
 
 
-            <div class="great_comments">
+            <div style='display:none' class="great_comments">
                 <!--<div class="great_comments_title">
 
                     <span>商品评价</span>
@@ -83,7 +83,7 @@
                             @click="commentsHandle(evalist3, 3)">差评</span>
                     </div>
 -->
-                    <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
+                    <!-- <div class="great_comments_item" v-for="(item, index) in evalist" :key="index" v-if="index < len">
                         <div class="great_comments_item_top cssFlex">
                             <div><img :src="item.picon.split(',')[0]" alt=""></div>
                             <div>
@@ -98,14 +98,14 @@
                             <img v-for="(imgObj, i) in item.commEvaPic" :key="i" :class="i%3 === 0 ? 'right0' : ''"
                                 :src="imgObj.pic" alt="">
                         </div>
-                    </div>
+                    </div> -->
 
-                </div>
-            </div> -->
+                <!-- </div> -->
+            </div>
 
             <div class="great_details">
                 <div style='background:#fff;padding:10px'>商品详情</div>
-                <img v-for="(imgSrc, i) in imgs" :key="i" :src="imgSrc" alt="">
+                <img v-for="(imgSrc, i) in imgs" :key="i" :src="imgSrc" v-if='imgSrc' alt="">
             </div>
         </div>
     </div>
@@ -306,12 +306,13 @@
                             pid: that.person_id
                         }, function (data, err) {
                             console.log(data, '280000');
+                            console.log(data.Commodity.placard.split(','));
                             if (data.Commodity) {
                                 that.item = data.Commodity;
-                                that.imgurl = that.item.placard.split(',')[0];
+                                // that.imgurl = that.item.placard.split(',')[0];
                                 that.imgsBanner = data.intpic;
-                                // that.imgsBanner = data.Commodity.placard.split(',');
-                                that.imgs = data.Commodity.intPic.split(',');
+                                // that.imgsBanner = that.item.intpic.split(',');
+                                that.imgs = that.item.intPic.split(',');
                                 that.total = data.total;
                                 that.att = data.att;
                                 that.att_id = data.att_id;

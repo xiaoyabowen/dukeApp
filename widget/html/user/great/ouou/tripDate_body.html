@@ -142,7 +142,7 @@
 
     function personList(personList) {
         app.personList = JSON.parse(personList);
-        console.log(app.personList)
+        console.log(JSON.parse(personList),'145')
     };
     apiready = function () {
         name = api.pageParam.name;
@@ -860,4 +860,3 @@
 </script>
 </body>
 </html>
-

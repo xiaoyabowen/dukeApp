@@ -209,7 +209,7 @@
                 if (backButtonPress > 1) {
                     openNewWindow("index", "../index.html");
                 } else {
-                  
+
                 }
                 setTimeout(function () {
                     backButtonPress = 0;
@@ -353,21 +353,22 @@
 
                         var that = this;
                         ajaxGetWithProgress('http://192.168.1.35:8082/travel/findSummaryByid', {
-                            goodId: "284"
+                            goodId: "292"
                         }, function (data, err) {
                             console.log("findSummaryByid",data);
-                            that.item = data.Message;
-                            that.total = data.total;
-                            that.tripStatus = data.YesOrNo;
-                            that.imgs = stringFun(data.Message.picImg);
-                            that.Spec = data.Spec;
-                            // that.picList = stringFun(data.commodity.introduction);
-                            that.picListpic0 = data.image[0].picImg.split(',');
-                            that.picListpic1 = data.image[1].picImg.split(',');
-                            that.picListpic2 = data.image[2].picImg.split(',');
-                            that.picListpic3 = data.image[3].picImg.split(',');
-                            that.picListpic4 = data.image[4].picImg.split(',');
-
+                            if(data.status != false){
+                              that.item = data.Message;
+                              that.total = data.total;
+                              that.tripStatus = data.YesOrNo;
+                              that.imgs = stringFun(data.Message.picImg);
+                              that.Spec = data.Spec;
+                              // that.picList = stringFun(data.commodity.introduction);
+                              that.picListpic0 = data.image[0].picImg.split(',');
+                              that.picListpic1 = data.image[1].picImg.split(',');
+                              that.picListpic2 = data.image[2].picImg.split(',');
+                              that.picListpic3 = data.image[3].picImg.split(',');
+                              that.picListpic4 = data.image[4].picImg.split(',');
+                            }
                         });
                     },
                     // 切换tab
