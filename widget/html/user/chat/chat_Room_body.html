@@ -81,15 +81,14 @@
     </div>
 
     <div id="footer" class="cssFlex">
-        <img src="../../../image/chat/hua.png" alt=""/>
-        <img src="../../../image/chat/xiaolian.png" alt=""/>
+        <!--<img src="../../../image/chat/hua.png" alt=""/>-->
+        <!--<img src="../../../image/chat/xiaolian.png" alt=""/>-->
         <input class="my-input" type="text" v-model="sendInput"/>
         <p class="send" @click="sendSingleMsg()">发送</p>
 
     </div>
 </div>
 <script type="text/javascript" src="../../../script/api.js"></script>
-<script type="text/javascript" src="../../../script/util.js"></script>
 <script type="text/javascript" src="../../../script/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="../../../script/apiCloud.js"></script>
 <script type="text/javascript" src="../../../script/public.js"></script>
@@ -101,8 +100,8 @@
 <script src="../../../script/vue.min.js"></script>
 <script src="../../../script/vuex.min.js"></script>
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
     var JIM,appkey,random_str,signature,timestamp,pid_accept
@@ -215,7 +214,7 @@
                 getSignatureJiGuang : function () {
                     var that = this
                     ajaxGetWithProgress(getSignatureJiGuang, {}, function (data) {
-                        //console.log(data)
+                        console.log(data)
                         if (data){
                             that.appkey = data.appkey
                             that.random_str = data.random_str
@@ -242,7 +241,7 @@
                         "flag": 1
 
                     }).onSuccess(function(data) {
-                        //console.log('success:', data);
+                        console.log('success:', data);
 
                         that.isConnect()
                         that.isInit()
@@ -259,12 +258,12 @@
                 // 获取连接状态
                 isConnect : function (){
                     var that = this
-                    //console.log('isConnect:',that.JIM.isConnect());
+                    console.log('isConnect:',that.JIM.isConnect());
                 },
                 // 获取初始化状态
                 isInit : function (){
                     var that = this
-                    //console.log('isInit:',that.JIM.isInit());
+                    console.log('isInit:',that.JIM.isInit());
                 },
 
 

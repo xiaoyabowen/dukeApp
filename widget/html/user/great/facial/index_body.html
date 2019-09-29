@@ -304,7 +304,9 @@
                         pid: that.person_id
                     }, function (data, err) {
                         console.log(data, '280000');
+
                         if (data.Commodity) {
+                            api.hideProgress();
                             that.item = data.Commodity;
                             that.imgurl = that.item.placard.split(',')[0];
                             that.imgsBanner = data.intpic;
@@ -319,6 +321,7 @@
                         }
 
                         if (data.commEvaluateAndPic) {
+                            api.hideProgress();
                             var list = data.commEvaluateAndPic;
                             that.list = list;
                             for (var i = 0; i < list.length; i++) {
@@ -438,6 +441,7 @@
                         var jobList = data.comList
                         //console.log(jobList)
                         if (data) {
+                            api.hideProgress();
                             if (jobList == null) {
                                 that.listJob = ''
                             } else {

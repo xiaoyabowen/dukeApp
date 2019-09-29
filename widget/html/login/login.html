@@ -252,7 +252,7 @@
                     </li>
                 </ul>
             </div>
-            <p class="agreeLink">点击“进入渡客”表示同意《渡客协议》</p>
+            <p class="agreeLink" onclick="Agreement()">点击“进入渡客”表示同意《渡客协议》</p>
         </div>
 
     </div>
@@ -586,6 +586,9 @@
         openNewWindow("passLogin", "passLogin.html", {
             url: "login"
         })
+    }
+    function Agreement() {
+        openNewWindow("Agreement", "Agreement.html")
     }
 
 
