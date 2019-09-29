@@ -13,14 +13,14 @@
     <style>
 
     </style>
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
 
 
 <div id="app1">
-    <div class="bgBlack"@touchstart="hideBg()"></div>
+    <div class="bgBlack" @touchstart="hideBg()"></div>
     <img src="../../../image/duke-2.png" class="person" alt="person" @click="togle()">
     <keep-alive>
         <component :is="active"></component>
@@ -119,10 +119,10 @@
         <!--评论输入框-->
         <!--<div class="details_comment_box" :class="comment_box ? '' : 'isDisplay'">-->
 
-        <div class="bgBlack" :class="comment_box ? '' : 'isDisplay'"@touchstart="hideBg()"></div>
+        <div class="bgBlack" :class="comment_box ? '' : 'isDisplay'" @click="hideBg()"></div>
         <div class="details_comment_box cssFlex" :class="comment_box ? '' : 'isDisplay'">
 
-            <input type="text" class="writeText" @focus="focusHandle()" v-model="textarea" placeholder="快来写下你的评论吧…">
+            <input type="text" class="writeText" @focus="textInput()" v-model="textarea" placeholder="快来写下你的评论吧…">
             <span class="sendBtN" @click="sendHandle()">发送</span>
         </div>
 
@@ -708,28 +708,19 @@
                     });
                 },
                 // 聚焦事件
-                focusHandle: function () {
-                    var uidUser = localStorage.getItem("user")
-                    if (!uidUser) {
-                        openNewWindow("login", "../../login/login.html");
-                        return;
-                    }
-                    this.comment_box = true;
-                },
+                // focusHandle: function () {
+                //     var uidUser = localStorage.getItem("user")
+                //     if (!uidUser) {
+                //         openNewWindow("login", "../../login/login.html");
+                //         return;
+                //     }
+                //     this.comment_box = true;
+                // },
                 // 评论文本框input事件
                 textInput: function () {
-                    this.num = this.textarea.length;
+
                 },
-                // 发送
-                sendHandle: function () {
-                    // alert(123)
-                    //console.log(this.textarea);
-                    if (!this.textarea) {
-                        mui.toast('评论不能为空');
-                        return;
-                    }
-                    var that = this;
-                },
+
                 // 聚焦事件
                 focusHandle: function () {
                     var uidUser = localStorage.getItem("user")
@@ -743,10 +734,6 @@
                 hideBg: function () {
                     this.comment_box = false;
                     this.detailBom_box = false;
-                },
-                // 评论文本框input事件
-                textInput: function () {
-
                 },
                 // 发送
                 sendHandle: function () {

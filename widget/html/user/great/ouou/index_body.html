@@ -350,10 +350,9 @@
                 methods: {
                     // 获取数据
                     findSummaryByid: function () {
-
                         var that = this;
-                        ajaxGetWithProgress('http://192.168.1.35:8082/travel/findSummaryByid', {
-                            goodId: "284"
+                        ajaxGetWithProgress('http://192.168.1.35:8083/tour/travel/findSummaryByid', {
+                            goodId: "292"
                         }, function (data, err) {
                             console.log("findSummaryByid",data);
                             that.item = data.Message;
