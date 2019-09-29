@@ -32,7 +32,7 @@
             <div class="adressEditInfoBox cssFlex" v-for="(item,index) in adressList">
                 <div class="adressEditInfo cssFlex">
                     <div class="con-pay-main-right cssFlex">
-                        <input type="checkbox" value="" class="myOrderHaveCheck" @change="changeInput(index)" id="mode${index}" name="checkItem">
+                        <input type="checkbox" value="" class="myOrderHaveCheck" :class="checkboxArr.indexOf(item.nameall)!=-1 ? 'checked': ''" v-model="checkboxArr" @change="changeInput(index,item.nameall)" id="mode${index}" name="checkItem">
                         <label for="mode${index}">
                             <div class="adress-con cssFlex">
                                 <span class="adinfo-name">{{item.nameall}}</span>
@@ -79,10 +79,12 @@
             el: '#app',
             data: {
                 isDefult: false,
+                isCheck: false,
                 person_id:"",
                 name:"",
                 checkboxName:"",
                 checkboxStr:"",
+                checkboxArr:[],
                 adressList: [
 
                 ]
@@ -130,10 +132,16 @@
                     })
                 },
                 // 选择用户
-                changeInput:function(index){
+                changeInput:function(index,nameall){
+                    console.log(nameall)
+                    console.log(index)
                     var that = this;
-                    that.checkboxStr = that.adressList[index].nameall;
-
+                    // that.checkboxStr = that.adressList[index].nameall;
+                    that.checkboxArr = nameall;
+                    if(that.checkboxArr.length>2){
+                        // that.hobby2.splice(0,1);
+                        alert(1)
+                    }
 
 
                 },
@@ -192,13 +200,13 @@
                 savePer :　function () {
                     var that = this;
                     console.log(that.checkboxStr);
-                    var frameName = url + "_body";
+                    /*var frameName = url + "_body";
                     api.execScript({
                         name:url,
                         frameName: frameName,
                         script:'personList('+ JSON.stringify(that.checkboxStr) +')'
                     })
-                    closeWin();
+                    closeWin();*/
                 }
             }
         })

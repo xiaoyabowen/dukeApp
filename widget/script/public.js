@@ -105,7 +105,7 @@ var payalipayUniform = Domain + '/pay/alipayUniform'
 var updateBuyNumAndPrice = Domain + '/reserve/updateBuyNumAndPrice'
 
 
-<<<<<<< HEAD
+
 // 巨划算旅游 板块
 // 巨划算旅游查看详情
 var findSummaryByid = DomainTrip + '/travel/findSummaryByid'
@@ -120,11 +120,11 @@ var findPriceItemBySpecId = DomainTrip + '/travel/findPriceItemBySpecId'
 
 
 
-=======
+
 //b伯乐 是否收藏该简历
 
 var AttentionPersonStatus = serverUrl + '/UserProfile/AttentionPersonStatus';
->>>>>>> 7aa9e7e19f4aca820e0c42d040f959745cc6a4ed
+
 
 
 
