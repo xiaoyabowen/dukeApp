@@ -10,40 +10,7 @@
     <link rel="stylesheet" href="../../../css/api.css" />
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <style>
-        .headerBox {
-            justify-content: space-between;
-            margin-top: -0.2rem;
-        }
 
-        .oneImgRight, .rightImgEdite {
-            width: 0.34rem;
-            height: 0.38rem;
-            margin-top: -0.8rem;
-        }
-
-        .juConImg {
-            margin-top: -0.1rem;
-            width: 0.4rem;
-            height: 0.4rem;
-        }
-
-        .rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
-        }
-
-        .leftImgClose {
-            width: auto !important;
-            text-align: left !important;
-        }
-
-        .middleMain {
-            width: auto !important;
-            text-align: center !important;
-        }
-        .isDisplay{
-            display: none;
-        }
     </style>
     <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>-->
@@ -57,21 +24,32 @@
         <input type="text" class="searchInput" placeholder="通过姓名或公司搜索联系人">
         <span class="searchClick">GO</span>
     </div>-->
-    <div class="headerBox cssFlex" id="homeIndex">
+    <!--<div class="headerBox cssFlex" id="homeIndex">-->
+        <!--<div class="leftImgClose" onclick="closeWinClick()">-->
+            <!--&lt;!&ndash; <div class='imgBack' style="width: 30px;height: 30px;display:inline-block;background-image:url(../../../icon/back.png);background-repeat:no-repeat;background-position: center;background-size: cover"></div> &ndash;&gt;-->
+            <!--<img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">-->
+        <!--</div>-->
+        <!--<div class="middleMain">-->
+            <!--&lt;!&ndash;Aquarius Villa－Glifada&ndash;&gt;-->
+            <!--个人中心-->
+        <!--</div>-->
+
+        <!--<div class="rightImgEdite">-->
+            <!--&lt;!&ndash;<img class="oneImgRight" src="../../../image/mine/share.png" onclick="posiShareClick()"alt="">&ndash;&gt;-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="headerBox cssFlex"  id="homeIndex">
         <div class="leftImgClose" onclick="closeWinClick()">
-            <!-- <div class='imgBack' style="width: 30px;height: 30px;display:inline-block;background-image:url(../../../icon/back.png);background-repeat:no-repeat;background-position: center;background-size: cover"></div> -->
             <img style="width: 30px;height: 30px;" class="imgBack" src="../../../icon/back.png">
         </div>
         <div class="middleMain">
-            <!--Aquarius Villa－Glifada-->
             个人中心
         </div>
 
-        <div class="rightImgEdite">
-            <!--<img class="oneImgRight" src="../../../image/mine/share.png" onclick="posiShareClick()"alt="">-->
-
-        </div>
     </div>
+
 </div>
 </body>
 <script type="text/javascript" src="../../../script/api.js"></script>

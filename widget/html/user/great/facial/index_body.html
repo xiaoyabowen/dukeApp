@@ -129,8 +129,8 @@
 <script src="../common/bus.js"></script>
 
 
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>-->
 <script>
 
 </script>
@@ -376,60 +376,7 @@
                     });
 
                 },
-/*<<<<<<< HEAD
-                methods: {
-                    // 获取数据
-                    summary: function () {
-                        var that = this;
-                        ajaxGetWithProgress(summary, {
-                            cid: that.cid,
-                            pid: that.person_id
-                        }, function (data, err) {
-                            console.log(data, '280000');
-                            console.log(data.Commodity.placard.split(','));
-                            if (data.Commodity) {
-                                that.item = data.Commodity;
-                                // that.imgurl = that.item.placard.split(',')[0];
-                                that.imgsBanner = data.intpic;
-                                // that.imgsBanner = that.item.intpic.split(',');
-                                that.imgs = that.item.intPic.split(',');
-                                that.total = data.total;
-                                that.att = data.att;
-                                that.att_id = data.att_id;
-                                att_id = data.att_id;
-                                that.comName = data.comName;
-                                document.getElementById('great').classList.remove('isDisplay');
-                            }
 
-                            if (data.commEvaluateAndPic) {
-                                var list = data.commEvaluateAndPic;
-                                that.list = list;
-                                for (var i = 0; i < list.length; i++) {
-                                    var num = list[i].grade1 + list[i].grade2 + list[i].grade3;
-                                    if (num > 10) {
-                                        that.evalist1.push(list[i]);
-                                    } else if (num > 5) {
-                                        that.evalist2.push(list[i]);
-                                    } else if (num < 5) {
-                                        that.evalist3.push(list[i]);
-                                    }
-                                }
-                                that.evalist = that.evalist1;
-                            }
-                        });
-                    },
-                    // 评论
-                    commentsHandle: function (evalist, i) {
-                        this.evalist = evalist;
-                        this.activeComment = i;
-                    },
-                    // 显示全部评论
-                    totalComment: function () {
-                        //console.log(this.list);
-                        this.evalist = this.list;
-                        this.len = this.list.length;
-                    },
-=======*/
                 // 获取渡选魔方数据
 
 
