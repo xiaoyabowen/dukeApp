@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../../css/greatCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css"/>
     <style media="screen">
+<<<<<<< HEAD
         .ad-defult{
             align-items: center;
         }
@@ -24,6 +25,21 @@
             border: 1px solid #5D91FE;
             border-radius:50%;
         }
+=======
+      .ad-defult{
+        align-items: center;
+      }
+      .checked{
+        background: #5D91FE;
+      }
+      .choice{
+        width: 0.36rem;
+        height: 0.36rem;
+        display: inline-block;
+        border: 1px solid #5D91FE;
+        border-radius:50%;
+      }
+>>>>>>> 1bf8f22ad54cda939def908471e2174b1f15356f
     </style>
 </head>
 <body class="commonBg">
@@ -46,6 +62,7 @@
                         <!-- <input value="" class="myOrderHaveCheck" :class="activeIndex== index ? 'checked': ''" @click="changeInput(index,item.nameall)" id="mode${index}" name="checkItem"> -->
 
                         <!-- <label for="mode${index}"> -->
+<<<<<<< HEAD
                         <span  @click="changeInput(index,item.nameall)" :class="['choice',activeIndex == index ? 'checked': '']"></span>
                         <div class="adress-con cssFlex">
 
@@ -54,6 +71,16 @@
                             <span class="adinfo-sex" v-show="item.sex == 0">男</span>
                             <span class="adinfo-sex" v-show="item.sex == 1">女</span>
                         </div>
+=======
+                            <span  @click="changeInput(index,item.nameall)" :class="['choice',activeIndex == index ? 'checked': '']"></span>
+                            <div class="adress-con cssFlex">
+
+                                <span class="adinfo-name">{{item.nameall}}</span>
+                                <span class="adinfo-phone">{{item.callNo}}</span>
+                                <span class="adinfo-sex" v-show="item.sex == 0">男</span>
+                                <span class="adinfo-sex" v-show="item.sex == 1">女</span>
+                            </div>
+>>>>>>> 1bf8f22ad54cda939def908471e2174b1f15356f
                         <!-- </label> -->
                     </div>
 

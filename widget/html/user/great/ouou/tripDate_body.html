@@ -358,6 +358,23 @@
                         idStr += selectObj[key].id2+',';
                         // this.selectedArr.push(selectObj[key]);
                     }
+<<<<<<< HEAD
+=======
+                    this.selectedArr[index1] = index;
+                    //  this.selectedArr[index1] = index;
+                    this.selectedArr = JSON.parse(JSON.stringify(this.selectedArr));
+
+
+                    //  console.log(this.selectedArr,selectObj);
+
+                    // console.log(selectObj);
+                    //
+                    var idStr = '';
+                    for( let key in selectObj){
+                      idStr += selectObj[key].id2+',';
+                      // this.selectedArr.push(selectObj[key]);
+                    }
+>>>>>>> 1bf8f22ad54cda939def908471e2174b1f15356f
                     //
                     // s=s.substring(0,s.length-1)
                     var idStrSub = idStr.substring(0,idStr.length-1);
