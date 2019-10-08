@@ -642,6 +642,7 @@ function ajaxGetUser(url, getData, callBack) {
             values: getData
         }
     }, function (ret, err) {
+        api.hideProgress();
     	if(err){
     		api.hideProgress();
     		var msg = err.msg || "您的连接出错，请稍后再试！";
@@ -696,7 +697,7 @@ function ajaxGet(url, params, callBack) {
 
 						api.hideProgress();
 						if (ret&&ret.success) {//清空本地数据  下一次进来在获取游客身份的时候  还是会把之前选过的考试类型等返回给客户端
-
+                            api.hideProgress();
                             setUserInfo(ret.data);
 							$api.setStorage("lastTime","");
 							openNewWindow("login","../common/login.html");

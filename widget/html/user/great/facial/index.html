@@ -159,11 +159,12 @@
                         pid: that.person_id
                     }, function (data, err) {
                         //console.log(data);
+                        api.hideProgress();
                         if (data.Commodity) {
                             that.item = data.Commodity;
-                            that.imgurl = that.item.placard.split(',')[0];
+                            // that.imgurl = that.item.placard.split(',')[0];
                             // that.imgs = data.intpic;
-                            that.imgs = data.Commodity.intPic.split(',');
+                            // that.imgs = data.Commodity.intPic.split(',');
                             that.total = data.total;
                             that.att = data.att;
                             that.att_id = data.att_id;
