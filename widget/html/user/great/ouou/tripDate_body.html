@@ -19,6 +19,9 @@
             margin: 0;
         }
 
+        /*.listSpanActive{
+          background: #000;
+        }*/
     </style>
 </head>
 <body class="commonBg">
@@ -33,9 +36,9 @@
             {{item.title.specName}}
         </div>
         <div class="tripList cssFlex">
-            <span v-for="(itemSpec,index) in item.item" :class=""
+            <span v-for="(itemSpec,index) in item.item" :class="selectedArr[index1] == index ? 'listSpanActive':''"
                   :key="index"
-                  @click="tripPersonListClick(item.title.id, item.title.specName, itemSpec.id,itemSpec.specValue, index)">
+                  @click="tripPersonListClick(item.title.id, item.title.specName, itemSpec.id,itemSpec.specValue, index1,index)">
                 {{itemSpec.specValue}}
             </span>
         </div>
@@ -147,10 +150,9 @@
                 //leileiStart
 
                 selectedArr:[],
+                idStr:'',
 
                 //leileiend
-
-
                 isDefult: false,
                 person_id: "",
                 name: "zheng",
@@ -331,7 +333,7 @@
                 // 出游人群
 
                 //leileichange
-                tripPersonListClick: function (id1, name1,id2,name2,index) {   //保险
+                tripPersonListClick: function (id1, name1,id2,name2,index1,index) {   //保险
                     console.log(id1,name1,id2,name2);
 
 
@@ -342,8 +344,25 @@
                       name2:name2,
                       index:index,
                     }
-                    console.log(selectObj);
-                    this.selectedArr[0] = selectObj;
+                    this.selectedArr[index1] = index;
+                    //  this.selectedArr[index1] = index;
+                    this.selectedArr = JSON.parse(JSON.stringify(this.selectedArr));
+
+
+                    //  console.log(this.selectedArr,selectObj);
+
+                    // console.log(selectObj);
+                    //
+                    var idStr = '';
+                    for( let key in selectObj){
+                      idStr += selectObj[key].id2+',';
+                      // this.selectedArr.push(selectObj[key]);
+                    }
+                    //
+                    // s=s.substring(0,s.length-1)
+                    var idStrSub = idStr.substring(0,idStr.length-1);
+                    // console.log(idStrSub);
+                    // console.log(this.selectedArr);
 
                     // this.selectedArr[]     //存放已经点击选择的内容;
 
@@ -352,7 +371,8 @@
                     // that.comscaleActive = index;
                     // that.tripPerson = item.peopleType;
                     // that.tripPersonId = item.ptypeId;
-                    // that.queryDateAndPriceoloq()
+                    this.idStr = idStrSub;
+                    this.queryDateAndPriceoloq(idStrSub)
                 },
                 // 出发城市
                 tripCityListClick: function (item, index) {   //保险
@@ -368,16 +388,16 @@
                     that.tripCityId = item.id;
 
                     if (that.tripPersonId != '' && that.tripCityId != '') {
-                        that.queryDateAndPriceoloq()
+                        that.queryDateAndPriceoloq(that.idStr)
                     }
 
                 },
 
-                queryDateAndPriceoloq: function () {
+                queryDateAndPriceoloq: function (idstr) {
                     var that = this;
 
                     var obj = {
-                        spec: '35,39',
+                        spec: idstr,
                         startDate: that.getQueryYear+"-"+that.getQueryMonth+"-1",
                         endDate: that.getQueryYear+"-"+that.getQueryMonth+"-"+that.day,
                         day: that.day,
