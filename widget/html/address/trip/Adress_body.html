@@ -11,9 +11,19 @@
     <link rel="stylesheet" href="../../../css/greatCommon.css"/>
     <link rel="stylesheet" href="../../../css/mui.min.css"/>
     <style media="screen">
-      .ad-defult{
-        align-items: center;
-      }
+        .ad-defult{
+            align-items: center;
+        }
+        .checked{
+            background: #5D91FE;
+        }
+        .choice{
+            width: 0.36rem;
+            height: 0.36rem;
+            display: inline-block;
+            border: 1px solid #5D91FE;
+            border-radius:50%;
+        }
     </style>
 </head>
 <body class="commonBg">
@@ -33,16 +43,18 @@
                 <div class="adressEditInfo cssFlex">
                     <div class="con-pay-main-right cssFlex">
 
-                        <input type="checkbox" value="" class="myOrderHaveCheck" :class="checkboxArr.indexOf(item.nameall)!=-1 ? 'checked': ''" @change="changeInput(index,item.nameall)" id="mode${index}" name="checkItem">
+                        <!-- <input value="" class="myOrderHaveCheck" :class="activeIndex== index ? 'checked': ''" @click="changeInput(index,item.nameall)" id="mode${index}" name="checkItem"> -->
 
-                        <label for="mode${index}">
-                            <div class="adress-con cssFlex">
-                                <span class="adinfo-name">{{item.nameall}}</span>
-                                <span class="adinfo-phone">{{item.callNo}}</span>
-                                <span class="adinfo-sex" v-show="item.sex == 0">男</span>
-                                <span class="adinfo-sex" v-show="item.sex == 1">女</span>
-                            </div>
-                        </label>
+                        <!-- <label for="mode${index}"> -->
+                        <span  @click="changeInput(index,item.nameall)" :class="['choice',activeIndex == index ? 'checked': '']"></span>
+                        <div class="adress-con cssFlex">
+
+                            <span class="adinfo-name">{{item.nameall}}</span>
+                            <span class="adinfo-phone">{{item.callNo}}</span>
+                            <span class="adinfo-sex" v-show="item.sex == 0">男</span>
+                            <span class="adinfo-sex" v-show="item.sex == 1">女</span>
+                        </div>
+                        <!-- </label> -->
                     </div>
 
                 </div>
@@ -64,8 +76,8 @@
 <script type="text/javascript" src="../../../script/rem.js"></script>
 <script type="text/javascript" src="../../../script/data.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
-<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>
+<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>-->
 
 <script>
     var app,url;
@@ -80,6 +92,7 @@
         app = new Vue({
             el: '#app',
             data: {
+                activeIndex:'-1',
                 isDefult: false,
                 isCheck: false,
                 person_id:"",
@@ -138,7 +151,7 @@
                     console.log(nameall)
                     console.log(index)
                     var that = this;
-
+                    this.activeIndex = index;
                     that.checkboxStr = that.adressList[index].nameall;
                     that.checkboxArr = that.checkboxArr.push(that.checkboxStr)
                     // that.checkboxArr = nameall;
@@ -159,7 +172,7 @@
                     api.ajax({
                         // report : false,
 
-                        url: 'http://192.168.1.35:8083/tour/travel/findItemByuid',
+                        url: 'http://112.126.98.172:8083/tour/travel/findItemByuid',
                         method: 'get',
                         cache: 'false',
                         timeout: 30,

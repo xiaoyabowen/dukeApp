@@ -8,10 +8,10 @@ var isCleanUser = false;
 
 // 本地服务器
 
-var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
-var localhostHref = 'http://192.168.1.12:8000/SE4M';
-var Domain = 'http://192.168.1.12:8088';
-var DomainTrip = 'http://192.168.1.35:8083/tour';
+// var serverUrl = "http://192.168.1.12:8000/SE4M/SE";
+// var localhostHref = 'http://192.168.1.12:8000/SE4M';
+// var Domain = 'http://192.168.1.12:8088';
+// var DomainTrip = 'http://192.168.1.35:8083/tour';
 
 // 正式服务器
 // var serverUrl = "http://112.126.98.172:8000/SE4M/SE";
@@ -19,10 +19,10 @@ var DomainTrip = 'http://192.168.1.35:8083/tour';
 // var Domain = 'http://112.126.98.172:8088';
 
 // 渡客正式服务器
-// var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
-// var localhostHref = 'http://59.110.231.40:25121/SE4M';
-// var Domain = 'http://59.110.231.40:25122';
-// var DomainTrip = 'http://192.168.1.35:8052';
+var serverUrl = "http://59.110.231.40:25121/SE4M/SE";
+var localhostHref = 'http://59.110.231.40:25121/SE4M';
+var Domain = 'http://59.110.231.40:25122';
+var DomainTrip = 'http://112.126.98.172:8083/tour';
 
 var rootWindowName = "root";
 simpleVersion = true;

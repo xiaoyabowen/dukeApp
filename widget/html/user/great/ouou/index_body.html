@@ -186,8 +186,8 @@
     <script src="../common/bus.js"></script>
 
     <script type="text/javascript" src="../../../../script/public.js"></script>
-    <script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-    <script>eruda.init();</script>
+    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>-->
     <script>
 
     </script>
@@ -352,7 +352,7 @@
                     findSummaryByid: function () {
                         var that = this;
 
-                        ajaxGetWithProgress('http://192.168.1.35:8083/tour/travel/findSummaryByid', {
+                        ajaxGetWithProgress('http://112.126.98.172:8083/tour/travel/findSummaryByid', {
 
                             goodId: "292"
                         }, function (data, err) {

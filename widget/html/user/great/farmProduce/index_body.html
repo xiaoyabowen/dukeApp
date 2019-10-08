@@ -20,7 +20,7 @@
 <body class="commonBg">
     <div class="Box">
         <div id="great" class="isDisplay">
-            <div class="bgBlack"@touchstart="hideBg()"></div>
+            <div class="bgBlack" @touchstart="hideBg()"></div>
             <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
             <keep-alive>
                 <component :is="active"></component>
@@ -111,7 +111,7 @@
                             <img v-for="(imgObj, i) in item.commEvaPic" :key="i"
                                  :class="i%3 === 0 ? 'right0' : ''"
                                  :src="imgObj.pic" alt="">
-                            <!--<img src="../../../image/pro.png" alt="">-->
+                            <img src="../../../image/pro.png" alt="">-->
                             <!--<img src="../../../image/pro.png" alt="">-->
                             <!--<img class="right0" src="../../../image/pro.png" alt="">-->
                         <!-- </div>
@@ -157,7 +157,6 @@
     <script>
         var winWidth,winHeight
         apiready = function () {
-
             // 添加安卓退出按钮事件
             api.addEventListener({
                 name: 'keyback'
