@@ -422,7 +422,7 @@
             }, 1000);
         }
 
-        var JIMStr = localStorage.getItem("JIM")
+        // var JIMStr = localStorage.getItem("JIM")
         // JIMData = JSON.parse()
         // console.log(JIMStr)
 
@@ -480,7 +480,7 @@
         // console.log("user", localStorage.getItem("user"))
         api.ajax({
 
-            url: 'http://192.168.1.12:8000/SE4M/SE/Login/quRoleType',
+            url: 'http://192.168.1.30:8000/SE4M/SE/Login/quRoleType',
 
             method: 'get',
             cache: 'false',
@@ -505,7 +505,7 @@
         });
 
         api.ajax({
-            url: 'http://192.168.1.12:8000/SE4M/SE/Status/status',
+            url: 'http://192.168.1.30:8000/SE4M/SE/Status/status',
             method: 'get',
             cache: 'false',
             timeout: 30,
@@ -517,6 +517,7 @@
             console.log("ifqshang", data)
             if(data){
                 for (var i=0;i<data.data.length;i++){
+                    // if (data.data[i].version == "1.0.0" && data.data[i].status == "1"){
                     if (data.data[i].version == "CS" && data.data[i].status == "1"){
 
                         var homeBtn = document.querySelector(".homeBtn");
