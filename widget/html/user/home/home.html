@@ -331,7 +331,7 @@
 
 
 
-        var mam = api.require('mam');
+        /*var mam = api.require('mam');
         mam.checkUpdate(function(ret, err) {
             if (ret) {
                 var result = ret.result;
@@ -348,13 +348,13 @@
                                     url : result.source,
                                     report : true
                                 }, function(ret, err) {
-                                    if (ret && 0 == ret.state) {/* 下载进度 */
+                                    if (ret && 0 == ret.state) {/!* 下载进度 *!/
                                         api.toast({
                                             msg : "正在下载应用" + ret.percent + "%",
                                             duration : 2000
                                         });
                                     }
-                                    if (ret && 1 == ret.state) {/* 下载完成 */
+                                    if (ret && 1 == ret.state) {/!* 下载完成 *!/
                                         var savePath = ret.savePath;
                                         api.installApp({
                                             appUri : savePath
@@ -375,9 +375,9 @@
             } else {
 
             }
-        });
+        });*/
 
-        jpush = api.require('push');
+        /*jpush = api.require('push');
         jpush.bind({
             userName:'testName',
             userId:'testId'
@@ -397,7 +397,7 @@
                     api.alert({msg:ret.data});
                 }
             }
-        );
+        );*/
         // }
 
         var header = $api.dom('#topbar');
