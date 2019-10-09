@@ -321,8 +321,8 @@
 <script src="../../../script/jmessage-sdk-web.2.6.0.min.js"></script>
 <script type="text/javascript" src="../../../script/mui.min.js"></script>
 <script type="text/javascript" src="../../../script/vue.min.js"></script>
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
 <script>
     var wx,searchinputTop, JIMData, homeBtnCom,getWebUrl;
@@ -330,8 +330,8 @@
     apiready = function () {
 
 
+        var mam = api.require('mam');
 
-        /*var mam = api.require('mam');
         mam.checkUpdate(function(ret, err) {
             if (ret) {
                 var result = ret.result;
@@ -375,30 +375,34 @@
             } else {
 
             }
-        });*/
+        });
 
-        /*jpush = api.require('push');
-        jpush.bind({
-            userName:'testName',
-            userId:'testId'
-        },function(ret,err){
-            // console.log("jpush.bind",ret)
-            if(ret.status){
-                // api.alert({msg:'绑定成功'});
-            }else{
-                // api.alert({msg:err.msg});
+
+        //加载极光推送模块
+        var ajpush = api.require('ajpush');
+        //模块初始化,android生效,ios会自动初始化
+        ajpush.init(function(ret) {
+            if (ret && ret.status){
+                console.log("极光推送注册成功");
+
             }
         });
-        //设置监听
-        jpush.setListener(
-            function(ret,err){
-                // console.log("jpush.setListener",ret)
-                if(ret){
-                    api.alert({msg:ret.data});
-                }
+        //获取注册信息
+        ajpush.getRegistrationId(function(ret){
+            console.log("极光ID为：" + ret.id);
+            if(ret.id){
+                //缓存设备id
+                fun.user.setToken(ret.id);
+                var param = {alias:ret.id};
+                //绑定用户别名为极光id。服务端可以指定别名进行消息推送
+                ajpush.bindAliasAndTags(param,function(ret) {
+                    var statusCode = ret.statusCode;
+                    console.log("注册信息:" + JSON.stringify(ret));
+                });
             }
-        );*/
-        // }
+
+        });
+
 
         var header = $api.dom('#topbar');
         $api.fixStatusBar(header);

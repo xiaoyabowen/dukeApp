@@ -42,7 +42,7 @@ function contactsInit(Vue) {
                 })
             },
             // 跳转到聊一聊
-            linkHandle: function (token, ptoken, t_key,job_id,pid_accept,pid_name,pid_icon) {
+            linkHandle: function (token, ptoken, t_key,job_id,pid_accept,pid_name,pid_icon,c_name,z_user_job) {
                 openNewWindow("chat_Room", "./chat_Room.html", {
                     token: token,
                     ptoken: ptoken,
@@ -51,6 +51,8 @@ function contactsInit(Vue) {
                     pid_accept: pid_accept,
                     pid_name: pid_name,
                     pid_icon: pid_icon,
+                    c_name: c_name,
+                    z_user_job: z_user_job,
                 });
             },
         }

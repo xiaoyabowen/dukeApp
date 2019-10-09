@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="../../../css/commonWin.css" />
     <link rel="stylesheet" href="../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../css/chatCommon.css">
+    <style>
+        .Box{
+            margin: 0.1rem 0.24rem 0.28rem 0.24rem !important;
+        }
+    </style>
 </head>
 <body class="commonBg">
 
@@ -132,13 +137,15 @@
                 work_ex: '',
                 edu_ex: '',
                 p_name: '',
-                p_icon: '',
+                p_icon: '',     // 聊天的人头像
+
                 z_user_job: '',
                 status:'',
-
+                my_icon: '',  // 我的头像
                 // 聊天
                 JIM : '',
                 pid_accept : '',         //接收消息者 username
+                pid_send : '',         //接收消息者 username
                 pid_name : '',             //接收消息者 name
                 appkey : '',
                 random_str : '',
@@ -153,6 +160,7 @@
 
                 this.job_id = api.pageParam.job_id;
                 this.pid_accept = api.pageParam.pid_accept;           //
+                this.pid_send = api.pageParam.pid_send;           //
                 this.pid_name = api.pageParam.pid_name;
                 this.queryJobTopicChatProFile();
                 this.getSignatureJiGuang();
@@ -194,7 +202,7 @@
                         job_id : that.job_id
                     }
                     ajaxGetWithProgress(queryJobTopicChatProFile,obj,function (data) {
-                        //console.log("cardChat",data)
+                        // console.log("cardChat",data)
                         if (data){
                             that.job_name = data.job_name
                             that.ratio = data.ratio
@@ -205,6 +213,7 @@
                             that.edu_ex = data.edu_ex
                             that.p_name = data.p_name
                             that.p_icon = imgSrcFun(data.p_icon)
+                            that.my_icon = imgSrcFun(data.Mypicon)
                             that.z_user_job = data.z_user_job
                             that.status = data.status
                         }
@@ -293,12 +302,13 @@
                         that.JIM.onSyncConversation(function(data) { //离线消息同步监听
                             //console.log( data);
                             // 消息所有列表
-                            var allData = data
+                            var allData = data;
+                            console.log(allData)
                             // 先提取出 当前的 聊天室  的   personid  的  json
-                            var mapPersonid = {}
+                            var mapPersonid = {};
                             // 返回新的数组
-                            var mapDest = []
 
+                            var mapDest = [];
 
                             for (var i = 0; i < allData.length; i++) {
                                 var allData_i = allData[i]
@@ -313,7 +323,6 @@
                                         var mapDestj = mapDest[j];
                                         if(mapDestj.groupname== allData_i.from_username){
                                             mapDestj.item.push(allData_i);
-                                            break;
                                         }
                                     }
                                 }
@@ -321,14 +330,14 @@
 
                             for (var i = 0; i < mapDest.length; i++){
                                 if (mapDest[i].from_username == that.pid_accept + 'j'){
-                                    var newsList = mapDest[i].item
-                                    var messageListHtml = ''
+                                    var newsList = mapDest[i].item;
+                                    var messageListHtml = '';
                                     for (var j = 0; j < newsList.length; j++){
                                         if (newsList[j].content.target_id == that.pid_accept + 'j'){
                                             messageListHtml += '<div class="ask">\n' +
                                                 '                <div class="time">'+formatTime(newsList[j].content.create_time,'h:m:s')+'</div>\n' +
-                                                '                <div class="msg">\n' +
-                                                '                    <img src="../../../image/chat/touxiangm.png" alt=""/>\n' +
+                                                '                <div class="msg ">\n' +
+                                                '                    <img class="msgask" src="../../../image/chat/touxiangm.png" alt=""/>\n' +
                                                 '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
                                                 '                    <p>\n' +
                                                 '                        <i clas="msg_input"></i>\n' +
@@ -341,8 +350,8 @@
                                         }else{
                                             messageListHtml += '<div class="reply">\n' +
                                                 '                <div class="time">'+formatTime(newsList[j].content.create_time,'h:m:s')+'</div>\n' +
-                                                '                <div class="msg">\n' +
-                                                '                    <img src="../../../image/chat/touxiang.png" alt=""/>\n' +
+                                                '                <div class="msg ">\n' +
+                                                '                    <img class="msgreply" src="../../../image/chat/touxiang.png" alt=""/>\n' +
                                                 '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
                                                 '                    <p>\n' +
                                                 '                        <i class="msg_input"></i>\n' +
@@ -353,8 +362,16 @@
 
                                         }
                                     }
-                                    console.log("messageListHtml",messageListHtml)
-                                    document.getElementById("messageList").innerHTML = messageListHtml
+
+
+                                    document.getElementById("messageList").innerHTML = messageListHtml;
+                                    document.querySelectorAll(".msgreply").forEach(function (item) {
+                                        item.src = that.p_icon;
+                                    });
+                                    document.querySelectorAll(".msgask").forEach(function (item) {
+                                        item.src = that.my_icon;
+                                    })
+
                                 }
                             }
 
@@ -439,7 +456,7 @@
                         }, 200);
                         var obj = {
                             // RegId : api.deviceId,
-                            RegId : '160a3797c870063ae8a',
+                            RegId : '120c83f7605f58a9cde',
 
 
                             title : that.sendInput,
@@ -447,7 +464,11 @@
                         }
                         //console.log("JMessagepushObj",obj)
                         ajaxGetWithProgress(JMessagepush,obj,function (data) {
+<<<<<<< HEAD
                             console.log("JMessagepush",data)
+=======
+                            // console.log("JMessagepush",data)
+>>>>>>> master
                         })
                         that.sendInput = ''
 
