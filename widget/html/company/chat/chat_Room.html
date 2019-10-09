@@ -30,7 +30,7 @@
         </div>
         <div class="ChatmiddleMain">
             <div class="ChatmiddleMainnam">赵冬冬</div>
-            <div class="ChatmiddleMainPos ellipsis">北京天九共享控股集团 · 人力资源部经理</div>
+            <div class="ChatmiddleMainPos ellipsis"><i class="c_name"></i> · <i class="z_user_job"></i></div>
         </div>
 
     </div>
@@ -59,11 +59,15 @@
 <script type="text/javascript" src="../../../script/public.js"></script>
 <script type="text/javascript" src="../../../script/template-native.js"></script>
 <script>
-    var pid_name
+    var pid_name,c_name,z_user_job;
     apiready = function () {
         initFrameInWin(api.pageParam);
         pid_name = api.pageParam.pid_name;
-        document.querySelector(".ChatmiddleMainnam").innerText = pid_name
+        c_name = api.pageParam.c_name;
+        z_user_job = api.pageParam.z_user_job;
+        document.querySelector(".ChatmiddleMainnam").innerText = pid_name;
+        document.querySelector(".c_name").innerText = c_name;
+        document.querySelector(".z_user_job").innerText = z_user_job;
     }
 
 

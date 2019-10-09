@@ -29,21 +29,21 @@ function contactsInit(Vue) {
             lookmeList: function () {
                 var that = this;
                 var list = localStorage.getItem('chats');
-                // //console.log(list)
-                if (list) {
+                // console.log(list)
+                /*if (list) {
                     that.list = JSON.parse(list);
                     ajaxGet(queryChatList, {}, function (data, err) {
-                        //console.log(data);
+                        // console.log(JSON.parse(data));
                         if (data.ChatList) {
                             that.list = data.ChatList;
                             localStorage.setItem('chats', JSON.stringify(that.list));
                         }
                     });
-                    return;
-                }
+                    // return;
+                }*/
 
                 ajaxGetWithProgress(queryChatList, {}, function (data, err) {
-                    //console.log(data);
+                    console.log(data,"1222");
                     if (data.ChatList) {
                         that.list = data.ChatList;
                         localStorage.setItem('chats', JSON.stringify(that.list));
@@ -51,15 +51,19 @@ function contactsInit(Vue) {
                 })
             },
             // 跳转到聊一聊
-            linkHandle: function (token, ptoken, t_key,job_id,pid_accept,pid_name,pid_icon) {
+            linkHandle: function (token, ptoken, t_key,job_id,pid_accept,pid_send,pid_name,pid_icon,c_name,z_user_job) {
+
                 openNewWindow("chat_Room", "./chat_Room.html", {
                     token: token,
                     ptoken: ptoken,
                     t_key: t_key,
                     job_id: job_id,
                     pid_accept: pid_accept,
+                    pid_send: pid_send,
                     pid_name: pid_name,
                     pid_icon: pid_icon,
+                    c_name: c_name,
+                    z_user_job: z_user_job,
                 });
             },
 

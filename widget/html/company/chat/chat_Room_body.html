@@ -46,9 +46,16 @@
         </div>-->
     </div>
 
-    <div id="footer" class="cssFlex">
+    <!--<div id="footer" class="cssFlex">
         <img src="../../../image/chat/hua.png" alt=""/>
         <img src="../../../image/chat/xiaolian.png" alt=""/>
+        <input class="my-input" type="text" v-model="sendInput"/>
+        <p class="send" @click="sendSingleMsg()">发送</p>
+
+    </div>-->
+    <div id="footer" class="cssFlex">
+        <!--<img src="../../../image/chat/hua.png" alt=""/>-->
+        <!--<img src="../../../image/chat/xiaolian.png" alt=""/>-->
         <input class="my-input" type="text" v-model="sendInput"/>
         <p class="send" @click="sendSingleMsg()">发送</p>
 
@@ -287,7 +294,7 @@
                                             messageListHtml += '<div class="ask">\n' +
                                                 '                <div class="time">05/22 06:30</div>\n' +
                                                 '                <div class="msg">\n' +
-                                                '                    <img :src="that.pid_icon.split(\',\')[0]" alt=""/>\n' +
+                                                '                    <img class="msgask" :src="that.pid_icon.split(\',\')[0]" alt=""/>\n' +
                                                 '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
                                                 '                    <p>\n' +
                                                 '                        <i clas="msg_input"></i>\n' +
@@ -301,7 +308,7 @@
                                             messageListHtml += '<div class="reply">\n' +
                                                 '                <div class="time">05/22 06:30</div>\n' +
                                                 '                <div class="msg">\n' +
-                                                '                    <img src="../../../image/chat/touxiang.png" alt=""/>\n' +
+                                                '                    <img class="msgreply" src="../../../image/chat/touxiang.png" alt=""/>\n' +
                                                 '                    <span class="name">'+newsList[j].content.target_name+'</span>\n' +
                                                 '                    <p>\n' +
                                                 '                        <i class="msg_input"></i>\n' +
