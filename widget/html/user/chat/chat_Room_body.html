@@ -267,6 +267,7 @@
                 },
 
 
+
                 // 登陆
                 login : function (){
                     var that = this
@@ -298,6 +299,7 @@
                             // 返回新的数组
                             var mapDest = []
 
+
                             for (var i = 0; i < allData.length; i++) {
                                 var allData_i = allData[i]
                                 if(!mapPersonid[allData_i.from_username]){
@@ -316,7 +318,6 @@
                                     }
                                 }
                             }
-                            //console.log("mapDest",mapDest);
 
                             for (var i = 0; i < mapDest.length; i++){
                                 if (mapDest[i].from_username == that.pid_accept + 'j'){
@@ -352,6 +353,7 @@
 
                                         }
                                     }
+                                    console.log("messageListHtml",messageListHtml)
                                     document.getElementById("messageList").innerHTML = messageListHtml
                                 }
                             }
@@ -404,7 +406,7 @@
 
                 sendSingleMsg : function () {
                     var that = this
-                    //console.log("sendInput",that.sendInput)
+                    console.log("sendInput",that.sendInput)
                     that.JIM.sendSingleMsg({
                         'target_username' : that.pid_accept + 'j',     //接收消息者 username
                         'target_nickname' : that.pid_name,     //接收者的展示名
@@ -415,7 +417,7 @@
                         'custom_notification':{'enabled':true,'title':'title','alert':'alert'},
                         'need_receipt':true       //是否需要已读回执，需要:true 不需要:false
                     }).onSuccess(function(data,msg) {
-                        //console.log('success data:' ,data);
+                        console.log('success data:' ,data);
                         //console.log('succes msg:' ,msg);
                         var html = '<div class="ask">\n' +
                             '                <div class="time">05/22/ 06:30</div>\n' +
@@ -445,7 +447,7 @@
                         }
                         //console.log("JMessagepushObj",obj)
                         ajaxGetWithProgress(JMessagepush,obj,function (data) {
-                            //console.log("JMessagepush",data)
+                            console.log("JMessagepush",data)
                         })
                         that.sendInput = ''
 
@@ -455,14 +457,13 @@
                         // appendToDashboard('error: ' +JSON.stringify(data));
                     });
                     that.onMsgReceive()
-
                 },
 
                 onMsgReceive : function (){
                     var that = this
                     that.JIM.onMsgReceive(function(data) {
                         var dataValue = data.messages[0].content
-                        //console.log('1msg_receive:', data);
+                        console.log('1msg_receive:', data);
                         /*var html = '<div class="ask">\n' +
                             '                <div class="time">'+formatTime(dataValue.create_time,'h:m:s')+'</div>\n' +
                             '                <div class="msg">\n' +
