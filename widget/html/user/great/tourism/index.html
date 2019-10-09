@@ -6,51 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>渡选</title>
+    <title>希腊房产</title>
     <link rel="stylesheet" href="../../../../css/api.css" />
     <link rel="stylesheet" href="../../../../css/commonWin.css" />
     <style>
-        .headerBox {
-            justify-content: space-between;
-        }
-        .oneImgRight,.rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
-        }
-        .rightImgEdite {
-            width: 0.3rem;
-            height: 0.3rem;
-        }
-        .leftImgClose{
-            width: auto !important;
-            text-align: left !important;
-        }
-        .middleMain{
-            width: auto !important;
-            text-align: center !important;
-        }
+    /*头部leileiStart*/
+    .headerBox{
+      justify-content: space-between;
+      align-items: center;
+    }
+    .left{
+      width: 33.3%;
+    }
+    .middle{
+      width: 33.3%;
+      text-align: center;
+    }
+    .right{
+      width: 33.3%;
+      display: flex;
+      justify-content: flex-end;
+      /*align-items: center;*/
+    }
+    .right .pics{
+       width: 0.38rem;
+       height: 0.36rem;
+      /*background: red;*/
+      position: relative;
+    }
+    .right .shoucang{
+      margin-right: 0.1rem;
+    }
+    .right .pics img{
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /*头部leileiEnd*/
     </style>
     <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
 <script>eruda.init();</script>-->
 </head>
 <body>
-<div id="topbar" class="cssFlex" id="homeIndex">
+  <div id="topbar" class="cssFlex">
+      <div class="headerBox cssFlex" id="homeIndex">
+          <div class='left' onclick="mineGo()">渡选</div>
+          <div class='middle'>浪卡</div>
+          <div class="right">
+            <div class="shoucang pics">
+                <img src="../../../../image/mine/shou1.png" @click="collectionHandleActive()" v-show="att" alt="">
+                <img src="../../../../image/mine/juCon.png" @click="collectionHandle()" v-show="!att" alt="">
+            </div>
+            <div class="fenxiang pics">
+                <img src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
+            </div>
+          </div>
 
-    <div class="headerBox cssFlex" onclick="mineGo()">
-        <div class="leftImgClose">
-            渡选
-        </div>
-        <div class="middleMain">
-            旅游
-        </div>
-        <img src="../../../../image/mine/shou1.png" class="juConImg" @click="collectionHandleActive()" v-show="att" alt="">
-        <img src="../../../../image/mine/juCon.png" class="juConImg"  @click="collectionHandle()" v-show="!att" alt="">
-        <div class="rightImgEdite cssFlex">
-            <img class="oneImgRight" src="../../../../image/mine/share.png" onclick="posiShareClick()"alt="" >
-        </div>
-    </div>
-</div>
-
+      </div>
+  </div>
 
 </body>
 <script type="text/javascript" src="../../../../script/api.js"></script>
@@ -64,61 +80,72 @@
 
     apiready = function () {
         initFrameInWin(api.pageParam);
+
         new Vue({
             el: '#homeIndex',
             data: {
-
+                activeType: 'trip',
+                item: {},
+                list: [],
+                len: 1,
+                total: 0,
+                picList: [],
+                picListpic1: [],
+                picListpic2: [],
+                picListpic3: [],
+                imgs: [],
                 att: false,
                 att_id: '',
                 person_id: '',
+                hourseId: '',
+                active:'magicAll',
                 cid: '',
                 data: '',
-                tId: '',
+                username: '',
+                userphone: '',
+                userwx: '',
+                usermain: '',
+                showModal : false,
+                listJob: [],
 
             },
             created: function () {
                 this.person_id = localStorage.getItem('person_id');
-                this.cid = api.pageParam.cid;
+                this.hourseId = api.pageParam.hourseId;
                 this.tId = api.pageParam.tId;
-                this.showTravel();
-
-
+                this.housequeryHouseSummary();
             },
             mounted: function () {
                 var that = this
+
                 api.addEventListener({
                     name: 'jobAll'+that.tId,
                 }, function(ret, err) {
-                    //console.log("ret",ret);
-                    that.cid = ret.value.key.cid
-                    that.showTravel()
+                    // //////console.log("ret",ret);
+                    that.hourseId = ret.value.key.cid
+                    that.housequeryHouseSummary()
 
                 });
 
             },
             methods: {
                 // 获取数据
-                showTravel: function () {
+                housequeryHouseSummary: function () {
                     var that = this;
-                    ajaxGetWithProgress(showTravel, {
-                        cid: that.cid,
+                    ajaxGetWithProgress(housequeryHouseSummary, {
+                        cid: that.hourseId,
                         pid: that.person_id
                     }, function (data, err) {
-                        //console.log(data);
-                        if (data.commTravel) {
-                            that.item = data.commodity;
-                            that.att = data.att;
-                            that.att_id = data.att_id;
-                            that.total = data.total;
-                            that.data = data;
-                            if (that.item.intPic) {
-                                that.picList = stringFun(that.item.intPic)
+                        ////console.log(data,'139999999999');
+                        that.item = data.comm
+                        that.att = data.att;
+                        that.att_id = data.att_id;
+                        that.picList = stringFun(data.comm.intPic)
+                        that.picListpic1 = stringFun(data.comm.pic1)
+                        that.picListpic2 = stringFun(data.comm.pic2)
+                        that.picListpic3 = stringFun(data.comm.pic3)
+                        ////console.log(that.picList)
 
-                            }
-                            if (that.item.placard) {
-                                that.imgs = stringFun(that.item.placard);
-                            }
-                        }
                     });
                 },
                 // 收藏
@@ -129,11 +156,11 @@
                         return;
                     }
                     var that = this;
-                    ajaxGet(collectComm, {
+                    ajaxGetWithProgress(collectComm, {
                         id: that.att_id,
                         ccStatus: 1,
                     }, function(data,err){
-                        //console.log(data);
+                        ////console.log(data);
                         if (data.commcollect) {
                             toast("已收藏")
 
@@ -154,9 +181,9 @@
                         id: that.att_id,
                         ccStatus: 0,
                     }
-                    //console.log(obj)
-                    ajaxGet(collectComm, obj, function(data,err){
-                        //console.log(data);
+                    ////console.log(obj)
+                    ajaxGetWithProgress(collectComm, obj, function(data,err){
+                        ////console.log(data);
                         if (data.commcollect) {
                             toast("已取消收藏")
                             // window.location.reload()
@@ -164,12 +191,14 @@
                     });
                     that.att = !that.att;
                 },
+
             }
         })
     }
 
     function mineGo() {
         openNewWindow("index", "../index.html")
+
     }
 
 </script>

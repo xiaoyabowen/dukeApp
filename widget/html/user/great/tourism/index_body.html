@@ -5,349 +5,446 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>渡选</title>
-    <link rel="stylesheet" href="../../../../css/api.css" />
-    <link rel="stylesheet" href="../../../../css/commonWin.css" />
+    <title>希腊房产</title>
+    <link rel="stylesheet" href="../../../../css/api.css"/>
+    <link rel="stylesheet" href="../../../../css/commonWin.css"/>
     <link rel="stylesheet" href="../../../../css/mui.min.css">
     <link rel="stylesheet" href="../../../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../../../css/modal.css">
     <link rel="stylesheet" href="../../../../css/greatCommon.css">
+    <link rel="stylesheet" href="../../../../css/mofang.css">
     <style>
-        .great_header{
+        .tourism_main {
+            background: #fff;
+            border-top: 0 !important;
+        }
 
+        .postSubBtn {
+            width: 100%;
+        }
+
+        .imgComDetail {
+            display: block;
+            width: 7rem;
+        }
+
+        .great_header {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        .tabsList{
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          height: 0.86rem;
+          font-size: 0.28rem;
+          color: #333;
+          border-top: 1px solid #eaeaea;
+          border-bottom: 1px solid #eaeaea;
+        }
+        .buyBtn{
+          width: 6.4rem;
+          height: 0.64rem;
+          background:rgba(255,163,0,1);
+          border-radius:0.04rem;
+          font-size: 0.28rem
+          text-align: center;
+          color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
+          margin-bottom: 0.2rem;
+        }
+        .active{
+          color: #638BFF;
+          position: relative;
+        }
+        .active::after{
+          content: '';
+          width: 0.9rem;
+          height: 0.03rem;
+          background:#638BFF;
+          position: absolute;
+          bottom: -0.2rem;
+          left: 50%;
+          margin-left: -0.45rem;
+          z-index: 9;
+        }
+        .pricemesg{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 0.3rem;
+        }
+        .title{
+          font-size: 0.36rem;
+          color: #333;
+        }
+        .wraptitle{
+          padding: 0.2rem 0.32rem;
+        }
+        .price{
+          font-size: 0.36rem;
+          color: #DE2929;
+        }
+        .sell{
+          font-size: 0.24rem;
+          color: #333333;
         }
     </style>
 </head>
 <body class="commonBg">
 
 
-    <div class="Box">
-        <div id="great" class="isDisplay">
+<div class="Box">
+    <div id="great" v-cloak>
 
-            <div class="bgBlack"@touchstart="hideBg()"></div>
-            <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
-            <keep-alive>
-                <component :is="active"></component>
-            </keep-alive>
-            <div class="great_header" style="padding-bottom: 0">
-                <div class="great_header_banner swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="(imgSrc, index) in imgs" :key="index">
-                            <img :src="imgSrc" />
-                        </div>
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
-                        <!--<div class="swiper-slide"><img src="../../../../image/circle/circle01.png" /></div>-->
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                </div>
+        <div class="bgBlack"@touchstart="hideBg()"></div>
+        <img src="../../../../image/duke-2.png" class="person" alt="person" @click="togle()">
+        <keep-alive>
+            <component :is="active"></component>
+        </keep-alive>
+        <div class="great_header">
 
-
-
-
-                <div class="tourism_title textOverflow">{{item.comName}}</div>
-
-                <div class="posire">
-                    <div class="great_Price_List cssFlex">
-                        <span class="great_Price">¥{{item.price_y}}</span>
-                        <span class="great_Stock">商品已售: <span>{{total}}</span>张</span>
-                    </div>
-                    <div class="juLisellBtn commonFont cssFlex" @click="purchaseHandle()">
-                        立即购买
+            <div class="great_header_banner swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(imgSrc, index) in topImg" :key="index">
+                        <img :src="imgSrc"/>
                     </div>
                 </div>
-
-                <div class="tourism_con">
-                    <div>出发城市: <span> {{item.departureCity}}</span></div>
-                    <div class="tourism_con_num">
-                        <div>组团人数: 15+1人</div>
-                        <div>最少人数：12+1，不足人数，无法发团，敬请谅解</div>
-                        <div>最多人数16+1，精致VIP小团</div>
-                    </div>
-                    <div>出发日期: <span> {{item.departureDate}}</span></div>
-                </div>
-
-
-
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
 
 
-            <div class="tourism_main">
-                <div class="tourism_main_header">
-                    <div><span @click="activeHandle('trip')" :class="activeType == 'trip' ? 'active' : ''">行程路线</span></div>
-                    <div><span @click="activeHandle('cost')" :class="activeType == 'cost' ? 'active' : ''">费用说明</span></div>
-                    <div><span @click="activeHandle('other')" :class="activeType == 'other' ? 'active' : ''">其他说明</span></div>
-                </div>
 
-                <div id="trip" v-if="activeType == 'trip' && item.intPic">
-                    <img v-for="(pic, index) in picList" :key="index" :src="pic" alt="">
+            <div class="buys">
+                <div class="wraptitle">
+                    <div class="title">
+                      {{message.goodName}}:{{message.introduce}}
+                    </div>
+                    <div class="pricemesg">
+                      <div class="price">￥{{message.maxPrice}}</div>
+                      <div style='display:none' class="sell">
+                        <span>商品已售：
+                        <span style="color:#DE2929">0</span>
+                          件</span>
+                      </div>
+                    </div>
                 </div>
-                <cost v-if="activeType == 'cost'"></cost>
-                <other v-if="activeType == 'other'"></other>
+                <div @click=buyNow() class="buyBtn">我要购买</div>
             </div>
+        </div>
 
-            <!--<div class="great_immediately">
-                <div class="great_immediately_comtent cssFlex">
-                    <div class="tourism_collection cssFlex" @click="collectionHandle()">
-                        <img :src="att ? '../../../../image/circle/Collection2.png' : '../../../../image/circle/Collection1.png'" alt="">
-                        <span>收藏</span>
-                    </div>
-                    &lt;!&ndash;<div class="tourism_visa">&ndash;&gt;
-                        &lt;!&ndash;办理签证&ndash;&gt;
-                    &lt;!&ndash;</div>&ndash;&gt;
-                    <div class="tourism_purchase" @click="purchaseHandle()">
-                        <span>立即购买</span>
-                    </div>
-                </div>
-            </div>-->
 
-            <!--<component is="magicCube"></component>-->
+        <div class="tourism_main">
+          <div class="tabsList">
+            <div :class="['tabs',activeIndex == 0 ? 'active' : '']" @click='changetabs(0)'>图文详情</div>
+            <div :class="['tabs',activeIndex == 1 ? 'active' : '']" @click ='changetabs(1)'>参考酒店</div>
+            <div :class="['tabs',activeIndex == 2 ? 'active' : '']" @click ='changetabs(2)'>预定须知</div>
+          </div>
+          <div class="tabcomtent">
+            <div class="detail" v-show='activeIndex == 0'>
+                <img style='width:100%' v-if='tabsImg[0] && tabsImg[0].picImg' :src="tabsImg[0].picImg" alt="">
+            </div>
+            <div class="hotel" v-show='activeIndex == 1'>
+                <img style='width:100%' v-if='tabsImg[1] && tabsImg[1].picImg' :src="tabsImg[1].picImg" alt="">
+            </div>
+            <div class="notice" v-show='activeIndex == 2'>
+                <img style='width:100%' v-if= 'tabsImg[2] && tabsImg[2].picImg' :src="tabsImg[2].picImg" alt="">
+            </div>
+          </div>
         </div>
     </div>
+</div>
 
 
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/rem.js"></script>
+<script type="text/javascript" src="../../../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../../../script/public.js"></script>
+<script type="text/javascript" src="../../../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../../../script/mui.min.js"></script>
+<script src="../../../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../../../script/data.js"></script>
 
-    <script type="text/javascript" src="../../../../script/api.js"></script>
-    <script type="text/javascript" src="../../../../script/util.js"></script>
-    <script type="text/javascript" src="../../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../../script/apiCloud.js"></script>
-    <script type="text/javascript" src="../../../../script/public.js"></script>
-    <script type="text/javascript" src="../../../../script/rem.js"></script>
-    <script type="text/javascript" src="../../../../script/mui.min.js"></script>
-    <script src="../../../../script/swiper.min.js"></script>
-    <script type="text/javascript" src="../../../../script/data.js"></script>
+<script src="../../../../script/vue.min.js"></script>
+<script src="../../../../script/vuex.min.js"></script>
 
-    <script src="../../../../script/vue.min.js"></script>
-    <script src="../../../../script/vuex.min.js"></script>
-    <!--<script src="../common/magicCube.js"></script>-->
-    <script src="./common/cost.js"></script>
-    <script src="./common/other.js"></script>
-    <script src="../common/magicAll.js"></script>
-    <script src="../common/bus.js"></script>
 
-    <!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
-    <script>
+<script src="../common/magicAll.js"></script>
+<script src="../common/bus.js"></script>
 
-    </script>
 
-    <script>
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 
-        apiready = function () {
+<script>
 
-// 添加安卓退出按钮事件
-            api.addEventListener({
-                name: 'keyback'
-            }, function (ret, err) {
-                closeOnKeyBack();
-            });
-            var backButtonPress = 0;
+    var winWidth, winHeight
+    apiready = function () {
+        // 添加安卓退出按钮事件
 
-            function closeOnKeyBack() {
-                backButtonPress++;
-                if (backButtonPress > 1) {
-                    openNewWindow("index", "../index.html");
-                } else {
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var backButtonPress = 0;
 
-                }
-                setTimeout(function () {
-                    backButtonPress = 0;
-                }, 1000);
+        function closeOnKeyBack() {
+            backButtonPress++;
+            if (backButtonPress > 1) {
+                openNewWindow("index", "../index.html");
+            } else {
+
             }
-
-            // var magicCube = magicCubeInit(Vue);
-
-            var cost = costInit(Vue);
-            var other = otherInit(Vue);
-            // Vue.component('magicCube', magicCube);
-
-            Vue.component('cost', cost);
-            Vue.component('other', other);
-            var magicAll = magicAllInit(Vue);
-            Vue.component('magicAll', magicAll);
-            url = api.pageParam.url
-
-            winWidth = api.winWidth;
-            winHeight = api.winHeight;
-            // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
-            // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
-            a01_w = winWidth;
-            // 斜边长
-            bevelLength = Math.sqrt((a01_w * a01_w / 2 )) - 40
-            //console.log("bevelLength",bevelLength)
-            // width_d=(screen_w-20) *2/5 - 5;
-            m_d = (a01_w-10)*0.23-25;    // 100
-
-            new Vue({
-                el: '#great',
-                data: {
-                    activeType: 'trip',
-                    item: {},
-                    list: [],
-                    len: 1,
-                    total: 0,
-                    picList: [],
-                    imgs: [],
-                    att: false,
-                    att_id: '',
-                    person_id: '',
-                    active:'magicAll',
-                    cid: '',
-                    data: '',
-                    tId: '',
-
-                },
-                created: function () {
-                    this.person_id = localStorage.getItem('person_id');
-                    this.cid = api.pageParam.cid;
-                    this.tId = api.pageParam.tId;
-                    this.showTravel();
-
-
-                },
-                mounted: function () {
-                    document.getElementById('great').classList.remove('isDisplay');
-                    this.isDisplay = true;
-                    //获得slider插件对象
-                    var swiper = new Swiper('.swiper-container', {
-                        pagination: {
-                            el: '.swiper-pagination',
-                        },
-                        autoplay: true,
-                        observer:true,//修改swiper自己或子元素时，自动初始化swiper
-                        observeParents:true,//修改swiper的父元素时，自动初始化swiper
-                    });
-                    var that = this
-                    that.active = store.state.obj.magicCom;
-                    api.addEventListener({
-                        name: 'comCom1',
-                    }, function(ret, err) {
-                        //console.log("ret",ret);
-                        that.active = ret.value.key.magicCom1;
-
-                        /*localStorage.setItem("magic_id",ret.value.key.c_id)
-                        localStorage.setItem("magic_img",ret.value.key.logo_icon)
-                        localStorage.setItem("magic_name",ret.value.key.c_name)*/
-                    });
-                    api.addEventListener({
-                        name: 'comCom2',
-                    }, function(ret, err) {
-                        //console.log("ret",ret);
-                        that.active = ret.value.key.magicCom2;
-
-                        /*localStorage.setItem("magic_id2",ret.value.key.c_id)
-                        localStorage.setItem("magic_img2",ret.value.key.logo_icon)
-                        localStorage.setItem("magic_name2",ret.value.key.c_name)*/
-                    });
-                    api.addEventListener({
-                        name: 'jobAll'+that.tId,
-                    }, function(ret, err) {
-                        //console.log("ret",ret);
-                        that.cid = ret.value.key.cid
-                        that.showTravel()
-
-                    });
-
-                    magicBox = document.querySelector(".magicBox")
-                    bgBlack = document.querySelector(".bgBlack")
-
-                    magicBtn = document.getElementsByClassName("magicBtn")
-                    magicSubBox = document.getElementsByClassName("magicSubBox")
-                    iconImg = document.getElementsByClassName("iconImg")
-                    magicBox.style.width = bevelLength * 2 + "px"
-                    magicBox.style.height = bevelLength + "px"
-                    var rightYi = bevelLength
-                    magicBox.style.right = '-' + rightYi + "px"
-                    bgBlack.style.width =winWidth + "px"
-                    bgBlack.style.height =winHeight + "px"
-
-                    magicBGheight = document.querySelector(".magicBGheight")
-                    magicBGheight.style.height = m_d + "px"
-                    // 里面小盒子宽度
-                    for (var i =0;i<magicBtn.length ; i++){
-                        magicBtn[i].style.width = m_d + "px"
-                        magicBtn[i].style.height = m_d + "px"
-                    }
-                    // 里面小盒子宽度
-                    for (var i =0;i<magicSubBox.length ; i++){
-                        magicSubBox[i].style.width = m_d + "px"
-                        magicSubBox[i].style.height = m_d + "px"
-                    }
-                    // 图片宽度
-                    for (var i =0;i<iconImg.length ; i++){
-                        iconImg[i].style.width = m_d/2 + "px"
-                        iconImg[i].style.height = m_d/2 + "px"
-                    }
-
-                },
-                methods: {
-                    // 获取数据
-                    showTravel: function () {
-                        var that = this;
-                        ajaxGetWithProgress(showTravel, {
-                            cid: that.cid,
-                            pid: that.person_id
-                        }, function (data, err) {
-                            //console.log(data);
-                            if (data.commTravel) {
-                                that.item = data.commodity;
-                                that.att = data.att;
-                                that.att_id = data.att_id;
-                                that.total = data.total;
-                                that.data = data;
-                                if (that.item.intPic) {
-                                    that.picList = stringFun(that.item.intPic)
-
-                                }
-                                if (that.item.placard) {
-                                    that.imgs = stringFun(that.item.placard);
-                                }
-                            }
-                        });
-                    },
-                    // 切换tab
-                    activeHandle: function (activeType) {
-                        this.activeType = activeType;
-                    },
-                    // 办理签证
-                    // 收藏
-                    collectionHandle: function () {
-                        var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
-                            openNewWindow("login", "../../../login/login.html");
-                            return;
-                        }
-                        var that = this;
-                        ajaxGet(collectComm, {
-                            id: that.att_id,
-                            ccStatus: 1,
-                            pid: that.person_id,
-                            commId: that.item.cId
-                        }, function(data,err){
-                            //console.log(data);
-                            if (data.commcollect) {
-                                toast("编辑成功")
-                                window.location.reload()
-                            }
-                        });
-                        that.att = !that.att;
-                    },
-                    // 立即购买
-                    purchaseHandle: function () {
-                        var uidUser = localStorage.getItem("user")
-                        if (!uidUser){
-                            openNewWindow("login", "../../../login/login.html");
-                            return;
-                        }
-                        var that = this;
-                        openNewWindow("tripDate", "tripDate.html", {
-                            data: that.data
-                        });
-                    }
-                }
-            })
+            setTimeout(function () {
+                backButtonPress = 0;
+            }, 1000);
         }
 
-    </script>
+        var magicAll = magicAllInit(Vue);
+        Vue.component('magicAll', magicAll);
+
+
+        winWidth = api.winWidth;
+        winHeight = api.winHeight;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth : winHeight / 2;
+        // a01_w = (winWidth > winHeight / 2) ? winWidth/2 : winHeight / 2;
+        a01_w = winWidth;
+        // 斜边长
+        bevelLength = Math.sqrt((a01_w * a01_w / 2)) - 40
+        //console.log("bevelLength",bevelLength)
+        // width_d=(screen_w-20) *2/5 - 5;
+        m_d = (a01_w - 10) * 0.23 - 25;    // 100
+        // getSrceenWH(winWidth,winHeight)
+        new Vue({
+            el: '#great',
+            data: {
+                activeType: 'trip',
+                item: {},
+                list: [],
+                len: 1,
+                total: 0,
+                picList: [],
+                picListpic1: [],
+                picListpic2: [],
+                picListpic3: [],
+                att: false,
+                att_id: '',
+                person_id: '',
+                hourseId: '',
+                active: 'magicAll',
+                cid: '',
+                data: '',
+                username: '',
+                userphone: '',
+                userwx: '',
+                usermain: '',
+                showModal: false,
+                listJob: [],
+                imgSrc: [],
+
+                //leilei
+                message:{},
+                topImg:[],
+                tabsImg:[],
+                activeIndex:'0',
+                spec:'',//规格
+                langCardData:''
+
+            },
+            created: function () {
+                this.person_id = localStorage.getItem('person_id');
+                this.hourseId = api.pageParam.hourseId;
+                this.tId = api.pageParam.tId;
+                this.housequeryHouseSummary();
+            },
+            mounted: function () {
+                var that = this
+                document.getElementById('great').classList.remove('isDisplay');
+                this.isDisplay = true;
+                //获得slider插件对象
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                    autoplay: true,
+                    observer:true,//修改swiper自己或子元素时，自动初始化swiper
+                    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                });
+                that.active = store.state.obj.magicCom;
+                api.addEventListener({
+                    name: 'comCom1',
+                }, function (ret, err) {
+                    //console.log("ret",ret);
+                    that.active = ret.value.key.magicCom1;
+
+                    /*localStorage.setItem("magic_id",ret.value.key.c_id)
+                    localStorage.setItem("magic_img",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name",ret.value.key.c_name)*/
+                });
+                api.addEventListener({
+                    name: 'comCom2',
+                }, function (ret, err) {
+                    //console.log("ret",ret);
+                    that.active = ret.value.key.magicCom2;
+
+                    /*localStorage.setItem("magic_id2",ret.value.key.c_id)
+                    localStorage.setItem("magic_img2",ret.value.key.logo_icon)
+                    localStorage.setItem("magic_name2",ret.value.key.c_name)*/
+                });
+                //console.log("that.tId1234",'jobAll'+that.tId)
+                api.addEventListener({
+                    name: 'jobAll' + that.tId,
+                }, function (ret, err) {
+                    // //console.log("ret",ret);
+                    that.hourseId = ret.value.key.cid
+                    that.housequeryHouseSummary()
+
+                });
+
+                magicBox = document.querySelector(".magicBox")
+                bgBlack = document.querySelector(".bgBlack")
+
+                magicBtn = document.getElementsByClassName("magicBtn")
+                magicSubBox = document.getElementsByClassName("magicSubBox")
+                iconImg = document.getElementsByClassName("iconImg")
+                magicBox.style.width = bevelLength * 2 + "px"
+                magicBox.style.height = bevelLength + "px"
+                var rightYi = bevelLength
+                magicBox.style.right = '-' + rightYi + "px"
+                bgBlack.style.width = winWidth + "px"
+                bgBlack.style.height = winHeight + "px"
+
+                magicBGheight = document.querySelector(".magicBGheight")
+                magicBGheight.style.height = m_d + "px"
+                // 里面小盒子宽度
+                for (var i = 0; i < magicBtn.length; i++) {
+                    magicBtn[i].style.width = m_d + "px"
+                    magicBtn[i].style.height = m_d + "px"
+                }
+                // 里面小盒子宽度
+                for (var i = 0; i < magicSubBox.length; i++) {
+                    magicSubBox[i].style.width = m_d + "px"
+                    magicSubBox[i].style.height = m_d + "px"
+                }
+                // 图片宽度
+                for (var i = 0; i < iconImg.length; i++) {
+                    iconImg[i].style.width = m_d / 2 + "px"
+                    iconImg[i].style.height = m_d / 2 + "px"
+                }
+            },
+
+            methods: {
+                // 获取数据
+                housequeryHouseSummary: function () {
+                    var that = this;
+                    ajaxGetWithProgress('http://192.168.1.29:8083/tour/travel/findSummaryByid', {
+                        goodId: "293"
+                    }, function (data, err) {
+
+                        //获取数据
+
+                        console.log(data,'shuju');
+                        that.langCardData = data;
+                        that.message = data.Message;
+                        var imglist =  data.Message.picImg.split(',');
+                        imglist.splice(-1,1);
+                        that.topImg = imglist;
+                        that.tabsImg = data.image;
+                        that.spec = data.Spec;
+                        //goodName + introduce
+                        //maxprice 价格
+                        //picImg  头部
+                    });
+                },
+
+                changetabs(i){
+                  this.activeIndex = i;
+                },
+
+                buyNow(){
+                    // console.log('购买,')
+                    var that = this;
+                    api.ajax({
+                        // report : false,
+                        url: 'http://192.168.1.29:8083/tour/travel/createOrderMessage',
+                        method: 'post',
+                        cache: 'false',
+                        timeout: 30,
+                        dataTpye: 'json',
+                        data: {
+                            files: {},
+                            values: {
+                              goodId : that.langCardData.Message.goodId,
+                              good_spec_price_id : that.langCardData.Spec[0].item[0].id,
+                              amount : 1,
+                              user_id : localStorage.getItem("user"),
+                              total_money :that.langCardData.Message.maxPrice,
+
+                            }
+                        }
+                    }, function (data, err) {
+
+                        console.log("订单", data);
+                        // return
+
+                        api.hideProgress();
+                        if (data.Status) {
+                            openNewWindow("confirmOrder", "../confirmOrder.html", {
+                                url: 'tourism',
+                                urlIs : 'tourismouou',
+                                OrderKey : '',
+                                ououPrice: '',
+                                item: {
+                                    num: 1,
+                                    // summary:data.Message.goodName,
+                                    ououPrice:that.langCardData.Message.maxPrice,
+                                    // placard:data.Message.picImg,
+                                    cId:that.langCardData.Message.goodId,
+                                    orderNo:data.orderNo,
+                                },
+                                order: {
+                                    // num: document.querySelector(".tripNumNum").innerText,
+                                    // summary: '',
+                                    // price: document.querySelector(".tripPrice").innerText,
+                                    // tripPriceDan: document.querySelector(".tripPriceDan").innerText,
+                                    // username: document.querySelector(".username").innerText,
+                                    // userphone: document.querySelector(".userphone").innerText,
+                                    // cId: that.ouId,
+                                    // tdId: document.querySelector(".tdId").innerText,
+                                }
+                            })
+                        }else{
+                            toast("请求出错")
+                        }
+                    });
+                },
+
+                togle: function () {
+                    // this.active = true;
+                    var isBlck = document.querySelector('.bgBlack')
+                    if (isBlck.getAttribute("class") == 'isDisplay') {
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        //console.log(document.querySelector('.bgBlack'))
+                    } else {
+                        var that = this;
+                        that.active = 'magicAll';
+                        document.querySelector('.bgBlack').classList.remove('isDisplay');
+                        // this.MenuListQyMenu();
+                    }
+                },
+
+                hideBg: function () {
+                    var that = this
+                    document.querySelector('.bgBlack').classList.add('isDisplay');
+                    that.active = ''
+                },
+            }
+        })
+    }
+</script>
 </body>
-</html>
