@@ -98,7 +98,7 @@
             预定人信息
         </div>
         <div class="perInfoList cssFlex">
-            <div class="perInfoListBtn" @click="personAc()" v-for="">郑博文</div>
+            <div class="perInfoListBtn" @click="personAc()" v-for="item in personList">{{item.nameall}}</div>
             <div class="perInfoListBtn" @click="addPer()">选择出行人 ></div>
         </div>
         <!--<div class="ReserveBox">
@@ -135,8 +135,9 @@
     var name, app;
 
     function personList(personList) {
-        app.personList = JSON.parse(personList);
-        console.log(JSON.parse(personList),'145')
+      console.log(personList)
+        app.personList = personList;
+        // console.log(JSON.parse(personList),'145')
     };
     apiready = function () {
         console.log(api.pageParam)
@@ -248,7 +249,8 @@
                 addPer: function () {
                     var that = this;
                     openNewWindow("Adress", "../../../address/trip/Adress.html", {
-                        url: 'tripDate'
+                        url: 'tripDate',
+                        num:that.num
                     });
                 },
                 queryPeopleAndCityoloq: function () {
@@ -275,14 +277,24 @@
                         return
                     }
                     localStorage.setItem("tripPhone", that.phone)
-                    var obj = {
 
+
+                    //出行人信息
+                    if(this.personList.length > 0){
+                      var idArr = [];
+                      var idStr = '';
+                      for(var i = 0; i <this.personList.length; i++ ){
+                        idArr.push(this.personList[i].id);
+                      }
+                      idStr = idArr.join(',');
+                    }
+                    var obj = {
                         goodId : that.goodId,
                         good_spec_price_id : that.good_spec_price_id,
                         amount : that.num,
                         user_id : localStorage.getItem("user"),
                         total_money : that.getPriceDefult * that.num,
-                        uidList : "1,2",
+                        uidList : idStr,
                     };
                     console.log(obj)
                     api.ajax({
