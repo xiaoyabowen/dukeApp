@@ -287,7 +287,7 @@
                     console.log(obj)
                     api.ajax({
                         // report : false,
-                        url: 'http://192.168.1.35:8083/tour/travel/createOrderMessage',
+                        url: 'http://192.168.1.29:8083/tour/travel/createOrderMessage',
                         method: 'post',
                         cache: 'false',
                         timeout: 30,
@@ -358,6 +358,7 @@
                         idStr += selectObj[key].id2+',';
                         // this.selectedArr.push(selectObj[key]);
                     }
+
                     this.selectedArr[index1] = index;
                     //  this.selectedArr[index1] = index;
                     this.selectedArr = JSON.parse(JSON.stringify(this.selectedArr));
@@ -372,6 +373,7 @@
                       idStr += selectObj[key].id2+',';
                       // this.selectedArr.push(selectObj[key]);
                     }
+
                     //
                     // s=s.substring(0,s.length-1)
                     var idStrSub = idStr.substring(0,idStr.length-1);
@@ -418,7 +420,7 @@
                     };
                     api.ajax({
                         // report : false,
-                        url: 'http://192.168.1.35:8083/tour/travel/findPriceItemBySpecId',
+                        url: 'http://192.168.1.29:8083/tour/travel/findPriceItemBySpecId',
                         method: 'get',
                         cache: 'false',
                         timeout: 30,

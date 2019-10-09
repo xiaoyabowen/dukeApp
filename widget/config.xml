@@ -14,6 +14,7 @@
     <access origin="*" />
     <preference name="windowBackground" value="#FFF" />
     <permission name="call" />
+    <permission name="fileSystem" />
     <preference name="statusBarAppearance" value="true" />     <!-- 沉浸式 -->
     <preference name="autoLaunch" value="true" />    <!--启动页时间 -->
     <preference name="iOS7StatusBarAppearance" value="true" />

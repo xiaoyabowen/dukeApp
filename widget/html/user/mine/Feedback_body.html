@@ -132,6 +132,15 @@
             height: 1.3rem;
             margin: 0 auto 0.2rem;
         }
+        .fankui{
+            margin-top: 0.4rem;
+            height: 0.3rem;
+            line-height: 0.3rem;
+            font-size: 0.26rem;
+            color: #666666;
+            font-weight: 400;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -187,6 +196,9 @@
             </p>
         </div>
         <div class="ques-submit" onclick="quesSubmit()">提交申请</div>
+
+        <div class="fankui">反馈邮箱：dukeheadhunter@dukeheadhunter.com</div>
+
     </div>
     <div class="picPath" style="display: none;"></div>
     <div class="titleText" style="display: none;"></div>
@@ -290,7 +302,7 @@
                 api.ajax({
                     // report : false,
 
-                    url:'http://192.168.1.12:8088/upload/UploadFlie',
+                    url:'http://192.168.1.30:8088/upload/UploadFlie',
 
                     //这里是我们约定好的后台上传图片的位置 ，你可以根据你的需求来改
                     method: 'post',
