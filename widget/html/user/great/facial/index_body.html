@@ -129,8 +129,8 @@
 <script src="../common/bus.js"></script>
 
 
-<!--<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
-<script>eruda.init();</script>-->
+<script src="https://cdn.bootcss.com/eruda/1.2.6/eruda.js"></script>
+<script>eruda.init();</script>
 <script>
 
 </script>
@@ -303,7 +303,7 @@
                         cid: that.cid,
                         pid: that.person_id
                     }, function (data, err) {
-                        console.log(data, '280000');
+                        console.log(data, 'aaaaaaaaaaaaaa');
 
                         if (data.Commodity) {
                             api.hideProgress();
@@ -384,7 +384,7 @@
                     var that = this
                     //console.log("that.tId",that.tId)
                     ajaxGetWithProgress(commodityList, {tid: that.tId}, function (data) {
-                        //console.log("commodityList",data)
+                        console.log("魔方",data)
                         var jobList = data.comList
                         //console.log(jobList)
                         if (data) {
