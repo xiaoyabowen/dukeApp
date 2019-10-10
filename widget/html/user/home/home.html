@@ -328,8 +328,6 @@
     var wx,searchinputTop, JIMData, homeBtnCom,getWebUrl;
     var jpush = null;
     apiready = function () {
-
-
         var mam = api.require('mam');
 
         mam.checkUpdate(function(ret, err) {
@@ -392,7 +390,7 @@
             console.log("极光ID为：" + ret.id);
             if(ret.id){
                 //缓存设备id
-                fun.user.setToken(ret.id);
+                // fun.user.setToken(ret.id);
                 var param = {alias:ret.id};
                 //绑定用户别名为极光id。服务端可以指定别名进行消息推送
                 ajpush.bindAliasAndTags(param,function(ret) {
