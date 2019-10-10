@@ -68,7 +68,7 @@ function magicAllInit(Vue) {
                 var that = this
                 //console.log("that.tId",that.tId)
                 ajaxGetWithProgress(commodityList,{tid : that.tId},function (data) {
-                    //console.log("commodityList",data)
+                    console.log("commodityList111",data)
                     var jobList = data.comList
                     if (data) {
                         if (jobList == null) {
